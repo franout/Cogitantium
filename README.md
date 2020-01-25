@@ -112,10 +112,10 @@ $ bower install
 
 Reach out to me at one of the following places!
 
-- Integration Guide at <a href="http://nvdla.org/hw/v1/integration_guide.html" target="_blank">`NVDLA integration `</a>
+-  <a href="http://nvdla.org/hw/v1/integration_guide.html" target="_blank">`NVDLA integration `</a>
 
-- Hardware specification of NVDLA at <a href="http://nvdla.org/hw/v1/hwarch.html" target="_blank">`NVDLA Specification `</a>
+-  <a href="http://nvdla.org/hw/v1/hwarch.html" target="_blank">`NVDLA Hardware Specification `</a>
 
-
+-  <a href="http://nvdla.org/primer.html" target="_blank">`NVDLA Primer `</a>
 ## License
 GNU General Public License v3.0
