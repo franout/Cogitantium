@@ -17,16 +17,16 @@ PROJECTS := nv_full
 ##======================= 										  
   																  
 ## c pre-processor			   									  
-CPP  := /home/utils/gcc-4.9.3/bin/cpp
+CPP  := /usr/bin/cpp
   																  
 ## c++ compiler	      		   									  
-GCC  := /home/utils/gcc-4.9.3/bin/g++
+GCC  := /usr/bin/g++
   																  
 ## perl: many scripts is written in perl 							  
-PERL := /home/utils/perl-5.8.8/bin/perl
+PERL := /usr/bin/perl
   																  
 ## java: used in hardware regester spec compilation (not in current release)                       
-JAVA := /home/utils/java/jdk1.8.0_131/bin/java
+JAVA := /usr/bin/java
   																  
 ## systemc: needed for Cmodel build (optional)                       
 SYSTEMC := /usr/local/systemc-2.3.0/
