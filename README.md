@@ -114,6 +114,7 @@ Reach out to me at one of the following places!
 
 - Integration Guide at <a href="http://nvdla.org/hw/v1/integration_guide.html" target="_blank">`NVDLA integration `</a>
 
+- Hardware specification of NVDLA at <a href="http://nvdla.org/hw/v1/hwarch.html" target="_blank">`NVDLA Specification `</a>
 
 
 ## License
