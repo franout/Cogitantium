@@ -108,16 +108,14 @@ $ bower install
 
 ---
 
-## Support
+## Useful Link 
 
 Reach out to me at one of the following places!
 
-- Website at <a href="http://fvcproductions.com" target="_blank">`fvcproductions.com`</a>
-- Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>
-- Insert more social links here.
+-  <a href="http://nvdla.org/hw/v1/integration_guide.html" target="_blank">`NVDLA integration `</a>
 
----
+-  <a href="http://nvdla.org/hw/v1/hwarch.html" target="_blank">`NVDLA Hardware Specification `</a>
 
-
+-  <a href="http://nvdla.org/primer.html" target="_blank">`NVDLA Primer `</a>
 ## License
 GNU General Public License v3.0
