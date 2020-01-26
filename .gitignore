@@ -1,7 +1,8 @@
-
+# ignore repositories and images of boars
 images/
 
 nvdla/
 
+tutorial_board/
 
-
+pynq_z2/
