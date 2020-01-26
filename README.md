@@ -76,6 +76,6 @@ Reach out to me at one of the following places!
 
 -  <a href="http://nvdla.org/primer.html" target="_blank">`NVDLA Primer `</a>
 -  <a href="https://pynq.readthedocs.io/en/v2.5/getting_started/pynq_z2_setup.html" target="_blank">`Pynq Tutorial `</a>
-
+-  <a href="https://github.com/facebookresearch/deepfloat" target="_blank">`Deep float `</a>
 ## License
 GNU General Public License v3.0
