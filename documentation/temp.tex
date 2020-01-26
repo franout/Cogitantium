@@ -1,0 +1,235 @@
+\documentclass[12pt,oneside]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Zusaetzliche Pakete  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{acronym}
+\usepackage{enumerate}  
+\usepackage{a4wide}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{palatino}
+\usepackage{blindtext}
+\usepackage{multirow}
+\usepackage[ruled,longend]{algorithm2e}
+\usepackage{float}
+
+
+%folgende Zeile auskommentieren für englische Arbeiten
+\usepackage[ngerman]{babel}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bookmarks]{hyperref}
+\usepackage[justification=centering]{caption}
+\usepackage[style=chicago-authordate,natbib=true,backend=biber]{biblatex}
+\usepackage{csquotes}
+\bibliography{literatur}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Definition der Kopfzeile %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\setlength{\headheight}{16pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Definition des Deckblattes und der Titelseite  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\JMUTitle}[9]{
+
+  \thispagestyle{empty}
+  \vspace*{\stretch{1}}
+  {\parindent0cm
+  \rule{\linewidth}{.7ex}}
+  \begin{flushright}
+    \vspace*{\stretch{1}}
+    \sffamily\bfseries\Huge
+    #1\\
+    \vspace*{\stretch{1}}
+    \sffamily\bfseries\large
+    #2
+    \vspace*{\stretch{1}}
+  \end{flushright}
+  \rule{\linewidth}{.7ex}
+
+  \vspace*{\stretch{1}}
+  \begin{center}
+    \includegraphics[width=2in]{siegel} \\
+    \vspace*{\stretch{1}}
+    \Large Seminararbeit/Bachelorarbeit/Masterarbeit  \\
+
+    \vspace*{\stretch{2}}
+   \large Juniorprofessur f\"{u}r Informationsmanagement\\
+    \vspace*{\stretch{1}}
+    \large Betreuer:  #7 \\[1mm]
+    
+    \vspace*{\stretch{1}}
+    \large W\"urzburg, den #6
+  \end{center}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Beginn des Dokuments  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+  \JMUTitle
+      {Titel }        % Titel der Arbeit
+      {Autor}                        % Vor- und Nachname des Autors
+      
+      {Wirtschaftswissenschaftlichen Fakultät}  % Name der Fakultaet
+      {W"urzburg 2018}                          % Ort und Jahr der Erstellung
+      {dd.mm.yyyy}                              % Tag der Abgabe
+      {Prof. Dr. Christian Janiesch}               % Name des Erstgutachters
+      {Zweitgutachter}                          % Name des Zweitgutachters
+      {Pr"ufungsdatum}                          % Datum der muendlichen Pruefung
+
+  \clearpage
+
+\lhead{}
+\pagenumbering{Roman} 
+    \setcounter{page}{1}
+
+\tableofcontents
+\clearpage
+
+\addcontentsline{toc}{section}{\listfigurename}
+\listoffigures
+
+\addcontentsline{toc}{section}{\listtablename}
+\listoftables
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Kurzzusammenfassung   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\markboth{Zusammenfassung}{Zusammenfassung}
+\section*{Zusammenfassung}
+\blindtext
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Abstract   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\markboth{Abstract}{Abstract}
+\section*{Abstract}
+\blindtext
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Einstellungen  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\pagenumbering{arabic}  
+    \setcounter{page}{1}
+\lhead{\nouppercase{\leftmark}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Hauptteil  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Einleitung} \label{einleitung}
+
+Einleitungssatz für dieses Kapitel.
+
+\subsection{Unterabschnitt}
+
+\textbf{So wird dick geschrieben} und \textit{so kursiv}. \citet[580]{clemen1989combining} so wird Autor, Jahr und Seite zitiert. So wird in Klammern zitiert: \citep[580]{clemen1989combining} oder (\cites[580]{clemen1989combining}[548]{gilabert2006intelligent}). So wird eine Webquelle zitiert: \citet{shiny1}. So wird referenziert: Kapitel \ref{einleitung}, Gleichung \ref{eq:1} zeigt...
+
+\begin{equation}
+    \sum_{i=1}^N x_i
+    \label{eq:1}
+\end{equation}
+
+Das ist eine Auflistung:
+
+\begin{enumerate}
+\item Element 1
+\item Element 2
+\end{enumerate}
+
+
+%% remove blindtext
+\blindtext
+
+\subsection{Unterabschnitt zwei}
+
+%% remove blindtext
+\blindtext
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{siegel.pdf}
+    \caption{Siegel der Universität}
+    \label{fig:my_label}
+\end{figure}
+
+\subsubsection{UnterUnterabschnitt}
+
+%% remove blindtext
+\blindtext
+
+\subsubsection{UnterUnterabschnitt zwei}
+So schreibt man ein Algorithmus:
+\\
+\begin{algorithm}[H]
+ \KwData{this text}
+ \KwResult{how to write algorithm }
+ initialization\;
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
+\BlankLine
+
+
+So gestaltet man eine Tabelle:
+\newline
+\begin{table}[H]
+\caption{Beispielstabelle}
+\centering
+\begin{tabular}{llr}
+\hline
+A    & B & C \\
+\hline
+D      & per gram    & 11.65      \\
+          & each        & 1.01       \\
+E       & stuffed     & 32.54      \\
+F       & stuffed     & 73.23      \\
+G & frozen      & 8.39       \\
+\hline
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Literaturverzeichnis wird 
+%% automatisch eingefügt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\lhead{}
+\printbibliography
+\addcontentsline{toc}{section}{\bibname}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Eidesstattliche Erklärung
+%% muss angepasst werden 
+%% in Erklaerung.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Erklaerung.tex}
+
+\end{document}
