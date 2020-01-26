@@ -8,6 +8,8 @@
 
 Hardware accelerator for Machine Learning on TUL PYNQ™-Z2 board, based on Xilinx Zynq SoC 
 
+Starting point architecture is <a href="https://github.com/nvdla" target="_blank">`NVDLA  `</a>
+
 Erasmus Master Thesis @Chalmers University of Technology and Polythecnic of Turin
 
 <!-- [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) -->
