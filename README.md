@@ -8,6 +8,8 @@
 
 Hardware accelerator for Machine Learning on TUL PYNQ™-Z2 board, based on Xilinx Zynq SoC 
 
+Starting point architecture is <a href="https://github.com/nvdla" target="_blank">`NVDLA  `</a>
+
 Erasmus Master Thesis @Chalmers University of Technology and Polythecnic of Turin
 
 <!-- [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) -->
@@ -74,6 +76,6 @@ Reach out to me at one of the following places!
 
 -  <a href="http://nvdla.org/primer.html" target="_blank">`NVDLA Primer `</a>
 -  <a href="https://pynq.readthedocs.io/en/v2.5/getting_started/pynq_z2_setup.html" target="_blank">`Pynq Tutorial `</a>
-
+-  <a href="https://github.com/facebookresearch/deepfloat" target="_blank">`Deep float `</a>
 ## License
 GNU General Public License v3.0
