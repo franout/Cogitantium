@@ -10,29 +10,23 @@
 ##======================= 										  
 ## Project Name Setup, multiple projects supported			  	  
 ##======================= 										  
-PROJECTS := nv_full
-
+PROJECTS := nv_small
+  																  
 ##======================= 										  
 ##Linux Environment Setup 										  
 ##======================= 										  
   																  
-## c pre-processor			   									  
-CPP  := /usr/bin/cpp
-  																  
-## c++ compiler	      		   									  
-GCC  := /usr/bin/g++
-  																  
-## perl: many scripts is written in perl 							  
+USE_DESIGNWARE  := 0
+DESIGNWARE_DIR  := /home/tools/synopsys/syn_2011.09/dw/sim_ver
+CPP  := /usr/bn/cpp
+GCC  := /usr/bin/gcc
+CXX  := /usr/bin/g++
 PERL := /usr/bin/perl
-  																  
-## java: used in hardware regester spec compilation (not in current release)                       
 JAVA := /usr/bin/java
-  																  
-## systemc: needed for Cmodel build (optional)                       
-SYSTEMC := /usr/local/systemc-2.3.0/
-  																  
-## verilator: used to build testbench without VCS (optional)
+SYSTEMC := /usr/local/systemc-2.3.0
+PYTHON := /usr/bin/python3.5
+VCS_HOME := /home/tools/vcs/mx-2016.06-SP2-4
+NOVAS_HOME := /home/tools/debussy/verdi3_2016.06-SP2-9
+VERDI_HOME := /home/tools/debussy/verdi3_2016.06-SP2-9
 VERILATOR := /usr/bin/verilator
-  																  
-## clang: used to build Verilated binaries (optional)
 CLANG := /usr/bin/clang

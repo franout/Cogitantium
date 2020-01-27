@@ -42,26 +42,28 @@ computations.
 * eyexam , A systematic way to quickly understand the performance limits of DNN accelerators in a step-by-step process
 * timeloop for evaluating DNN
 * Eyeriss architecture
-
+* First, they are very tolerant of reduced-precision computations. Second, the computations performed by most models are simply different compositions of a relatively small handful of operations like matrix multiplies, vector operations, application of convolutional kernels, and other dense linear algebra calculations [Vanhoucke et al. 2011]. Third, many of the mechanisms developed over the past 40 years to enable general-purpose  programs to run with high performance on modern CPUs, such as branch predictors, speculative execution, hyperthreaded-execution processing cores, and deep cache memory hierarchies and TLB subsystems are unnecessary for machine learning computations 
 
 
 ## FUTURE READINGS
 
  * Ienne, P., Cornu, T., and Kuhn, G. Special-purpose digital hardware for neural networks: An architectural survey. Journal of VLSI Signal Processing Systems for Signal, Image and Video Technology 13, 1 (1996), 5–25.
 “cornucopia corollary” to Amdahl’s Law—that low utilization of a huge, cheap resource can still deliver high, cost-effective performance.
-* Chen, Y., Chen, T., Xu, Z., Sun, N., and Teman, O. DianNao Family: Energy-efficient hardware accelerators for machine learning. Commun. ACM 59, 11 (Nov. 2016), 105–112. 8. Chen, Y.H., Emer, J., and Sze, V. Eyeriss: A spatial architecture for energy-efficient dataflow for  convolutional neural networks. In Proceedings of the 43rd ACM/IEEE International Symposium on Computer Architecture (Seoul, Korea), IEEE Press, 2016.
-* Dally, W. High-performance hardware for machine learning. Invited talk at Cadence ENN Summit (Santa Clara, CA, Feb. 9, 2016)
- * Hammerstrom, D. A VLSI architecture forhigh-performance, low-cost, on-chip learning. In Proceedings of the International Joint Conference  on Neural Networks (San Diego, CA, June 17–21). IEEE Press, 1990.
-* Han, S., Pool, J., Tran, J., and Dally, W. Learning both weights  and connections for efficient neural networks. In Proceedings of Advances in Neural Information Processing Systems (Montreal Canada, Dec.) MIT Press, Cambridge, MA, 2015
 * www/global/en_US/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf
-* Hyoukjun Kwon, Ananda Samajdar, and Tushar Krishna. Maeri: Enabling flexible dataflow mapping over dnn accelerators via reconfigurable interconnects.
-* Yufei Ma, Yu Cao, Sarma Vrudhula, and Jae-sun Seo. Optimizing loop operation and ataflow in FPGA acceleration of deep convolutional neural networks.
-* Mohammad Motamedi, Philipp Gysel, Venkatesh Akella, and Soheil Ghiasi. Design space exploration of FPGA-based deep convolutional  neural networks.  
 * Atul Rahman, Sangyun Oh, Jongeun Lee, and Kiyoung Choi. Design space exploration of FPGA accelerators for convolutional neural networks.  
-* Yongming Shen, Michael Ferdman, and Peter Milder. Maximizing CNN  accelerator  efficiency through resource partitioning.
 * Kaiyi Yang, Shihao Wang, Jianbin Zhou, and Takeshi Yoshimura. Energy-efficient scheduling method with cross-loop model for resourcelimited cnn accelerator designs.
 
-## READING 
+* Yongming Shen, Michael Ferdman, and Peter Milder. Maximizing CNN  accelerator  efficiency through resource partitioning.
+* Yufei Ma, Yu Cao, Sarma Vrudhula, and Jae-sun Seo. Optimizing loop operation and ataflow in FPGA acceleration of deep convolutional neural networks.
+* Mohammad Motamedi, Philipp Gysel, Venkatesh Akella, and Soheil Ghiasi. Design space exploration of FPGA-based deep convolutional  neural networks.  
+* Hyoukjun Kwon, Ananda Samajdar, and Tushar Krishna. Maeri: Enabling flexible dataflow mapping over dnn accelerators via reconfigurable interconnects.
+* Dally, W. High-performance hardware for machine learning. Invited talk at Cadence ENN Summit (Santa Clara, CA, Feb. 9, 2016)
+* Han, S., Pool, J., Tran, J., and Dally, W. Learning both weights  and connections for efficient neural networks. In Proceedings of Advances in Neural Information Processing Systems (Montreal Canada, Dec.) MIT Press, Cambridge, MA, 2015
+* Chen, Y., Chen, T., Xu, Z., Sun, N., and Teman, O. DianNao Family: Energy-efficient hardware accelerators for machine learning. Commun. ACM 59, 11 (Nov. 2016), 105–112. 8. Chen, Y.H., Emer, J., and Sze, V. Eyeriss: A spatial architecture for energy-efficient dataflow for  convolutional neural networks. In Proceedings of the 43rd ACM/IEEE International Symposium on Computer Architecture (Seoul, Korea), IEEE Press, 2016.
+
+
+
+## READINGS 
 
 * Deep Learning with Limited Numerical Precision, "Suyog Gupta, Ankur Agrawal, Kailash Gopalakrishnan, Pritish Narayanan"
 * Mixed-precision training of deep neural networks using computational memory , Nandakumar S. R., Manuel Le Gallo, Irem Boybat,Bipin Rajendran, Abu Sebastian,Evangelos Eleftheriou1

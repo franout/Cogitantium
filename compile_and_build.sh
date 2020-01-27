@@ -1,8 +1,8 @@
 #!/bin/bash
 
-
+#avoid since the sources file will be copied
 cd ./nvdla/hw
-make
+#make
 
 # update paths for tools
 cp ../../sources ./tree.make
@@ -13,7 +13,7 @@ make
 cd ./../../
 
 #compile and sanity check
-./tools/bin/tmake
+./tools/bin/tmake 
 
 
 # compoli&build verilog rtl

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #script for reset repositories
-
+branch="master" ; # nvdla1 for large nv_small for small
 #nvdla hw
 rm -rf ./nvdla/
 mkdir ./nvdla/
 cd ./nvdla/
 
-git clone https://github.com/nvdla/hw.git
+git clone --single-branch --branch $branch https://github.com/nvdla/hw.git  
 #nvdla sw
 
 git clone https://github.com/nvdla/sw.git
@@ -23,8 +23,8 @@ cd ./tutorial_board/
 git clone https://github.com/Xilinx/PYNQ_Workshop
 cd ..
 
-rm -rf 
-mkdir pynq_z2/
+rm -rf ./pynq_z2/
+mkdir./pynq_z2/
 cd pynq_z2
 git clone https://github.com/Xilinx/PYNQ
 cd ..
