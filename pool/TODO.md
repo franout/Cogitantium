@@ -51,15 +51,7 @@ computations.
 “cornucopia corollary” to Amdahl’s Law—that low utilization of a huge, cheap resource can still deliver high, cost-effective performance.
 * www/global/en_US/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf
 * Atul Rahman, Sangyun Oh, Jongeun Lee, and Kiyoung Choi. Design space exploration of FPGA accelerators for convolutional neural networks.  
-* Kaiyi Yang, Shihao Wang, Jianbin Zhou, and Takeshi Yoshimura. Energy-efficient scheduling method with cross-loop model for resourcelimited cnn accelerator designs.
 
-* Yongming Shen, Michael Ferdman, and Peter Milder. Maximizing CNN  accelerator  efficiency through resource partitioning.
-* Yufei Ma, Yu Cao, Sarma Vrudhula, and Jae-sun Seo. Optimizing loop operation and ataflow in FPGA acceleration of deep convolutional neural networks.
-* Mohammad Motamedi, Philipp Gysel, Venkatesh Akella, and Soheil Ghiasi. Design space exploration of FPGA-based deep convolutional  neural networks.  
-* Hyoukjun Kwon, Ananda Samajdar, and Tushar Krishna. Maeri: Enabling flexible dataflow mapping over dnn accelerators via reconfigurable interconnects.
-* Dally, W. High-performance hardware for machine learning. Invited talk at Cadence ENN Summit (Santa Clara, CA, Feb. 9, 2016)
-* Han, S., Pool, J., Tran, J., and Dally, W. Learning both weights  and connections for efficient neural networks. In Proceedings of Advances in Neural Information Processing Systems (Montreal Canada, Dec.) MIT Press, Cambridge, MA, 2015
-* Chen, Y., Chen, T., Xu, Z., Sun, N., and Teman, O. DianNao Family: Energy-efficient hardware accelerators for machine learning. Commun. ACM 59, 11 (Nov. 2016), 105–112. 8. Chen, Y.H., Emer, J., and Sze, V. Eyeriss: A spatial architecture for energy-efficient dataflow for  convolutional neural networks. In Proceedings of the 43rd ACM/IEEE International Symposium on Computer Architecture (Seoul, Korea), IEEE Press, 2016.
 
 
 
@@ -92,5 +84,12 @@ computations.
 * A Domain-Specific Architecture for Deep Neural Networks , NORMAN P. JOUPPI, CLIFF YOUNG, NISHANT PATIL, AND DAVID PATTERSON
 * MIXED PRECISION TRAINING OF CONVOLUTIONAL NEURAL NETWORKS USING INTEGER OPERATIONS, Dipankar Das, Naveen Mellempudi, Dheevatsa Mudigere, Dhiraj Kalamkar, Sasikanth Avancha, Kunal Banerjee, Srinivas Sridharan, Karthik Vaidyanathan, Bharat Kaul, Evangelos Georganas, Alexander Heinecke, Pradeep Dubey, Nikita Shustrov, Roma Dubtsov, Evarist Fomenko, Vadim Pirogov, Jesus Corbal
 * Fine-Grained Exploitation of Mixed Precision for Faster CNN Training
+* Yongming Shen, Michael Ferdman, and Peter Milder. Maximizing CNN  accelerator  efficiency through resource partitioning.
+* Yufei Ma, Yu Cao, Sarma Vrudhula, and Jae-sun Seo. Optimizing loop operation and ataflow in FPGA acceleration of deep convolutional neural networks.
+* Mohammad Motamedi, Philipp Gysel, Venkatesh Akella, and Soheil Ghiasi. Design space exploration of FPGA-based deep convolutional  neural networks.  
+* Hyoukjun Kwon, Ananda Samajdar, and Tushar Krishna. Maeri: Enabling flexible dataflow mapping over dnn accelerators via reconfigurable interconnects.
+* Dally, W. High-performance hardware for machine learning. Invited talk at Cadence ENN Summit (Santa Clara, CA, Feb. 9, 2016)
+* Han, S., Pool, J., Tran, J., and Dally, W. Learning both weights  and connections for efficient neural networks. In Proceedings of Advances in Neural Information Processing Systems (Montreal Canada, Dec.) MIT Press, Cambridge, MA, 2015
+* Chen, Y., Chen, T., Xu, Z., Sun, N., and Teman, O. DianNao Family: Energy-efficient hardware accelerators for machine learning. Commun. ACM 59, 11 (Nov. 2016), 105–112. 8. Chen, Y.H., Emer, J., and Sze, V. Eyeriss: A spatial architecture for energy-efficient dataflow for  convolutional neural networks. In Proceedings of the 43rd ACM/IEEE International Symposium on Computer Architecture (Seoul, Korea), IEEE Press, 2016.
 
 

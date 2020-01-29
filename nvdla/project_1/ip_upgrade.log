@@ -1,0 +1,221 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Jan 28 18:33:24 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'base_zynq_rst_ps7_0_50M_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of base_zynq_rst_ps7_0_50M_0 (xilinx.com:ip:proc_sys_reset:5.0 (Rev. 13)) to Vivado generation flows.
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Jan 28 18:33:24 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'base_zynq_ps7_0_axi_periph_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of base_zynq_ps7_0_axi_periph_0 (xilinx.com:ip:axi_interconnect:2.1 (Rev. 21)) to Vivado generation flows.
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Jan 28 18:33:24 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'base_zynq_processing_system7_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of base_zynq_processing_system7_0_0 (xilinx.com:ip:processing_system7:5.5 (Rev. 6)) to Vivado generation flows.
+
+2. Upgrade messages
+-------------------
+
+WARNING: upgrade cannot add parameter PCW_TRACE_INTERNAL_WIDTH with default value 32 : a parameter called PCW_TRACE_INTERNAL_WIDTH already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_USE_AXI_NONSECURE with default value 0 : a parameter called PCW_USE_AXI_NONSECURE already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_EN_PTP_ENET0 with default value 1 : a parameter called PCW_EN_PTP_ENET0 already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_EN_PTP_ENET0 with default value 1 : a parameter called PCW_EN_PTP_ENET0 already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_GP0_NUM_WRITE_THREADS with default value 4 : a parameter called PCW_GP0_NUM_WRITE_THREADS already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_GP0_NUM_READ_THREADS with default value 4 : a parameter called PCW_GP0_NUM_READ_THREADS already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_GP1_NUM_WRITE_THREADS with default value 4 : a parameter called PCW_GP1_NUM_WRITE_THREADS already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_GP1_NUM_READ_THREADS with default value 4 : a parameter called PCW_GP1_NUM_READ_THREADS already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_GP0_EN_MODIFIABLE_TXN with default value 0 : a parameter called PCW_GP0_EN_MODIFIABLE_TXN already exists in processing_system7_v5_5
+WARNING: upgrade cannot add parameter PCW_GP1_EN_MODIFIABLE_TXN with default value 0 : a parameter called PCW_GP1_EN_MODIFIABLE_TXN already exists in processing_system7_v5_5
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Jan 28 18:33:24 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'base_zynq_blk_mem_gen_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of base_zynq_blk_mem_gen_0_0 (xilinx.com:ip:blk_mem_gen:8.4 (Rev. 4)) to Vivado generation flows.
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Jan 28 18:33:24 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'base_zynq_axi_gpio_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the conversion of base_zynq_axi_gpio_0_0 (xilinx.com:ip:axi_gpio:2.0 (Rev. 22)) to Vivado generation flows.
+
+After upgrade, an IP may have parameter differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality.
+
+2. Customization warnings
+-------------------------
+
+The normal upgrade process failed due to validation failures in the given configuration. Attempting partial upgrade to set as many user parameters as possible. Please check the parameters whose values were not applied.
+
+Unable to set the value 'led_4bits' on parameter 'GPIO BOARD INTERFACE' due to the following failure - 
+Value 'led_4bits' is out of the range for parameter 'GPIO BOARD INTERFACE(GPIO_BOARD_INTERFACE)' for BD Cell 'base_zynq_axi_gpio_0_0' . Valid values are - Custom
+. Restoring to an old valid value of 'Custom'
+
+
+3. Debug Commands
+-----------------
+
+  The following debug information can be passed to Vivado as Tcl commands,
+in order to validate or debug the output of the upgrade flow.
+  You may consult any warnings from within this upgrade, and alter or remove
+the configuration parameter(s) which caused the warning; then execute the Tcl
+commands, and use the IP Customization GUI to verify the IP configuration.
+
+create_ip -vlnv xilinx.com:ip:axi_gpio:2.0 -user_name base_zynq_axi_gpio_0_0
+set_property -dict "\
+  CONFIG.C_ALL_INPUTS {0} \
+  CONFIG.C_ALL_INPUTS_2 {0} \
+  CONFIG.C_ALL_OUTPUTS {1} \
+  CONFIG.C_ALL_OUTPUTS_2 {0} \
+  CONFIG.C_DOUT_DEFAULT {0x00000000} \
+  CONFIG.C_DOUT_DEFAULT_2 {0x00000000} \
+  CONFIG.C_GPIO2_WIDTH {32} \
+  CONFIG.C_GPIO_WIDTH {4} \
+  CONFIG.C_INTERRUPT_PRESENT {0} \
+  CONFIG.C_IS_DUAL {0} \
+  CONFIG.C_TRI_DEFAULT {0xFFFFFFFF} \
+  CONFIG.C_TRI_DEFAULT_2 {0xFFFFFFFF} \
+  CONFIG.Component_Name {base_zynq_axi_gpio_0_0} \
+  CONFIG.GPIO.BOARD.ASSOCIATED_PARAM {GPIO_BOARD_INTERFACE} \
+  CONFIG.GPIO2_BOARD_INTERFACE {Custom} \
+  CONFIG.GPIO_BOARD_INTERFACE {led_4bits} \
+  CONFIG.S_AXI.ADDR_WIDTH {9} \
+  CONFIG.S_AXI.ARUSER_WIDTH {0} \
+  CONFIG.S_AXI.AWUSER_WIDTH {0} \
+  CONFIG.S_AXI.BUSER_WIDTH {0} \
+  CONFIG.S_AXI.CLK_DOMAIN {base_zynq_processing_system7_0_0_FCLK_CLK0} \
+  CONFIG.S_AXI.DATA_WIDTH {32} \
+  CONFIG.S_AXI.FREQ_HZ {50000000} \
+  CONFIG.S_AXI.HAS_BRESP {1} \
+  CONFIG.S_AXI.HAS_BURST {0} \
+  CONFIG.S_AXI.HAS_CACHE {0} \
+  CONFIG.S_AXI.HAS_LOCK {0} \
+  CONFIG.S_AXI.HAS_PROT {0} \
+  CONFIG.S_AXI.HAS_QOS {0} \
+  CONFIG.S_AXI.HAS_REGION {0} \
+  CONFIG.S_AXI.HAS_RRESP {1} \
+  CONFIG.S_AXI.HAS_WSTRB {1} \
+  CONFIG.S_AXI.ID_WIDTH {0} \
+  CONFIG.S_AXI.INSERT_VIP {0} \
+  CONFIG.S_AXI.MAX_BURST_LENGTH {1} \
+  CONFIG.S_AXI.NUM_READ_OUTSTANDING {8} \
+  CONFIG.S_AXI.NUM_READ_THREADS {1} \
+  CONFIG.S_AXI.NUM_WRITE_OUTSTANDING {8} \
+  CONFIG.S_AXI.NUM_WRITE_THREADS {1} \
+  CONFIG.S_AXI.PHASE {0.000} \
+  CONFIG.S_AXI.PROTOCOL {AXI4LITE} \
+  CONFIG.S_AXI.READ_WRITE_MODE {READ_WRITE} \
+  CONFIG.S_AXI.RUSER_BITS_PER_BYTE {0} \
+  CONFIG.S_AXI.RUSER_WIDTH {0} \
+  CONFIG.S_AXI.SUPPORTS_NARROW_BURST {0} \
+  CONFIG.S_AXI.WUSER_BITS_PER_BYTE {0} \
+  CONFIG.S_AXI.WUSER_WIDTH {0} \
+  CONFIG.S_AXI_ACLK.ASSOCIATED_BUSIF {S_AXI} \
+  CONFIG.S_AXI_ACLK.ASSOCIATED_RESET {s_axi_aresetn} \
+  CONFIG.S_AXI_ACLK.CLK_DOMAIN {base_zynq_processing_system7_0_0_FCLK_CLK0} \
+  CONFIG.S_AXI_ACLK.FREQ_HZ {50000000} \
+  CONFIG.S_AXI_ACLK.INSERT_VIP {0} \
+  CONFIG.S_AXI_ACLK.PHASE {0.000} \
+  CONFIG.S_AXI_ARESETN.INSERT_VIP {0} \
+  CONFIG.S_AXI_ARESETN.POLARITY {ACTIVE_LOW} \
+  CONFIG.USE_BOARD_FLOW {true} " [get_ips base_zynq_axi_gpio_0_0]
+
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Jan 28 18:33:24 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'base_zynq_axi_bram_ctrl_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of base_zynq_axi_bram_ctrl_0_0 (xilinx.com:ip:axi_bram_ctrl:4.1 (Rev. 2)) to Vivado generation flows.
+
+2. Upgrade messages
+-------------------
+
+WARNING: upgrade cannot remove parameter C_SELECT_XPM : there is no parameter called C_SELECT_XPM in axi_bram_ctrl_v4_1
+

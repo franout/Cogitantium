@@ -3,8 +3,10 @@
 #script for reset repositories
 branch="master" ; # nvdla1 for large nv_small for small
 #nvdla hw
-rm -rf ./nvdla/
-mkdir ./nvdla/
+rm -rf ./nvdla/hw/
+rm -rf ./nvdla/sw/
+mkdir ./nvdla/hw
+mkdir ./nvdla/sw
 cd ./nvdla/
 
 git clone --single-branch --branch $branch https://github.com/nvdla/hw.git  

@@ -18,7 +18,7 @@ PROJECTS := nv_small
   																  
 USE_DESIGNWARE  := 0
 DESIGNWARE_DIR  := /home/tools/synopsys/syn_2011.09/dw/sim_ver
-CPP  := /usr/bn/cpp
+CPP  := /usr/bin/cpp
 GCC  := /usr/bin/gcc
 CXX  := /usr/bin/g++
 PERL := /usr/bin/perl

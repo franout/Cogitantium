@@ -1,7 +1,8 @@
 # ignore repositories and images of boars
 images/
 
-nvdla/
+nvdla/hw/
+nvdla/sw/
 
 tutorial_board/
 
