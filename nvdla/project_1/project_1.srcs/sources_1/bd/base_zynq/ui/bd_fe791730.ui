@@ -1,31 +1,52 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.792203",
-   "Default View_TopLeft":"87,9",
+   "Default View_TopLeft":"112,-178",
    "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 non-TLS-threadsafe
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 5 -x 1300 -y 330 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 5 -x 1300 -y 360 -defaultsOSRD
-preplace port led_4bits -pg 1 -lvl 5 -x 1300 -y 80 -defaultsOSRD
-preplace inst axi_bram_ctrl_0 -pg 1 -lvl 3 -x 900 -y 220 -defaultsOSRD
-preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 900 -y 80 -defaultsOSRD
-preplace inst blk_mem_gen_0 -pg 1 -lvl 4 -x 1160 -y 220 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 5 -x 2350 -y 330 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 5 -x 2350 -y 360 -defaultsOSRD
+preplace port led_4bits -pg 1 -lvl 5 -x 2350 -y 80 -defaultsOSRD
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 3 -x 1950 -y 220 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 1950 -y 80 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 4 -x 2210 -y 220 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 420 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 610 -y 190 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 700 -y 192 -defaultsOSRD
 preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 230 -y 170 -defaultsOSRD
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 30 270 450 40 770
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 20 70 430
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 440 50 750
-preplace netloc processing_system7_0_DDR 1 1 4 470J 330 NJ 330 NJ 330 NJ
-preplace netloc processing_system7_0_FIXED_IO 1 1 4 NJ 360 NJ 360 NJ 360 NJ
+preplace inst ps7_0_axi_periph|xbar -pg 1 -lvl 2 -x 1310 -y 212 -defaultsOSRD
+preplace inst ps7_0_axi_periph|s00_couplers -pg 1 -lvl 1 -x 810 -y 182 -defaultsOSRD
+preplace inst ps7_0_axi_periph|m00_couplers -pg 1 -lvl 3 -x 1570 -y 432 -defaultsOSRD
+preplace inst ps7_0_axi_periph|m01_couplers -pg 1 -lvl 3 -x 1570 -y 262 -defaultsOSRD
+preplace inst ps7_0_axi_periph|s00_couplers|auto_pc -pg 1 -lvl 1 -x 920 -y 192 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 60 460 50 1810
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 70 430
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 480 40 1820
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 470 172n
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 1800 200n
+preplace netloc processing_system7_0_FIXED_IO 1 1 4 440J 584 1820J 360 NJ 360 NJ
 preplace netloc axi_gpio_0_GPIO 1 3 2 NJ 80 NJ
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 1790 60n
 preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 3 1 NJ 220
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 460 110n
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 760 60n
-preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 N 200
-levelinfo -pg 1 0 230 610 900 1160 1300
-pagesize -pg 1 -db -bbox -sgen 0 0 1410 560
+preplace netloc processing_system7_0_DDR 1 1 4 450J 554 1800J 330 NJ 330 NJ
+preplace netloc ps7_0_axi_periph|ps7_0_axi_periph_ACLK_net 1 0 3 630 292 1170 292 1450
+preplace netloc ps7_0_axi_periph|ps7_0_axi_periph_ARESETN_net 1 0 3 620 302 1180 302 1460
+preplace netloc ps7_0_axi_periph|xbar_to_m00_couplers 1 2 1 1440 202n
+preplace netloc ps7_0_axi_periph|m01_couplers_to_ps7_0_axi_periph 1 3 1 N 262
+preplace netloc ps7_0_axi_periph|xbar_to_m01_couplers 1 2 1 N 222
+preplace netloc ps7_0_axi_periph|m00_couplers_to_ps7_0_axi_periph 1 3 1 1680 242n
+preplace netloc ps7_0_axi_periph|s00_couplers_to_xbar 1 1 1 N 192
+preplace netloc ps7_0_axi_periph|ps7_0_axi_periph_to_s00_couplers 1 0 1 N 172
+preplace netloc ps7_0_axi_periph|s00_couplers|S_ACLK_1 1 0 1 760 192n
+preplace netloc ps7_0_axi_periph|s00_couplers|S_ARESETN_1 1 0 1 770 212n
+preplace netloc ps7_0_axi_periph|s00_couplers|s00_couplers_to_auto_pc 1 0 1 N 172
+preplace netloc ps7_0_axi_periph|s00_couplers|auto_pc_to_s00_couplers 1 1 1 N 192
+levelinfo -pg 1 0 230 700 1950 2210 2350
+levelinfo -hier ps7_0_axi_periph * 810 1310 1570 *
+levelinfo -hier ps7_0_axi_periph|s00_couplers * 920 *
+pagesize -pg 1 -db -bbox -sgen 0 0 2460 680
+pagesize -hier ps7_0_axi_periph -db -bbox -sgen 590 82 1710 522
+pagesize -hier ps7_0_axi_periph|s00_couplers -db -bbox -sgen 730 112 1100 272
 "
 }
-
+0

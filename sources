@@ -10,8 +10,9 @@
 ##======================= 										  
 ## Project Name Setup, multiple projects supported			  	  
 ##======================= 										  
-PROJECTS := nv_small
-  																  
+PROJECTS := $DESIGN
+  		
+
 ##======================= 										  
 ##Linux Environment Setup 										  
 ##======================= 										  

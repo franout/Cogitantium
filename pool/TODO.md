@@ -43,14 +43,14 @@ computations.
 * timeloop for evaluating DNN
 * Eyeriss architecture
 * First, they are very tolerant of reduced-precision computations. Second, the computations performed by most models are simply different compositions of a relatively small handful of operations like matrix multiplies, vector operations, application of convolutional kernels, and other dense linear algebra calculations [Vanhoucke et al. 2011]. Third, many of the mechanisms developed over the past 40 years to enable general-purpose  programs to run with high performance on modern CPUs, such as branch predictors, speculative execution, hyperthreaded-execution processing cores, and deep cache memory hierarchies and TLB subsystems are unnecessary for machine learning computations 
+* convolution loop optimizations:
+    +	Loop Unrolling: parallel computation of conv. MACs ,register arrays and PE architecture
+ + Loop Tiling : increase data locality, determine on chip buffer size
+ + Loop Interchange :computation order of four conv. loops
 
 
 ## FUTURE READINGS
 
- * Ienne, P., Cornu, T., and Kuhn, G. Special-purpose digital hardware for neural networks: An architectural survey. Journal of VLSI Signal Processing Systems for Signal, Image and Video Technology 13, 1 (1996), 5–25.
-“cornucopia corollary” to Amdahl’s Law—that low utilization of a huge, cheap resource can still deliver high, cost-effective performance.
-* www/global/en_US/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf
-* Atul Rahman, Sangyun Oh, Jongeun Lee, and Kiyoung Choi. Design space exploration of FPGA accelerators for convolutional neural networks.  
 
 
 
@@ -91,5 +91,10 @@ computations.
 * Dally, W. High-performance hardware for machine learning. Invited talk at Cadence ENN Summit (Santa Clara, CA, Feb. 9, 2016)
 * Han, S., Pool, J., Tran, J., and Dally, W. Learning both weights  and connections for efficient neural networks. In Proceedings of Advances in Neural Information Processing Systems (Montreal Canada, Dec.) MIT Press, Cambridge, MA, 2015
 * Chen, Y., Chen, T., Xu, Z., Sun, N., and Teman, O. DianNao Family: Energy-efficient hardware accelerators for machine learning. Commun. ACM 59, 11 (Nov. 2016), 105–112. 8. Chen, Y.H., Emer, J., and Sze, V. Eyeriss: A spatial architecture for energy-efficient dataflow for  convolutional neural networks. In Proceedings of the 43rd ACM/IEEE International Symposium on Computer Architecture (Seoul, Korea), IEEE Press, 2016.
+ * Ienne, P., Cornu, T., and Kuhn, G. Special-purpose digital hardware for neural networks: An architectural survey. Journal of VLSI Signal Processing Systems for Signal, Image and Video Technology 13, 1 (1996), 5–25.
+“cornucopia corollary” to Amdahl’s Law—that low utilization of a huge, cheap resource can still deliver high, cost-effective performance.
+* www/global/en_US/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf
+* Atul Rahman, Sangyun Oh, Jongeun Lee, and Kiyoung Choi. Design space exploration of FPGA accelerators for convolutional neural networks.  
+
 
 

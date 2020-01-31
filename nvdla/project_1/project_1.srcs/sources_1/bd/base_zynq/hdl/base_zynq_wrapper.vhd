@@ -14,6 +14,7 @@ use UNISIM.VCOMPONENTS.ALL;
 
 entity base_zynq_wrapper is
   port (
+  sysclk: in std_logic;
     DDR_addr : inout STD_LOGIC_VECTOR ( 14 downto 0 );
     DDR_ba : inout STD_LOGIC_VECTOR ( 2 downto 0 );
     DDR_cas_n : inout STD_LOGIC;
@@ -35,7 +36,8 @@ entity base_zynq_wrapper is
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
-    led_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 )
+    led_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    active: OUT std_logic
   );
 end base_zynq_wrapper;
 
@@ -164,81 +166,96 @@ signal nvdla_core2dbb_ar_araddr:  std_logic_vector(31 downto 0);
  signal nvdla_pwrbus_ram_o_pd: std_logic_vector(31 downto 0);
 signal nvdla_pwrbus_ram_a_pd:  std_logic_vector(31 downto 0);
 
+signal trial:std_logic:='0';
+
+
+COMPONENT   pwm_generator IS 
+GENERIC (N:integer:=14;
+	   pwm_freq        : INTEGER := 1000    --PWM switching frequency in Hz
+			);
+PORT ( clk,reset,enable,ld_val_duty: IN std_logic;
+	   data_in: IN std_logic_vector(N-1 DOWNTO 0);  -- raw data that must be processed
+		pwm_out: OUT std_logic
+		);
+END COMPONENT   pwm_generator;
 
 begin
-base_zynq_i: component base_zynq
-     port map (
-      DDR_addr(14 downto 0) => DDR_addr(14 downto 0),
-      DDR_ba(2 downto 0) => DDR_ba(2 downto 0),
-      DDR_cas_n => DDR_cas_n,
-      DDR_ck_n => DDR_ck_n,
-      DDR_ck_p => DDR_ck_p,
-      DDR_cke => DDR_cke,
-      DDR_cs_n => DDR_cs_n,
-      DDR_dm(3 downto 0) => DDR_dm(3 downto 0),
-      DDR_dq(31 downto 0) => DDR_dq(31 downto 0),
-      DDR_dqs_n(3 downto 0) => DDR_dqs_n(3 downto 0),
-      DDR_dqs_p(3 downto 0) => DDR_dqs_p(3 downto 0),
-      DDR_odt => DDR_odt,
-      DDR_ras_n => DDR_ras_n,
-      DDR_reset_n => DDR_reset_n,
-      DDR_we_n => DDR_we_n,
-      FIXED_IO_ddr_vrn => FIXED_IO_ddr_vrn,
-      FIXED_IO_ddr_vrp => FIXED_IO_ddr_vrp,
-      FIXED_IO_mio(53 downto 0) => FIXED_IO_mio(53 downto 0),
-      FIXED_IO_ps_clk => FIXED_IO_ps_clk,
-      FIXED_IO_ps_porb => FIXED_IO_ps_porb,
-      FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
-      led_4bits_tri_o(3 downto 0) => led_4bits_tri_o(3 downto 0)
-    );
+--base_zynq_i: component base_zynq
+--     port map (
+--      DDR_addr(14 downto 0) => DDR_addr(14 downto 0),
+--      DDR_ba(2 downto 0) => DDR_ba(2 downto 0),
+--      DDR_cas_n => DDR_cas_n,
+--      DDR_ck_n => DDR_ck_n,
+--      DDR_ck_p => DDR_ck_p,
+--      DDR_cke => DDR_cke,
+--      DDR_cs_n => DDR_cs_n,
+--      DDR_dm(3 downto 0) => DDR_dm(3 downto 0),
+--      DDR_dq(31 downto 0) => DDR_dq(31 downto 0),
+--      DDR_dqs_n(3 downto 0) => DDR_dqs_n(3 downto 0),
+--      DDR_dqs_p(3 downto 0) => DDR_dqs_p(3 downto 0),
+--      DDR_odt => DDR_odt,
+--      DDR_ras_n => DDR_ras_n,
+--      DDR_reset_n => DDR_reset_n,
+--      DDR_we_n => DDR_we_n,
+--      FIXED_IO_ddr_vrn => FIXED_IO_ddr_vrn,
+--      FIXED_IO_ddr_vrp => FIXED_IO_ddr_vrp,
+--      FIXED_IO_mio(53 downto 0) => FIXED_IO_mio(53 downto 0),
+--      FIXED_IO_ps_clk => FIXED_IO_ps_clk,
+--      FIXED_IO_ps_porb => FIXED_IO_ps_porb,
+--      FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
+--      led_4bits_tri_o(3 downto 0) => led_4bits_tri_o(3 downto 0)
+--    );
     
     
     -- NVIDIA deep learning accelerator NOTE BE CAREFUL WITH the names cause the module is written in verilog
 -- dummy instantiation  just for checking the correctness of hierarchy!!
-dla:NV_nvdla PORT MAP(dla_core_clk, dla_csb_clk,
- global_clk_ovr_on,
- tmc2slcg_disable_clock_gating ,
-dla_reset_rstn ,
- direct_reset ,
- test_mode ,
- csb2nvdla_valid,
- csb2nvdla_ready,
- csb2nvdla_addr,
- csb2nvdla_wdat,
-csb2nvdla_write,
- csb2nvdla_nposted,
-  nvdla2csb_valid,
- nvdla2csb_data,
-nvdla2csb_wr_complete,
- nvdla_core2dbb_aw_awvalid,
-nvdla_core2dbb_aw_awready,
- nvdla_core2dbb_aw_awid,
- nvdla_core2dbb_aw_awlen ,
- nvdla_core2dbb_aw_awaddr ,
- nvdla_core2dbb_w_wvalid ,
- nvdla_core2dbb_w_wready,
- nvdla_core2dbb_w_wdata,
-nvdla_core2dbb_w_wstrb,
- nvdla_core2dbb_w_wlast,
- nvdla_core2dbb_ar_arvalid,
- nvdla_core2dbb_ar_arready,
- nvdla_core2dbb_ar_arid,
- nvdla_core2dbb_ar_arlen,
-nvdla_core2dbb_ar_araddr,
- nvdla_core2dbb_b_bvalid,
- nvdla_core2dbb_b_bready,
- nvdla_core2dbb_b_bid,
- nvdla_core2dbb_r_rvalid,
- nvdla_core2dbb_r_rready,
- nvdla_core2dbb_r_rid,
- nvdla_core2dbb_r_rlast,
- nvdla_core2dbb_r_rdata,
- dla_intr,
- nvdla_pwrbus_ram_c_pd,
- nvdla_pwrbus_ram_ma_pd,
- nvdla_pwrbus_ram_mb_pd,
- nvdla_pwrbus_ram_p_pd,
- nvdla_pwrbus_ram_o_pd,
-nvdla_pwrbus_ram_a_pd);    
+--dla:NV_nvdla PORT MAP(dla_core_clk, dla_csb_clk,
+-- global_clk_ovr_on,
+-- tmc2slcg_disable_clock_gating ,
+--dla_reset_rstn ,
+-- direct_reset ,
+-- test_mode ,
+-- csb2nvdla_valid,
+-- csb2nvdla_ready,
+-- csb2nvdla_addr,
+-- csb2nvdla_wdat,
+--csb2nvdla_write,
+-- csb2nvdla_nposted,
+--  nvdla2csb_valid,
+-- nvdla2csb_data,
+--nvdla2csb_wr_complete,
+-- nvdla_core2dbb_aw_awvalid,
+--nvdla_core2dbb_aw_awready,
+-- nvdla_core2dbb_aw_awid,
+-- nvdla_core2dbb_aw_awlen ,
+-- nvdla_core2dbb_aw_awaddr ,
+-- nvdla_core2dbb_w_wvalid ,
+-- nvdla_core2dbb_w_wready,
+-- nvdla_core2dbb_w_wdata,
+--nvdla_core2dbb_w_wstrb,
+-- nvdla_core2dbb_w_wlast,
+-- nvdla_core2dbb_ar_arvalid,
+-- nvdla_core2dbb_ar_arready,
+-- nvdla_core2dbb_ar_arid,
+-- nvdla_core2dbb_ar_arlen,
+--nvdla_core2dbb_ar_araddr,
+-- nvdla_core2dbb_b_bvalid,
+-- nvdla_core2dbb_b_bready,
+-- nvdla_core2dbb_b_bid,
+-- nvdla_core2dbb_r_rvalid,
+-- nvdla_core2dbb_r_rready,
+-- nvdla_core2dbb_r_rid,
+-- nvdla_core2dbb_r_rlast,
+-- nvdla_core2dbb_r_rdata,
+-- dla_intr,
+-- nvdla_pwrbus_ram_c_pd,
+-- nvdla_pwrbus_ram_ma_pd,
+-- nvdla_pwrbus_ram_mb_pd,
+-- nvdla_pwrbus_ram_p_pd,
+-- nvdla_pwrbus_ram_o_pd,
+--nvdla_pwrbus_ram_a_pd);    
     
+ my_pwm:  pwm_generator GENERIC MAP(14,1000) 
+    PORT MAP(reset=>'0',clk=>sysclk,pwm_out=>active,data_in=>(OTHERS=>'0'),enable=>'1',ld_val_duty=>'0');
+
 end STRUCTURE;

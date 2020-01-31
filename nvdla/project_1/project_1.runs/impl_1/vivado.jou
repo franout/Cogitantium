@@ -2,11 +2,11 @@
 # Vivado v2019.2.1 (64-bit)
 # SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
 # IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
-# Start of session at: Tue Jan 28 22:17:45 2020
-# Process ID: 12408
+# Start of session at: Fri Jan 31 17:27:18 2020
+# Process ID: 18272
 # Current directory: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_1/project_1.runs/impl_1
-# Command line: vivado.exe -log NV_nvdla.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source NV_nvdla.tcl -notrace
-# Log file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_1/project_1.runs/impl_1/NV_nvdla.vdi
+# Command line: vivado.exe -log pwm_generator.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pwm_generator.tcl -notrace
+# Log file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_1/project_1.runs/impl_1/pwm_generator.vdi
 # Journal file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_1/project_1.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
-source NV_nvdla.tcl -notrace
+source pwm_generator.tcl -notrace

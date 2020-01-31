@@ -1,0 +1,13 @@
+
+*** Running vivado
+    with args -log base_zynq_auto_pc_1.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source base_zynq_auto_pc_1.tcl
+
+
+****** Vivado v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source base_zynq_auto_pc_1.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP base_zynq_auto_pc_1, cache-ID = a6752d5c67a3d176.
+INFO: [Common 17-206] Exiting Vivado at Fri Jan 31 10:21:15 2020...

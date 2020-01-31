@@ -25,7 +25,7 @@ eval( EAInclude(ISEJScriptLib) );
 // pre-commands:
 ISETouchFile( "init_design", "begin" );
 ISEStep( "vivado",
-         "-log NV_nvdla.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source NV_nvdla.tcl -notrace" );
+         "-log pwm_generator.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source pwm_generator.tcl -notrace" );
 
 
 
