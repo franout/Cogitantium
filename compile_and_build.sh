@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DESIGN="nv_small_256"
+export DESIGN="nv_small"
 
 #nv_small nv_small_256 nv_small_256_full nv_medium_512 nv_medium_1024_full nv_large														  
 
@@ -31,9 +31,10 @@ rm -rf ./outdir/{$DESIGN}/vmod/rams/model
 
 
 ## remove logs files if no errors 
-if [ $sucess -ne 0 ] then ;
+if [ $sucess -eq 1  ] 
+then 
 echo "###################\n ########## ERROR ###########\n ###############"
-else
+	else
 cd ./outdir/
 rm -rf *.log
 cd ..

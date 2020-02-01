@@ -1,0 +1,630 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Sat Feb  1 20:48:35 2020
+# Process ID: 16184
+# Current directory: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.runs/impl_1
+# Command line: vivado.exe -log NV_nvdla.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source NV_nvdla.tcl -notrace
+# Log file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.runs/impl_1/NV_nvdla.vdi
+# Journal file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source NV_nvdla.tcl -notrace
+Command: link_design -top NV_nvdla -part xc7z020clg400-2
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7z020clg400-2
+Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 931.699 ; gain = 1.895
+INFO: [Netlist 29-17] Analyzing 3329 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.2.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.srcs/constrs_1/new/try.xdc]
+CRITICAL WARNING: [Designutils 20-1307] Command 'ram_style="block"' is not supported in the xdc constraint file. [D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.srcs/constrs_1/new/try.xdc:1]
+Finished Parsing XDC File [D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.srcs/constrs_1/new/try.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.058 . Memory (MB): peak = 1138.336 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 43 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 31 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 12 instances
+
+7 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1138.336 ; gain = 694.563
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1147.352 ; gain = 9.016
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 13457842d
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:26 . Memory (MB): peak = 1762.230 ; gain = 614.395
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: e5b3f77b
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 1980.012 ; gain = 0.000
+INFO: [Opt 31-389] Phase Retarget created 44 cells and removed 276 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 9e8362a7
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:09 . Memory (MB): peak = 1980.012 ; gain = 0.000
+INFO: [Opt 31-389] Phase Constant propagation created 4 cells and removed 4 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: f2ee648a
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:12 . Memory (MB): peak = 1980.012 ; gain = 0.000
+INFO: [Opt 31-389] Phase Sweep created 7 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common MMCM/DPLL/XPLL driver.
+INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common driver.
+INFO: [Opt 31-1092] Phase BUFG optimization transformed 0 BUFG(s) to MBUFG(s).
+Phase 4 BUFG optimization | Checksum: f2ee648a
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1980.012 ; gain = 0.000
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: 634cd46c
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1980.012 ; gain = 0.000
+INFO: [Opt 31-389] Phase Shift Register Optimization created 2 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: 43f9565b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1980.012 ; gain = 0.000
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |              44  |             276  |                                              0  |
+|  Constant propagation         |               4  |               4  |                                              0  |
+|  Sweep                        |               7  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               2  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.432 . Memory (MB): peak = 1980.012 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 13a345e4b
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1980.012 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.000 | TNS=0.000 |
+WARNING: [Power 33-232] No user defined clocks were found in the design! Power estimation will be inaccurate until this is corrected.
+Resolution: Please specify clocks using create_clock/create_generated_clock for sequential elements. For pure combinatorial circuits, please specify a virtual clock, otherwise the vectorless estimation might be inaccurate
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 92 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 4 newly gated: 78 Total Ports: 184
+Ending PowerOpt Patch Enables Task | Checksum: 1174279f4
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2633.531 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 1174279f4
+
+Time (s): cpu = 00:01:22 ; elapsed = 00:00:41 . Memory (MB): peak = 2633.531 ; gain = 653.520
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1174279f4
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2633.531 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.074 . Memory (MB): peak = 2633.531 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 161b7f7e5
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 2633.531 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+33 Infos, 1 Warnings, 1 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:02:21 ; elapsed = 00:01:37 . Memory (MB): peak = 2633.531 ; gain = 1495.195
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 2633.531 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint 'D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.runs/impl_1/NV_nvdla_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:26 ; elapsed = 00:00:19 . Memory (MB): peak = 2633.531 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_drc -file NV_nvdla_drc_opted.rpt -pb NV_nvdla_drc_opted.pb -rpx NV_nvdla_drc_opted.rpx
+Command: report_drc -file NV_nvdla_drc_opted.rpt -pb NV_nvdla_drc_opted.pb -rpx NV_nvdla_drc_opted.rpx
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/programmi/Xilinx/Vivado/2019.2/data/ip'.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file D:/uni/2019-2020/thesis/cogitantium/nvdla/project_3/project_3.runs/impl_1/NV_nvdla_drc_opted.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 2633.531 ; gain = 0.000
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1839 rule limit reached: 20 violations have been found.
+WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1840 rule limit reached: 20 violations have been found.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[6] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[0]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_channel_st_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[6] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[0]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_cnt_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[6] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[0]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[7] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[1]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_channel_st_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[7] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[1]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_cnt_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[7] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[1]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[8] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[2]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_channel_st_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[8] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[2]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_cnt_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[8] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[2]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[9] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[3]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_channel_st_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[9] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[3]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_cnt_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRARDADDR[9] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/ADDRARDADDR[3]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRBWRADDR[6] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/Q[0]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_addr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRBWRADDR[7] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/Q[1]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_addr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRBWRADDR[8] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/Q[2]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ADDRBWRADDR[9] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/Q[3]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ENARDEN (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/pwropt) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_channel_st_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ENARDEN (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/pwropt) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_assembly_ctrl/accu_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/ENBWREN (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/WEBWE[0]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_en_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0 has an input control pin u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg_0/WEBWE[7] (net: u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/WEBWE[0]) which is driven by a register (u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_en_reg_rep) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[10] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[6]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[4] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[0]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[5] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[1]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[6] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[2]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[7] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[3]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[8] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[4]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ADDRARDADDR[9] (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_5[5]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_adr_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENARDEN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_4[0]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_busy_int_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENARDEN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg_4[0]) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/wr_req_in_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/NV_NVDLA_PDP_RDMA_rdrsp/pipe_skid_dma_rd_rsp_vld_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/dma_rsp_size_cnt_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/dma_rsp_size_cnt_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/dma_rsp_size_cnt_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/dma_rsp_size_cnt_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/dma_rsp_size_cnt_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_req_int_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg has an input control pin u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/M_reg/ENBWREN (net: u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/ram/rd_popping) which is driven by a register (u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_req_p_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg has an input control pin u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg/ADDRARDADDR[10] (net: u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/adr_ram_wr_adr[6]) which is driven by a register (u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_cvt/pipe_p1/pipe_spt2cvt_cmd_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg has an input control pin u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg/ADDRARDADDR[11] (net: u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/adr_ram_wr_adr[7]) which is driven by a register (u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_cvt/pipe_p1/pipe_spt2cvt_cmd_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg has an input control pin u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg/ADDRARDADDR[9] (net: u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/adr_ram_wr_adr[5]) which is driven by a register (u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_cvt/pipe_p1/pipe_spt2cvt_cmd_valid_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 42 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.053 . Memory (MB): peak = 2633.531 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: fd7adb21
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.255 . Memory (MB): peak = 2633.531 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 2633.531 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+ERROR: [Place 30-415] IO Placement failed due to overutilization. This design contains 336 I/O ports
+ while the target  device: 7z020 package: clg400, contains only 255 available user I/O. The target device has 255 usable I/O pins of which 0 are already occupied by user-locked I/Os.
+ To rectify this issue:
+ 1. Ensure you are targeting the correct device and package.  Select a larger device or different package if necessary.
+ 2. Check the top-level ports of the design to ensure the correct number of ports are specified.
+ 3. Consider design changes to reduce the number of I/Os necessary.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Place 30-568] A LUT 'u_partition_a/u_NV_NVDLA_cacc/u_slcg_cell_0/nvdla_core_clk_slcg_0/p_clkgate/i_sum_pd[34]_i_3' is driving clock pin of 848 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/u_cell_int8_3/i_sum_pd_reg[11] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/u_cell_int8_3/i_sat_sel_reg {FDCE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/u_cell_int8_3/i_sum_pd_reg[16] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/u_cell_int8_3/i_sum_pd_reg[0] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/u_cell_int8_3/i_sum_pd_reg[10] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_a/u_NV_NVDLA_cacc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/accu_valid_i_1' is driving clock pin of 658 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_data_reg[71] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_data_reg[5] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_data_reg[55] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_data_reg[62] {FDRE}
+	u_partition_a/u_NV_NVDLA_cacc/u_calculator/abuf_wr_data_reg[61] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_cdma/u_slcg_dc/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_2' is driving clock pin of 35 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_cdma/u_dc/u_fifo/rd_adr_reg[4] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_dc/u_fifo/rd_count_p_reg[5] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_dc/u_fifo/rd_adr_reg[1] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_dc/u_fifo/rd_count_p_reg[3] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_dc/u_fifo/rd_count_p_reg[1] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_cdma/u_slcg_hls/nvdla_core_clk_slcg_0/p_clkgate/mul_dout0_i_1__6' is driving clock pin of 74 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_2/pipe_p3/p3_pipe_data_reg[6] {FDRE}
+	u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_2/pipe_p3/p3_pipe_data_reg[7] {FDRE}
+	u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_2/pipe_p3/p3_pipe_data_reg[4] {FDRE}
+	u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_2/pipe_p3/p3_pipe_data_reg[5] {FDRE}
+	u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_2/pipe_p3/p3_pipe_data_reg[1] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_cdma/u_slcg_img/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_1__5' is driving clock pin of 35 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_adr_reg[2] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_count_p_reg[6] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_req_p_reg {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_adr_reg[5] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_img/u_sg/u_NV_NVDLA_CDMA_IMG_fifo/rd_count_p_reg[4] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_cdma/u_slcg_mux/nvdla_core_clk_slcg_0/p_clkgate/lat_wr_adr[2]_i_2' is driving clock pin of 19 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_8atmm_fifo/lat_rd_count_p_reg[0] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_8atmm_fifo/lat_rd_count_p_reg[1] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_8atmm_fifo/lat_rd_pvld_int_reg {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_8atmm_fifo/lat_rd_pvld_p_reg {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_8atmm_fifo/lat_rd_adr_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_cdma/u_slcg_mux/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_2__0' is driving clock pin of 35 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_fifo/rd_count_p_reg[3] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_fifo/rd_count_p_reg[4] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_fifo/rd_adr_reg[4] {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_fifo/rd_req_int_reg {FDCE}
+	u_partition_c/u_NV_NVDLA_cdma/u_wt/u_fifo/rd_count_p_reg[6] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_csc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/wr_adr[1]_i_2' is driving clock pin of 71 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_wt_fifo/rd_count_reg[2] {FDCE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_wt_fifo/rd_count_reg[0] {FDCE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_wt_fifo/rd_adr_reg[1] {FDCE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_wt_fifo/wr_adr_reg[0] {FDCE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_wt_fifo/rd_adr_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_c/u_NV_NVDLA_csc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/wr_adr[1]_i_2__0' is driving clock pin of 131 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_dat_fifo/ram/ram_ff0_reg[10] {FDRE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_dat_fifo/ram/ram_ff0_reg[17] {FDRE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_dat_fifo/ram/ram_ff0_reg[21] {FDRE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_dat_fifo/ram/ram_ff0_reg[11] {FDRE}
+	u_partition_c/u_NV_NVDLA_csc/u_sg/u_dat_fifo/ram/ram_ff0_reg[12] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/nvdla_core_clk_mgate/p_clkgate/free_adr_mask[254]_i_2' is driving clock pin of 392 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd_count0_reg[4] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd_count0_reg[5] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd_count1_reg[4] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd_count2_reg[3] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd_count0_reg[6] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/nvdla_core_clk_rd_mgate_skid/p_clkgate/cq_rd2_credits_ne0_i_3' is driving clock pin of 81 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd2_credits_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd1_credits_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd2_credits_reg[3] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd2_credits_reg[4] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/cq_rd2_credits_reg[5] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo5/nvdla_core_clk_mgate/p_clkgate/rq_rd_pvld_i_3' is driving clock pin of 8 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo5/rq_rd_count_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo5/rq_rd_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo5/rq_wr_count_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo5/rq_wr_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo5/rq_wr_count_reg[2] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo6/nvdla_core_clk_mgate/p_clkgate/rq_rd_pvld_i_3__0' is driving clock pin of 8 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo6/rq_wr_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo6/rq_wr_count_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo6/rq_rd_count_reg[2] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo6/rq_rd_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo6/rq_rd_count_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__2' is driving clock pin of 268 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/ram/ram_ff0_reg[41] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/ram/ram_ff0_reg[42] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/ram/ram_ff0_reg[29] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/ram/ram_ff0_reg[15] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/ram/ram_ff0_reg[22] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo4/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__3' is driving clock pin of 268 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo4/ram/ram_ff0_reg[35] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo4/ram/ram_ff0_reg[20] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo4/ram/ram_ff0_reg[37] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo4/ram/ram_ff0_reg[39] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo4/ram/ram_ff0_reg[18] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__1' is driving clock pin of 268 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/ram/ram_ff3_reg[8] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/ram/ram_ff3_reg[62] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/ram/ram_ff3_reg[7] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/ram/ram_ff3_reg[9] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/ram/ram_ff3_reg[61] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__0' is driving clock pin of 268 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/rq_wr_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/rq_wr_count_reg[2] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/rq_rd_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/rq_wr_adr_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/rq_wr_adr_reg[0] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2' is driving clock pin of 268 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/rq_wr_adr_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/rq_wr_count_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/rq_wr_adr_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/rq_rd_adr_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/rq_rd_pvld_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/rd_clk_rd_mgate/p_clkgate/gray[1]_i_2' is driving clock pin of 39 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/rd_pushing_gray/gray_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/rd_pushing_gray/gray_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_data_reg[0] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_data_reg[33] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_data_reg[22] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/wr_clk_rcv_gate/p_clkgate/d0_i_1__3' is driving clock pin of 6 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync0/sync3d/d1_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync0/sync3d/d0_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync1/sync3d/d0_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync1/sync3d/q_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync1/sync3d/d1_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/rd_clk_rd_mgated_snd_gate/p_clkgate/src_d_f_i_1' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync0/src_d_f_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_rd_popping_sync1/src_d_f_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/wr_clk_wr_mgate/p_clkgate/gray[1]_i_2__0' is driving clock pin of 72 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/ram/ram_ff0_reg[10] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/ram/ram_ff0_reg[11] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/ram/ram_ff0_reg[13] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/ram/ram_ff0_reg[14] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/ram/ram_ff0_reg[15] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/wr_clk_wr_mgated_snd_gate/p_clkgate/src_d_f_i_1__0' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_wr_pushing_sync0/src_d_f_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/NV_AFIFO_wr_pushing_sync1/src_d_f_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/rd_clk_rd_mgated_snd_gate/p_clkgate/src_d_f_i_2__0' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync0/src_d_f_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync1/src_d_f_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync2/src_d_f_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/rd_clk_rd_mgate/p_clkgate/gray[2]_i_2__0' is driving clock pin of 59 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/rd_pushing_gray/gray_reg[1] {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/rd_pushing_gray/gray_reg[0] {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/rd_pushing_gray/gray_reg[2] {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_data_reg[0] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_data_reg[10] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/wr_clk_rcv_gate/p_clkgate/d0_i_1__1' is driving clock pin of 9 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync0/sync3d/d1_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync1/sync3d/d0_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync0/sync3d/q_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync0/sync3d/d0_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_rd_popping_sync1/sync3d/d1_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/wr_clk_wr_mgate/p_clkgate/gray[2]_i_2' is driving clock pin of 209 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/ram/ram_ff0_reg[30] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/ram/ram_ff0_reg[48] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/ram/ram_ff0_reg[10] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/ram/ram_ff0_reg[24] {FDRE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/ram/ram_ff0_reg[25] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/wr_clk_wr_mgated_snd_gate/p_clkgate/src_d_f_i_2' is driving clock pin of 3 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_wr_pushing_sync1/src_d_f_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_wr_pushing_sync0/src_d_f_reg {FDCE}
+	u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/NV_AFIFO_wr_pushing_sync2/src_d_f_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/nvdla_core_clk_mgate/p_clkgate/dfifo_rd_adr[1]_i_2' is driving clock pin of 272 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/ram/ram_ff0_reg[16] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/ram/ram_ff0_reg[28] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/ram/ram_ff0_reg[31] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/ram/ram_ff0_reg[36] {FDRE}
+	u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/ram/ram_ff0_reg[25] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_core/u_gate/nvdla_core_clk_slcg_0/p_clkgate/p1_pipe_valid_i_1__4' is driving clock pin of 503 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bs_dppack/pack_data_reg[5] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bs_dppack/pack_data_reg[19] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bs_dppack/pack_data_reg[2] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bs_dppack/pack_data_reg[6] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bs_dppack/pack_data_reg[29] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_core/u_gate/nvdla_core_clk_slcg_1/p_clkgate/p1_pipe_valid_i_1__5' is driving clock pin of 503 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bn_dppack/pack_data_reg[13] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bn_dppack/pack_data_reg[14] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bn_dppack/pack_data_reg[16] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bn_dppack/pack_data_reg[17] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_core/u_bn_dppack/pack_data_reg[18] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___918' is driving clock pin of 19 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_din/u_lat_fifo/lat_wr_adr_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_din/u_lat_fifo/lat_wr_count_reg[3] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_din/u_lat_fifo/lat_rd_adr_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_din/u_lat_fifo/lat_rd_count_p_reg[3] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_din/u_lat_fifo/lat_rd_pvld_p_reg {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___919' is driving clock pin of 67 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_dfifo/ram/ram_ff0_reg[11] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_dfifo/ram/ram_ff0_reg[12] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_dfifo/ram/ram_ff0_reg[14] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_dfifo/ram/ram_ff0_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_dfifo/ram/ram_ff0_reg[2] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___920' is driving clock pin of 63 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_sfifo/ram/ram_ff0_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_sfifo/ram/ram_ff0_reg[5] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_sfifo/ram/ram_ff0_reg[10] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_sfifo/ram/ram_ff0_reg[12] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_eg/u_cmd/u_sfifo/ram/ram_ff0_reg[1] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___921' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_cq/ig2cq_count_reg[2] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_cq/ig2cq_count_reg[3] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_cq/rd_pushing_reg {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_cq/wr_popping_reg {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_cq/ig2cq_count_reg[4] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___430' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_lat_fifo/lat_rd_count_p_reg[2] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_lat_fifo/lat_rd_count_p_reg[0] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_lat_fifo/lat_rd_count_p_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_lat_fifo/lat_wr_adr_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_lat_fifo/lat_rd_adr_reg[1] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___431' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_cq/cq2eg_adr_reg[0] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_cq/cq2eg_pvld_p_reg {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_cq/ig2cq_adr_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_cq/ig2cq_adr_reg[3] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_cq/ig2cq_count_reg[4] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___432' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_mul/u_roc/ram/ram_ff3_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_mul/u_roc/ram/ram_ff2_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_mul/u_roc/ram/ram_ff3_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_mul/u_roc/ram/ram_ff2_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_mul/u_roc/ram/ram_ff0_reg[1] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___433' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_alu/u_roc/ram/ram_ff3_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_alu/u_roc/ram/ram_ff3_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_alu/u_roc/ram/ram_ff0_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_alu/u_roc/ram/ram_ff1_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_eg/u_alu/u_roc/ram/ram_ff2_reg[0] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___631' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_alu/u_roc/ram/ram_ff2_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_alu/u_roc/ram/ram_ff0_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_alu/u_roc/ram/ram_ff1_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_alu/u_roc/ram/ram_ff2_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_alu/u_roc/ram/ram_ff3_reg[1] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___630' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_mul/u_roc/ram/ram_ff0_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_mul/u_roc/ram/ram_ff1_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_mul/u_roc/ram/ram_ff1_reg[0] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_mul/u_roc/ram/ram_ff2_reg[1] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_eg/u_mul/u_roc/ram/ram_ff3_reg[0] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___629' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_cq/cq2eg_count_p_reg[2] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_cq/cq2eg_count_p_reg[3] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_cq/ig2cq_adr_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_cq/ig2cq_busy_int_reg {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_cq/cq2eg_adr_reg[3] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_rdma/i___628' is driving clock pin of 23 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_lat_fifo/lat_rd_adr_reg[0] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_lat_fifo/lat_rd_adr_reg[1] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_lat_fifo/lat_rd_adr_reg[2] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_lat_fifo/lat_rd_adr_reg[3] {FDCE}
+	u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_nrdma/u_lat_fifo/lat_rd_count_p_reg[4] {FDCE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/qd_i_2__23' is driving clock pin of 701 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/u_dfifo2/skid_flop_dfifo_wr_pd_reg[44] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/u_dfifo2/skid_flop_dfifo_wr_pd_reg[47] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/u_dfifo2/skid_flop_dfifo_wr_pd_reg[48] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/u_dfifo2/skid_flop_dfifo_wr_pd_reg[49] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/u_dfifo2/skid_flop_dfifo_wr_pd_reg[4] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/dma_fifo_adr[1]_i_2' is driving clock pin of 183 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_dfifo/ram/ram_ff0_reg[12] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_dfifo/ram/ram_ff0_reg[14] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_dfifo/ram/ram_ff0_reg[18] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_dfifo/ram/ram_ff0_reg[20] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_dfifo/ram/ram_ff0_reg[17] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/spt_fifo_adr[1]_i_2' is driving clock pin of 63 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_sfifo/ram/ram_ff1_reg[10] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_sfifo/ram/ram_ff0_reg[8] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_sfifo/ram/ram_ff2_reg[3] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_sfifo/ram/ram_ff0_reg[2] {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_cmd/u_sfifo/ram/ram_ff2_reg[4] {FDRE}
+WARNING: [Place 30-568] A LUT 'u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_intr/u_NV_NVDLA_SDP_WDMA_DAT_DMAIF_intr_fifo/nvdla_core_clk_mgate/p_clkgate/intr_fifo_rd_pvld_int_o_i_2' is driving clock pin of 2 registers. This could lead to large hold time violations. First few involved registers are:
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_intr/u_NV_NVDLA_SDP_WDMA_DAT_DMAIF_intr_fifo/intr_fifo_rd_pd_o_reg {FDRE}
+	u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_intr/u_NV_NVDLA_SDP_WDMA_DAT_DMAIF_intr_fifo/intr_fifo_rd_pvld_int_o_reg {FDCE}
+ERROR: [Place 30-68] Instance FSM_sequential_cur_state_reg[1]_i_2 (BUFG) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[0]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[10]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[11]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[12]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[13]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[14]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[15]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[1]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[2]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[3]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[4]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[5]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[6]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[7]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[8]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_addr_IBUF[9]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_nposted_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_ready_OBUF_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_valid_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[0]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[10]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[11]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[12]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[13]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[14]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[15]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[16]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[17]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[18]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[19]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[1]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[20]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[21]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[22]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[23]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[24]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[25]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[26]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[27]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[28]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[29]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[2]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[30]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[31]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[3]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[4]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[5]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[6]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[7]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[8]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_wdat_IBUF[9]_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance csb2nvdla_write_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance direct_reset__IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance dla_core_clk_IBUF_BUFG_inst (BUFG) is not placed
+ERROR: [Place 30-68] Instance dla_core_clk_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance dla_csb_clk_IBUF_BUFG_inst (BUFG) is not placed
+ERROR: [Place 30-68] Instance dla_csb_clk_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance dla_intr_OBUF_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance dla_reset_rstn_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance global_clk_ovr_on_IBUF_inst (IBUF) is not placed
+ERROR: [Place 30-68] Instance in_rt_dat_pvld_d1_reg_i_1 (BUFG) is not placed
+ERROR: [Place 30-68] Instance in_rt_dat_pvld_d1_reg_i_1__0 (BUFG) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[0]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[10]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[11]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[12]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[13]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[14]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[15]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[16]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[17]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[18]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[19]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[1]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[20]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[21]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[22]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[23]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[24]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[25]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[26]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[27]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[28]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[29]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[2]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[30]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[31]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[3]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[4]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[5]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[6]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[7]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[8]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_data_OBUF[9]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_valid_OBUF_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla2csb_wr_complete_OBUF_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla_core2dbb_ar_araddr_OBUF[0]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla_core2dbb_ar_araddr_OBUF[10]_inst (OBUF) is not placed
+ERROR: [Place 30-68] Instance nvdla_core2dbb_ar_araddr_OBUF[11]_inst (OBUF) is not placed
+INFO: [Common 17-14] Message 'Place 30-68' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 79a79a05
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:13 . Memory (MB): peak = 2633.531 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 79a79a05
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:13 . Memory (MB): peak = 2633.531 ; gain = 0.000
+ERROR: [Place 30-99] Placer failed with error: 'IO Clock Placer failed'
+Please review all ERROR, CRITICAL WARNING, and WARNING messages during placement to understand the cause for failure.
+Ending Placer Task | Checksum: 79a79a05
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:13 . Memory (MB): peak = 2633.531 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+52 Infos, 90 Warnings, 1 Critical Warnings and 103 Errors encountered.
+place_design failed
+ERROR: [Common 17-69] Command failed: Placer could not place all instances
+INFO: [Common 17-206] Exiting Vivado at Sat Feb  1 20:51:48 2020...

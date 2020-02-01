@@ -10,8 +10,9 @@
 ##======================= 										  
 ## Project Name Setup, multiple projects supported			  	  
 ##======================= 										  
-PROJECTS := $DESIGN
-  		
+PROJECTS := nv_medium_512
+ # nv_small nv_small_256 nv_small_256_full nv_medium_512 nv_medium_1024_full nv_large
+ 		
 
 ##======================= 										  
 ##Linux Environment Setup 										  
