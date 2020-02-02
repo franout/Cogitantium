@@ -1,7 +1,7 @@
 # ignore repositories and images of boars
 images/
 
-nvdla/sw/
+nvdla/sw/*
 nvdla/project_2/*
 !nvdla/project_2/*.vhd
 tutorial_board/
