@@ -1,8 +1,5 @@
 # ignore repositories and images of boars
 images/
-nvdla/hw/*
-# but not the outdirs of nvdla
-!nvdla/hw/outdir/*
 
 nvdla/sw/
 
