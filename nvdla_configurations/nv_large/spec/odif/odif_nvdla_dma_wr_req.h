@@ -1,0 +1,32 @@
+#if !defined(_nvdla_dma_wr_req_iface_H_)
+#define _nvdla_dma_wr_req_iface_H_
+
+#include <stdint.h>
+#ifndef _DMA_WR_REQ_struct_H_
+#define _DMA_WR_REQ_struct_H_
+
+typedef struct DMA_WR_REQ_s {
+    sc_int<64> addr ;
+    sc_int<13> size ;
+} DMA_WR_REQ_t;
+
+#endif
+#ifndef _DMA_WR_DATA_struct_H_
+#define _DMA_WR_DATA_struct_H_
+
+typedef struct DMA_WR_DATA_s {
+    sc_int<256> data ;
+    sc_int<1> mask ;
+} DMA_WR_DATA_t;
+
+#endif
+union nvdla_dma_wr_req_u {
+    sc_int<1> tag;
+    DMA_WR_REQ_t DMA_WR_REQ;
+    DMA_WR_DATA_t DMA_WR_DATA;
+};
+typedef struct nvdla_dma_wr_req_s {
+    union nvdla_dma_wr_req_u pd ;
+} nvdla_dma_wr_req_t;
+
+#endif // !defined(_nvdla_dma_wr_req_iface_H_)

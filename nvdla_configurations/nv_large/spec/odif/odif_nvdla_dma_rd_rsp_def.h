@@ -1,0 +1,27 @@
+#if !defined(_nvdla_dma_rd_rsp_IFACE)
+#define _nvdla_dma_rd_rsp_IFACE
+
+#define PKT_DMA_READ_RSP_data_WIDTH 256
+#define PKT_DMA_READ_RSP_data_LSB 0
+#define PKT_DMA_READ_RSP_data_MSB 255
+#define PKT_DMA_READ_RSP_data_FIELD 255:0
+#define PKT_DMA_READ_RSP_mask_WIDTH 1
+#define PKT_DMA_READ_RSP_mask_LSB 256
+#define PKT_DMA_READ_RSP_mask_MSB 256
+#define PKT_DMA_READ_RSP_mask_FIELD 256:256
+#define PKT_DMA_READ_RSP_WIDTH 257
+
+#define FLOW_nvdla_dma_rd_rsp valid_ready
+
+#define SIG_nvdla_dma_rd_rsp_PD_WIDTH 258
+#define SIG_nvdla_dma_rd_rsp_PD_FIELD 257:0
+
+#define PKT_nvdla_dma_rd_rsp_PAYLOAD_WIDTH    257
+#define PKT_nvdla_dma_rd_rsp_PAYLOAD_FIELD    256:0
+#define PKT_nvdla_dma_rd_rsp_ID_WIDTH    1
+#define PKT_nvdla_dma_rd_rsp_ID_FIELD    257:257
+#define PKT_nvdla_dma_rd_rsp_DMA_READ_RSP_FIELD    256:0
+#define PKT_nvdla_dma_rd_rsp_DMA_READ_RSP_ID       1'd0
+#define PKT_nvdla_dma_rd_rsp_DMA_READ_RSP_int_ID   0
+
+#endif // !defined(_nvdla_dma_rd_rsp_IFACE)
