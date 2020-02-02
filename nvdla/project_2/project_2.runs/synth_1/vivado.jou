@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Sun Feb  2 11:45:22 2020
+# Process ID: 21116
+# Current directory: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/synth_1
+# Command line: vivado.exe -log top_design.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_design.tcl
+# Log file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/synth_1/top_design.vds
+# Journal file: D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top_design.tcl -notrace

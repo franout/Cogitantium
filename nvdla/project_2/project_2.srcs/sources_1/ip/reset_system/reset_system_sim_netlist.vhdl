@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
--- Date        : Fri Jan 31 18:29:25 2020
+-- Date        : Sun Feb  2 11:16:40 2020
 -- Host        : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.vhdl
+--               D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.vhdl
 -- Design      : reset_system
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

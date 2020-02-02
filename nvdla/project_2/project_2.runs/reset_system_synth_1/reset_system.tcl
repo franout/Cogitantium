@@ -17,10 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 create_project -in_memory -part xc7z020clg400-1
@@ -32,10 +28,10 @@ set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity i
 set_property webtalk.parent_dir D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.cache/wt [current_project]
 set_property parent.project_path D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
-set_property target_language Verilog [current_project]
+set_property target_language VHDL [current_project]
 set_property ip_output_repo d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_ip -quiet d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.xci
+read_ip -quiet D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.xci
 set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_board.xdc]
 set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.xdc]
 set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_ooc.xdc]
@@ -93,32 +89,32 @@ write_checkpoint -force -noxdef reset_system.dcp
 create_report "reset_system_synth_1_synth_report_utilization_0" "report_utilization -file reset_system_utilization_synth.rpt -pb reset_system_utilization_synth.pb"
 
 if { [catch {
-  file copy -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system.dcp d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.dcp
+  file copy -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system.dcp D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  write_verilog -force -mode synth_stub d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.v
+  write_verilog -force -mode synth_stub D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode synth_stub d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.vhdl
+  write_vhdl -force -mode synth_stub D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_verilog -force -mode funcsim d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.v
+  write_verilog -force -mode funcsim D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode funcsim d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.vhdl
+  write_vhdl -force -mode funcsim D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
@@ -128,32 +124,32 @@ if { [catch {
 
 
 if { [catch {
-  file copy -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system.dcp d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.dcp
+  file copy -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system.dcp D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_stub.v d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.v
+  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_stub.v D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_stub.vhdl d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.vhdl
+  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_stub.vhdl D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_sim_netlist.v d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.v
+  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_sim_netlist.v D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_sim_netlist.vhdl d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.vhdl
+  file rename -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.runs/reset_system_synth_1/reset_system_sim_netlist.vhdl D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
@@ -162,13 +158,13 @@ if { [catch {
 
 if {[file isdir D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.ip_user_files/ip/reset_system]} {
   catch { 
-    file copy -force d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.v D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.ip_user_files/ip/reset_system
+    file copy -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.v D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.ip_user_files/ip/reset_system
   }
 }
 
 if {[file isdir D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.ip_user_files/ip/reset_system]} {
   catch { 
-    file copy -force d:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.vhdl D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.ip_user_files/ip/reset_system
+    file copy -force D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.srcs/sources_1/ip/reset_system/reset_system_stub.vhdl D:/uni/2019-2020/thesis/cogitantium/nvdla/project_2/project_2.ip_user_files/ip/reset_system
   }
 }
 file delete __synthesis_is_running__

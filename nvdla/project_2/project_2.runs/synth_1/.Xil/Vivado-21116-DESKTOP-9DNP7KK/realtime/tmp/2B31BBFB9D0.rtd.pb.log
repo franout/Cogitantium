@@ -1,0 +1,2 @@
+xilinx rtfpga
+INFO: [Synth 8-7053] The timing for the instance dla/u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/adr_ram/M_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.

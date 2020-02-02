@@ -37,6 +37,7 @@ echo "###################\n ########## ERROR ###########\n ###############"
 	else
 cd ./outdir/
 rm -rf *.log
+find ./ -regex .*\.v\.vcp -exec rm -f {} +
 cd ..
 fi
 

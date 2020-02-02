@@ -135,6 +135,34 @@ signal DDR_DM :  STD_LOGIC_VECTOR(3 DOWNTO 0);
  signal DDR_DQS :  STD_LOGIC_VECTOR(3 DOWNTO 0);
      
 --dla
+signal    dla_core_clk, dla_csb_clk,   global_clk_ovr_on , tmc2slcg_disable_clock_gating ,  dla_reset_rstn ,
+  direct_reset ,test_mode, csb2nvdla_write, nvdla2csb_valid,csb2nvdla_nposted,csb2nvdla_valid, csb2nvdla_ready,
+  nvdla2csb_wr_complete ,  nvdla_core2dbb_aw_awvalid , nvdla_core2dbb_aw_awready ,  nvdla_core2dbb_w_wvalid ,nvdla_core2dbb_w_wready ,
+    dla_intr,nvdla_core2dbb_r_rvalid, nvdla_core2dbb_r_rready,nvdla_core2dbb_r_rlast,
+        nvdla_core2dbb_w_wlast, nvdla_core2dbb_b_bvalid ,  nvdla_core2dbb_b_bready , nvdla_core2dbb_ar_arvalid , nvdla_core2dbb_ar_arready: std_logic;
+  signal csb2nvdla_addr :  std_logic_VECTOR(15 downto 0);
+signal csb2nvdla_wdat, nvdla2csb_data: std_logic_vector(31 downto 0);
+  signal   nvdla_core2dbb_aw_awid :  std_logic_vector(7 downto 0);
+ signal  nvdla_core2dbb_aw_awlen :  std_logic_vector(3 downto 0);
+   signal nvdla_core2dbb_aw_awaddr :  std_logic_vector(31 downto 0);
+  signal nvdla_core2dbb_w_wdata:  std_logic_vector(63 downto 0);
+ signal  nvdla_core2dbb_w_wstrb ,nvdla_core2dbb_b_bid:  std_logic_vector(7 downto 0);
+  
+  signal nvdla_core2dbb_ar_arid :  std_logic_vector(7 downto 0);
+  signal nvdla_core2dbb_ar_arlen :  std_logic_vector(3 downto 0);
+  signal  nvdla_core2dbb_ar_araddr :  std_logic_vector(31 downto 0);
+
+  signal nvdla_core2dbb_r_rid:  std_logic_vector(7 downto 0);
+  
+  signal nvdla_core2dbb_r_rdata :  std_logic_vector(63 downto 0);
+  
+  signal nvdla_pwrbus_ram_c_pd :  std_logic_vector(31 downto 0);
+  signal nvdla_pwrbus_ram_ma_pd :  std_logic_vector(31 downto 0);
+  signal nvdla_pwrbus_ram_mb_pd :  std_logic_vector(31 downto 0);
+  signal nvdla_pwrbus_ram_p_pd  :  std_logic_vector(31 downto 0);
+  signal nvdla_pwrbus_ram_o_pd  :  std_logic_vector(31 downto 0);
+  signal nvdla_pwrbus_ram_a_pd  :  std_logic_vector(31 downto 0)
+
 
 begin
 

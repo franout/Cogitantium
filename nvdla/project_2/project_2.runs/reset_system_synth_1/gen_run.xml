@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="reset_system_synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1580491671">
+<GenRun Id="reset_system_synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1580638532">
   <File Type="PA-TCL" Name="reset_system.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="reset_system_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="reset_system_reports.tcl"/>
   <File Type="RDS-RDS" Name="reset_system.vds"/>
   <File Type="RDS-UTIL" Name="reset_system_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="reset_system_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="reset_system.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="reset_system_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="reset_system_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/reset_system">
     <File Path="$PSRCDIR/sources_1/ip/reset_system/reset_system.xci">
       <FileInfo>
