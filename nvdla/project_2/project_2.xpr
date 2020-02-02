@@ -59,495 +59,6 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/ip/processing_system7_0_1/processing_system7_0.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/CKLNQD12.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/MUX2D4.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/MUX2HDD2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/include/simulate_x_tick.vh">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cfgrom/NV_NVDLA_CFGROM_rom.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdreq.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdrsp.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_DMAIF_wr.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsu.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -555,8 +66,575 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/processing_system7_0_1/processing_system7_0.xci">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/CKLNQD12.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/MUX2D4.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/MUX2HDD2.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_BLKBOX_SINK.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_BLKBOX_SRC0.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_CLK_gate_power.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_buffer.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_buffer.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_dual_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/include/simulate_x_tick.vh">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_regfile.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_single_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_CACC_slcg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_CVT_cell.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dma_mux.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_shared_buffer.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cfgrom/NV_NVDLA_CFGROM_rom.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_active.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_mac.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_in.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_slcg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_dual.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_REG_single.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_core.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_CMAC_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_dat_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_SG_wt_fifo.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_WL_dec.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_dual_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_regfile.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_single_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_slcg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdreq.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdrsp.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_DMAIF_wr.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_saturate.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftleftsu.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/NV_NVDLA_HLS_shiftrightsatsu.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_CSB_reg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -564,6 +642,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -571,6 +650,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -578,6 +658,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_cvt.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -585,12 +666,14 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/include/NV_NVDLA_MCIF_define.vh">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -598,6 +681,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_ig.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -605,6 +689,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -612,6 +697,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -619,6 +705,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -626,6 +713,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -633,6 +721,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_eg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -640,6 +729,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -647,6 +737,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_csb.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -654,6 +745,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_read.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -661,6 +753,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_MCIF_write.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -668,6 +761,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_cq_lib.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -675,6 +769,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_BRDMA_gate.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -682,6 +777,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_BRDMA_lat_fifo_lib.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -689,6 +785,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_CORE_gate.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -696,6 +793,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_CORE_pack.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -703,6 +801,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_CORE_unpack.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -710,6 +809,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_C_int.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -717,6 +817,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_X_int_alu.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -724,6 +825,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_X_int_mul.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -731,6 +833,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_X_int_relu.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -738,6 +841,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_X_int_trt.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -745,6 +849,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_c.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -752,6 +857,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_prelu.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -759,6 +865,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_relu.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -766,6 +873,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_sync2data.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -773,6 +881,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_x1_int.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -780,6 +889,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_HLS_x2_int.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -787,6 +897,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_MRDMA_EG_cmd.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -794,6 +905,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_MRDMA_EG_din.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -801,6 +913,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_MRDMA_EG_dout.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -808,6 +921,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_EG_lat_fifo_lib.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -815,6 +929,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_MRDMA_cq_lib.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -822,6 +937,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_MRDMA_eg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -829,6 +945,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_MRDMA_gate.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -836,6 +953,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_MRDMA_ig.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -843,6 +961,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_cq_lib.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -850,6 +969,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_NRDMA_gate.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -857,6 +977,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_SDP_NRDMA_lat_fifo_lib.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -864,6 +985,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_EG_ro.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -871,6 +993,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_REG_dual.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -878,6 +1001,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_REG_single.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -885,6 +1009,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_dmaif.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -892,6 +1017,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_eg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -899,6 +1025,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_ig.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -906,6 +1033,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_pack.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -913,6 +1041,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_reg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -920,6 +1049,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_unpack.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -927,6 +1057,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_REG_dual.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -934,6 +1065,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_REG_single.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -941,6 +1073,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_DAT_in.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -948,6 +1081,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_DAT_out.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -955,6 +1089,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_cmd.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -962,6 +1097,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_dat.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -969,6 +1105,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_gate.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -976,6 +1113,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_intr.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -983,6 +1121,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_brdma.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -990,6 +1129,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_cmux.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -997,6 +1137,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1004,6 +1145,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_mrdma.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1011,6 +1153,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_nrdma.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1018,6 +1161,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_rdma.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1025,6 +1169,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_reg.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1032,6 +1177,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_SDP_wdma.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1039,6 +1185,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_XXIF_libs.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1046,6 +1193,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cacc/NV_NVDLA_cacc.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1053,6 +1201,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cbuf/NV_NVDLA_cbuf.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1060,6 +1209,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cdma/NV_NVDLA_cdma.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1067,6 +1217,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cfgrom/NV_NVDLA_cfgrom.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1074,6 +1225,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/cmac/NV_NVDLA_cmac.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1081,6 +1233,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/car/NV_NVDLA_core_reset.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1088,6 +1241,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1095,6 +1249,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_csc.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1102,6 +1257,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/glb/NV_NVDLA_glb.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1109,6 +1265,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/nocif/NV_NVDLA_mcif.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1116,12 +1273,14 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/include/NV_HWACC_NVDLA_tick_defines.vh">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_a.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1129,6 +1288,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_c.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1136,6 +1296,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_m.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1143,6 +1304,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_o.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1150,6 +1312,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/top/NV_NVDLA_partition_p.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1157,6 +1320,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/car/NV_NVDLA_reset.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1164,6 +1328,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/sdp/NV_NVDLA_sdp.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1171,6 +1336,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1178,6 +1344,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_c.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1185,6 +1352,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/car/NV_NVDLA_sync3d_s.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1192,6 +1360,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/top/NV_nvdla.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1199,6 +1368,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/OR2D1.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1206,6 +1376,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rws_16x256.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1213,6 +1384,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rws_16x272.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1220,6 +1392,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rws_16x64.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1227,6 +1400,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rws_256x3.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1234,6 +1408,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rws_256x64.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1241,6 +1416,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwsp_128x11.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1248,6 +1424,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwsp_128x6.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1255,6 +1432,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwsp_16x14.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1262,6 +1440,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwsp_16x16.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1269,6 +1448,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwsp_16x65.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1276,6 +1456,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwsp_8x65.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1283,6 +1464,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/rams/fpga/model/nv_ram_rwst_256x8.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1290,6 +1472,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/oneHotClk_async_read_clock.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1297,6 +1480,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/oneHotClk_async_write_clock.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1304,6 +1488,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/p_SSYNC2DO_C_PP.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1311,6 +1496,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/p_SSYNC3DO.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1318,6 +1504,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/p_SSYNC3DO_C_PPP.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1325,6 +1512,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/p_SSYNC3DO_S_PPP.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1332,6 +1520,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1339,6 +1528,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/sync3d.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1346,6 +1536,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/sync3d_c_ppp.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1353,6 +1544,7 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/sync3d_s_ppp.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1360,18 +1552,13 @@
       </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/vlibs/sync_reset.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PPRDIR/top_design.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/top_design.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -3036,14 +3223,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/nvdla/csc/NV_NVDLA_CSC_pra_cell.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../hw/outdir/nv_small/vmod/fifos/NV_NVDLA_CDP_DP_sumpd_fifo.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -4295,7 +4474,8 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="top_design"/>
+        <Option Name="TopModule" Val="NV_NVDLA_CSC_pra_cell"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -4325,6 +4505,16 @@
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
       <Filter Type="Utils"/>
+      <File Path="$PSRCDIR/utils_1/imports/synth_1/top_design.dcp">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PRUNDIR/synth_1/top_design.dcp"/>
+          <Attr Name="ImportTime" Val="1580641711"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedInSteps" Val="synth_1"/>
+          <Attr Name="AutoDcp" Val="1"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
@@ -4332,6 +4522,7 @@
     <FileSet Name="reset_system" Type="BlockSrcs" RelSrcDir="$PSRCDIR/reset_system">
       <File Path="$PSRCDIR/sources_1/ip/reset_system/reset_system.xci">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -4362,7 +4553,7 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="11">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="true" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/top_design.dcp" WriteIncrSynthDcp="true" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="energy_eff" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design">

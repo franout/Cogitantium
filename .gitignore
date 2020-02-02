@@ -2,7 +2,8 @@
 images/
 
 nvdla/sw/
-
+nvdla/project_2/*
+!nvdla/project_2/*.vhd
 tutorial_board/
 PYNQ/
 pynq_z2/
