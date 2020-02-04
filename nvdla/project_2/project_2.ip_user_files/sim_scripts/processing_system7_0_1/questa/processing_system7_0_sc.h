@@ -76,6 +76,8 @@ public:
 
 public: // module socket-to-socket TLM interface
 
+  xtlm::xtlm_aximm_target_socket* S_AXI_HP0_rd_socket;
+  xtlm::xtlm_aximm_target_socket* S_AXI_HP0_wr_socket;
 
 protected:
 

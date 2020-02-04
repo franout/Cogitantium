@@ -32,6 +32,12 @@
 // ================================================================
 // File Name: NV_NVDLA_CMAC.h
 `define DESIGNWARE_NOEXIST 1
+`define  DISABLE_TESTPOINTS 1
+`define  NV_SYNTHESIS 1 
+`define  RAM_INTERFACE 1
+`define  DISABLE_TESTPOINTS 1
+//`define  SYNTHESIS 1
+`define FPGA 1
 // ================================================================
 // NVDLA Open Source Project
 // 

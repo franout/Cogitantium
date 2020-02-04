@@ -32,13 +32,6 @@
 // ================================================================
 // File Name: NV_NVDLA_CMAC.h
 `define DESIGNWARE_NOEXIST 1
-`define  DISABLE_TESTPOINTS 1
-`define  NV_SYNTHESIS 1 
-`define  RAM_INTERFACE 1
-`define  DISABLE_TESTPOINTS 1
-//`define  SYNTHESIS 1
-`define FPGA 1
-//`define CDP_SDP 1
 // ================================================================
 // NVDLA Open Source Project
 // 
@@ -67,7 +60,7 @@ module NV_nvdla (
   ,global_clk_ovr_on //|< i
   ,tmc2slcg_disable_clock_gating //|< i
   ,dla_reset_rstn //|< i
-  ,direct_reset //|< i
+  ,direct_reset_ //|< i
   ,test_mode //|< i
   ,csb2nvdla_valid //|< i
   ,csb2nvdla_ready //|> o
@@ -115,7 +108,7 @@ input dla_csb_clk;
 input global_clk_ovr_on;
 input tmc2slcg_disable_clock_gating;
 input dla_reset_rstn;
-input direct_reset;
+input direct_reset_;
 input test_mode;
 //csb
 input csb2nvdla_valid;
@@ -246,13 +239,6 @@ wire mcif2cdma_wt_rd_rsp_valid;
   wire [32 +14:0] sdp_b2mcif_rd_req_pd;
   wire sdp_b2mcif_rd_req_ready;
   wire sdp_b2mcif_rd_req_valid;
-  wire [64 +(64/8/8)-1:0] mcif2sdp_n_rd_rsp_pd;
-  wire mcif2sdp_n_rd_rsp_ready;
-  wire mcif2sdp_n_rd_rsp_valid;
-  wire sdp_n2mcif_rd_cdt_lat_fifo_pop;
-  wire [32 +14:0] sdp_n2mcif_rd_req_pd;
-  wire sdp_n2mcif_rd_req_ready;
-  wire sdp_n2mcif_rd_req_valid;
 wire [64 +(64/8/8)-1:0] mcif2sdp_rd_rsp_pd;
 wire mcif2sdp_rd_rsp_ready;
 wire mcif2sdp_rd_rsp_valid;
@@ -349,7 +335,7 @@ wire [8/2-1:0] sc2mac_wt_b_sel;
 ////////////////////////////////////////////////////////////////////////
 NV_NVDLA_partition_o u_partition_o (
    .test_mode (test_mode)
-  ,.direct_reset_ (direct_reset)
+  ,.direct_reset_ (direct_reset_)
   ,.global_clk_ovr_on (global_clk_ovr_on)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
   ,.cacc2csb_resp_valid (cacc2csb_resp_valid)
@@ -434,13 +420,6 @@ NV_NVDLA_partition_o u_partition_o (
   ,.sdp_b2mcif_rd_req_valid (sdp_b2mcif_rd_req_valid)
   ,.sdp_b2mcif_rd_req_ready (sdp_b2mcif_rd_req_ready)
   ,.sdp_b2mcif_rd_req_pd (sdp_b2mcif_rd_req_pd)
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd)
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd)
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid)
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready)
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd)
@@ -476,7 +455,7 @@ NV_NVDLA_partition_o u_partition_o (
 ////////////////////////////////////////////////////////////////////////
 NV_NVDLA_partition_c u_partition_c (
    .test_mode (test_mode)
-  ,.direct_reset_ (direct_reset)
+  ,.direct_reset_ (direct_reset_)
   ,.global_clk_ovr_on (global_clk_ovr_on)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
   ,.accu2sc_credit_vld (accu2sc_credit_vld)
@@ -580,7 +559,7 @@ NV_NVDLA_partition_c u_partition_c (
 ////////////////////////////////////////////////////////////////////////
 NV_NVDLA_partition_m u_partition_ma (
    .test_mode (test_mode)
-  ,.direct_reset_ (direct_reset)
+  ,.direct_reset_ (direct_reset_)
   ,.csb2cmac_a_req_pvld (csb2cmac_a_req_pvld) //|< w
   ,.csb2cmac_a_req_prdy (csb2cmac_a_req_prdy) //|> w
   ,.csb2cmac_a_req_pd (csb2cmac_a_req_pd) //|< w
@@ -648,7 +627,7 @@ NV_NVDLA_partition_m u_partition_ma (
 ////////////////////////////////////////////////////////////////////////
 NV_NVDLA_partition_m u_partition_mb (
    .test_mode (test_mode)
-  ,.direct_reset_ (direct_reset)
+  ,.direct_reset_ (direct_reset_)
   ,.csb2cmac_a_req_pvld (csb2cmac_b_req_pvld) //|< w
   ,.csb2cmac_a_req_prdy (csb2cmac_b_req_prdy) //|> w
   ,.csb2cmac_a_req_pd (csb2cmac_b_req_pd) //|< w
@@ -716,7 +695,7 @@ NV_NVDLA_partition_m u_partition_mb (
 ////////////////////////////////////////////////////////////////////////
 NV_NVDLA_partition_a u_partition_a (
    .test_mode (test_mode)
-  ,.direct_reset_ (direct_reset)
+  ,.direct_reset_ (direct_reset_)
   ,.global_clk_ovr_on (global_clk_ovr_on)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
   ,.accu2sc_credit_vld (accu2sc_credit_vld)
@@ -770,7 +749,7 @@ NV_NVDLA_partition_a u_partition_a (
 ////////////////////////////////////////////////////////////////////////
 NV_NVDLA_partition_p u_partition_p (
    .test_mode (test_mode)
-  ,.direct_reset_ (direct_reset)
+  ,.direct_reset_ (direct_reset_)
   ,.global_clk_ovr_on (global_clk_ovr_on)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
   ,.cacc2sdp_valid (cacc2sdp_valid)
@@ -789,13 +768,6 @@ NV_NVDLA_partition_p u_partition_p (
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid)
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready)
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd )
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd )
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd )
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid)
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready)
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd )

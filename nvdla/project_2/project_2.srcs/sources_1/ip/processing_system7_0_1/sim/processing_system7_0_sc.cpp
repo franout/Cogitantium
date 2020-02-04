@@ -102,7 +102,7 @@ processing_system7_0_sc::processing_system7_0_sc(const sc_core::sc_module_name& 
   model_param_props.addLong("C_USE_M_AXI_GP1", "0");
   model_param_props.addLong("C_USE_S_AXI_GP0", "0");
   model_param_props.addLong("C_USE_S_AXI_GP1", "0");
-  model_param_props.addLong("C_USE_S_AXI_HP0", "0");
+  model_param_props.addLong("C_USE_S_AXI_HP0", "1");
   model_param_props.addLong("C_USE_S_AXI_HP1", "0");
   model_param_props.addLong("C_USE_S_AXI_HP2", "0");
   model_param_props.addLong("C_USE_S_AXI_HP3", "0");
@@ -112,11 +112,15 @@ processing_system7_0_sc::processing_system7_0_sc(const sc_core::sc_module_name& 
   model_param_props.addString("C_IRQ_F2P_MODE", "DIRECT");
   model_param_props.addString("C_PS7_SI_REV", "PRODUCTION");
   model_param_props.addString("C_FCLK_CLK0_BUF", "TRUE");
-  model_param_props.addString("C_FCLK_CLK1_BUF", "FALSE");
+  model_param_props.addString("C_FCLK_CLK1_BUF", "TRUE");
   model_param_props.addString("C_FCLK_CLK2_BUF", "FALSE");
   model_param_props.addString("C_FCLK_CLK3_BUF", "FALSE");
   model_param_props.addString("C_PACKAGE_NAME", "clg400");
   mp_impl = new processing_system7_v5_5_tlm("inst", model_param_props);
+
+  // initialize sockets
+  S_AXI_HP0_rd_socket = mp_impl->S_AXI_HP0_rd_socket;
+  S_AXI_HP0_wr_socket = mp_impl->S_AXI_HP0_wr_socket;
 }
 
 processing_system7_0_sc::~processing_system7_0_sc()

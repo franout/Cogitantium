@@ -853,7 +853,7 @@ NV_NVDLA_mcif u_NV_NVDLA_mcif (
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: AXI Interface to CVSRAM //
 ////////////////////////////////////////////////////////////////////////
-   NV_NVDLA_mcif u_NV_NVDLA_cvif (
+ /*  NV_NVDLA_mcif u_NV_NVDLA_cvif (
    .nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< o
   ,.pwrbus_ram_pd (pwrbus_ram_pd[31:0]) //|< i
@@ -953,7 +953,7 @@ NV_NVDLA_mcif u_NV_NVDLA_mcif (
   ,.noc2mcif_axi_b_bvalid (noc2cvif_axi_b_bvalid) //|< i
   ,.noc2mcif_axi_b_bready (noc2cvif_axi_b_bready) //|> o
   ,.noc2mcif_axi_b_bid (noc2cvif_axi_b_bid[7:0]) //|< i
-  );
+  );*/
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Bridge DMA //
 ////////////////////////////////////////////////////////////////////////
@@ -963,7 +963,7 @@ NV_NVDLA_mcif u_NV_NVDLA_mcif (
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Cross-Channel Data Processor //
 ////////////////////////////////////////////////////////////////////////
-NV_NVDLA_cdp u_NV_NVDLA_cdp (
+/*NV_NVDLA_cdp u_NV_NVDLA_cdp (
    .dla_clk_ovr_on_sync (dla_clk_ovr_on_sync) //|< w
   ,.global_clk_ovr_on_sync (global_clk_ovr_on_sync) //|< w
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating) //|< i
@@ -1050,7 +1050,7 @@ NV_NVDLA_pdp u_NV_NVDLA_pdp (
   ,.sdp2pdp_valid (sdp2pdp_valid) //|< i
   ,.sdp2pdp_ready (sdp2pdp_ready) //|> o
   ,.sdp2pdp_pd (sdp2pdp_pd ) //|< i
-  );
+  );*/
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Global Unit //
 ////////////////////////////////////////////////////////////////////////

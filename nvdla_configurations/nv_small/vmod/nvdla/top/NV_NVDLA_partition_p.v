@@ -52,13 +52,6 @@ module NV_NVDLA_partition_p (
   ,mcif2sdp_b_rd_rsp_pd //|< i
   ,mcif2sdp_b_rd_rsp_valid //|< i
   ,mcif2sdp_b_rd_rsp_ready //|> o
-  ,sdp_n2mcif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_n2mcif_rd_req_pd //|> o
-  ,sdp_n2mcif_rd_req_valid //|> o
-  ,sdp_n2mcif_rd_req_ready //|< i
-  ,mcif2sdp_n_rd_rsp_pd //|< i
-  ,mcif2sdp_n_rd_rsp_valid //|< i
-  ,mcif2sdp_n_rd_rsp_ready //|> o
   ,mcif2sdp_rd_rsp_pd //|< i
   ,mcif2sdp_rd_rsp_valid //|< i
   ,mcif2sdp_wr_rsp_complete //|< i
@@ -111,13 +104,6 @@ output [32 +14:0] sdp_b2mcif_rd_req_pd;
 input mcif2sdp_b_rd_rsp_valid; /* data valid */
 output mcif2sdp_b_rd_rsp_ready; /* data return handshake */
 input [64 +(64/8/8)-1:0] mcif2sdp_b_rd_rsp_pd;
-output sdp_n2mcif_rd_cdt_lat_fifo_pop;
-output sdp_n2mcif_rd_req_valid; /* data valid */
-input sdp_n2mcif_rd_req_ready; /* data return handshake */
-output [32 +14:0] sdp_n2mcif_rd_req_pd;
-input mcif2sdp_n_rd_rsp_valid; /* data valid */
-output mcif2sdp_n_rd_rsp_ready; /* data return handshake */
-input [64 +(64/8/8)-1:0] mcif2sdp_n_rd_rsp_pd;
 output sdp2mcif_rd_cdt_lat_fifo_pop;
 input mcif2sdp_rd_rsp_valid;
 output mcif2sdp_rd_rsp_ready;
@@ -188,13 +174,6 @@ NV_NVDLA_sdp u_NV_NVDLA_sdp (
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid)
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready)
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd)
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd)
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd)
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid)
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready)
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd)

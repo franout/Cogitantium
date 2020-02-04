@@ -325,7 +325,7 @@ assign cq_wr_pd[5] = ig2cq_fdrop ;
 assign cq_wr_pd[6] = ig2cq_ldrop ;
 //:my $k = 7;
 //:my $i;
-//:my @dma_index = (0, 1, 1,1, 1,0, 1, 1, 0, 1,0,0,0,0,0,0);
+//:my @dma_index = (0, 1, 1,0, 0,0, 1, 1, 0, 0,0,0,0,0,0,0);
 //:my @client_id = (0,8,9,3,2,4,1,5,7,6,0,0,0,0,0,0);
 //:my @remap_clientid = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 //:my $nindex = 0;
@@ -341,7 +341,7 @@ assign cq_wr_pd[6] = ig2cq_ldrop ;
 //:}
 //: print qq(0;);
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-assign cq_wr_thread_id = (cmd_axid == 8) ? 0 :(cmd_axid == 9) ? 1 :(cmd_axid == 3) ? 2 :(cmd_axid == 2) ? 3 :(cmd_axid == 1) ? 4 :(cmd_axid == 5) ? 5 :(cmd_axid == 6) ? 6 :0;
+assign cq_wr_thread_id = (cmd_axid == 8) ? 0 :(cmd_axid == 9) ? 1 :(cmd_axid == 1) ? 2 :(cmd_axid == 5) ? 3 :(cmd_axid == 0) ? 4 :(cmd_axid == 0) ? 5 :(cmd_axid == 0) ? 6 :0;
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign cq_wr_thread_id = cmd_axid;
 // IG===AXI OUT PIPE

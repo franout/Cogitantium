@@ -10,7 +10,7 @@
 ##======================= 										  
 ## Project Name Setup, multiple projects supported			  	  
 ##======================= 										  
-PROJECTS := nv_medium_512
+PROJECTS := nv_small
  # nv_small nv_small_256 nv_small_256_full nv_medium_512 nv_medium_1024_full nv_large
  		
 

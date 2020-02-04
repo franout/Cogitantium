@@ -17,7 +17,7 @@ module NV_NVDLA_nocif (
    nvdla_core_clk
   ,nvdla_core_rstn
   ,pwrbus_ram_pd
-//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b","sdp_n","pdp","cdp");
+//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b");
 //: foreach my $client (@rdma_name) {
 //: print "  ,${client}2mcif_rd_cdt_lat_fifo_pop\n";
 //: print "  ,${client}2mcif_rd_req_valid\n";
@@ -27,7 +27,7 @@ module NV_NVDLA_nocif (
 //: print "  ,mcif2${client}_rd_rsp_ready\n";
 //: print "  ,mcif2${client}_rd_rsp_pd\n";
 //: }
-//: my @wdma_name = ("sdp", "pdp","cdp");
+//: my @wdma_name = ("sdp", );
 //: foreach my $client (@wdma_name) {
 //: print "  ,${client}2mcif_wr_req_valid\n";
 //: print "  ,${client}2mcif_wr_req_ready\n";
@@ -63,39 +63,10 @@ module NV_NVDLA_nocif (
   ,mcif2sdp_b_rd_rsp_valid
   ,mcif2sdp_b_rd_rsp_ready
   ,mcif2sdp_b_rd_rsp_pd
-  ,sdp_n2mcif_rd_cdt_lat_fifo_pop
-  ,sdp_n2mcif_rd_req_valid
-  ,sdp_n2mcif_rd_req_ready
-  ,sdp_n2mcif_rd_req_pd
-  ,mcif2sdp_n_rd_rsp_valid
-  ,mcif2sdp_n_rd_rsp_ready
-  ,mcif2sdp_n_rd_rsp_pd
-  ,pdp2mcif_rd_cdt_lat_fifo_pop
-  ,pdp2mcif_rd_req_valid
-  ,pdp2mcif_rd_req_ready
-  ,pdp2mcif_rd_req_pd
-  ,mcif2pdp_rd_rsp_valid
-  ,mcif2pdp_rd_rsp_ready
-  ,mcif2pdp_rd_rsp_pd
-  ,cdp2mcif_rd_cdt_lat_fifo_pop
-  ,cdp2mcif_rd_req_valid
-  ,cdp2mcif_rd_req_ready
-  ,cdp2mcif_rd_req_pd
-  ,mcif2cdp_rd_rsp_valid
-  ,mcif2cdp_rd_rsp_ready
-  ,mcif2cdp_rd_rsp_pd
   ,sdp2mcif_wr_req_valid
   ,sdp2mcif_wr_req_ready
   ,sdp2mcif_wr_req_pd
   ,mcif2sdp_wr_rsp_complete
-  ,pdp2mcif_wr_req_valid
-  ,pdp2mcif_wr_req_ready
-  ,pdp2mcif_wr_req_pd
-  ,mcif2pdp_wr_rsp_complete
-  ,cdp2mcif_wr_req_valid
-  ,cdp2mcif_wr_req_ready
-  ,cdp2mcif_wr_req_pd
-  ,mcif2cdp_wr_rsp_complete
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,csb2mcif_req_pd //|< i
@@ -127,7 +98,7 @@ module NV_NVDLA_nocif (
   ,noc2mcif_axi_b_bready //|> o
   ,noc2mcif_axi_r_rready //|> o
 );
-//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b","sdp_n","pdp","cdp");
+//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b");
 //: foreach my $client (@rdma_name) {
 //: print ("input  ${client}2mcif_rd_cdt_lat_fifo_pop;\n");
 //: print ("input  ${client}2mcif_rd_req_valid;\n");
@@ -137,7 +108,7 @@ module NV_NVDLA_nocif (
 //: print ("input  mcif2${client}_rd_rsp_ready;\n");
 //: print qq(output [65 -1:0] mcif2${client}_rd_rsp_pd;\n);
 //: }
-//: my @wdma_name = ("sdp", "pdp","cdp");
+//: my @wdma_name = ("sdp", );
 //: foreach my $client (@wdma_name) {
 //: print ("input  ${client}2mcif_wr_req_valid;\n");
 //: print ("output ${client}2mcif_wr_req_ready;\n");
@@ -173,39 +144,10 @@ input [47 -1:0] sdp_b2mcif_rd_req_pd;
 output mcif2sdp_b_rd_rsp_valid;
 input  mcif2sdp_b_rd_rsp_ready;
 output [65 -1:0] mcif2sdp_b_rd_rsp_pd;
-input  sdp_n2mcif_rd_cdt_lat_fifo_pop;
-input  sdp_n2mcif_rd_req_valid;
-output sdp_n2mcif_rd_req_ready;
-input [47 -1:0] sdp_n2mcif_rd_req_pd;
-output mcif2sdp_n_rd_rsp_valid;
-input  mcif2sdp_n_rd_rsp_ready;
-output [65 -1:0] mcif2sdp_n_rd_rsp_pd;
-input  pdp2mcif_rd_cdt_lat_fifo_pop;
-input  pdp2mcif_rd_req_valid;
-output pdp2mcif_rd_req_ready;
-input [47 -1:0] pdp2mcif_rd_req_pd;
-output mcif2pdp_rd_rsp_valid;
-input  mcif2pdp_rd_rsp_ready;
-output [65 -1:0] mcif2pdp_rd_rsp_pd;
-input  cdp2mcif_rd_cdt_lat_fifo_pop;
-input  cdp2mcif_rd_req_valid;
-output cdp2mcif_rd_req_ready;
-input [47 -1:0] cdp2mcif_rd_req_pd;
-output mcif2cdp_rd_rsp_valid;
-input  mcif2cdp_rd_rsp_ready;
-output [65 -1:0] mcif2cdp_rd_rsp_pd;
 input  sdp2mcif_wr_req_valid;
 output sdp2mcif_wr_req_ready;
 input [66 -1:0] sdp2mcif_wr_req_pd;
 output mcif2sdp_wr_rsp_complete;
-input  pdp2mcif_wr_req_valid;
-output pdp2mcif_wr_req_ready;
-input [66 -1:0] pdp2mcif_wr_req_pd;
-output mcif2pdp_wr_rsp_complete;
-input  cdp2mcif_wr_req_valid;
-output cdp2mcif_wr_req_ready;
-input [66 -1:0] cdp2mcif_wr_req_pd;
-output mcif2cdp_wr_rsp_complete;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input nvdla_core_clk;
@@ -250,17 +192,6 @@ input [64 -1:0] noc2mcif_axi_r_rdata;
   ,.cdma_wt2mcif_rd_req_valid (cdma_wt2mcif_rd_req_valid) //|< i
   ,.cdma_wt2mcif_rd_req_ready (cdma_wt2mcif_rd_req_ready) //|> o
   ,.cdma_wt2mcif_rd_req_pd (cdma_wt2mcif_rd_req_pd ) //|< i
-  ,.cdp2mcif_rd_cdt_lat_fifo_pop (cdp2mcif_rd_cdt_lat_fifo_pop) //|< w
-  ,.cdp2mcif_rd_req_valid (cdp2mcif_rd_req_valid) //|< w
-  ,.cdp2mcif_rd_req_ready (cdp2mcif_rd_req_ready) //|> w
-  ,.cdp2mcif_rd_req_pd (cdp2mcif_rd_req_pd ) //|< w
-  ,.cdp2mcif_wr_req_valid (cdp2mcif_wr_req_valid) //|< w
-  ,.cdp2mcif_wr_req_ready (cdp2mcif_wr_req_ready) //|> w
-  ,.cdp2mcif_wr_req_pd (cdp2mcif_wr_req_pd ) //|< w
-  ,.mcif2cdp_rd_rsp_valid (mcif2cdp_rd_rsp_valid) //|> w
-  ,.mcif2cdp_rd_rsp_ready (mcif2cdp_rd_rsp_ready) //|< w
-  ,.mcif2cdp_rd_rsp_pd (mcif2cdp_rd_rsp_pd ) //|> w
-  ,.mcif2cdp_wr_rsp_complete (mcif2cdp_wr_rsp_complete) //|> w
   ,.csb2mcif_req_pvld (csb2mcif_req_pvld) //|< w
   ,.csb2mcif_req_prdy (csb2mcif_req_prdy) //|> w
   ,.csb2mcif_req_pd (csb2mcif_req_pd[62:0]) //|< w
@@ -287,23 +218,9 @@ input [64 -1:0] noc2mcif_axi_r_rdata;
   ,.mcif2noc_axi_w_wdata (mcif2noc_axi_w_wdata ) //|> o
   ,.mcif2noc_axi_w_wstrb (mcif2noc_axi_w_wstrb ) //|> o
   ,.mcif2noc_axi_w_wlast (mcif2noc_axi_w_wlast) //|> o
-  ,.mcif2pdp_rd_rsp_valid (mcif2pdp_rd_rsp_valid) //|> w
-  ,.mcif2pdp_rd_rsp_ready (mcif2pdp_rd_rsp_ready) //|< w
-  ,.mcif2pdp_rd_rsp_pd (mcif2pdp_rd_rsp_pd ) //|> w
-  ,.mcif2pdp_wr_rsp_complete (mcif2pdp_wr_rsp_complete) //|> w
-  ,.pdp2mcif_rd_cdt_lat_fifo_pop (pdp2mcif_rd_cdt_lat_fifo_pop) //|> w
-  ,.pdp2mcif_rd_req_valid (pdp2mcif_rd_req_valid) //|> w
-  ,.pdp2mcif_rd_req_ready (pdp2mcif_rd_req_ready) //|> w
-  ,.pdp2mcif_rd_req_pd (pdp2mcif_rd_req_pd ) //|> w
-  ,.pdp2mcif_wr_req_valid (pdp2mcif_wr_req_valid) //|> w
-  ,.pdp2mcif_wr_req_ready (pdp2mcif_wr_req_ready) //|> w
-  ,.pdp2mcif_wr_req_pd (pdp2mcif_wr_req_pd ) //|> w
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid) //|> o
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready) //|< i
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd ) //|> o
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid) //|> o
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready) //|< i
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd ) //|> o
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid) //|> o
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready) //|< i
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd ) //|> o
@@ -328,9 +245,5 @@ input [64 -1:0] noc2mcif_axi_r_rdata;
   ,.sdp_b2mcif_rd_req_valid (sdp_b2mcif_rd_req_valid) //|< i
   ,.sdp_b2mcif_rd_req_ready (sdp_b2mcif_rd_req_ready) //|> o
   ,.sdp_b2mcif_rd_req_pd (sdp_b2mcif_rd_req_pd ) //|< i
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop) //|< i
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid) //|< i
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready) //|> o
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd ) //|< i
   );
 endmodule

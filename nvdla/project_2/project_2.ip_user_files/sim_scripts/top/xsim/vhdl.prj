@@ -1,4 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../bd/top/sim/top.vhd" \
-
-nosort

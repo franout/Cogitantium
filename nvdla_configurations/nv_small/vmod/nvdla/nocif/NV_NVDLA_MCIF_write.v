@@ -18,7 +18,7 @@ module NV_NVDLA_MCIF_write (
   ,nvdla_core_rstn
   ,pwrbus_ram_pd
   ,reg2dp_wr_os_cnt
-//: my @wdma_name = ("sdp", "pdp","cdp");
+//: my @wdma_name = ("sdp", );
 //: foreach my $client (@wdma_name) {
 //: print "  ,reg2dp_wr_weight_${client}\n"
 //: }
@@ -30,20 +30,10 @@ module NV_NVDLA_MCIF_write (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
   ,reg2dp_wr_weight_sdp
-  ,reg2dp_wr_weight_pdp
-  ,reg2dp_wr_weight_cdp
   ,sdp2mcif_wr_req_pd
   ,sdp2mcif_wr_req_valid
   ,sdp2mcif_wr_req_ready
   ,mcif2sdp_wr_rsp_complete
-  ,pdp2mcif_wr_req_pd
-  ,pdp2mcif_wr_req_valid
-  ,pdp2mcif_wr_req_ready
-  ,mcif2pdp_wr_rsp_complete
-  ,cdp2mcif_wr_req_pd
-  ,cdp2mcif_wr_req_valid
-  ,cdp2mcif_wr_req_ready
-  ,mcif2cdp_wr_rsp_complete
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,noc2mcif_axi_b_bid //|< i
@@ -76,7 +66,7 @@ output mcif2noc_axi_w_wlast;
 input noc2mcif_axi_b_bvalid;
 output noc2mcif_axi_b_bready;
 input [7:0] noc2mcif_axi_b_bid;
-//: my @wdma_name = ("sdp", "pdp","cdp");
+//: my @wdma_name = ("sdp", );
 //: foreach my $client (@wdma_name) {
 //: print qq(
 //: input [66 -1:0] ${client}2mcif_wr_req_pd;
@@ -94,19 +84,7 @@ input [66 -1:0] sdp2mcif_wr_req_pd;
 input sdp2mcif_wr_req_valid;
 output sdp2mcif_wr_req_ready;
 output mcif2sdp_wr_rsp_complete;
-
-input [66 -1:0] pdp2mcif_wr_req_pd;
-input pdp2mcif_wr_req_valid;
-output pdp2mcif_wr_req_ready;
-output mcif2pdp_wr_rsp_complete;
-
-input [66 -1:0] cdp2mcif_wr_req_pd;
-input cdp2mcif_wr_req_valid;
-output cdp2mcif_wr_req_ready;
-output mcif2cdp_wr_rsp_complete;
 input  [7:0] reg2dp_wr_weight_sdp;
-input  [7:0] reg2dp_wr_weight_pdp;
-input  [7:0] reg2dp_wr_weight_cdp;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [7:0] reg2dp_wr_os_cnt;
@@ -151,7 +129,7 @@ NV_NVDLA_MCIF_WRITE_ig u_ig (
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
   ,.pwrbus_ram_pd (pwrbus_ram_pd)
   ,.reg2dp_wr_os_cnt (reg2dp_wr_os_cnt)
-//: my @wdma_name = ("sdp", "pdp","cdp");
+//: my @wdma_name = ("sdp", );
 //: foreach my $client (@wdma_name) {
 //: print "  ,.reg2dp_wr_weight_${client}  (reg2dp_wr_weight_${client})\n";
 //: }
@@ -162,17 +140,9 @@ NV_NVDLA_MCIF_WRITE_ig u_ig (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
   ,.reg2dp_wr_weight_sdp  (reg2dp_wr_weight_sdp)
-  ,.reg2dp_wr_weight_pdp  (reg2dp_wr_weight_pdp)
-  ,.reg2dp_wr_weight_cdp  (reg2dp_wr_weight_cdp)
   ,.sdp2mcif_wr_req_valid  (sdp2mcif_wr_req_valid)
   ,.sdp2mcif_wr_req_ready  (sdp2mcif_wr_req_ready)
   ,.sdp2mcif_wr_req_pd     (sdp2mcif_wr_req_pd)
-  ,.pdp2mcif_wr_req_valid  (pdp2mcif_wr_req_valid)
-  ,.pdp2mcif_wr_req_ready  (pdp2mcif_wr_req_ready)
-  ,.pdp2mcif_wr_req_pd     (pdp2mcif_wr_req_pd)
-  ,.cdp2mcif_wr_req_valid  (cdp2mcif_wr_req_valid)
-  ,.cdp2mcif_wr_req_ready  (cdp2mcif_wr_req_ready)
-  ,.cdp2mcif_wr_req_pd     (cdp2mcif_wr_req_pd)
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.mcif2noc_axi_aw_awvalid (mcif2noc_axi_aw_awvalid) //|> o
@@ -234,7 +204,7 @@ NV_NVDLA_MCIF_WRITE_eg u_eg (
 //:print"  ,.cq_rd${i}_pvld   (cq_rd${i}_pvld)\n";
 //:print"  ,.cq_rd${i}_prdy   (cq_rd${i}_prdy)\n";
 //:}
-//: my @wdma_name = ("sdp", "pdp","cdp");
+//: my @wdma_name = ("sdp", );
 //: foreach my $client (@wdma_name) {
 //: print "  ,.mcif2${client}_wr_rsp_complete (mcif2${client}_wr_rsp_complete)\n";
 //:}
@@ -255,8 +225,6 @@ NV_NVDLA_MCIF_WRITE_eg u_eg (
   ,.cq_rd4_pvld   (cq_rd4_pvld)
   ,.cq_rd4_prdy   (cq_rd4_prdy)
   ,.mcif2sdp_wr_rsp_complete (mcif2sdp_wr_rsp_complete)
-  ,.mcif2pdp_wr_rsp_complete (mcif2pdp_wr_rsp_complete)
-  ,.mcif2cdp_wr_rsp_complete (mcif2cdp_wr_rsp_complete)
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.noc2mcif_axi_b_bvalid (noc2mcif_axi_b_bvalid) //|< i

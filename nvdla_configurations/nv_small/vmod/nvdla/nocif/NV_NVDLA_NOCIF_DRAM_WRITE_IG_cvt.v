@@ -615,7 +615,7 @@ assign cq_wr_len = axi_len;
 assign cq_wr_pd[0] = cq_wr_require_ack ;
 assign cq_wr_pd[2:1] = cq_wr_len[1:0];
 //:my $i;
-//:my @dma_index = (0, 1,1, 1,0, 0, 0, 0, 0,0,0,0,0,0,0);
+//:my @dma_index = (0, 1,0, 0,0, 0, 0, 0, 0,0,0,0,0,0,0);
 //:my @client_id = (0,1,2,3,4,0,0,0,0,0,0,0,0,0,0,0);
 //:my @remap_clientid = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 //:my $nindex = 0;
@@ -631,7 +631,7 @@ assign cq_wr_pd[2:1] = cq_wr_len[1:0];
 //:}
 //: print qq(0;);
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-assign cq_wr_thread_id = (cmd_axid == 1) ? 0 :(cmd_axid == 2) ? 1 :(cmd_axid == 3) ? 2 :0;
+assign cq_wr_thread_id = (cmd_axid == 1) ? 0 :(cmd_axid == 0) ? 1 :(cmd_axid == 0) ? 2 :0;
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign cq_wr_thread_id = cmd_axid;
 //====================================

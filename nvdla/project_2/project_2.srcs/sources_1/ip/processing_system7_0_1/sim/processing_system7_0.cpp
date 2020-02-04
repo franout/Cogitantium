@@ -55,12 +55,20 @@
 #include <map>
 #include <string>
 
-processing_system7_0::processing_system7_0(const sc_core::sc_module_name& nm) : processing_system7_0_sc(nm), Core0_nFIQ("Core0_nFIQ"), FCLK_CLK0("FCLK_CLK0"), FCLK_RESET0_N("FCLK_RESET0_N"), MIO("MIO"), DDR_CAS_n("DDR_CAS_n"), DDR_CKE("DDR_CKE"), DDR_Clk_n("DDR_Clk_n"), DDR_Clk("DDR_Clk"), DDR_CS_n("DDR_CS_n"), DDR_DRSTB("DDR_DRSTB"), DDR_ODT("DDR_ODT"), DDR_RAS_n("DDR_RAS_n"), DDR_WEB("DDR_WEB"), DDR_BankAddr("DDR_BankAddr"), DDR_Addr("DDR_Addr"), DDR_VRN("DDR_VRN"), DDR_VRP("DDR_VRP"), DDR_DM("DDR_DM"), DDR_DQ("DDR_DQ"), DDR_DQS_n("DDR_DQS_n"), DDR_DQS("DDR_DQS"), PS_SRSTB("PS_SRSTB"), PS_CLK("PS_CLK"), PS_PORB("PS_PORB")
+processing_system7_0::processing_system7_0(const sc_core::sc_module_name& nm) : processing_system7_0_sc(nm), S_AXI_HP0_ARREADY("S_AXI_HP0_ARREADY"), S_AXI_HP0_AWREADY("S_AXI_HP0_AWREADY"), S_AXI_HP0_BVALID("S_AXI_HP0_BVALID"), S_AXI_HP0_RLAST("S_AXI_HP0_RLAST"), S_AXI_HP0_RVALID("S_AXI_HP0_RVALID"), S_AXI_HP0_WREADY("S_AXI_HP0_WREADY"), S_AXI_HP0_BRESP("S_AXI_HP0_BRESP"), S_AXI_HP0_RRESP("S_AXI_HP0_RRESP"), S_AXI_HP0_BID("S_AXI_HP0_BID"), S_AXI_HP0_RID("S_AXI_HP0_RID"), S_AXI_HP0_RDATA("S_AXI_HP0_RDATA"), S_AXI_HP0_RCOUNT("S_AXI_HP0_RCOUNT"), S_AXI_HP0_WCOUNT("S_AXI_HP0_WCOUNT"), S_AXI_HP0_RACOUNT("S_AXI_HP0_RACOUNT"), S_AXI_HP0_WACOUNT("S_AXI_HP0_WACOUNT"), S_AXI_HP0_ACLK("S_AXI_HP0_ACLK"), S_AXI_HP0_ARVALID("S_AXI_HP0_ARVALID"), S_AXI_HP0_AWVALID("S_AXI_HP0_AWVALID"), S_AXI_HP0_BREADY("S_AXI_HP0_BREADY"), S_AXI_HP0_RDISSUECAP1_EN("S_AXI_HP0_RDISSUECAP1_EN"), S_AXI_HP0_RREADY("S_AXI_HP0_RREADY"), S_AXI_HP0_WLAST("S_AXI_HP0_WLAST"), S_AXI_HP0_WRISSUECAP1_EN("S_AXI_HP0_WRISSUECAP1_EN"), S_AXI_HP0_WVALID("S_AXI_HP0_WVALID"), S_AXI_HP0_ARBURST("S_AXI_HP0_ARBURST"), S_AXI_HP0_ARLOCK("S_AXI_HP0_ARLOCK"), S_AXI_HP0_ARSIZE("S_AXI_HP0_ARSIZE"), S_AXI_HP0_AWBURST("S_AXI_HP0_AWBURST"), S_AXI_HP0_AWLOCK("S_AXI_HP0_AWLOCK"), S_AXI_HP0_AWSIZE("S_AXI_HP0_AWSIZE"), S_AXI_HP0_ARPROT("S_AXI_HP0_ARPROT"), S_AXI_HP0_AWPROT("S_AXI_HP0_AWPROT"), S_AXI_HP0_ARADDR("S_AXI_HP0_ARADDR"), S_AXI_HP0_AWADDR("S_AXI_HP0_AWADDR"), S_AXI_HP0_ARCACHE("S_AXI_HP0_ARCACHE"), S_AXI_HP0_ARLEN("S_AXI_HP0_ARLEN"), S_AXI_HP0_ARQOS("S_AXI_HP0_ARQOS"), S_AXI_HP0_AWCACHE("S_AXI_HP0_AWCACHE"), S_AXI_HP0_AWLEN("S_AXI_HP0_AWLEN"), S_AXI_HP0_AWQOS("S_AXI_HP0_AWQOS"), S_AXI_HP0_ARID("S_AXI_HP0_ARID"), S_AXI_HP0_AWID("S_AXI_HP0_AWID"), S_AXI_HP0_WID("S_AXI_HP0_WID"), S_AXI_HP0_WDATA("S_AXI_HP0_WDATA"), S_AXI_HP0_WSTRB("S_AXI_HP0_WSTRB"), Core0_nFIQ("Core0_nFIQ"), FCLK_CLK0("FCLK_CLK0"), FCLK_CLK1("FCLK_CLK1"), FCLK_RESET0_N("FCLK_RESET0_N"), MIO("MIO"), DDR_CAS_n("DDR_CAS_n"), DDR_CKE("DDR_CKE"), DDR_Clk_n("DDR_Clk_n"), DDR_Clk("DDR_Clk"), DDR_CS_n("DDR_CS_n"), DDR_DRSTB("DDR_DRSTB"), DDR_ODT("DDR_ODT"), DDR_RAS_n("DDR_RAS_n"), DDR_WEB("DDR_WEB"), DDR_BankAddr("DDR_BankAddr"), DDR_Addr("DDR_Addr"), DDR_VRN("DDR_VRN"), DDR_VRP("DDR_VRP"), DDR_DM("DDR_DM"), DDR_DQ("DDR_DQ"), DDR_DQS_n("DDR_DQS_n"), DDR_DQS("DDR_DQS"), PS_SRSTB("PS_SRSTB"), PS_CLK("PS_CLK"), PS_PORB("PS_PORB")
 {
 
   // initialize pins
+  mp_impl->S_AXI_HP0_RCOUNT(S_AXI_HP0_RCOUNT);
+  mp_impl->S_AXI_HP0_WCOUNT(S_AXI_HP0_WCOUNT);
+  mp_impl->S_AXI_HP0_RACOUNT(S_AXI_HP0_RACOUNT);
+  mp_impl->S_AXI_HP0_WACOUNT(S_AXI_HP0_WACOUNT);
+  mp_impl->S_AXI_HP0_ACLK(S_AXI_HP0_ACLK);
+  mp_impl->S_AXI_HP0_RDISSUECAP1_EN(S_AXI_HP0_RDISSUECAP1_EN);
+  mp_impl->S_AXI_HP0_WRISSUECAP1_EN(S_AXI_HP0_WRISSUECAP1_EN);
   mp_impl->Core0_nFIQ(Core0_nFIQ);
   mp_impl->FCLK_CLK0(FCLK_CLK0);
+  mp_impl->FCLK_CLK1(FCLK_CLK1);
   mp_impl->FCLK_RESET0_N(FCLK_RESET0_N);
   mp_impl->MIO(MIO);
   mp_impl->DDR_CAS_n(DDR_CAS_n);
@@ -83,14 +91,117 @@ processing_system7_0::processing_system7_0(const sc_core::sc_module_name& nm) : 
   mp_impl->PS_SRSTB(PS_SRSTB);
   mp_impl->PS_CLK(PS_CLK);
   mp_impl->PS_PORB(PS_PORB);
+
+  // initialize transactors
+  mp_S_AXI_HP0_transactor = NULL;
+  mp_S_AXI_HP0_ARLOCK_converter = NULL;
+  mp_S_AXI_HP0_AWLOCK_converter = NULL;
+  mp_S_AXI_HP0_ARLEN_converter = NULL;
+  mp_S_AXI_HP0_AWLEN_converter = NULL;
 }
 
 void processing_system7_0::before_end_of_elaboration()
 {
+  // configure 'S_AXI_HP0' transactor
+  if (xsc::utils::xsc_sim_manager::getInstanceParameterInt("processing_system7_0", "S_AXI_HP0_TLM_MODE") != 1)
+  {
+    xsc::common_cpp::properties S_AXI_HP0_transactor_param_props;
+    S_AXI_HP0_transactor_param_props.addLong("DATA_WIDTH", "64");
+    S_AXI_HP0_transactor_param_props.addLong("FREQ_HZ", "100000000");
+    S_AXI_HP0_transactor_param_props.addLong("ID_WIDTH", "6");
+    S_AXI_HP0_transactor_param_props.addLong("ADDR_WIDTH", "32");
+    S_AXI_HP0_transactor_param_props.addLong("AWUSER_WIDTH", "0");
+    S_AXI_HP0_transactor_param_props.addLong("ARUSER_WIDTH", "0");
+    S_AXI_HP0_transactor_param_props.addLong("WUSER_WIDTH", "0");
+    S_AXI_HP0_transactor_param_props.addLong("RUSER_WIDTH", "0");
+    S_AXI_HP0_transactor_param_props.addLong("BUSER_WIDTH", "0");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_BURST", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_LOCK", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_PROT", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_CACHE", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_QOS", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_REGION", "0");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_WSTRB", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_BRESP", "1");
+    S_AXI_HP0_transactor_param_props.addLong("HAS_RRESP", "1");
+    S_AXI_HP0_transactor_param_props.addLong("SUPPORTS_NARROW_BURST", "1");
+    S_AXI_HP0_transactor_param_props.addLong("MAX_BURST_LENGTH", "16");
+    S_AXI_HP0_transactor_param_props.addLong("NUM_READ_THREADS", "1");
+    S_AXI_HP0_transactor_param_props.addLong("NUM_WRITE_THREADS", "1");
+    S_AXI_HP0_transactor_param_props.addLong("RUSER_BITS_PER_BYTE", "0");
+    S_AXI_HP0_transactor_param_props.addLong("WUSER_BITS_PER_BYTE", "0");
+    S_AXI_HP0_transactor_param_props.addFloat("PHASE", "0.000");
+    S_AXI_HP0_transactor_param_props.addString("NUM_WRITE_OUTSTANDING", "8");
+    S_AXI_HP0_transactor_param_props.addString("NUM_READ_OUTSTANDING", "8");
+    S_AXI_HP0_transactor_param_props.addString("PROTOCOL", "AXI3");
+    S_AXI_HP0_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
+    S_AXI_HP0_transactor_param_props.addString("CLK_DOMAIN", "");
+    mp_S_AXI_HP0_transactor = new xtlm::xaximm_pin2xtlm_t<64,32,6,1,1,1,1,1>("S_AXI_HP0_transactor", S_AXI_HP0_transactor_param_props);
+    mp_S_AXI_HP0_transactor->ARREADY(S_AXI_HP0_ARREADY);
+    mp_S_AXI_HP0_transactor->AWREADY(S_AXI_HP0_AWREADY);
+    mp_S_AXI_HP0_transactor->BVALID(S_AXI_HP0_BVALID);
+    mp_S_AXI_HP0_transactor->RLAST(S_AXI_HP0_RLAST);
+    mp_S_AXI_HP0_transactor->RVALID(S_AXI_HP0_RVALID);
+    mp_S_AXI_HP0_transactor->WREADY(S_AXI_HP0_WREADY);
+    mp_S_AXI_HP0_transactor->BRESP(S_AXI_HP0_BRESP);
+    mp_S_AXI_HP0_transactor->RRESP(S_AXI_HP0_RRESP);
+    mp_S_AXI_HP0_transactor->BID(S_AXI_HP0_BID);
+    mp_S_AXI_HP0_transactor->RID(S_AXI_HP0_RID);
+    mp_S_AXI_HP0_transactor->RDATA(S_AXI_HP0_RDATA);
+    mp_S_AXI_HP0_transactor->ARVALID(S_AXI_HP0_ARVALID);
+    mp_S_AXI_HP0_transactor->AWVALID(S_AXI_HP0_AWVALID);
+    mp_S_AXI_HP0_transactor->BREADY(S_AXI_HP0_BREADY);
+    mp_S_AXI_HP0_transactor->RREADY(S_AXI_HP0_RREADY);
+    mp_S_AXI_HP0_transactor->WLAST(S_AXI_HP0_WLAST);
+    mp_S_AXI_HP0_transactor->WVALID(S_AXI_HP0_WVALID);
+    mp_S_AXI_HP0_transactor->ARBURST(S_AXI_HP0_ARBURST);
+    mp_S_AXI_HP0_ARLOCK_converter = new xsc::common::vectorN2scalar_converter<2>("S_AXI_HP0_ARLOCK_converter");
+    mp_S_AXI_HP0_ARLOCK_converter->vector_in(S_AXI_HP0_ARLOCK);
+    mp_S_AXI_HP0_ARLOCK_converter->scalar_out(m_S_AXI_HP0_ARLOCK_converter_signal);
+    mp_S_AXI_HP0_transactor->ARLOCK(m_S_AXI_HP0_ARLOCK_converter_signal);
+    mp_S_AXI_HP0_transactor->ARSIZE(S_AXI_HP0_ARSIZE);
+    mp_S_AXI_HP0_transactor->AWBURST(S_AXI_HP0_AWBURST);
+    mp_S_AXI_HP0_AWLOCK_converter = new xsc::common::vectorN2scalar_converter<2>("S_AXI_HP0_AWLOCK_converter");
+    mp_S_AXI_HP0_AWLOCK_converter->vector_in(S_AXI_HP0_AWLOCK);
+    mp_S_AXI_HP0_AWLOCK_converter->scalar_out(m_S_AXI_HP0_AWLOCK_converter_signal);
+    mp_S_AXI_HP0_transactor->AWLOCK(m_S_AXI_HP0_AWLOCK_converter_signal);
+    mp_S_AXI_HP0_transactor->AWSIZE(S_AXI_HP0_AWSIZE);
+    mp_S_AXI_HP0_transactor->ARPROT(S_AXI_HP0_ARPROT);
+    mp_S_AXI_HP0_transactor->AWPROT(S_AXI_HP0_AWPROT);
+    mp_S_AXI_HP0_transactor->ARADDR(S_AXI_HP0_ARADDR);
+    mp_S_AXI_HP0_transactor->AWADDR(S_AXI_HP0_AWADDR);
+    mp_S_AXI_HP0_transactor->ARCACHE(S_AXI_HP0_ARCACHE);
+    mp_S_AXI_HP0_ARLEN_converter = new xsc::common::vector2vector_converter<4,8>("S_AXI_HP0_ARLEN_converter");
+    mp_S_AXI_HP0_ARLEN_converter->vector_in(S_AXI_HP0_ARLEN);
+    mp_S_AXI_HP0_ARLEN_converter->vector_out(m_S_AXI_HP0_ARLEN_converter_signal);
+    mp_S_AXI_HP0_transactor->ARLEN(m_S_AXI_HP0_ARLEN_converter_signal);
+    mp_S_AXI_HP0_transactor->ARQOS(S_AXI_HP0_ARQOS);
+    mp_S_AXI_HP0_transactor->AWCACHE(S_AXI_HP0_AWCACHE);
+    mp_S_AXI_HP0_AWLEN_converter = new xsc::common::vector2vector_converter<4,8>("S_AXI_HP0_AWLEN_converter");
+    mp_S_AXI_HP0_AWLEN_converter->vector_in(S_AXI_HP0_AWLEN);
+    mp_S_AXI_HP0_AWLEN_converter->vector_out(m_S_AXI_HP0_AWLEN_converter_signal);
+    mp_S_AXI_HP0_transactor->AWLEN(m_S_AXI_HP0_AWLEN_converter_signal);
+    mp_S_AXI_HP0_transactor->AWQOS(S_AXI_HP0_AWQOS);
+    mp_S_AXI_HP0_transactor->ARID(S_AXI_HP0_ARID);
+    mp_S_AXI_HP0_transactor->AWID(S_AXI_HP0_AWID);
+    mp_S_AXI_HP0_transactor->WDATA(S_AXI_HP0_WDATA);
+    mp_S_AXI_HP0_transactor->WSTRB(S_AXI_HP0_WSTRB);
+    mp_S_AXI_HP0_transactor->CLK(S_AXI_HP0_ACLK);
+    m_S_AXI_HP0_transactor_rst_signal.write(1);
+    mp_S_AXI_HP0_transactor->RST(m_S_AXI_HP0_transactor_rst_signal);
+
+    mp_impl->S_AXI_HP0_rd_socket->bind(*(mp_S_AXI_HP0_transactor->rd_socket));
+    mp_impl->S_AXI_HP0_wr_socket->bind(*(mp_S_AXI_HP0_transactor->wr_socket));
+  }
 }
 
 processing_system7_0::~processing_system7_0()
 {
+  delete mp_S_AXI_HP0_transactor;
+  delete mp_S_AXI_HP0_ARLOCK_converter;
+  delete mp_S_AXI_HP0_AWLOCK_converter;
+  delete mp_S_AXI_HP0_ARLEN_converter;
+  delete mp_S_AXI_HP0_AWLEN_converter;
 }
 
 #ifdef MTI_SYSTEMC

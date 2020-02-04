@@ -123,13 +123,6 @@ module NV_NVDLA_partition_o (
   ,sdp_b2mcif_rd_req_valid
   ,sdp_b2mcif_rd_req_ready
   ,sdp_b2mcif_rd_req_pd
-  ,mcif2sdp_n_rd_rsp_valid
-  ,mcif2sdp_n_rd_rsp_ready
-  ,mcif2sdp_n_rd_rsp_pd
-  ,sdp_n2mcif_rd_cdt_lat_fifo_pop
-  ,sdp_n2mcif_rd_req_valid
-  ,sdp_n2mcif_rd_req_ready
-  ,sdp_n2mcif_rd_req_pd
   ,mcif2sdp_rd_rsp_valid
   ,mcif2sdp_rd_rsp_ready
   ,mcif2sdp_rd_rsp_pd
@@ -258,13 +251,6 @@ input sdp_b2mcif_rd_cdt_lat_fifo_pop;
 input sdp_b2mcif_rd_req_valid;
 output sdp_b2mcif_rd_req_ready;
 input [32 +14:0] sdp_b2mcif_rd_req_pd;
-output mcif2sdp_n_rd_rsp_valid;
-input mcif2sdp_n_rd_rsp_ready;
-output [64 +(64/8/8)-1:0] mcif2sdp_n_rd_rsp_pd;
-input sdp_n2mcif_rd_cdt_lat_fifo_pop;
-input sdp_n2mcif_rd_req_valid;
-output sdp_n2mcif_rd_req_ready;
-input [32 +14:0] sdp_n2mcif_rd_req_pd;
 input sdp2mcif_rd_cdt_lat_fifo_pop;
 input sdp2mcif_rd_req_valid;
 output sdp2mcif_rd_req_ready;
@@ -524,26 +510,6 @@ NV_NVDLA_csb_master u_NV_NVDLA_csb_master (
   ,.csb2sdp_req_pd (csb2sdp_req_pd)
   ,.sdp2csb_resp_valid (sdp2csb_resp_valid)
   ,.sdp2csb_resp_pd (sdp2csb_resp_pd)
-  ,.csb2pdp_rdma_req_pvld (csb2pdp_rdma_req_pvld)
-  ,.csb2pdp_rdma_req_prdy (csb2pdp_rdma_req_prdy)
-  ,.csb2pdp_rdma_req_pd (csb2pdp_rdma_req_pd)
-  ,.pdp_rdma2csb_resp_valid (pdp_rdma2csb_resp_valid)
-  ,.pdp_rdma2csb_resp_pd (pdp_rdma2csb_resp_pd)
-  ,.csb2pdp_req_pvld (csb2pdp_req_pvld)
-  ,.csb2pdp_req_prdy (csb2pdp_req_prdy)
-  ,.csb2pdp_req_pd (csb2pdp_req_pd)
-  ,.pdp2csb_resp_valid (pdp2csb_resp_valid)
-  ,.pdp2csb_resp_pd (pdp2csb_resp_pd)
-  ,.csb2cdp_rdma_req_pvld (csb2cdp_rdma_req_pvld)
-  ,.csb2cdp_rdma_req_prdy (csb2cdp_rdma_req_prdy)
-  ,.csb2cdp_rdma_req_pd (csb2cdp_rdma_req_pd)
-  ,.cdp_rdma2csb_resp_valid (cdp_rdma2csb_resp_valid)
-  ,.cdp_rdma2csb_resp_pd (cdp_rdma2csb_resp_pd)
-  ,.csb2cdp_req_pvld (csb2cdp_req_pvld)
-  ,.csb2cdp_req_prdy (csb2cdp_req_prdy)
-  ,.csb2cdp_req_pd (csb2cdp_req_pd)
-  ,.cdp2csb_resp_valid (cdp2csb_resp_valid)
-  ,.cdp2csb_resp_pd (cdp2csb_resp_pd)
   );
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: ASYNC CROSSING INTERFACE //
@@ -586,28 +552,6 @@ NV_NVDLA_mcif u_NV_NVDLA_mcif (
   ,.sdp2mcif_wr_req_ready (sdp2mcif_wr_req_ready) //|> o
   ,.sdp2mcif_wr_req_pd (sdp2mcif_wr_req_pd ) //|< i
   ,.mcif2sdp_wr_rsp_complete (mcif2sdp_wr_rsp_complete) //|> o
-  ,.cdp2mcif_rd_cdt_lat_fifo_pop (cdp2mcif_rd_cdt_lat_fifo_pop) //|< w
-  ,.cdp2mcif_rd_req_valid (cdp2mcif_rd_req_valid) //|< w
-  ,.cdp2mcif_rd_req_ready (cdp2mcif_rd_req_ready) //|> w
-  ,.cdp2mcif_rd_req_pd (cdp2mcif_rd_req_pd ) //|< w
-  ,.cdp2mcif_wr_req_valid (cdp2mcif_wr_req_valid) //|< w
-  ,.cdp2mcif_wr_req_ready (cdp2mcif_wr_req_ready) //|> w
-  ,.cdp2mcif_wr_req_pd (cdp2mcif_wr_req_pd ) //|< w
-  ,.mcif2cdp_rd_rsp_valid (mcif2cdp_rd_rsp_valid) //|> w
-  ,.mcif2cdp_rd_rsp_ready (mcif2cdp_rd_rsp_ready) //|< w
-  ,.mcif2cdp_rd_rsp_pd (mcif2cdp_rd_rsp_pd ) //|> w
-  ,.mcif2cdp_wr_rsp_complete (mcif2cdp_wr_rsp_complete) //|> w
-  ,.mcif2pdp_rd_rsp_valid (mcif2pdp_rd_rsp_valid) //|> w
-  ,.mcif2pdp_rd_rsp_ready (mcif2pdp_rd_rsp_ready) //|< w
-  ,.mcif2pdp_rd_rsp_pd (mcif2pdp_rd_rsp_pd ) //|> w
-  ,.mcif2pdp_wr_rsp_complete (mcif2pdp_wr_rsp_complete) //|> w
-  ,.pdp2mcif_rd_cdt_lat_fifo_pop (pdp2mcif_rd_cdt_lat_fifo_pop) //|> w
-  ,.pdp2mcif_rd_req_valid (pdp2mcif_rd_req_valid) //|> w
-  ,.pdp2mcif_rd_req_ready (pdp2mcif_rd_req_ready) //|> w
-  ,.pdp2mcif_rd_req_pd (pdp2mcif_rd_req_pd ) //|> w
-  ,.pdp2mcif_wr_req_valid (pdp2mcif_wr_req_valid) //|> w
-  ,.pdp2mcif_wr_req_ready (pdp2mcif_wr_req_ready) //|> w
-  ,.pdp2mcif_wr_req_pd (pdp2mcif_wr_req_pd ) //|> w
   ,.sdp_b2mcif_rd_cdt_lat_fifo_pop (sdp_b2mcif_rd_cdt_lat_fifo_pop) //|< i
   ,.sdp_b2mcif_rd_req_valid (sdp_b2mcif_rd_req_valid) //|< i
   ,.sdp_b2mcif_rd_req_ready (sdp_b2mcif_rd_req_ready) //|> o
@@ -615,13 +559,6 @@ NV_NVDLA_mcif u_NV_NVDLA_mcif (
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid) //|> o
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready) //|< i
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd ) //|> o
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop) //|< i
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid) //|< i
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready) //|> o
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd ) //|< i
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid) //|> o
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready) //|< i
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd ) //|> o
   ,.mcif2noc_axi_ar_arvalid (mcif2noc_axi_ar_arvalid) //|> o
   ,.mcif2noc_axi_ar_arready (mcif2noc_axi_ar_arready) //|< i
   ,.mcif2noc_axi_ar_arid (mcif2noc_axi_ar_arid[7:0]) //|> o
@@ -652,83 +589,16 @@ NV_NVDLA_mcif u_NV_NVDLA_mcif (
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Bridge DMA //
 ////////////////////////////////////////////////////////////////////////
-
-
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Rubik engine //
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Cross-Channel Data Processor //
 ////////////////////////////////////////////////////////////////////////
-`ifdef CDP_SDP 
-NV_NVDLA_cdp u_NV_NVDLA_cdp (
-   .dla_clk_ovr_on_sync (dla_clk_ovr_on_sync) //|< w
-  ,.global_clk_ovr_on_sync (global_clk_ovr_on_sync) //|< w
-  ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating) //|< i
-  ,.nvdla_core_clk (nvdla_core_clk) //|< i
-  ,.nvdla_core_rstn (nvdla_core_rstn) //|< o
-  ,.cdp2csb_resp_valid (cdp2csb_resp_valid) //|> w
-  ,.cdp2csb_resp_pd (cdp2csb_resp_pd[33:0]) //|> w
-  ,.cdp2glb_done_intr_pd (cdp2glb_done_intr_pd[1:0]) //|> w
-  ,.cdp2mcif_rd_cdt_lat_fifo_pop (cdp2mcif_rd_cdt_lat_fifo_pop) //|> w
-  ,.cdp2mcif_rd_req_valid (cdp2mcif_rd_req_valid) //|> w
-  ,.cdp2mcif_rd_req_ready (cdp2mcif_rd_req_ready) //|< w
-  ,.cdp2mcif_rd_req_pd (cdp2mcif_rd_req_pd ) //|> w
-  ,.cdp2mcif_wr_req_valid (cdp2mcif_wr_req_valid) //|> w
-  ,.cdp2mcif_wr_req_ready (cdp2mcif_wr_req_ready) //|< w
-  ,.cdp2mcif_wr_req_pd (cdp2mcif_wr_req_pd ) //|> w
-  ,.cdp_rdma2csb_resp_valid (cdp_rdma2csb_resp_valid) //|> w
-  ,.cdp_rdma2csb_resp_pd (cdp_rdma2csb_resp_pd[33:0]) //|> w
-  ,.csb2cdp_rdma_req_pvld (csb2cdp_rdma_req_pvld) //|< w
-  ,.csb2cdp_rdma_req_prdy (csb2cdp_rdma_req_prdy) //|> w
-  ,.csb2cdp_rdma_req_pd (csb2cdp_rdma_req_pd[62:0]) //|< w
-  ,.csb2cdp_req_pvld (csb2cdp_req_pvld) //|< w
-  ,.csb2cdp_req_prdy (csb2cdp_req_prdy) //|> w
-  ,.csb2cdp_req_pd (csb2cdp_req_pd[62:0]) //|< w
-  ,.mcif2cdp_rd_rsp_valid (mcif2cdp_rd_rsp_valid) //|< w
-  ,.mcif2cdp_rd_rsp_ready (mcif2cdp_rd_rsp_ready) //|> w
-  ,.mcif2cdp_rd_rsp_pd (mcif2cdp_rd_rsp_pd ) //|< w
-  ,.mcif2cdp_wr_rsp_complete (mcif2cdp_wr_rsp_complete) //|< w
-  ,.pwrbus_ram_pd (pwrbus_ram_pd[31:0]) //|< i
-  );
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Planar Data Processor //
 ////////////////////////////////////////////////////////////////////////
-NV_NVDLA_pdp u_NV_NVDLA_pdp (
-   .dla_clk_ovr_on_sync (dla_clk_ovr_on_sync) //|< w
-  ,.global_clk_ovr_on_sync (global_clk_ovr_on_sync) //|< w
-  ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating) //|< i
-  ,.nvdla_core_clk (nvdla_core_clk) //|< i
-  ,.nvdla_core_rstn (nvdla_core_rstn) //|< o
-  ,.csb2pdp_rdma_req_pvld (csb2pdp_rdma_req_pvld) //|< w
-  ,.csb2pdp_rdma_req_prdy (csb2pdp_rdma_req_prdy) //|> w
-  ,.csb2pdp_rdma_req_pd (csb2pdp_rdma_req_pd[62:0]) //|< w
-  ,.csb2pdp_req_pvld (csb2pdp_req_pvld) //|< w
-  ,.csb2pdp_req_prdy (csb2pdp_req_prdy) //|> w
-  ,.csb2pdp_req_pd (csb2pdp_req_pd[62:0]) //|< w
-  ,.mcif2pdp_rd_rsp_valid (mcif2pdp_rd_rsp_valid) //|< w
-  ,.mcif2pdp_rd_rsp_ready (mcif2pdp_rd_rsp_ready) //|> w
-  ,.mcif2pdp_rd_rsp_pd (mcif2pdp_rd_rsp_pd ) //|< w
-  ,.mcif2pdp_wr_rsp_complete (mcif2pdp_wr_rsp_complete) //|< w
-  ,.pdp2csb_resp_valid (pdp2csb_resp_valid) //|> w
-  ,.pdp2csb_resp_pd (pdp2csb_resp_pd[33:0]) //|> w
-  ,.pdp2glb_done_intr_pd (pdp2glb_done_intr_pd[1:0]) //|> w
-  ,.pdp2mcif_rd_cdt_lat_fifo_pop (pdp2mcif_rd_cdt_lat_fifo_pop) //|> w
-  ,.pdp2mcif_rd_req_valid (pdp2mcif_rd_req_valid) //|> w
-  ,.pdp2mcif_rd_req_ready (pdp2mcif_rd_req_ready) //|< w
-  ,.pdp2mcif_rd_req_pd (pdp2mcif_rd_req_pd ) //|> w
-  ,.pdp2mcif_wr_req_valid (pdp2mcif_wr_req_valid) //|> w
-  ,.pdp2mcif_wr_req_ready (pdp2mcif_wr_req_ready) //|< w
-  ,.pdp2mcif_wr_req_pd (pdp2mcif_wr_req_pd ) //|> w
-  ,.pdp_rdma2csb_resp_valid (pdp_rdma2csb_resp_valid) //|> w
-  ,.pdp_rdma2csb_resp_pd (pdp_rdma2csb_resp_pd[33:0]) //|> w
-  ,.pwrbus_ram_pd (pwrbus_ram_pd[31:0]) //|< i
-  ,.sdp2pdp_valid (sdp2pdp_valid) //|< i
-  ,.sdp2pdp_ready (sdp2pdp_ready) //|> o
-  ,.sdp2pdp_pd (sdp2pdp_pd ) //|< i
-  );
-  
-  `endif
+assign sdp2pdp_ready = 1'b1;//
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O: Global Unit //
 ////////////////////////////////////////////////////////////////////////
@@ -740,8 +610,6 @@ NV_NVDLA_glb u_NV_NVDLA_glb (
   ,.glb2csb_resp_pd (glb2csb_resp_pd[33:0]) //|> w
   ,.core_intr (core_intr) //|> o
   ,.sdp2glb_done_intr_pd (sdp2glb_done_intr_pd[1:0]) //|< i
-  ,.cdp2glb_done_intr_pd (cdp2glb_done_intr_pd[1:0]) //|< w
-  ,.pdp2glb_done_intr_pd (pdp2glb_done_intr_pd[1:0]) //|< w
   ,.cdma_wt2glb_done_intr_pd (cdma_wt2glb_done_intr_pd[1:0]) //|< i
   ,.cdma_dat2glb_done_intr_pd (cdma_dat2glb_done_intr_pd[1:0]) //|< i
   ,.cacc2glb_done_intr_pd (cacc2glb_done_intr_pd[1:0]) //|< i

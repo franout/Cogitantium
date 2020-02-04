@@ -317,7 +317,7 @@ input noc2mcif_axi_r_rlast;
 input [64 -1:0] noc2mcif_axi_r_rdata;
 //:my $i;
 //:my $nindex=0;
-//: my @dma_index = (0, 1, 1,1, 1,0, 1, 1, 0, 1,0,0,0,0,0,0);
+//: my @dma_index = (0, 1, 1,0, 0,0, 1, 1, 0, 0,0,0,0,0,0,0);
 //: my @dma_name = ("bdma","cdma_dat","cdma_wt","cdp","pdp","rbk","sdp","sdp_b","sdp_e","sdp_n","na","na","na","na","na","na");
 //: for ($i=0;$i<16;$i++) {
 //: if ($dma_index[$i]) {
@@ -335,7 +335,7 @@ input [64 -1:0] noc2mcif_axi_r_rdata;
 //:}
 //:my $i;
 //:my $nindex=0;
-//: my @dma_index = (0, 1,1, 1, 0, 0,0,0,0,0,0);
+//: my @dma_index = (0, 1,0, 0, 0, 0,0,0,0,0,0);
 //: my @dma_name=("bdma","sdp","cdp","pdp","rbk","na","na","na","na","na","na","na","na","na","na","na");
 //: for ($i=0;$i<16;$i++) {
 //: if ($dma_index[$i]) {
@@ -358,31 +358,16 @@ wire [7:0] client02mcif_rd_wt = reg2dp_rd_weight_cdma_dat;
 
 wire [7:0] reg2dp_rd_weight_cdma_wt;
 wire [7:0] client12mcif_rd_wt = reg2dp_rd_weight_cdma_wt;
-
-wire [7:0] reg2dp_rd_weight_cdp;
-wire [7:0] client22mcif_rd_wt = reg2dp_rd_weight_cdp;
-
-wire [7:0] reg2dp_rd_weight_pdp;
-wire [7:0] client32mcif_rd_wt = reg2dp_rd_weight_pdp;
-wire [7:0] reg2dp_rd_weight_rbk;
+wire [7:0] reg2dp_rd_weight_cdp;wire [7:0] reg2dp_rd_weight_pdp;wire [7:0] reg2dp_rd_weight_rbk;
 wire [7:0] reg2dp_rd_weight_sdp;
-wire [7:0] client42mcif_rd_wt = reg2dp_rd_weight_sdp;
+wire [7:0] client22mcif_rd_wt = reg2dp_rd_weight_sdp;
 
 wire [7:0] reg2dp_rd_weight_sdp_b;
-wire [7:0] client52mcif_rd_wt = reg2dp_rd_weight_sdp_b;
-wire [7:0] reg2dp_rd_weight_sdp_e;
-wire [7:0] reg2dp_rd_weight_sdp_n;
-wire [7:0] client62mcif_rd_wt = reg2dp_rd_weight_sdp_n;
-wire [7:0] reg2dp_wr_weight_bdma;
+wire [7:0] client32mcif_rd_wt = reg2dp_rd_weight_sdp_b;
+wire [7:0] reg2dp_rd_weight_sdp_e;wire [7:0] reg2dp_rd_weight_sdp_n;wire [7:0] reg2dp_wr_weight_bdma;
 wire [7:0] reg2dp_wr_weight_sdp;
 wire [7:0] client02mcif_wr_wt = reg2dp_wr_weight_sdp;
-
-wire [7:0] reg2dp_wr_weight_cdp;
-wire [7:0] client12mcif_wr_wt = reg2dp_wr_weight_cdp;
-
-wire [7:0] reg2dp_wr_weight_pdp;
-wire [7:0] client22mcif_wr_wt = reg2dp_wr_weight_pdp;
-wire [7:0] reg2dp_wr_weight_rbk;
+wire [7:0] reg2dp_wr_weight_cdp;wire [7:0] reg2dp_wr_weight_pdp;wire [7:0] reg2dp_wr_weight_rbk;
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire [7:0] reg2dp_rd_os_cnt;
 wire [7:0] reg2dp_wr_os_cnt;

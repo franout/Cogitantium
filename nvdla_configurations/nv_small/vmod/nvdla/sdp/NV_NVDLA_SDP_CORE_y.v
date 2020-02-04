@@ -49,6 +49,36 @@ module NV_NVDLA_SDP_CORE_y (
   ,reg2dp_ew_mul_prelu //|< i
   ,reg2dp_ew_mul_src //|< i
   ,reg2dp_ew_truncate //|< i
+  ,reg2dp_lut_hybrid_priority //|< i
+  ,reg2dp_lut_int_access_type //|< i
+  ,reg2dp_lut_int_addr //|< i
+  ,reg2dp_lut_int_data //|< i
+  ,reg2dp_lut_int_data_wr //|< i
+  ,reg2dp_lut_int_table_id //|< i
+  ,reg2dp_lut_le_end //|< i
+  ,reg2dp_lut_le_function //|< i
+  ,reg2dp_lut_le_index_offset //|< i
+  ,reg2dp_lut_le_index_select //|< i
+  ,reg2dp_lut_le_slope_oflow_scale //|< i
+  ,reg2dp_lut_le_slope_oflow_shift //|< i
+  ,reg2dp_lut_le_slope_uflow_scale //|< i
+  ,reg2dp_lut_le_slope_uflow_shift //|< i
+  ,reg2dp_lut_le_start //|< i
+  ,reg2dp_lut_lo_end //|< i
+  ,reg2dp_lut_lo_index_select //|< i
+  ,reg2dp_lut_lo_slope_oflow_scale //|< i
+  ,reg2dp_lut_lo_slope_oflow_shift //|< i
+  ,reg2dp_lut_lo_slope_uflow_scale //|< i
+  ,reg2dp_lut_lo_slope_uflow_shift //|< i
+  ,reg2dp_lut_lo_start //|< i
+  ,reg2dp_lut_oflow_priority //|< i
+  ,reg2dp_lut_uflow_priority //|< i
+  ,dp2reg_lut_hybrid //|> o
+  ,dp2reg_lut_int_data //|> o
+  ,dp2reg_lut_le_hit //|> o
+  ,dp2reg_lut_lo_hit //|> o
+  ,dp2reg_lut_oflow //|> o
+  ,dp2reg_lut_uflow //|> o
   ,ew_data_out_pd //|> o
   ,ew_data_out_pvld //|> o
   ,ew_data_out_prdy //|< i
@@ -85,6 +115,36 @@ input [31:0] reg2dp_ew_mul_operand;
 input reg2dp_ew_mul_prelu;
 input reg2dp_ew_mul_src;
 input [9:0] reg2dp_ew_truncate;
+input reg2dp_lut_hybrid_priority;
+input reg2dp_lut_int_access_type;
+input [9:0] reg2dp_lut_int_addr;
+input [15:0] reg2dp_lut_int_data;
+input reg2dp_lut_int_data_wr;
+input reg2dp_lut_int_table_id;
+input [31:0] reg2dp_lut_le_end;
+input reg2dp_lut_le_function;
+input [7:0] reg2dp_lut_le_index_offset;
+input [7:0] reg2dp_lut_le_index_select;
+input [15:0] reg2dp_lut_le_slope_oflow_scale;
+input [4:0] reg2dp_lut_le_slope_oflow_shift;
+input [15:0] reg2dp_lut_le_slope_uflow_scale;
+input [4:0] reg2dp_lut_le_slope_uflow_shift;
+input [31:0] reg2dp_lut_le_start;
+input [31:0] reg2dp_lut_lo_end;
+input [7:0] reg2dp_lut_lo_index_select;
+input [15:0] reg2dp_lut_lo_slope_oflow_scale;
+input [4:0] reg2dp_lut_lo_slope_oflow_shift;
+input [15:0] reg2dp_lut_lo_slope_uflow_scale;
+input [4:0] reg2dp_lut_lo_slope_uflow_shift;
+input [31:0] reg2dp_lut_lo_start;
+input reg2dp_lut_oflow_priority;
+input reg2dp_lut_uflow_priority;
+output [31:0] dp2reg_lut_hybrid;
+output [15:0] dp2reg_lut_int_data;
+output [31:0] dp2reg_lut_le_hit;
+output [31:0] dp2reg_lut_lo_hit;
+output [31:0] dp2reg_lut_oflow;
+output [31:0] dp2reg_lut_uflow;
 input reg2dp_nan_to_zero;
 input reg2dp_perf_lut_en;
 input [1:0] reg2dp_proc_precision;
@@ -109,6 +169,25 @@ reg [31:0] cfg_ew_mul_operand;
 reg cfg_ew_mul_prelu;
 reg cfg_ew_mul_src;
 reg [9:0] cfg_ew_truncate;
+reg cfg_lut_hybrid_priority;
+reg [31:0] cfg_lut_le_end;
+reg cfg_lut_le_function;
+reg [7:0] cfg_lut_le_index_offset;
+reg [7:0] cfg_lut_le_index_select;
+reg [15:0] cfg_lut_le_slope_oflow_scale;
+reg [4:0] cfg_lut_le_slope_oflow_shift;
+reg [15:0] cfg_lut_le_slope_uflow_scale;
+reg [4:0] cfg_lut_le_slope_uflow_shift;
+reg [31:0] cfg_lut_le_start;
+reg [31:0] cfg_lut_lo_end;
+reg [7:0] cfg_lut_lo_index_select;
+reg [15:0] cfg_lut_lo_slope_oflow_scale;
+reg [4:0] cfg_lut_lo_slope_oflow_shift;
+reg [15:0] cfg_lut_lo_slope_uflow_scale;
+reg [4:0] cfg_lut_lo_slope_uflow_shift;
+reg [31:0] cfg_lut_lo_start;
+reg cfg_lut_oflow_priority;
+reg cfg_lut_uflow_priority;
 reg cfg_nan_to_zero;
 reg [1:0] cfg_proc_precision;
 wire [32*0 -1:0] alu_cvt_out_pd;
@@ -120,6 +199,18 @@ wire mul_cvt_out_pvld;
 wire [32*0 -1:0] core_out_pd;
 wire core_out_prdy;
 wire core_out_pvld;
+wire [81*0 -1:0] idx2lut_pd;
+wire idx2lut_prdy;
+wire idx2lut_pvld;
+wire [32*0 -1:0] idx_in_pd;
+wire idx_in_prdy;
+wire idx_in_pvld;
+wire [32*0 -1:0] inp_out_pd;
+wire inp_out_prdy;
+wire inp_out_pvld;
+wire [185*0 -1:0] lut2inp_pd;
+wire lut2inp_prdy;
+wire lut2inp_pvld;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
     cfg_proc_precision <= {2{1'b0}};
@@ -141,7 +232,26 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     cfg_ew_mul_cvt_truncate <= {6{1'b0}};
     cfg_ew_truncate <= {10{1'b0}};
     cfg_ew_mul_prelu <= 1'b0;
-    cfg_ew_lut_bypass <= 1'b1;
+    cfg_ew_lut_bypass <= 1'b0;
+    cfg_lut_le_start <= {32{1'b0}};
+    cfg_lut_le_end <= {32{1'b0}};
+    cfg_lut_lo_start <= {32{1'b0}};
+    cfg_lut_lo_end <= {32{1'b0}};
+    cfg_lut_le_index_offset <= {8{1'b0}};
+    cfg_lut_le_index_select <= {8{1'b0}};
+    cfg_lut_lo_index_select <= {8{1'b0}};
+    cfg_lut_le_function <= 1'b0;
+    cfg_lut_uflow_priority <= 1'b0;
+    cfg_lut_oflow_priority <= 1'b0;
+    cfg_lut_hybrid_priority <= 1'b0;
+    cfg_lut_le_slope_oflow_scale <= {16{1'b0}};
+    cfg_lut_le_slope_oflow_shift <= {5{1'b0}};
+    cfg_lut_le_slope_uflow_scale <= {16{1'b0}};
+    cfg_lut_le_slope_uflow_shift <= {5{1'b0}};
+    cfg_lut_lo_slope_oflow_scale <= {16{1'b0}};
+    cfg_lut_lo_slope_oflow_shift <= {5{1'b0}};
+    cfg_lut_lo_slope_uflow_scale <= {16{1'b0}};
+    cfg_lut_lo_slope_uflow_shift <= {5{1'b0}};
   end else begin
     if (op_en_load) begin
         cfg_proc_precision <= reg2dp_proc_precision ;
@@ -163,7 +273,26 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
         cfg_ew_mul_cvt_truncate <= reg2dp_ew_mul_cvt_truncate;
         cfg_ew_truncate <= reg2dp_ew_truncate ;
         cfg_ew_mul_prelu <= reg2dp_ew_mul_prelu ;
-        cfg_ew_lut_bypass <= 1'b1;
+        cfg_ew_lut_bypass <= reg2dp_ew_lut_bypass ;
+        cfg_lut_le_start <= reg2dp_lut_le_start ;
+        cfg_lut_le_end <= reg2dp_lut_le_end ;
+        cfg_lut_lo_start <= reg2dp_lut_lo_start ;
+        cfg_lut_lo_end <= reg2dp_lut_lo_end ;
+        cfg_lut_le_index_offset <= reg2dp_lut_le_index_offset;
+        cfg_lut_le_index_select <= reg2dp_lut_le_index_select;
+        cfg_lut_lo_index_select <= reg2dp_lut_lo_index_select;
+        cfg_lut_le_function <= reg2dp_lut_le_function ;
+        cfg_lut_uflow_priority <= reg2dp_lut_uflow_priority ;
+        cfg_lut_oflow_priority <= reg2dp_lut_oflow_priority ;
+        cfg_lut_hybrid_priority <= reg2dp_lut_hybrid_priority;
+        cfg_lut_le_slope_oflow_scale <= reg2dp_lut_le_slope_oflow_scale;
+        cfg_lut_le_slope_oflow_shift <= reg2dp_lut_le_slope_oflow_shift;
+        cfg_lut_le_slope_uflow_scale <= reg2dp_lut_le_slope_uflow_scale;
+        cfg_lut_le_slope_uflow_shift <= reg2dp_lut_le_slope_uflow_shift;
+        cfg_lut_lo_slope_oflow_scale <= reg2dp_lut_lo_slope_oflow_scale;
+        cfg_lut_lo_slope_oflow_shift <= reg2dp_lut_lo_slope_oflow_shift;
+        cfg_lut_lo_slope_uflow_scale <= reg2dp_lut_lo_slope_uflow_scale;
+        cfg_lut_lo_slope_uflow_shift <= reg2dp_lut_lo_slope_uflow_shift;
     end
   end
 end
@@ -224,7 +353,78 @@ NV_NVDLA_SDP_HLS_Y_int_core u_core (
   ,.nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
   );
-assign core_out_prdy = ew_data_out_prdy;
-assign ew_data_out_pvld = core_out_pvld;
-assign ew_data_out_pd = core_out_pd;
+assign core_out_prdy = cfg_ew_lut_bypass ? ew_data_out_prdy : idx_in_prdy;
+assign idx_in_pvld = cfg_ew_lut_bypass ? 1'b0 : core_out_pvld;
+assign idx_in_pd = {32*0{idx_in_pvld}} & core_out_pd;
+NV_NVDLA_SDP_HLS_Y_idx_top u_idx (
+   .cfg_lut_hybrid_priority (cfg_lut_hybrid_priority) //|< r
+  ,.cfg_lut_le_function (cfg_lut_le_function) //|< r
+  ,.cfg_lut_le_index_offset (cfg_lut_le_index_offset[7:0]) //|< r
+  ,.cfg_lut_le_index_select (cfg_lut_le_index_select[7:0]) //|< r
+  ,.cfg_lut_le_start (cfg_lut_le_start[31:0]) //|< r
+  ,.cfg_lut_lo_index_select (cfg_lut_lo_index_select[7:0]) //|< r
+  ,.cfg_lut_lo_start (cfg_lut_lo_start[31:0]) //|< r
+  ,.cfg_lut_oflow_priority (cfg_lut_oflow_priority) //|< r
+  ,.cfg_lut_uflow_priority (cfg_lut_uflow_priority) //|< r
+  ,.chn_lut_in_pd (idx_in_pd[32*0 -1:0]) //|< w
+  ,.chn_lut_in_pvld (idx_in_pvld) //|< w
+  ,.chn_lut_out_prdy (idx2lut_prdy) //|< w
+  ,.chn_lut_in_prdy (idx_in_prdy) //|> w
+  ,.chn_lut_out_pd (idx2lut_pd[81*0 -1:0]) //|> w
+  ,.chn_lut_out_pvld (idx2lut_pvld) //|> w
+  ,.nvdla_core_clk (nvdla_core_clk) //|< i
+  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
+  );
+NV_NVDLA_SDP_CORE_Y_lut u_lut (
+   .nvdla_core_clk (nvdla_core_clk) //|< i
+  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
+  ,.lut2inp_pvld (lut2inp_pvld) //|> w
+  ,.lut2inp_prdy (lut2inp_prdy) //|< w
+  ,.lut2inp_pd (lut2inp_pd[185*0 -1:0]) //|> w
+  ,.idx2lut_pvld (idx2lut_pvld) //|< w
+  ,.idx2lut_prdy (idx2lut_prdy) //|> w
+  ,.idx2lut_pd (idx2lut_pd[81*0 -1:0]) //|< w
+  ,.reg2dp_lut_int_access_type (reg2dp_lut_int_access_type) //|< i
+  ,.reg2dp_lut_int_addr (reg2dp_lut_int_addr[9:0]) //|< i
+  ,.reg2dp_lut_int_data (reg2dp_lut_int_data[15:0]) //|< i
+  ,.reg2dp_lut_int_data_wr (reg2dp_lut_int_data_wr) //|< i
+  ,.reg2dp_lut_int_table_id (reg2dp_lut_int_table_id) //|< i
+  ,.reg2dp_lut_le_end (cfg_lut_le_end[31:0]) //|< r
+  ,.reg2dp_lut_le_function (reg2dp_lut_le_function) //|< i
+  ,.reg2dp_lut_le_index_offset (reg2dp_lut_le_index_offset[7:0]) //|< i
+  ,.reg2dp_lut_le_slope_oflow_scale (cfg_lut_le_slope_oflow_scale[15:0]) //|< r
+  ,.reg2dp_lut_le_slope_oflow_shift (cfg_lut_le_slope_oflow_shift[4:0]) //|< r
+  ,.reg2dp_lut_le_slope_uflow_scale (cfg_lut_le_slope_uflow_scale[15:0]) //|< r
+  ,.reg2dp_lut_le_slope_uflow_shift (cfg_lut_le_slope_uflow_shift[4:0]) //|< r
+  ,.reg2dp_lut_le_start (cfg_lut_le_start[31:0]) //|< r
+  ,.reg2dp_lut_lo_end (cfg_lut_lo_end[31:0]) //|< r
+  ,.reg2dp_lut_lo_slope_oflow_scale (cfg_lut_lo_slope_oflow_scale[15:0]) //|< r
+  ,.reg2dp_lut_lo_slope_oflow_shift (cfg_lut_lo_slope_oflow_shift[4:0]) //|< r
+  ,.reg2dp_lut_lo_slope_uflow_scale (cfg_lut_lo_slope_uflow_scale[15:0]) //|< r
+  ,.reg2dp_lut_lo_slope_uflow_shift (cfg_lut_lo_slope_uflow_shift[4:0]) //|< r
+  ,.reg2dp_lut_lo_start (cfg_lut_lo_start[31:0]) //|< r
+  ,.reg2dp_perf_lut_en (reg2dp_perf_lut_en) //|< i
+  ,.reg2dp_proc_precision (reg2dp_proc_precision[1:0]) //|< i
+  ,.dp2reg_lut_hybrid (dp2reg_lut_hybrid[31:0]) //|> o
+  ,.dp2reg_lut_int_data (dp2reg_lut_int_data[15:0]) //|> o
+  ,.dp2reg_lut_le_hit (dp2reg_lut_le_hit[31:0]) //|> o
+  ,.dp2reg_lut_lo_hit (dp2reg_lut_lo_hit[31:0]) //|> o
+  ,.dp2reg_lut_oflow (dp2reg_lut_oflow[31:0]) //|> o
+  ,.dp2reg_lut_uflow (dp2reg_lut_uflow[31:0]) //|> o
+  ,.pwrbus_ram_pd (pwrbus_ram_pd[31:0]) //|< i
+  ,.op_en_load (op_en_load) //|< i
+  );
+NV_NVDLA_SDP_HLS_Y_inp_top u_inp (
+   .chn_inp_in_pd (lut2inp_pd[185*0 -1:0]) //|< w
+  ,.chn_inp_in_pvld (lut2inp_pvld) //|< w
+  ,.chn_inp_out_prdy (inp_out_prdy) //|< w
+  ,.chn_inp_in_prdy (lut2inp_prdy) //|> w
+  ,.chn_inp_out_pd (inp_out_pd[32*0 -1:0]) //|> w
+  ,.chn_inp_out_pvld (inp_out_pvld) //|> w
+  ,.nvdla_core_clk (nvdla_core_clk) //|< i
+  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
+  );
+assign ew_data_out_pvld = cfg_ew_lut_bypass ? core_out_pvld : inp_out_pvld;
+assign ew_data_out_pd = cfg_ew_lut_bypass ? core_out_pd : inp_out_pd;
+assign inp_out_prdy = cfg_ew_lut_bypass ? 1'b0 : ew_data_out_prdy;
 endmodule // NV_NVDLA_SDP_CORE_y

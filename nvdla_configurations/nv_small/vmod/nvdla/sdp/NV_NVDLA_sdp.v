@@ -31,13 +31,6 @@ module NV_NVDLA_sdp (
   ,mcif2sdp_b_rd_rsp_pd //|< i
   ,mcif2sdp_b_rd_rsp_valid //|< i
   ,mcif2sdp_b_rd_rsp_ready //|> o
-  ,sdp_n2mcif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_n2mcif_rd_req_pd //|> o
-  ,sdp_n2mcif_rd_req_valid //|> o
-  ,sdp_n2mcif_rd_req_ready //|< i
-  ,mcif2sdp_n_rd_rsp_pd //|< i
-  ,mcif2sdp_n_rd_rsp_valid //|< i
-  ,mcif2sdp_n_rd_rsp_ready //|> o
   ,sdp2mcif_rd_cdt_lat_fifo_pop //|> o
   ,sdp2mcif_rd_req_pd //|> o
   ,sdp2mcif_rd_req_valid //|> o
@@ -97,13 +90,6 @@ output [47 -1:0] sdp_b2mcif_rd_req_pd;
 input mcif2sdp_b_rd_rsp_valid;
 output mcif2sdp_b_rd_rsp_ready;
 input [65 -1:0] mcif2sdp_b_rd_rsp_pd;
-output sdp_n2mcif_rd_cdt_lat_fifo_pop;
-output sdp_n2mcif_rd_req_valid;
-input sdp_n2mcif_rd_req_ready;
-output [47 -1:0] sdp_n2mcif_rd_req_pd;
-input mcif2sdp_n_rd_rsp_valid;
-output mcif2sdp_n_rd_rsp_ready;
-input [65 -1:0] mcif2sdp_n_rd_rsp_pd;
 output sdp2mcif_rd_cdt_lat_fifo_pop;
 output sdp2mcif_rd_req_valid;
 input sdp2mcif_rd_req_ready;
@@ -125,18 +111,6 @@ wire reg2dp_bcore_slcg_op_en;
 wire reg2dp_flying_mode;
 wire [12:0] reg2dp_height;
 wire reg2dp_interrupt_ptr;
-wire [1:0] reg2dp_bn_alu_algo;
-wire reg2dp_bn_alu_bypass;
-wire [15:0] reg2dp_bn_alu_operand;
-wire [5:0] reg2dp_bn_alu_shift_value;
-wire reg2dp_bn_alu_src;
-wire reg2dp_bn_bypass;
-wire reg2dp_bn_mul_bypass;
-wire [15:0] reg2dp_bn_mul_operand;
-wire reg2dp_bn_mul_prelu;
-wire [7:0] reg2dp_bn_mul_shift_value;
-wire reg2dp_bn_mul_src;
-wire reg2dp_bn_relu_bypass;
 wire [1:0] reg2dp_bs_alu_algo;
 wire reg2dp_bs_alu_bypass;
 wire [15:0] reg2dp_bs_alu_operand;
@@ -184,12 +158,6 @@ wire sdp_brdma2dp_alu_valid;
 wire [8*16:0] sdp_brdma2dp_mul_pd;
 wire sdp_brdma2dp_mul_ready;
 wire sdp_brdma2dp_mul_valid;
-wire [8*16:0] sdp_nrdma2dp_alu_pd;
-wire sdp_nrdma2dp_alu_ready;
-wire sdp_nrdma2dp_alu_valid;
-wire [8*16:0] sdp_nrdma2dp_mul_pd;
-wire sdp_nrdma2dp_mul_ready;
-wire sdp_nrdma2dp_mul_valid;
 //=======================================
 //DMA
 //---------------------------------------
@@ -212,13 +180,6 @@ NV_NVDLA_SDP_rdma u_rdma (
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid)
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready)
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd[65 -1:0])
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd[47 -1:0])
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd[65 -1:0])
   ,.sdp2mcif_rd_cdt_lat_fifo_pop (sdp2mcif_rd_cdt_lat_fifo_pop)
   ,.sdp2mcif_rd_req_valid (sdp2mcif_rd_req_valid)
   ,.sdp2mcif_rd_req_ready (sdp2mcif_rd_req_ready)
@@ -232,12 +193,6 @@ NV_NVDLA_SDP_rdma u_rdma (
   ,.sdp_brdma2dp_mul_valid (sdp_brdma2dp_mul_valid)
   ,.sdp_brdma2dp_mul_ready (sdp_brdma2dp_mul_ready)
   ,.sdp_brdma2dp_mul_pd (sdp_brdma2dp_mul_pd[8*16:0])
-  ,.sdp_nrdma2dp_alu_valid (sdp_nrdma2dp_alu_valid)
-  ,.sdp_nrdma2dp_alu_ready (sdp_nrdma2dp_alu_ready)
-  ,.sdp_nrdma2dp_alu_pd (sdp_nrdma2dp_alu_pd[8*16:0])
-  ,.sdp_nrdma2dp_mul_valid (sdp_nrdma2dp_mul_valid)
-  ,.sdp_nrdma2dp_mul_ready (sdp_nrdma2dp_mul_ready)
-  ,.sdp_nrdma2dp_mul_pd (sdp_nrdma2dp_mul_pd[8*16:0])
   ,.dla_clk_ovr_on_sync (dla_clk_ovr_on_sync)
   ,.global_clk_ovr_on_sync (global_clk_ovr_on_sync)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
@@ -305,12 +260,6 @@ NV_NVDLA_SDP_core u_core (
   ,.sdp_brdma2dp_alu_valid (sdp_brdma2dp_alu_valid)
   ,.sdp_brdma2dp_alu_ready (sdp_brdma2dp_alu_ready)
   ,.sdp_brdma2dp_alu_pd (sdp_brdma2dp_alu_pd[8*16:0])
-  ,.sdp_nrdma2dp_mul_valid (sdp_nrdma2dp_mul_valid)
-  ,.sdp_nrdma2dp_mul_ready (sdp_nrdma2dp_mul_ready)
-  ,.sdp_nrdma2dp_mul_pd (sdp_nrdma2dp_mul_pd[8*16:0])
-  ,.sdp_nrdma2dp_alu_valid (sdp_nrdma2dp_alu_valid)
-  ,.sdp_nrdma2dp_alu_ready (sdp_nrdma2dp_alu_ready)
-  ,.sdp_nrdma2dp_alu_pd (sdp_nrdma2dp_alu_pd[8*16:0])
   ,.sdp_dp2wdma_valid (sdp_dp2wdma_valid)
   ,.sdp_dp2wdma_ready (sdp_dp2wdma_ready)
   ,.sdp_dp2wdma_pd (sdp_dp2wdma_pd[8*8 -1:0])
@@ -318,18 +267,6 @@ NV_NVDLA_SDP_core u_core (
   ,.sdp2pdp_ready (sdp2pdp_ready)
   ,.sdp2pdp_pd (sdp2pdp_pd[8*1 -1:0])
   ,.reg2dp_ncore_slcg_op_en (reg2dp_ncore_slcg_op_en)
-  ,.reg2dp_bn_alu_algo (reg2dp_bn_alu_algo[1:0])
-  ,.reg2dp_bn_alu_bypass (reg2dp_bn_alu_bypass)
-  ,.reg2dp_bn_alu_operand (reg2dp_bn_alu_operand[15:0])
-  ,.reg2dp_bn_alu_shift_value (reg2dp_bn_alu_shift_value[5:0])
-  ,.reg2dp_bn_alu_src (reg2dp_bn_alu_src)
-  ,.reg2dp_bn_bypass (reg2dp_bn_bypass)
-  ,.reg2dp_bn_mul_bypass (reg2dp_bn_mul_bypass)
-  ,.reg2dp_bn_mul_operand (reg2dp_bn_mul_operand[15:0])
-  ,.reg2dp_bn_mul_prelu (reg2dp_bn_mul_prelu)
-  ,.reg2dp_bn_mul_shift_value (reg2dp_bn_mul_shift_value[7:0])
-  ,.reg2dp_bn_mul_src (reg2dp_bn_mul_src)
-  ,.reg2dp_bn_relu_bypass (reg2dp_bn_relu_bypass)
   ,.reg2dp_bcore_slcg_op_en (reg2dp_bcore_slcg_op_en)
   ,.reg2dp_bs_alu_algo (reg2dp_bs_alu_algo[1:0])
   ,.reg2dp_bs_alu_bypass (reg2dp_bs_alu_bypass)
@@ -378,18 +315,6 @@ NV_NVDLA_SDP_reg u_reg (
   ,.dp2reg_status_unequal (dp2reg_status_unequal[0])
   ,.dp2reg_wdma_stall (dp2reg_wdma_stall[31:0])
   ,.reg2dp_ncore_slcg_op_en (reg2dp_ncore_slcg_op_en)
-  ,.reg2dp_bn_alu_algo (reg2dp_bn_alu_algo[1:0])
-  ,.reg2dp_bn_alu_bypass (reg2dp_bn_alu_bypass)
-  ,.reg2dp_bn_alu_operand (reg2dp_bn_alu_operand[15:0])
-  ,.reg2dp_bn_alu_shift_value (reg2dp_bn_alu_shift_value[5:0])
-  ,.reg2dp_bn_alu_src (reg2dp_bn_alu_src)
-  ,.reg2dp_bn_bypass (reg2dp_bn_bypass)
-  ,.reg2dp_bn_mul_bypass (reg2dp_bn_mul_bypass)
-  ,.reg2dp_bn_mul_operand (reg2dp_bn_mul_operand[15:0])
-  ,.reg2dp_bn_mul_prelu (reg2dp_bn_mul_prelu)
-  ,.reg2dp_bn_mul_shift_value (reg2dp_bn_mul_shift_value[7:0])
-  ,.reg2dp_bn_mul_src (reg2dp_bn_mul_src)
-  ,.reg2dp_bn_relu_bypass (reg2dp_bn_relu_bypass)
   ,.reg2dp_bcore_slcg_op_en (reg2dp_bcore_slcg_op_en)
   ,.reg2dp_bs_alu_algo (reg2dp_bs_alu_algo[1:0])
   ,.reg2dp_bs_alu_bypass (reg2dp_bs_alu_bypass)

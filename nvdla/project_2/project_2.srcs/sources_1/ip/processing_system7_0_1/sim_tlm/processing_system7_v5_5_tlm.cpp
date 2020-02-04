@@ -144,8 +144,16 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
 
 processing_system7_v5_5_tlm :: processing_system7_v5_5_tlm (sc_core::sc_module_name name,
     xsc::common_cpp::properties& _prop): sc_module(name)//registering module name with parent
+        ,S_AXI_HP0_RCOUNT("S_AXI_HP0_RCOUNT")
+        ,S_AXI_HP0_WCOUNT("S_AXI_HP0_WCOUNT")
+        ,S_AXI_HP0_RACOUNT("S_AXI_HP0_RACOUNT")
+        ,S_AXI_HP0_WACOUNT("S_AXI_HP0_WACOUNT")
+        ,S_AXI_HP0_ACLK("S_AXI_HP0_ACLK")
+        ,S_AXI_HP0_RDISSUECAP1_EN("S_AXI_HP0_RDISSUECAP1_EN")
+        ,S_AXI_HP0_WRISSUECAP1_EN("S_AXI_HP0_WRISSUECAP1_EN")
         ,Core0_nFIQ("Core0_nFIQ")
         ,FCLK_CLK0("FCLK_CLK0")
+        ,FCLK_CLK1("FCLK_CLK1")
         ,FCLK_RESET0_N("FCLK_RESET0_N")
         ,MIO("MIO")
         ,DDR_CAS_n("DDR_CAS_n")
@@ -168,10 +176,14 @@ processing_system7_v5_5_tlm :: processing_system7_v5_5_tlm (sc_core::sc_module_n
         ,PS_SRSTB("PS_SRSTB")
         ,PS_CLK("PS_CLK")
         ,PS_PORB("PS_PORB")
+    ,S_AXI_HP0_xtlm_brdg("S_AXI_HP0_xtlm_brdg")
         ,FCLK_CLK0_clk("FCLK_CLK0_clk", sc_time(20000.0,sc_core::SC_PS))//clock period in picoseconds = 1000000/freq(in MZ)
+        ,FCLK_CLK1_clk("FCLK_CLK1_clk", sc_time(10000.0,sc_core::SC_PS))//clock period in picoseconds = 1000000/freq(in MZ)
     ,prop(_prop)
     {
         //creating instances of xtlm slave sockets
+        S_AXI_HP0_wr_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_HP0_wr_socket", 64);
+        S_AXI_HP0_rd_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_HP0_rd_socket", 64);
         //creating instances of xtlm master sockets
 
 	    char* unix_path = getenv("COSIM_MACHINE_PATH");
@@ -201,21 +213,38 @@ processing_system7_v5_5_tlm :: processing_system7_v5_5_tlm (sc_core::sc_module_n
 	    const char* skt = skt_name.c_str();
         m_zynq_tlm_model = new xilinx_zynq("xilinx_zynq",skt);
 
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //S_AXI_HP0_wr_socket/rd_socket sockets to s_axi_hp[0] target socket of Zynq Qemu tlm wrapper
+        S_AXI_HP0_wr_socket->bind(*S_AXI_HP0_xtlm_brdg.wr_socket);
+        S_AXI_HP0_rd_socket->bind(*S_AXI_HP0_xtlm_brdg.rd_socket);
+        m_zynq_tlm_model->s_axi_hp[0]->bind(S_AXI_HP0_xtlm_brdg.initiator_socket);
+
         m_zynq_tlm_model->tie_off();
         
         SC_METHOD(trigger_FCLK_CLK0_pin);
         sensitive << FCLK_CLK0_clk;
         dont_initialize();
+        SC_METHOD(trigger_FCLK_CLK1_pin);
+        sensitive << FCLK_CLK1_clk;
+        dont_initialize();
+        S_AXI_HP0_xtlm_brdg.registerUserExtensionHandlerCallback(&add_extensions_to_tlm);
         m_zynq_tlm_model->rst(qemu_rst);
     }
 processing_system7_v5_5_tlm :: ~processing_system7_v5_5_tlm() {
         //deleteing dynamically created objects 
+        delete S_AXI_HP0_wr_socket;
+        delete S_AXI_HP0_rd_socket;
     }
     
     //Method which is sentive to FCLK_CLK0_clk sc_clock object
     //FCLK_CLK0 pin written based on FCLK_CLK0_clk clock value 
     void processing_system7_v5_5_tlm ::trigger_FCLK_CLK0_pin()    {
         FCLK_CLK0.write(FCLK_CLK0_clk.read());
+    }
+    //Method which is sentive to FCLK_CLK1_clk sc_clock object
+    //FCLK_CLK1 pin written based on FCLK_CLK1_clk clock value 
+    void processing_system7_v5_5_tlm ::trigger_FCLK_CLK1_pin()    {
+        FCLK_CLK1.write(FCLK_CLK1_clk.read());
     }
     //ps2pl_rst[0] output reset pin
     void processing_system7_v5_5_tlm :: FCLK_RESET0_N_trigger()   {

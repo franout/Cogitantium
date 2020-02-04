@@ -1,0 +1,151 @@
+## IP needed
+Generate IP axi2apb
+
+    In the IP catalog, search axi_apb
+
+    Double click “AXI APB Bridge”
+
+    Set “Component Name” to “axi_apb_bridge_0”
+
+    Set “Number Of Slaves” to “1”
+
+    Click “OK”
+
+    Click “Generate”
+
+    Click “OK” and wait the task in “Design Runs” panel to finish
+
+4.4.4 Generate IP axi_interconnect_nvdla_64b
+
+    In the IP catalog, expand “AXI_Infrastructure”, double click “AXI Interconnect RTL”
+
+    Set “Component Name” to “axi_interconnect_nvdla_64b”
+
+    Click the tab “Global”
+
+    Set “Number of Slave Interface” to “2”
+
+    Set “Slave Interface Thread ID Width” to “8”
+
+    Set “Address Width” to “64”
+
+    Set “Interconnect Internal Data Width” to “512”
+
+    Click the tab “Interfaces”
+
+    Set “Master Interface Data Width” to “512”
+
+    Set “Slave Interface 0 data width” to “512”
+
+    Set “Slave Interface 1 data width” to “64”
+
+    Click the tab “Read Write Channels”
+
+    Set all the “Acceptance” to “32”
+
+    Set all the “FIFO Depth” to “512”
+
+    Click “OK”
+
+    Click “Generate”
+
+    Click “OK” and wait the task in “Design Runs” panel to finish
+
+4.4.5 Generate IP axi_interconnect_nvdla_512b
+
+    In the IP catalog, expand “AXI_Infrastructure”, double click “AXI Interconnect RTL”
+
+    Set “Component Name” to “axi_interconnect_nvdla_512b”
+
+    Click the tab “Global”
+
+    Set “Number of Slave Interface” to “3”
+
+    Set “Slave Interface Thread ID Width” to “8”
+
+    Set “Address Width” to “64”
+
+    Set “Interconnect Internal Data Width” to “512”
+
+    Click the tab “Interfaces”
+
+    Set all the “Data Width” to “512”
+
+    Click the tab “Read Write Channels”
+
+    Set all the “Acceptance” to “32”
+
+    Set all the “FIFO Depth” to “512”
+
+    Click “OK”
+
+    Click “Generate”
+
+    Click “OK” and wait the task in “Design Runs” panel to finish
+
+4.4.6 Generate IP axi_interconnect_nvdla_256b
+
+    In the IP catalog, expand “AXI_Infrastructure”, double click “AXI Interconnect RTL”
+
+    Set “Component Name” to “axi_interconnect_nvdla_256b”
+
+    Click the tab “Global”
+
+    Set “Number of Slave Interface” to “3”
+
+    Set “Slave Interface Thread ID Width” to “8”
+
+    Set “Address Width” to “64”
+
+    Set “Interconnect Internal Data Width” to “512”
+
+    Click the tab “Interfaces”
+
+    Set all the “Data Width” to “256”
+
+    Click the tab “Read Write Channels”
+
+    Set all the “Acceptance” to “32”
+
+    Set all the “FIFO Depth” to “512”
+
+    Click “OK”
+
+    Click “Generate”
+
+    Click “OK” and wait the task in “Design Runs” panel to finish
+
+4.4.7 Generate IP axi_protocol_converter_axi_to_axil
+
+    In the IP catalog, expand “AXI_Infrastructure”, double click “AXI Protocol Converter”
+
+    Set “Component Name” to “axi_protocol_converter_axi_to_axil”
+
+    Set “Address Width” to “64”
+
+    Set “Data Width” to “64”
+
+    Click “OK”
+
+    Click “Generate”
+
+    Click “OK” and wait the task in “Design Runs” panel to finish
+
+4.4.8 Generate IP axi_dwidth_converter_512b_to_64b
+
+    In the IP catalog, expand “AXI_Infrastructure”, double click “AXI Data Width Converter”
+
+    Set “Component Name” to “axi_dwidth_converter_512b_to_64b”
+
+    Set “Address Width” to “64”
+
+    Set “SI Data Width” to “512”
+
+    Set “SI ID Width” to “16”
+
+    Click “OK”
+
+    Click “Generate”
+
+    Click “OK” and wait the task in “Design Runs” panel to finish
+

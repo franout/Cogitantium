@@ -1,21 +1,30 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity top_design is
---  Port ( 
+ Port ( 
 --clk 
---reset
+reset,test_mode: in std_logic;
 -- to/from ddram
- --);
+MIO : INOUT STD_LOGIC_VECTOR(53 DOWNTO 0);
+    DDR_CAS_n : INOUT STD_LOGIC;
+    DDR_CKE : INOUT STD_LOGIC;
+    DDR_Clk_n : INOUT STD_LOGIC;
+    DDR_Clk : INOUT STD_LOGIC;
+    DDR_CS_n : INOUT STD_LOGIC;
+    DDR_DRSTB : INOUT STD_LOGIC;
+    DDR_ODT : INOUT STD_LOGIC;
+    DDR_RAS_n : INOUT STD_LOGIC;
+    DDR_WEB : INOUT STD_LOGIC;
+    DDR_BankAddr : INOUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    DDR_Addr : INOUT STD_LOGIC_VECTOR(14 DOWNTO 0);
+    DDR_VRN : INOUT STD_LOGIC;
+    DDR_VRP : INOUT STD_LOGIC;
+    DDR_DM : INOUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    DDR_DQ : INOUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    DDR_DQS_n : INOUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    DDR_DQS : INOUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+);
 end top_design;
 
 architecture structural of top_design is
@@ -41,6 +50,7 @@ COMPONENT processing_system7_0
   PORT (
     Core0_nFIQ : IN STD_LOGIC;
     FCLK_CLK0 : OUT STD_LOGIC;
+        FCLK_CLK1 : OUT STD_LOGIC;
     FCLK_RESET0_N : OUT STD_LOGIC;
     MIO : INOUT STD_LOGIC_VECTOR(53 DOWNTO 0);
     DDR_CAS_n : INOUT STD_LOGIC;
@@ -120,12 +130,11 @@ END COMPONENT NV_nvdla;
 
 -- signal internconnections 
 --reset system
-signal slowest_sync_clk,ext_reset_in,aux_reset_in,mb_debug_sys_rst,dcm_locked,mb_reset: std_logic;
+signal slowest_sync_clk,ext_reset_in,aux_reset_in,mb_debug_sys_rst,dcm_locked,mb_reset, FCLK_CLK1: std_logic;
 signal bus_struct_reset,peripheral_reset,interconnect_aresetn,peripheral_aresetn : std_logic_vector(0 downto 0);
 
 --processing system
-signal Core0_nFIQ , FCLK_CLK0 , FCLK_RESET0_N, PS_SRSTB, PS_CLK,PS_PORB,
-        DDR_CAS_N,DDR_CKE,DDR_Clk_n,DDR_Clk,DDR_CS_N,DDR_DRSTB ,DDR_ODT,DDR_RAS_n,DDR_WEB,DDR_VRN,DDR_VRP:std_logic;
+signal Core0_nFIQ , FCLK_CLK0 , FCLK_RESET0_N, PS_SRSTB, PS_CLK,PS_PORB:std_logic;
 signal  MIO : STD_LOGIC_VECTOR(53 DOWNTO 0);
 signal DDR_BankAddr :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 signal DDR_Addr :  STD_LOGIC_VECTOR(14 DOWNTO 0);
@@ -136,7 +145,7 @@ signal DDR_DM :  STD_LOGIC_VECTOR(3 DOWNTO 0);
      
 --dla
 signal    dla_core_clk, dla_csb_clk,   global_clk_ovr_on , tmc2slcg_disable_clock_gating ,  dla_reset_rstn ,
-  direct_reset ,test_mode, csb2nvdla_write, nvdla2csb_valid,csb2nvdla_nposted,csb2nvdla_valid, csb2nvdla_ready,
+  direct_reset , csb2nvdla_write, nvdla2csb_valid,csb2nvdla_nposted,csb2nvdla_valid, csb2nvdla_ready,
   nvdla2csb_wr_complete ,  nvdla_core2dbb_aw_awvalid , nvdla_core2dbb_aw_awready ,  nvdla_core2dbb_w_wvalid ,nvdla_core2dbb_w_wready ,
     dla_intr,nvdla_core2dbb_r_rvalid, nvdla_core2dbb_r_rready,nvdla_core2dbb_r_rlast,
         nvdla_core2dbb_w_wlast, nvdla_core2dbb_b_bvalid ,  nvdla_core2dbb_b_bready , nvdla_core2dbb_ar_arvalid , nvdla_core2dbb_ar_arready: std_logic;
@@ -181,6 +190,7 @@ top_reset_system: reset_system PORT MAP(slowest_sync_clk=>slowest_sync_clk ,
   PORT MAP (
     Core0_nFIQ => Core0_nFIQ,
     FCLK_CLK0 => FCLK_CLK0,
+    FCLK_CLK1=> FCLK_CLK1,
     FCLK_RESET0_N => FCLK_RESET0_N,
     MIO => MIO,
     DDR_CAS_n => DDR_CAS_n,
@@ -206,52 +216,58 @@ top_reset_system: reset_system PORT MAP(slowest_sync_clk=>slowest_sync_clk ,
   );
   
   dla: NV_nvdla PORT MAP(
-  dla_core_clk,
-  dla_csb_clk,
-  global_clk_ovr_on,
-  tmc2slcg_disable_clock_gating ,
-  dla_reset_rstn ,
-  direct_reset,
-  test_mode ,
-  csb2nvdla_valid ,
-  csb2nvdla_ready,
-  csb2nvdla_addr ,
-  csb2nvdla_wdat ,
-  csb2nvdla_write ,
-  csb2nvdla_nposted,
-  nvdla2csb_valid ,
-  nvdla2csb_data ,
-  nvdla2csb_wr_complete ,
-  nvdla_core2dbb_aw_awvalid ,
-  nvdla_core2dbb_aw_awready ,
-  nvdla_core2dbb_aw_awid ,
-  nvdla_core2dbb_aw_awlen ,
-  nvdla_core2dbb_aw_awaddr ,
-  nvdla_core2dbb_w_wvalid ,
-  nvdla_core2dbb_w_wready,
-  nvdla_core2dbb_w_wdata,
-  nvdla_core2dbb_w_wstrb ,
-  nvdla_core2dbb_w_wlast,
-  nvdla_core2dbb_b_bvalid,
-  nvdla_core2dbb_b_bready ,
-  nvdla_core2dbb_b_bid ,
-  nvdla_core2dbb_ar_arvalid ,
-  nvdla_core2dbb_ar_arready ,
-  nvdla_core2dbb_ar_arid ,
-  nvdla_core2dbb_ar_arlen ,
-  nvdla_core2dbb_ar_araddr ,
-  nvdla_core2dbb_r_rvalid,
-  nvdla_core2dbb_r_rready,
-  nvdla_core2dbb_r_rid,
-  nvdla_core2dbb_r_rlast ,
-  nvdla_core2dbb_r_rdata ,
-  dla_intr,
-  nvdla_pwrbus_ram_c_pd,
-  nvdla_pwrbus_ram_ma_pd,
-  nvdla_pwrbus_ram_mb_pd ,
-  nvdla_pwrbus_ram_p_pd  ,
-  nvdla_pwrbus_ram_o_pd  ,
-  nvdla_pwrbus_ram_a_pd 
+  dla_core_clk=>FCLK_CLK0,
+  dla_csb_clk=>FCLK_CLK1,
+  global_clk_ovr_on=>'0',
+  tmc2slcg_disable_clock_gating =>'0',
+  dla_reset_rstn=> peripheral_aresetn(0),
+  direct_reset=>reset,
+  test_mode =>test_mode,
+  
+  
+  csb2nvdla_valid=>csb2nvdla_valid ,
+  csb2nvdla_ready=>csb2nvdla_ready,
+  csb2nvdla_addr=>csb2nvdla_addr ,
+  csb2nvdla_wdat =>csb2nvdla_wdat, 
+  csb2nvdla_write =>csb2nvdla_write, 
+  csb2nvdla_nposted=>csb2nvdla_nposted,
+  nvdla2csb_valid=>nvdla2csb_valid ,
+  nvdla2csb_data=>nvdla2csb_data ,
+  nvdla2csb_wr_complete =>nvdla2csb_wr_complete,
+  
+  
+  nvdla_core2dbb_aw_awvalid =>nvdla_core2dbb_aw_awvalid ,
+  nvdla_core2dbb_aw_awready=>nvdla_core2dbb_aw_awready ,
+  nvdla_core2dbb_aw_awid=> nvdla_core2dbb_aw_awid,
+  nvdla_core2dbb_aw_awlen =>nvdla_core2dbb_aw_awlen ,
+  nvdla_core2dbb_aw_awaddr =>nvdla_core2dbb_aw_awaddr , 
+  nvdla_core2dbb_w_wvalid =>nvdla_core2dbb_w_wvalid ,
+  nvdla_core2dbb_w_wready=>nvdla_core2dbb_w_wready,
+  nvdla_core2dbb_w_wdata=>nvdla_core2dbb_w_wdata,
+  nvdla_core2dbb_w_wstrb =>nvdla_core2dbb_w_wstrb ,
+  nvdla_core2dbb_w_wlast=>nvdla_core2dbb_w_wlast,
+  nvdla_core2dbb_b_bvalid=>nvdla_core2dbb_b_bvalid,
+  nvdla_core2dbb_b_bready =>nvdla_core2dbb_b_bready ,
+  nvdla_core2dbb_b_bid =>nvdla_core2dbb_b_bid ,
+  nvdla_core2dbb_ar_arvalid=>nvdla_core2dbb_ar_arvalid ,
+  nvdla_core2dbb_ar_arready=>nvdla_core2dbb_ar_arready ,
+  nvdla_core2dbb_ar_arid=>nvdla_core2dbb_ar_arid ,
+  nvdla_core2dbb_ar_arlen=>nvdla_core2dbb_ar_arlen ,
+  nvdla_core2dbb_ar_araddr=>nvdla_core2dbb_ar_araddr,
+  nvdla_core2dbb_r_rvalid=>nvdla_core2dbb_r_rvalid,
+  nvdla_core2dbb_r_rready=>nvdla_core2dbb_r_rready,
+  nvdla_core2dbb_r_rid=>nvdla_core2dbb_r_rid,
+  nvdla_core2dbb_r_rlast=>nvdla_core2dbb_r_rlast ,
+  nvdla_core2dbb_r_rdata=>nvdla_core2dbb_r_rdata ,
+  dla_intr=>dla_intr,
+  
+  -- power control for ram
+  nvdla_pwrbus_ram_c_pd=>nvdla_pwrbus_ram_c_pd,
+  nvdla_pwrbus_ram_ma_pd=>nvdla_pwrbus_ram_ma_pd,
+  nvdla_pwrbus_ram_mb_pd=>nvdla_pwrbus_ram_mb_pd ,
+  nvdla_pwrbus_ram_p_pd =>nvdla_pwrbus_ram_p_pd  ,
+  nvdla_pwrbus_ram_o_pd=>nvdla_pwrbus_ram_o_pd  ,
+  nvdla_pwrbus_ram_a_pd=>nvdla_pwrbus_ram_a_pd
    );
   
 end structural;

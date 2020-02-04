@@ -27,18 +27,6 @@ module NV_NVDLA_SDP_core (
   ,tmc2slcg_disable_clock_gating //|< i
   ,reg2dp_bcore_slcg_op_en //|< i
   ,reg2dp_flying_mode //|< i
-  ,reg2dp_bn_alu_algo //|< i
-  ,reg2dp_bn_alu_bypass //|< i
-  ,reg2dp_bn_alu_operand //|< i
-  ,reg2dp_bn_alu_shift_value //|< i
-  ,reg2dp_bn_alu_src //|< i
-  ,reg2dp_bn_bypass //|< i
-  ,reg2dp_bn_mul_bypass //|< i
-  ,reg2dp_bn_mul_operand //|< i
-  ,reg2dp_bn_mul_prelu //|< i
-  ,reg2dp_bn_mul_shift_value //|< i
-  ,reg2dp_bn_mul_src //|< i
-  ,reg2dp_bn_relu_bypass //|< i
   ,reg2dp_bs_alu_algo //|< i
   ,reg2dp_bs_alu_bypass //|< i
   ,reg2dp_bs_alu_operand //|< i
@@ -70,12 +58,6 @@ module NV_NVDLA_SDP_core (
   ,sdp_brdma2dp_mul_pd //|< i
   ,sdp_brdma2dp_mul_valid //|< i
   ,sdp_brdma2dp_mul_ready //|> o
-  ,sdp_nrdma2dp_alu_pd //|< i
-  ,sdp_nrdma2dp_alu_valid //|< i
-  ,sdp_nrdma2dp_alu_ready //|> o
-  ,sdp_nrdma2dp_mul_pd //|< i
-  ,sdp_nrdma2dp_mul_valid //|< i
-  ,sdp_nrdma2dp_mul_ready //|> o
   ,sdp_mrdma2cmux_pd //|< i
   ,sdp_mrdma2cmux_valid //|< i
   ,sdp_mrdma2cmux_ready //|> o
@@ -97,12 +79,6 @@ input [8*16:0] sdp_brdma2dp_mul_pd;
 input sdp_brdma2dp_alu_valid;
 output sdp_brdma2dp_alu_ready;
 input [8*16:0] sdp_brdma2dp_alu_pd;
-input sdp_nrdma2dp_mul_valid;
-output sdp_nrdma2dp_mul_ready;
-input [8*16:0] sdp_nrdma2dp_mul_pd;
-input sdp_nrdma2dp_alu_valid;
-output sdp_nrdma2dp_alu_ready;
-input [8*16:0] sdp_nrdma2dp_alu_pd;
 output sdp_dp2wdma_valid;
 input sdp_dp2wdma_ready;
 output [8*8 -1:0] sdp_dp2wdma_pd;
@@ -118,18 +94,6 @@ output sdp_mrdma2cmux_ready;
 input [32*8 +1:0] sdp_mrdma2cmux_pd;
 input reg2dp_bcore_slcg_op_en;
 input reg2dp_flying_mode;
-input [1:0] reg2dp_bn_alu_algo;
-input reg2dp_bn_alu_bypass;
-input [15:0] reg2dp_bn_alu_operand;
-input [5:0] reg2dp_bn_alu_shift_value;
-input reg2dp_bn_alu_src;
-input reg2dp_bn_bypass;
-input reg2dp_bn_mul_bypass;
-input [15:0] reg2dp_bn_mul_operand;
-input reg2dp_bn_mul_prelu;
-input [7:0] reg2dp_bn_mul_shift_value;
-input reg2dp_bn_mul_src;
-input reg2dp_bn_relu_bypass;
 input [1:0] reg2dp_bs_alu_algo;
 input reg2dp_bs_alu_bypass;
 input [15:0] reg2dp_bs_alu_operand;
@@ -178,17 +142,6 @@ wire cfg_mode_pdp;
 reg [31:0] cfg_cvt_offset;
 reg [15:0] cfg_cvt_scale;
 reg [5:0] cfg_cvt_shift;
-reg [1:0] cfg_bn_alu_algo;
-reg cfg_bn_alu_bypass;
-reg [15:0] cfg_bn_alu_operand;
-reg [5:0] cfg_bn_alu_shift_value;
-reg cfg_bn_alu_src;
-reg cfg_bn_mul_bypass;
-reg [15:0] cfg_bn_mul_operand;
-reg cfg_bn_mul_prelu;
-reg [7:0] cfg_bn_mul_shift_value;
-reg cfg_bn_mul_src;
-reg cfg_bn_relu_bypass;
 reg [1:0] cfg_bs_alu_algo;
 reg cfg_bs_alu_bypass;
 reg [15:0] cfg_bs_alu_operand;
@@ -200,22 +153,6 @@ reg cfg_bs_mul_prelu;
 reg [7:0] cfg_bs_mul_shift_value;
 reg cfg_bs_mul_src;
 reg cfg_bs_relu_bypass;
-reg bn_alu_in_en;
-reg bn_mul_in_en;
-wire [16*1 -1:0] bn_alu_in_data;
-wire bn_alu_in_layer_end;
-wire [16*1:0] bn_alu_in_pd;
-wire bn_alu_in_prdy;
-wire bn_alu_in_pvld;
-wire bn_alu_in_rdy;
-wire bn_alu_in_vld;
-wire [16*1 -1:0] bn_mul_in_data;
-wire bn_mul_in_layer_end;
-wire [16*1:0] bn_mul_in_pd;
-wire bn_mul_in_prdy;
-wire bn_mul_in_pvld;
-wire bn_mul_in_rdy;
-wire bn_mul_in_vld;
 reg bs_alu_in_en;
 reg bs_mul_in_en;
 wire [16*1 -1:0] bs_alu_in_data;
@@ -258,10 +195,10 @@ wire bn_data_in_prdy;
 wire [32*1 -1:0] bn_data_in_pd;
 wire flop_bn_data_in_prdy;
 wire flop_bn_data_in_pvld;
-wire [32*1 -1:0] flop_bn_data_in_pd;
+wire [32*0 -1:0] flop_bn_data_in_pd;
 wire bn_data_out_prdy;
 wire bn_data_out_pvld;
-wire [32*1 -1:0] bn_data_out_pd;
+wire [32*0 -1:0] bn_data_out_pd;
 wire flop_bn_data_out_pvld;
 wire flop_bn_data_out_prdy;
 wire [32*1 -1:0] flop_bn_data_out_pd;
@@ -330,7 +267,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     cfg_mode_eql <= 1'b0;
   end else begin
         cfg_bs_en <= reg2dp_bs_bypass== 1'h0 ;
-        cfg_bn_en <= reg2dp_bn_bypass== 1'h0 ;
+        cfg_bn_en <= 1'b0;
         cfg_ew_en <= 1'b0;
         cfg_mode_eql <= 1'b0;
   end
@@ -348,17 +285,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     cfg_bs_mul_src <= 1'b0;
     cfg_bs_mul_shift_value <= {8{1'b0}};
     cfg_bs_relu_bypass <= 1'b0;
-    cfg_bn_alu_operand <= {16{1'b0}};
-    cfg_bn_mul_operand <= {16{1'b0}};
-    cfg_bn_alu_bypass <= 1'b0;
-    cfg_bn_alu_algo <= {2{1'b0}};
-    cfg_bn_alu_src <= 1'b0;
-    cfg_bn_alu_shift_value <= {6{1'b0}};
-    cfg_bn_mul_bypass <= 1'b0;
-    cfg_bn_mul_prelu <= 1'b0;
-    cfg_bn_mul_src <= 1'b0;
-    cfg_bn_mul_shift_value <= {8{1'b0}};
-    cfg_bn_relu_bypass <= 1'b0;
     cfg_cvt_offset <= {32{1'b0}};
     cfg_cvt_scale <= {16{1'b0}};
     cfg_cvt_shift <= {6{1'b0}};
@@ -378,17 +304,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
         cfg_bs_mul_src <= reg2dp_bs_mul_src ;
         cfg_bs_mul_shift_value <= reg2dp_bs_mul_shift_value ;
         cfg_bs_relu_bypass <= reg2dp_bs_relu_bypass ;
-        cfg_bn_alu_operand <= reg2dp_bn_alu_operand ;
-        cfg_bn_mul_operand <= reg2dp_bn_mul_operand ;
-        cfg_bn_alu_bypass <= reg2dp_bn_alu_bypass ;
-        cfg_bn_alu_algo <= reg2dp_bn_alu_algo ;
-        cfg_bn_alu_src <= reg2dp_bn_alu_src ;
-        cfg_bn_alu_shift_value <= reg2dp_bn_alu_shift_value ;
-        cfg_bn_mul_bypass <= reg2dp_bn_mul_bypass ;
-        cfg_bn_mul_prelu <= reg2dp_bn_mul_prelu ;
-        cfg_bn_mul_src <= reg2dp_bn_mul_src ;
-        cfg_bn_mul_shift_value <= reg2dp_bn_mul_shift_value ;
-        cfg_bn_relu_bypass <= reg2dp_bn_relu_bypass ;
         cfg_cvt_offset <= reg2dp_cvt_offset ;
         cfg_cvt_scale <= reg2dp_cvt_scale ;
         cfg_cvt_shift <= reg2dp_cvt_shift ;
@@ -461,33 +376,6 @@ NV_NVDLA_SDP_RDMA_pack #(.IW(8*16),.OW(16*1),.CW(1)) u_bs_alu_pack (
   );
 assign bs_alu_in_data[16*1 -1:0] = bs_alu_in_pd[16*1 -1:0];
 assign bs_alu_in_layer_end = bs_alu_in_pd[16*1];
-//covert atomic_m to 1
-NV_NVDLA_SDP_RDMA_pack #(.IW(8*16),.OW(16*1),.CW(1)) u_bn_mul_pack (
-   .nvdla_core_clk (nvdla_core_clk)
-  ,.nvdla_core_rstn (nvdla_core_rstn)
-  ,.cfg_dp_8 (~(|reg2dp_proc_precision))
-  ,.inp_pvld (sdp_nrdma2dp_mul_valid)
-  ,.inp_prdy (sdp_nrdma2dp_mul_ready)
-  ,.inp_data (sdp_nrdma2dp_mul_pd[8*16:0])
-  ,.out_pvld (bn_mul_in_pvld)
-  ,.out_prdy (bn_mul_in_prdy)
-  ,.out_data (bn_mul_in_pd[16*1:0])
-  );
-assign bn_mul_in_data[16*1 -1:0] = bn_mul_in_pd[16*1 -1:0];
-assign bn_mul_in_layer_end = bn_mul_in_pd[16*1];
-NV_NVDLA_SDP_RDMA_pack #(.IW(8*16),.OW(16*1),.CW(1)) u_bn_alu_pack (
-   .nvdla_core_clk (nvdla_core_clk)
-  ,.nvdla_core_rstn (nvdla_core_rstn)
-  ,.cfg_dp_8 (~(|reg2dp_proc_precision))
-  ,.inp_pvld (sdp_nrdma2dp_alu_valid)
-  ,.inp_prdy (sdp_nrdma2dp_alu_ready)
-  ,.inp_data (sdp_nrdma2dp_alu_pd[8*16:0])
-  ,.out_pvld (bn_alu_in_pvld)
-  ,.out_prdy (bn_alu_in_prdy)
-  ,.out_data (bn_alu_in_pd[16*1:0])
-  );
-assign bn_alu_in_data[16*1 -1:0] = bn_alu_in_pd[16*1 -1:0];
-assign bn_alu_in_layer_end = bn_alu_in_pd[16*1];
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
     wait_for_op_en <= 1'b1;
@@ -530,36 +418,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 assign bs_mul_in_vld = bs_mul_in_en & bs_mul_in_pvld;
 assign bs_mul_in_prdy = bs_mul_in_en & bs_mul_in_rdy;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-  if (!nvdla_core_rstn) begin
-    bn_alu_in_en <= 1'b0;
-  end else begin
-   if (dp2reg_done) begin
-      bn_alu_in_en <= 1'b0;
-   end else if (op_en_load) begin
-      bn_alu_in_en <= cfg_bn_en && (!reg2dp_bn_alu_bypass) && (reg2dp_bn_alu_src==1);
-   end else if (bn_alu_in_layer_end && bn_alu_in_pvld && bn_alu_in_prdy) begin
-      bn_alu_in_en <= 1'b0;
-   end
-  end
-end
-assign bn_alu_in_vld = bn_alu_in_en & bn_alu_in_pvld;
-assign bn_alu_in_prdy = bn_alu_in_en & bn_alu_in_rdy;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-  if (!nvdla_core_rstn) begin
-    bn_mul_in_en <= 1'b0;
-  end else begin
-   if (dp2reg_done) begin
-      bn_mul_in_en <= 1'b0;
-   end else if (op_en_load) begin
-      bn_mul_in_en <= cfg_bn_en && (!reg2dp_bn_mul_bypass) &(reg2dp_bn_mul_src==1);
-   end else if (bn_mul_in_layer_end && bn_mul_in_pvld && bn_mul_in_prdy) begin
-      bn_mul_in_en <= 1'b0;
-   end
-  end
-end
-assign bn_mul_in_vld = bn_mul_in_en & bn_mul_in_pvld;
-assign bn_mul_in_prdy = bn_mul_in_en & bn_mul_in_rdy;
 //===========================================
 // CORE
 //===========================================
@@ -638,59 +496,9 @@ NV_NVDLA_SDP_CORE_unpack #(.IW(32*1),.OW(32*1)) u_bs_dpunpack (
 //===========================================
 // MUX between BS and BN
 //===========================================
-assign flop_bs_data_out_prdy = cfg_bn_en ? bn_data_in_prdy : flop_bn_data_out_prdy;
+assign flop_bs_data_out_prdy = flop_bn_data_out_prdy;
 assign bs2bn_data_pvld = cfg_bs_en ? flop_bs_data_out_pvld : sdp_cmux2dp_valid;
 assign bn_data_in_pd = cfg_bs_en ? flop_bs_data_out_pd : bs_data_in_pd;
-assign bn_data_in_pvld = cfg_bn_en & bs2bn_data_pvld;
-//covert 1 to 1
-NV_NVDLA_SDP_CORE_pack #(.IW(32*1),.OW(32*1)) u_bn_dppack (
-   .nvdla_core_clk (nvdla_gated_ncore_clk)
-  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.inp_pvld (bn_data_in_pvld) //|< i
-  ,.inp_data (bn_data_in_pd[32*1 -1:0]) //|< i
-  ,.inp_prdy (bn_data_in_prdy) //|> o
-  ,.out_pvld (flop_bn_data_in_pvld) //|> w
-  ,.out_data (flop_bn_data_in_pd[32*1 -1:0]) //|> w
-  ,.out_prdy (flop_bn_data_in_prdy) //|< w
-  );
-NV_NVDLA_SDP_HLS_x2_int u_bn (
-   .nvdla_core_clk (nvdla_gated_ncore_clk) //|< w
-  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.cfg_alu_algo (cfg_bn_alu_algo[1:0]) //|< r
-  ,.cfg_alu_bypass (cfg_bn_alu_bypass) //|< r
-  ,.cfg_alu_op (cfg_bn_alu_operand[15:0]) //|< r
-  ,.cfg_alu_shift_value (cfg_bn_alu_shift_value[5:0]) //|< r
-  ,.cfg_alu_src (cfg_bn_alu_src) //|< r
-  ,.cfg_mul_bypass (cfg_bn_mul_bypass) //|< r
-  ,.cfg_mul_op (cfg_bn_mul_operand[15:0]) //|< r
-  ,.cfg_mul_prelu (cfg_bn_mul_prelu) //|< r
-  ,.cfg_mul_shift_value (cfg_bn_mul_shift_value[5:0]) //|< r
-  ,.cfg_mul_src (cfg_bn_mul_src) //|< r
-  ,.cfg_relu_bypass (cfg_bn_relu_bypass) //|< r
-  ,.chn_data_in (flop_bn_data_in_pd[32*1 -1:0]) //|< w
-  ,.chn_in_pvld (flop_bn_data_in_pvld) //|< w
-  ,.chn_in_prdy (flop_bn_data_in_prdy) //|> w
-  ,.chn_alu_op (bn_alu_in_data[16*1 -1:0]) //|< w
-  ,.chn_alu_op_pvld (bn_alu_in_vld) //|< w
-  ,.chn_alu_op_prdy (bn_alu_in_rdy) //|> w
-  ,.chn_mul_op (bn_mul_in_data[16*1 -1:0]) //|< w
-  ,.chn_mul_op_pvld (bn_mul_in_vld) //|< w
-  ,.chn_mul_op_prdy (bn_mul_in_rdy) //|> w
-  ,.chn_out_prdy (bn_data_out_prdy) //|< w
-  ,.chn_data_out (bn_data_out_pd[32*1 -1:0]) //|> w
-  ,.chn_out_pvld (bn_data_out_pvld) //|> w
-  );
-//covert 1 to 1
-NV_NVDLA_SDP_CORE_unpack #(.IW(32*1),.OW(32*1)) u_bn_dpunpack (
-   .nvdla_core_clk (nvdla_gated_ncore_clk)
-  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.inp_pvld (bn_data_out_pvld) //|< i
-  ,.inp_data (bn_data_out_pd[32*1 -1:0]) //|< i
-  ,.inp_prdy (bn_data_out_prdy) //|> o
-  ,.out_pvld (flop_bn_data_out_pvld) //|> w
-  ,.out_data (flop_bn_data_out_pd[32*1 -1:0]) //|> w
-  ,.out_prdy (flop_bn_data_out_prdy) //|< w
-  );
 //===========================================
 // MUX between BN and EW
 //===========================================

@@ -541,7 +541,7 @@ assign ipipe_axi_rdy = 0
 ;
 //:my $k = 7;
 //:my $i;
-//:my @dma_index = (0, 1, 1,1, 1,0, 1, 1, 0, 1,0,0,0,0,0,0);
+//:my @dma_index = (0, 1, 1,0, 0,0, 1, 1, 0, 0,0,0,0,0,0,0);
 //:my @client_id = (0,8,9,3,2,4,1,5,7,6,0,0,0,0,0,0);
 //:my @remap_clientid = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 //:my $nindex = 0;
@@ -608,7 +608,7 @@ NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo1 (
 ,.rq_rd_pd(rq1_rd_pd)
 ,.pwrbus_ram_pd(pwrbus_ram_pd)
 );
-assign rq2_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 3);
+assign rq2_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 1);
 wire [64 -1:0] rq2_wr_pd = rq_wr_pd;
 NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo2 (
 .nvdla_core_clk(nvdla_core_clk)
@@ -621,7 +621,7 @@ NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo2 (
 ,.rq_rd_pd(rq2_rd_pd)
 ,.pwrbus_ram_pd(pwrbus_ram_pd)
 );
-assign rq3_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 2);
+assign rq3_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 5);
 wire [64 -1:0] rq3_wr_pd = rq_wr_pd;
 NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo3 (
 .nvdla_core_clk(nvdla_core_clk)
@@ -634,7 +634,7 @@ NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo3 (
 ,.rq_rd_pd(rq3_rd_pd)
 ,.pwrbus_ram_pd(pwrbus_ram_pd)
 );
-assign rq4_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 1);
+assign rq4_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 0);
 wire [64 -1:0] rq4_wr_pd = rq_wr_pd;
 NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo4 (
 .nvdla_core_clk(nvdla_core_clk)
@@ -647,7 +647,7 @@ NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo4 (
 ,.rq_rd_pd(rq4_rd_pd)
 ,.pwrbus_ram_pd(pwrbus_ram_pd)
 );
-assign rq5_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 5);
+assign rq5_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 0);
 wire [64 -1:0] rq5_wr_pd = rq_wr_pd;
 NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo5 (
 .nvdla_core_clk(nvdla_core_clk)
@@ -660,7 +660,7 @@ NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo5 (
 ,.rq_rd_pd(rq5_rd_pd)
 ,.pwrbus_ram_pd(pwrbus_ram_pd)
 );
-assign rq6_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 6);
+assign rq6_wr_pvld = ipipe_axi_vld & (ipipe_axi_axid == 0);
 wire [64 -1:0] rq6_wr_pd = rq_wr_pd;
 NV_NVDLA_NOCIF_DRAM_READ_EG_lat_fifo lat_fifo6 (
 .nvdla_core_clk(nvdla_core_clk)
