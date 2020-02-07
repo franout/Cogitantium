@@ -63,7 +63,7 @@ input nvdla_core_rstn;
 input [31:0] pwrbus_ram_pd;
 output arb2spt_cmd_valid;
 input arb2spt_cmd_ready;
-output [64 +13 -1:0] arb2spt_cmd_pd;
+output [32 +13 -1:0] arb2spt_cmd_pd;
 output arb2spt_dat_valid;
 input arb2spt_dat_ready;
 output [258 -2:0] arb2spt_dat_pd;
@@ -71,7 +71,7 @@ output [258 -2:0] arb2spt_dat_pd;
 //: print qq(
 //: input bpt2arb_cmd${i}_valid;
 //: output bpt2arb_cmd${i}_ready;
-//: input [64 +13 -1:0] bpt2arb_cmd${i}_pd;
+//: input [32 +13 -1:0] bpt2arb_cmd${i}_pd;
 //: input bpt2arb_dat${i}_valid;
 //: output bpt2arb_dat${i}_ready;
 //: input [258 -2:0] bpt2arb_dat${i}_pd;
@@ -82,7 +82,7 @@ output [258 -2:0] arb2spt_dat_pd;
 
 input bpt2arb_cmd0_valid;
 output bpt2arb_cmd0_ready;
-input [64 +13 -1:0] bpt2arb_cmd0_pd;
+input [32 +13 -1:0] bpt2arb_cmd0_pd;
 input bpt2arb_dat0_valid;
 output bpt2arb_dat0_ready;
 input [258 -2:0] bpt2arb_dat0_pd;
@@ -90,7 +90,7 @@ input [7:0] reg2dp_wr_weight0;
 
 input bpt2arb_cmd1_valid;
 output bpt2arb_cmd1_ready;
-input [64 +13 -1:0] bpt2arb_cmd1_pd;
+input [32 +13 -1:0] bpt2arb_cmd1_pd;
 input bpt2arb_dat1_valid;
 output bpt2arb_dat1_ready;
 input [258 -2:0] bpt2arb_dat1_pd;
@@ -98,14 +98,14 @@ input [7:0] reg2dp_wr_weight1;
 
 input bpt2arb_cmd2_valid;
 output bpt2arb_cmd2_ready;
-input [64 +13 -1:0] bpt2arb_cmd2_pd;
+input [32 +13 -1:0] bpt2arb_cmd2_pd;
 input bpt2arb_dat2_valid;
 output bpt2arb_dat2_ready;
 input [258 -2:0] bpt2arb_dat2_pd;
 input [7:0] reg2dp_wr_weight2;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-reg [64 +13 -1:0] arb_cmd_pd;
+reg [32 +13 -1:0] arb_cmd_pd;
 reg [258 -2:0] arb_dat_pd;
 reg sticky;
 wire any_arb_gnt;
@@ -122,7 +122,7 @@ wire [2:0] arb_cmd_size;
 //: print qq(
 //: wire [2:0] src_cmd${i}_beats;
 //: wire src_cmd${i}_camp_vld;
-//: wire [64 +13 -1:0] src_cmd${i}_pd;
+//: wire [32 +13 -1:0] src_cmd${i}_pd;
 //: wire src_cmd${i}_rdy;
 //: wire [2:0] src_cmd${i}_size;
 //: wire src_cmd${i}_vld;
@@ -136,7 +136,7 @@ wire [2:0] arb_cmd_size;
 
 wire [2:0] src_cmd0_beats;
 wire src_cmd0_camp_vld;
-wire [64 +13 -1:0] src_cmd0_pd;
+wire [32 +13 -1:0] src_cmd0_pd;
 wire src_cmd0_rdy;
 wire [2:0] src_cmd0_size;
 wire src_cmd0_vld;
@@ -147,7 +147,7 @@ wire [2:0] dfifo0_wr_count;
 
 wire [2:0] src_cmd1_beats;
 wire src_cmd1_camp_vld;
-wire [64 +13 -1:0] src_cmd1_pd;
+wire [32 +13 -1:0] src_cmd1_pd;
 wire src_cmd1_rdy;
 wire [2:0] src_cmd1_size;
 wire src_cmd1_vld;
@@ -158,7 +158,7 @@ wire [2:0] dfifo1_wr_count;
 
 wire [2:0] src_cmd2_beats;
 wire src_cmd2_camp_vld;
-wire [64 +13 -1:0] src_cmd2_pd;
+wire [32 +13 -1:0] src_cmd2_pd;
 wire src_cmd2_rdy;
 wire [2:0] src_cmd2_size;
 wire src_cmd2_vld;
@@ -206,7 +206,7 @@ wire [7:0] wt4;
 //: );
 //: print "\n";
 //: print qq(
-//: assign src_cmd${i}_size= {3{src_cmd${i}_vld}} & src_cmd${i}_pd[64 +7:64 +5];
+//: assign src_cmd${i}_size= {3{src_cmd${i}_vld}} & src_cmd${i}_pd[32 +7:32 +5];
 //: assign src_cmd${i}_rdy = is_last_beat & src_dat_rdy & src_dat_gnts[$i];
 //: assign src_dat${i}_rdy = src_dat_rdy & all_gnts[${i}];
 //: assign src_cmd${i}_beats = src_cmd${i}_size;
@@ -216,7 +216,7 @@ wire [7:0] wt4;
 //:for(my $i=3;$i<5;$i++) {
 //: print "wire   src_cmd${i}_camp_vld = 1'b0;\n";
 //: print "wire   src_dat${i}_vld = 1'b0;\n";
-//: print qq(wire [64 +13 -1:0] src_cmd${i}_pd = 1'b0;\n);
+//: print qq(wire [32 +13 -1:0] src_cmd${i}_pd = 1'b0;\n);
 //: print qq(wire [258 -2:0] src_dat${i}_pd = 1'b0;\n);
 //:}
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -246,7 +246,7 @@ NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo u_dfifo0 (
 );
 
 
-assign src_cmd0_size= {3{src_cmd0_vld}} & src_cmd0_pd[64 +7:64 +5];
+assign src_cmd0_size= {3{src_cmd0_vld}} & src_cmd0_pd[32 +7:32 +5];
 assign src_cmd0_rdy = is_last_beat & src_dat_rdy & src_dat_gnts[0];
 assign src_dat0_rdy = src_dat_rdy & all_gnts[0];
 assign src_cmd0_beats = src_cmd0_size;
@@ -277,7 +277,7 @@ NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo u_dfifo1 (
 );
 
 
-assign src_cmd1_size= {3{src_cmd1_vld}} & src_cmd1_pd[64 +7:64 +5];
+assign src_cmd1_size= {3{src_cmd1_vld}} & src_cmd1_pd[32 +7:32 +5];
 assign src_cmd1_rdy = is_last_beat & src_dat_rdy & src_dat_gnts[1];
 assign src_dat1_rdy = src_dat_rdy & all_gnts[1];
 assign src_cmd1_beats = src_cmd1_size;
@@ -308,18 +308,18 @@ NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo u_dfifo2 (
 );
 
 
-assign src_cmd2_size= {3{src_cmd2_vld}} & src_cmd2_pd[64 +7:64 +5];
+assign src_cmd2_size= {3{src_cmd2_vld}} & src_cmd2_pd[32 +7:32 +5];
 assign src_cmd2_rdy = is_last_beat & src_dat_rdy & src_dat_gnts[2];
 assign src_dat2_rdy = src_dat_rdy & all_gnts[2];
 assign src_cmd2_beats = src_cmd2_size;
 assign src_cmd2_camp_vld = src_cmd2_vld & (dfifo2_wr_count > src_cmd2_beats);
 wire   src_cmd3_camp_vld = 1'b0;
 wire   src_dat3_vld = 1'b0;
-wire [64 +13 -1:0] src_cmd3_pd = 1'b0;
+wire [32 +13 -1:0] src_cmd3_pd = 1'b0;
 wire [258 -2:0] src_dat3_pd = 1'b0;
 wire   src_cmd4_camp_vld = 1'b0;
 wire   src_dat4_vld = 1'b0;
-wire [64 +13 -1:0] src_cmd4_pd = 1'b0;
+wire [32 +13 -1:0] src_cmd4_pd = 1'b0;
 wire [258 -2:0] src_dat4_pd = 1'b0;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
@@ -419,12 +419,12 @@ always @(
       all_gnts[3]: arb_cmd_pd = src_cmd3_pd;
       all_gnts[4]: arb_cmd_pd = src_cmd4_pd;
     default : begin
-                arb_cmd_pd[64 +13 -1:0] = {(64 +13){`x_or_0}};
+                arb_cmd_pd[32 +13 -1:0] = {(32 +13){`x_or_0}};
               end
     endcase
 //spyglass enable_block W171 W226
 end
-assign arb_cmd_size = arb_cmd_pd[64 +7:64 +5];
+assign arb_cmd_size = arb_cmd_pd[32 +7:32 +5];
 //assign arb_cmd_inc = arb_cmd_pd[50:50];
 always @(
   all_gnts
@@ -455,7 +455,7 @@ assign src_dat_rdy = arb2spt_dat_ready;
 assign spt_is_busy = !(arb2spt_cmd_ready & arb2spt_dat_ready); //fixme
 endmodule // NV_NVDLA_MCIF_WRITE_IG_arb
 // **************************************************************************************************************
-// Generated by ::pipe -m -rand none -bc -is src_cmd_pd (src_cmd_vld,src_cmd_rdy) <= bpt2arb_cmd_pd[64 +13 -1:0] (bpt2arb_cmd_valid,bpt2arb_cmd_ready)
+// Generated by ::pipe -m -rand none -bc -is src_cmd_pd (src_cmd_vld,src_cmd_rdy) <= bpt2arb_cmd_pd[32 +13 -1:0] (bpt2arb_cmd_valid,bpt2arb_cmd_ready)
 // **************************************************************************************************************
 module NV_NVDLA_MCIF_WRITE_IG_ARB_pipe (
    nvdla_core_clk
@@ -469,23 +469,23 @@ module NV_NVDLA_MCIF_WRITE_IG_ARB_pipe (
   );
 input nvdla_core_clk;
 input nvdla_core_rstn;
-input [64 +13 -1:0] bpt2arb_cmd_pd;
+input [32 +13 -1:0] bpt2arb_cmd_pd;
 input bpt2arb_cmd_valid;
 output bpt2arb_cmd_ready;
-output [64 +13 -1:0] src_cmd_pd;
+output [32 +13 -1:0] src_cmd_pd;
 output src_cmd_vld;
 input src_cmd_rdy;
-//: my $dw = 64 +13;
+//: my $dw = 32 +13;
 //: &eperl::pipe(" -wid $dw -do src_cmd_pd -vo src_cmd_vld -ri src_cmd_rdy  -di bpt2arb_cmd_pd -vi bpt2arb_cmd_valid -ro bpt2arb_cmd_ready");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 // Reg
 reg pipe_bpt2arb_cmd_valid;
-reg [77-1:0] pipe_bpt2arb_cmd_pd;
+reg [45-1:0] pipe_bpt2arb_cmd_pd;
 // Wire
 wire bpt2arb_cmd_ready;
 wire pipe_bpt2arb_cmd_ready;
 wire src_cmd_vld;
-wire [77-1:0] src_cmd_pd;
+wire [45-1:0] src_cmd_pd;
 // Code
 // PIPE READY
 assign bpt2arb_cmd_ready = pipe_bpt2arb_cmd_ready || !pipe_bpt2arb_cmd_valid;
@@ -504,7 +504,7 @@ end
 // PIPE DATA
 always @(posedge nvdla_core_clk) begin
     if (bpt2arb_cmd_ready && bpt2arb_cmd_valid) begin
-        pipe_bpt2arb_cmd_pd[77-1:0] <= bpt2arb_cmd_pd[77-1:0];
+        pipe_bpt2arb_cmd_pd[45-1:0] <= bpt2arb_cmd_pd[45-1:0];
     end
 end
 

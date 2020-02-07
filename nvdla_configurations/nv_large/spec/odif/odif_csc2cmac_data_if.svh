@@ -10,8 +10,8 @@ typedef struct packed {
   bit [0:0] stripe_end;
   bit [0:0] channel_end;
   bit [0:0] layer_end;
-  bit [63:0] mask;
-  bit [63:0][7:0] data;
+  bit [31:0] mask;
+  bit [31:0][7:0] data;
 } csc2cmac_data_if_struct;
 `endif
 

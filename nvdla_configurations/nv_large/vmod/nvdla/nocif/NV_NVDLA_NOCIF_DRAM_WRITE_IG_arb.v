@@ -78,7 +78,7 @@ module NV_NVDLA_NOCIF_DRAM_WRITE_IG_arb (
 //:print qq(
 //:input bpt2arb_cmd${i}_valid;
 //:output bpt2arb_cmd${i}_ready;
-//:input [64 +12:0] bpt2arb_cmd${i}_pd;
+//:input [32 +12:0] bpt2arb_cmd${i}_pd;
 //:input bpt2arb_dat${i}_valid;
 //:output bpt2arb_dat${i}_ready;
 //:input [256 +1:0] bpt2arb_dat${i}_pd;
@@ -89,7 +89,7 @@ module NV_NVDLA_NOCIF_DRAM_WRITE_IG_arb (
 
 input bpt2arb_cmd0_valid;
 output bpt2arb_cmd0_ready;
-input [64 +12:0] bpt2arb_cmd0_pd;
+input [32 +12:0] bpt2arb_cmd0_pd;
 input bpt2arb_dat0_valid;
 output bpt2arb_dat0_ready;
 input [256 +1:0] bpt2arb_dat0_pd;
@@ -97,7 +97,7 @@ input [7:0] client02mcif_wr_wt;
 
 input bpt2arb_cmd1_valid;
 output bpt2arb_cmd1_ready;
-input [64 +12:0] bpt2arb_cmd1_pd;
+input [32 +12:0] bpt2arb_cmd1_pd;
 input bpt2arb_dat1_valid;
 output bpt2arb_dat1_ready;
 input [256 +1:0] bpt2arb_dat1_pd;
@@ -105,7 +105,7 @@ input [7:0] client12mcif_wr_wt;
 
 input bpt2arb_cmd2_valid;
 output bpt2arb_cmd2_ready;
-input [64 +12:0] bpt2arb_cmd2_pd;
+input [32 +12:0] bpt2arb_cmd2_pd;
 input bpt2arb_dat2_valid;
 output bpt2arb_dat2_ready;
 input [256 +1:0] bpt2arb_dat2_pd;
@@ -116,12 +116,12 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 output arb2spt_cmd_valid; /* data valid */
 input arb2spt_cmd_ready; /* data return handshake */
-output [64 +12:0] arb2spt_cmd_pd;
+output [32 +12:0] arb2spt_cmd_pd;
 output arb2spt_dat_valid; /* data valid */
 input arb2spt_dat_ready; /* data return handshake */
 output [256 +1:0] arb2spt_dat_pd;
 input [31:0] pwrbus_ram_pd;
-reg [64 +12:0] arb_cmd_pd;
+reg [32 +12:0] arb_cmd_pd;
 reg [256 +1:0] arb_dat_pd;
 reg [1:0] gnt_count;
 reg [3 -1:0] stick_gnts;
@@ -143,11 +143,11 @@ wire [3 -1:0] src_dat_gnts;
 //NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_pipe_p1 pipe_p1_${i} (
 // .nvdla_core_clk (nvdla_core_clk) //|< i
 // ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-// ,.bpt2arb_cmd0_pd (bpt2arb_cmd${i}_pd[64 +12:0]) //|< i
+// ,.bpt2arb_cmd0_pd (bpt2arb_cmd${i}_pd[32 +12:0]) //|< i
 // ,.bpt2arb_cmd0_valid (bpt2arb_cmd${i}_valid) //|< i
 // ,.src_cmd0_rdy (src_cmd${i}_rdy) //|< w
 // ,.bpt2arb_cmd0_ready (bpt2arb_cmd${i}_ready) //|> o
-// ,.src_cmd0_pd (src_cmd${i}_pd[64 +12:0]) //|> w
+// ,.src_cmd0_pd (src_cmd${i}_pd[32 +12:0]) //|> w
 // ,.src_cmd0_vld (src_cmd${i}_vld) //|> w
 // );
 //&eperl::pipe(" -os -wid $w -do src_cmd${i}_pd -vo src_cmd${i}_vld -ri bpt2arb_cmd${i}_ready -di bpt2arb_cmd${i}_pd -vi bpt2arb_cmd${i}_valid -ro  src_cmd${i}_rdy");
@@ -164,21 +164,21 @@ wire [3 -1:0] src_dat_gnts;
 //:wire [2:0] src_cmd${i}_size;
 //:wire src_cmd${i}_size_bit0_NC;
 //:wire [$dbus_wid:0] src_dat${i}_pd;
-//:wire [64 +12:0] src_cmd${i}_pd;
+//:wire [32 +12:0] src_cmd${i}_pd;
 //:);
-//:$w = eval(64 +13);
-//:my $bus_wid = eval(64 +12);
+//:$w = eval(32 +13);
+//:my $bus_wid = eval(32 +12);
 //:print qq(
 //:wire src_cmd${i}_rdy, src_cmd${i}_vld;
 //:wire src_dat${i}_rdy, src_dat${i}_vld;
 //:NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_pipe_p1 pipe_p1_${i} (
 //: .nvdla_core_clk (nvdla_core_clk) //|< i
 //: ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-//: ,.bpt2arb_cmd0_pd (bpt2arb_cmd${i}_pd[64 +12:0]) //|< i
+//: ,.bpt2arb_cmd0_pd (bpt2arb_cmd${i}_pd[32 +12:0]) //|< i
 //: ,.bpt2arb_cmd0_valid (bpt2arb_cmd${i}_valid) //|< i
 //: ,.src_cmd0_rdy (src_cmd${i}_rdy) //|< w
 //: ,.bpt2arb_cmd0_ready (bpt2arb_cmd${i}_ready) //|> o
-//: ,.src_cmd0_pd (src_cmd${i}_pd[64 +12:0]) //|> w
+//: ,.src_cmd0_pd (src_cmd${i}_pd[32 +12:0]) //|> w
 //: ,.src_cmd0_vld (src_cmd${i}_vld) //|> w
 //: );
 //:NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_dfifo u_dfifo${i} (
@@ -198,8 +198,8 @@ wire [3 -1:0] src_dat_gnts;
 //:my $i;
 //:for($i=0;$i<3;$i++) {
 //:print qq(
-//:assign src_cmd${i}_size= {3 {src_cmd${i}_vld}} & src_cmd${i}_pd[64 +7:64 +5];
-//:assign src_cmd${i}_inc = {1{src_cmd${i}_vld}} & src_cmd${i}_pd[64 +10:64 +10];
+//:assign src_cmd${i}_size= {3 {src_cmd${i}_vld}} & src_cmd${i}_pd[32 +7:32 +5];
+//:assign src_cmd${i}_inc = {1{src_cmd${i}_vld}} & src_cmd${i}_pd[32 +10:32 +10];
 //:assign src_cmd${i}_rdy = is_last_beat & src_dat_gnts[${i}];
 //:assign src_dat${i}_rdy = all_gnts[${i}];
 //:assign {src_cmd${i}_beats_c, src_cmd${i}_beats} = src_cmd${i}_size[2:1] + src_cmd${i}_inc;
@@ -217,18 +217,18 @@ wire src_cmd0_inc;
 wire [2:0] src_cmd0_size;
 wire src_cmd0_size_bit0_NC;
 wire [257:0] src_dat0_pd;
-wire [64 +12:0] src_cmd0_pd;
+wire [32 +12:0] src_cmd0_pd;
 
 wire src_cmd0_rdy, src_cmd0_vld;
 wire src_dat0_rdy, src_dat0_vld;
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_pipe_p1 pipe_p1_0 (
 .nvdla_core_clk (nvdla_core_clk) //|< i
 ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-,.bpt2arb_cmd0_pd (bpt2arb_cmd0_pd[64 +12:0]) //|< i
+,.bpt2arb_cmd0_pd (bpt2arb_cmd0_pd[32 +12:0]) //|< i
 ,.bpt2arb_cmd0_valid (bpt2arb_cmd0_valid) //|< i
 ,.src_cmd0_rdy (src_cmd0_rdy) //|< w
 ,.bpt2arb_cmd0_ready (bpt2arb_cmd0_ready) //|> o
-,.src_cmd0_pd (src_cmd0_pd[64 +12:0]) //|> w
+,.src_cmd0_pd (src_cmd0_pd[32 +12:0]) //|> w
 ,.src_cmd0_vld (src_cmd0_vld) //|> w
 );
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_dfifo u_dfifo0 (
@@ -252,18 +252,18 @@ wire src_cmd1_inc;
 wire [2:0] src_cmd1_size;
 wire src_cmd1_size_bit0_NC;
 wire [257:0] src_dat1_pd;
-wire [64 +12:0] src_cmd1_pd;
+wire [32 +12:0] src_cmd1_pd;
 
 wire src_cmd1_rdy, src_cmd1_vld;
 wire src_dat1_rdy, src_dat1_vld;
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_pipe_p1 pipe_p1_1 (
 .nvdla_core_clk (nvdla_core_clk) //|< i
 ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-,.bpt2arb_cmd0_pd (bpt2arb_cmd1_pd[64 +12:0]) //|< i
+,.bpt2arb_cmd0_pd (bpt2arb_cmd1_pd[32 +12:0]) //|< i
 ,.bpt2arb_cmd0_valid (bpt2arb_cmd1_valid) //|< i
 ,.src_cmd0_rdy (src_cmd1_rdy) //|< w
 ,.bpt2arb_cmd0_ready (bpt2arb_cmd1_ready) //|> o
-,.src_cmd0_pd (src_cmd1_pd[64 +12:0]) //|> w
+,.src_cmd0_pd (src_cmd1_pd[32 +12:0]) //|> w
 ,.src_cmd0_vld (src_cmd1_vld) //|> w
 );
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_dfifo u_dfifo1 (
@@ -287,18 +287,18 @@ wire src_cmd2_inc;
 wire [2:0] src_cmd2_size;
 wire src_cmd2_size_bit0_NC;
 wire [257:0] src_dat2_pd;
-wire [64 +12:0] src_cmd2_pd;
+wire [32 +12:0] src_cmd2_pd;
 
 wire src_cmd2_rdy, src_cmd2_vld;
 wire src_dat2_rdy, src_dat2_vld;
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_pipe_p1 pipe_p1_2 (
 .nvdla_core_clk (nvdla_core_clk) //|< i
 ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-,.bpt2arb_cmd0_pd (bpt2arb_cmd2_pd[64 +12:0]) //|< i
+,.bpt2arb_cmd0_pd (bpt2arb_cmd2_pd[32 +12:0]) //|< i
 ,.bpt2arb_cmd0_valid (bpt2arb_cmd2_valid) //|< i
 ,.src_cmd0_rdy (src_cmd2_rdy) //|< w
 ,.bpt2arb_cmd0_ready (bpt2arb_cmd2_ready) //|> o
-,.src_cmd0_pd (src_cmd2_pd[64 +12:0]) //|> w
+,.src_cmd0_pd (src_cmd2_pd[32 +12:0]) //|> w
 ,.src_cmd0_vld (src_cmd2_vld) //|> w
 );
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_dfifo u_dfifo2 (
@@ -314,24 +314,24 @@ NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_dfifo u_dfifo2 (
 ,.pwrbus_ram_pd (pwrbus_ram_pd[31:0])
 );
 
-assign src_cmd0_size= {3 {src_cmd0_vld}} & src_cmd0_pd[64 +7:64 +5];
-assign src_cmd0_inc = {1{src_cmd0_vld}} & src_cmd0_pd[64 +10:64 +10];
+assign src_cmd0_size= {3 {src_cmd0_vld}} & src_cmd0_pd[32 +7:32 +5];
+assign src_cmd0_inc = {1{src_cmd0_vld}} & src_cmd0_pd[32 +10:32 +10];
 assign src_cmd0_rdy = is_last_beat & src_dat_gnts[0];
 assign src_dat0_rdy = all_gnts[0];
 assign {src_cmd0_beats_c, src_cmd0_beats} = src_cmd0_size[2:1] + src_cmd0_inc;
 assign src_cmd0_size_bit0_NC = src_cmd0_size[0]; // bit0 is not used
 assign src_cmd0_camp_vld = src_cmd0_vld & (dfifo0_wr_count > {src_cmd0_beats_c,src_cmd0_beats});
 
-assign src_cmd1_size= {3 {src_cmd1_vld}} & src_cmd1_pd[64 +7:64 +5];
-assign src_cmd1_inc = {1{src_cmd1_vld}} & src_cmd1_pd[64 +10:64 +10];
+assign src_cmd1_size= {3 {src_cmd1_vld}} & src_cmd1_pd[32 +7:32 +5];
+assign src_cmd1_inc = {1{src_cmd1_vld}} & src_cmd1_pd[32 +10:32 +10];
 assign src_cmd1_rdy = is_last_beat & src_dat_gnts[1];
 assign src_dat1_rdy = all_gnts[1];
 assign {src_cmd1_beats_c, src_cmd1_beats} = src_cmd1_size[2:1] + src_cmd1_inc;
 assign src_cmd1_size_bit0_NC = src_cmd1_size[0]; // bit0 is not used
 assign src_cmd1_camp_vld = src_cmd1_vld & (dfifo1_wr_count > {src_cmd1_beats_c,src_cmd1_beats});
 
-assign src_cmd2_size= {3 {src_cmd2_vld}} & src_cmd2_pd[64 +7:64 +5];
-assign src_cmd2_inc = {1{src_cmd2_vld}} & src_cmd2_pd[64 +10:64 +10];
+assign src_cmd2_size= {3 {src_cmd2_vld}} & src_cmd2_pd[32 +7:32 +5];
+assign src_cmd2_inc = {1{src_cmd2_vld}} & src_cmd2_pd[32 +10:32 +10];
 assign src_cmd2_rdy = is_last_beat & src_dat_gnts[2];
 assign src_dat2_rdy = all_gnts[2];
 assign {src_cmd2_beats_c, src_cmd2_beats} = src_cmd2_size[2:1] + src_cmd2_inc;
@@ -503,13 +503,13 @@ all_gnts[2]: arb_cmd_pd = src_cmd2_pd;
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //VCS coverage off
     default : begin
-//:my $w = eval(64 +13);
+//:my $w = eval(32 +13);
 //:print qq(
 //:arb_cmd_pd[$w-1:0] = 0;
 //: );
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-arb_cmd_pd[77-1:0] = 0;
+arb_cmd_pd[45-1:0] = 0;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
               end
@@ -517,8 +517,8 @@ arb_cmd_pd[77-1:0] = 0;
     endcase
 //spyglass enable_block W171 W226
 end
-assign arb_cmd_size = arb_cmd_pd[64 +7:64 +5];
-assign arb_cmd_inc = arb_cmd_pd[64 +10:64 +10];
+assign arb_cmd_size = arb_cmd_pd[32 +7:32 +5];
+assign arb_cmd_inc = arb_cmd_pd[32 +10:32 +10];
 always @(
   all_gnts
 //:my $i;
@@ -1098,26 +1098,26 @@ module NV_NVDLA_NOCIF_DRAM_WRITE_IG_ARB_pipe_p1 (
   );
 input nvdla_core_clk;
 input nvdla_core_rstn;
-input [64 +12:0] bpt2arb_cmd0_pd;
+input [32 +12:0] bpt2arb_cmd0_pd;
 input bpt2arb_cmd0_valid;
 input src_cmd0_rdy;
 output bpt2arb_cmd0_ready;
-output [64 +12:0] src_cmd0_pd;
+output [32 +12:0] src_cmd0_pd;
 output src_cmd0_vld;
 reg bpt2arb_cmd0_ready;
-reg [64 +12:0] p1_pipe_data;
+reg [32 +12:0] p1_pipe_data;
 reg p1_pipe_ready;
 reg p1_pipe_ready_bc;
-reg [64 +12:0] p1_pipe_skid_data;
+reg [32 +12:0] p1_pipe_skid_data;
 reg p1_pipe_skid_ready;
 reg p1_pipe_skid_valid;
 reg p1_pipe_valid;
 reg p1_skid_catch;
-reg [64 +12:0] p1_skid_data;
+reg [32 +12:0] p1_skid_data;
 reg p1_skid_ready;
 reg p1_skid_ready_flop;
 reg p1_skid_valid;
-reg [64 +12:0] src_cmd0_pd;
+reg [32 +12:0] src_cmd0_pd;
 reg src_cmd0_vld;
 //## pipe (1) valid-ready-bubble-collapse
 always @(
@@ -1135,7 +1135,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk) begin
 // VCS sop_coverage_off start
-  p1_pipe_data <= (p1_pipe_ready_bc && bpt2arb_cmd0_valid)? bpt2arb_cmd0_pd[64 +12:0] : p1_pipe_data;
+  p1_pipe_data <= (p1_pipe_ready_bc && bpt2arb_cmd0_valid)? bpt2arb_cmd0_pd[32 +12:0] : p1_pipe_data;
 // VCS sop_coverage_off end
 end
 always @(

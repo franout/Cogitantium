@@ -48,7 +48,7 @@ output dma2bpt_req_ready; /* data return handshake */
 input [256 +(( 256 )/8/32):0] dma2bpt_req_pd; /* pkt_id_width=1 pkt_widths=78,PRIMARY_MEMIF_WIDTH+2  */
 output bpt2arb_cmd_valid; /* data valid */
 input bpt2arb_cmd_ready; /* data return handshake */
-output [64 +12:0] bpt2arb_cmd_pd;
+output [32 +12:0] bpt2arb_cmd_pd;
 output bpt2arb_dat_valid; /* data valid */
 input bpt2arb_dat_ready; /* data return handshake */
 output [256 +1:0] bpt2arb_dat_pd;
@@ -60,7 +60,7 @@ reg dat_en;
 reg in_dat1_dis;
 reg [12:0] in_dat_cnt;
 reg in_dat_vld;
-reg [64 -1:0] out_addr;
+reg [32 -1:0] out_addr;
 reg [2:0] out_size;
 reg [13:0] req_count;
 reg [13:0] req_num;
@@ -90,13 +90,13 @@ wire dfifo_wr_rdy;
 wire dfifo_wr_vld;
 wire [2:0] end_offset;
 wire [2:0] ftran_size;
-wire [64 -1:0] in_cmd_addr;
-wire [64 +13:0] in_cmd_pd;
+wire [32 -1:0] in_cmd_addr;
+wire [32 +13:0] in_cmd_pd;
 wire in_cmd_rdy;
 wire in_cmd_require_ack;
 wire [12:0] in_cmd_size;
 wire in_cmd_vld;
-wire [64 +13:0] in_cmd_vld_pd;
+wire [32 +13:0] in_cmd_vld_pd;
 wire [256/2-1:0] in_dat0_data;
 wire in_dat0_dis;
 wire in_dat0_en;
@@ -111,8 +111,8 @@ wire in_dat_first;
 wire in_dat_last;
 wire in_size_is_even;
 wire in_size_is_odd;
-wire [64 -1:0] ipipe_cmd_addr;
-wire [64 +13:0] ipipe_cmd_pd;
+wire [32 -1:0] ipipe_cmd_addr;
+wire [32 +13:0] ipipe_cmd_pd;
 wire ipipe_cmd_rdy;
 wire ipipe_cmd_require_ack;
 wire [12:0] ipipe_cmd_size;
@@ -139,7 +139,7 @@ wire mon_dfifo1_wr_pd;
 wire mon_end_offset_c;
 wire mon_out_beats_c;
 wire [12:0] mtran_num;
-wire [64 -1:0] out_cmd_addr;
+wire [32 -1:0] out_cmd_addr;
 wire [3:0] out_cmd_axid;
 wire out_cmd_ftran;
 wire out_cmd_inc;
@@ -207,29 +207,29 @@ assign ipipe_rdy = (ipipe_cmd_vld & ipipe_cmd_rdy) || (dfifo_wr_vld & dfifo_wr_r
 //==================
 // 2nd Stage: CMD PIPE
 // PKT_UNPACK_WIRE( dma_write_cmd , ipipe_cmd_ , ipipe_pd )
-assign ipipe_cmd_addr[64 -1:0] = ipipe_pd[64 -1:0];
-assign ipipe_cmd_size[12:0] = ipipe_pd[64 +12+12:64];
-assign ipipe_cmd_require_ack = ipipe_pd[64 +13];
+assign ipipe_cmd_addr[32 -1:0] = ipipe_pd[32 -1:0];
+assign ipipe_cmd_size[12:0] = ipipe_pd[32 +12+12:32];
+assign ipipe_cmd_require_ack = ipipe_pd[32 +13];
 // PKT_PACK_WIRE( dma_write_cmd , ipipe_cmd_ , ipipe_cmd_pd )
-assign ipipe_cmd_pd[64 -1:0] = ipipe_cmd_addr[64 -1:0];
-assign ipipe_cmd_pd[64 +12:64] = ipipe_cmd_size[12:0];
-assign ipipe_cmd_pd[64 +13] = ipipe_cmd_require_ack ;
+assign ipipe_cmd_pd[32 -1:0] = ipipe_cmd_addr[32 -1:0];
+assign ipipe_cmd_pd[32 +12:32] = ipipe_cmd_size[12:0];
+assign ipipe_cmd_pd[32 +13] = ipipe_cmd_require_ack ;
 NV_NVDLA_NOCIF_DRAM_WRITE_IG_BPT_pipe_p3 pipe_p3 (
    .nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
   ,.in_cmd_rdy (in_cmd_rdy) //|< w
-  ,.ipipe_cmd_pd (ipipe_cmd_pd[64 +13:0]) //|< w
+  ,.ipipe_cmd_pd (ipipe_cmd_pd[32 +13:0]) //|< w
   ,.ipipe_cmd_vld (ipipe_cmd_vld) //|< w
-  ,.in_cmd_pd (in_cmd_pd[64 +13:0]) //|> w
+  ,.in_cmd_pd (in_cmd_pd[32 +13:0]) //|> w
   ,.in_cmd_vld (in_cmd_vld) //|> w
   ,.ipipe_cmd_rdy (ipipe_cmd_rdy) //|> w
   );
 assign in_cmd_rdy = is_ltran & is_last_beat & bpt2arb_dat_accept;
-assign in_cmd_vld_pd = {64 +14{in_cmd_vld}} & in_cmd_pd;
+assign in_cmd_vld_pd = {32 +14{in_cmd_vld}} & in_cmd_pd;
 // PKT_UNPACK_WIRE( dma_write_cmd , in_cmd_ , in_cmd_vld_pd )
-assign in_cmd_addr[64 -1:0] = in_cmd_vld_pd[64 -1:0];
-assign in_cmd_size[12:0] = in_cmd_vld_pd[64 +12:64];
-assign in_cmd_require_ack = in_cmd_vld_pd[64 +13];
+assign in_cmd_addr[32 -1:0] = in_cmd_vld_pd[32 -1:0];
+assign in_cmd_size[12:0] = in_cmd_vld_pd[32 +12:32];
+assign in_cmd_require_ack = in_cmd_vld_pd[32 +13];
 `ifdef SPYGLASS_ASSERT_ON
 `else
 // spyglass disable_block NoWidthInBasedNum-ML
@@ -695,13 +695,13 @@ assign bpt2arb_cmd_valid = out_cmd_vld;
 // PKT_PACK_WIRE( cvt_write_cmd , out_cmd_ , bpt2arb_cmd_pd )
 assign bpt2arb_cmd_pd[3:0] = out_cmd_axid[3:0];
 assign bpt2arb_cmd_pd[4] = out_cmd_require_ack ;
-assign bpt2arb_cmd_pd[64 +4:5] = out_cmd_addr[64 -1:0];
-assign bpt2arb_cmd_pd[64 +7:64 +5] = out_cmd_size[2:0];
-assign bpt2arb_cmd_pd[64 +8] = out_cmd_swizzle ;
-assign bpt2arb_cmd_pd[64 +9] = out_cmd_odd ;
-assign bpt2arb_cmd_pd[64 +10] = out_cmd_inc ;
-assign bpt2arb_cmd_pd[64 +11] = out_cmd_ltran ;
-assign bpt2arb_cmd_pd[64 +12] = out_cmd_ftran ;
+assign bpt2arb_cmd_pd[32 +4:5] = out_cmd_addr[32 -1:0];
+assign bpt2arb_cmd_pd[32 +7:32 +5] = out_cmd_size[2:0];
+assign bpt2arb_cmd_pd[32 +8] = out_cmd_swizzle ;
+assign bpt2arb_cmd_pd[32 +9] = out_cmd_odd ;
+assign bpt2arb_cmd_pd[32 +10] = out_cmd_inc ;
+assign bpt2arb_cmd_pd[32 +11] = out_cmd_ltran ;
+assign bpt2arb_cmd_pd[32 +12] = out_cmd_ftran ;
 assign bpt2arb_cmd_accept = bpt2arb_cmd_valid & bpt2arb_cmd_ready;
 // DATA PATH
 assign bpt2arb_dat_valid = out_dat_vld;
@@ -1507,7 +1507,7 @@ wire p2_assert_clk = nvdla_core_clk;
 `endif
 endmodule // NV_NVDLA_NOCIF_DRAM_WRITE_IG_BPT_pipe_p2
 // **************************************************************************************************************
-// Generated by ::pipe -m -bc in_cmd_pd (in_cmd_vld,in_cmd_rdy) <= ipipe_cmd_pd[64 +13:0] (ipipe_cmd_vld,ipipe_cmd_rdy)
+// Generated by ::pipe -m -bc in_cmd_pd (in_cmd_vld,in_cmd_rdy) <= ipipe_cmd_pd[32 +13:0] (ipipe_cmd_vld,ipipe_cmd_rdy)
 // **************************************************************************************************************
 module NV_NVDLA_NOCIF_DRAM_WRITE_IG_BPT_pipe_p3 (
    nvdla_core_clk
@@ -1522,16 +1522,16 @@ module NV_NVDLA_NOCIF_DRAM_WRITE_IG_BPT_pipe_p3 (
 input nvdla_core_clk;
 input nvdla_core_rstn;
 input in_cmd_rdy;
-input [64 +13:0] ipipe_cmd_pd;
+input [32 +13:0] ipipe_cmd_pd;
 input ipipe_cmd_vld;
-output [64 +13:0] in_cmd_pd;
+output [32 +13:0] in_cmd_pd;
 output in_cmd_vld;
 output ipipe_cmd_rdy;
-reg [64 +13:0] in_cmd_pd;
+reg [32 +13:0] in_cmd_pd;
 reg in_cmd_vld;
 reg ipipe_cmd_rdy;
-reg [64 +13:0] p3_pipe_data;
-reg [64 +13:0] p3_pipe_rand_data;
+reg [32 +13:0] p3_pipe_data;
+reg [32 +13:0] p3_pipe_rand_data;
 reg p3_pipe_rand_ready;
 reg p3_pipe_rand_valid;
 reg p3_pipe_ready;
@@ -1553,12 +1553,12 @@ always @(
   `ifdef SYNTHESIS
   p3_pipe_rand_valid = ipipe_cmd_vld;
   ipipe_cmd_rdy = p3_pipe_rand_ready;
-  p3_pipe_rand_data = ipipe_cmd_pd[64 +13:0];
+  p3_pipe_rand_data = ipipe_cmd_pd[32 +13:0];
   `else
 // VCS coverage off
   p3_pipe_rand_valid = (p3_pipe_rand_active)? 1'b0 : ipipe_cmd_vld;
   ipipe_cmd_rdy = (p3_pipe_rand_active)? 1'b0 : p3_pipe_rand_ready;
-  p3_pipe_rand_data = (p3_pipe_rand_active)? 'bx : ipipe_cmd_pd[64 +13:0];
+  p3_pipe_rand_data = (p3_pipe_rand_active)? 'bx : ipipe_cmd_pd[32 +13:0];
 // VCS coverage on
   `endif
 end

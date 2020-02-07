@@ -36,17 +36,14 @@ function [enc_width-1:0] DWF_lsd_enc (input [a_width-1:0] A);
 endfunction
 //get the sign bit position of input.
 function [a_width-1:0] DWF_lsd (input [a_width-1:0] A);
-
   reg [enc_width-1:0] temp_enc;
   reg [a_width-1:0] temp_dec;
   reg [enc_width-1:0] temp;
-  begin
   temp_enc = DWF_lsd_enc (A);
   temp_dec = {a_width{1'b0}};
   temp = b_width - temp_enc;
   temp_dec[temp] = 1'b1;
   DWF_lsd = temp_dec;
-  end
 endfunction
 assign enc = DWF_lsd_enc (a);
 assign dec = DWF_lsd (a);

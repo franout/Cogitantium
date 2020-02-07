@@ -32,12 +32,6 @@ module NV_NVDLA_CDMA_img (
   ,img_dat2mcif_rd_req_pd //|> o
   ,img_dat2mcif_rd_req_valid //|> o
   ,mcif2img_dat_rd_rsp_ready //|> o
-  ,cvif2img_dat_rd_rsp_pd //|< i
-  ,cvif2img_dat_rd_rsp_valid //|< i
-  ,img_dat2cvif_rd_req_ready //|< i
-  ,cvif2img_dat_rd_rsp_ready //|> o
-  ,img_dat2cvif_rd_req_pd //|> o
-  ,img_dat2cvif_rd_req_valid //|> o
   ,nvdla_core_clk //|< i
   ,nvdla_core_ng_clk //|< i
   ,nvdla_core_rstn //|< i
@@ -86,7 +80,7 @@ module NV_NVDLA_CDMA_img (
   ,dp2reg_img_rd_latency //|> o
   ,dp2reg_img_rd_stall //|> o
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -119,7 +113,6 @@ module NV_NVDLA_CDMA_img (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,img2cvt_dat_wr_sel
 ,img2cvt_dat_wr_addr
 ,img2cvt_dat_wr_data
 ,img2cvt_mn_wr_data
@@ -165,20 +158,14 @@ input nvdla_core_rstn;
 input [31:0] pwrbus_ram_pd;
 output img_dat2mcif_rd_req_valid;
 input img_dat2mcif_rd_req_ready;
-output [( 64 + 15 )-1:0] img_dat2mcif_rd_req_pd;
+output [( 32 + 15 )-1:0] img_dat2mcif_rd_req_pd;
 input mcif2img_dat_rd_rsp_valid;
 output mcif2img_dat_rd_rsp_ready;
 input [( 256 + (256/8/32) )-1:0] mcif2img_dat_rd_rsp_pd;
-output img_dat2cvif_rd_req_valid;
-input img_dat2cvif_rd_req_ready;
-output [( 64 + 15 )-1:0] img_dat2cvif_rd_req_pd;
-input cvif2img_dat_rd_rsp_valid;
-output cvif2img_dat_rd_rsp_ready;
-input [( 256 + (256/8/32) )-1:0] cvif2img_dat_rd_rsp_pd;
 output img2cvt_dat_wr_en;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -211,7 +198,6 @@ output img2cvt_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [1-1:0] img2cvt_dat_wr_sel ;
 output [16:0] img2cvt_dat_wr_addr;
 output [256-1:0] img2cvt_dat_wr_data;
 output [32*16-1:0] img2cvt_mn_wr_data;
@@ -408,12 +394,6 @@ NV_NVDLA_CDMA_IMG_ctrl u_ctrl (
 NV_NVDLA_CDMA_IMG_sg u_sg (
    .nvdla_core_clk (nvdla_core_clk)
   ,.nvdla_core_rstn (nvdla_core_rstn)
-  ,.cvif2img_dat_rd_rsp_pd (cvif2img_dat_rd_rsp_pd)
-  ,.cvif2img_dat_rd_rsp_valid (cvif2img_dat_rd_rsp_valid)
-  ,.img_dat2cvif_rd_req_ready (img_dat2cvif_rd_req_ready)
-  ,.cvif2img_dat_rd_rsp_ready (cvif2img_dat_rd_rsp_ready)
-  ,.img_dat2cvif_rd_req_pd (img_dat2cvif_rd_req_pd)
-  ,.img_dat2cvif_rd_req_valid (img_dat2cvif_rd_req_valid)
   ,.img2status_dat_entries (img2status_dat_entries)
   ,.img2status_dat_updt (img2status_dat_updt)
   ,.is_running (is_running)
@@ -537,7 +517,7 @@ NV_NVDLA_CDMA_IMG_pack u_pack (
   ,.status2dma_wr_idx (status2dma_wr_idx[14:0])
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -570,7 +550,6 @@ NV_NVDLA_CDMA_IMG_pack u_pack (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.img2cvt_dat_wr_sel (img2cvt_dat_wr_sel )
 ,.img2cvt_dat_wr_addr (img2cvt_dat_wr_addr )
 ,.img2cvt_dat_wr_data (img2cvt_dat_wr_data )
 ,.img2cvt_mn_wr_data (img2cvt_mn_wr_data )

@@ -77,14 +77,14 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input arb2spt_req_ready;
 output arb2spt_req_valid;
-output [64 +10:0] arb2spt_req_pd;
+output [32 +10:0] arb2spt_req_pd;
 //:my $k=8;
 //:my $i;
 //:for ($i=0;$i<$k;$i++) {
 //:print("input bpt2arb_req${i}_valid;\n");
 //:print("output bpt2arb_req${i}_ready;\n");
 //:print qq(
-//:input [64 +10:0] bpt2arb_req${i}_pd;
+//:input [32 +10:0] bpt2arb_req${i}_pd;
 //:);
 //:print("input [7:0] client${i}2mcif_rd_wt;\n");
 //:}
@@ -92,51 +92,51 @@ output [64 +10:0] arb2spt_req_pd;
 input bpt2arb_req0_valid;
 output bpt2arb_req0_ready;
 
-input [64 +10:0] bpt2arb_req0_pd;
+input [32 +10:0] bpt2arb_req0_pd;
 input [7:0] client02mcif_rd_wt;
 input bpt2arb_req1_valid;
 output bpt2arb_req1_ready;
 
-input [64 +10:0] bpt2arb_req1_pd;
+input [32 +10:0] bpt2arb_req1_pd;
 input [7:0] client12mcif_rd_wt;
 input bpt2arb_req2_valid;
 output bpt2arb_req2_ready;
 
-input [64 +10:0] bpt2arb_req2_pd;
+input [32 +10:0] bpt2arb_req2_pd;
 input [7:0] client22mcif_rd_wt;
 input bpt2arb_req3_valid;
 output bpt2arb_req3_ready;
 
-input [64 +10:0] bpt2arb_req3_pd;
+input [32 +10:0] bpt2arb_req3_pd;
 input [7:0] client32mcif_rd_wt;
 input bpt2arb_req4_valid;
 output bpt2arb_req4_ready;
 
-input [64 +10:0] bpt2arb_req4_pd;
+input [32 +10:0] bpt2arb_req4_pd;
 input [7:0] client42mcif_rd_wt;
 input bpt2arb_req5_valid;
 output bpt2arb_req5_ready;
 
-input [64 +10:0] bpt2arb_req5_pd;
+input [32 +10:0] bpt2arb_req5_pd;
 input [7:0] client52mcif_rd_wt;
 input bpt2arb_req6_valid;
 output bpt2arb_req6_ready;
 
-input [64 +10:0] bpt2arb_req6_pd;
+input [32 +10:0] bpt2arb_req6_pd;
 input [7:0] client62mcif_rd_wt;
 input bpt2arb_req7_valid;
 output bpt2arb_req7_ready;
 
-input [64 +10:0] bpt2arb_req7_pd;
+input [32 +10:0] bpt2arb_req7_pd;
 input [7:0] client72mcif_rd_wt;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-reg [64 +10:0] arb_pd;
+reg [32 +10:0] arb_pd;
 wire [15:0] arb_gnt;
 wire gnt_busy;
 //:my $k=8;
 //:my $i;
-//:my $w=eval(64 +10);
+//:my $w=eval(32 +10);
 //:for ($i=0;$i<$k;$i++) {
 //:print("wire  src${i}_req;\n");
 //:print("wire  src${i}_gnt;\n");
@@ -147,41 +147,41 @@ wire gnt_busy;
 wire  src0_req;
 wire  src0_gnt;
 wire [7:0]  wt0;
-wire [74:0] arb_src0_pd;
+wire [42:0] arb_src0_pd;
 wire  src1_req;
 wire  src1_gnt;
 wire [7:0]  wt1;
-wire [74:0] arb_src1_pd;
+wire [42:0] arb_src1_pd;
 wire  src2_req;
 wire  src2_gnt;
 wire [7:0]  wt2;
-wire [74:0] arb_src2_pd;
+wire [42:0] arb_src2_pd;
 wire  src3_req;
 wire  src3_gnt;
 wire [7:0]  wt3;
-wire [74:0] arb_src3_pd;
+wire [42:0] arb_src3_pd;
 wire  src4_req;
 wire  src4_gnt;
 wire [7:0]  wt4;
-wire [74:0] arb_src4_pd;
+wire [42:0] arb_src4_pd;
 wire  src5_req;
 wire  src5_gnt;
 wire [7:0]  wt5;
-wire [74:0] arb_src5_pd;
+wire [42:0] arb_src5_pd;
 wire  src6_req;
 wire  src6_gnt;
 wire [7:0]  wt6;
-wire [74:0] arb_src6_pd;
+wire [42:0] arb_src6_pd;
 wire  src7_req;
 wire  src7_gnt;
 wire [7:0]  wt7;
-wire [74:0] arb_src7_pd;
+wire [42:0] arb_src7_pd;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //
 //:my $k=8;
 //:my $i;
-//:my $w=eval(64 +10);
+//:my $w=eval(32 +10);
 //:for ($i=8;$i<16;$i++) {
 //: print("wire [$w:0] arb_src${i}_pd;\n");
 //: print("wire  src${i}_req;\n");
@@ -190,7 +190,7 @@ wire [74:0] arb_src7_pd;
 //:my $k=8;
 //:my $i;
 //:for ($i=0;$i<$k;$i++) {
-//:my $wid = 64 +11;
+//:my $wid = 32 +11;
 //:print qq(
 //:wire arb_src${i}_rdy, arb_src${i}_vld;
 //:NV_NVDLA_NOCIF_DRAM_READ_IG_ARB_pipe_p1 pipe_p1_${i} (
@@ -210,28 +210,28 @@ wire [74:0] arb_src7_pd;
 //:);
 //:}
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-wire [74:0] arb_src8_pd;
+wire [42:0] arb_src8_pd;
 wire  src8_req;
 wire  src8_gnt;
-wire [74:0] arb_src9_pd;
+wire [42:0] arb_src9_pd;
 wire  src9_req;
 wire  src9_gnt;
-wire [74:0] arb_src10_pd;
+wire [42:0] arb_src10_pd;
 wire  src10_req;
 wire  src10_gnt;
-wire [74:0] arb_src11_pd;
+wire [42:0] arb_src11_pd;
 wire  src11_req;
 wire  src11_gnt;
-wire [74:0] arb_src12_pd;
+wire [42:0] arb_src12_pd;
 wire  src12_req;
 wire  src12_gnt;
-wire [74:0] arb_src13_pd;
+wire [42:0] arb_src13_pd;
 wire  src13_req;
 wire  src13_gnt;
-wire [74:0] arb_src14_pd;
+wire [42:0] arb_src14_pd;
 wire  src14_req;
 wire  src14_gnt;
-wire [74:0] arb_src15_pd;
+wire [42:0] arb_src15_pd;
 wire  src15_req;
 wire  src15_gnt;
 
@@ -512,7 +512,7 @@ always @(
        src15_gnt: arb_pd = arb_src15_pd;
 //VCS coverage off
     default : begin
-                arb_pd[64 +10:0] = {64 +11{`x_or_0}};
+                arb_pd[32 +10:0] = {32 +11{`x_or_0}};
               end
 //VCS coverage on
     endcase
@@ -539,23 +539,23 @@ module NV_NVDLA_NOCIF_DRAM_READ_IG_ARB_pipe_p1 (
 input nvdla_core_clk;
 input nvdla_core_rstn;
 input arb_src0_rdy;
-input [64 +10:0] bpt2arb_req0_pd;
+input [32 +10:0] bpt2arb_req0_pd;
 input bpt2arb_req0_valid;
-output [64 +10:0] arb_src0_pd;
+output [32 +10:0] arb_src0_pd;
 output arb_src0_vld;
 output bpt2arb_req0_ready;
-reg [64 +10:0] arb_src0_pd;
+reg [32 +10:0] arb_src0_pd;
 reg arb_src0_vld;
 reg bpt2arb_req0_ready;
-reg [64 +10:0] p1_pipe_data;
+reg [32 +10:0] p1_pipe_data;
 reg p1_pipe_ready;
 reg p1_pipe_ready_bc;
-reg [64 +10:0] p1_pipe_skid_data;
+reg [32 +10:0] p1_pipe_skid_data;
 reg p1_pipe_skid_ready;
 reg p1_pipe_skid_valid;
 reg p1_pipe_valid;
 reg p1_skid_catch;
-reg [64 +10:0] p1_skid_data;
+reg [32 +10:0] p1_skid_data;
 reg p1_skid_ready;
 reg p1_skid_ready_flop;
 reg p1_skid_valid;
@@ -575,7 +575,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk) begin
 // VCS sop_coverage_off start
-  p1_pipe_data <= (p1_pipe_ready_bc && bpt2arb_req0_valid)? bpt2arb_req0_pd[64 +10:0] : p1_pipe_data;
+  p1_pipe_data <= (p1_pipe_ready_bc && bpt2arb_req0_valid)? bpt2arb_req0_pd[32 +10:0] : p1_pipe_data;
 // VCS sop_coverage_off end
 end
 always @(

@@ -6,7 +6,7 @@
 #define _DMA_WR_REQ_struct_H_
 
 typedef struct DMA_WR_REQ_s {
-    sc_int<64> addr ;
+    sc_int<32> addr ;
     sc_int<13> size ;
 } DMA_WR_REQ_t;
 

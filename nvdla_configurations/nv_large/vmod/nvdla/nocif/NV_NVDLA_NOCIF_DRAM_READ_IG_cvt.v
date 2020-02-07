@@ -48,7 +48,7 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input spt2cvt_req_valid; /* data valid */
 output spt2cvt_req_ready; /* data return handshake */
-input [64 +10:0] spt2cvt_req_pd;
+input [32 +10:0] spt2cvt_req_pd;
 output cq_wr_pvld; /* data valid */
 input cq_wr_prdy; /* data return handshake */
 output [3:0] cq_wr_thread_id;
@@ -57,7 +57,7 @@ output mcif2noc_axi_ar_arvalid; /* data valid */
 input mcif2noc_axi_ar_arready; /* data return handshake */
 output [7:0] mcif2noc_axi_ar_arid;
 output [3:0] mcif2noc_axi_ar_arlen;
-output [64 -1:0] mcif2noc_axi_ar_araddr;
+output [32 -1:0] mcif2noc_axi_ar_araddr;
 //&Ports /streamid/; //stepheng,remove
 input [7:0] reg2dp_rd_os_cnt;
 input eg2ig_axi_vld;
@@ -69,14 +69,14 @@ reg [10:0] os_cnt_ext;
 reg [10:0] os_cnt_mod;
 reg [10:0] os_cnt_new;
 reg [10:0] os_cnt_nxt;
-wire [64 -1:0] axi_addr;
+wire [32 -1:0] axi_addr;
 wire [3:0] axi_axid;
-wire [64 +5:0] axi_cmd_pd;
+wire [32 +5:0] axi_cmd_pd;
 wire axi_cmd_rdy;
 wire axi_cmd_vld;
 wire [1:0] axi_len;
 wire [7:0] cfg_rd_os_cnt;
-wire [64 -1:0] cmd_addr;
+wire [32 -1:0] cmd_addr;
 wire [3:0] cmd_axid;
 wire cmd_ftran;
 wire cmd_ltran;
@@ -97,10 +97,10 @@ wire ig2cq_swizzle;
 wire inc;
 wire mon_axi_len_c;
 wire mon_end_offset_c;
-wire [64 -1:0] opipe_axi_addr;
+wire [32 -1:0] opipe_axi_addr;
 wire [3:0] opipe_axi_axid;
 wire [1:0] opipe_axi_len;
-wire [64 +5:0] opipe_axi_pd;
+wire [32 +5:0] opipe_axi_pd;
 wire opipe_axi_rdy;
 wire opipe_axi_vld;
 wire [2:0] os_cnt_add;
@@ -128,12 +128,12 @@ assign cmd_vld = spt2cvt_req_valid;
 assign spt2cvt_req_ready = cmd_rdy;
 // PKT_UNPACK_WIRE( cvt_read_cmd , cmd_ , spt2cvt_req_pd )
 assign cmd_axid[3:0] = spt2cvt_req_pd[3:0];
-assign cmd_addr[64 -1:0] = spt2cvt_req_pd[64 +3:4];
-assign cmd_size[2:0] = spt2cvt_req_pd[64 +6:64 +4];
-assign cmd_swizzle = spt2cvt_req_pd[64 +7];
-assign cmd_odd = spt2cvt_req_pd[64 +8];
-assign cmd_ltran = spt2cvt_req_pd[64 +9];
-assign cmd_ftran = spt2cvt_req_pd[64 +10];
+assign cmd_addr[32 -1:0] = spt2cvt_req_pd[32 +3:4];
+assign cmd_size[2:0] = spt2cvt_req_pd[32 +6:32 +4];
+assign cmd_swizzle = spt2cvt_req_pd[32 +7];
+assign cmd_odd = spt2cvt_req_pd[32 +8];
+assign cmd_ltran = spt2cvt_req_pd[32 +9];
+assign cmd_ftran = spt2cvt_req_pd[32 +10];
 // IG===address calculation
 `ifdef SPYGLASS_ASSERT_ON
 `else
@@ -234,7 +234,7 @@ assign end_addr_is_32_align = (5 == 5)? 1'b0 : (end_offset[0]== 1'b0 );
 assign axi_axid = cmd_axid;
 //assign axi_addr = cmd_addr & 40'hff_ffff_ffc0; // make [5:0]=0
 //assign axi_addr = cmd_addr & 64'hffff_ffff_ffff_ffc0; // stepheng, ake [5:0]=0
-reg [64 -1:0] axi_addr_i;
+reg [32 -1:0] axi_addr_i;
 //:print qq(
 //:always @(cmd_addr) begin
 //: axi_addr_i = cmd_addr;
@@ -325,7 +325,7 @@ assign cq_wr_pd[5] = ig2cq_fdrop ;
 assign cq_wr_pd[6] = ig2cq_ldrop ;
 //:my $k = 8;
 //:my $i;
-//:my @dma_index = (0, 1, 1,1, 1,0, 1, 1, 1, 1,0,0,0,0,0,0);
+//:my @dma_index = (0, 1, 1,0, 0,0, 1, 1, 0, 0,0,0,0,0,0,0);
 //:my @client_id = (0,8,9,3,2,4,1,5,7,6,0,0,0,0,0,0);
 //:my @remap_clientid = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 //:my $nindex = 0;
@@ -341,7 +341,7 @@ assign cq_wr_pd[6] = ig2cq_ldrop ;
 //:}
 //: print qq(0;);
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-assign cq_wr_thread_id = (cmd_axid == 8) ? 0 :(cmd_axid == 9) ? 1 :(cmd_axid == 3) ? 2 :(cmd_axid == 2) ? 3 :(cmd_axid == 1) ? 4 :(cmd_axid == 5) ? 5 :(cmd_axid == 7) ? 6 :(cmd_axid == 6) ? 7 :0;
+assign cq_wr_thread_id = (cmd_axid == 8) ? 0 :(cmd_axid == 9) ? 1 :(cmd_axid == 1) ? 2 :(cmd_axid == 5) ? 3 :(cmd_axid == 0) ? 4 :(cmd_axid == 0) ? 5 :(cmd_axid == 0) ? 6 :(cmd_axid == 0) ? 7 :0;
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign cq_wr_thread_id = cmd_axid;
 // IG===AXI OUT PIPE
@@ -453,14 +453,14 @@ end
 NV_NVDLA_NOCIF_DRAM_READ_IG_CVT_pipe_p1 pipe_p1 (
    .nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.axi_cmd_pd (axi_cmd_pd[64 +5:0]) //|< w
+  ,.axi_cmd_pd (axi_cmd_pd[32 +5:0]) //|< w
   ,.axi_cmd_vld (axi_cmd_vld) //|< w
   ,.opipe_axi_rdy (opipe_axi_rdy) //|< w
   ,.axi_cmd_rdy (axi_cmd_rdy) //|> w
-  ,.opipe_axi_pd (opipe_axi_pd[64 +5:0]) //|> w
+  ,.opipe_axi_pd (opipe_axi_pd[32 +5:0]) //|> w
   ,.opipe_axi_vld (opipe_axi_vld) //|> w
   );
-//my $w = eval(64 +6);
+//my $w = eval(32 +6);
 // &eperl::pipe("-is -wid $w -do opipe_axi_pd -vo opipe_axi_vld -ri axi_cmd_rdy -di axi_cmd_pd -vi axi_cmd_vld -ro opipe_axi_rdy");
 //stepheng,remove streamid & user_size & axi_size
 assign axi_cmd_pd = {axi_axid,axi_addr,axi_len};
@@ -504,7 +504,7 @@ assign opipe_axi_rdy = mcif2noc_axi_ar_arready;
 //assign obs_bus_mcif_read_ig_cvt_ig2cq_swizzle = ig2cq_swizzle;
 //assign obs_bus_mcif_read_ig_cvt_ig2cq_thread_id = cq_wr_thread_id;
 `ifdef NVDLA_PRINT_AXI
-reg [64 -1:0] mon_axi_count;
+reg [32 -1:0] mon_axi_count;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     if (!nvdla_core_rstn) begin
         mon_axi_count <= 0;
@@ -529,22 +529,22 @@ module NV_NVDLA_NOCIF_DRAM_READ_IG_CVT_pipe_p1 (
   );
 input nvdla_core_clk;
 input nvdla_core_rstn;
-input [64 +5:0] axi_cmd_pd;
+input [32 +5:0] axi_cmd_pd;
 input axi_cmd_vld;
 input opipe_axi_rdy;
 output axi_cmd_rdy;
-output [64 +5:0] opipe_axi_pd;
+output [32 +5:0] opipe_axi_pd;
 output opipe_axi_vld;
 reg axi_cmd_rdy;
-reg [64 +5:0] opipe_axi_pd;
+reg [32 +5:0] opipe_axi_pd;
 reg opipe_axi_vld;
-reg [64 +5:0] p1_pipe_data;
+reg [32 +5:0] p1_pipe_data;
 reg p1_pipe_ready;
 reg p1_pipe_ready_bc;
 reg p1_pipe_valid;
 reg p1_skid_catch;
-reg [64 +5:0] p1_skid_data;
-reg [64 +5:0] p1_skid_pipe_data;
+reg [32 +5:0] p1_skid_data;
+reg [32 +5:0] p1_skid_pipe_data;
 reg p1_skid_pipe_ready;
 reg p1_skid_pipe_valid;
 reg p1_skid_ready;
@@ -573,7 +573,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk) begin
 // VCS sop_coverage_off start
-  p1_skid_data <= (p1_skid_catch)? axi_cmd_pd[64 +5:0] : p1_skid_data;
+  p1_skid_data <= (p1_skid_catch)? axi_cmd_pd[32 +5:0] : p1_skid_data;
 // VCS sop_coverage_off end
 end
 always @(
@@ -585,7 +585,7 @@ always @(
   ) begin
   p1_skid_pipe_valid = (p1_skid_ready_flop)? axi_cmd_vld : p1_skid_valid;
 // VCS sop_coverage_off start
-  p1_skid_pipe_data = (p1_skid_ready_flop)? axi_cmd_pd[64 +5:0] : p1_skid_data;
+  p1_skid_pipe_data = (p1_skid_ready_flop)? axi_cmd_pd[32 +5:0] : p1_skid_data;
 // VCS sop_coverage_off end
 end
 //## pipe (1) valid-ready-bubble-collapse

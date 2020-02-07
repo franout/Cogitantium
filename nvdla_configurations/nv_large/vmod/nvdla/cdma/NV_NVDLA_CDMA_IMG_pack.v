@@ -79,7 +79,7 @@ module NV_NVDLA_CDMA_IMG_pack (
   ,status2dma_wr_idx
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -112,7 +112,6 @@ module NV_NVDLA_CDMA_IMG_pack (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,img2cvt_dat_wr_sel
 ,img2cvt_dat_wr_addr
 ,img2cvt_dat_wr_data
 ,img2cvt_mn_wr_data
@@ -178,7 +177,7 @@ input [3:0] sg2pack_sub_h_st;
 input [14:0] status2dma_wr_idx;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -211,7 +210,6 @@ input [14:0] status2dma_wr_idx;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [1-1:0] img2cvt_dat_wr_sel;
 output [16:0] img2cvt_dat_wr_addr;
 output [256-1:0] img2cvt_dat_wr_data;
 output [32*16-1:0] img2cvt_mn_wr_data;
@@ -303,7 +301,7 @@ reg pk_out_ext128;
 //reg pk_out_ext64;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -311,8 +309,6 @@ reg pk_out_ext128;
 //: );
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-
-reg [1-1:0] pk_out_hsel;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 reg [3:0] pk_out_mask;
@@ -2996,7 +2992,7 @@ end
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 ///////// total_address ////////
 //: my $dmaif = (256/8);
-//: my $atmc = 64;
+//: my $atmc = 32;
 //: my $atmm = 32;
 //: my $Bnum = int( $dmaif/$atmm );
 //: my $Cnum = int( $atmc/$atmm );
@@ -3043,23 +3039,7 @@ end
 //: &eperl::flop("-nodeclare   -rval \"{15{1'b0}}\"  -en \"pk_rsp_wr_vld\" -d \"pk_rsp_wr_addr\" -q pk_out_addr");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign pk_rsp_wr_addr_inc = pk_rsp_wr_base + pk_rsp_wr_h_offset + pk_rsp_wr_w_offset[14:1];
-
-assign pk_rsp_wr_sub_addr = pk_rsp_wr_w_offset[1-1:0];
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       pk_out_hsel <= 1'b0;
-   end else begin
-       if ((pk_rsp_wr_vld) == 1'b1) begin
-           pk_out_hsel <= pk_rsp_wr_sub_addr[0];
-       // VCS coverage off
-       end else if ((pk_rsp_wr_vld) == 1'b0) begin
-       end else begin
-           pk_out_hsel <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
+assign pk_rsp_wr_addr_inc = pk_rsp_wr_base + pk_rsp_wr_h_offset + pk_rsp_wr_w_offset[14:0];
 
 assign is_addr_wrap = (pk_rsp_wr_addr_inc[15 +1: 9 ] >= {{(11-9){1'd0}}, pixel_bank});
 assign {mon_pk_rsp_wr_addr_wrap[2:0], pk_rsp_wr_addr_wrap} = pk_rsp_wr_addr_inc[16 : 0] - {{(11-9){1'b0}},pixel_bank,{9{1'b0}}};
@@ -3140,7 +3120,7 @@ assign img2cvt_dat_wr_info_pd = pk_out_info_pd;
 //assign img2cvt_mn_wr_data = pk_mn_out_data;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -3173,8 +3153,7 @@ assign img2cvt_dat_wr_info_pd = pk_out_info_pd;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign img2cvt_dat_wr_sel = pk_out_hsel;
-assign img2cvt_dat_wr_addr = pk_out_addr;
+assign img2cvt_dat_wr_addr = {2'd0,pk_out_addr};
 assign img2cvt_dat_wr_data = pk_out_data;
 assign img2cvt_mn_wr_data = pk_mn_out_data;
 assign img2cvt_dat_wr_pad_mask = pk_out_pad_mask;

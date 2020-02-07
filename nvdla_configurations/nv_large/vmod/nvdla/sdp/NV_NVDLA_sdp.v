@@ -22,38 +22,6 @@ module NV_NVDLA_sdp (
   ,csb2sdp_rdma_req_pvld //|< i
   ,csb2sdp_req_pd //|< i
   ,csb2sdp_req_pvld //|< i
-  ,sdp_b2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_b2cvif_rd_req_pd //|> o
-  ,sdp_b2cvif_rd_req_valid //|> o
-  ,sdp_b2cvif_rd_req_ready //|< i
-  ,cvif2sdp_b_rd_rsp_pd //|< i
-  ,cvif2sdp_b_rd_rsp_valid //|< i
-  ,cvif2sdp_b_rd_rsp_ready //|> o
-  ,sdp_e2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_e2cvif_rd_req_pd //|> o
-  ,sdp_e2cvif_rd_req_valid //|> o
-  ,sdp_e2cvif_rd_req_ready //|< i
-  ,cvif2sdp_e_rd_rsp_pd //|< i
-  ,cvif2sdp_e_rd_rsp_valid //|< i
-  ,cvif2sdp_e_rd_rsp_ready //|> o
-  ,sdp_n2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_n2cvif_rd_req_pd //|> o
-  ,sdp_n2cvif_rd_req_valid //|> o
-  ,sdp_n2cvif_rd_req_ready //|< i
-  ,cvif2sdp_n_rd_rsp_pd //|< i
-  ,cvif2sdp_n_rd_rsp_valid //|< i
-  ,cvif2sdp_n_rd_rsp_ready //|> o
-  ,sdp2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp2cvif_rd_req_pd //|> o
-  ,sdp2cvif_rd_req_valid //|> o
-  ,sdp2cvif_rd_req_ready //|< i
-  ,cvif2sdp_rd_rsp_pd //|< i
-  ,cvif2sdp_rd_rsp_valid //|< i
-  ,cvif2sdp_rd_rsp_ready //|> o
-  ,sdp2cvif_wr_req_pd //|> o
-  ,sdp2cvif_wr_req_valid //|> o
-  ,sdp2cvif_wr_req_ready //|< i
-  ,cvif2sdp_wr_rsp_complete //|< i
   ,dla_clk_ovr_on_sync //|< i
   ,global_clk_ovr_on_sync //|< i
   ,sdp_b2mcif_rd_cdt_lat_fifo_pop //|> o
@@ -63,20 +31,6 @@ module NV_NVDLA_sdp (
   ,mcif2sdp_b_rd_rsp_pd //|< i
   ,mcif2sdp_b_rd_rsp_valid //|< i
   ,mcif2sdp_b_rd_rsp_ready //|> o
-  ,sdp_e2mcif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_e2mcif_rd_req_pd //|> o
-  ,sdp_e2mcif_rd_req_valid //|> o
-  ,sdp_e2mcif_rd_req_ready //|< i
-  ,mcif2sdp_e_rd_rsp_pd //|< i
-  ,mcif2sdp_e_rd_rsp_valid //|< i
-  ,mcif2sdp_e_rd_rsp_ready //|> o
-  ,sdp_n2mcif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_n2mcif_rd_req_pd //|> o
-  ,sdp_n2mcif_rd_req_valid //|> o
-  ,sdp_n2mcif_rd_req_ready //|< i
-  ,mcif2sdp_n_rd_rsp_pd //|< i
-  ,mcif2sdp_n_rd_rsp_valid //|< i
-  ,mcif2sdp_n_rd_rsp_ready //|> o
   ,sdp2mcif_rd_cdt_lat_fifo_pop //|> o
   ,sdp2mcif_rd_req_pd //|> o
   ,sdp2mcif_rd_req_valid //|> o
@@ -129,63 +83,17 @@ output csb2sdp_req_prdy;
 input [62:0] csb2sdp_req_pd;
 output sdp2csb_resp_valid;
 output [33:0] sdp2csb_resp_pd;
-output sdp_b2cvif_rd_cdt_lat_fifo_pop;
-output sdp_b2cvif_rd_req_valid;
-input sdp_b2cvif_rd_req_ready;
-output [79 -1:0] sdp_b2cvif_rd_req_pd;
-input cvif2sdp_b_rd_rsp_valid;
-output cvif2sdp_b_rd_rsp_ready;
-input [257 -1:0] cvif2sdp_b_rd_rsp_pd;
-output sdp_e2cvif_rd_cdt_lat_fifo_pop;
-output sdp_e2cvif_rd_req_valid;
-input sdp_e2cvif_rd_req_ready;
-output [79 -1:0] sdp_e2cvif_rd_req_pd;
-input cvif2sdp_e_rd_rsp_valid;
-output cvif2sdp_e_rd_rsp_ready;
-input [257 -1:0] cvif2sdp_e_rd_rsp_pd;
-output sdp_n2cvif_rd_cdt_lat_fifo_pop;
-output sdp_n2cvif_rd_req_valid;
-input sdp_n2cvif_rd_req_ready;
-output [79 -1:0] sdp_n2cvif_rd_req_pd;
-input cvif2sdp_n_rd_rsp_valid;
-output cvif2sdp_n_rd_rsp_ready;
-input [257 -1:0] cvif2sdp_n_rd_rsp_pd;
-output sdp2cvif_rd_cdt_lat_fifo_pop;
-output sdp2cvif_rd_req_valid;
-input sdp2cvif_rd_req_ready;
-output [79 -1:0] sdp2cvif_rd_req_pd;
-input cvif2sdp_rd_rsp_valid;
-output cvif2sdp_rd_rsp_ready;
-input [257 -1:0] cvif2sdp_rd_rsp_pd;
-output sdp2cvif_wr_req_valid;
-input sdp2cvif_wr_req_ready;
-output [258 -1:0] sdp2cvif_wr_req_pd;
-input cvif2sdp_wr_rsp_complete;
 output sdp_b2mcif_rd_cdt_lat_fifo_pop;
 output sdp_b2mcif_rd_req_valid;
 input sdp_b2mcif_rd_req_ready;
-output [79 -1:0] sdp_b2mcif_rd_req_pd;
+output [47 -1:0] sdp_b2mcif_rd_req_pd;
 input mcif2sdp_b_rd_rsp_valid;
 output mcif2sdp_b_rd_rsp_ready;
 input [257 -1:0] mcif2sdp_b_rd_rsp_pd;
-output sdp_e2mcif_rd_cdt_lat_fifo_pop;
-output sdp_e2mcif_rd_req_valid;
-input sdp_e2mcif_rd_req_ready;
-output [79 -1:0] sdp_e2mcif_rd_req_pd;
-input mcif2sdp_e_rd_rsp_valid;
-output mcif2sdp_e_rd_rsp_ready;
-input [257 -1:0] mcif2sdp_e_rd_rsp_pd;
-output sdp_n2mcif_rd_cdt_lat_fifo_pop;
-output sdp_n2mcif_rd_req_valid;
-input sdp_n2mcif_rd_req_ready;
-output [79 -1:0] sdp_n2mcif_rd_req_pd;
-input mcif2sdp_n_rd_rsp_valid;
-output mcif2sdp_n_rd_rsp_ready;
-input [257 -1:0] mcif2sdp_n_rd_rsp_pd;
 output sdp2mcif_rd_cdt_lat_fifo_pop;
 output sdp2mcif_rd_req_valid;
 input sdp2mcif_rd_req_ready;
-output [79 -1:0] sdp2mcif_rd_req_pd;
+output [47 -1:0] sdp2mcif_rd_req_pd;
 input mcif2sdp_rd_rsp_valid;
 output mcif2sdp_rd_rsp_ready;
 input [257 -1:0] mcif2sdp_rd_rsp_pd;
@@ -203,18 +111,6 @@ wire reg2dp_bcore_slcg_op_en;
 wire reg2dp_flying_mode;
 wire [12:0] reg2dp_height;
 wire reg2dp_interrupt_ptr;
-wire [1:0] reg2dp_bn_alu_algo;
-wire reg2dp_bn_alu_bypass;
-wire [15:0] reg2dp_bn_alu_operand;
-wire [5:0] reg2dp_bn_alu_shift_value;
-wire reg2dp_bn_alu_src;
-wire reg2dp_bn_bypass;
-wire reg2dp_bn_mul_bypass;
-wire [15:0] reg2dp_bn_mul_operand;
-wire reg2dp_bn_mul_prelu;
-wire [7:0] reg2dp_bn_mul_shift_value;
-wire reg2dp_bn_mul_src;
-wire reg2dp_bn_relu_bypass;
 wire [1:0] reg2dp_bs_alu_algo;
 wire reg2dp_bs_alu_bypass;
 wire [15:0] reg2dp_bs_alu_operand;
@@ -238,56 +134,6 @@ wire [31:0] reg2dp_dst_line_stride;
 wire reg2dp_dst_ram_type;
 wire [31:0] reg2dp_dst_surface_stride;
 wire reg2dp_ecore_slcg_op_en;
-wire [1:0] reg2dp_ew_alu_algo;
-wire reg2dp_ew_alu_bypass;
-wire reg2dp_ew_alu_cvt_bypass;
-wire [31:0] reg2dp_ew_alu_cvt_offset;
-wire [15:0] reg2dp_ew_alu_cvt_scale;
-wire [5:0] reg2dp_ew_alu_cvt_truncate;
-wire [31:0] reg2dp_ew_alu_operand;
-wire reg2dp_ew_alu_src;
-wire reg2dp_ew_bypass;
-wire reg2dp_ew_lut_bypass;
-wire reg2dp_ew_mul_bypass;
-wire reg2dp_ew_mul_cvt_bypass;
-wire [31:0] reg2dp_ew_mul_cvt_offset;
-wire [15:0] reg2dp_ew_mul_cvt_scale;
-wire [5:0] reg2dp_ew_mul_cvt_truncate;
-wire [31:0] reg2dp_ew_mul_operand;
-wire reg2dp_ew_mul_prelu;
-wire reg2dp_ew_mul_src;
-wire [9:0] reg2dp_ew_truncate;
-wire reg2dp_lut_hybrid_priority;
-wire reg2dp_lut_int_access_type;
-wire [9:0] reg2dp_lut_int_addr;
-wire [15:0] reg2dp_lut_int_data;
-wire reg2dp_lut_int_data_wr;
-wire reg2dp_lut_int_table_id;
-wire [31:0] reg2dp_lut_le_end;
-wire reg2dp_lut_le_function;
-wire [7:0] reg2dp_lut_le_index_offset;
-wire [7:0] reg2dp_lut_le_index_select;
-wire [15:0] reg2dp_lut_le_slope_oflow_scale;
-wire [4:0] reg2dp_lut_le_slope_oflow_shift;
-wire [15:0] reg2dp_lut_le_slope_uflow_scale;
-wire [4:0] reg2dp_lut_le_slope_uflow_shift;
-wire [31:0] reg2dp_lut_le_start;
-wire [31:0] reg2dp_lut_lo_end;
-wire [7:0] reg2dp_lut_lo_index_select;
-wire [15:0] reg2dp_lut_lo_slope_oflow_scale;
-wire [4:0] reg2dp_lut_lo_slope_oflow_shift;
-wire [15:0] reg2dp_lut_lo_slope_uflow_scale;
-wire [4:0] reg2dp_lut_lo_slope_uflow_shift;
-wire [31:0] reg2dp_lut_lo_start;
-wire reg2dp_lut_oflow_priority;
-wire reg2dp_lut_slcg_en;
-wire reg2dp_lut_uflow_priority;
-wire [31:0] dp2reg_lut_hybrid;
-wire [15:0] dp2reg_lut_int_data;
-wire [31:0] dp2reg_lut_le_hit;
-wire [31:0] dp2reg_lut_lo_hit;
-wire [31:0] dp2reg_lut_oflow;
-wire [31:0] dp2reg_lut_uflow;
 wire reg2dp_nan_to_zero;
 wire reg2dp_ncore_slcg_op_en;
 wire reg2dp_op_en;
@@ -312,18 +158,6 @@ wire sdp_brdma2dp_alu_valid;
 wire [32*16:0] sdp_brdma2dp_mul_pd;
 wire sdp_brdma2dp_mul_ready;
 wire sdp_brdma2dp_mul_valid;
-wire [32*16:0] sdp_erdma2dp_alu_pd;
-wire sdp_erdma2dp_alu_ready;
-wire sdp_erdma2dp_alu_valid;
-wire [32*16:0] sdp_erdma2dp_mul_pd;
-wire sdp_erdma2dp_mul_ready;
-wire sdp_erdma2dp_mul_valid;
-wire [32*16:0] sdp_nrdma2dp_alu_pd;
-wire sdp_nrdma2dp_alu_ready;
-wire sdp_nrdma2dp_alu_valid;
-wire [32*16:0] sdp_nrdma2dp_mul_pd;
-wire sdp_nrdma2dp_mul_ready;
-wire sdp_nrdma2dp_mul_valid;
 //=======================================
 //DMA
 //---------------------------------------
@@ -339,59 +173,17 @@ NV_NVDLA_SDP_rdma u_rdma (
   ,.sdp_mrdma2cmux_valid (sdp_mrdma2cmux_valid)
   ,.sdp_mrdma2cmux_ready (sdp_mrdma2cmux_ready)
   ,.sdp_mrdma2cmux_pd (sdp_mrdma2cmux_pd[32*32 +1:0])
-  ,.sdp_b2cvif_rd_cdt_lat_fifo_pop (sdp_b2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_b2cvif_rd_req_valid (sdp_b2cvif_rd_req_valid)
-  ,.sdp_b2cvif_rd_req_ready (sdp_b2cvif_rd_req_ready)
-  ,.sdp_b2cvif_rd_req_pd (sdp_b2cvif_rd_req_pd[79 -1:0])
-  ,.cvif2sdp_b_rd_rsp_valid (cvif2sdp_b_rd_rsp_valid)
-  ,.cvif2sdp_b_rd_rsp_ready (cvif2sdp_b_rd_rsp_ready)
-  ,.cvif2sdp_b_rd_rsp_pd (cvif2sdp_b_rd_rsp_pd[257 -1:0])
-  ,.sdp_e2cvif_rd_cdt_lat_fifo_pop (sdp_e2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_e2cvif_rd_req_valid (sdp_e2cvif_rd_req_valid)
-  ,.sdp_e2cvif_rd_req_ready (sdp_e2cvif_rd_req_ready)
-  ,.sdp_e2cvif_rd_req_pd (sdp_e2cvif_rd_req_pd[79 -1:0])
-  ,.cvif2sdp_e_rd_rsp_valid (cvif2sdp_e_rd_rsp_valid)
-  ,.cvif2sdp_e_rd_rsp_ready (cvif2sdp_e_rd_rsp_ready)
-  ,.cvif2sdp_e_rd_rsp_pd (cvif2sdp_e_rd_rsp_pd[257 -1:0])
-  ,.sdp_n2cvif_rd_cdt_lat_fifo_pop (sdp_n2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2cvif_rd_req_valid (sdp_n2cvif_rd_req_valid)
-  ,.sdp_n2cvif_rd_req_ready (sdp_n2cvif_rd_req_ready)
-  ,.sdp_n2cvif_rd_req_pd (sdp_n2cvif_rd_req_pd[79 -1:0])
-  ,.cvif2sdp_n_rd_rsp_valid (cvif2sdp_n_rd_rsp_valid)
-  ,.cvif2sdp_n_rd_rsp_ready (cvif2sdp_n_rd_rsp_ready)
-  ,.cvif2sdp_n_rd_rsp_pd (cvif2sdp_n_rd_rsp_pd[257 -1:0])
-  ,.sdp2cvif_rd_cdt_lat_fifo_pop (sdp2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp2cvif_rd_req_valid (sdp2cvif_rd_req_valid)
-  ,.sdp2cvif_rd_req_ready (sdp2cvif_rd_req_ready)
-  ,.sdp2cvif_rd_req_pd (sdp2cvif_rd_req_pd[79 -1:0])
-  ,.cvif2sdp_rd_rsp_valid (cvif2sdp_rd_rsp_valid)
-  ,.cvif2sdp_rd_rsp_ready (cvif2sdp_rd_rsp_ready)
-  ,.cvif2sdp_rd_rsp_pd (cvif2sdp_rd_rsp_pd[257 -1:0])
   ,.sdp_b2mcif_rd_cdt_lat_fifo_pop (sdp_b2mcif_rd_cdt_lat_fifo_pop)
   ,.sdp_b2mcif_rd_req_valid (sdp_b2mcif_rd_req_valid)
   ,.sdp_b2mcif_rd_req_ready (sdp_b2mcif_rd_req_ready)
-  ,.sdp_b2mcif_rd_req_pd (sdp_b2mcif_rd_req_pd[79 -1:0])
+  ,.sdp_b2mcif_rd_req_pd (sdp_b2mcif_rd_req_pd[47 -1:0])
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid)
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready)
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd[257 -1:0])
-  ,.sdp_e2mcif_rd_cdt_lat_fifo_pop (sdp_e2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_e2mcif_rd_req_valid (sdp_e2mcif_rd_req_valid)
-  ,.sdp_e2mcif_rd_req_ready (sdp_e2mcif_rd_req_ready)
-  ,.sdp_e2mcif_rd_req_pd (sdp_e2mcif_rd_req_pd[79 -1:0])
-  ,.mcif2sdp_e_rd_rsp_valid (mcif2sdp_e_rd_rsp_valid)
-  ,.mcif2sdp_e_rd_rsp_ready (mcif2sdp_e_rd_rsp_ready)
-  ,.mcif2sdp_e_rd_rsp_pd (mcif2sdp_e_rd_rsp_pd[257 -1:0])
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd[79 -1:0])
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd[257 -1:0])
   ,.sdp2mcif_rd_cdt_lat_fifo_pop (sdp2mcif_rd_cdt_lat_fifo_pop)
   ,.sdp2mcif_rd_req_valid (sdp2mcif_rd_req_valid)
   ,.sdp2mcif_rd_req_ready (sdp2mcif_rd_req_ready)
-  ,.sdp2mcif_rd_req_pd (sdp2mcif_rd_req_pd[79 -1:0])
+  ,.sdp2mcif_rd_req_pd (sdp2mcif_rd_req_pd[47 -1:0])
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid)
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready)
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd[257 -1:0])
@@ -401,18 +193,6 @@ NV_NVDLA_SDP_rdma u_rdma (
   ,.sdp_brdma2dp_mul_valid (sdp_brdma2dp_mul_valid)
   ,.sdp_brdma2dp_mul_ready (sdp_brdma2dp_mul_ready)
   ,.sdp_brdma2dp_mul_pd (sdp_brdma2dp_mul_pd[32*16:0])
-  ,.sdp_erdma2dp_alu_valid (sdp_erdma2dp_alu_valid)
-  ,.sdp_erdma2dp_alu_ready (sdp_erdma2dp_alu_ready)
-  ,.sdp_erdma2dp_alu_pd (sdp_erdma2dp_alu_pd[32*16:0])
-  ,.sdp_erdma2dp_mul_valid (sdp_erdma2dp_mul_valid)
-  ,.sdp_erdma2dp_mul_ready (sdp_erdma2dp_mul_ready)
-  ,.sdp_erdma2dp_mul_pd (sdp_erdma2dp_mul_pd[32*16:0])
-  ,.sdp_nrdma2dp_alu_valid (sdp_nrdma2dp_alu_valid)
-  ,.sdp_nrdma2dp_alu_ready (sdp_nrdma2dp_alu_ready)
-  ,.sdp_nrdma2dp_alu_pd (sdp_nrdma2dp_alu_pd[32*16:0])
-  ,.sdp_nrdma2dp_mul_valid (sdp_nrdma2dp_mul_valid)
-  ,.sdp_nrdma2dp_mul_ready (sdp_nrdma2dp_mul_ready)
-  ,.sdp_nrdma2dp_mul_pd (sdp_nrdma2dp_mul_pd[32*16:0])
   ,.dla_clk_ovr_on_sync (dla_clk_ovr_on_sync)
   ,.global_clk_ovr_on_sync (global_clk_ovr_on_sync)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
@@ -424,10 +204,6 @@ NV_NVDLA_SDP_wdma u_wdma (
   ,.dla_clk_ovr_on_sync (dla_clk_ovr_on_sync)
   ,.global_clk_ovr_on_sync (global_clk_ovr_on_sync)
   ,.tmc2slcg_disable_clock_gating (tmc2slcg_disable_clock_gating)
-  ,.sdp2cvif_wr_req_valid (sdp2cvif_wr_req_valid)
-  ,.sdp2cvif_wr_req_ready (sdp2cvif_wr_req_ready)
-  ,.sdp2cvif_wr_req_pd (sdp2cvif_wr_req_pd[258 -1:0])
-  ,.cvif2sdp_wr_rsp_complete (cvif2sdp_wr_rsp_complete)
   ,.sdp2glb_done_intr_pd (sdp2glb_done_intr_pd[1:0])
   ,.sdp2mcif_wr_req_valid (sdp2mcif_wr_req_valid)
   ,.sdp2mcif_wr_req_ready (sdp2mcif_wr_req_ready)
@@ -436,9 +212,9 @@ NV_NVDLA_SDP_wdma u_wdma (
   ,.sdp_dp2wdma_valid (sdp_dp2wdma_valid)
   ,.sdp_dp2wdma_ready (sdp_dp2wdma_ready)
   ,.sdp_dp2wdma_pd (sdp_dp2wdma_pd[32*8 -1:0])
-  ,.reg2dp_ew_alu_algo (reg2dp_ew_alu_algo[1:0])
-  ,.reg2dp_ew_alu_bypass (reg2dp_ew_alu_bypass)
-  ,.reg2dp_ew_bypass (reg2dp_ew_bypass)
+  ,.reg2dp_ew_alu_algo ( 2'b0 ) //reg2dp_ew_alu_algo[1:0])               
+  ,.reg2dp_ew_alu_bypass ( 1'b1 ) //reg2dp_ew_alu_bypass)                  
+  ,.reg2dp_ew_bypass ( 1'b1 ) //reg2dp_ew_bypass)                      
   ,.reg2dp_op_en (reg2dp_op_en)
   ,.reg2dp_wdma_slcg_op_en (reg2dp_wdma_slcg_op_en)
   ,.reg2dp_output_dst (reg2dp_output_dst)
@@ -484,18 +260,6 @@ NV_NVDLA_SDP_core u_core (
   ,.sdp_brdma2dp_alu_valid (sdp_brdma2dp_alu_valid)
   ,.sdp_brdma2dp_alu_ready (sdp_brdma2dp_alu_ready)
   ,.sdp_brdma2dp_alu_pd (sdp_brdma2dp_alu_pd[32*16:0])
-  ,.sdp_nrdma2dp_mul_valid (sdp_nrdma2dp_mul_valid)
-  ,.sdp_nrdma2dp_mul_ready (sdp_nrdma2dp_mul_ready)
-  ,.sdp_nrdma2dp_mul_pd (sdp_nrdma2dp_mul_pd[32*16:0])
-  ,.sdp_nrdma2dp_alu_valid (sdp_nrdma2dp_alu_valid)
-  ,.sdp_nrdma2dp_alu_ready (sdp_nrdma2dp_alu_ready)
-  ,.sdp_nrdma2dp_alu_pd (sdp_nrdma2dp_alu_pd[32*16:0])
-  ,.sdp_erdma2dp_mul_valid (sdp_erdma2dp_mul_valid)
-  ,.sdp_erdma2dp_mul_ready (sdp_erdma2dp_mul_ready)
-  ,.sdp_erdma2dp_mul_pd (sdp_erdma2dp_mul_pd[32*16:0])
-  ,.sdp_erdma2dp_alu_valid (sdp_erdma2dp_alu_valid)
-  ,.sdp_erdma2dp_alu_ready (sdp_erdma2dp_alu_ready)
-  ,.sdp_erdma2dp_alu_pd (sdp_erdma2dp_alu_pd[32*16:0])
   ,.sdp_dp2wdma_valid (sdp_dp2wdma_valid)
   ,.sdp_dp2wdma_ready (sdp_dp2wdma_ready)
   ,.sdp_dp2wdma_pd (sdp_dp2wdma_pd[32*8 -1:0])
@@ -503,18 +267,6 @@ NV_NVDLA_SDP_core u_core (
   ,.sdp2pdp_ready (sdp2pdp_ready)
   ,.sdp2pdp_pd (sdp2pdp_pd[8*16 -1:0])
   ,.reg2dp_ncore_slcg_op_en (reg2dp_ncore_slcg_op_en)
-  ,.reg2dp_bn_alu_algo (reg2dp_bn_alu_algo[1:0])
-  ,.reg2dp_bn_alu_bypass (reg2dp_bn_alu_bypass)
-  ,.reg2dp_bn_alu_operand (reg2dp_bn_alu_operand[15:0])
-  ,.reg2dp_bn_alu_shift_value (reg2dp_bn_alu_shift_value[5:0])
-  ,.reg2dp_bn_alu_src (reg2dp_bn_alu_src)
-  ,.reg2dp_bn_bypass (reg2dp_bn_bypass)
-  ,.reg2dp_bn_mul_bypass (reg2dp_bn_mul_bypass)
-  ,.reg2dp_bn_mul_operand (reg2dp_bn_mul_operand[15:0])
-  ,.reg2dp_bn_mul_prelu (reg2dp_bn_mul_prelu)
-  ,.reg2dp_bn_mul_shift_value (reg2dp_bn_mul_shift_value[7:0])
-  ,.reg2dp_bn_mul_src (reg2dp_bn_mul_src)
-  ,.reg2dp_bn_relu_bypass (reg2dp_bn_relu_bypass)
   ,.reg2dp_bcore_slcg_op_en (reg2dp_bcore_slcg_op_en)
   ,.reg2dp_bs_alu_algo (reg2dp_bs_alu_algo[1:0])
   ,.reg2dp_bs_alu_bypass (reg2dp_bs_alu_bypass)
@@ -529,56 +281,6 @@ NV_NVDLA_SDP_core u_core (
   ,.reg2dp_bs_mul_src (reg2dp_bs_mul_src)
   ,.reg2dp_bs_relu_bypass (reg2dp_bs_relu_bypass)
   ,.reg2dp_ecore_slcg_op_en (reg2dp_ecore_slcg_op_en)
-  ,.reg2dp_ew_alu_algo (reg2dp_ew_alu_algo[1:0])
-  ,.reg2dp_ew_alu_bypass (reg2dp_ew_alu_bypass)
-  ,.reg2dp_ew_alu_cvt_bypass (reg2dp_ew_alu_cvt_bypass)
-  ,.reg2dp_ew_alu_cvt_offset (reg2dp_ew_alu_cvt_offset[31:0])
-  ,.reg2dp_ew_alu_cvt_scale (reg2dp_ew_alu_cvt_scale[15:0])
-  ,.reg2dp_ew_alu_cvt_truncate (reg2dp_ew_alu_cvt_truncate[5:0])
-  ,.reg2dp_ew_alu_operand (reg2dp_ew_alu_operand[31:0])
-  ,.reg2dp_ew_alu_src (reg2dp_ew_alu_src)
-  ,.reg2dp_ew_bypass (reg2dp_ew_bypass)
-  ,.reg2dp_ew_lut_bypass (reg2dp_ew_lut_bypass)
-  ,.reg2dp_ew_mul_bypass (reg2dp_ew_mul_bypass)
-  ,.reg2dp_ew_mul_cvt_bypass (reg2dp_ew_mul_cvt_bypass)
-  ,.reg2dp_ew_mul_cvt_offset (reg2dp_ew_mul_cvt_offset[31:0])
-  ,.reg2dp_ew_mul_cvt_scale (reg2dp_ew_mul_cvt_scale[15:0])
-  ,.reg2dp_ew_mul_cvt_truncate (reg2dp_ew_mul_cvt_truncate[5:0])
-  ,.reg2dp_ew_mul_operand (reg2dp_ew_mul_operand[31:0])
-  ,.reg2dp_ew_mul_prelu (reg2dp_ew_mul_prelu)
-  ,.reg2dp_ew_mul_src (reg2dp_ew_mul_src)
-  ,.reg2dp_ew_truncate (reg2dp_ew_truncate[9:0])
-  ,.reg2dp_lut_hybrid_priority (reg2dp_lut_hybrid_priority)
-  ,.reg2dp_lut_int_access_type (reg2dp_lut_int_access_type)
-  ,.reg2dp_lut_int_addr (reg2dp_lut_int_addr[9:0])
-  ,.reg2dp_lut_int_data (reg2dp_lut_int_data[15:0])
-  ,.reg2dp_lut_int_data_wr (reg2dp_lut_int_data_wr)
-  ,.reg2dp_lut_int_table_id (reg2dp_lut_int_table_id)
-  ,.reg2dp_lut_le_end (reg2dp_lut_le_end[31:0])
-  ,.reg2dp_lut_le_function (reg2dp_lut_le_function)
-  ,.reg2dp_lut_le_index_offset (reg2dp_lut_le_index_offset[7:0])
-  ,.reg2dp_lut_le_index_select (reg2dp_lut_le_index_select[7:0])
-  ,.reg2dp_lut_le_slope_oflow_scale (reg2dp_lut_le_slope_oflow_scale[15:0])
-  ,.reg2dp_lut_le_slope_oflow_shift (reg2dp_lut_le_slope_oflow_shift[4:0])
-  ,.reg2dp_lut_le_slope_uflow_scale (reg2dp_lut_le_slope_uflow_scale[15:0])
-  ,.reg2dp_lut_le_slope_uflow_shift (reg2dp_lut_le_slope_uflow_shift[4:0])
-  ,.reg2dp_lut_le_start (reg2dp_lut_le_start[31:0])
-  ,.reg2dp_lut_lo_end (reg2dp_lut_lo_end[31:0])
-  ,.reg2dp_lut_lo_index_select (reg2dp_lut_lo_index_select[7:0])
-  ,.reg2dp_lut_lo_slope_oflow_scale (reg2dp_lut_lo_slope_oflow_scale[15:0])
-  ,.reg2dp_lut_lo_slope_oflow_shift (reg2dp_lut_lo_slope_oflow_shift[4:0])
-  ,.reg2dp_lut_lo_slope_uflow_scale (reg2dp_lut_lo_slope_uflow_scale[15:0])
-  ,.reg2dp_lut_lo_slope_uflow_shift (reg2dp_lut_lo_slope_uflow_shift[4:0])
-  ,.reg2dp_lut_lo_start (reg2dp_lut_lo_start[31:0])
-  ,.reg2dp_lut_oflow_priority (reg2dp_lut_oflow_priority)
-  ,.reg2dp_lut_slcg_en (reg2dp_lut_slcg_en)
-  ,.reg2dp_lut_uflow_priority (reg2dp_lut_uflow_priority)
-  ,.dp2reg_lut_hybrid (dp2reg_lut_hybrid[31:0])
-  ,.dp2reg_lut_int_data (dp2reg_lut_int_data[15:0])
-  ,.dp2reg_lut_le_hit (dp2reg_lut_le_hit[31:0])
-  ,.dp2reg_lut_lo_hit (dp2reg_lut_lo_hit[31:0])
-  ,.dp2reg_lut_oflow (dp2reg_lut_oflow[31:0])
-  ,.dp2reg_lut_uflow (dp2reg_lut_uflow[31:0])
   ,.reg2dp_cvt_offset (reg2dp_cvt_offset[31:0])
   ,.reg2dp_cvt_scale (reg2dp_cvt_scale[15:0])
   ,.reg2dp_cvt_shift (reg2dp_cvt_shift[5:0])
@@ -613,18 +315,6 @@ NV_NVDLA_SDP_reg u_reg (
   ,.dp2reg_status_unequal (dp2reg_status_unequal[0])
   ,.dp2reg_wdma_stall (dp2reg_wdma_stall[31:0])
   ,.reg2dp_ncore_slcg_op_en (reg2dp_ncore_slcg_op_en)
-  ,.reg2dp_bn_alu_algo (reg2dp_bn_alu_algo[1:0])
-  ,.reg2dp_bn_alu_bypass (reg2dp_bn_alu_bypass)
-  ,.reg2dp_bn_alu_operand (reg2dp_bn_alu_operand[15:0])
-  ,.reg2dp_bn_alu_shift_value (reg2dp_bn_alu_shift_value[5:0])
-  ,.reg2dp_bn_alu_src (reg2dp_bn_alu_src)
-  ,.reg2dp_bn_bypass (reg2dp_bn_bypass)
-  ,.reg2dp_bn_mul_bypass (reg2dp_bn_mul_bypass)
-  ,.reg2dp_bn_mul_operand (reg2dp_bn_mul_operand[15:0])
-  ,.reg2dp_bn_mul_prelu (reg2dp_bn_mul_prelu)
-  ,.reg2dp_bn_mul_shift_value (reg2dp_bn_mul_shift_value[7:0])
-  ,.reg2dp_bn_mul_src (reg2dp_bn_mul_src)
-  ,.reg2dp_bn_relu_bypass (reg2dp_bn_relu_bypass)
   ,.reg2dp_bcore_slcg_op_en (reg2dp_bcore_slcg_op_en)
   ,.reg2dp_bs_alu_algo (reg2dp_bs_alu_algo[1:0])
   ,.reg2dp_bs_alu_bypass (reg2dp_bs_alu_bypass)
@@ -639,56 +329,6 @@ NV_NVDLA_SDP_reg u_reg (
   ,.reg2dp_bs_mul_src (reg2dp_bs_mul_src)
   ,.reg2dp_bs_relu_bypass (reg2dp_bs_relu_bypass)
   ,.reg2dp_ecore_slcg_op_en (reg2dp_ecore_slcg_op_en)
-  ,.reg2dp_ew_alu_algo (reg2dp_ew_alu_algo[1:0])
-  ,.reg2dp_ew_alu_bypass (reg2dp_ew_alu_bypass)
-  ,.reg2dp_ew_alu_cvt_bypass (reg2dp_ew_alu_cvt_bypass)
-  ,.reg2dp_ew_alu_cvt_offset (reg2dp_ew_alu_cvt_offset[31:0])
-  ,.reg2dp_ew_alu_cvt_scale (reg2dp_ew_alu_cvt_scale[15:0])
-  ,.reg2dp_ew_alu_cvt_truncate (reg2dp_ew_alu_cvt_truncate[5:0])
-  ,.reg2dp_ew_alu_operand (reg2dp_ew_alu_operand[31:0])
-  ,.reg2dp_ew_alu_src (reg2dp_ew_alu_src)
-  ,.reg2dp_ew_bypass (reg2dp_ew_bypass)
-  ,.reg2dp_ew_lut_bypass (reg2dp_ew_lut_bypass)
-  ,.reg2dp_ew_mul_bypass (reg2dp_ew_mul_bypass)
-  ,.reg2dp_ew_mul_cvt_bypass (reg2dp_ew_mul_cvt_bypass)
-  ,.reg2dp_ew_mul_cvt_offset (reg2dp_ew_mul_cvt_offset[31:0])
-  ,.reg2dp_ew_mul_cvt_scale (reg2dp_ew_mul_cvt_scale[15:0])
-  ,.reg2dp_ew_mul_cvt_truncate (reg2dp_ew_mul_cvt_truncate[5:0])
-  ,.reg2dp_ew_mul_operand (reg2dp_ew_mul_operand[31:0])
-  ,.reg2dp_ew_mul_prelu (reg2dp_ew_mul_prelu)
-  ,.reg2dp_ew_mul_src (reg2dp_ew_mul_src)
-  ,.reg2dp_ew_truncate (reg2dp_ew_truncate[9:0])
-  ,.reg2dp_lut_hybrid_priority (reg2dp_lut_hybrid_priority)
-  ,.reg2dp_lut_int_access_type (reg2dp_lut_int_access_type)
-  ,.reg2dp_lut_int_addr (reg2dp_lut_int_addr[9:0])
-  ,.reg2dp_lut_int_data (reg2dp_lut_int_data[15:0])
-  ,.reg2dp_lut_int_data_wr (reg2dp_lut_int_data_wr)
-  ,.reg2dp_lut_int_table_id (reg2dp_lut_int_table_id)
-  ,.reg2dp_lut_le_end (reg2dp_lut_le_end[31:0])
-  ,.reg2dp_lut_le_function (reg2dp_lut_le_function)
-  ,.reg2dp_lut_le_index_offset (reg2dp_lut_le_index_offset[7:0])
-  ,.reg2dp_lut_le_index_select (reg2dp_lut_le_index_select[7:0])
-  ,.reg2dp_lut_le_slope_oflow_scale (reg2dp_lut_le_slope_oflow_scale[15:0])
-  ,.reg2dp_lut_le_slope_oflow_shift (reg2dp_lut_le_slope_oflow_shift[4:0])
-  ,.reg2dp_lut_le_slope_uflow_scale (reg2dp_lut_le_slope_uflow_scale[15:0])
-  ,.reg2dp_lut_le_slope_uflow_shift (reg2dp_lut_le_slope_uflow_shift[4:0])
-  ,.reg2dp_lut_le_start (reg2dp_lut_le_start[31:0])
-  ,.reg2dp_lut_lo_end (reg2dp_lut_lo_end[31:0])
-  ,.reg2dp_lut_lo_index_select (reg2dp_lut_lo_index_select[7:0])
-  ,.reg2dp_lut_lo_slope_oflow_scale (reg2dp_lut_lo_slope_oflow_scale[15:0])
-  ,.reg2dp_lut_lo_slope_oflow_shift (reg2dp_lut_lo_slope_oflow_shift[4:0])
-  ,.reg2dp_lut_lo_slope_uflow_scale (reg2dp_lut_lo_slope_uflow_scale[15:0])
-  ,.reg2dp_lut_lo_slope_uflow_shift (reg2dp_lut_lo_slope_uflow_shift[4:0])
-  ,.reg2dp_lut_lo_start (reg2dp_lut_lo_start[31:0])
-  ,.reg2dp_lut_oflow_priority (reg2dp_lut_oflow_priority)
-  ,.reg2dp_lut_slcg_en (reg2dp_lut_slcg_en)
-  ,.reg2dp_lut_uflow_priority (reg2dp_lut_uflow_priority)
-  ,.dp2reg_lut_hybrid (dp2reg_lut_hybrid[31:0])
-  ,.dp2reg_lut_int_data (dp2reg_lut_int_data[15:0])
-  ,.dp2reg_lut_le_hit (dp2reg_lut_le_hit[31:0])
-  ,.dp2reg_lut_lo_hit (dp2reg_lut_lo_hit[31:0])
-  ,.dp2reg_lut_oflow (dp2reg_lut_oflow[31:0])
-  ,.dp2reg_lut_uflow (dp2reg_lut_uflow[31:0])
   ,.reg2dp_cvt_offset (reg2dp_cvt_offset[31:0])
   ,.reg2dp_cvt_scale (reg2dp_cvt_scale[15:0])
   ,.reg2dp_cvt_shift (reg2dp_cvt_shift[5:0])

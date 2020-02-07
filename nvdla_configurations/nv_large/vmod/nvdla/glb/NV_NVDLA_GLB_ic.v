@@ -18,14 +18,8 @@ module NV_NVDLA_GLB_ic (
   ,cdma_wt2glb_done_intr_pd //|< i
   ,cdma_wt_done_mask0 //|< i
   ,cdma_wt_done_mask1 //|< i
-  ,cdp2glb_done_intr_pd //|< i
-  ,cdp_done_mask0 //|< i
-  ,cdp_done_mask1 //|< i
   ,nvdla_falcon_clk //|< i
   ,nvdla_falcon_rstn //|< i
-  ,pdp2glb_done_intr_pd //|< i
-  ,pdp_done_mask0 //|< i
-  ,pdp_done_mask1 //|< i
   ,req_wdat //|< i
   ,sdp2glb_done_intr_pd //|< i
   ,sdp_done_mask0 //|< i
@@ -38,11 +32,7 @@ module NV_NVDLA_GLB_ic (
   ,cdma_dat_done_status1 //|> o
   ,cdma_wt_done_status0 //|> o
   ,cdma_wt_done_status1 //|> o
-  ,cdp_done_status0 //|> o
-  ,cdp_done_status1 //|> o
   ,core_intr //|> o
-  ,pdp_done_status0 //|> o
-  ,pdp_done_status1 //|> o
   ,sdp_done_status0 //|> o
   ,sdp_done_status1 //|> o
   );
@@ -58,14 +48,8 @@ input cdma_dat_done_mask1;
 input [1:0] cdma_wt2glb_done_intr_pd;
 input cdma_wt_done_mask0;
 input cdma_wt_done_mask1;
-input [1:0] cdp2glb_done_intr_pd;
-input cdp_done_mask0;
-input cdp_done_mask1;
 input nvdla_falcon_clk;
 input nvdla_falcon_rstn;
-input [1:0] pdp2glb_done_intr_pd;
-input pdp_done_mask0;
-input pdp_done_mask1;
 input [21:0] req_wdat;
 input [1:0] sdp2glb_done_intr_pd;
 input sdp_done_mask0;
@@ -78,11 +62,7 @@ output cdma_dat_done_status0;
 output cdma_dat_done_status1;
 output cdma_wt_done_status0;
 output cdma_wt_done_status1;
-output cdp_done_status0;
-output cdp_done_status1;
 output core_intr;
-output pdp_done_status0;
-output pdp_done_status1;
 output sdp_done_status0;
 output sdp_done_status1;
 reg cacc_done_status0;
@@ -97,14 +77,6 @@ reg cdma_wt_done_status0;
 reg cdma_wt_done_status1;
 wire cdma_wt_done_status0_w;
 wire cdma_wt_done_status1_w;
-reg cdp_done_status0;
-reg cdp_done_status1;
-wire cdp_done_status0_w;
-wire cdp_done_status1_w;
-reg pdp_done_status0;
-reg pdp_done_status1;
-wire pdp_done_status0_w;
-wire pdp_done_status1_w;
 reg sdp_done_status0;
 reg sdp_done_status1;
 wire sdp_done_status0_w;
@@ -125,8 +97,8 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
                         cdma_dat2glb_done_intr_pd[1:0],
                         2'b0,
                         2'b0,
-                        pdp2glb_done_intr_pd[1:0],
-                        cdp2glb_done_intr_pd[1:0],
+                        2'b0,
+                        2'b0,
                         sdp2glb_done_intr_pd[1:0]};
     end
 end
@@ -150,50 +122,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
         sdp_done_status1 <= 1'b0;
     end else begin
         sdp_done_status1 <= sdp_done_status1_w;
-    end
-end
-//////// interrrupt status 0 for cdp ////////
-assign cdp_done_status0_w = (done_set[2] | done_source[2]) ? 1'b1 :
-                            (done_wr_clr[2]) ? 1'b0 :
-                            cdp_done_status0;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        cdp_done_status0 <= 1'b0;
-    end else begin
-        cdp_done_status0 <= cdp_done_status0_w;
-    end
-end
-//////// interrrupt status 1 for cdp ////////
-assign cdp_done_status1_w = (done_set[3] | done_source[3]) ? 1'b1 :
-                            (done_wr_clr[3]) ? 1'b0 :
-                            cdp_done_status1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        cdp_done_status1 <= 1'b0;
-    end else begin
-        cdp_done_status1 <= cdp_done_status1_w;
-    end
-end
-//////// interrrupt status 0 for pdp ////////
-assign pdp_done_status0_w = (done_set[4] | done_source[4]) ? 1'b1 :
-                            (done_wr_clr[4]) ? 1'b0 :
-                            pdp_done_status0;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        pdp_done_status0 <= 1'b0;
-    end else begin
-        pdp_done_status0 <= pdp_done_status0_w;
-    end
-end
-//////// interrrupt status 1 for pdp ////////
-assign pdp_done_status1_w = (done_set[5] | done_source[5]) ? 1'b1 :
-                            (done_wr_clr[5]) ? 1'b0 :
-                            pdp_done_status1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        pdp_done_status1 <= 1'b0;
-    end else begin
-        pdp_done_status1 <= pdp_done_status1_w;
     end
 end
 //////// interrrupt status 0 for cdma_dat ////////
@@ -264,10 +192,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 assign core_intr_w = (~sdp_done_mask0 & sdp_done_status0) |
                      (~sdp_done_mask1 & sdp_done_status1) |
-                     (~cdp_done_mask0 & cdp_done_status0) |
-                     (~cdp_done_mask1 & cdp_done_status1) |
-                     (~pdp_done_mask0 & pdp_done_status0) |
-                     (~pdp_done_mask1 & pdp_done_status1) |
                      (~cdma_dat_done_mask0 & cdma_dat_done_status0) |
                      (~cdma_dat_done_mask1 & cdma_dat_done_status1) |
                      (~cdma_wt_done_mask0 & cdma_wt_done_status0) |
@@ -324,8 +248,6 @@ NV_NVDLA_sync3d_c u_sync_core_intr (
   nv_assert_never #(0,0,"Error! CDMA weight sends two interrupts at same cycle!") zzz_assert_never_4x (nvdla_core_clk, `ASSERT_RESET, (cdma_wt2glb_done_intr_pd == 3'h3)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! CACC sends two interrupts at same cycle!") zzz_assert_never_5x (nvdla_core_clk, `ASSERT_RESET, (cacc2glb_done_intr_pd == 3'h3)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! SDP sends two interrupts at same cycle!") zzz_assert_never_6x (nvdla_core_clk, `ASSERT_RESET, (sdp2glb_done_intr_pd == 3'h3)); // spyglass disable W504 SelfDeterminedExpr-ML 
-  nv_assert_never #(0,0,"Error! PDP sends two interrupts at same cycle!") zzz_assert_never_7x (nvdla_core_clk, `ASSERT_RESET, (pdp2glb_done_intr_pd == 3'h3)); // spyglass disable W504 SelfDeterminedExpr-ML 
-  nv_assert_never #(0,0,"Error! CDP sends two interrupts at same cycle!") zzz_assert_never_8x (nvdla_core_clk, `ASSERT_RESET, (cdp2glb_done_intr_pd == 3'h3)); // spyglass disable W504 SelfDeterminedExpr-ML 
 // VCS coverage on
 `endif
 `undef ASSERT_RESET

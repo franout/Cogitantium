@@ -30,12 +30,6 @@ module NV_NVDLA_CDMA_wt (
   ,nvdla_core_ng_clk //|< i
   ,nvdla_core_rstn //|< i
   ,cdma_wt2mcif_rd_req_ready //|< i
-  ,cdma_wt2cvif_rd_req_ready //|< i
-  ,cvif2cdma_wt_rd_rsp_pd //|< i
-  ,cvif2cdma_wt_rd_rsp_valid //|< i
-  ,cdma_wt2cvif_rd_req_pd //|> o
-  ,cdma_wt2cvif_rd_req_valid //|> o
-  ,cvif2cdma_wt_rd_rsp_ready //|> o
   ,mcif2cdma_wt_rd_rsp_pd //|< i
   ,mcif2cdma_wt_rd_rsp_valid //|< i
   ,pwrbus_ram_pd //|< i
@@ -69,7 +63,7 @@ module NV_NVDLA_CDMA_wt (
   ,status2dma_fsm_switch //|< i
   ,cdma2buf_wt_wr_en //|> o
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: ,cdma2buf_wt_wr_sel
@@ -95,7 +89,6 @@ module NV_NVDLA_CDMA_wt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,cdma2buf_wt_wr_sel
 ,cdma2buf_wt_wr_addr
 ,cdma2buf_wt_wr_data
 
@@ -124,19 +117,13 @@ input nvdla_core_rstn;
 input [31:0] pwrbus_ram_pd;
 output cdma_wt2mcif_rd_req_valid;
 input cdma_wt2mcif_rd_req_ready;
-output [( 64 + 15 )-1:0] cdma_wt2mcif_rd_req_pd;
+output [( 32 + 15 )-1:0] cdma_wt2mcif_rd_req_pd;
 input mcif2cdma_wt_rd_rsp_valid;
 output mcif2cdma_wt_rd_rsp_ready;
 input [( 256 + (256/8/32) )-1:0] mcif2cdma_wt_rd_rsp_pd;
-output cdma_wt2cvif_rd_req_valid;
-input cdma_wt2cvif_rd_req_ready;
-output [( 64 + 15 )-1:0] cdma_wt2cvif_rd_req_pd;
-input cvif2cdma_wt_rd_rsp_valid;
-output cvif2cdma_wt_rd_rsp_ready;
-input [( 256 + (256/8/32) )-1:0] cvif2cdma_wt_rd_rsp_pd;
 output cdma2buf_wt_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int($atmc/$dmaif);
 //: print qq(
@@ -163,7 +150,6 @@ output cdma2buf_wt_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [2-1:0] cdma2buf_wt_wr_sel ;
 output [16:0] cdma2buf_wt_wr_addr;
 output [256-1:0] cdma2buf_wt_wr_data;
 
@@ -224,7 +210,7 @@ reg [18:0] byte_per_kernel;
 reg [16:0] cdma2buf_wt_wr_addr;
 reg cdma2buf_wt_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: my $s = int($atmc/$dmaif);
@@ -234,9 +220,6 @@ reg cdma2buf_wt_wr_en;
 //: );
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-
-reg [2-1:0] cdma2buf_wt_wr_sel ;
-wire [1-1:0] cdma2buf_wt_wr_sel_w;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //reg cdma2buf_wt_wr_sel;
@@ -394,7 +377,7 @@ wire dbg_src_wr_ptr_en;
 wire dbg_src_wr_ptr_w;
 wire [31:0] dbg_wt_kernel_bytes_w;
 wire [63:0] dma_rd_req_addr;
-wire [64 +14:0] dma_rd_req_pd;
+wire [32 +14:0] dma_rd_req_pd;
 wire dma_rd_req_rdy;
 wire [14:0] dma_rd_req_size;
 wire dma_rd_req_type;
@@ -510,7 +493,7 @@ wire [1:0] wt_local_data_cnt;
 //wire [2:0] wt_local_data_cnt;
 wire wt_local_data_reg_en;
 wire wt_local_data_vld_w;
-//wire [511:0] wt_nan_mask;
+wire [255:0] wt_nan_mask;
 //: my $atmm = 32;
 //: my $atmbw = int(log(${atmm})/log(2));
 //: print qq(
@@ -591,8 +574,8 @@ wire [31:0] wt_required_bytes_w;
 wire wt_required_en;
 wire wt_rsp_valid;
 wire wt_satisfied;
-wire [31:0] dp2reg_nan_weight_num;
-wire [31:0] dp2reg_inf_weight_num;
+reg [31:0] dp2reg_nan_weight_num;
+reg [31:0] dp2reg_inf_weight_num;
 ////////////////////////////////////////////////////////////////////////
 // CDMA weight fetching logic FSM //
 ////////////////////////////////////////////////////////////////////////
@@ -787,8 +770,8 @@ always @(posedge nvdla_core_clk) begin
 end
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-assign is_int8 = 1'b1;
-assign is_fp16 = 1'b0;
+assign is_int8 = 1'b0;
+assign is_fp16 = (reg2dp_proc_precision == 2'h2 );
 //: my $atmk = 32;
 //: my $atmkbw = int(log($atmk) / log(2));
 //: print qq( assign group_op = {{($atmkbw-2){1'b0}}, reg2dp_weight_kernel[12:${atmkbw}]}; );
@@ -1102,7 +1085,7 @@ end
 assign wt_req_src_d3 = SRC_ID_WT;
 /////////////////// overflow control logic ///////////////////
 assign {mon_wt_req_sum, wt_req_sum} = wt_data_onfly + wt_data_stored + wt_data_avl;
-//: my $atmm8 = ((8*32)/64);
+//: my $atmm8 = ((8*32)/32);
 //: my $Cbuf_bank_size = 64 * 512;
 //: my $cdma_addr_align = 32;
 //: my $Cbuf_bank_fetch_bits = int( log($Cbuf_bank_size/$cdma_addr_align)/log(2) );
@@ -1111,7 +1094,7 @@ assign {mon_wt_req_sum, wt_req_sum} = wt_data_onfly + wt_data_stored + wt_data_a
 //: );
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign wt_req_overflow = is_running && (wt_req_sum > ({weight_bank, 10'b0} + 4));
+assign wt_req_overflow = is_running && (wt_req_sum > ({weight_bank, 10'b0} + 8));
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign wt_req_overflow_d3 = wt_req_overflow;
@@ -1136,9 +1119,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_PDP_RDMA_rdreq(
   .nvdla_core_clk (nvdla_core_clk )
  ,.nvdla_core_rstn (nvdla_core_rstn )
  ,.reg2dp_src_ram_type (reg2dp_weight_ram_type)
- ,.cvif_rd_req_pd (cdma_wt2cvif_rd_req_pd )
- ,.cvif_rd_req_valid (cdma_wt2cvif_rd_req_valid )
- ,.cvif_rd_req_ready (cdma_wt2cvif_rd_req_ready )
  ,.mcif_rd_req_pd (cdma_wt2mcif_rd_req_pd )
  ,.mcif_rd_req_valid (cdma_wt2mcif_rd_req_valid )
  ,.mcif_rd_req_ready (cdma_wt2mcif_rd_req_ready )
@@ -1153,9 +1133,6 @@ wire [( 256 + (256/8/32) )-1:0] dmaif_rd_rsp_pd;
 NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
    .nvdla_core_clk (nvdla_core_clk )
   ,.nvdla_core_rstn (nvdla_core_rstn )
-  ,.cvif_rd_rsp_pd (cvif2cdma_wt_rd_rsp_pd )
-  ,.cvif_rd_rsp_valid (cvif2cdma_wt_rd_rsp_valid )
-  ,.cvif_rd_rsp_ready (cvif2cdma_wt_rd_rsp_ready )
   ,.mcif_rd_rsp_pd (mcif2cdma_wt_rd_rsp_pd )
   ,.mcif_rd_rsp_valid (mcif2cdma_wt_rd_rsp_valid )
   ,.mcif_rd_rsp_ready (mcif2cdma_wt_rd_rsp_ready )
@@ -1196,8 +1173,8 @@ NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
     ,.pwrbus_ram_pd (32'd0)
     );
 ///////////////////////////////////////////
-assign dma_rd_req_pd[64 -1:0] = dma_rd_req_addr[64 -1:0];
-assign dma_rd_req_pd[64 +14:64] = dma_rd_req_size[14:0];
+assign dma_rd_req_pd[32 -1:0] = dma_rd_req_addr[32 -1:0];
+assign dma_rd_req_pd[32 +14:32] = dma_rd_req_size[14:0];
 assign dma_rd_req_vld = arb_sp_out_vld & dma_req_fifo_ready;
 //: my $atmm = 32;
 //: my $atmbw = int(log(${atmm})/log(2));
@@ -1215,7 +1192,7 @@ assign dma_rd_req_type = reg2dp_weight_ram_type;
 ///////////////////////////////////
 //DorisLei redefine dma_rd_rsp_rdy to block reading process when cbuf is full
 ///////////////////////////////////
-//: my $atmc=64;
+//: my $atmc=32;
 //: my $dmaif=256 / 8;
 //: if($dmaif < $atmc) {
 //: my $k = $atmc/$dmaif - 1;
@@ -1235,25 +1212,13 @@ assign dma_rd_req_type = reg2dp_weight_ram_type;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-reg [3:0] dmaif_within_atmc_cnt;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-if (!nvdla_core_rstn)
-dmaif_within_atmc_cnt <= 4'd0;
-else if(wt_cbuf_wr_vld_w) begin
-if(dmaif_within_atmc_cnt == 1)
-dmaif_within_atmc_cnt <= 4'd0;
-else
-dmaif_within_atmc_cnt <= dmaif_within_atmc_cnt + 1'b1;
-end
-end
-
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 reg [16:0] wt_wr_dmatx_cnt;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     if (!nvdla_core_rstn) begin
         wt_wr_dmatx_cnt <= 17'd0;
     end else if(wt_cbuf_wr_vld_w & (!sc_wt_updt)) begin
-//: my $atmc=64;
+//: my $atmc=32;
 //: my $dmaif=256 / 8;
 //: if($dmaif == $atmc) {
 //: print qq(
@@ -1274,13 +1239,11 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-if(dmaif_within_atmc_cnt == 1) begin
 wt_wr_dmatx_cnt <= wt_wr_dmatx_cnt + 1'b1;
-end
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
     end else if(wt_cbuf_wr_vld_w & sc_wt_updt) begin
-//: my $atmc=64;
+//: my $atmc=32;
 //: my $dmaif=256 / 8;
 //: if($dmaif == $atmc) {
 //: print qq(
@@ -1303,11 +1266,7 @@ end
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-if(dmaif_within_atmc_cnt == 1) begin
 wt_wr_dmatx_cnt <= wt_wr_dmatx_cnt + 1'b1 - sc_wt_entries;
-end else begin
-wt_wr_dmatx_cnt <= wt_wr_dmatx_cnt - sc_wt_entries;
-end
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
     end else if(!wt_cbuf_wr_vld_w & sc_wt_updt) begin
@@ -1341,7 +1300,7 @@ assign dma_req_fifo_data = {dma_req_src, dma_req_size};
 ////////////////////////////////////////////////////////////////////////
 // For verification/debug //
 ////////////////////////////////////////////////////////////////////////
-assign dbg_src_rd_ptr_en = (cdma_wt2mcif_rd_req_valid & cdma_wt2mcif_rd_req_ready) | (cdma_wt2cvif_rd_req_valid & cdma_wt2cvif_rd_req_ready);
+assign dbg_src_rd_ptr_en = (cdma_wt2mcif_rd_req_valid & cdma_wt2mcif_rd_req_ready);
 assign dbg_src_rd_ptr_w = ~layer_st & (dbg_src_rd_ptr ^ dbg_src_rd_ptr_en);
 assign dbg_src_wr_ptr_en = (dma_rd_req_vld & dma_req_fifo_ready & dma_rd_req_rdy);
 assign dbg_src_wr_ptr_w = ~layer_st & (dbg_src_wr_ptr ^ dbg_src_wr_ptr_en);
@@ -1500,7 +1459,7 @@ assign wt_cbuf_wr_data_ori_w = dma_rsp_data_p0;
 assign wt_cbuf_wr_idx_inc = wt_cbuf_wr_idx + 1'b1;
 assign wt_cbuf_wr_idx_set = (layer_st & ~(|wt_cbuf_wr_idx));
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: my $k;
 //: if($dmaif < $atmc) {
 //: $k = int(log(int($atmc/$dmaif))/log(2));
@@ -1515,8 +1474,8 @@ assign wt_cbuf_wr_idx_set = (layer_st & ~(|wt_cbuf_wr_idx));
 //: );
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign wt_cbuf_wr_idx_wrap = (wt_cbuf_wr_idx_inc == {2'd0, weight_bank_end, 10'b0});
-assign wt_cbuf_wr_idx_w = (clear_all | wt_cbuf_wr_idx_set | wt_cbuf_wr_idx_wrap) ? {2'd0, data_bank_w, 10'b0} : wt_cbuf_wr_idx_inc[(1 + 16 ) -1:0];
+assign wt_cbuf_wr_idx_wrap = (wt_cbuf_wr_idx_inc == {2'd0, weight_bank_end, 9'b0});
+assign wt_cbuf_wr_idx_w = (clear_all | wt_cbuf_wr_idx_set | wt_cbuf_wr_idx_wrap) ? {2'd0, data_bank_w, 9'b0} : wt_cbuf_wr_idx_inc[(1 + 16 ) -1:0];
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign wt_cbuf_wr_data_w = nan_pass ? wt_cbuf_wr_data_ori_w : (wt_cbuf_wr_data_ori_w & wt_nan_mask);
@@ -1575,7 +1534,7 @@ assign {mon_wt_cbuf_flush_idx_w, wt_cbuf_flush_idx_w} = wt_cbuf_flush_idx + 1'b1
 //: my $bank_entry = 16 * 512;
 //: my $bank_entry_bw = int( log( $bank_entry)/log(2) );
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: my $k;
 //: if($dmaif < $atmc) {
 //: $k = int(log(int($atmc/$dmaif))/log(2));
@@ -1589,8 +1548,8 @@ assign {mon_wt_cbuf_flush_idx_w, wt_cbuf_flush_idx_w} = wt_cbuf_flush_idx + 1'b1
 //: &eperl::flop("-nodeclare -clk nvdla_core_ng_clk  -rval \"{18{1'b0}}\"  -en \"wt_cbuf_flush_vld_w\" -d \"wt_cbuf_flush_idx_w\" -q wt_cbuf_flush_idx");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign wt_cbuf_flush_vld_w = ~wt_cbuf_flush_idx[13+1-1];//max value = half bank entry * 2^1
-assign dp2reg_wt_flush_done = wt_cbuf_flush_idx[13+1-1];
+assign wt_cbuf_flush_vld_w = ~wt_cbuf_flush_idx[13+0-1];//max value = half bank entry * 2^0
+assign dp2reg_wt_flush_done = wt_cbuf_flush_idx[13+0-1];
 always @(posedge nvdla_core_ng_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        wt_cbuf_flush_idx <= {18{1'b0}};
@@ -1612,7 +1571,7 @@ end
 ////////////////////////////////////////////////////////////////////////
 assign cdma2buf_wt_wr_en_w = wt_cbuf_wr_vld_w | wt_cbuf_flush_vld_w;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: my $half_bank_entry_num = 16 * 512 / 2;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
@@ -1641,40 +1600,8 @@ assign cdma2buf_wt_wr_en_w = wt_cbuf_wr_vld_w | wt_cbuf_flush_vld_w;
 //: &eperl::flop("-nodeclare -clk nvdla_core_ng_clk -rval \"{17{1'b0}}\"  -en \"cdma2buf_wt_wr_en_w\" -d \"cdma2buf_wt_wr_addr_w\" -q cdma2buf_wt_wr_addr");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign cdma2buf_wt_wr_addr_w = wt_cbuf_wr_vld_w ? wt_cbuf_wr_idx[(1 + 16 ) -1:1] :
-4096 + wt_cbuf_flush_idx[16:1];
-assign cdma2buf_wt_wr_sel_w = wt_cbuf_wr_vld_w ? wt_cbuf_wr_idx[1-1:0] :
-wt_cbuf_flush_idx[1-1:0];
-assign cdma2buf_wt_wr_data_w = wt_cbuf_wr_vld_w ? wt_cbuf_wr_data_w :
-0;
-always @(posedge nvdla_core_ng_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cdma2buf_wt_wr_sel[0] <= 1'b0;
-   end else begin
-       if ((cdma2buf_wt_wr_en_w) == 1'b1) begin
-           cdma2buf_wt_wr_sel[0] <= cdma2buf_wt_wr_sel_w==1'd0;
-       // VCS coverage off
-       end else if ((cdma2buf_wt_wr_en_w) == 1'b0) begin
-       end else begin
-           cdma2buf_wt_wr_sel[0] <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-always @(posedge nvdla_core_ng_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cdma2buf_wt_wr_sel[1] <= 1'b0;
-   end else begin
-       if ((cdma2buf_wt_wr_en_w) == 1'b1) begin
-           cdma2buf_wt_wr_sel[1] <= cdma2buf_wt_wr_sel_w==1'd1;
-       // VCS coverage off
-       end else if ((cdma2buf_wt_wr_en_w) == 1'b0) begin
-       end else begin
-           cdma2buf_wt_wr_sel[1] <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
+assign cdma2buf_wt_wr_addr_w = wt_cbuf_wr_vld_w ? wt_cbuf_wr_idx : 4096 + wt_cbuf_flush_idx[16:0];
+assign cdma2buf_wt_wr_data_w = wt_cbuf_wr_vld_w ? wt_cbuf_wr_data_w : 0;
 always @(posedge nvdla_core_ng_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        cdma2buf_wt_wr_en <= 1'b0;
@@ -1720,8 +1647,242 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-assign dp2reg_nan_weight_num = 32'b0;
-assign dp2reg_inf_weight_num = 32'b0;
+////////////////////////////////////////////////////////////////////////
+// Infinity and NaN counting logic //
+////////////////////////////////////////////////////////////////////////
+//: my $i;
+//: my $b0;
+//: my $b1;
+//: for($i = 0; $i < 32; $i ++) {
+//: $b0 = 16 * $i + 10;
+//: $b1 = 16 * $i + 14;
+//: print "assign wt_fp16_exp_flag_w[$i] = (&wt_cbuf_wr_data_ori_w[${b1}:${b0}]);\n";
+//: }
+//: print "\n\n";
+//: my $b0;
+//: my $b1;
+//: for($i = 0; $i < 32; $i ++) {
+//: $b0 = 16 * $i;
+//: $b1 = 16 * $i + 9;
+//: print "assign wt_fp16_manti_flag_w[$i] = (|wt_cbuf_wr_data_ori_w[${b1}:${b0}]);\n";
+//: }
+//: print "\n\n";
+//| eperl: generated_beg (DO NOT EDIT BELOW)
+assign wt_fp16_exp_flag_w[0] = (&wt_cbuf_wr_data_ori_w[14:10]);
+assign wt_fp16_exp_flag_w[1] = (&wt_cbuf_wr_data_ori_w[30:26]);
+assign wt_fp16_exp_flag_w[2] = (&wt_cbuf_wr_data_ori_w[46:42]);
+assign wt_fp16_exp_flag_w[3] = (&wt_cbuf_wr_data_ori_w[62:58]);
+assign wt_fp16_exp_flag_w[4] = (&wt_cbuf_wr_data_ori_w[78:74]);
+assign wt_fp16_exp_flag_w[5] = (&wt_cbuf_wr_data_ori_w[94:90]);
+assign wt_fp16_exp_flag_w[6] = (&wt_cbuf_wr_data_ori_w[110:106]);
+assign wt_fp16_exp_flag_w[7] = (&wt_cbuf_wr_data_ori_w[126:122]);
+assign wt_fp16_exp_flag_w[8] = (&wt_cbuf_wr_data_ori_w[142:138]);
+assign wt_fp16_exp_flag_w[9] = (&wt_cbuf_wr_data_ori_w[158:154]);
+assign wt_fp16_exp_flag_w[10] = (&wt_cbuf_wr_data_ori_w[174:170]);
+assign wt_fp16_exp_flag_w[11] = (&wt_cbuf_wr_data_ori_w[190:186]);
+assign wt_fp16_exp_flag_w[12] = (&wt_cbuf_wr_data_ori_w[206:202]);
+assign wt_fp16_exp_flag_w[13] = (&wt_cbuf_wr_data_ori_w[222:218]);
+assign wt_fp16_exp_flag_w[14] = (&wt_cbuf_wr_data_ori_w[238:234]);
+assign wt_fp16_exp_flag_w[15] = (&wt_cbuf_wr_data_ori_w[254:250]);
+/*assign wt_fp16_exp_flag_w[16] = (&wt_cbuf_wr_data_ori_w[270:266]);
+assign wt_fp16_exp_flag_w[17] = (&wt_cbuf_wr_data_ori_w[286:282]);
+assign wt_fp16_exp_flag_w[18] = (&wt_cbuf_wr_data_ori_w[302:298]);
+assign wt_fp16_exp_flag_w[19] = (&wt_cbuf_wr_data_ori_w[318:314]);
+assign wt_fp16_exp_flag_w[20] = (&wt_cbuf_wr_data_ori_w[334:330]);
+assign wt_fp16_exp_flag_w[21] = (&wt_cbuf_wr_data_ori_w[350:346]);
+assign wt_fp16_exp_flag_w[22] = (&wt_cbuf_wr_data_ori_w[366:362]);
+assign wt_fp16_exp_flag_w[23] = (&wt_cbuf_wr_data_ori_w[382:378]);
+assign wt_fp16_exp_flag_w[24] = (&wt_cbuf_wr_data_ori_w[398:394]);
+assign wt_fp16_exp_flag_w[25] = (&wt_cbuf_wr_data_ori_w[414:410]);
+assign wt_fp16_exp_flag_w[26] = (&wt_cbuf_wr_data_ori_w[430:426]);
+assign wt_fp16_exp_flag_w[27] = (&wt_cbuf_wr_data_ori_w[446:442]);
+assign wt_fp16_exp_flag_w[28] = (&wt_cbuf_wr_data_ori_w[462:458]);
+assign wt_fp16_exp_flag_w[29] = (&wt_cbuf_wr_data_ori_w[478:474]);
+assign wt_fp16_exp_flag_w[30] = (&wt_cbuf_wr_data_ori_w[494:490]);
+assign wt_fp16_exp_flag_w[31] = (&wt_cbuf_wr_data_ori_w[510:506]);
+
+*/
+assign wt_fp16_manti_flag_w[0] = (|wt_cbuf_wr_data_ori_w[9:0]);
+assign wt_fp16_manti_flag_w[1] = (|wt_cbuf_wr_data_ori_w[25:16]);
+assign wt_fp16_manti_flag_w[2] = (|wt_cbuf_wr_data_ori_w[41:32]);
+assign wt_fp16_manti_flag_w[3] = (|wt_cbuf_wr_data_ori_w[57:48]);
+assign wt_fp16_manti_flag_w[4] = (|wt_cbuf_wr_data_ori_w[73:64]);
+assign wt_fp16_manti_flag_w[5] = (|wt_cbuf_wr_data_ori_w[89:80]);
+assign wt_fp16_manti_flag_w[6] = (|wt_cbuf_wr_data_ori_w[105:96]);
+assign wt_fp16_manti_flag_w[7] = (|wt_cbuf_wr_data_ori_w[121:112]);
+assign wt_fp16_manti_flag_w[8] = (|wt_cbuf_wr_data_ori_w[137:128]);
+assign wt_fp16_manti_flag_w[9] = (|wt_cbuf_wr_data_ori_w[153:144]);
+assign wt_fp16_manti_flag_w[10] = (|wt_cbuf_wr_data_ori_w[169:160]);
+assign wt_fp16_manti_flag_w[11] = (|wt_cbuf_wr_data_ori_w[185:176]);
+assign wt_fp16_manti_flag_w[12] = (|wt_cbuf_wr_data_ori_w[201:192]);
+assign wt_fp16_manti_flag_w[13] = (|wt_cbuf_wr_data_ori_w[217:208]);
+assign wt_fp16_manti_flag_w[14] = (|wt_cbuf_wr_data_ori_w[233:224]);
+assign wt_fp16_manti_flag_w[15] = (|wt_cbuf_wr_data_ori_w[249:240]);
+/*assign wt_fp16_manti_flag_w[16] = (|wt_cbuf_wr_data_ori_w[265:256]);
+assign wt_fp16_manti_flag_w[17] = (|wt_cbuf_wr_data_ori_w[281:272]);
+assign wt_fp16_manti_flag_w[18] = (|wt_cbuf_wr_data_ori_w[297:288]);
+assign wt_fp16_manti_flag_w[19] = (|wt_cbuf_wr_data_ori_w[313:304]);
+assign wt_fp16_manti_flag_w[20] = (|wt_cbuf_wr_data_ori_w[329:320]);
+assign wt_fp16_manti_flag_w[21] = (|wt_cbuf_wr_data_ori_w[345:336]);
+assign wt_fp16_manti_flag_w[22] = (|wt_cbuf_wr_data_ori_w[361:352]);
+assign wt_fp16_manti_flag_w[23] = (|wt_cbuf_wr_data_ori_w[377:368]);
+assign wt_fp16_manti_flag_w[24] = (|wt_cbuf_wr_data_ori_w[393:384]);
+assign wt_fp16_manti_flag_w[25] = (|wt_cbuf_wr_data_ori_w[409:400]);
+assign wt_fp16_manti_flag_w[26] = (|wt_cbuf_wr_data_ori_w[425:416]);
+assign wt_fp16_manti_flag_w[27] = (|wt_cbuf_wr_data_ori_w[441:432]);
+assign wt_fp16_manti_flag_w[28] = (|wt_cbuf_wr_data_ori_w[457:448]);
+assign wt_fp16_manti_flag_w[29] = (|wt_cbuf_wr_data_ori_w[473:464]);
+assign wt_fp16_manti_flag_w[30] = (|wt_cbuf_wr_data_ori_w[489:480]);
+assign wt_fp16_manti_flag_w[31] = (|wt_cbuf_wr_data_ori_w[505:496]);
+*/
+
+
+//| eperl: generated_end (DO NOT EDIT ABOVE)
+assign wt_fp16_nan_flag_w = wt_fp16_exp_flag_w & wt_fp16_manti_flag_w;
+assign wt_fp16_inf_flag_w = wt_fp16_exp_flag_w & ~wt_fp16_manti_flag_w;
+//: my $i;
+//: my $b0;
+//: my $b1;
+//: for($i = 0; $i < 32; $i ++) {
+//: $b0 = 16 * $i;
+//: $b1 = 16 * $i + 15;
+//: print "assign wt_nan_mask[${b1}:${b0}] = {16{~wt_fp16_nan_flag_w[${i}]}};\n";
+//: }
+//: print "\n\n";
+//| eperl: generated_beg (DO NOT EDIT BELOW)
+assign wt_nan_mask[15:0] = {16{~wt_fp16_nan_flag_w[0]}};
+assign wt_nan_mask[31:16] = {16{~wt_fp16_nan_flag_w[1]}};
+assign wt_nan_mask[47:32] = {16{~wt_fp16_nan_flag_w[2]}};
+assign wt_nan_mask[63:48] = {16{~wt_fp16_nan_flag_w[3]}};
+assign wt_nan_mask[79:64] = {16{~wt_fp16_nan_flag_w[4]}};
+assign wt_nan_mask[95:80] = {16{~wt_fp16_nan_flag_w[5]}};
+assign wt_nan_mask[111:96] = {16{~wt_fp16_nan_flag_w[6]}};
+assign wt_nan_mask[127:112] = {16{~wt_fp16_nan_flag_w[7]}};
+assign wt_nan_mask[143:128] = {16{~wt_fp16_nan_flag_w[8]}};
+assign wt_nan_mask[159:144] = {16{~wt_fp16_nan_flag_w[9]}};
+assign wt_nan_mask[175:160] = {16{~wt_fp16_nan_flag_w[10]}};
+assign wt_nan_mask[191:176] = {16{~wt_fp16_nan_flag_w[11]}};
+assign wt_nan_mask[207:192] = {16{~wt_fp16_nan_flag_w[12]}};
+assign wt_nan_mask[223:208] = {16{~wt_fp16_nan_flag_w[13]}};
+assign wt_nan_mask[239:224] = {16{~wt_fp16_nan_flag_w[14]}};
+assign wt_nan_mask[255:240] = {16{~wt_fp16_nan_flag_w[15]}};
+/*assign wt_nan_mask[271:256] = {16{~wt_fp16_nan_flag_w[16]}};
+assign wt_nan_mask[287:272] = {16{~wt_fp16_nan_flag_w[17]}};
+assign wt_nan_mask[303:288] = {16{~wt_fp16_nan_flag_w[18]}};
+assign wt_nan_mask[319:304] = {16{~wt_fp16_nan_flag_w[19]}};
+assign wt_nan_mask[335:320] = {16{~wt_fp16_nan_flag_w[20]}};
+assign wt_nan_mask[351:336] = {16{~wt_fp16_nan_flag_w[21]}};
+assign wt_nan_mask[367:352] = {16{~wt_fp16_nan_flag_w[22]}};
+assign wt_nan_mask[383:368] = {16{~wt_fp16_nan_flag_w[23]}};
+assign wt_nan_mask[399:384] = {16{~wt_fp16_nan_flag_w[24]}};
+assign wt_nan_mask[415:400] = {16{~wt_fp16_nan_flag_w[25]}};
+assign wt_nan_mask[431:416] = {16{~wt_fp16_nan_flag_w[26]}};
+assign wt_nan_mask[447:432] = {16{~wt_fp16_nan_flag_w[27]}};
+assign wt_nan_mask[463:448] = {16{~wt_fp16_nan_flag_w[28]}};
+assign wt_nan_mask[479:464] = {16{~wt_fp16_nan_flag_w[29]}};
+assign wt_nan_mask[495:480] = {16{~wt_fp16_nan_flag_w[30]}};
+assign wt_nan_mask[511:496] = {16{~wt_fp16_nan_flag_w[31]}};
+
+*/
+
+//| eperl: generated_end (DO NOT EDIT ABOVE)
+assign wt_fp16_nan_vld_w = wt_cbuf_wr_vld_w & (|wt_fp16_nan_flag_w) & reg2dp_op_en & is_fp16;
+assign wt_fp16_inf_vld_w = wt_cbuf_wr_vld_w & (|wt_fp16_inf_flag_w) & reg2dp_op_en & is_fp16;
+//: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"wt_fp16_nan_vld_w\" -q wt_fp16_nan_vld");
+//: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"wt_fp16_inf_vld_w\" -q wt_fp16_inf_vld");
+//: &eperl::flop("-nodeclare  -norst -en \"wt_fp16_nan_vld_w\" -d \"wt_fp16_nan_flag_w\" -q wt_fp16_nan_flag");
+//: &eperl::flop("-nodeclare  -norst -en \"wt_fp16_inf_vld_w\" -d \"wt_fp16_inf_flag_w\" -q wt_fp16_inf_flag");
+//| eperl: generated_beg (DO NOT EDIT BELOW)
+always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
+   if (!nvdla_core_rstn) begin
+       wt_fp16_nan_vld <= 1'b0;
+   end else begin
+       wt_fp16_nan_vld <= wt_fp16_nan_vld_w;
+   end
+end
+always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
+   if (!nvdla_core_rstn) begin
+       wt_fp16_inf_vld <= 1'b0;
+   end else begin
+       wt_fp16_inf_vld <= wt_fp16_inf_vld_w;
+   end
+end
+always @(posedge nvdla_core_clk) begin
+       if ((wt_fp16_nan_vld_w) == 1'b1) begin
+           wt_fp16_nan_flag <= wt_fp16_nan_flag_w;
+       // VCS coverage off
+       end else if ((wt_fp16_nan_vld_w) == 1'b0) begin
+       end else begin
+           wt_fp16_nan_flag <= 'bx;
+       // VCS coverage on
+       end
+end
+always @(posedge nvdla_core_clk) begin
+       if ((wt_fp16_inf_vld_w) == 1'b1) begin
+           wt_fp16_inf_flag <= wt_fp16_inf_flag_w;
+       // VCS coverage off
+       end else if ((wt_fp16_inf_vld_w) == 1'b0) begin
+       end else begin
+           wt_fp16_inf_flag <= 'bx;
+       // VCS coverage on
+       end
+end
+
+//| eperl: generated_end (DO NOT EDIT ABOVE)
+/////////////////// ///////////////////
+assign wt_fp16_nan_sum = wt_fp16_nan_flag[31] + wt_fp16_nan_flag[30] + wt_fp16_nan_flag[29] + wt_fp16_nan_flag[28] + wt_fp16_nan_flag[27] + wt_fp16_nan_flag[26] + wt_fp16_nan_flag[25] + wt_fp16_nan_flag[24] +
+                         wt_fp16_nan_flag[23] + wt_fp16_nan_flag[22] + wt_fp16_nan_flag[21] + wt_fp16_nan_flag[20] + wt_fp16_nan_flag[19] + wt_fp16_nan_flag[18] + wt_fp16_nan_flag[17] + wt_fp16_nan_flag[16] +
+                         wt_fp16_nan_flag[15] + wt_fp16_nan_flag[14] + wt_fp16_nan_flag[13] + wt_fp16_nan_flag[12] + wt_fp16_nan_flag[11] + wt_fp16_nan_flag[10] + wt_fp16_nan_flag[9] + wt_fp16_nan_flag[8] +
+                         wt_fp16_nan_flag[7] + wt_fp16_nan_flag[6] + wt_fp16_nan_flag[5] + wt_fp16_nan_flag[4] + wt_fp16_nan_flag[3] + wt_fp16_nan_flag[2] + wt_fp16_nan_flag[1] + wt_fp16_nan_flag[0];
+assign wt_fp16_inf_sum = wt_fp16_inf_flag[31] + wt_fp16_inf_flag[30] + wt_fp16_inf_flag[29] + wt_fp16_inf_flag[28] + wt_fp16_inf_flag[27] + wt_fp16_inf_flag[26] + wt_fp16_inf_flag[25] + wt_fp16_inf_flag[24] +
+                         wt_fp16_inf_flag[23] + wt_fp16_inf_flag[22] + wt_fp16_inf_flag[21] + wt_fp16_inf_flag[20] + wt_fp16_inf_flag[19] + wt_fp16_inf_flag[18] + wt_fp16_inf_flag[17] + wt_fp16_inf_flag[16] +
+                         wt_fp16_inf_flag[15] + wt_fp16_inf_flag[14] + wt_fp16_inf_flag[13] + wt_fp16_inf_flag[12] + wt_fp16_inf_flag[11] + wt_fp16_inf_flag[10] + wt_fp16_inf_flag[9] + wt_fp16_inf_flag[8] +
+                         wt_fp16_inf_flag[7] + wt_fp16_inf_flag[6] + wt_fp16_inf_flag[5] + wt_fp16_inf_flag[4] + wt_fp16_inf_flag[3] + wt_fp16_inf_flag[2] + wt_fp16_inf_flag[1] + wt_fp16_inf_flag[0];
+assign {nan_carry,
+        dp2reg_nan_weight_num_inc} = dp2reg_nan_weight_num + wt_fp16_nan_sum;
+assign dp2reg_nan_weight_num_w = layer_st ? 32'b0 :
+                                 nan_carry ? ~(32'b0) :
+                                 dp2reg_nan_weight_num_inc;
+assign nan_reg_en = layer_st | (wt_fp16_nan_vld & (|wt_fp16_nan_sum));
+assign {inf_carry,
+        dp2reg_inf_weight_num_inc} = dp2reg_inf_weight_num + wt_fp16_inf_sum;
+assign dp2reg_inf_weight_num_w = layer_st ? 32'b0 :
+                                 inf_carry ? ~(32'b0) :
+                                 dp2reg_inf_weight_num_inc;
+assign inf_reg_en = layer_st | (wt_fp16_inf_vld & (|wt_fp16_inf_sum));
+//: &eperl::flop("-nodeclare   -rval \"{32{1'b0}}\"  -en \"nan_reg_en\" -d \"dp2reg_nan_weight_num_w\" -q dp2reg_nan_weight_num");
+//: &eperl::flop("-nodeclare   -rval \"{32{1'b0}}\"  -en \"inf_reg_en\" -d \"dp2reg_inf_weight_num_w\" -q dp2reg_inf_weight_num");
+//| eperl: generated_beg (DO NOT EDIT BELOW)
+always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
+   if (!nvdla_core_rstn) begin
+       dp2reg_nan_weight_num <= {32{1'b0}};
+   end else begin
+       if ((nan_reg_en) == 1'b1) begin
+           dp2reg_nan_weight_num <= dp2reg_nan_weight_num_w;
+       // VCS coverage off
+       end else if ((nan_reg_en) == 1'b0) begin
+       end else begin
+           dp2reg_nan_weight_num <= 'bx;
+       // VCS coverage on
+       end
+   end
+end
+always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
+   if (!nvdla_core_rstn) begin
+       dp2reg_inf_weight_num <= {32{1'b0}};
+   end else begin
+       if ((inf_reg_en) == 1'b1) begin
+           dp2reg_inf_weight_num <= dp2reg_inf_weight_num_w;
+       // VCS coverage off
+       end else if ((inf_reg_en) == 1'b0) begin
+       end else begin
+           dp2reg_inf_weight_num <= 'bx;
+       // VCS coverage on
+       end
+   end
+end
+
+//| eperl: generated_end (DO NOT EDIT ABOVE)
 ////////////////////////////////////////////////////////////////////////
 // WT data status monitor //
 ////////////////////////////////////////////////////////////////////////
@@ -1758,7 +1919,7 @@ end
 assign wt_data_onfly_add = (wt_req_reg_en_d2 & wt_req_stage_vld_d2 & ~wt_req_done_d2) ? wt_req_size_d2 : 4'b0;
 //atom_m num per cbuf write, =dmaif/atom_m
 //: my $dmaif = (256 / 8);
-//: my $atmc=64;
+//: my $atmc=32;
 //: my $atmm = 32;
 //: my $atmm_dmaif = int($dmaif / $atmm);
 //: my $atmm_atmc = int($atmc / $atmm);
@@ -1785,8 +1946,8 @@ assign wt_data_onfly_add = (wt_req_reg_en_d2 & wt_req_stage_vld_d2 & ~wt_req_don
 
 assign wt_data_onfly_sub = wt_cbuf_wr_vld_w ? 3'd1 : 3'b0;
 
-assign wt_data_stored_sub = status_update ? {1'b0,incr_wt_entries_w, 1'd0} : 17'b0;
-assign wt_data_avl_sub = sc_wt_updt ? {1'b0,sc_wt_entries, 1'b0} : 17'b0;
+assign wt_data_stored_sub = status_update ? {2'b0,incr_wt_entries_w} : 17'b0;
+assign wt_data_avl_sub = sc_wt_updt ? {2'b0,sc_wt_entries} : 17'b0;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign {mon_wt_data_onfly_w, wt_data_onfly_w} = wt_data_onfly + wt_data_onfly_add - wt_data_onfly_sub;
@@ -1900,7 +2061,7 @@ assign wt_fetched_cnt_w = layer_st ? 26'b0 : wt_fetched_cnt_inc;
 //: my $m = int(log(8)/log(2));
 //: my $dmaif=256/8; ##byte number per dmaif tx
 //: my $k = int(log($dmaif)/log(2));
-//: my $atmc=64 * 8;
+//: my $atmc=32 * 8;
 //: my $dmaifbw=256;
 //: if($atmc > $dmaifbw) {
 //: my $j = int( log( ${atmc}/${dmaifbw} )/log(2) );
@@ -1914,7 +2075,7 @@ assign wt_fetched_cnt_w = layer_st ? 26'b0 : wt_fetched_cnt_inc;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign wt_satisfied = is_running & ({wt_fetched_cnt, 5'b0} >= wt_required_bytes) & ~(|wt_fetched_cnt[1-1:0]);
+assign wt_satisfied = is_running & ({3'd0, wt_fetched_cnt, 5'b0} >= wt_required_bytes); // wt_fetched_cnt[0]
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign wt_satisfied = is_running & ({wt_fetched_cnt, 6'b0} >= wt_required_bytes) & ~wt_fetched_cnt[0];
@@ -1993,7 +2154,7 @@ assign pre_wt_fetched_cnt_w = status_last_group ? 26'b0 : wt_fetched_cnt;
 assign {mon_incr_wt_cnt, incr_wt_cnt} = wt_fetched_cnt - pre_wt_fetched_cnt;
 // dmaif vs atom_c
 //: my $dmaif=256/8;
-//: my $atmc=64;
+//: my $atmc=32;
 //: if($dmaif == $atmc){
 //: print qq(
 //: assign incr_wt_entries_w = incr_wt_cnt[14:0];
@@ -2011,7 +2172,7 @@ assign {mon_incr_wt_cnt, incr_wt_cnt} = wt_fetched_cnt - pre_wt_fetched_cnt;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign incr_wt_entries_w = {incr_wt_cnt[15+1-1:1]};
+assign incr_wt_entries_w = incr_wt_cnt[14:0];
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign incr_wt_entries_w = incr_wt_cnt[12 :1];
@@ -2468,7 +2629,6 @@ end
   nv_assert_never #(0,0,"Error! FSM done when wt fetch is not!") zzz_assert_never_29x (nvdla_core_clk, `ASSERT_RESET, (is_running & ~is_nxt_running & ~wt_req_done_d3)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! wt_data_onfly is not zero when idle") zzz_assert_never_30x (nvdla_core_clk, `ASSERT_RESET, (~is_running && (|wt_data_onfly))); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! wt_data_stored is not zero when idle") zzz_assert_never_31x (nvdla_core_clk, `ASSERT_RESET, (~is_running && (|wt_data_stored))); // spyglass disable W504 SelfDeterminedExpr-ML 
-// nv_assert_never #(0,0,"DMAIF: mcif and cvif should never return data both") zzz_assert_never_52x (nvdla_core_clk, `ASSERT_RESET, mc_dma_rd_rsp_vld & cv_dma_rd_rsp_vld); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"response fifo pop error") zzz_assert_never_56x (nvdla_core_clk, `ASSERT_RESET, (dma_rsp_fifo_ready & ~dma_rsp_fifo_req)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"response size mismatch") zzz_assert_never_57x (nvdla_core_clk, `ASSERT_RESET, (dma_rd_rsp_vld & dma_rd_rsp_rdy & (dma_rsp_size_cnt_inc > dma_rsp_size))); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! dma_rsp_size_cnt_inc is overflow") zzz_assert_never_58x (nvdla_core_clk, `ASSERT_RESET, (reg2dp_op_en & mon_dma_rsp_size_cnt_inc)); // spyglass disable W504 SelfDeterminedExpr-ML 

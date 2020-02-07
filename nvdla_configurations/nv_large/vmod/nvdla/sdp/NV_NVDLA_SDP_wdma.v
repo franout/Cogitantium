@@ -49,10 +49,6 @@ module NV_NVDLA_SDP_wdma (
   ,sdp_dp2wdma_pd //|< i
   ,sdp_dp2wdma_valid //|< i
   ,sdp_dp2wdma_ready //|> o
-  ,sdp2cvif_wr_req_pd //|> o
-  ,sdp2cvif_wr_req_valid //|> o
-  ,sdp2cvif_wr_req_ready //|< i
-  ,cvif2sdp_wr_rsp_complete //|< i
   ,sdp2mcif_wr_req_pd //|> o
   ,sdp2mcif_wr_req_valid //|> o
   ,sdp2mcif_wr_req_ready //|< i
@@ -64,10 +60,6 @@ module NV_NVDLA_SDP_wdma (
 //
 input nvdla_core_clk;
 input nvdla_core_rstn;
-output sdp2cvif_wr_req_valid;
-input sdp2cvif_wr_req_ready;
-output [258 -1:0] sdp2cvif_wr_req_pd;
-input cvif2sdp_wr_rsp_complete;
 output [1:0] sdp2glb_done_intr_pd;
 output sdp2mcif_wr_req_valid;
 input sdp2mcif_wr_req_ready;
@@ -106,7 +98,7 @@ output [31:0] dp2reg_status_nan_output_num;
 output dp2reg_status_unequal;
 output [31:0] dp2reg_wdma_stall;
 reg processing;
-wire [64 -5 +13 +1:0] cmd2dat_dma_pd;
+wire [32 -5 +13 +1:0] cmd2dat_dma_pd;
 wire cmd2dat_dma_prdy;
 wire cmd2dat_dma_pvld;
 wire [14:0] cmd2dat_spt_pd;
@@ -153,7 +145,7 @@ NV_NVDLA_SDP_WDMA_cmd u_cmd (
   ,.cmd2dat_spt_pd (cmd2dat_spt_pd[14:0]) //|> w
   ,.cmd2dat_dma_pvld (cmd2dat_dma_pvld) //|> w
   ,.cmd2dat_dma_prdy (cmd2dat_dma_prdy) //|< w
-  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[64 -5 +13 +1:0]) //|> w
+  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[32 -5 +13 +1:0]) //|> w
   ,.reg2dp_batch_number (reg2dp_batch_number[4:0]) //|< i
   ,.reg2dp_channel (reg2dp_channel[12:0]) //|< i
   ,.reg2dp_dst_base_addr_high (reg2dp_dst_base_addr_high[31:0]) //|< i
@@ -180,7 +172,7 @@ NV_NVDLA_SDP_WDMA_dat u_dat (
   ,.op_load (op_load) //|< w
   ,.cmd2dat_dma_pvld (cmd2dat_dma_pvld) //|< w
   ,.cmd2dat_dma_prdy (cmd2dat_dma_prdy) //|> w
-  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[64 -5 +13 +1:0]) //|< w
+  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[32 -5 +13 +1:0]) //|< w
   ,.cmd2dat_spt_pvld (cmd2dat_spt_pvld) //|< w
   ,.cmd2dat_spt_prdy (cmd2dat_spt_prdy) //|> w
   ,.cmd2dat_spt_pd (cmd2dat_spt_pd[14:0]) //|< w
@@ -211,10 +203,6 @@ NV_NVDLA_DMAIF_wr u_dmaif_wr(
    .nvdla_core_clk (nvdla_core_clk) //fixme         
   ,.nvdla_core_rstn (nvdla_core_rstn)
   ,.reg2dp_dst_ram_type (reg2dp_dst_ram_type)
-  ,.cvif_wr_req_pd (sdp2cvif_wr_req_pd)
-  ,.cvif_wr_req_valid (sdp2cvif_wr_req_valid)
-  ,.cvif_wr_req_ready (sdp2cvif_wr_req_ready)
-  ,.cvif_wr_rsp_complete (cvif2sdp_wr_rsp_complete)
   ,.mcif_wr_req_pd (sdp2mcif_wr_req_pd)
   ,.mcif_wr_req_valid (sdp2mcif_wr_req_valid)
   ,.mcif_wr_req_ready (sdp2mcif_wr_req_ready)

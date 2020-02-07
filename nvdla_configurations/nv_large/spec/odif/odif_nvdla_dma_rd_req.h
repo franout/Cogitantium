@@ -6,7 +6,7 @@
 #define _DMA_READ_REQ_struct_H_
 
 typedef struct DMA_READ_REQ_s {
-    sc_int<64> addr ;
+    sc_int<32> addr ;
     sc_int<15> size ;
 } DMA_READ_REQ_t;
 

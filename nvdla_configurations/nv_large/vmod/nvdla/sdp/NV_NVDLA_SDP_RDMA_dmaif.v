@@ -17,13 +17,6 @@
 module NV_NVDLA_SDP_RDMA_dmaif (
    nvdla_core_clk //|< i
   ,nvdla_core_rstn //|< i
-  ,sdp2cvif_rd_req_pd //|> o
-  ,sdp2cvif_rd_req_valid //|> o
-  ,sdp2cvif_rd_req_ready //|< i
-  ,cvif2sdp_rd_rsp_pd //|< i
-  ,cvif2sdp_rd_rsp_valid //|< i
-  ,cvif2sdp_rd_rsp_ready //|> o
-  ,sdp2cvif_rd_cdt_lat_fifo_pop //|> o
   ,sdp2mcif_rd_req_pd //|> o
   ,sdp2mcif_rd_req_valid //|> o
   ,sdp2mcif_rd_req_ready //|< i
@@ -43,14 +36,7 @@ module NV_NVDLA_SDP_RDMA_dmaif (
   );
 input nvdla_core_clk;
 input nvdla_core_rstn;
-output sdp2cvif_rd_cdt_lat_fifo_pop;
-output [79 -1:0] sdp2cvif_rd_req_pd;
-output sdp2cvif_rd_req_valid;
-input sdp2cvif_rd_req_ready;
-input [257 -1:0] cvif2sdp_rd_rsp_pd;
-input cvif2sdp_rd_rsp_valid;
-output cvif2sdp_rd_rsp_ready;
-output [79 -1:0] sdp2mcif_rd_req_pd;
+output [47 -1:0] sdp2mcif_rd_req_pd;
 output sdp2mcif_rd_req_valid;
 input sdp2mcif_rd_req_ready;
 input [257 -1:0] mcif2sdp_rd_rsp_pd;
@@ -60,21 +46,17 @@ output sdp2mcif_rd_cdt_lat_fifo_pop;
 input dma_rd_req_ram_type;
 input dma_rd_req_vld;
 output dma_rd_req_rdy;
-input [79 -1:0] dma_rd_req_pd;
+input [47 -1:0] dma_rd_req_pd;
 input dma_rd_rsp_ram_type;
 output [257 -1:0] dma_rd_rsp_pd;
 output dma_rd_rsp_vld;
 input dma_rd_rsp_rdy;
 input dma_rd_cdt_lat_fifo_pop;
 reg sdp2mcif_rd_cdt_lat_fifo_pop;
-reg sdp2cvif_rd_cdt_lat_fifo_pop;
 NV_NVDLA_DMAIF_rdreq NV_NVDLA_SDP_RDMA_rdreq(
   .nvdla_core_clk (nvdla_core_clk )
  ,.nvdla_core_rstn (nvdla_core_rstn )
  ,.reg2dp_src_ram_type (dma_rd_req_ram_type)
- ,.cvif_rd_req_pd (sdp2cvif_rd_req_pd )
- ,.cvif_rd_req_valid (sdp2cvif_rd_req_valid)
- ,.cvif_rd_req_ready (sdp2cvif_rd_req_ready)
  ,.mcif_rd_req_pd (sdp2mcif_rd_req_pd )
  ,.mcif_rd_req_valid (sdp2mcif_rd_req_valid)
  ,.mcif_rd_req_ready (sdp2mcif_rd_req_ready)
@@ -85,9 +67,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_SDP_RDMA_rdreq(
 NV_NVDLA_DMAIF_rdrsp NV_NVDLA_SDP_RDMA_rdrsp(
    .nvdla_core_clk (nvdla_core_clk )
   ,.nvdla_core_rstn (nvdla_core_rstn )
-  ,.cvif_rd_rsp_pd (cvif2sdp_rd_rsp_pd )
-  ,.cvif_rd_rsp_valid (cvif2sdp_rd_rsp_valid )
-  ,.cvif_rd_rsp_ready (cvif2sdp_rd_rsp_ready )
   ,.mcif_rd_rsp_pd (mcif2sdp_rd_rsp_pd )
   ,.mcif_rd_rsp_valid (mcif2sdp_rd_rsp_valid )
   ,.mcif_rd_rsp_ready (mcif2sdp_rd_rsp_ready )
@@ -100,13 +79,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     sdp2mcif_rd_cdt_lat_fifo_pop <= 1'b0;
   end else begin
   sdp2mcif_rd_cdt_lat_fifo_pop <= dma_rd_cdt_lat_fifo_pop & (dma_rd_rsp_ram_type == 1'b1);
-  end
-end
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-  if (!nvdla_core_rstn) begin
-    sdp2cvif_rd_cdt_lat_fifo_pop <= 1'b0;
-  end else begin
-  sdp2cvif_rd_cdt_lat_fifo_pop <= dma_rd_cdt_lat_fifo_pop & (dma_rd_rsp_ram_type == 1'b0);
   end
 end
 endmodule

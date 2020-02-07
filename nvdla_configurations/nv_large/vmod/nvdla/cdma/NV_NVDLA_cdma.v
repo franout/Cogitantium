@@ -30,12 +30,6 @@ module NV_NVDLA_cdma (
   ,cdma_wt2mcif_rd_req_ready
   ,csb2cdma_req_pd
   ,csb2cdma_req_pvld
-  ,cdma_dat2cvif_rd_req_ready
-  ,cdma_wt2cvif_rd_req_ready
-  ,cvif2cdma_dat_rd_rsp_pd
-  ,cvif2cdma_dat_rd_rsp_valid
-  ,cvif2cdma_wt_rd_rsp_pd
-  ,cvif2cdma_wt_rd_rsp_valid
   ,dla_clk_ovr_on_sync
   ,global_clk_ovr_on_sync
   ,mcif2cdma_dat_rd_rsp_pd
@@ -57,7 +51,7 @@ module NV_NVDLA_cdma (
   ,tmc2slcg_disable_clock_gating
   ,cdma2buf_dat_wr_en
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -84,7 +78,6 @@ module NV_NVDLA_cdma (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,cdma2buf_dat_wr_sel
 ,cdma2buf_dat_wr_addr
 ,cdma2buf_dat_wr_data
 
@@ -94,7 +87,7 @@ module NV_NVDLA_cdma (
 //,cdma2buf_dat_wr_hsel
   ,cdma2buf_wt_wr_en
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: ,cdma2buf_wt_wr_sel
@@ -120,7 +113,6 @@ module NV_NVDLA_cdma (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,cdma2buf_wt_wr_sel
 ,cdma2buf_wt_wr_addr
 ,cdma2buf_wt_wr_data
 
@@ -142,12 +134,6 @@ module NV_NVDLA_cdma (
   ,cdma_dat2glb_done_intr_pd
   ,cdma_dat2mcif_rd_req_pd
   ,cdma_dat2mcif_rd_req_valid
-  ,cdma_dat2cvif_rd_req_pd
-  ,cdma_dat2cvif_rd_req_valid
-  ,cdma_wt2cvif_rd_req_pd
-  ,cdma_wt2cvif_rd_req_valid
-  ,cvif2cdma_dat_rd_rsp_ready
-  ,cvif2cdma_wt_rd_rsp_ready
   ,cdma_wt2glb_done_intr_pd
   ,cdma_wt2mcif_rd_req_pd
   ,cdma_wt2mcif_rd_req_valid
@@ -165,7 +151,7 @@ output csb2cdma_req_prdy;
 input [62:0] csb2cdma_req_pd;
 output cdma2buf_dat_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int($atmc/$dmaif);
 //: print qq(
@@ -192,14 +178,13 @@ output cdma2buf_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [2-1:0] cdma2buf_dat_wr_sel;
 output [16:0] cdma2buf_dat_wr_addr;
 output [256-1:0] cdma2buf_dat_wr_data;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output cdma2buf_wt_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int($atmc/$dmaif);
 //: print qq(
@@ -226,7 +211,6 @@ output cdma2buf_wt_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [2-1:0] cdma2buf_wt_wr_sel ;
 output [16:0] cdma2buf_wt_wr_addr;
 output [256-1:0] cdma2buf_wt_wr_data;
 
@@ -234,29 +218,17 @@ output [256-1:0] cdma2buf_wt_wr_data;
 //output [11:0] cdma2buf_wt_wr_addr;
 //output cdma2buf_wt_wr_hsel;
 //output [511:0] cdma2buf_wt_wr_data;
-output cdma_dat2cvif_rd_req_valid;
-input cdma_dat2cvif_rd_req_ready;
-output [( 64 + 15 )-1:0] cdma_dat2cvif_rd_req_pd;
-input cvif2cdma_dat_rd_rsp_valid;
-output cvif2cdma_dat_rd_rsp_ready;
-input [( 256 + (256/8/32) )-1:0] cvif2cdma_dat_rd_rsp_pd;
-output cdma_wt2cvif_rd_req_valid;
-input cdma_wt2cvif_rd_req_ready;
-output [( 64 + 15 )-1:0] cdma_wt2cvif_rd_req_pd;
-input cvif2cdma_wt_rd_rsp_valid;
-output cvif2cdma_wt_rd_rsp_ready;
-input [( 256 + (256/8/32) )-1:0] cvif2cdma_wt_rd_rsp_pd;
 output [1:0] cdma_dat2glb_done_intr_pd;
 output [1:0] cdma_wt2glb_done_intr_pd;
 output cdma_dat2mcif_rd_req_valid;
 input cdma_dat2mcif_rd_req_ready;
-output [( 64 + 15 )-1:0] cdma_dat2mcif_rd_req_pd;
+output [( 32 + 15 )-1:0] cdma_dat2mcif_rd_req_pd;
 input mcif2cdma_dat_rd_rsp_valid;
 output mcif2cdma_dat_rd_rsp_ready;
 input [( 256 + (256/8/32) )-1:0] mcif2cdma_dat_rd_rsp_pd;
 output cdma_wt2mcif_rd_req_valid;
 input cdma_wt2mcif_rd_req_ready;
-output [( 64 + 15 )-1:0] cdma_wt2mcif_rd_req_pd;
+output [( 32 + 15 )-1:0] cdma_wt2mcif_rd_req_pd;
 input mcif2cdma_wt_rd_rsp_valid;
 output mcif2cdma_wt_rd_rsp_ready;
 input [( 256 + (256/8/32) )-1:0] mcif2cdma_wt_rd_rsp_pd;
@@ -287,21 +259,9 @@ input tmc2slcg_disable_clock_gating;
 wire [11:0] cdma2sc_wmb_entries_f;
 assign cdma2sc_wmb_entries = cdma2sc_wmb_entries_f[8:0];
 //
-wire [( 256 + (256/8/32) )-1:0] cvif2dc_dat_rd_rsp_pd;
-wire cvif2dc_dat_rd_rsp_ready;
-wire cvif2dc_dat_rd_rsp_valid;
-wire [( 256 + (256/8/32) )-1:0] cvif2img_dat_rd_rsp_pd;
-wire cvif2img_dat_rd_rsp_ready;
-wire cvif2img_dat_rd_rsp_valid;
-wire [( 64 + 15 )-1:0] dc_dat2cvif_rd_req_pd;
-wire dc_dat2cvif_rd_req_ready;
-wire dc_dat2cvif_rd_req_valid;
-wire [( 64 + 15 )-1:0] img_dat2cvif_rd_req_pd;
-wire img_dat2cvif_rd_req_ready;
-wire img_dat2cvif_rd_req_valid;
 wire dc2cvt_dat_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -328,7 +288,6 @@ wire dc2cvt_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-wire [1-1:0] dc2cvt_dat_wr_sel;
 wire [16:0] dc2cvt_dat_wr_addr;
 wire [256-1:0] dc2cvt_dat_wr_data;
 
@@ -364,7 +323,7 @@ wire [14:0] dc2status_dat_entries;
 wire [13:0] dc2status_dat_slices;
 wire dc2status_dat_updt;
 wire [1:0] dc2status_state;
-wire [( 64 + 15 )-1:0] dc_dat2mcif_rd_req_pd;
+wire [( 32 + 15 )-1:0] dc_dat2mcif_rd_req_pd;
 wire dc_dat2mcif_rd_req_ready;
 wire dc_dat2mcif_rd_req_valid;
 wire dp2reg_consumer;
@@ -386,7 +345,7 @@ wire [31:0] dp2reg_wt_rd_stall;
 wire img2cvt_dat_wr_en;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -419,7 +378,6 @@ wire img2cvt_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-wire [1-1:0] img2cvt_dat_wr_sel;
 wire [16:0] img2cvt_dat_wr_addr;
 wire [256-1:0] img2cvt_dat_wr_data;
 wire [32*16-1:0] img2cvt_mn_wr_data;
@@ -454,7 +412,7 @@ wire [14:0] img2status_dat_entries;
 wire [13:0] img2status_dat_slices;
 wire img2status_dat_updt;
 wire [1:0] img2status_state;
-wire [( 64 + 15 )-1:0] img_dat2mcif_rd_req_pd;
+wire [( 32 + 15 )-1:0] img_dat2mcif_rd_req_pd;
 wire img_dat2mcif_rd_req_ready;
 wire img_dat2mcif_rd_req_valid;
 wire [( 256 + (256/8/32) )-1:0] mcif2dc_dat_rd_rsp_pd;
@@ -667,18 +625,12 @@ NV_NVDLA_CDMA_wt u_wt (
   ,.cdma_wt2mcif_rd_req_valid (cdma_wt2mcif_rd_req_valid)
   ,.cdma_wt2mcif_rd_req_ready (cdma_wt2mcif_rd_req_ready)
   ,.cdma_wt2mcif_rd_req_pd (cdma_wt2mcif_rd_req_pd )
-  ,.cdma_wt2cvif_rd_req_valid (cdma_wt2cvif_rd_req_valid)
-  ,.cdma_wt2cvif_rd_req_ready (cdma_wt2cvif_rd_req_ready)
-  ,.cdma_wt2cvif_rd_req_pd (cdma_wt2cvif_rd_req_pd )
-  ,.cvif2cdma_wt_rd_rsp_valid (cvif2cdma_wt_rd_rsp_valid)
-  ,.cvif2cdma_wt_rd_rsp_ready (cvif2cdma_wt_rd_rsp_ready)
-  ,.cvif2cdma_wt_rd_rsp_pd (cvif2cdma_wt_rd_rsp_pd )
   ,.mcif2cdma_wt_rd_rsp_valid (mcif2cdma_wt_rd_rsp_valid)
   ,.mcif2cdma_wt_rd_rsp_ready (mcif2cdma_wt_rd_rsp_ready)
   ,.mcif2cdma_wt_rd_rsp_pd (mcif2cdma_wt_rd_rsp_pd )
   ,.cdma2buf_wt_wr_en (cdma2buf_wt_wr_en)
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -705,7 +657,6 @@ NV_NVDLA_CDMA_wt u_wt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.cdma2buf_wt_wr_sel (cdma2buf_wt_wr_sel )
 ,.cdma2buf_wt_wr_addr (cdma2buf_wt_wr_addr )
 ,.cdma2buf_wt_wr_data (cdma2buf_wt_wr_data )
 
@@ -787,15 +738,9 @@ NV_NVDLA_CDMA_dc u_dc (
   ,.mcif2dc_dat_rd_rsp_valid (mcif2dc_dat_rd_rsp_valid)
   ,.mcif2dc_dat_rd_rsp_ready (mcif2dc_dat_rd_rsp_ready)
   ,.mcif2dc_dat_rd_rsp_pd (mcif2dc_dat_rd_rsp_pd)
-  ,.dc_dat2cvif_rd_req_valid (dc_dat2cvif_rd_req_valid)
-  ,.dc_dat2cvif_rd_req_ready (dc_dat2cvif_rd_req_ready)
-  ,.dc_dat2cvif_rd_req_pd (dc_dat2cvif_rd_req_pd)
-  ,.cvif2dc_dat_rd_rsp_valid (cvif2dc_dat_rd_rsp_valid)
-  ,.cvif2dc_dat_rd_rsp_ready (cvif2dc_dat_rd_rsp_ready)
-  ,.cvif2dc_dat_rd_rsp_pd (cvif2dc_dat_rd_rsp_pd)
   ,.dc2cvt_dat_wr_en (dc2cvt_dat_wr_en)
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: ,.dc2cvt_dat_wr_sel (dc2cvt_dat_wr_sel)
@@ -821,7 +766,6 @@ NV_NVDLA_CDMA_dc u_dc (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.dc2cvt_dat_wr_sel (dc2cvt_dat_wr_sel)
 ,.dc2cvt_dat_wr_addr (dc2cvt_dat_wr_addr)
 ,.dc2cvt_dat_wr_data (dc2cvt_dat_wr_data)
 
@@ -924,19 +868,13 @@ NV_NVDLA_CDMA_img u_img (
   ,.img_dat2mcif_rd_req_valid (img_dat2mcif_rd_req_valid)
   ,.img_dat2mcif_rd_req_ready (img_dat2mcif_rd_req_ready)
   ,.img_dat2mcif_rd_req_pd (img_dat2mcif_rd_req_pd)
-  ,.img_dat2cvif_rd_req_valid (img_dat2cvif_rd_req_valid)
-  ,.img_dat2cvif_rd_req_ready (img_dat2cvif_rd_req_ready)
-  ,.img_dat2cvif_rd_req_pd (img_dat2cvif_rd_req_pd)
-  ,.cvif2img_dat_rd_rsp_valid (cvif2img_dat_rd_rsp_valid)
-  ,.cvif2img_dat_rd_rsp_ready (cvif2img_dat_rd_rsp_ready)
-  ,.cvif2img_dat_rd_rsp_pd (cvif2img_dat_rd_rsp_pd)
   ,.mcif2img_dat_rd_rsp_valid (mcif2img_dat_rd_rsp_valid)
   ,.mcif2img_dat_rd_rsp_ready (mcif2img_dat_rd_rsp_ready)
   ,.mcif2img_dat_rd_rsp_pd (mcif2img_dat_rd_rsp_pd)
   ,.img2cvt_dat_wr_en (img2cvt_dat_wr_en)
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -969,7 +907,6 @@ NV_NVDLA_CDMA_img u_img (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.img2cvt_dat_wr_sel (img2cvt_dat_wr_sel )
 ,.img2cvt_dat_wr_addr (img2cvt_dat_wr_addr )
 ,.img2cvt_dat_wr_data (img2cvt_dat_wr_data )
 ,.img2cvt_mn_wr_data (img2cvt_mn_wr_data )
@@ -1086,21 +1023,6 @@ NV_NVDLA_CDMA_dma_mux u_dma_mux (
   ,.dc_dat2mcif_rd_req_valid (dc_dat2mcif_rd_req_valid)
   ,.dc_dat2mcif_rd_req_ready (dc_dat2mcif_rd_req_ready)
   ,.dc_dat2mcif_rd_req_pd (dc_dat2mcif_rd_req_pd)
-  ,.dc_dat2cvif_rd_req_valid (dc_dat2cvif_rd_req_valid)
-  ,.dc_dat2cvif_rd_req_ready (dc_dat2cvif_rd_req_ready)
-  ,.dc_dat2cvif_rd_req_pd (dc_dat2cvif_rd_req_pd)
-  ,.img_dat2cvif_rd_req_valid (img_dat2cvif_rd_req_valid)
-  ,.img_dat2cvif_rd_req_ready (img_dat2cvif_rd_req_ready)
-  ,.img_dat2cvif_rd_req_pd (img_dat2cvif_rd_req_pd)
-  ,.cdma_dat2cvif_rd_req_valid (cdma_dat2cvif_rd_req_valid)
-  ,.cdma_dat2cvif_rd_req_ready (cdma_dat2cvif_rd_req_ready)
-  ,.cdma_dat2cvif_rd_req_pd (cdma_dat2cvif_rd_req_pd)
-  ,.cvif2cdma_dat_rd_rsp_valid (cvif2cdma_dat_rd_rsp_valid)
-  ,.cvif2cdma_dat_rd_rsp_ready (cvif2cdma_dat_rd_rsp_ready)
-  ,.cvif2cdma_dat_rd_rsp_pd (cvif2cdma_dat_rd_rsp_pd)
-  ,.cvif2dc_dat_rd_rsp_valid (cvif2dc_dat_rd_rsp_valid)
-  ,.cvif2dc_dat_rd_rsp_ready (cvif2dc_dat_rd_rsp_ready)
-  ,.cvif2dc_dat_rd_rsp_pd (cvif2dc_dat_rd_rsp_pd)
   ,.img_dat2mcif_rd_req_valid (img_dat2mcif_rd_req_valid)
   ,.img_dat2mcif_rd_req_ready (img_dat2mcif_rd_req_ready)
   ,.img_dat2mcif_rd_req_pd (img_dat2mcif_rd_req_pd)
@@ -1116,9 +1038,6 @@ NV_NVDLA_CDMA_dma_mux u_dma_mux (
   ,.mcif2img_dat_rd_rsp_valid (mcif2img_dat_rd_rsp_valid)
   ,.mcif2img_dat_rd_rsp_ready (mcif2img_dat_rd_rsp_ready)
   ,.mcif2img_dat_rd_rsp_pd (mcif2img_dat_rd_rsp_pd)
-  ,.cvif2img_dat_rd_rsp_valid (cvif2img_dat_rd_rsp_valid)
-  ,.cvif2img_dat_rd_rsp_ready (cvif2img_dat_rd_rsp_ready)
-  ,.cvif2img_dat_rd_rsp_pd (cvif2img_dat_rd_rsp_pd)
   );
 //-------------- SLCG for MUX --------------//
 NV_NVDLA_CDMA_slcg u_slcg_mux (
@@ -1140,7 +1059,7 @@ NV_NVDLA_CDMA_cvt u_cvt (
   ,.nvdla_core_rstn (nvdla_core_rstn)
   ,.dc2cvt_dat_wr_en (dc2cvt_dat_wr_en)
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: ,.dc2cvt_dat_wr_sel (dc2cvt_dat_wr_sel)
@@ -1166,7 +1085,6 @@ NV_NVDLA_CDMA_cvt u_cvt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.dc2cvt_dat_wr_sel (dc2cvt_dat_wr_sel)
 ,.dc2cvt_dat_wr_addr (dc2cvt_dat_wr_addr)
 ,.dc2cvt_dat_wr_data (dc2cvt_dat_wr_data)
 
@@ -1175,7 +1093,7 @@ NV_NVDLA_CDMA_cvt u_cvt (
   ,.img2cvt_dat_wr_en (img2cvt_dat_wr_en)
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -1208,7 +1126,6 @@ NV_NVDLA_CDMA_cvt u_cvt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.img2cvt_dat_wr_sel (img2cvt_dat_wr_sel )
 ,.img2cvt_dat_wr_addr (img2cvt_dat_wr_addr )
 ,.img2cvt_dat_wr_data (img2cvt_dat_wr_data )
 ,.img2cvt_mn_wr_data (img2cvt_mn_wr_data )
@@ -1218,7 +1135,7 @@ NV_NVDLA_CDMA_cvt u_cvt (
   ,.img2cvt_dat_wr_info_pd (img2cvt_dat_wr_info_pd[11:0])
   ,.cdma2buf_dat_wr_en (cdma2buf_dat_wr_en)
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -1245,7 +1162,6 @@ NV_NVDLA_CDMA_cvt u_cvt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.cdma2buf_dat_wr_sel (cdma2buf_dat_wr_sel )
 ,.cdma2buf_dat_wr_addr (cdma2buf_dat_wr_addr )
 ,.cdma2buf_dat_wr_data (cdma2buf_dat_wr_data )
 

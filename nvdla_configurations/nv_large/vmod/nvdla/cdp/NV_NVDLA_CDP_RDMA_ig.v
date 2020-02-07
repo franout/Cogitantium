@@ -41,9 +41,6 @@ module NV_NVDLA_CDP_RDMA_ig (
   ,reg2dp_src_ram_type //|< i
   ,reg2dp_src_surface_stride //|< i
   ,reg2dp_width //|< i
-  ,cdp2cvif_rd_req_pd //|> o
-  ,cdp2cvif_rd_req_valid //|> o
-  ,cdp2cvif_rd_req_ready //|< i
   ,cdp2mcif_rd_req_pd //|> o
   ,cdp2mcif_rd_req_valid //|> o
   ,cq_wr_pd //|> o
@@ -71,10 +68,7 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 output cdp2mcif_rd_req_valid; /* data valid */
 input cdp2mcif_rd_req_ready; /* data return handshake */
-output [79 -1:0] cdp2mcif_rd_req_pd;
-output cdp2cvif_rd_req_valid; /* data valid */
-input cdp2cvif_rd_req_ready; /* data return handshake */
-output [79 -1:0] cdp2cvif_rd_req_pd;
+output [47 -1:0] cdp2mcif_rd_req_pd;
 output cq_wr_pvld; /* data valid */
 input cq_wr_prdy; /* data return handshake */
 output [6:0] cq_wr_pd;
@@ -123,7 +117,7 @@ wire cmd_accept;
 wire cnt_cen;
 wire cnt_clr;
 wire cnt_inc;
-wire [64 +14:0] dma_rd_req_pd;
+wire [32 +14:0] dma_rd_req_pd;
 wire dma_rd_req_ram_type;
 wire dma_rd_req_rdy;
 wire dma_rd_req_vld;
@@ -672,8 +666,8 @@ assign cq_wr_pvld = tran_vld & dma_rd_req_rdy;
 // VALID: clamp when when cq is not ready
 assign dma_rd_req_vld = tran_vld & cq_wr_prdy;
 // PayLoad
-assign dma_rd_req_pd[64 -1:0] = dma_req_addr[64 -1:0];
-assign dma_rd_req_pd[64 +14:64] = dma_req_size[14:0];
+assign dma_rd_req_pd[32 -1:0] = dma_req_addr[32 -1:0];
+assign dma_rd_req_pd[32 +14:32] = dma_req_size[14:0];
 assign dma_rd_req_ram_type = reg2dp_src_ram_type;
 // Accept
 assign cmd_accept = dma_rd_req_vld & dma_rd_req_rdy;
@@ -914,9 +908,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_CDP_RDMA_rdreq(
   .nvdla_core_clk (nvdla_core_clk )
  ,.nvdla_core_rstn (nvdla_core_rstn )
  ,.reg2dp_src_ram_type (reg2dp_src_ram_type)
- ,.cvif_rd_req_pd (cdp2cvif_rd_req_pd )
- ,.cvif_rd_req_valid (cdp2cvif_rd_req_valid)
- ,.cvif_rd_req_ready (cdp2cvif_rd_req_ready)
  ,.mcif_rd_req_pd (cdp2mcif_rd_req_pd )
  ,.mcif_rd_req_valid (cdp2mcif_rd_req_valid)
  ,.mcif_rd_req_ready (cdp2mcif_rd_req_ready)

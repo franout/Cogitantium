@@ -1,15 +1,15 @@
 #if !defined(_nvdla_dma_wr_req_IFACE)
 #define _nvdla_dma_wr_req_IFACE
 
-#define PKT_DMA_WR_REQ_addr_WIDTH 64
+#define PKT_DMA_WR_REQ_addr_WIDTH 32
 #define PKT_DMA_WR_REQ_addr_LSB 0
-#define PKT_DMA_WR_REQ_addr_MSB 63
-#define PKT_DMA_WR_REQ_addr_FIELD 63:0
+#define PKT_DMA_WR_REQ_addr_MSB 31
+#define PKT_DMA_WR_REQ_addr_FIELD 31:0
 #define PKT_DMA_WR_REQ_size_WIDTH 13
-#define PKT_DMA_WR_REQ_size_LSB 64
-#define PKT_DMA_WR_REQ_size_MSB 76
-#define PKT_DMA_WR_REQ_size_FIELD 76:64
-#define PKT_DMA_WR_REQ_WIDTH 77
+#define PKT_DMA_WR_REQ_size_LSB 32
+#define PKT_DMA_WR_REQ_size_MSB 44
+#define PKT_DMA_WR_REQ_size_FIELD 44:32
+#define PKT_DMA_WR_REQ_WIDTH 45
 
 #define PKT_DMA_WR_DATA_data_WIDTH 256
 #define PKT_DMA_WR_DATA_data_LSB 0
@@ -30,7 +30,7 @@
 #define PKT_nvdla_dma_wr_req_PAYLOAD_FIELD    256:0
 #define PKT_nvdla_dma_wr_req_ID_WIDTH    1
 #define PKT_nvdla_dma_wr_req_ID_FIELD    257:257
-#define PKT_nvdla_dma_wr_req_DMA_WR_REQ_FIELD    76:0
+#define PKT_nvdla_dma_wr_req_DMA_WR_REQ_FIELD    44:0
 #define PKT_nvdla_dma_wr_req_DMA_WR_REQ_ID       1'd0
 #define PKT_nvdla_dma_wr_req_DMA_WR_REQ_int_ID   0
 #define PKT_nvdla_dma_wr_req_DMA_WR_DATA_FIELD    256:0

@@ -97,43 +97,43 @@ input [32/2-1:0] mac_a2accu_mask;
 input mac_a2accu_mode;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: input [22 -1:0] mac_a2accu_data${i}; //|< i
-//: input [22 -1:0] mac_b2accu_data${i}; //|< i )
+//: input [21 -1:0] mac_a2accu_data${i}; //|< i
+//: input [21 -1:0] mac_b2accu_data${i}; //|< i )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [22 -1:0] mac_a2accu_data0; //|< i
-input [22 -1:0] mac_b2accu_data0; //|< i 
-input [22 -1:0] mac_a2accu_data1; //|< i
-input [22 -1:0] mac_b2accu_data1; //|< i 
-input [22 -1:0] mac_a2accu_data2; //|< i
-input [22 -1:0] mac_b2accu_data2; //|< i 
-input [22 -1:0] mac_a2accu_data3; //|< i
-input [22 -1:0] mac_b2accu_data3; //|< i 
-input [22 -1:0] mac_a2accu_data4; //|< i
-input [22 -1:0] mac_b2accu_data4; //|< i 
-input [22 -1:0] mac_a2accu_data5; //|< i
-input [22 -1:0] mac_b2accu_data5; //|< i 
-input [22 -1:0] mac_a2accu_data6; //|< i
-input [22 -1:0] mac_b2accu_data6; //|< i 
-input [22 -1:0] mac_a2accu_data7; //|< i
-input [22 -1:0] mac_b2accu_data7; //|< i 
-input [22 -1:0] mac_a2accu_data8; //|< i
-input [22 -1:0] mac_b2accu_data8; //|< i 
-input [22 -1:0] mac_a2accu_data9; //|< i
-input [22 -1:0] mac_b2accu_data9; //|< i 
-input [22 -1:0] mac_a2accu_data10; //|< i
-input [22 -1:0] mac_b2accu_data10; //|< i 
-input [22 -1:0] mac_a2accu_data11; //|< i
-input [22 -1:0] mac_b2accu_data11; //|< i 
-input [22 -1:0] mac_a2accu_data12; //|< i
-input [22 -1:0] mac_b2accu_data12; //|< i 
-input [22 -1:0] mac_a2accu_data13; //|< i
-input [22 -1:0] mac_b2accu_data13; //|< i 
-input [22 -1:0] mac_a2accu_data14; //|< i
-input [22 -1:0] mac_b2accu_data14; //|< i 
-input [22 -1:0] mac_a2accu_data15; //|< i
-input [22 -1:0] mac_b2accu_data15; //|< i 
+input [21 -1:0] mac_a2accu_data0; //|< i
+input [21 -1:0] mac_b2accu_data0; //|< i 
+input [21 -1:0] mac_a2accu_data1; //|< i
+input [21 -1:0] mac_b2accu_data1; //|< i 
+input [21 -1:0] mac_a2accu_data2; //|< i
+input [21 -1:0] mac_b2accu_data2; //|< i 
+input [21 -1:0] mac_a2accu_data3; //|< i
+input [21 -1:0] mac_b2accu_data3; //|< i 
+input [21 -1:0] mac_a2accu_data4; //|< i
+input [21 -1:0] mac_b2accu_data4; //|< i 
+input [21 -1:0] mac_a2accu_data5; //|< i
+input [21 -1:0] mac_b2accu_data5; //|< i 
+input [21 -1:0] mac_a2accu_data6; //|< i
+input [21 -1:0] mac_b2accu_data6; //|< i 
+input [21 -1:0] mac_a2accu_data7; //|< i
+input [21 -1:0] mac_b2accu_data7; //|< i 
+input [21 -1:0] mac_a2accu_data8; //|< i
+input [21 -1:0] mac_b2accu_data8; //|< i 
+input [21 -1:0] mac_a2accu_data9; //|< i
+input [21 -1:0] mac_b2accu_data9; //|< i 
+input [21 -1:0] mac_a2accu_data10; //|< i
+input [21 -1:0] mac_b2accu_data10; //|< i 
+input [21 -1:0] mac_a2accu_data11; //|< i
+input [21 -1:0] mac_b2accu_data11; //|< i 
+input [21 -1:0] mac_a2accu_data12; //|< i
+input [21 -1:0] mac_b2accu_data12; //|< i 
+input [21 -1:0] mac_a2accu_data13; //|< i
+input [21 -1:0] mac_b2accu_data13; //|< i 
+input [21 -1:0] mac_a2accu_data14; //|< i
+input [21 -1:0] mac_b2accu_data14; //|< i 
+input [21 -1:0] mac_a2accu_data15; //|< i
+input [21 -1:0] mac_b2accu_data15; //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] mac_a2accu_pd;
 input mac_b2accu_pvld; /* data valid */

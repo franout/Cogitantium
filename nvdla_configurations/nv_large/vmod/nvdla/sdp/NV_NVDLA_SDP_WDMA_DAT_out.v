@@ -64,7 +64,7 @@ output [258 -1:0] dma_wr_req_pd;
 output dma_wr_req_vld;
 input cmd2dat_dma_pvld;
 output cmd2dat_dma_prdy;
-input [64 -5 +13 +1:0] cmd2dat_dma_pd;
+input [32 -5 +13 +1:0] cmd2dat_dma_pd;
 input dfifo0_rd_pvld;
 output dfifo0_rd_prdy;
 input [32*8 -1:0] dfifo0_rd_pd;
@@ -92,7 +92,7 @@ output dp2reg_done;
 output dp2reg_status_unequal;
 output intr_req_ptr;
 output intr_req_pvld;
-reg [64 -5 -1:0] cmd_addr;
+reg [32 -5 -1:0] cmd_addr;
 reg cmd_cube_end;
 reg cmd_en;
 reg [12:0] cmd_size;
@@ -112,7 +112,7 @@ wire cfg_mode_eql;
 wire cfg_mode_pdp;
 wire cfg_mode_quite;
 wire cfg_mode_winog;
-wire [64 -5 -1:0] cmd2dat_dma_addr;
+wire [32 -5 -1:0] cmd2dat_dma_addr;
 wire cmd2dat_dma_cube_end;
 wire cmd2dat_dma_odd;
 wire [12:0] cmd2dat_dma_size;
@@ -122,8 +122,8 @@ wire dat_accept;
 wire [4*32*8 -1:0] dat_pd;
 wire dat_rdy;
 wire dat_vld;
-wire [64 -1:0] dma_wr_cmd_addr;
-wire [64 +13:0] dma_wr_cmd_pd;
+wire [32 -1:0] dma_wr_cmd_addr;
+wire [32 +13:0] dma_wr_cmd_pd;
 wire dma_wr_cmd_require_ack;
 wire [12:0] dma_wr_cmd_size;
 wire dma_wr_cmd_vld;
@@ -152,10 +152,10 @@ assign cfg_di_int8 = reg2dp_proc_precision == 0 ;
 assign cfg_do_int16 = reg2dp_out_precision == 1 ;
 assign cfg_mode_1x1_pack = (reg2dp_width==0) & (reg2dp_height==0);
 //pop command data
-assign cmd2dat_dma_addr[64 -5 -1:0] = cmd2dat_dma_pd[64 -5 -1:0];
-assign cmd2dat_dma_size[12:0] = cmd2dat_dma_pd[64 -5 +13 -1:64 -5];
-assign cmd2dat_dma_odd = cmd2dat_dma_pd[64 -5 +13];
-assign cmd2dat_dma_cube_end = cmd2dat_dma_pd[64 -5 +13 +1];
+assign cmd2dat_dma_addr[32 -5 -1:0] = cmd2dat_dma_pd[32 -5 -1:0];
+assign cmd2dat_dma_size[12:0] = cmd2dat_dma_pd[32 -5 +13 -1:32 -5];
+assign cmd2dat_dma_odd = cmd2dat_dma_pd[32 -5 +13];
+assign cmd2dat_dma_cube_end = cmd2dat_dma_pd[32 -5 +13 +1];
 assign cmd2dat_dma_prdy = cmd_rdy || !cmd_vld;
 assign cmd_rdy = dat_accept & is_last_beat;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
@@ -280,7 +280,7 @@ end
 `endif // SPYGLASS_ASSERT_ON
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
-    cmd_addr <= {(64 -5){1'b0}};
+    cmd_addr <= {(32 -5){1'b0}};
   end else begin
   if ((cmd2dat_dma_pvld & cmd2dat_dma_prdy) == 1'b1) begin
     cmd_addr <= cmd2dat_dma_addr;
@@ -521,9 +521,9 @@ assign dma_wr_cmd_vld = cmd_en & cmd_vld;
 assign dma_wr_cmd_addr = {cmd_addr,{5{1'b0}}};
 assign dma_wr_cmd_size = cmd_size;
 assign dma_wr_cmd_require_ack = cmd_cube_end;
-assign dma_wr_cmd_pd[64 -1:0] = dma_wr_cmd_addr[64 -1:0];
-assign dma_wr_cmd_pd[64 +12:64] = dma_wr_cmd_size[12:0];
-assign dma_wr_cmd_pd[64 +13] = dma_wr_cmd_require_ack ;
+assign dma_wr_cmd_pd[32 -1:0] = dma_wr_cmd_addr[32 -1:0];
+assign dma_wr_cmd_pd[32 +12:32] = dma_wr_cmd_size[12:0];
+assign dma_wr_cmd_pd[32 +13] = dma_wr_cmd_require_ack ;
 assign dma_wr_dat_vld = dat_en & dat_vld;
 assign dma_wr_dat_mask[3:0] = dfifo_rd_size == 3'h4 ? 4'hf : dfifo_rd_size == 3'h3 ? 4'h7 : dfifo_rd_size == 3'h2 ? 4'h3 : dfifo_rd_size;
 assign dma_wr_dat_data = dat_pd[256 -1:0];
@@ -537,7 +537,7 @@ always @(
   ) begin
     dma_wr_req_pd[258 -2:0] = 0;
     if (cmd_en) begin
-        dma_wr_req_pd[258 -2:0] = {{(258 -78 -1){1'b0}},dma_wr_cmd_pd};
+        dma_wr_req_pd[258 -2:0] = {{(258 -46 -1){1'b0}},dma_wr_cmd_pd};
     end else begin
 //#if (NVDLA_DMA_WR_DAT < 258 -1)
 // dma_wr_req_pd[258 -2:0] = {{(258 -NVDLA_DMA_WR_DAT-1){1'b0}},dma_wr_dat_pd};

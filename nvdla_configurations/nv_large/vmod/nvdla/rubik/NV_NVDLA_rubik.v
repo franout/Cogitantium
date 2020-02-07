@@ -18,25 +18,14 @@ module NV_NVDLA_rubik (
   ,rbk2mcif_rd_req_valid //|> o
   ,rbk2mcif_rd_req_ready //|< i
   ,rbk2mcif_rd_req_pd //|> o
-  ,rbk2cvif_rd_req_valid //|> o
-  ,rbk2cvif_rd_req_ready //|< i
-  ,rbk2cvif_rd_req_pd //|> o
   ,mcif2rbk_rd_rsp_valid //|< i
   ,mcif2rbk_rd_rsp_ready //|> o
   ,mcif2rbk_rd_rsp_pd //|< i
-  ,cvif2rbk_rd_rsp_valid //|< i
-  ,cvif2rbk_rd_rsp_ready //|> o
-  ,cvif2rbk_rd_rsp_pd //|< i
   ,rbk2mcif_wr_req_valid //|> o
   ,rbk2mcif_wr_req_ready //|< i
   ,rbk2mcif_wr_req_pd //|> o
   ,mcif2rbk_wr_rsp_complete //|< i
-  ,rbk2cvif_wr_req_valid //|> o
-  ,rbk2cvif_wr_req_ready //|< i
-  ,rbk2cvif_wr_req_pd //|> o
-  ,cvif2rbk_wr_rsp_complete //|< i
   ,rbk2mcif_rd_cdt_lat_fifo_pop //|> o
-  ,rbk2cvif_rd_cdt_lat_fifo_pop //|> o
   ,rubik2glb_done_intr_pd //|> o
   ,dla_clk_ovr_on_sync //|< i
   ,global_clk_ovr_on_sync //|< i
@@ -56,25 +45,14 @@ input [31:0] pwrbus_ram_pd;
 output rbk2mcif_rd_req_valid; /* data valid */
 input rbk2mcif_rd_req_ready; /* data return handshake */
 output [78:0] rbk2mcif_rd_req_pd;
-output rbk2cvif_rd_req_valid; /* data valid */
-input rbk2cvif_rd_req_ready; /* data return handshake */
-output [78:0] rbk2cvif_rd_req_pd;
 input mcif2rbk_rd_rsp_valid; /* data valid */
 output mcif2rbk_rd_rsp_ready; /* data return handshake */
 input [513:0] mcif2rbk_rd_rsp_pd;
-input cvif2rbk_rd_rsp_valid; /* data valid */
-output cvif2rbk_rd_rsp_ready; /* data return handshake */
-input [513:0] cvif2rbk_rd_rsp_pd;
 output rbk2mcif_wr_req_valid; /* data valid */
 input rbk2mcif_wr_req_ready; /* data return handshake */
 output [514:0] rbk2mcif_wr_req_pd; /* pkt_id_width=1 pkt_widths=78,514  */
 input mcif2rbk_wr_rsp_complete;
-output rbk2cvif_wr_req_valid; /* data valid */
-input rbk2cvif_wr_req_ready; /* data return handshake */
-output [514:0] rbk2cvif_wr_req_pd; /* pkt_id_width=1 pkt_widths=78,514  */
-input cvif2rbk_wr_rsp_complete;
 output rbk2mcif_rd_cdt_lat_fifo_pop;
-output rbk2cvif_rd_cdt_lat_fifo_pop;
 output [1:0] rubik2glb_done_intr_pd;
 input dla_clk_ovr_on_sync;
 input global_clk_ovr_on_sync;
@@ -209,14 +187,9 @@ NV_NVDLA_RUBIK_intr u_intr (
 NV_NVDLA_RUBIK_dma u_dma (
    .nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.cvif2rbk_rd_rsp_pd (cvif2rbk_rd_rsp_pd[513:0]) //|< i
-  ,.cvif2rbk_rd_rsp_valid (cvif2rbk_rd_rsp_valid) //|< i
-  ,.cvif2rbk_wr_rsp_complete (cvif2rbk_wr_rsp_complete) //|< i
   ,.mcif2rbk_rd_rsp_pd (mcif2rbk_rd_rsp_pd[513:0]) //|< i
   ,.mcif2rbk_rd_rsp_valid (mcif2rbk_rd_rsp_valid) //|< i
   ,.mcif2rbk_wr_rsp_complete (mcif2rbk_wr_rsp_complete) //|< i
-  ,.rbk2cvif_rd_req_ready (rbk2cvif_rd_req_ready) //|< i
-  ,.rbk2cvif_wr_req_ready (rbk2cvif_wr_req_ready) //|< i
   ,.rbk2mcif_rd_req_ready (rbk2mcif_rd_req_ready) //|< i
   ,.rbk2mcif_wr_req_ready (rbk2mcif_wr_req_ready) //|< i
   ,.rd_cdt_lat_fifo_pop (rd_cdt_lat_fifo_pop) //|< w
@@ -227,13 +200,7 @@ NV_NVDLA_RUBIK_dma u_dma (
   ,.wr_req_pd (wr_req_pd[514:0]) //|< w
   ,.wr_req_type (wr_req_type) //|< w
   ,.wr_req_vld (wr_req_vld) //|< w
-  ,.cvif2rbk_rd_rsp_ready (cvif2rbk_rd_rsp_ready) //|> o
   ,.mcif2rbk_rd_rsp_ready (mcif2rbk_rd_rsp_ready) //|> o
-  ,.rbk2cvif_rd_cdt_lat_fifo_pop (rbk2cvif_rd_cdt_lat_fifo_pop) //|> o
-  ,.rbk2cvif_rd_req_pd (rbk2cvif_rd_req_pd[78:0]) //|> o
-  ,.rbk2cvif_rd_req_valid (rbk2cvif_rd_req_valid) //|> o
-  ,.rbk2cvif_wr_req_pd (rbk2cvif_wr_req_pd[514:0]) //|> o
-  ,.rbk2cvif_wr_req_valid (rbk2cvif_wr_req_valid) //|> o
   ,.rbk2mcif_rd_cdt_lat_fifo_pop (rbk2mcif_rd_cdt_lat_fifo_pop) //|> o
   ,.rbk2mcif_rd_req_pd (rbk2mcif_rd_req_pd[78:0]) //|> o
   ,.rbk2mcif_rd_req_valid (rbk2mcif_rd_req_valid) //|> o

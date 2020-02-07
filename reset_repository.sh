@@ -25,9 +25,9 @@ cd ./tutorial_board/
 git clone https://github.com/Xilinx/PYNQ_Workshop
 cd ..
 
-rm -rf ./pynq_z2/
-mkdir./pynq_z2/
-cd pynq_z2
+rm -rf ./PYNQ/
+mkdir./PYNQ/
+cd PYNQ
 git clone https://github.com/Xilinx/PYNQ
 cd ..
 

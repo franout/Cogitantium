@@ -5,16 +5,16 @@ interface csc2cmac_data_if
   field stripe_end 1
   field channel_end 1
   field layer_end 1
-  field mask 64
-  field data[64] 8
+  field mask 32
+  field data[32] 8
 interface csc2cmac_wt_if
   flow valid
-  field data[64] 8
-  field mask 64
+  field data[32] 8
+  field mask 32
   field sel 16
 interface cmac2cacc_if
   flow valid
-  field data[16] 22
+  field data[16] 21
   field mask 16
   field mode 1
   field batch_index 5
@@ -31,13 +31,13 @@ interface sdp2pdp_if
   flow valid_ready
   field pd[16] 8
 group DMA_READ_REQ
-  field addr 64
+  field addr 32
   field size 15
 group DMA_READ_RSP
   field data 256
   field mask 1
 group DMA_WR_REQ
-  field addr 64
+  field addr 32
   field size 13
 group DMA_WR_DATA
   field data 256

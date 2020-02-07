@@ -45,7 +45,7 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input op_load;
 input dma_rd_req_rdy;
-output [79 -1:0] dma_rd_req_pd;
+output [47 -1:0] dma_rd_req_pd;
 output dma_rd_req_vld;
 input ig2cq_prdy;
 output [15:0] ig2cq_pd;
@@ -65,9 +65,9 @@ input [31-5:0] reg2dp_line_stride;
 input [31-5:0] reg2dp_surface_stride;
 input reg2dp_perf_dma_en;
 output [31:0] dp2reg_rdma_stall;
-reg [64 -5 -1:0] base_addr_line;
-reg [64 -5 -1:0] base_addr_surf;
-reg [64 -5 -1:0] base_addr_width;
+reg [32 -5 -1:0] base_addr_line;
+reg [32 -5 -1:0] base_addr_surf;
+reg [32 -5 -1:0] base_addr_width;
 reg mon_base_addr_line_c;
 reg mon_base_addr_surf_c;
 reg mon_base_addr_width_c;
@@ -83,7 +83,7 @@ reg [13-5:0] size_of_surf;
 reg [14:0] size_of_straight;
 reg [14:0] size_of_width;
 wire [12:0] size_of_height;
-wire [64 -5 -1:0] cfg_base_addr;
+wire [32 -5 -1:0] cfg_base_addr;
 wire cfg_data_mode_per_kernel;
 wire cfg_data_size_1byte;
 wire cfg_data_use_both;
@@ -99,7 +99,7 @@ wire is_last_w;
 wire is_line_end;
 wire is_surf_end;
 reg [14:0] dma_req_size;
-reg [64 -1:0] dma_req_addr;
+reg [32 -1:0] dma_req_addr;
 reg stl_adv;
 reg [31:0] stl_cnt_cur;
 reg [33:0] stl_cnt_dec;
@@ -173,7 +173,7 @@ end
 //==============
 // Address catenate and offset calc
 //==============
-assign cfg_base_addr = {reg2dp_base_addr_high,reg2dp_base_addr_low};
+assign cfg_base_addr = reg2dp_base_addr_low;
 assign cfg_surf_stride = {reg2dp_surface_stride};
 assign cfg_line_stride = {reg2dp_line_stride};
 assign cfg_data_size_1byte = reg2dp_rdma_data_size == 1'h0 ;
@@ -242,7 +242,7 @@ assign is_last_h = (count_h==size_of_height);
 // LINE
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
-    base_addr_line <= {(64 -5){1'b0}};
+    base_addr_line <= {(32 -5){1'b0}};
     mon_base_addr_line_c <= 1'b0;
   end else begin
     if (op_load) begin
@@ -306,7 +306,7 @@ end
 // SURF
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
-    base_addr_surf <= {(64 -5){1'b0}};
+    base_addr_surf <= {(32 -5){1'b0}};
     mon_base_addr_surf_c <= 1'b0;
   end else begin
     if (op_load) begin
@@ -568,8 +568,8 @@ assign ig2cq_pvld = cmd_process & dma_rd_req_rdy;
 //==============
 // VALID: clamp when when cq is not ready
 assign dma_rd_req_vld = cmd_process & ig2cq_prdy;
-assign dma_rd_req_pd[64 -1:0] = dma_req_addr[64 -1:0];
-assign dma_rd_req_pd[79 -1:64] = dma_req_size[14:0];
+assign dma_rd_req_pd[32 -1:0] = dma_req_addr[32 -1:0];
+assign dma_rd_req_pd[47 -1:32] = dma_req_size[14:0];
 // Accept
 assign cmd_accept = dma_rd_req_vld & dma_rd_req_rdy;
 //==============

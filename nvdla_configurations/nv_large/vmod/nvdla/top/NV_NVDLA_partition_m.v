@@ -23,7 +23,7 @@ module NV_NVDLA_partition_m (
   ,global_clk_ovr_on //|< i
   ,nvdla_clk_ovr_on //|< i
   ,nvdla_core_clk //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,sc2mac_dat_data${i} //|< i )
 //: }
@@ -61,43 +61,11 @@ module NV_NVDLA_partition_m (
 ,sc2mac_dat_data29 //|< i 
 ,sc2mac_dat_data30 //|< i 
 ,sc2mac_dat_data31 //|< i 
-,sc2mac_dat_data32 //|< i 
-,sc2mac_dat_data33 //|< i 
-,sc2mac_dat_data34 //|< i 
-,sc2mac_dat_data35 //|< i 
-,sc2mac_dat_data36 //|< i 
-,sc2mac_dat_data37 //|< i 
-,sc2mac_dat_data38 //|< i 
-,sc2mac_dat_data39 //|< i 
-,sc2mac_dat_data40 //|< i 
-,sc2mac_dat_data41 //|< i 
-,sc2mac_dat_data42 //|< i 
-,sc2mac_dat_data43 //|< i 
-,sc2mac_dat_data44 //|< i 
-,sc2mac_dat_data45 //|< i 
-,sc2mac_dat_data46 //|< i 
-,sc2mac_dat_data47 //|< i 
-,sc2mac_dat_data48 //|< i 
-,sc2mac_dat_data49 //|< i 
-,sc2mac_dat_data50 //|< i 
-,sc2mac_dat_data51 //|< i 
-,sc2mac_dat_data52 //|< i 
-,sc2mac_dat_data53 //|< i 
-,sc2mac_dat_data54 //|< i 
-,sc2mac_dat_data55 //|< i 
-,sc2mac_dat_data56 //|< i 
-,sc2mac_dat_data57 //|< i 
-,sc2mac_dat_data58 //|< i 
-,sc2mac_dat_data59 //|< i 
-,sc2mac_dat_data60 //|< i 
-,sc2mac_dat_data61 //|< i 
-,sc2mac_dat_data62 //|< i 
-,sc2mac_dat_data63 //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_dat_mask //|< i
   ,sc2mac_dat_pd //|< i
   ,sc2mac_dat_pvld //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,sc2mac_wt_data${i} //|< i )
 //: }
@@ -135,38 +103,6 @@ module NV_NVDLA_partition_m (
 ,sc2mac_wt_data29 //|< i 
 ,sc2mac_wt_data30 //|< i 
 ,sc2mac_wt_data31 //|< i 
-,sc2mac_wt_data32 //|< i 
-,sc2mac_wt_data33 //|< i 
-,sc2mac_wt_data34 //|< i 
-,sc2mac_wt_data35 //|< i 
-,sc2mac_wt_data36 //|< i 
-,sc2mac_wt_data37 //|< i 
-,sc2mac_wt_data38 //|< i 
-,sc2mac_wt_data39 //|< i 
-,sc2mac_wt_data40 //|< i 
-,sc2mac_wt_data41 //|< i 
-,sc2mac_wt_data42 //|< i 
-,sc2mac_wt_data43 //|< i 
-,sc2mac_wt_data44 //|< i 
-,sc2mac_wt_data45 //|< i 
-,sc2mac_wt_data46 //|< i 
-,sc2mac_wt_data47 //|< i 
-,sc2mac_wt_data48 //|< i 
-,sc2mac_wt_data49 //|< i 
-,sc2mac_wt_data50 //|< i 
-,sc2mac_wt_data51 //|< i 
-,sc2mac_wt_data52 //|< i 
-,sc2mac_wt_data53 //|< i 
-,sc2mac_wt_data54 //|< i 
-,sc2mac_wt_data55 //|< i 
-,sc2mac_wt_data56 //|< i 
-,sc2mac_wt_data57 //|< i 
-,sc2mac_wt_data58 //|< i 
-,sc2mac_wt_data59 //|< i 
-,sc2mac_wt_data60 //|< i 
-,sc2mac_wt_data61 //|< i 
-,sc2mac_wt_data62 //|< i 
-,sc2mac_wt_data63 //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_wt_mask //|< i
   ,sc2mac_wt_pvld //|< i
@@ -215,8 +151,8 @@ input [62:0] csb2cmac_a_req_pd;
 output cmac_a2csb_resp_valid;
 output [33:0] cmac_a2csb_resp_pd;
 input sc2mac_wt_pvld; /* data valid */
-input [64 -1:0] sc2mac_wt_mask;
-//: for(my $i=0; $i<64 ; $i++){
+input [32 -1:0] sc2mac_wt_mask;
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: input [8 -1:0] sc2mac_wt_data${i}; //|< i )
 //: }
@@ -254,43 +190,11 @@ input [8 -1:0] sc2mac_wt_data28; //|< i
 input [8 -1:0] sc2mac_wt_data29; //|< i 
 input [8 -1:0] sc2mac_wt_data30; //|< i 
 input [8 -1:0] sc2mac_wt_data31; //|< i 
-input [8 -1:0] sc2mac_wt_data32; //|< i 
-input [8 -1:0] sc2mac_wt_data33; //|< i 
-input [8 -1:0] sc2mac_wt_data34; //|< i 
-input [8 -1:0] sc2mac_wt_data35; //|< i 
-input [8 -1:0] sc2mac_wt_data36; //|< i 
-input [8 -1:0] sc2mac_wt_data37; //|< i 
-input [8 -1:0] sc2mac_wt_data38; //|< i 
-input [8 -1:0] sc2mac_wt_data39; //|< i 
-input [8 -1:0] sc2mac_wt_data40; //|< i 
-input [8 -1:0] sc2mac_wt_data41; //|< i 
-input [8 -1:0] sc2mac_wt_data42; //|< i 
-input [8 -1:0] sc2mac_wt_data43; //|< i 
-input [8 -1:0] sc2mac_wt_data44; //|< i 
-input [8 -1:0] sc2mac_wt_data45; //|< i 
-input [8 -1:0] sc2mac_wt_data46; //|< i 
-input [8 -1:0] sc2mac_wt_data47; //|< i 
-input [8 -1:0] sc2mac_wt_data48; //|< i 
-input [8 -1:0] sc2mac_wt_data49; //|< i 
-input [8 -1:0] sc2mac_wt_data50; //|< i 
-input [8 -1:0] sc2mac_wt_data51; //|< i 
-input [8 -1:0] sc2mac_wt_data52; //|< i 
-input [8 -1:0] sc2mac_wt_data53; //|< i 
-input [8 -1:0] sc2mac_wt_data54; //|< i 
-input [8 -1:0] sc2mac_wt_data55; //|< i 
-input [8 -1:0] sc2mac_wt_data56; //|< i 
-input [8 -1:0] sc2mac_wt_data57; //|< i 
-input [8 -1:0] sc2mac_wt_data58; //|< i 
-input [8 -1:0] sc2mac_wt_data59; //|< i 
-input [8 -1:0] sc2mac_wt_data60; //|< i 
-input [8 -1:0] sc2mac_wt_data61; //|< i 
-input [8 -1:0] sc2mac_wt_data62; //|< i 
-input [8 -1:0] sc2mac_wt_data63; //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [32/2 -1:0] sc2mac_wt_sel;
 input sc2mac_dat_pvld; /* data valid */
-input [64 -1:0] sc2mac_dat_mask;
-//: for(my $i=0; $i<64 ; $i++){
+input [32 -1:0] sc2mac_dat_mask;
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: input [8 -1:0] sc2mac_dat_data${i}; //|< i )
 //: }
@@ -328,38 +232,6 @@ input [8 -1:0] sc2mac_dat_data28; //|< i
 input [8 -1:0] sc2mac_dat_data29; //|< i 
 input [8 -1:0] sc2mac_dat_data30; //|< i 
 input [8 -1:0] sc2mac_dat_data31; //|< i 
-input [8 -1:0] sc2mac_dat_data32; //|< i 
-input [8 -1:0] sc2mac_dat_data33; //|< i 
-input [8 -1:0] sc2mac_dat_data34; //|< i 
-input [8 -1:0] sc2mac_dat_data35; //|< i 
-input [8 -1:0] sc2mac_dat_data36; //|< i 
-input [8 -1:0] sc2mac_dat_data37; //|< i 
-input [8 -1:0] sc2mac_dat_data38; //|< i 
-input [8 -1:0] sc2mac_dat_data39; //|< i 
-input [8 -1:0] sc2mac_dat_data40; //|< i 
-input [8 -1:0] sc2mac_dat_data41; //|< i 
-input [8 -1:0] sc2mac_dat_data42; //|< i 
-input [8 -1:0] sc2mac_dat_data43; //|< i 
-input [8 -1:0] sc2mac_dat_data44; //|< i 
-input [8 -1:0] sc2mac_dat_data45; //|< i 
-input [8 -1:0] sc2mac_dat_data46; //|< i 
-input [8 -1:0] sc2mac_dat_data47; //|< i 
-input [8 -1:0] sc2mac_dat_data48; //|< i 
-input [8 -1:0] sc2mac_dat_data49; //|< i 
-input [8 -1:0] sc2mac_dat_data50; //|< i 
-input [8 -1:0] sc2mac_dat_data51; //|< i 
-input [8 -1:0] sc2mac_dat_data52; //|< i 
-input [8 -1:0] sc2mac_dat_data53; //|< i 
-input [8 -1:0] sc2mac_dat_data54; //|< i 
-input [8 -1:0] sc2mac_dat_data55; //|< i 
-input [8 -1:0] sc2mac_dat_data56; //|< i 
-input [8 -1:0] sc2mac_dat_data57; //|< i 
-input [8 -1:0] sc2mac_dat_data58; //|< i 
-input [8 -1:0] sc2mac_dat_data59; //|< i 
-input [8 -1:0] sc2mac_dat_data60; //|< i 
-input [8 -1:0] sc2mac_dat_data61; //|< i 
-input [8 -1:0] sc2mac_dat_data62; //|< i 
-input [8 -1:0] sc2mac_dat_data63; //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] sc2mac_dat_pd;
 output mac2accu_pvld; /* data valid */
@@ -367,26 +239,26 @@ output [32/2 -1:0] mac2accu_mask;
 output mac2accu_mode;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: output [22 -1:0] mac2accu_data${i}; )
+//: output [21 -1:0] mac2accu_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [22 -1:0] mac2accu_data0; 
-output [22 -1:0] mac2accu_data1; 
-output [22 -1:0] mac2accu_data2; 
-output [22 -1:0] mac2accu_data3; 
-output [22 -1:0] mac2accu_data4; 
-output [22 -1:0] mac2accu_data5; 
-output [22 -1:0] mac2accu_data6; 
-output [22 -1:0] mac2accu_data7; 
-output [22 -1:0] mac2accu_data8; 
-output [22 -1:0] mac2accu_data9; 
-output [22 -1:0] mac2accu_data10; 
-output [22 -1:0] mac2accu_data11; 
-output [22 -1:0] mac2accu_data12; 
-output [22 -1:0] mac2accu_data13; 
-output [22 -1:0] mac2accu_data14; 
-output [22 -1:0] mac2accu_data15; 
+output [21 -1:0] mac2accu_data0; 
+output [21 -1:0] mac2accu_data1; 
+output [21 -1:0] mac2accu_data2; 
+output [21 -1:0] mac2accu_data3; 
+output [21 -1:0] mac2accu_data4; 
+output [21 -1:0] mac2accu_data5; 
+output [21 -1:0] mac2accu_data6; 
+output [21 -1:0] mac2accu_data7; 
+output [21 -1:0] mac2accu_data8; 
+output [21 -1:0] mac2accu_data9; 
+output [21 -1:0] mac2accu_data10; 
+output [21 -1:0] mac2accu_data11; 
+output [21 -1:0] mac2accu_data12; 
+output [21 -1:0] mac2accu_data13; 
+output [21 -1:0] mac2accu_data14; 
+output [21 -1:0] mac2accu_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [8:0] mac2accu_pd;
 input global_clk_ovr_on;
@@ -461,7 +333,7 @@ NV_NVDLA_cmac u_NV_NVDLA_cmac (
   ,.mac2accu_pd (mac2accu_pd) //|> o
   ,.sc2mac_dat_pvld (sc2mac_dat_pvld) //|< i
   ,.sc2mac_dat_mask (sc2mac_dat_mask) //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_dat_data${i} (sc2mac_dat_data${i}) //|< i )
 //: }
@@ -499,43 +371,11 @@ NV_NVDLA_cmac u_NV_NVDLA_cmac (
 ,.sc2mac_dat_data29 (sc2mac_dat_data29) //|< i 
 ,.sc2mac_dat_data30 (sc2mac_dat_data30) //|< i 
 ,.sc2mac_dat_data31 (sc2mac_dat_data31) //|< i 
-,.sc2mac_dat_data32 (sc2mac_dat_data32) //|< i 
-,.sc2mac_dat_data33 (sc2mac_dat_data33) //|< i 
-,.sc2mac_dat_data34 (sc2mac_dat_data34) //|< i 
-,.sc2mac_dat_data35 (sc2mac_dat_data35) //|< i 
-,.sc2mac_dat_data36 (sc2mac_dat_data36) //|< i 
-,.sc2mac_dat_data37 (sc2mac_dat_data37) //|< i 
-,.sc2mac_dat_data38 (sc2mac_dat_data38) //|< i 
-,.sc2mac_dat_data39 (sc2mac_dat_data39) //|< i 
-,.sc2mac_dat_data40 (sc2mac_dat_data40) //|< i 
-,.sc2mac_dat_data41 (sc2mac_dat_data41) //|< i 
-,.sc2mac_dat_data42 (sc2mac_dat_data42) //|< i 
-,.sc2mac_dat_data43 (sc2mac_dat_data43) //|< i 
-,.sc2mac_dat_data44 (sc2mac_dat_data44) //|< i 
-,.sc2mac_dat_data45 (sc2mac_dat_data45) //|< i 
-,.sc2mac_dat_data46 (sc2mac_dat_data46) //|< i 
-,.sc2mac_dat_data47 (sc2mac_dat_data47) //|< i 
-,.sc2mac_dat_data48 (sc2mac_dat_data48) //|< i 
-,.sc2mac_dat_data49 (sc2mac_dat_data49) //|< i 
-,.sc2mac_dat_data50 (sc2mac_dat_data50) //|< i 
-,.sc2mac_dat_data51 (sc2mac_dat_data51) //|< i 
-,.sc2mac_dat_data52 (sc2mac_dat_data52) //|< i 
-,.sc2mac_dat_data53 (sc2mac_dat_data53) //|< i 
-,.sc2mac_dat_data54 (sc2mac_dat_data54) //|< i 
-,.sc2mac_dat_data55 (sc2mac_dat_data55) //|< i 
-,.sc2mac_dat_data56 (sc2mac_dat_data56) //|< i 
-,.sc2mac_dat_data57 (sc2mac_dat_data57) //|< i 
-,.sc2mac_dat_data58 (sc2mac_dat_data58) //|< i 
-,.sc2mac_dat_data59 (sc2mac_dat_data59) //|< i 
-,.sc2mac_dat_data60 (sc2mac_dat_data60) //|< i 
-,.sc2mac_dat_data61 (sc2mac_dat_data61) //|< i 
-,.sc2mac_dat_data62 (sc2mac_dat_data62) //|< i 
-,.sc2mac_dat_data63 (sc2mac_dat_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_dat_pd (sc2mac_dat_pd) //|< i
   ,.sc2mac_wt_pvld (sc2mac_wt_pvld) //|< i
   ,.sc2mac_wt_mask (sc2mac_wt_mask) //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_wt_data${i} (sc2mac_wt_data${i}) //|< i )
 //: }
@@ -573,38 +413,6 @@ NV_NVDLA_cmac u_NV_NVDLA_cmac (
 ,.sc2mac_wt_data29 (sc2mac_wt_data29) //|< i 
 ,.sc2mac_wt_data30 (sc2mac_wt_data30) //|< i 
 ,.sc2mac_wt_data31 (sc2mac_wt_data31) //|< i 
-,.sc2mac_wt_data32 (sc2mac_wt_data32) //|< i 
-,.sc2mac_wt_data33 (sc2mac_wt_data33) //|< i 
-,.sc2mac_wt_data34 (sc2mac_wt_data34) //|< i 
-,.sc2mac_wt_data35 (sc2mac_wt_data35) //|< i 
-,.sc2mac_wt_data36 (sc2mac_wt_data36) //|< i 
-,.sc2mac_wt_data37 (sc2mac_wt_data37) //|< i 
-,.sc2mac_wt_data38 (sc2mac_wt_data38) //|< i 
-,.sc2mac_wt_data39 (sc2mac_wt_data39) //|< i 
-,.sc2mac_wt_data40 (sc2mac_wt_data40) //|< i 
-,.sc2mac_wt_data41 (sc2mac_wt_data41) //|< i 
-,.sc2mac_wt_data42 (sc2mac_wt_data42) //|< i 
-,.sc2mac_wt_data43 (sc2mac_wt_data43) //|< i 
-,.sc2mac_wt_data44 (sc2mac_wt_data44) //|< i 
-,.sc2mac_wt_data45 (sc2mac_wt_data45) //|< i 
-,.sc2mac_wt_data46 (sc2mac_wt_data46) //|< i 
-,.sc2mac_wt_data47 (sc2mac_wt_data47) //|< i 
-,.sc2mac_wt_data48 (sc2mac_wt_data48) //|< i 
-,.sc2mac_wt_data49 (sc2mac_wt_data49) //|< i 
-,.sc2mac_wt_data50 (sc2mac_wt_data50) //|< i 
-,.sc2mac_wt_data51 (sc2mac_wt_data51) //|< i 
-,.sc2mac_wt_data52 (sc2mac_wt_data52) //|< i 
-,.sc2mac_wt_data53 (sc2mac_wt_data53) //|< i 
-,.sc2mac_wt_data54 (sc2mac_wt_data54) //|< i 
-,.sc2mac_wt_data55 (sc2mac_wt_data55) //|< i 
-,.sc2mac_wt_data56 (sc2mac_wt_data56) //|< i 
-,.sc2mac_wt_data57 (sc2mac_wt_data57) //|< i 
-,.sc2mac_wt_data58 (sc2mac_wt_data58) //|< i 
-,.sc2mac_wt_data59 (sc2mac_wt_data59) //|< i 
-,.sc2mac_wt_data60 (sc2mac_wt_data60) //|< i 
-,.sc2mac_wt_data61 (sc2mac_wt_data61) //|< i 
-,.sc2mac_wt_data62 (sc2mac_wt_data62) //|< i 
-,.sc2mac_wt_data63 (sc2mac_wt_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_wt_sel (sc2mac_wt_sel) //|< i
   ,.dla_clk_ovr_on_sync (dla_clk_ovr_on_sync) //|< w

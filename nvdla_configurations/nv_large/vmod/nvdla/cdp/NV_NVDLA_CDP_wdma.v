@@ -28,10 +28,6 @@ module NV_NVDLA_CDP_wdma (
    nvdla_core_clk
   ,nvdla_core_clk_orig
   ,nvdla_core_rstn
-  ,cdp2cvif_wr_req_ready
-  ,cdp2cvif_wr_req_pd
-  ,cdp2cvif_wr_req_valid
-  ,cvif2cdp_wr_rsp_complete
   ,cdp2mcif_wr_req_ready
   ,cdp_dp2wdma_pd
   ,cdp_dp2wdma_valid
@@ -61,10 +57,6 @@ output cdp2mcif_wr_req_valid;
 input cdp2mcif_wr_req_ready;
 output [258 -1:0] cdp2mcif_wr_req_pd;
 input mcif2cdp_wr_rsp_complete;
-output cdp2cvif_wr_req_valid;
-input cdp2cvif_wr_req_ready;
-output [258 -1:0] cdp2cvif_wr_req_pd;
-input cvif2cdp_wr_rsp_complete;
 input cdp_dp2wdma_valid;
 output cdp_dp2wdma_ready;
 input [8*8 +16:0] cdp_dp2wdma_pd;
@@ -169,7 +161,7 @@ wire dat_fifo_wr_rdy;
 wire dat_rdy;
 wire dat_vld;
 wire [63:0] dma_wr_cmd_addr;
-wire [64 +13:0] dma_wr_cmd_pd;
+wire [32 +13:0] dma_wr_cmd_pd;
 wire dma_wr_cmd_require_ack;
 wire [12:0] dma_wr_cmd_size;
 wire dma_wr_cmd_vld;
@@ -970,9 +962,9 @@ assign dma_wr_cmd_addr = dma_req_addr;
 assign dma_wr_cmd_size = {{9{1'b0}}, cmd_fifo_rd_pos_w};
 assign dma_wr_cmd_require_ack = is_cube_last;
 // PKT_PACK_WIRE( dma_write_cmd , dma_wr_cmd_ , dma_wr_cmd_pd )
-assign dma_wr_cmd_pd[64 -1:0] = dma_wr_cmd_addr[64 -1:0];
-assign dma_wr_cmd_pd[64 +12:64] = dma_wr_cmd_size[12:0];
-assign dma_wr_cmd_pd[64 +13] = dma_wr_cmd_require_ack ;
+assign dma_wr_cmd_pd[32 -1:0] = dma_wr_cmd_addr[32 -1:0];
+assign dma_wr_cmd_pd[32 +12:32] = dma_wr_cmd_size[12:0];
+assign dma_wr_cmd_pd[32 +13] = dma_wr_cmd_require_ack ;
 // packet: data
 assign dma_wr_dat_vld = dat_vld;
 assign dma_wr_dat_data = dat_data;
@@ -1034,7 +1026,7 @@ always @(*) begin
     dma_wr_req_pd = 0;
 // cmd or dat
     if (cmd_en) begin
-        dma_wr_req_pd = {{(258 -64 -14){1'b0}},dma_wr_cmd_pd};
+        dma_wr_req_pd = {{(258 -32 -14){1'b0}},dma_wr_cmd_pd};
     end else begin
         dma_wr_req_pd = {1'b0,dma_wr_dat_pd};
     end
@@ -1128,10 +1120,6 @@ NV_NVDLA_DMAIF_wr NV_NVDLA_CDP_WDMA_wr(
    .nvdla_core_clk (nvdla_core_clk_orig )
   ,.nvdla_core_rstn (nvdla_core_rstn )
   ,.reg2dp_dst_ram_type (reg2dp_dst_ram_type )
-  ,.cvif_wr_req_pd (cdp2cvif_wr_req_pd )
-  ,.cvif_wr_req_valid (cdp2cvif_wr_req_valid )
-  ,.cvif_wr_req_ready (cdp2cvif_wr_req_ready )
-  ,.cvif_wr_rsp_complete (cvif2cdp_wr_rsp_complete)
   ,.mcif_wr_req_pd (cdp2mcif_wr_req_pd )
   ,.mcif_wr_req_valid (cdp2mcif_wr_req_valid )
   ,.mcif_wr_req_ready (cdp2mcif_wr_req_ready )

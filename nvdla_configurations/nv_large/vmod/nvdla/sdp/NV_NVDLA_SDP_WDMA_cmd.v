@@ -55,7 +55,7 @@ input cmd2dat_spt_prdy;
 output [14:0] cmd2dat_spt_pd;
 output cmd2dat_dma_pvld;
 input cmd2dat_dma_prdy;
-output [64 -5 +13 +1:0] cmd2dat_dma_pd;
+output [32 -5 +13 +1:0] cmd2dat_dma_pd;
 input [4:0] reg2dp_batch_number;
 input reg2dp_winograd;
 input [12:0] reg2dp_channel;
@@ -72,9 +72,9 @@ input [31-5:0] reg2dp_dst_surface_stride;
 input [1:0] reg2dp_ew_alu_algo;
 input reg2dp_ew_alu_bypass;
 input reg2dp_ew_bypass;
-reg [64 -5 -1:0] base_addr_line;
-reg [64 -5 -1:0] base_addr_surf;
-reg [64 -5 -1:0] base_addr_width;
+reg [32 -5 -1:0] base_addr_line;
+reg [32 -5 -1:0] base_addr_surf;
+reg [32 -5 -1:0] base_addr_width;
 reg mon_base_addr_line_c;
 reg mon_base_addr_surf_c;
 reg mon_base_addr_width_c;
@@ -88,7 +88,7 @@ wire cfg_mode_1x1_nbatch;
 wire cfg_mode_batch;
 wire [31-5:0] cfg_dst_batch_stride;
 wire cfg_mode_winog;
-wire [64 -5 -1:0] cfg_dst_addr;
+wire [32 -5 -1:0] cfg_dst_addr;
 wire [31-5:0] cfg_dst_line_stride;
 wire [31-5:0] cfg_dst_surf_stride;
 wire cfg_mode_1x1_pack;
@@ -116,10 +116,10 @@ wire is_last_batch;
 wire cmd_accept;
 reg cmd_vld;
 wire cmd_rdy;
-wire [64 -5 +13 +1:0] dma_fifo_pd;
+wire [32 -5 +13 +1:0] dma_fifo_pd;
 wire dma_fifo_prdy;
 wire dma_fifo_pvld;
-reg [64 -5 -1:0] dma_addr;
+reg [32 -5 -1:0] dma_addr;
 reg [12:0] dma_size;
 reg [13:0] spt_size;
 wire [13-5:0] mode_1x1_dma_size;
@@ -132,7 +132,7 @@ wire [14:0] spt_fifo_pd;
 wire spt_fifo_prdy;
 wire spt_fifo_pvld;
 ////////cfg reg////////////    
-assign cfg_dst_addr = {reg2dp_dst_base_addr_high,reg2dp_dst_base_addr_low};
+assign cfg_dst_addr = reg2dp_dst_base_addr_low;
 assign cfg_dst_surf_stride = {reg2dp_dst_surface_stride};
 assign cfg_dst_line_stride = {reg2dp_dst_line_stride};
 assign cfg_mode_batch = 1'b0;
@@ -255,7 +255,7 @@ assign is_last_batch = 1'b1;
 // WIDTH
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
-    {mon_base_addr_width_c,base_addr_width} <= {(64 -5 +1){1'b0}};
+    {mon_base_addr_width_c,base_addr_width} <= {(32 -5 +1){1'b0}};
   end else begin
     if (cfg_addr_en) begin
         if (op_load) begin
@@ -275,7 +275,7 @@ end
 // LINE
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
-    {mon_base_addr_line_c,base_addr_line} <= {(64 -5 +1){1'b0}};
+    {mon_base_addr_line_c,base_addr_line} <= {(32 -5 +1){1'b0}};
   end else begin
     if (cfg_addr_en) begin
         if (op_load) begin
@@ -295,7 +295,7 @@ end
 // SURF
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
-    {mon_base_addr_surf_c,base_addr_surf} <= {(64 -5 +1){1'b0}};
+    {mon_base_addr_surf_c,base_addr_surf} <= {(32 -5 +1){1'b0}};
   end else begin
     if (cfg_addr_en) begin
         if (op_load) begin
@@ -374,10 +374,10 @@ assign cmd_rdy = dma_fifo_prdy & spt_fifo_prdy;
 assign cmd_accept = cmd_vld & cmd_rdy;
 assign spt_fifo_pd[13:0] = spt_size[13:0];
 assign spt_fifo_pd[14] = odd ;
-assign dma_fifo_pd[64 -5 -1:0] = dma_addr[64 -5 -1:0];
-assign dma_fifo_pd[64 -5 +13 -1:64 -5] = dma_size[12:0];
-assign dma_fifo_pd[64 -5 +13] = odd ;
-assign dma_fifo_pd[64 -5 +13 +1] = is_cube_end ;
+assign dma_fifo_pd[32 -5 -1:0] = dma_addr[32 -5 -1:0];
+assign dma_fifo_pd[32 -5 +13 -1:32 -5] = dma_size[12:0];
+assign dma_fifo_pd[32 -5 +13] = odd ;
+assign dma_fifo_pd[32 -5 +13 +1] = is_cube_end ;
 NV_NVDLA_SDP_WDMA_CMD_sfifo u_sfifo (
    .nvdla_core_clk (nvdla_core_clk)
   ,.nvdla_core_rstn (nvdla_core_rstn)
@@ -394,10 +394,10 @@ NV_NVDLA_SDP_WDMA_CMD_dfifo u_dfifo (
   ,.nvdla_core_rstn (nvdla_core_rstn)
   ,.dma_fifo_prdy (dma_fifo_prdy)
   ,.dma_fifo_pvld (dma_fifo_pvld)
-  ,.dma_fifo_pd (dma_fifo_pd[64 -5 +13 +1:0])
+  ,.dma_fifo_pd (dma_fifo_pd[32 -5 +13 +1:0])
   ,.cmd2dat_dma_prdy (cmd2dat_dma_prdy)
   ,.cmd2dat_dma_pvld (cmd2dat_dma_pvld)
-  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[64 -5 +13 +1:0])
+  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[32 -5 +13 +1:0])
   ,.pwrbus_ram_pd (pwrbus_ram_pd[31:0])
   );
 `ifdef SPYGLASS_ASSERT_ON
@@ -1037,6 +1037,7 @@ endmodule // vmw_NV_NVDLA_SDP_WDMA_CMD_sfifo_flopram_rwsa_4x15
 `endif // EMU
 `define FORCE_CONTENTION_ASSERTION_RESET_ACTIVE 1'b1
 `include "simulate_x_tick.vh"
+//width=32 -log2(32) +15
 module NV_NVDLA_SDP_WDMA_CMD_dfifo (
       nvdla_core_clk
     , nvdla_core_rstn
@@ -1053,10 +1054,10 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 output dma_fifo_prdy;
 input dma_fifo_pvld;
-input [73:0] dma_fifo_pd;
+input [75:0] dma_fifo_pd;
 input cmd2dat_dma_prdy;
 output cmd2dat_dma_pvld;
-output [73:0] cmd2dat_dma_pd;
+output [75:0] cmd2dat_dma_pd;
 input [31:0] pwrbus_ram_pd;
 // Master Clock Gating (SLCG)
 //
@@ -1131,11 +1132,11 @@ end
 wire rd_popping;
 reg [1:0] cmd2dat_dma_adr; // read address this cycle
 wire ram_we = wr_pushing && (dma_fifo_count > 3'd0 || !rd_popping); // note: write occurs next cycle
-wire [73:0] cmd2dat_dma_pd; // read data out of ram
+wire [75:0] cmd2dat_dma_pd; // read data out of ram
 wire [31 : 0] pwrbus_ram_pd;
 // Adding parameter for fifogen to disable wr/rd contention assertion in ramgen.
 // Fifogen handles this by ignoring the data on the ram data out for that cycle.
-NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74 ram (
+NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76 ram (
       .clk( nvdla_core_clk_mgated )
     , .pwrbus_ram_pd ( pwrbus_ram_pd )
     , .di ( dma_fifo_pd )
@@ -1337,11 +1338,12 @@ NV_BLKBOX_SRC0 dummy_breadcrumb_fifogen_blkbox (.Y());
 // synopsys dc_script_begin
 // set_boundary_optimization find(design, "NV_NVDLA_SDP_WDMA_CMD_dfifo") true
 // synopsys dc_script_end
+//| &Attachment -no_warn EndModulePrepend;
 endmodule // NV_NVDLA_SDP_WDMA_CMD_dfifo
 //
 // Flop-Based RAM
 //
-module NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74 (
+module NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76 (
       clk
     , pwrbus_ram_pd
     , di
@@ -1352,12 +1354,11 @@ module NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74 (
     );
 input clk; // write clock
 input [31 : 0] pwrbus_ram_pd;
-input [73:0] di;
+input [75:0] di;
 input we;
 input [1:0] wa;
 input [2:0] ra;
-output [73:0] dout;
-`ifndef FPGA
+output [75:0] dout;
 NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_0 (.A(pwrbus_ram_pd[0]));
 NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_1 (.A(pwrbus_ram_pd[1]));
 NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_2 (.A(pwrbus_ram_pd[2]));
@@ -1390,21 +1391,20 @@ NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_28 (.A(pwrbus_ram_pd[28]));
 NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_29 (.A(pwrbus_ram_pd[29]));
 NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_30 (.A(pwrbus_ram_pd[30]));
 NV_BLKBOX_SINK UJ_BBOX2UNIT_UNUSED_pwrbus_31 (.A(pwrbus_ram_pd[31]));
-`endif
 `ifdef EMU
-wire [73:0] dout_p;
+wire [75:0] dout_p;
 // we use an emulation ram here to save flops on the emulation board
 // so that the monstrous chip can fit :-)
 //
 reg [1:0] Wa0_vmw;
 reg we0_vmw;
-reg [73:0] Di0_vmw;
+reg [75:0] Di0_vmw;
 always @( posedge clk ) begin
     Wa0_vmw <= wa;
     we0_vmw <= we;
     Di0_vmw <= di;
 end
-vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74 emu_ram (
+vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76 emu_ram (
      .Wa0( Wa0_vmw )
    , .we0( we0_vmw )
    , .Di0( Di0_vmw )
@@ -1413,10 +1413,10 @@ vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74 emu_ram (
    );
 assign dout = (ra == 4) ? di : dout_p;
 `else
-reg [73:0] ram_ff0;
-reg [73:0] ram_ff1;
-reg [73:0] ram_ff2;
-reg [73:0] ram_ff3;
+reg [75:0] ram_ff0;
+reg [75:0] ram_ff1;
+reg [75:0] ram_ff2;
+reg [75:0] ram_ff3;
 always @( posedge clk ) begin
     if ( we && wa == 2'd0 ) begin
  ram_ff0 <= di;
@@ -1431,7 +1431,7 @@ always @( posedge clk ) begin
  ram_ff3 <= di;
     end
 end
-reg [73:0] dout;
+reg [75:0] dout;
 always @(*) begin
     case( ra )
     3'd0: dout = ram_ff0;
@@ -1440,39 +1440,39 @@ always @(*) begin
     3'd3: dout = ram_ff3;
     3'd4: dout = di;
 //VCS coverage off
-    default: dout = {74{`x_or_0}};
+    default: dout = {76{`x_or_0}};
 //VCS coverage on
     endcase
 end
 `endif // EMU
-endmodule // NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74
+endmodule // NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76
 // emulation model of flopram guts
 //
 `ifdef EMU
-module vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74 (
+module vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76 (
    Wa0, we0, Di0,
    Ra0, Do0
    );
 input [1:0] Wa0;
 input we0;
-input [73:0] Di0;
+input [75:0] Di0;
 input [1:0] Ra0;
-output [73:0] Do0;
+output [75:0] Do0;
 // Only visible during Spyglass to avoid blackboxes.
 `ifdef SPYGLASS_FLOPRAM
-assign Do0 = 74'd0;
+assign Do0 = 76'd0;
 wire dummy = 1'b0 | (|Wa0) | (|we0) | (|Di0) | (|Ra0);
 `endif
 // synopsys translate_off
 `ifndef SYNTH_LEVEL1_COMPILE
 `ifndef SYNTHESIS
-reg [73:0] mem[3:0];
+reg [75:0] mem[3:0];
 // expand mem for debug ease
 `ifdef EMU_EXPAND_FLOPRAM_MEM
-wire [73:0] Q0 = mem[0];
-wire [73:0] Q1 = mem[1];
-wire [73:0] Q2 = mem[2];
-wire [73:0] Q3 = mem[3];
+wire [75:0] Q0 = mem[0];
+wire [75:0] Q1 = mem[1];
+wire [75:0] Q2 = mem[2];
+wire [75:0] Q3 = mem[3];
 `endif
 // asynchronous ram writes
 always @(*) begin
@@ -1486,22 +1486,24 @@ assign Do0 = mem[Ra0];
 `endif
 // synopsys translate_on
 // synopsys dc_script_begin
+// set_dont_touch { find (design, vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76) }
+// set_attribute { find (design, vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76) } require_dont_touch true -type boolean
 // synopsys dc_script_end
-// g2c if { [find / -null_ok -subdesign vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74] != {} } { set_attr preserve 1 [find / -subdesign vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74] }
-endmodule // vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74
-//vmw: Memory vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74
+// g2c if { [find / -null_ok -subdesign vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76] != {} } { set_attr preserve 1 [find / -subdesign vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76] }
+endmodule // vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76
+//vmw: Memory vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76
 //vmw: Address-size 2
-//vmw: Data-size 74
+//vmw: Data-size 76
 //vmw: Sensitivity level 1
 //vmw: Ports W R
 //vmw: terminal we0 WriteEnable0
 //vmw: terminal Wa0 address0
-//vmw: terminal Di0[73:0] data0[73:0]
+//vmw: terminal Di0[75:0] data0[75:0]
 //vmw:
 //vmw: terminal Ra0 address1
-//vmw: terminal Do0[73:0] data1[73:0]
+//vmw: terminal Do0[75:0] data1[75:0]
 //vmw:
-//qt: CELL vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x74
+//qt: CELL vmw_NV_NVDLA_SDP_WDMA_CMD_dfifo_flopram_rwsa_4x76
 //qt: TERMINAL we0 TYPE=WE POLARITY=H PORT=1
 //qt: TERMINAL Wa0[%d] TYPE=ADDRESS DIR=W BIT=%1 PORT=1
 //qt: TERMINAL Di0[%d] TYPE=DATA DIR=I BIT=%1 PORT=1

@@ -25,7 +25,7 @@
     //atomK*2
 //notice, for image case, first atom OP within one strip OP must fetch from entry align place, in the middle of an entry is not supported.
 //thus, when atomC/atomK=4, stripe=4*atomK, feature data still keeps atomK*2
-    `define CC_ATOMC_DIV_ATOMK_EQUAL_2
+    `define CC_ATOMC_DIV_ATOMK_EQUAL_1
 //batch keep 1
 // ================================================================
 // NVDLA Open Source Project
@@ -35,7 +35,7 @@
 // this distribution for more information.
 // ================================================================
 // File Name: NV_NVDLA_CBUF.h
-    `define CBUF_BANK_RAM_CASE2
+    `define CBUF_BANK_RAM_CASE0
     `define CBUF_NO_SUPPORT_READ_JUMPING
 //ram case could be 0/1/2/3/4/5  0:1ram/bank; 1:1*2ram/bank; 2:2*1ram/bank; 3:2*2ram/bank  4:4*1ram/bank  5:4*2ram/bank
 `define CDMA2CBUF_DEBUG_PRINT //open debug print
@@ -62,7 +62,7 @@ module NV_NVDLA_CSC_dl (
   ,sc2buf_dat_rd_next1_addr //|> o
   ,sc2mac_dat_a_pvld //|> o
   ,sc2mac_dat_a_mask //|> o
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,sc2mac_dat_a_data${i} //|> o )
 //: }
@@ -100,43 +100,11 @@ module NV_NVDLA_CSC_dl (
 ,sc2mac_dat_a_data29 //|> o 
 ,sc2mac_dat_a_data30 //|> o 
 ,sc2mac_dat_a_data31 //|> o 
-,sc2mac_dat_a_data32 //|> o 
-,sc2mac_dat_a_data33 //|> o 
-,sc2mac_dat_a_data34 //|> o 
-,sc2mac_dat_a_data35 //|> o 
-,sc2mac_dat_a_data36 //|> o 
-,sc2mac_dat_a_data37 //|> o 
-,sc2mac_dat_a_data38 //|> o 
-,sc2mac_dat_a_data39 //|> o 
-,sc2mac_dat_a_data40 //|> o 
-,sc2mac_dat_a_data41 //|> o 
-,sc2mac_dat_a_data42 //|> o 
-,sc2mac_dat_a_data43 //|> o 
-,sc2mac_dat_a_data44 //|> o 
-,sc2mac_dat_a_data45 //|> o 
-,sc2mac_dat_a_data46 //|> o 
-,sc2mac_dat_a_data47 //|> o 
-,sc2mac_dat_a_data48 //|> o 
-,sc2mac_dat_a_data49 //|> o 
-,sc2mac_dat_a_data50 //|> o 
-,sc2mac_dat_a_data51 //|> o 
-,sc2mac_dat_a_data52 //|> o 
-,sc2mac_dat_a_data53 //|> o 
-,sc2mac_dat_a_data54 //|> o 
-,sc2mac_dat_a_data55 //|> o 
-,sc2mac_dat_a_data56 //|> o 
-,sc2mac_dat_a_data57 //|> o 
-,sc2mac_dat_a_data58 //|> o 
-,sc2mac_dat_a_data59 //|> o 
-,sc2mac_dat_a_data60 //|> o 
-,sc2mac_dat_a_data61 //|> o 
-,sc2mac_dat_a_data62 //|> o 
-,sc2mac_dat_a_data63 //|> o 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_dat_a_pd //|> o
   ,sc2mac_dat_b_pvld //|> o
   ,sc2mac_dat_b_mask //|> o
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,sc2mac_dat_b_data${i} //|> o )
 //: }
@@ -174,38 +142,6 @@ module NV_NVDLA_CSC_dl (
 ,sc2mac_dat_b_data29 //|> o 
 ,sc2mac_dat_b_data30 //|> o 
 ,sc2mac_dat_b_data31 //|> o 
-,sc2mac_dat_b_data32 //|> o 
-,sc2mac_dat_b_data33 //|> o 
-,sc2mac_dat_b_data34 //|> o 
-,sc2mac_dat_b_data35 //|> o 
-,sc2mac_dat_b_data36 //|> o 
-,sc2mac_dat_b_data37 //|> o 
-,sc2mac_dat_b_data38 //|> o 
-,sc2mac_dat_b_data39 //|> o 
-,sc2mac_dat_b_data40 //|> o 
-,sc2mac_dat_b_data41 //|> o 
-,sc2mac_dat_b_data42 //|> o 
-,sc2mac_dat_b_data43 //|> o 
-,sc2mac_dat_b_data44 //|> o 
-,sc2mac_dat_b_data45 //|> o 
-,sc2mac_dat_b_data46 //|> o 
-,sc2mac_dat_b_data47 //|> o 
-,sc2mac_dat_b_data48 //|> o 
-,sc2mac_dat_b_data49 //|> o 
-,sc2mac_dat_b_data50 //|> o 
-,sc2mac_dat_b_data51 //|> o 
-,sc2mac_dat_b_data52 //|> o 
-,sc2mac_dat_b_data53 //|> o 
-,sc2mac_dat_b_data54 //|> o 
-,sc2mac_dat_b_data55 //|> o 
-,sc2mac_dat_b_data56 //|> o 
-,sc2mac_dat_b_data57 //|> o 
-,sc2mac_dat_b_data58 //|> o 
-,sc2mac_dat_b_data59 //|> o 
-,sc2mac_dat_b_data60 //|> o 
-,sc2mac_dat_b_data61 //|> o 
-,sc2mac_dat_b_data62 //|> o 
-,sc2mac_dat_b_data63 //|> o 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_dat_b_pd //|> o
   ,nvdla_core_ng_clk //|< i
@@ -251,13 +187,13 @@ output [13:0] sc2cdma_dat_slices;
 output sc2buf_dat_rd_en; /* data valid */
 output [13 -1:0] sc2buf_dat_rd_addr;
 input sc2buf_dat_rd_valid; /* data valid */
-input [512 -1:0] sc2buf_dat_rd_data;
-output [10 -1:0] sc2buf_dat_rd_shift;
+input [256 -1:0] sc2buf_dat_rd_data;
+output [9 -1:0] sc2buf_dat_rd_shift;
 output sc2buf_dat_rd_next1_en;
 output [13 -1:0] sc2buf_dat_rd_next1_addr;
 output sc2mac_dat_a_pvld; /* data valid */
-output [64 -1:0] sc2mac_dat_a_mask;
-//: for(my $i=0; $i<64 ; $i++){
+output [32 -1:0] sc2mac_dat_a_mask;
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: output [8 -1:0] sc2mac_dat_a_data${i}; )
 //: }
@@ -295,43 +231,11 @@ output [8 -1:0] sc2mac_dat_a_data28;
 output [8 -1:0] sc2mac_dat_a_data29; 
 output [8 -1:0] sc2mac_dat_a_data30; 
 output [8 -1:0] sc2mac_dat_a_data31; 
-output [8 -1:0] sc2mac_dat_a_data32; 
-output [8 -1:0] sc2mac_dat_a_data33; 
-output [8 -1:0] sc2mac_dat_a_data34; 
-output [8 -1:0] sc2mac_dat_a_data35; 
-output [8 -1:0] sc2mac_dat_a_data36; 
-output [8 -1:0] sc2mac_dat_a_data37; 
-output [8 -1:0] sc2mac_dat_a_data38; 
-output [8 -1:0] sc2mac_dat_a_data39; 
-output [8 -1:0] sc2mac_dat_a_data40; 
-output [8 -1:0] sc2mac_dat_a_data41; 
-output [8 -1:0] sc2mac_dat_a_data42; 
-output [8 -1:0] sc2mac_dat_a_data43; 
-output [8 -1:0] sc2mac_dat_a_data44; 
-output [8 -1:0] sc2mac_dat_a_data45; 
-output [8 -1:0] sc2mac_dat_a_data46; 
-output [8 -1:0] sc2mac_dat_a_data47; 
-output [8 -1:0] sc2mac_dat_a_data48; 
-output [8 -1:0] sc2mac_dat_a_data49; 
-output [8 -1:0] sc2mac_dat_a_data50; 
-output [8 -1:0] sc2mac_dat_a_data51; 
-output [8 -1:0] sc2mac_dat_a_data52; 
-output [8 -1:0] sc2mac_dat_a_data53; 
-output [8 -1:0] sc2mac_dat_a_data54; 
-output [8 -1:0] sc2mac_dat_a_data55; 
-output [8 -1:0] sc2mac_dat_a_data56; 
-output [8 -1:0] sc2mac_dat_a_data57; 
-output [8 -1:0] sc2mac_dat_a_data58; 
-output [8 -1:0] sc2mac_dat_a_data59; 
-output [8 -1:0] sc2mac_dat_a_data60; 
-output [8 -1:0] sc2mac_dat_a_data61; 
-output [8 -1:0] sc2mac_dat_a_data62; 
-output [8 -1:0] sc2mac_dat_a_data63; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [8:0] sc2mac_dat_a_pd;
 output sc2mac_dat_b_pvld; /* data valid */
-output [64 -1:0] sc2mac_dat_b_mask;
-//: for(my $i=0; $i<64 ; $i++){
+output [32 -1:0] sc2mac_dat_b_mask;
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: output [8 -1:0] sc2mac_dat_b_data${i}; )
 //: }
@@ -369,38 +273,6 @@ output [8 -1:0] sc2mac_dat_b_data28;
 output [8 -1:0] sc2mac_dat_b_data29; 
 output [8 -1:0] sc2mac_dat_b_data30; 
 output [8 -1:0] sc2mac_dat_b_data31; 
-output [8 -1:0] sc2mac_dat_b_data32; 
-output [8 -1:0] sc2mac_dat_b_data33; 
-output [8 -1:0] sc2mac_dat_b_data34; 
-output [8 -1:0] sc2mac_dat_b_data35; 
-output [8 -1:0] sc2mac_dat_b_data36; 
-output [8 -1:0] sc2mac_dat_b_data37; 
-output [8 -1:0] sc2mac_dat_b_data38; 
-output [8 -1:0] sc2mac_dat_b_data39; 
-output [8 -1:0] sc2mac_dat_b_data40; 
-output [8 -1:0] sc2mac_dat_b_data41; 
-output [8 -1:0] sc2mac_dat_b_data42; 
-output [8 -1:0] sc2mac_dat_b_data43; 
-output [8 -1:0] sc2mac_dat_b_data44; 
-output [8 -1:0] sc2mac_dat_b_data45; 
-output [8 -1:0] sc2mac_dat_b_data46; 
-output [8 -1:0] sc2mac_dat_b_data47; 
-output [8 -1:0] sc2mac_dat_b_data48; 
-output [8 -1:0] sc2mac_dat_b_data49; 
-output [8 -1:0] sc2mac_dat_b_data50; 
-output [8 -1:0] sc2mac_dat_b_data51; 
-output [8 -1:0] sc2mac_dat_b_data52; 
-output [8 -1:0] sc2mac_dat_b_data53; 
-output [8 -1:0] sc2mac_dat_b_data54; 
-output [8 -1:0] sc2mac_dat_b_data55; 
-output [8 -1:0] sc2mac_dat_b_data56; 
-output [8 -1:0] sc2mac_dat_b_data57; 
-output [8 -1:0] sc2mac_dat_b_data58; 
-output [8 -1:0] sc2mac_dat_b_data59; 
-output [8 -1:0] sc2mac_dat_b_data60; 
-output [8 -1:0] sc2mac_dat_b_data61; 
-output [8 -1:0] sc2mac_dat_b_data62; 
-output [8 -1:0] sc2mac_dat_b_data63; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [8:0] sc2mac_dat_b_pd;
 input nvdla_core_ng_clk;
@@ -441,23 +313,23 @@ reg [15 -1:0] dat_entry_st;
 reg dat_exec_valid_d1;
 reg dat_exec_valid_d2;
 reg dat_l0c0_dummy;
-reg [512 -1:0] dat_l0c0;
+reg [256 -1:0] dat_l0c0;
 reg dat_l0c1_dummy;
-reg [512 -1:0] dat_l0c1;
+reg [256 -1:0] dat_l0c1;
 reg dat_l1c0_dummy;
-reg [512 -1:0] dat_l1c0;
+reg [256 -1:0] dat_l1c0;
 reg dat_l1c1_dummy;
-reg [512 -1:0] dat_l1c1;
+reg [256 -1:0] dat_l1c1;
 reg dat_l2c0_dummy;
-reg [512 -1:0] dat_l2c0;
+reg [256 -1:0] dat_l2c0;
 reg dat_l2c1_dummy;
-reg [512 -1:0] dat_l2c1;
+reg [256 -1:0] dat_l2c1;
 reg dat_l3c0_dummy;
-reg [512 -1:0] dat_l3c0;
+reg [256 -1:0] dat_l3c0;
 reg dat_l3c1_dummy;
-reg [512 -1:0] dat_l3c1;
-reg [512 -1:0] dat_out_bypass_data;
-reg [64 -1:0] dat_out_bypass_mask;
+reg [256 -1:0] dat_l3c1;
+reg [256 -1:0] dat_out_bypass_data;
+reg [32 -1:0] dat_out_bypass_mask;
 reg [8:0] dat_out_flag;
 reg dat_out_pvld;
 reg dat_pipe_local_valid;
@@ -488,16 +360,16 @@ reg [1:0] dat_req_sub_w_d2;
 reg dat_req_sub_w_st_d1;
 reg dat_req_sub_w_st_d2;
 reg dat_req_valid_d1;
-wire [512 -1:0] dat_rsp_l0_sft;
-reg [512 -1:0] dat_rsp_l0_sft_d1;
-reg [512 -1:0] dat_rsp_l0_sft_d2;
-reg [512 -1:0] dat_rsp_l0_sft_d3;
-wire [512 -1:0] dat_rsp_l1_sft;
-reg [512 -1:0] dat_rsp_l1_sft_d2;
-reg [512 -1:0] dat_rsp_l1_sft_d3;
-wire [512 -1:0] dat_rsp_l2_sft;
-reg [512 -1:0] dat_rsp_l2_sft_d3;
-wire [512 -1:0] dat_rsp_l3_sft;
+wire [256 -1:0] dat_rsp_l0_sft;
+reg [256 -1:0] dat_rsp_l0_sft_d1;
+reg [256 -1:0] dat_rsp_l0_sft_d2;
+reg [256 -1:0] dat_rsp_l0_sft_d3;
+wire [256 -1:0] dat_rsp_l1_sft;
+reg [256 -1:0] dat_rsp_l1_sft_d2;
+reg [256 -1:0] dat_rsp_l1_sft_d3;
+wire [256 -1:0] dat_rsp_l2_sft;
+reg [256 -1:0] dat_rsp_l2_sft_d3;
+wire [256 -1:0] dat_rsp_l3_sft;
 reg [26:0] dat_rsp_pd_d1;
 reg [26:0] dat_rsp_pd_d2;
 reg [26:0] dat_rsp_pd_d3;
@@ -527,7 +399,7 @@ reg [12:0] dataout_w_cnt;
 reg [12:0] dataout_w_ori;
 reg [12:0] dataout_width_cmp;
 reg [8:0] dl_out_flag;
-reg [64 -1:0] dl_out_mask;
+reg [32 -1:0] dl_out_mask;
 reg dl_out_pvld;
 reg dl_out_pvld_d1;
 reg [30:0] dl_pd_d1;
@@ -586,10 +458,10 @@ reg sc2buf_dat_rd_en;
 reg [15 -1:0] sc2cdma_dat_entries;
 reg [13:0] sc2cdma_dat_slices;
 reg sc2cdma_dat_updt;
-reg [64 -1:0] sc2mac_dat_a_mask;
+reg [32 -1:0] sc2mac_dat_a_mask;
 reg [8:0] sc2mac_dat_a_pd;
 reg sc2mac_dat_a_pvld;
-reg [64 -1:0] sc2mac_dat_b_mask;
+reg [32 -1:0] sc2mac_dat_b_mask;
 reg [8:0] sc2mac_dat_b_pd;
 reg sc2mac_dat_b_pvld;
 reg slcg_wg_en_d1;
@@ -665,22 +537,22 @@ wire dat_l3c0_dummy_w;
 wire dat_l3c0_en;
 wire dat_l3c1_dummy_w;
 wire dat_l3c1_en;
-wire [512 -1:0] dat_out_bypass_data_w;
-wire [64 -1:0] dat_out_bypass_mask_w;
+wire [256 -1:0] dat_out_bypass_data_w;
+wire [32 -1:0] dat_out_bypass_mask_w;
 wire dat_out_bypass_p0_vld_w;
-wire [512 -1:0] dat_out_data;
+wire [256 -1:0] dat_out_data;
 wire [8:0] dat_out_flag_l0;
 wire [8:0] dat_out_flag_w;
-wire [64 -1:0] dat_out_mask;
+wire [32 -1:0] dat_out_mask;
 wire dat_out_pvld_l0;
 wire dat_out_pvld_w;
-wire [512 -1:0] dat_out_wg_8b;
-wire [512 -1:0] dat_out_wg_data;
-wire [64 -1:0] dat_out_wg_mask;
-wire [64 -1:0] dat_out_wg_mask_int8;
+wire [256 -1:0] dat_out_wg_8b;
+wire [256 -1:0] dat_out_wg_data;
+wire [32 -1:0] dat_out_wg_mask;
+wire [32 -1:0] dat_out_wg_mask_int8;
 wire dat_pipe_local_valid_w;
 wire dat_pipe_valid;
-wire [512 -1:0] dat_pra_dat;
+wire [256 -1:0] dat_pra_dat;
 wire [255:0] dat_pra_dat_ch0;
 wire [255:0] dat_pra_dat_ch1;
 wire [255:0] dat_pra_dat_ch2;
@@ -728,15 +600,15 @@ wire [4:0] dat_rsp_batch_index;
 wire [7:0] dat_rsp_bytes;
 wire dat_rsp_ch_end;
 wire dat_rsp_channel_end;
-wire [512 -1:0] dat_rsp_conv;
-wire [512 -1:0] dat_rsp_conv_8b;
-wire [64 -1:0] dat_rsp_cur_h_e2_mask_8b;
-wire [64 -1:0] dat_rsp_cur_h_e4_mask_8b;
-wire [64 -1:0] dat_rsp_cur_h_mask_p1;
+wire [256 -1:0] dat_rsp_conv;
+wire [256 -1:0] dat_rsp_conv_8b;
+wire [32 -1:0] dat_rsp_cur_h_e2_mask_8b;
+wire [32 -1:0] dat_rsp_cur_h_e4_mask_8b;
+wire [32 -1:0] dat_rsp_cur_h_mask_p1;
 wire [31:0] dat_rsp_cur_h_mask_p2;
 wire [31:0] dat_rsp_cur_h_mask_p3;
 wire [1:0] dat_rsp_cur_sub_h;
-wire [512 -1:0] dat_rsp_data_w;
+wire [256 -1:0] dat_rsp_data_w;
 wire dat_rsp_exec_dummy;
 wire dat_rsp_exec_dummy_d0;
 wire dat_rsp_exec_pvld;
@@ -744,48 +616,48 @@ wire dat_rsp_exec_pvld_d0;
 wire [1:0] dat_rsp_exec_sub_h;
 wire [1:0] dat_rsp_exec_sub_h_d0;
 wire [8:0] dat_rsp_flag;
-wire [512 -1:0] dat_rsp_img;
-wire [512 -1:0] dat_rsp_img_8b;
+wire [256 -1:0] dat_rsp_img;
+wire [256 -1:0] dat_rsp_img_8b;
 wire dat_rsp_l0_block_end;
 wire [8:0] dat_rsp_l0_flag;
 wire dat_rsp_l0_pvld;
-wire [512*2 -1:0] dat_rsp_l0_sft_in;
+wire [256*2 -1:0] dat_rsp_l0_sft_in;
 wire dat_rsp_l0_stripe_end;
 wire dat_rsp_l0_sub_c;
-wire [512 -1:0] dat_rsp_l0c0;
-wire [512 -1:0] dat_rsp_l0c1;
+wire [256 -1:0] dat_rsp_l0c0;
+wire [256 -1:0] dat_rsp_l0c1;
 wire dat_rsp_l1_block_end;
 wire [8:0] dat_rsp_l1_flag;
 wire dat_rsp_l1_pvld;
-wire [512*2 -1:0] dat_rsp_l1_sft_in;
+wire [256*2 -1:0] dat_rsp_l1_sft_in;
 wire dat_rsp_l1_stripe_end;
 wire dat_rsp_l1_sub_c;
-wire [512 -1:0] dat_rsp_l1c0;
-wire [512 -1:0] dat_rsp_l1c1;
+wire [256 -1:0] dat_rsp_l1c0;
+wire [256 -1:0] dat_rsp_l1c1;
 wire dat_rsp_l2_block_end;
 wire [8:0] dat_rsp_l2_flag;
 wire dat_rsp_l2_pvld;
-wire [512*2 -1:0] dat_rsp_l2_sft_in;
+wire [256*2 -1:0] dat_rsp_l2_sft_in;
 wire dat_rsp_l2_stripe_end;
 wire dat_rsp_l2_sub_c;
-wire [512 -1:0] dat_rsp_l2c0;
-wire [512 -1:0] dat_rsp_l2c1;
+wire [256 -1:0] dat_rsp_l2c0;
+wire [256 -1:0] dat_rsp_l2c1;
 wire dat_rsp_l3_block_end;
 wire [8:0] dat_rsp_l3_flag;
 wire dat_rsp_l3_pvld;
-wire [512*2 -1:0] dat_rsp_l3_sft_in;
+wire [256*2 -1:0] dat_rsp_l3_sft_in;
 wire dat_rsp_l3_stripe_end;
 wire dat_rsp_l3_sub_c;
-wire [512 -1:0] dat_rsp_l3c0;
-wire [512 -1:0] dat_rsp_l3c1;
+wire [256 -1:0] dat_rsp_l3c0;
+wire [256 -1:0] dat_rsp_l3c1;
 wire dat_rsp_layer_end;
-wire [64 -1:0] dat_rsp_mask_8b;
-wire [64 -1:0] dat_rsp_mask_val_int8;
-wire [64 -1:0] dat_rsp_mask_w;
-wire [64 -1:0] dat_rsp_ori_mask;
+wire [32 -1:0] dat_rsp_mask_8b;
+wire [32 -1:0] dat_rsp_mask_val_int8;
+wire [32 -1:0] dat_rsp_mask_w;
+wire [32 -1:0] dat_rsp_ori_mask;
 wire dat_rsp_p0_vld_w;
 wire dat_rsp_p1_vld_w;
-wire [512 -1:0] dat_rsp_pad_value;
+wire [256 -1:0] dat_rsp_pad_value;
 wire [26:0] dat_rsp_pd;
 wire [26:0] dat_rsp_pd_d0;
 wire [7:0] dat_rsp_pipe_bytes;
@@ -811,15 +683,15 @@ wire dat_rsp_stripe_st;
 wire dat_rsp_sub_c;
 wire [1:0] dat_rsp_sub_h;
 wire [1:0] dat_rsp_sub_w;
-wire [512 -1:0] dat_rsp_wg;
+wire [256 -1:0] dat_rsp_wg;
 wire [255:0] dat_rsp_wg_ch0;
 wire [255:0] dat_rsp_wg_ch1;
 wire [255:0] dat_rsp_wg_ch2;
 wire [255:0] dat_rsp_wg_ch3;
-wire [512 -1:0] dat_rsp_wg_lb;
-wire [512 -1:0] dat_rsp_wg_lt;
-wire [512 -1:0] dat_rsp_wg_rb;
-wire [512 -1:0] dat_rsp_wg_rt;
+wire [256 -1:0] dat_rsp_wg_lb;
+wire [256 -1:0] dat_rsp_wg_lt;
+wire [256 -1:0] dat_rsp_wg_rb;
+wire [256 -1:0] dat_rsp_wg_rt;
 wire dat_rsp_wg_sel_8b_hi;
 wire dat_rsp_wg_sel_8b_lo;
 wire dat_rsp_wg_sel_lb;
@@ -869,8 +741,8 @@ wire [12:0] dataout_w_cnt_w;
 wire [12:0] dataout_w_init;
 wire dataout_w_ori_reg_en;
 wire [12:0] dataout_width_cmp_w;
-wire [512 -1:0] dbg_csc_dat;
-//: for(my $i=0; $i<64 ; $i++){
+wire [256 -1:0] dbg_csc_dat;
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: wire [8 -1:0] dbg_csc_dat_${i}; )
 //: }
@@ -908,38 +780,6 @@ wire [8 -1:0] dbg_csc_dat_28;
 wire [8 -1:0] dbg_csc_dat_29; 
 wire [8 -1:0] dbg_csc_dat_30; 
 wire [8 -1:0] dbg_csc_dat_31; 
-wire [8 -1:0] dbg_csc_dat_32; 
-wire [8 -1:0] dbg_csc_dat_33; 
-wire [8 -1:0] dbg_csc_dat_34; 
-wire [8 -1:0] dbg_csc_dat_35; 
-wire [8 -1:0] dbg_csc_dat_36; 
-wire [8 -1:0] dbg_csc_dat_37; 
-wire [8 -1:0] dbg_csc_dat_38; 
-wire [8 -1:0] dbg_csc_dat_39; 
-wire [8 -1:0] dbg_csc_dat_40; 
-wire [8 -1:0] dbg_csc_dat_41; 
-wire [8 -1:0] dbg_csc_dat_42; 
-wire [8 -1:0] dbg_csc_dat_43; 
-wire [8 -1:0] dbg_csc_dat_44; 
-wire [8 -1:0] dbg_csc_dat_45; 
-wire [8 -1:0] dbg_csc_dat_46; 
-wire [8 -1:0] dbg_csc_dat_47; 
-wire [8 -1:0] dbg_csc_dat_48; 
-wire [8 -1:0] dbg_csc_dat_49; 
-wire [8 -1:0] dbg_csc_dat_50; 
-wire [8 -1:0] dbg_csc_dat_51; 
-wire [8 -1:0] dbg_csc_dat_52; 
-wire [8 -1:0] dbg_csc_dat_53; 
-wire [8 -1:0] dbg_csc_dat_54; 
-wire [8 -1:0] dbg_csc_dat_55; 
-wire [8 -1:0] dbg_csc_dat_56; 
-wire [8 -1:0] dbg_csc_dat_57; 
-wire [8 -1:0] dbg_csc_dat_58; 
-wire [8 -1:0] dbg_csc_dat_59; 
-wire [8 -1:0] dbg_csc_dat_60; 
-wire [8 -1:0] dbg_csc_dat_61; 
-wire [8 -1:0] dbg_csc_dat_62; 
-wire [8 -1:0] dbg_csc_dat_63; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire dl_block_end;
 wire dl_channel_end;
@@ -999,10 +839,10 @@ wire mon_dat_entry_end_inc_wrap;
 wire mon_dat_entry_st_inc_wrap;
 wire [3:0] mon_dat_out_pra_vld;
 wire [1:0] mon_dat_req_addr_wrap;
-wire [512 -1:0] mon_dat_rsp_l0_sft;
-wire [512 -1:0] mon_dat_rsp_l1_sft;
-wire [512 -1:0] mon_dat_rsp_l2_sft;
-wire [512 -1:0] mon_dat_rsp_l3_sft;
+wire [256 -1:0] mon_dat_rsp_l0_sft;
+wire [256 -1:0] mon_dat_rsp_l1_sft;
+wire [256 -1:0] mon_dat_rsp_l2_sft;
+wire [256 -1:0] mon_dat_rsp_l3_sft;
 wire [3:0] mon_dat_rsp_pra_rdy;
 wire mon_dat_slice_avl_w;
 wire mon_data_bank_w;
@@ -1169,7 +1009,7 @@ assign batch_cmp_w = 5'b0;
 assign datain_width_w = is_winograd ? ({2'b0, reg2dp_datain_width_ext[12:2]} + 1'b1) : reg2dp_datain_width_ext + 1'b1;
 assign datain_width_cmp_w = reg2dp_datain_width_ext;
 assign datain_height_cmp_w = reg2dp_datain_height_ext;
-assign datain_channel_cmp_w = is_winograd ? reg2dp_weight_channel_ext[12:2] : {{6 -2{1'b0}}, reg2dp_weight_channel_ext[12:6]};
+assign datain_channel_cmp_w = is_winograd ? reg2dp_weight_channel_ext[12:2] : {{5 -2{1'b0}}, reg2dp_weight_channel_ext[12:5]};
 //y_ex=0,sub_h_total=1;y_ex=1,sub_h_total=2; y_ext=2,sub_h_total=4; non_image, sub_h_total=1;
 //sub_h_total means how many h lines are used in post-extention
 assign {sub_h_total_w, mon_sub_h_total_w} = is_img ? (6'h9 << reg2dp_y_extension) : 6'h8;
@@ -1179,32 +1019,32 @@ assign conv_x_stride_w = (is_winograd) ? 4'b1 : reg2dp_conv_x_stride_ext + 1'b1;
 assign pixel_x_stride_w = (reg2dp_datain_channel_ext[1:0] == 2'h3) ? {conv_x_stride_w, 2'b0} : //*4, after pre_extension
                           (reg2dp_datain_channel_ext[1:0] == 2'h2) ? ({conv_x_stride_w, 1'b0} + conv_x_stride_w) : //*3
                           {2'b0, conv_x_stride_w}; //*1
-//: my $kk=6;
+//: my $kk=5;
 //: if ($kk=6) {
 //: print qq (
 //: assign {mon_pixel_x_init_w,pixel_x_init_w} = (reg2dp_y_extension == 2'h2) ? ({pixel_x_stride_w, 1'b0} + pixel_x_stride_w + reg2dp_weight_channel_ext[5:0]) :
 //: (reg2dp_y_extension == 2'h1) ? (pixel_x_stride_w + reg2dp_weight_channel_ext[5:0]):
-//: (reg2dp_weight_channel_ext >= 7'h40) ? {6{1'b1}}: //cut by atomC
-//: {reg2dp_weight_channel_ext[6 -1:0]};
+//: (reg2dp_weight_channel_ext >= 7'h20) ? {5{1'b1}}: //cut by atomC
+//: {reg2dp_weight_channel_ext[5 -1:0]};
 //: )
 //: }
 //: else {
 //: print qq(
 //: assign {mon_pixel_x_init_w,pixel_x_init_w} = (reg2dp_y_extension == 2'h2) ? ({pixel_x_stride_w, 1'b0} + pixel_x_stride_w + reg2dp_weight_channel_ext[5:0]) :
 //: (reg2dp_y_extension == 2'h1) ? (pixel_x_stride_w + reg2dp_weight_channel_ext[5:0]):
-//: (reg2dp_weight_channel_ext >= 7'h40) ? {6{1'b1}}: //cut by atomC
-//: {{6-6{1'b0}},reg2dp_weight_channel_ext[6 -1:0]};
+//: (reg2dp_weight_channel_ext >= 7'h20) ? {5{1'b1}}: //cut by atomC
+//: {{6-5{1'b0}},reg2dp_weight_channel_ext[5 -1:0]};
 //: )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
 assign {mon_pixel_x_init_w,pixel_x_init_w} = (reg2dp_y_extension == 2'h2) ? ({pixel_x_stride_w, 1'b0} + pixel_x_stride_w + reg2dp_weight_channel_ext[5:0]) :
 (reg2dp_y_extension == 2'h1) ? (pixel_x_stride_w + reg2dp_weight_channel_ext[5:0]):
-(reg2dp_weight_channel_ext >= 7'h40) ? {6{1'b1}}: //cut by atomC
-{reg2dp_weight_channel_ext[6 -1:0]};
+(reg2dp_weight_channel_ext >= 7'h20) ? {5{1'b1}}: //cut by atomC
+{reg2dp_weight_channel_ext[5 -1:0]};
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-assign pixel_x_init_offset_w = (reg2dp_weight_channel_ext[6 -1:0] + 1'b1);
+assign pixel_x_init_offset_w = (reg2dp_weight_channel_ext[5 -1:0] + 1'b1);
 assign pixel_x_add_w = (reg2dp_y_extension == 2'h2) ? {pixel_x_stride_w, 2'b0} : //*4, after post_extension
                        (reg2dp_y_extension == 2'h1) ? {1'b0, pixel_x_stride_w, 1'b0} : //*2
                        {2'b0, pixel_x_stride_w};
@@ -2674,8 +2514,8 @@ assign pixel_x_cnt_add = (is_sub_h_end) ? pixel_x_add : 6'b0;
 // (is_stripe_end & ~dl_block_end) ? {1'b0, pixel_w_ori} :
 // (pixel_w_cnt + pixel_x_cnt_add);
 //channel count.
-wire [12:0] total_channel_op = (reg2dp_weight_channel_ext[6 -1:0]=={6{1'b0}}) ?
-                        reg2dp_weight_channel_ext[12:6] : reg2dp_weight_channel_ext[12:6]+1'b1;
+wire [12:0] total_channel_op = (reg2dp_weight_channel_ext[5 -1:0]=={5{1'b0}}) ?
+                        reg2dp_weight_channel_ext[12:5] : reg2dp_weight_channel_ext[12:5]+1'b1;
 reg [12:0] channel_op_cnt;
 wire mon_channel_op_cnt_nxt;
 wire [12:0] channel_op_cnt_nxt;
@@ -2700,10 +2540,10 @@ assign {mon_pixel_w_cnt_w,pixel_w_cnt_w} = (layer_st_d1) ? {{11{1'b0}}, pixel_x_
                         (is_stripe_end & dl_block_end & dl_channel_end & ~is_w_end) ? (pixel_w_ch_ori + pixel_ch_stride) :
 //(is_stripe_end & dl_block_end & ~dl_channel_end) ? (pixel_w_ori + dl_in_pd_d0[16:10]) :
                         (is_stripe_end & dl_block_end & next_is_last_channel) ? (pixel_w_ori + pixel_x_init_offset) :
-                        (is_stripe_end & dl_block_end & ~next_is_last_channel) ? (pixel_w_ori + 8'h40  ) :
+                        (is_stripe_end & dl_block_end & ~next_is_last_channel) ? (pixel_w_ori + 8'h20  ) :
                         (is_stripe_end & ~dl_block_end) ? {1'b0, pixel_w_ori} :
                         (pixel_w_cnt + pixel_x_cnt_add);
-assign pixel_w_cur = {{6 -1{1'b0}},pixel_w_cnt[15:6]}; //by entry 
+assign pixel_w_cur = {{5 -1{1'b0}},pixel_w_cnt[15:5]}; //by entry 
 assign pixel_w_cnt_reg_en = layer_st_d1 | (dat_exec_valid & is_img_d1[2] & (is_sub_h_end | is_w_end));
 assign pixel_w_ori_reg_en = layer_st_d1 | (dat_exec_valid & is_img_d1[3] & is_stripe_end & dl_block_end);
 assign pixel_ch_ori_reg_en = layer_st_d1 | (dat_exec_valid & is_img_d1[4] & is_stripe_end & dl_block_end & dl_channel_end);
@@ -3062,15 +2902,15 @@ assign w_bias_int8 = is_img_d1[10] ? {pixel_w_cur} : //by entry in image
 assign w_bias_int8 = is_img_d1[10] ? {pixel_w_cur} : //by entry in image 
                      is_winograd_d1[8] ? {1'b0, datain_w_cnt} :
                      (~is_last_channel | is_winograd_d1[8]) ? {2'b0,datain_w_cur[12:0]} ://not last channel, by element
-                     (dat_req_bytes > 8'h20) ? {2'b0,datain_w_cur[12:0]} : //last channel & request >1/2*entry
+                     (dat_req_bytes > 8'h10) ? {2'b0,datain_w_cur[12:0]} : //last channel & request >1/2*entry
                      {3'b0, datain_w_cur[12:1]}; //last channel & request<=1/2*entry
 `endif
 `ifdef CC_ATOMC_DIV_ATOMK_EQUAL_4
 assign w_bias_int8 = is_img_d1[10] ? {pixel_w_cur} : //by entry in image 
                      is_winograd_d1[8] ? {1'b0, datain_w_cnt} :
                      (~is_last_channel | is_winograd_d1[8]) ? {2'b0,datain_w_cur[12:0]} ://not last channel, by element
-                     (dat_req_bytes > 8'h20) ? {2'b0,datain_w_cur[12:0]} : //last channel & request >1/2*entry
-                     (dat_req_bytes <= 8'h10) ? {4'b0, datain_w_cur[12:2]} : //last channel & request <=1/4*entry
+                     (dat_req_bytes > 8'h10) ? {2'b0,datain_w_cur[12:0]} : //last channel & request >1/2*entry
+                     (dat_req_bytes <= 8'h8) ? {4'b0, datain_w_cur[12:2]} : //last channel & request <=1/4*entry
                      {3'b0, datain_w_cur[12:1]}; //last channel & (1/4*entry<request<=1/2*entry)
 `endif
 assign w_bias_w = w_bias_int8[13:0];
@@ -3213,10 +3053,10 @@ assign dat_req_sub_h_3_addr_en = layer_st | ((dat_req_valid_d1 | dat_req_dummy_d
 `ifdef CBUF_NO_SUPPORT_READ_JUMPING
 wire sc2buf_dat_rd_next1_en = 1'b0;
 wire sc2buf_dat_rd_next1_en_w = 1'b0;
-wire sc2buf_dat_rd_shift = {10{1'b0}};
+wire sc2buf_dat_rd_shift = {9{1'b0}};
 `endif
 `ifdef CBUF_SUPPORT_READ_JUMPING
-wire [10 -1:0] sc2buf_dat_rd_shift_w;
+wire [9 -1:0] sc2buf_dat_rd_shift_w;
 wire mon_sc2buf_dat_rd_shift_w;
 wire sc2buf_dat_rd_next1_en_w;
 wire [13 -1:0] dat_req_addr_last_plus1;
@@ -3224,13 +3064,13 @@ wire [13 -1:0] dat_req_addr_last_plus1_real;
 wire is_dat_req_addr_last_plus1_wrap;
 wire [13 -1:0] dat_req_addr_last_plus1_wrap;
 wire mon_dat_req_addr_last_plus1_wrap;
-wire [6:0] pixel_w_cnt_plus1;
+wire [5:0] pixel_w_cnt_plus1;
 wire stripe_begin_disable_jump_w;
 //every stripe will start form the head Byte of an entry, no need to jump
 assign stripe_begin_disable_jump_w = sub_h_total_g0[2] ? (stripe_cnt[6:2]==5'b0) : //stripe_cnt = 0/1/2/3
                                      sub_h_total_g0[1] ? (stripe_cnt[6:1]==6'b0) : //stripe_cnt = 0/1
                                      stripe_cnt==7'b0; //stripe_cnt = 0
-//: my $kk= 6 +1;
+//: my $kk= 5 +1;
 //: &eperl::flop("-q  stripe_begin_disable_jump -d stripe_begin_disable_jump_w");
 //: &eperl::flop("-wid ${kk} -q pixel_w_cnt_plus1_d1 -d pixel_w_cnt_plus1");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -3242,7 +3082,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        stripe_begin_disable_jump <= stripe_begin_disable_jump_w;
    end
 end
-reg [6:0] pixel_w_cnt_plus1_d1;
+reg [5:0] pixel_w_cnt_plus1_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        pixel_w_cnt_plus1_d1 <= 'b0;
@@ -3259,28 +3099,28 @@ assign dat_req_addr_last_plus1_real = is_dat_req_addr_last_plus1_wrap ? dat_req_
 //iamge data may encounter read jump, which happens when image data_read_address - last_rd_address >= 2 entries, and read form the middle of an entry.
 //then csc need read 2 entries simultaneously, then shift out unneeded part.
 //this address jump should not happened in the begining of a stripe OP.
-//assign sc2buf_dat_rd_next1_en_w = is_img_d1[10]&&sc2buf_dat_rd_en_w&&(pixel_x_byte_stride > 8'h40  )&&(dat_req_addr_w != dat_req_addr_last_plus1_real)
-// &&(pixel_w_cnt_plus1_d1<dat_req_pipe_bytes[6:0])&&(~stripe_begin_disable_jump);
-assign sc2buf_dat_rd_next1_en_w = is_img_d1[10]&&sc2buf_dat_rd_en_w&&(pixel_x_byte_stride > 8'h40  )
-                                    &&(pixel_w_cnt_plus1_d1<dat_req_pipe_bytes[6:0])&&(~stripe_begin_disable_jump);
-assign pixel_w_cnt_plus1 = pixel_w_cnt[6 -1:0]+1'b1;
+//assign sc2buf_dat_rd_next1_en_w = is_img_d1[10]&&sc2buf_dat_rd_en_w&&(pixel_x_byte_stride > 8'h20  )&&(dat_req_addr_w != dat_req_addr_last_plus1_real)
+// &&(pixel_w_cnt_plus1_d1<dat_req_pipe_bytes[5:0])&&(~stripe_begin_disable_jump);
+assign sc2buf_dat_rd_next1_en_w = is_img_d1[10]&&sc2buf_dat_rd_en_w&&(pixel_x_byte_stride > 8'h20  )
+                                    &&(pixel_w_cnt_plus1_d1<dat_req_pipe_bytes[5:0])&&(~stripe_begin_disable_jump);
+assign pixel_w_cnt_plus1 = pixel_w_cnt[5 -1:0]+1'b1;
 //for no y_ext cases,the entry read form cbuf must make sure low byte aligned. High Bytes may dropped, low bytes will always be used.
 //for y_ext cases, cbuf do no shift, csc will take this job.
-//assign sc2buf_dat_rd_shift_w = sc2buf_dat_rd_next1_en_w ? pixel_w_cnt_plus1_d1[6 -1:0]+ 7'h40 - dat_req_pipe_bytes: //image read jump
-// is_img_d1[10]&&stripe_begin_disable_jump ? {10{1'd0}}: //image read no jump,stripe's start need no shift 
-// is_img_d1[10]&&(reg2dp_y_extension!=2'b0)? {10{1'd0}}: //y_ext,no need to shift,csc will shift
+//assign sc2buf_dat_rd_shift_w = sc2buf_dat_rd_next1_en_w ? pixel_w_cnt_plus1_d1[5 -1:0]+ 7'h20 - dat_req_pipe_bytes: //image read jump
+// is_img_d1[10]&&stripe_begin_disable_jump ? {9{1'd0}}: //image read no jump,stripe's start need no shift 
+// is_img_d1[10]&&(reg2dp_y_extension!=2'b0)? {9{1'd0}}: //y_ext,no need to shift,csc will shift
 // //image read no jump, not image's start, not y_ext,then not all bytes are used,need shift out low bytes
-// is_img_d1[10]&&(pixel_w_cnt_plus1_d1[6:0]> dat_req_pipe_bytes)&&(pixel_x_byte_stride > 8'h40  )?
-// pixel_w_cnt_plus1_d1[6:0] - dat_req_pipe_bytes :
-// is_img_d1[10]&&(pixel_w_cnt_plus1_d1[6:0]<= dat_req_pipe_bytes)? {10{1'd0}} :
-// {10{1'd0}}; //read data, no need to shift
+// is_img_d1[10]&&(pixel_w_cnt_plus1_d1[5:0]> dat_req_pipe_bytes)&&(pixel_x_byte_stride > 8'h20  )?
+// pixel_w_cnt_plus1_d1[5:0] - dat_req_pipe_bytes :
+// is_img_d1[10]&&(pixel_w_cnt_plus1_d1[5:0]<= dat_req_pipe_bytes)? {9{1'd0}} :
+// {9{1'd0}}; //read data, no need to shift
 //only when pixel_stride>entry and fetched more data than needed, then need shift
 assign {mon_sc2buf_dat_rd_shift_w, sc2buf_dat_rd_shift_w} =
-        sc2buf_dat_rd_next1_en_w ? pixel_w_cnt_plus1_d1[6 -1:0]+ 7'h40 - dat_req_pipe_bytes: //image read jump
+        sc2buf_dat_rd_next1_en_w ? pixel_w_cnt_plus1_d1[5 -1:0]+ 7'h20 - dat_req_pipe_bytes: //image read jump
 //image read no jump, not image's start,fetch more than needed,not y_ext,then not all bytes are used,need shift out low bytes
-        is_img_d1[10]&&(pixel_w_cnt_plus1_d1[6:0]> dat_req_pipe_bytes[6:0])&&(~stripe_begin_disable_jump)&&(pixel_x_byte_stride > 8'h40  )?
-        pixel_w_cnt_plus1_d1[6:0] - dat_req_pipe_bytes[6:0] : {10{1'd0}};
-//: my $kk= 10;
+        is_img_d1[10]&&(pixel_w_cnt_plus1_d1[5:0]> dat_req_pipe_bytes[5:0])&&(~stripe_begin_disable_jump)&&(pixel_x_byte_stride > 8'h20  )?
+        pixel_w_cnt_plus1_d1[5:0] - dat_req_pipe_bytes[5:0] : {9{1'd0}};
+//: my $kk= 9;
 //: &eperl::flop("-d sc2buf_dat_rd_next1_en_w -q sc2buf_dat_rd_next1_en");
 //: &eperl::flop("-d sc2buf_dat_rd_shift_w -q sc2buf_dat_rd_shift -wid ${kk}");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -3292,7 +3132,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        sc2buf_dat_rd_next1_en <= sc2buf_dat_rd_next1_en_w;
    end
 end
-reg [9:0] sc2buf_dat_rd_shift;
+reg [8:0] sc2buf_dat_rd_shift;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        sc2buf_dat_rd_shift <= 'b0;
@@ -4360,44 +4200,44 @@ assign dat_rsp_stripe_st = dat_rsp_flag[5];
 assign dat_rsp_stripe_end = dat_rsp_flag[6];
 assign dat_rsp_channel_end = dat_rsp_flag[7];
 assign dat_rsp_layer_end = dat_rsp_flag[8];
-assign rsp_sft_cnt_l0_sub = dat_l0c0_en ? 8'h40   : 8'h0;
-assign rsp_sft_cnt_l1_sub = dat_l1c0_en ? 8'h40   : 8'h0;
-assign rsp_sft_cnt_l2_sub = dat_l2c0_en ? 8'h40   : 8'h0;
-assign rsp_sft_cnt_l3_sub = dat_l3c0_en ? 8'h40   : 8'h0;
+assign rsp_sft_cnt_l0_sub = dat_l0c0_en ? 8'h20   : 8'h0;
+assign rsp_sft_cnt_l1_sub = dat_l1c0_en ? 8'h20   : 8'h0;
+assign rsp_sft_cnt_l2_sub = dat_l2c0_en ? 8'h20   : 8'h0;
+assign rsp_sft_cnt_l3_sub = dat_l3c0_en ? 8'h20   : 8'h0;
 ////: &eperl::retime("-O stripe_begin_disable_jump_7T -i stripe_begin_disable_jump -stage 8 -clk nvdla_core_clk");
 ////: &eperl::flop("-q stripe_begin_disable_jump_8T -d stripe_begin_disable_jump_7T -clk nvdla_core_clk");
-assign {mon_rsp_sft_cnt_l0_w,rsp_sft_cnt_l0_inc} = (pixel_x_byte_stride > 8'h40  ) ? 8'h40   :
+assign {mon_rsp_sft_cnt_l0_w,rsp_sft_cnt_l0_inc} = (pixel_x_byte_stride > 8'h20  ) ? 8'h20   :
                                                     (rsp_sft_cnt_l0 + pixel_x_byte_stride - rsp_sft_cnt_l0_sub);
-assign {mon_rsp_sft_cnt_l1_w,rsp_sft_cnt_l1_inc} = (pixel_x_byte_stride > 8'h40  ) ? 8'h40   :
+assign {mon_rsp_sft_cnt_l1_w,rsp_sft_cnt_l1_inc} = (pixel_x_byte_stride > 8'h20  ) ? 8'h20   :
                                                     (rsp_sft_cnt_l1 + pixel_x_byte_stride - rsp_sft_cnt_l1_sub);
-assign {mon_rsp_sft_cnt_l2_w,rsp_sft_cnt_l2_inc} = (pixel_x_byte_stride > 8'h40  ) ? 8'h40   :
+assign {mon_rsp_sft_cnt_l2_w,rsp_sft_cnt_l2_inc} = (pixel_x_byte_stride > 8'h20  ) ? 8'h20   :
                                                     (rsp_sft_cnt_l2 + pixel_x_byte_stride - rsp_sft_cnt_l2_sub);
-assign {mon_rsp_sft_cnt_l3_w,rsp_sft_cnt_l3_inc} = (pixel_x_byte_stride > 8'h40  ) ? 8'h40   :
+assign {mon_rsp_sft_cnt_l3_w,rsp_sft_cnt_l3_inc} = (pixel_x_byte_stride > 8'h20  ) ? 8'h20   :
                                                     (rsp_sft_cnt_l3 + pixel_x_byte_stride - rsp_sft_cnt_l3_sub);
 //the data frm cbuf's low Bytes is always needed. High Bytes maybe unneeded.
 assign dat_rsp_l0_block_end = dat_rsp_l0_sub_c;
 assign dat_rsp_l1_block_end = dat_rsp_l1_sub_c;
 assign dat_rsp_l2_block_end = dat_rsp_l2_sub_c;
 assign dat_rsp_l3_block_end = dat_rsp_l3_sub_c;
-assign rsp_sft_cnt_l0_w = (layer_st) ? 8'h40   : //begin from C0
+assign rsp_sft_cnt_l0_w = (layer_st) ? 8'h20   : //begin from C0
                           (dat_rsp_l0_stripe_end & ~dat_rsp_l0_block_end) ? rsp_sft_cnt_l0_ori :
-                          (dat_rsp_l0_stripe_end & dat_rsp_l0_block_end) ? 8'h40   :
-                          (dat_dummy_l0_en) ? (rsp_sft_cnt_l0_inc & 8'h3f) :
+                          (dat_rsp_l0_stripe_end & dat_rsp_l0_block_end) ? 8'h20   :
+                          (dat_dummy_l0_en) ? (rsp_sft_cnt_l0_inc & 8'h1f) :
                           rsp_sft_cnt_l0_inc;
-assign rsp_sft_cnt_l1_w = (layer_st) ? 8'h40   :
+assign rsp_sft_cnt_l1_w = (layer_st) ? 8'h20   :
                           (dat_rsp_l1_stripe_end & ~dat_rsp_l1_block_end) ? rsp_sft_cnt_l1_ori :
-                          (dat_rsp_l1_stripe_end & dat_rsp_l1_block_end) ? 8'h40   :
-                          (dat_dummy_l1_en) ? (rsp_sft_cnt_l1_inc & 8'h3f) :
+                          (dat_rsp_l1_stripe_end & dat_rsp_l1_block_end) ? 8'h20   :
+                          (dat_dummy_l1_en) ? (rsp_sft_cnt_l1_inc & 8'h1f) :
                           rsp_sft_cnt_l1_inc;
-assign rsp_sft_cnt_l2_w = (layer_st) ? 8'h40   :
+assign rsp_sft_cnt_l2_w = (layer_st) ? 8'h20   :
                           (dat_rsp_l2_stripe_end & ~dat_rsp_l2_block_end) ? rsp_sft_cnt_l2_ori :
-                          (dat_rsp_l2_stripe_end & dat_rsp_l2_block_end) ? 8'h40   :
-                          (dat_dummy_l2_en) ? (rsp_sft_cnt_l2_inc & 8'h3f) :
+                          (dat_rsp_l2_stripe_end & dat_rsp_l2_block_end) ? 8'h20   :
+                          (dat_dummy_l2_en) ? (rsp_sft_cnt_l2_inc & 8'h1f) :
                           rsp_sft_cnt_l2_inc;
-assign rsp_sft_cnt_l3_w = (layer_st) ? 8'h40   :
+assign rsp_sft_cnt_l3_w = (layer_st) ? 8'h20   :
                           (dat_rsp_l3_stripe_end & ~dat_rsp_l3_block_end) ? rsp_sft_cnt_l3_ori :
-                          (dat_rsp_l3_stripe_end & dat_rsp_l3_block_end) ? 8'h40   :
-                          (dat_dummy_l3_en) ? (rsp_sft_cnt_l3_inc & 8'h3f) :
+                          (dat_rsp_l3_stripe_end & dat_rsp_l3_block_end) ? 8'h20   :
+                          (dat_dummy_l3_en) ? (rsp_sft_cnt_l3_inc & 8'h1f) :
                           rsp_sft_cnt_l3_inc;
 assign rsp_sft_cnt_l0_en = layer_st | (is_img_d1[17] & dat_rsp_l0_pvld);
 assign rsp_sft_cnt_l1_en = layer_st | (is_img_d1[18] & dat_rsp_l1_pvld & (sub_h_total_g5 != 3'h1));
@@ -4597,7 +4437,7 @@ assign dat_rsp_wg_ch3 = ({256{dat_rsp_wg_sel_8b_lo}} & dat_wg_8b_ch3) |
                         ({256{dat_rsp_wg_sel_8b_hi}} & dat_wg_8b_ch7);
 `endif
 //////////////// data for convlution ////////////////
-assign dat_rsp_pad_value = {64{pad_value[7:0]}};
+assign dat_rsp_pad_value = {32{pad_value[7:0]}};
 assign dat_rsp_l0c0 = dat_l0c0_dummy ? dat_rsp_pad_value : dat_l0c0;
 assign dat_rsp_l1c0 = dat_l1c0_dummy ? dat_rsp_pad_value : dat_l1c0;
 assign dat_rsp_l2c0 = dat_l2c0_dummy ? dat_rsp_pad_value : dat_l2c0;
@@ -4608,25 +4448,25 @@ assign dat_rsp_l2c1 = dat_l2c1_dummy ? dat_rsp_pad_value : dat_l2c1;
 assign dat_rsp_l3c1 = dat_l3c1_dummy ? dat_rsp_pad_value : dat_l3c1;
 //several atomM may combine together as an entry
 `ifdef CC_ATOMC_DIV_ATOMK_EQUAL_1
-assign dat_rsp_conv_8b = (is_winograd_d1[14] | is_img_d1[26]) ? {512{1'b0}} :
+assign dat_rsp_conv_8b = (is_winograd_d1[14] | is_img_d1[26]) ? {256{1'b0}} :
                          dat_rsp_l0c0;
 `endif
 `ifdef CC_ATOMC_DIV_ATOMK_EQUAL_2
-assign dat_rsp_conv_8b = (is_winograd_d1[14] | is_img_d1[26]) ? {512{1'b0}} :
-((dat_rsp_bytes <= 8'h20)&((dat_rsp_sub_w[0] == 1'h0))) ? {{512/2{1'b0}}, dat_rsp_l0c0[512/2 -1:0]} :
-((dat_rsp_bytes <= 8'h20)&((dat_rsp_sub_w[0] == 1'h1))) ? {{512/2{1'b0}}, dat_rsp_l0c0[512 -1:512/2]} :
+assign dat_rsp_conv_8b = (is_winograd_d1[14] | is_img_d1[26]) ? {256{1'b0}} :
+((dat_rsp_bytes <= 8'h10)&((dat_rsp_sub_w[0] == 1'h0))) ? {{256/2{1'b0}}, dat_rsp_l0c0[256/2 -1:0]} :
+((dat_rsp_bytes <= 8'h10)&((dat_rsp_sub_w[0] == 1'h1))) ? {{256/2{1'b0}}, dat_rsp_l0c0[256 -1:256/2]} :
                 dat_rsp_l0c0;
 `endif
 `ifdef CC_ATOMC_DIV_ATOMK_EQUAL_4
-assign dat_rsp_conv_8b = (is_winograd_d1[14] | is_img_d1[26]) ? {512{1'b0}} :
-((dat_rsp_bytes <= 8'h20)&(dat_rsp_bytes > 8'h10)&((dat_rsp_sub_w[0] == 1'h0))) ?
- {{512/2{1'b0}}, dat_rsp_l0c0[512/2 -1:0]} :
-((dat_rsp_bytes <= 8'h20)&(dat_rsp_bytes > 8'h10)&((dat_rsp_sub_w[0] == 1'h1))) ?
- {{512/2{1'b0}}, dat_rsp_l0c0[512 -1:512/2]} :
-((dat_rsp_bytes <= 8'h10) & (dat_rsp_sub_w == 2'h0)) ? {{512*3/4{1'b0}}, dat_rsp_l0c0[512/4 -1:0]} :
-((dat_rsp_bytes <= 8'h10) & (dat_rsp_sub_w == 2'h1)) ? {{512*3/4{1'b0}}, dat_rsp_l0c0[512/2 -1:512/4]} :
-((dat_rsp_bytes <= 8'h10) & (dat_rsp_sub_w == 2'h2)) ? {{512*3/4{1'b0}}, dat_rsp_l0c0[512*3/4 -1:512/2]} :
-((dat_rsp_bytes <= 8'h10) & (dat_rsp_sub_w == 2'h3)) ? {{512*3/4{1'b0}}, dat_rsp_l0c0[512 -1:512*3/4]} :
+assign dat_rsp_conv_8b = (is_winograd_d1[14] | is_img_d1[26]) ? {256{1'b0}} :
+((dat_rsp_bytes <= 8'h10)&(dat_rsp_bytes > 8'h8)&((dat_rsp_sub_w[0] == 1'h0))) ?
+ {{256/2{1'b0}}, dat_rsp_l0c0[256/2 -1:0]} :
+((dat_rsp_bytes <= 8'h10)&(dat_rsp_bytes > 8'h8)&((dat_rsp_sub_w[0] == 1'h1))) ?
+ {{256/2{1'b0}}, dat_rsp_l0c0[256 -1:256/2]} :
+((dat_rsp_bytes <= 8'h8) & (dat_rsp_sub_w == 2'h0)) ? {{256*3/4{1'b0}}, dat_rsp_l0c0[256/4 -1:0]} :
+((dat_rsp_bytes <= 8'h8) & (dat_rsp_sub_w == 2'h1)) ? {{256*3/4{1'b0}}, dat_rsp_l0c0[256/2 -1:256/4]} :
+((dat_rsp_bytes <= 8'h8) & (dat_rsp_sub_w == 2'h2)) ? {{256*3/4{1'b0}}, dat_rsp_l0c0[256*3/4 -1:256/2]} :
+((dat_rsp_bytes <= 8'h8) & (dat_rsp_sub_w == 2'h3)) ? {{256*3/4{1'b0}}, dat_rsp_l0c0[256 -1:256*3/4]} :
 dat_rsp_l0c0;
 `endif
 assign dat_rsp_conv = dat_rsp_conv_8b;
@@ -4640,15 +4480,15 @@ assign {mon_dat_rsp_l1_sft, dat_rsp_l1_sft} = dat_rsp_l1_sft_in >> {rsp_sft_cnt_
 assign {mon_dat_rsp_l2_sft, dat_rsp_l2_sft} = dat_rsp_l2_sft_in >> {rsp_sft_cnt_l2, 3'b0};
 assign {mon_dat_rsp_l3_sft, dat_rsp_l3_sft} = dat_rsp_l3_sft_in >> {rsp_sft_cnt_l3, 3'b0};
 assign dat_rsp_img_8b = (~is_img_d1[32])? 'b0 :
-                        (sub_h_total_g8 == 3'h4) ? {dat_rsp_l3_sft[512/4 -1:0], dat_rsp_l2_sft_d3[512/4 -1:0], dat_rsp_l1_sft_d3[512/4 -1:0], dat_rsp_l0_sft_d3[512/4 -1:0]} :
-                        (sub_h_total_g8 == 3'h2) ? {dat_rsp_l1_sft[512/2 -1:0], dat_rsp_l0_sft_d1[512/2 -1:0]} :
-                        dat_rsp_l0_sft[512 -1:0];
+                        (sub_h_total_g8 == 3'h4) ? {dat_rsp_l3_sft[256/4 -1:0], dat_rsp_l2_sft_d3[256/4 -1:0], dat_rsp_l1_sft_d3[256/4 -1:0], dat_rsp_l0_sft_d3[256/4 -1:0]} :
+                        (sub_h_total_g8 == 3'h2) ? {dat_rsp_l1_sft[256/2 -1:0], dat_rsp_l0_sft_d1[256/2 -1:0]} :
+                        dat_rsp_l0_sft[256 -1:0];
 assign dat_rsp_img = dat_rsp_img_8b;
 wire dat_rsp_sft_d1_en = dat_rsp_l0_pvld & (sub_h_total_g9 != 3'h1);
 wire dat_rsp_sft_d2_en = dat_rsp_l1_pvld & (sub_h_total_g9 == 3'h4);
 wire dat_rsp_sft_d3_en = dat_rsp_l2_pvld & (sub_h_total_g9 == 3'h4);
-//: my $half=512/2;
-//: my $quat=512/4;
+//: my $half=256/2;
+//: my $quat=256/4;
 //: &eperl::flop("-nodeclare -wid ${half} -norst -en \"dat_rsp_sft_d1_en\" -d \"dat_rsp_l0_sft\" -q dat_rsp_l0_sft_d1");
 //: &eperl::flop("-nodeclare -wid ${quat} -norst -en \"dat_rsp_sft_d2_en\" -d \"dat_rsp_l0_sft_d1\" -q dat_rsp_l0_sft_d2");
 //: &eperl::flop("-nodeclare -wid ${quat} -norst -en \"dat_rsp_sft_d3_en\" -d \"dat_rsp_l0_sft_d2\" -q dat_rsp_l0_sft_d3");
@@ -4721,21 +4561,21 @@ end
 //////////////// byte mask ////////////////
 //sub_h_total=2, each sub_h align to 1/2 entry;
 //sub_h_total=4, each sub_h align to 1/4 entry;
-assign dat_rsp_ori_mask = ~({64{1'b1}} << dat_rsp_bytes);
-assign dat_rsp_cur_h_mask_p1 = (dat_rsp_cur_sub_h >= 2'h1) ? {64{1'b1}} : 'b0;
-assign dat_rsp_cur_h_mask_p2 = (dat_rsp_cur_sub_h >= 2'h2) ? {64/2{1'b1}} : 'b0;
-assign dat_rsp_cur_h_mask_p3 = (dat_rsp_cur_sub_h == 2'h3) ? {64/2{1'b1}} : 'b0;
-assign dat_rsp_cur_h_e2_mask_8b = {dat_rsp_cur_h_mask_p1[64/2 -1:0], {64/2{1'b1}}};
-assign dat_rsp_cur_h_e4_mask_8b = {dat_rsp_cur_h_mask_p3[64/4 -1:0], dat_rsp_cur_h_mask_p2[64/4 -1:0], dat_rsp_cur_h_mask_p1[64/4 -1:0], {64/4{1'b1}}};
-assign dat_rsp_mask_8b = (sub_h_total_g11 == 3'h4) ? ({4{dat_rsp_ori_mask[64/4 -1:0]}} & dat_rsp_cur_h_e4_mask_8b) :
-                         (sub_h_total_g11 == 3'h2) ? ({2{dat_rsp_ori_mask[64/2 -1:0]}} & dat_rsp_cur_h_e2_mask_8b) :
-                         dat_rsp_ori_mask[64 -1:0];
+assign dat_rsp_ori_mask = ~({32{1'b1}} << dat_rsp_bytes);
+assign dat_rsp_cur_h_mask_p1 = (dat_rsp_cur_sub_h >= 2'h1) ? {32{1'b1}} : 'b0;
+assign dat_rsp_cur_h_mask_p2 = (dat_rsp_cur_sub_h >= 2'h2) ? {32/2{1'b1}} : 'b0;
+assign dat_rsp_cur_h_mask_p3 = (dat_rsp_cur_sub_h == 2'h3) ? {32/2{1'b1}} : 'b0;
+assign dat_rsp_cur_h_e2_mask_8b = {dat_rsp_cur_h_mask_p1[32/2 -1:0], {32/2{1'b1}}};
+assign dat_rsp_cur_h_e4_mask_8b = {dat_rsp_cur_h_mask_p3[32/4 -1:0], dat_rsp_cur_h_mask_p2[32/4 -1:0], dat_rsp_cur_h_mask_p1[32/4 -1:0], {32/4{1'b1}}};
+assign dat_rsp_mask_8b = (sub_h_total_g11 == 3'h4) ? ({4{dat_rsp_ori_mask[32/4 -1:0]}} & dat_rsp_cur_h_e4_mask_8b) :
+                         (sub_h_total_g11 == 3'h2) ? ({2{dat_rsp_ori_mask[32/2 -1:0]}} & dat_rsp_cur_h_e2_mask_8b) :
+                         dat_rsp_ori_mask[32 -1:0];
 assign dat_rsp_data_w = is_img_d1[33] ? dat_rsp_img :
                         dat_rsp_conv;
 //: my $i;
 //: my $b1;
 //: my $b0;
-//: my $kk=64 -1;
+//: my $kk=32 -1;
 //: print "assign dat_rsp_mask_val_int8 = {";
 //: for($i = ${kk}; $i >= 0; $i --) {
 //: $b0 = sprintf("%3d", $i * 8);
@@ -4751,11 +4591,7 @@ assign dat_rsp_data_w = is_img_d1[33] ? dat_rsp_img :
 //: }
 //: print "\n\n";
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-assign dat_rsp_mask_val_int8 = {(|dat_rsp_data_w[511:504]), (|dat_rsp_data_w[503:496]), (|dat_rsp_data_w[495:488]), (|dat_rsp_data_w[487:480]), (|dat_rsp_data_w[479:472]), (|dat_rsp_data_w[471:464]), (|dat_rsp_data_w[463:456]), (|dat_rsp_data_w[455:448]),
-                               (|dat_rsp_data_w[447:440]), (|dat_rsp_data_w[439:432]), (|dat_rsp_data_w[431:424]), (|dat_rsp_data_w[423:416]), (|dat_rsp_data_w[415:408]), (|dat_rsp_data_w[407:400]), (|dat_rsp_data_w[399:392]), (|dat_rsp_data_w[391:384]),
-                               (|dat_rsp_data_w[383:376]), (|dat_rsp_data_w[375:368]), (|dat_rsp_data_w[367:360]), (|dat_rsp_data_w[359:352]), (|dat_rsp_data_w[351:344]), (|dat_rsp_data_w[343:336]), (|dat_rsp_data_w[335:328]), (|dat_rsp_data_w[327:320]),
-                               (|dat_rsp_data_w[319:312]), (|dat_rsp_data_w[311:304]), (|dat_rsp_data_w[303:296]), (|dat_rsp_data_w[295:288]), (|dat_rsp_data_w[287:280]), (|dat_rsp_data_w[279:272]), (|dat_rsp_data_w[271:264]), (|dat_rsp_data_w[263:256]),
-                               (|dat_rsp_data_w[255:248]), (|dat_rsp_data_w[247:240]), (|dat_rsp_data_w[239:232]), (|dat_rsp_data_w[231:224]), (|dat_rsp_data_w[223:216]), (|dat_rsp_data_w[215:208]), (|dat_rsp_data_w[207:200]), (|dat_rsp_data_w[199:192]),
+assign dat_rsp_mask_val_int8 = {(|dat_rsp_data_w[255:248]), (|dat_rsp_data_w[247:240]), (|dat_rsp_data_w[239:232]), (|dat_rsp_data_w[231:224]), (|dat_rsp_data_w[223:216]), (|dat_rsp_data_w[215:208]), (|dat_rsp_data_w[207:200]), (|dat_rsp_data_w[199:192]),
                                (|dat_rsp_data_w[191:184]), (|dat_rsp_data_w[183:176]), (|dat_rsp_data_w[175:168]), (|dat_rsp_data_w[167:160]), (|dat_rsp_data_w[159:152]), (|dat_rsp_data_w[151:144]), (|dat_rsp_data_w[143:136]), (|dat_rsp_data_w[135:128]),
                                (|dat_rsp_data_w[127:120]), (|dat_rsp_data_w[119:112]), (|dat_rsp_data_w[111:104]), (|dat_rsp_data_w[103: 96]), (|dat_rsp_data_w[ 95: 88]), (|dat_rsp_data_w[ 87: 80]), (|dat_rsp_data_w[ 79: 72]), (|dat_rsp_data_w[ 71: 64]),
                                (|dat_rsp_data_w[ 63: 56]), (|dat_rsp_data_w[ 55: 48]), (|dat_rsp_data_w[ 47: 40]), (|dat_rsp_data_w[ 39: 32]), (|dat_rsp_data_w[ 31: 24]), (|dat_rsp_data_w[ 23: 16]), (|dat_rsp_data_w[ 15:  8]), (|dat_rsp_data_w[  7:  0])};
@@ -4907,11 +4743,11 @@ assign dat_out_flag_w = is_winograd_d1[18] ? dat_out_flag_l5 : dat_rsp_flag;
 assign dat_out_bypass_p0_vld_w = dat_rsp_p0_vld_w;
 assign dat_out_bypass_mask_w = dat_rsp_mask_w;
 assign dat_out_bypass_data_w = dat_rsp_data_w;
-//: my $kk=64;
+//: my $kk=32;
 //: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"dat_out_pvld_w\" -q dat_out_pvld");
 //: &eperl::flop("-nodeclare   -rval \"{9{1'b0}}\"  -en \"dat_out_pvld_w\" -d \"dat_out_flag_w\" -q dat_out_flag");
 //: &eperl::flop("-nodeclare   -rval \"{${kk}{1'b0}}\"  -en \"dat_out_bypass_p0_vld_w\" -d \"dat_out_bypass_mask_w\" -q dat_out_bypass_mask");
-//: for(my $i = 0; $i < 64; $i ++) {
+//: for(my $i = 0; $i < 32; $i ++) {
 //: my $b0 = $i * 8;
 //: my $b1 = $i * 8 + 7;
 //: &eperl::flop("-nodeclare  -norst -en \"dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[${i}]\" -d \"dat_out_bypass_data_w[${b1}:${b0}]\" -q dat_out_bypass_data[${b1}:${b0}]");
@@ -4941,7 +4777,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       dat_out_bypass_mask <= {64{1'b0}};
+       dat_out_bypass_mask <= {32{1'b0}};
    end else begin
        if ((dat_out_bypass_p0_vld_w) == 1'b1) begin
            dat_out_bypass_mask <= dat_out_bypass_mask_w;
@@ -5273,326 +5109,6 @@ always @(posedge nvdla_core_clk) begin
        // VCS coverage on
        end
 end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[32]) == 1'b1) begin
-           dat_out_bypass_data[263:256] <= dat_out_bypass_data_w[263:256];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[32]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[263:256] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[33]) == 1'b1) begin
-           dat_out_bypass_data[271:264] <= dat_out_bypass_data_w[271:264];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[33]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[271:264] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[34]) == 1'b1) begin
-           dat_out_bypass_data[279:272] <= dat_out_bypass_data_w[279:272];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[34]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[279:272] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[35]) == 1'b1) begin
-           dat_out_bypass_data[287:280] <= dat_out_bypass_data_w[287:280];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[35]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[287:280] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[36]) == 1'b1) begin
-           dat_out_bypass_data[295:288] <= dat_out_bypass_data_w[295:288];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[36]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[295:288] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[37]) == 1'b1) begin
-           dat_out_bypass_data[303:296] <= dat_out_bypass_data_w[303:296];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[37]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[303:296] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[38]) == 1'b1) begin
-           dat_out_bypass_data[311:304] <= dat_out_bypass_data_w[311:304];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[38]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[311:304] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[39]) == 1'b1) begin
-           dat_out_bypass_data[319:312] <= dat_out_bypass_data_w[319:312];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[39]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[319:312] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[40]) == 1'b1) begin
-           dat_out_bypass_data[327:320] <= dat_out_bypass_data_w[327:320];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[40]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[327:320] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[41]) == 1'b1) begin
-           dat_out_bypass_data[335:328] <= dat_out_bypass_data_w[335:328];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[41]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[335:328] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[42]) == 1'b1) begin
-           dat_out_bypass_data[343:336] <= dat_out_bypass_data_w[343:336];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[42]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[343:336] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[43]) == 1'b1) begin
-           dat_out_bypass_data[351:344] <= dat_out_bypass_data_w[351:344];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[43]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[351:344] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[44]) == 1'b1) begin
-           dat_out_bypass_data[359:352] <= dat_out_bypass_data_w[359:352];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[44]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[359:352] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[45]) == 1'b1) begin
-           dat_out_bypass_data[367:360] <= dat_out_bypass_data_w[367:360];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[45]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[367:360] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[46]) == 1'b1) begin
-           dat_out_bypass_data[375:368] <= dat_out_bypass_data_w[375:368];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[46]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[375:368] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[47]) == 1'b1) begin
-           dat_out_bypass_data[383:376] <= dat_out_bypass_data_w[383:376];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[47]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[383:376] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[48]) == 1'b1) begin
-           dat_out_bypass_data[391:384] <= dat_out_bypass_data_w[391:384];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[48]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[391:384] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[49]) == 1'b1) begin
-           dat_out_bypass_data[399:392] <= dat_out_bypass_data_w[399:392];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[49]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[399:392] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[50]) == 1'b1) begin
-           dat_out_bypass_data[407:400] <= dat_out_bypass_data_w[407:400];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[50]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[407:400] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[51]) == 1'b1) begin
-           dat_out_bypass_data[415:408] <= dat_out_bypass_data_w[415:408];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[51]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[415:408] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[52]) == 1'b1) begin
-           dat_out_bypass_data[423:416] <= dat_out_bypass_data_w[423:416];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[52]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[423:416] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[53]) == 1'b1) begin
-           dat_out_bypass_data[431:424] <= dat_out_bypass_data_w[431:424];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[53]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[431:424] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[54]) == 1'b1) begin
-           dat_out_bypass_data[439:432] <= dat_out_bypass_data_w[439:432];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[54]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[439:432] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[55]) == 1'b1) begin
-           dat_out_bypass_data[447:440] <= dat_out_bypass_data_w[447:440];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[55]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[447:440] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[56]) == 1'b1) begin
-           dat_out_bypass_data[455:448] <= dat_out_bypass_data_w[455:448];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[56]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[455:448] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[57]) == 1'b1) begin
-           dat_out_bypass_data[463:456] <= dat_out_bypass_data_w[463:456];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[57]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[463:456] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[58]) == 1'b1) begin
-           dat_out_bypass_data[471:464] <= dat_out_bypass_data_w[471:464];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[58]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[471:464] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[59]) == 1'b1) begin
-           dat_out_bypass_data[479:472] <= dat_out_bypass_data_w[479:472];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[59]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[479:472] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[60]) == 1'b1) begin
-           dat_out_bypass_data[487:480] <= dat_out_bypass_data_w[487:480];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[60]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[487:480] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[61]) == 1'b1) begin
-           dat_out_bypass_data[495:488] <= dat_out_bypass_data_w[495:488];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[61]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[495:488] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[62]) == 1'b1) begin
-           dat_out_bypass_data[503:496] <= dat_out_bypass_data_w[503:496];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[62]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[503:496] <= 'bx;
-       // VCS coverage on
-       end
-end
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[63]) == 1'b1) begin
-           dat_out_bypass_data[511:504] <= dat_out_bypass_data_w[511:504];
-       // VCS coverage off
-       end else if ((dat_out_bypass_p0_vld_w & dat_out_bypass_mask_w[63]) == 1'b0) begin
-       end else begin
-           dat_out_bypass_data[511:504] <= 'bx;
-       // VCS coverage on
-       end
-end
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 `ifdef NVDLA_WINOGRAD_ENABLE
@@ -5749,15 +5265,15 @@ assign dat_out_wg_mask_int8 = {(|dat_out_wg_data[ 511: 504]), (|dat_out_wg_data[
                               (|dat_out_wg_data[ 63: 56]), (|dat_out_wg_data[ 55: 48]), (|dat_out_wg_data[ 47: 40]), (|dat_out_wg_data[ 39: 32]), (|dat_out_wg_data[ 31: 24]), (|dat_out_wg_data[ 23: 16]), (|dat_out_wg_data[ 15: 8]), (|dat_out_wg_data[ 7: 0])};
 assign dat_out_wg_mask = {2{dat_out_wg_mask_int8}};
 `else
-assign dat_out_wg_data = {512{1'b0}};
-assign dat_out_wg_mask = {64{1'b0}};
+assign dat_out_wg_data = {256{1'b0}};
+assign dat_out_wg_mask = {32{1'b0}};
 `endif
 //////////////////////////////////////////////////////////////
 ///// finial registers                                   /////
 //////////////////////////////////////////////////////////////
 assign dat_out_data = is_winograd_d1[20] ? dat_out_wg_data : dat_out_bypass_data;
 assign dat_out_mask = ~dat_out_pvld ? 'b0 : is_winograd_d1[21] ? dat_out_wg_mask : dat_out_bypass_mask;
-//: my $kk=64;
+//: my $kk=32;
 //: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"dat_out_pvld\" -q dl_out_pvld");
 //: &eperl::flop("-nodeclare   -rval \"{${kk}{1'b0}}\"  -en \"dat_out_pvld | dl_out_pvld\" -d \"dat_out_mask\" -q dl_out_mask");
 //: &eperl::flop("-nodeclare   -rval \"{9{1'b0}}\"  -en \"dat_out_pvld\" -d \"dat_out_flag\" -q dl_out_flag");
@@ -5765,7 +5281,7 @@ assign dat_out_mask = ~dat_out_pvld ? 'b0 : is_winograd_d1[21] ? dat_out_wg_mask
 //: my $b0;
 //: my $b1;
 //: my $kk= 8;
-//: for($i = 0; $i < 64; $i ++) {
+//: for($i = 0; $i < 32; $i ++) {
 //: $b0 = $i * 8;
 //: $b1 = $i * 8 + 7;
 //: &eperl::flop("-wid ${kk}  -norst -en \"dat_out_mask[$i]\" -d \"dat_out_data[${b1}:${b0}]\" -q dl_out_data${i}");
@@ -5781,7 +5297,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       dl_out_mask <= {64{1'b0}};
+       dl_out_mask <= {32{1'b0}};
    end else begin
        if ((dat_out_pvld | dl_out_pvld) == 1'b1) begin
            dl_out_mask <= dat_out_mask;
@@ -6159,358 +5675,6 @@ always @(posedge nvdla_core_clk) begin
        // VCS coverage on
        end
 end
-reg [7:0] dl_out_data32;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[32]) == 1'b1) begin
-           dl_out_data32 <= dat_out_data[263:256];
-       // VCS coverage off
-       end else if ((dat_out_mask[32]) == 1'b0) begin
-       end else begin
-           dl_out_data32 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data33;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[33]) == 1'b1) begin
-           dl_out_data33 <= dat_out_data[271:264];
-       // VCS coverage off
-       end else if ((dat_out_mask[33]) == 1'b0) begin
-       end else begin
-           dl_out_data33 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data34;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[34]) == 1'b1) begin
-           dl_out_data34 <= dat_out_data[279:272];
-       // VCS coverage off
-       end else if ((dat_out_mask[34]) == 1'b0) begin
-       end else begin
-           dl_out_data34 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data35;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[35]) == 1'b1) begin
-           dl_out_data35 <= dat_out_data[287:280];
-       // VCS coverage off
-       end else if ((dat_out_mask[35]) == 1'b0) begin
-       end else begin
-           dl_out_data35 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data36;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[36]) == 1'b1) begin
-           dl_out_data36 <= dat_out_data[295:288];
-       // VCS coverage off
-       end else if ((dat_out_mask[36]) == 1'b0) begin
-       end else begin
-           dl_out_data36 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data37;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[37]) == 1'b1) begin
-           dl_out_data37 <= dat_out_data[303:296];
-       // VCS coverage off
-       end else if ((dat_out_mask[37]) == 1'b0) begin
-       end else begin
-           dl_out_data37 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data38;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[38]) == 1'b1) begin
-           dl_out_data38 <= dat_out_data[311:304];
-       // VCS coverage off
-       end else if ((dat_out_mask[38]) == 1'b0) begin
-       end else begin
-           dl_out_data38 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data39;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[39]) == 1'b1) begin
-           dl_out_data39 <= dat_out_data[319:312];
-       // VCS coverage off
-       end else if ((dat_out_mask[39]) == 1'b0) begin
-       end else begin
-           dl_out_data39 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data40;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[40]) == 1'b1) begin
-           dl_out_data40 <= dat_out_data[327:320];
-       // VCS coverage off
-       end else if ((dat_out_mask[40]) == 1'b0) begin
-       end else begin
-           dl_out_data40 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data41;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[41]) == 1'b1) begin
-           dl_out_data41 <= dat_out_data[335:328];
-       // VCS coverage off
-       end else if ((dat_out_mask[41]) == 1'b0) begin
-       end else begin
-           dl_out_data41 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data42;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[42]) == 1'b1) begin
-           dl_out_data42 <= dat_out_data[343:336];
-       // VCS coverage off
-       end else if ((dat_out_mask[42]) == 1'b0) begin
-       end else begin
-           dl_out_data42 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data43;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[43]) == 1'b1) begin
-           dl_out_data43 <= dat_out_data[351:344];
-       // VCS coverage off
-       end else if ((dat_out_mask[43]) == 1'b0) begin
-       end else begin
-           dl_out_data43 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data44;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[44]) == 1'b1) begin
-           dl_out_data44 <= dat_out_data[359:352];
-       // VCS coverage off
-       end else if ((dat_out_mask[44]) == 1'b0) begin
-       end else begin
-           dl_out_data44 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data45;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[45]) == 1'b1) begin
-           dl_out_data45 <= dat_out_data[367:360];
-       // VCS coverage off
-       end else if ((dat_out_mask[45]) == 1'b0) begin
-       end else begin
-           dl_out_data45 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data46;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[46]) == 1'b1) begin
-           dl_out_data46 <= dat_out_data[375:368];
-       // VCS coverage off
-       end else if ((dat_out_mask[46]) == 1'b0) begin
-       end else begin
-           dl_out_data46 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data47;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[47]) == 1'b1) begin
-           dl_out_data47 <= dat_out_data[383:376];
-       // VCS coverage off
-       end else if ((dat_out_mask[47]) == 1'b0) begin
-       end else begin
-           dl_out_data47 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data48;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[48]) == 1'b1) begin
-           dl_out_data48 <= dat_out_data[391:384];
-       // VCS coverage off
-       end else if ((dat_out_mask[48]) == 1'b0) begin
-       end else begin
-           dl_out_data48 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data49;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[49]) == 1'b1) begin
-           dl_out_data49 <= dat_out_data[399:392];
-       // VCS coverage off
-       end else if ((dat_out_mask[49]) == 1'b0) begin
-       end else begin
-           dl_out_data49 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data50;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[50]) == 1'b1) begin
-           dl_out_data50 <= dat_out_data[407:400];
-       // VCS coverage off
-       end else if ((dat_out_mask[50]) == 1'b0) begin
-       end else begin
-           dl_out_data50 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data51;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[51]) == 1'b1) begin
-           dl_out_data51 <= dat_out_data[415:408];
-       // VCS coverage off
-       end else if ((dat_out_mask[51]) == 1'b0) begin
-       end else begin
-           dl_out_data51 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data52;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[52]) == 1'b1) begin
-           dl_out_data52 <= dat_out_data[423:416];
-       // VCS coverage off
-       end else if ((dat_out_mask[52]) == 1'b0) begin
-       end else begin
-           dl_out_data52 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data53;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[53]) == 1'b1) begin
-           dl_out_data53 <= dat_out_data[431:424];
-       // VCS coverage off
-       end else if ((dat_out_mask[53]) == 1'b0) begin
-       end else begin
-           dl_out_data53 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data54;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[54]) == 1'b1) begin
-           dl_out_data54 <= dat_out_data[439:432];
-       // VCS coverage off
-       end else if ((dat_out_mask[54]) == 1'b0) begin
-       end else begin
-           dl_out_data54 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data55;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[55]) == 1'b1) begin
-           dl_out_data55 <= dat_out_data[447:440];
-       // VCS coverage off
-       end else if ((dat_out_mask[55]) == 1'b0) begin
-       end else begin
-           dl_out_data55 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data56;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[56]) == 1'b1) begin
-           dl_out_data56 <= dat_out_data[455:448];
-       // VCS coverage off
-       end else if ((dat_out_mask[56]) == 1'b0) begin
-       end else begin
-           dl_out_data56 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data57;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[57]) == 1'b1) begin
-           dl_out_data57 <= dat_out_data[463:456];
-       // VCS coverage off
-       end else if ((dat_out_mask[57]) == 1'b0) begin
-       end else begin
-           dl_out_data57 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data58;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[58]) == 1'b1) begin
-           dl_out_data58 <= dat_out_data[471:464];
-       // VCS coverage off
-       end else if ((dat_out_mask[58]) == 1'b0) begin
-       end else begin
-           dl_out_data58 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data59;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[59]) == 1'b1) begin
-           dl_out_data59 <= dat_out_data[479:472];
-       // VCS coverage off
-       end else if ((dat_out_mask[59]) == 1'b0) begin
-       end else begin
-           dl_out_data59 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data60;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[60]) == 1'b1) begin
-           dl_out_data60 <= dat_out_data[487:480];
-       // VCS coverage off
-       end else if ((dat_out_mask[60]) == 1'b0) begin
-       end else begin
-           dl_out_data60 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data61;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[61]) == 1'b1) begin
-           dl_out_data61 <= dat_out_data[495:488];
-       // VCS coverage off
-       end else if ((dat_out_mask[61]) == 1'b0) begin
-       end else begin
-           dl_out_data61 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data62;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[62]) == 1'b1) begin
-           dl_out_data62 <= dat_out_data[503:496];
-       // VCS coverage off
-       end else if ((dat_out_mask[62]) == 1'b0) begin
-       end else begin
-           dl_out_data62 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] dl_out_data63;
-always @(posedge nvdla_core_clk) begin
-       if ((dat_out_mask[63]) == 1'b1) begin
-           dl_out_data63 <= dat_out_data[511:504];
-       // VCS coverage off
-       end else if ((dat_out_mask[63]) == 1'b0) begin
-       end else begin
-           dl_out_data63 <= 'bx;
-       // VCS coverage on
-       end
-end
 
 
 
@@ -6521,7 +5685,7 @@ end
 //////////////////////////////////////////////////////////////
 assign sc2mac_dat_pd_w = ~dl_out_pvld ? 9'b0 : dl_out_flag;
 //: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"dl_out_pvld\" -q dl_out_pvld_d1");
-//: my $kk=64;
+//: my $kk=32;
 //: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"dl_out_pvld\" -q sc2mac_dat_a_pvld");
 //: &eperl::flop("-nodeclare   -rval \"1'b0\"   -d \"dl_out_pvld\" -q sc2mac_dat_b_pvld");
 //: &eperl::flop("-nodeclare   -rval \"{9{1'b0}}\"  -en \"dl_out_pvld | dl_out_pvld_d1\" -d \"sc2mac_dat_pd_w\" -q sc2mac_dat_a_pd");
@@ -6529,12 +5693,12 @@ assign sc2mac_dat_pd_w = ~dl_out_pvld ? 9'b0 : dl_out_flag;
 //: &eperl::flop("-nodeclare   -rval \"{${kk}{1'b0}}\"  -en \"dl_out_pvld | dl_out_pvld_d1\" -d \"dl_out_mask\" -q sc2mac_dat_a_mask");
 //: &eperl::flop("-nodeclare   -rval \"{${kk}{1'b0}}\"  -en \"dl_out_pvld | dl_out_pvld_d1\" -d \"dl_out_mask\" -q sc2mac_dat_b_mask");
 //: my $i;
-//: for($i = 0; $i < 64; $i ++) {
+//: for($i = 0; $i < 32; $i ++) {
 //: &eperl::flop("-wid 8 -norst -en \"dl_out_mask[${i}]\" -d \"dl_out_data${i}\" -q sc2mac_dat_a_data${i}");
 //: }
 //: print "\n\n";
 //:
-//: for($i = 0; $i < 64; $i ++) {
+//: for($i = 0; $i < 32; $i ++) {
 //: &eperl::flop("-wid 8  -norst -en \"dl_out_mask[${i}]\" -d \"dl_out_data${i}\" -q sc2mac_dat_b_data${i}");
 //: }
 //: print "\n\n";
@@ -6590,7 +5754,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       sc2mac_dat_a_mask <= {64{1'b0}};
+       sc2mac_dat_a_mask <= {32{1'b0}};
    end else begin
        if ((dl_out_pvld | dl_out_pvld_d1) == 1'b1) begin
            sc2mac_dat_a_mask <= dl_out_mask;
@@ -6604,7 +5768,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       sc2mac_dat_b_mask <= {64{1'b0}};
+       sc2mac_dat_b_mask <= {32{1'b0}};
    end else begin
        if ((dl_out_pvld | dl_out_pvld_d1) == 1'b1) begin
            sc2mac_dat_b_mask <= dl_out_mask;
@@ -6968,358 +6132,6 @@ always @(posedge nvdla_core_clk) begin
        // VCS coverage on
        end
 end
-reg [7:0] sc2mac_dat_a_data32;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[32]) == 1'b1) begin
-           sc2mac_dat_a_data32 <= dl_out_data32;
-       // VCS coverage off
-       end else if ((dl_out_mask[32]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data32 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data33;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[33]) == 1'b1) begin
-           sc2mac_dat_a_data33 <= dl_out_data33;
-       // VCS coverage off
-       end else if ((dl_out_mask[33]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data33 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data34;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[34]) == 1'b1) begin
-           sc2mac_dat_a_data34 <= dl_out_data34;
-       // VCS coverage off
-       end else if ((dl_out_mask[34]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data34 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data35;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[35]) == 1'b1) begin
-           sc2mac_dat_a_data35 <= dl_out_data35;
-       // VCS coverage off
-       end else if ((dl_out_mask[35]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data35 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data36;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[36]) == 1'b1) begin
-           sc2mac_dat_a_data36 <= dl_out_data36;
-       // VCS coverage off
-       end else if ((dl_out_mask[36]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data36 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data37;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[37]) == 1'b1) begin
-           sc2mac_dat_a_data37 <= dl_out_data37;
-       // VCS coverage off
-       end else if ((dl_out_mask[37]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data37 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data38;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[38]) == 1'b1) begin
-           sc2mac_dat_a_data38 <= dl_out_data38;
-       // VCS coverage off
-       end else if ((dl_out_mask[38]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data38 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data39;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[39]) == 1'b1) begin
-           sc2mac_dat_a_data39 <= dl_out_data39;
-       // VCS coverage off
-       end else if ((dl_out_mask[39]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data39 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data40;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[40]) == 1'b1) begin
-           sc2mac_dat_a_data40 <= dl_out_data40;
-       // VCS coverage off
-       end else if ((dl_out_mask[40]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data40 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data41;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[41]) == 1'b1) begin
-           sc2mac_dat_a_data41 <= dl_out_data41;
-       // VCS coverage off
-       end else if ((dl_out_mask[41]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data41 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data42;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[42]) == 1'b1) begin
-           sc2mac_dat_a_data42 <= dl_out_data42;
-       // VCS coverage off
-       end else if ((dl_out_mask[42]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data42 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data43;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[43]) == 1'b1) begin
-           sc2mac_dat_a_data43 <= dl_out_data43;
-       // VCS coverage off
-       end else if ((dl_out_mask[43]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data43 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data44;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[44]) == 1'b1) begin
-           sc2mac_dat_a_data44 <= dl_out_data44;
-       // VCS coverage off
-       end else if ((dl_out_mask[44]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data44 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data45;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[45]) == 1'b1) begin
-           sc2mac_dat_a_data45 <= dl_out_data45;
-       // VCS coverage off
-       end else if ((dl_out_mask[45]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data45 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data46;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[46]) == 1'b1) begin
-           sc2mac_dat_a_data46 <= dl_out_data46;
-       // VCS coverage off
-       end else if ((dl_out_mask[46]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data46 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data47;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[47]) == 1'b1) begin
-           sc2mac_dat_a_data47 <= dl_out_data47;
-       // VCS coverage off
-       end else if ((dl_out_mask[47]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data47 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data48;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[48]) == 1'b1) begin
-           sc2mac_dat_a_data48 <= dl_out_data48;
-       // VCS coverage off
-       end else if ((dl_out_mask[48]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data48 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data49;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[49]) == 1'b1) begin
-           sc2mac_dat_a_data49 <= dl_out_data49;
-       // VCS coverage off
-       end else if ((dl_out_mask[49]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data49 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data50;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[50]) == 1'b1) begin
-           sc2mac_dat_a_data50 <= dl_out_data50;
-       // VCS coverage off
-       end else if ((dl_out_mask[50]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data50 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data51;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[51]) == 1'b1) begin
-           sc2mac_dat_a_data51 <= dl_out_data51;
-       // VCS coverage off
-       end else if ((dl_out_mask[51]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data51 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data52;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[52]) == 1'b1) begin
-           sc2mac_dat_a_data52 <= dl_out_data52;
-       // VCS coverage off
-       end else if ((dl_out_mask[52]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data52 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data53;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[53]) == 1'b1) begin
-           sc2mac_dat_a_data53 <= dl_out_data53;
-       // VCS coverage off
-       end else if ((dl_out_mask[53]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data53 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data54;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[54]) == 1'b1) begin
-           sc2mac_dat_a_data54 <= dl_out_data54;
-       // VCS coverage off
-       end else if ((dl_out_mask[54]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data54 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data55;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[55]) == 1'b1) begin
-           sc2mac_dat_a_data55 <= dl_out_data55;
-       // VCS coverage off
-       end else if ((dl_out_mask[55]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data55 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data56;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[56]) == 1'b1) begin
-           sc2mac_dat_a_data56 <= dl_out_data56;
-       // VCS coverage off
-       end else if ((dl_out_mask[56]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data56 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data57;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[57]) == 1'b1) begin
-           sc2mac_dat_a_data57 <= dl_out_data57;
-       // VCS coverage off
-       end else if ((dl_out_mask[57]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data57 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data58;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[58]) == 1'b1) begin
-           sc2mac_dat_a_data58 <= dl_out_data58;
-       // VCS coverage off
-       end else if ((dl_out_mask[58]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data58 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data59;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[59]) == 1'b1) begin
-           sc2mac_dat_a_data59 <= dl_out_data59;
-       // VCS coverage off
-       end else if ((dl_out_mask[59]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data59 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data60;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[60]) == 1'b1) begin
-           sc2mac_dat_a_data60 <= dl_out_data60;
-       // VCS coverage off
-       end else if ((dl_out_mask[60]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data60 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data61;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[61]) == 1'b1) begin
-           sc2mac_dat_a_data61 <= dl_out_data61;
-       // VCS coverage off
-       end else if ((dl_out_mask[61]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data61 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data62;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[62]) == 1'b1) begin
-           sc2mac_dat_a_data62 <= dl_out_data62;
-       // VCS coverage off
-       end else if ((dl_out_mask[62]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data62 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_a_data63;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[63]) == 1'b1) begin
-           sc2mac_dat_a_data63 <= dl_out_data63;
-       // VCS coverage off
-       end else if ((dl_out_mask[63]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_a_data63 <= 'bx;
-       // VCS coverage on
-       end
-end
 
 
 reg [7:0] sc2mac_dat_b_data0;
@@ -7674,369 +6486,17 @@ always @(posedge nvdla_core_clk) begin
        // VCS coverage on
        end
 end
-reg [7:0] sc2mac_dat_b_data32;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[32]) == 1'b1) begin
-           sc2mac_dat_b_data32 <= dl_out_data32;
-       // VCS coverage off
-       end else if ((dl_out_mask[32]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data32 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data33;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[33]) == 1'b1) begin
-           sc2mac_dat_b_data33 <= dl_out_data33;
-       // VCS coverage off
-       end else if ((dl_out_mask[33]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data33 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data34;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[34]) == 1'b1) begin
-           sc2mac_dat_b_data34 <= dl_out_data34;
-       // VCS coverage off
-       end else if ((dl_out_mask[34]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data34 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data35;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[35]) == 1'b1) begin
-           sc2mac_dat_b_data35 <= dl_out_data35;
-       // VCS coverage off
-       end else if ((dl_out_mask[35]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data35 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data36;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[36]) == 1'b1) begin
-           sc2mac_dat_b_data36 <= dl_out_data36;
-       // VCS coverage off
-       end else if ((dl_out_mask[36]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data36 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data37;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[37]) == 1'b1) begin
-           sc2mac_dat_b_data37 <= dl_out_data37;
-       // VCS coverage off
-       end else if ((dl_out_mask[37]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data37 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data38;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[38]) == 1'b1) begin
-           sc2mac_dat_b_data38 <= dl_out_data38;
-       // VCS coverage off
-       end else if ((dl_out_mask[38]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data38 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data39;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[39]) == 1'b1) begin
-           sc2mac_dat_b_data39 <= dl_out_data39;
-       // VCS coverage off
-       end else if ((dl_out_mask[39]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data39 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data40;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[40]) == 1'b1) begin
-           sc2mac_dat_b_data40 <= dl_out_data40;
-       // VCS coverage off
-       end else if ((dl_out_mask[40]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data40 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data41;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[41]) == 1'b1) begin
-           sc2mac_dat_b_data41 <= dl_out_data41;
-       // VCS coverage off
-       end else if ((dl_out_mask[41]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data41 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data42;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[42]) == 1'b1) begin
-           sc2mac_dat_b_data42 <= dl_out_data42;
-       // VCS coverage off
-       end else if ((dl_out_mask[42]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data42 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data43;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[43]) == 1'b1) begin
-           sc2mac_dat_b_data43 <= dl_out_data43;
-       // VCS coverage off
-       end else if ((dl_out_mask[43]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data43 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data44;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[44]) == 1'b1) begin
-           sc2mac_dat_b_data44 <= dl_out_data44;
-       // VCS coverage off
-       end else if ((dl_out_mask[44]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data44 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data45;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[45]) == 1'b1) begin
-           sc2mac_dat_b_data45 <= dl_out_data45;
-       // VCS coverage off
-       end else if ((dl_out_mask[45]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data45 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data46;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[46]) == 1'b1) begin
-           sc2mac_dat_b_data46 <= dl_out_data46;
-       // VCS coverage off
-       end else if ((dl_out_mask[46]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data46 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data47;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[47]) == 1'b1) begin
-           sc2mac_dat_b_data47 <= dl_out_data47;
-       // VCS coverage off
-       end else if ((dl_out_mask[47]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data47 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data48;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[48]) == 1'b1) begin
-           sc2mac_dat_b_data48 <= dl_out_data48;
-       // VCS coverage off
-       end else if ((dl_out_mask[48]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data48 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data49;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[49]) == 1'b1) begin
-           sc2mac_dat_b_data49 <= dl_out_data49;
-       // VCS coverage off
-       end else if ((dl_out_mask[49]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data49 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data50;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[50]) == 1'b1) begin
-           sc2mac_dat_b_data50 <= dl_out_data50;
-       // VCS coverage off
-       end else if ((dl_out_mask[50]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data50 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data51;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[51]) == 1'b1) begin
-           sc2mac_dat_b_data51 <= dl_out_data51;
-       // VCS coverage off
-       end else if ((dl_out_mask[51]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data51 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data52;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[52]) == 1'b1) begin
-           sc2mac_dat_b_data52 <= dl_out_data52;
-       // VCS coverage off
-       end else if ((dl_out_mask[52]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data52 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data53;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[53]) == 1'b1) begin
-           sc2mac_dat_b_data53 <= dl_out_data53;
-       // VCS coverage off
-       end else if ((dl_out_mask[53]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data53 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data54;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[54]) == 1'b1) begin
-           sc2mac_dat_b_data54 <= dl_out_data54;
-       // VCS coverage off
-       end else if ((dl_out_mask[54]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data54 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data55;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[55]) == 1'b1) begin
-           sc2mac_dat_b_data55 <= dl_out_data55;
-       // VCS coverage off
-       end else if ((dl_out_mask[55]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data55 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data56;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[56]) == 1'b1) begin
-           sc2mac_dat_b_data56 <= dl_out_data56;
-       // VCS coverage off
-       end else if ((dl_out_mask[56]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data56 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data57;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[57]) == 1'b1) begin
-           sc2mac_dat_b_data57 <= dl_out_data57;
-       // VCS coverage off
-       end else if ((dl_out_mask[57]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data57 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data58;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[58]) == 1'b1) begin
-           sc2mac_dat_b_data58 <= dl_out_data58;
-       // VCS coverage off
-       end else if ((dl_out_mask[58]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data58 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data59;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[59]) == 1'b1) begin
-           sc2mac_dat_b_data59 <= dl_out_data59;
-       // VCS coverage off
-       end else if ((dl_out_mask[59]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data59 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data60;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[60]) == 1'b1) begin
-           sc2mac_dat_b_data60 <= dl_out_data60;
-       // VCS coverage off
-       end else if ((dl_out_mask[60]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data60 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data61;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[61]) == 1'b1) begin
-           sc2mac_dat_b_data61 <= dl_out_data61;
-       // VCS coverage off
-       end else if ((dl_out_mask[61]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data61 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data62;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[62]) == 1'b1) begin
-           sc2mac_dat_b_data62 <= dl_out_data62;
-       // VCS coverage off
-       end else if ((dl_out_mask[62]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data62 <= 'bx;
-       // VCS coverage on
-       end
-end
-reg [7:0] sc2mac_dat_b_data63;
-always @(posedge nvdla_core_clk) begin
-       if ((dl_out_mask[63]) == 1'b1) begin
-           sc2mac_dat_b_data63 <= dl_out_data63;
-       // VCS coverage off
-       end else if ((dl_out_mask[63]) == 1'b0) begin
-       end else begin
-           sc2mac_dat_b_data63 <= 'bx;
-       // VCS coverage on
-       end
-end
 
 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 `ifndef SYNTHESIS
-//: for(my $i = 0; $i < 64; $i ++) {
+//: for(my $i = 0; $i < 32; $i ++) {
 //: print "assign dbg_csc_dat_${i} = sc2mac_dat_a_mask[${i}] ? sc2mac_dat_a_data${i} : 8'h0;\n";
 //: }
 //: print "\n\n\n\n";
 //: print "assign dbg_csc_dat = {";
-//: my $kk=64;
+//: my $kk=32;
 //: for(my $i = ${kk}-1; $i >= 0; $i --) {
 //: print "dbg_csc_dat_${i}";
 //: if($i != 0) {
@@ -8078,43 +6538,11 @@ assign dbg_csc_dat_28 = sc2mac_dat_a_mask[28] ? sc2mac_dat_a_data28 : 8'h0;
 assign dbg_csc_dat_29 = sc2mac_dat_a_mask[29] ? sc2mac_dat_a_data29 : 8'h0;
 assign dbg_csc_dat_30 = sc2mac_dat_a_mask[30] ? sc2mac_dat_a_data30 : 8'h0;
 assign dbg_csc_dat_31 = sc2mac_dat_a_mask[31] ? sc2mac_dat_a_data31 : 8'h0;
-assign dbg_csc_dat_32 = sc2mac_dat_a_mask[32] ? sc2mac_dat_a_data32 : 8'h0;
-assign dbg_csc_dat_33 = sc2mac_dat_a_mask[33] ? sc2mac_dat_a_data33 : 8'h0;
-assign dbg_csc_dat_34 = sc2mac_dat_a_mask[34] ? sc2mac_dat_a_data34 : 8'h0;
-assign dbg_csc_dat_35 = sc2mac_dat_a_mask[35] ? sc2mac_dat_a_data35 : 8'h0;
-assign dbg_csc_dat_36 = sc2mac_dat_a_mask[36] ? sc2mac_dat_a_data36 : 8'h0;
-assign dbg_csc_dat_37 = sc2mac_dat_a_mask[37] ? sc2mac_dat_a_data37 : 8'h0;
-assign dbg_csc_dat_38 = sc2mac_dat_a_mask[38] ? sc2mac_dat_a_data38 : 8'h0;
-assign dbg_csc_dat_39 = sc2mac_dat_a_mask[39] ? sc2mac_dat_a_data39 : 8'h0;
-assign dbg_csc_dat_40 = sc2mac_dat_a_mask[40] ? sc2mac_dat_a_data40 : 8'h0;
-assign dbg_csc_dat_41 = sc2mac_dat_a_mask[41] ? sc2mac_dat_a_data41 : 8'h0;
-assign dbg_csc_dat_42 = sc2mac_dat_a_mask[42] ? sc2mac_dat_a_data42 : 8'h0;
-assign dbg_csc_dat_43 = sc2mac_dat_a_mask[43] ? sc2mac_dat_a_data43 : 8'h0;
-assign dbg_csc_dat_44 = sc2mac_dat_a_mask[44] ? sc2mac_dat_a_data44 : 8'h0;
-assign dbg_csc_dat_45 = sc2mac_dat_a_mask[45] ? sc2mac_dat_a_data45 : 8'h0;
-assign dbg_csc_dat_46 = sc2mac_dat_a_mask[46] ? sc2mac_dat_a_data46 : 8'h0;
-assign dbg_csc_dat_47 = sc2mac_dat_a_mask[47] ? sc2mac_dat_a_data47 : 8'h0;
-assign dbg_csc_dat_48 = sc2mac_dat_a_mask[48] ? sc2mac_dat_a_data48 : 8'h0;
-assign dbg_csc_dat_49 = sc2mac_dat_a_mask[49] ? sc2mac_dat_a_data49 : 8'h0;
-assign dbg_csc_dat_50 = sc2mac_dat_a_mask[50] ? sc2mac_dat_a_data50 : 8'h0;
-assign dbg_csc_dat_51 = sc2mac_dat_a_mask[51] ? sc2mac_dat_a_data51 : 8'h0;
-assign dbg_csc_dat_52 = sc2mac_dat_a_mask[52] ? sc2mac_dat_a_data52 : 8'h0;
-assign dbg_csc_dat_53 = sc2mac_dat_a_mask[53] ? sc2mac_dat_a_data53 : 8'h0;
-assign dbg_csc_dat_54 = sc2mac_dat_a_mask[54] ? sc2mac_dat_a_data54 : 8'h0;
-assign dbg_csc_dat_55 = sc2mac_dat_a_mask[55] ? sc2mac_dat_a_data55 : 8'h0;
-assign dbg_csc_dat_56 = sc2mac_dat_a_mask[56] ? sc2mac_dat_a_data56 : 8'h0;
-assign dbg_csc_dat_57 = sc2mac_dat_a_mask[57] ? sc2mac_dat_a_data57 : 8'h0;
-assign dbg_csc_dat_58 = sc2mac_dat_a_mask[58] ? sc2mac_dat_a_data58 : 8'h0;
-assign dbg_csc_dat_59 = sc2mac_dat_a_mask[59] ? sc2mac_dat_a_data59 : 8'h0;
-assign dbg_csc_dat_60 = sc2mac_dat_a_mask[60] ? sc2mac_dat_a_data60 : 8'h0;
-assign dbg_csc_dat_61 = sc2mac_dat_a_mask[61] ? sc2mac_dat_a_data61 : 8'h0;
-assign dbg_csc_dat_62 = sc2mac_dat_a_mask[62] ? sc2mac_dat_a_data62 : 8'h0;
-assign dbg_csc_dat_63 = sc2mac_dat_a_mask[63] ? sc2mac_dat_a_data63 : 8'h0;
 
 
 
 
-assign dbg_csc_dat = {dbg_csc_dat_63, dbg_csc_dat_62, dbg_csc_dat_61, dbg_csc_dat_60, dbg_csc_dat_59, dbg_csc_dat_58, dbg_csc_dat_57, dbg_csc_dat_56, dbg_csc_dat_55, dbg_csc_dat_54, dbg_csc_dat_53, dbg_csc_dat_52, dbg_csc_dat_51, dbg_csc_dat_50, dbg_csc_dat_49, dbg_csc_dat_48, dbg_csc_dat_47, dbg_csc_dat_46, dbg_csc_dat_45, dbg_csc_dat_44, dbg_csc_dat_43, dbg_csc_dat_42, dbg_csc_dat_41, dbg_csc_dat_40, dbg_csc_dat_39, dbg_csc_dat_38, dbg_csc_dat_37, dbg_csc_dat_36, dbg_csc_dat_35, dbg_csc_dat_34, dbg_csc_dat_33, dbg_csc_dat_32, dbg_csc_dat_31, dbg_csc_dat_30, dbg_csc_dat_29, dbg_csc_dat_28, dbg_csc_dat_27, dbg_csc_dat_26, dbg_csc_dat_25, dbg_csc_dat_24, dbg_csc_dat_23, dbg_csc_dat_22, dbg_csc_dat_21, dbg_csc_dat_20, dbg_csc_dat_19, dbg_csc_dat_18, dbg_csc_dat_17, dbg_csc_dat_16, dbg_csc_dat_15, dbg_csc_dat_14, dbg_csc_dat_13, dbg_csc_dat_12, dbg_csc_dat_11, dbg_csc_dat_10, dbg_csc_dat_9, dbg_csc_dat_8, dbg_csc_dat_7, dbg_csc_dat_6, dbg_csc_dat_5, dbg_csc_dat_4, dbg_csc_dat_3, dbg_csc_dat_2, dbg_csc_dat_1, dbg_csc_dat_0};
+assign dbg_csc_dat = {dbg_csc_dat_31, dbg_csc_dat_30, dbg_csc_dat_29, dbg_csc_dat_28, dbg_csc_dat_27, dbg_csc_dat_26, dbg_csc_dat_25, dbg_csc_dat_24, dbg_csc_dat_23, dbg_csc_dat_22, dbg_csc_dat_21, dbg_csc_dat_20, dbg_csc_dat_19, dbg_csc_dat_18, dbg_csc_dat_17, dbg_csc_dat_16, dbg_csc_dat_15, dbg_csc_dat_14, dbg_csc_dat_13, dbg_csc_dat_12, dbg_csc_dat_11, dbg_csc_dat_10, dbg_csc_dat_9, dbg_csc_dat_8, dbg_csc_dat_7, dbg_csc_dat_6, dbg_csc_dat_5, dbg_csc_dat_4, dbg_csc_dat_3, dbg_csc_dat_2, dbg_csc_dat_1, dbg_csc_dat_0};
 
 
 

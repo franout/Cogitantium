@@ -218,7 +218,7 @@ end
 `endif // SPYGLASS_ASSERT_ON
 // EG===Contect Qeueu
 //:my $i;
-//:my @dma_index = (0, 1,1, 1,0, 0, 0, 0, 0,0,0,0,0,0,0);
+//:my @dma_index = (0, 1,0, 0,0, 0, 0, 0, 0,0,0,0,0,0,0);
 //:my @client_id = (0,1,2,3,4,0,0,0,0,0,0,0,0,0,0,0);
 //:my @remap_clientid = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 //:my $nindex = 0;
@@ -257,7 +257,7 @@ mcif2client0_wr_rsp_complete <= dma0_vld & cq_rd0_pvld & cq_rd0_require_ack;
 end
 end
 
-assign dma1_vld = iflop_axi_vld & (iflop_axi_axid == 2);
+assign dma1_vld = iflop_axi_vld & (iflop_axi_axid == 0);
 assign cq_rd1_prdy = dma1_vld;
 assign cq_rd1_require_ack = cq_rd1_pd[0:0];
 assign cq_rd1_len = cq_rd1_pd[2:1];
@@ -269,7 +269,7 @@ mcif2client1_wr_rsp_complete <= dma1_vld & cq_rd1_pvld & cq_rd1_require_ack;
 end
 end
 
-assign dma2_vld = iflop_axi_vld & (iflop_axi_axid == 3);
+assign dma2_vld = iflop_axi_vld & (iflop_axi_axid == 0);
 assign cq_rd2_prdy = dma2_vld;
 assign cq_rd2_require_ack = cq_rd2_pd[0:0];
 assign cq_rd2_len = cq_rd2_pd[2:1];

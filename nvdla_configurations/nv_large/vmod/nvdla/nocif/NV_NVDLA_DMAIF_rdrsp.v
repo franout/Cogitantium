@@ -10,9 +10,6 @@
 module NV_NVDLA_DMAIF_rdrsp (
    nvdla_core_clk
   ,nvdla_core_rstn
-  ,cvif_rd_rsp_pd
-  ,cvif_rd_rsp_valid
-  ,cvif_rd_rsp_ready
   ,mcif_rd_rsp_pd
   ,mcif_rd_rsp_valid
   ,mcif_rd_rsp_ready
@@ -23,18 +20,6 @@ module NV_NVDLA_DMAIF_rdrsp (
 //////////////////////////////////////////////
 input nvdla_core_clk;
 input nvdla_core_rstn;
-//: my $dmaif = 256;
-//: my $mask = int($dmaif/32/8);
-//: my $maskbw;
-//: $maskbw = $mask;
-//: my $dmabw = ( $dmaif + $maskbw );
-//: print qq( input [${dmabw}-1:0] cvif_rd_rsp_pd; \n);
-//| eperl: generated_beg (DO NOT EDIT BELOW)
- input [257-1:0] cvif_rd_rsp_pd; 
-
-//| eperl: generated_end (DO NOT EDIT ABOVE)
-input cvif_rd_rsp_valid;
-output cvif_rd_rsp_ready;
 //: my $dmaif = 256;
 //: my $mask = int($dmaif/32/8);
 //: my $maskbw;
@@ -150,107 +135,21 @@ assign mcif_rd_rsp_valid_d0 = pipe_skid_mcif_rd_rsp_valid;
 assign mcif_rd_rsp_pd_d0 = pipe_skid_mcif_rd_rsp_pd;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-wire cv_dma_rd_rsp_rdy;
-assign cv_dma_rd_rsp_rdy = dma_rd_rsp_rdy;
-//: my $dmaif = 256;
-//: my $mask = int($dmaif/32/8);
-//: my $maskbw;
-//: $maskbw = $mask;
-//: my $dmabw = ( $dmaif + $maskbw );
-//: &eperl::pipe(" -wid $dmabw -is -do cvif_rd_rsp_pd_d0 -vo cvif_rd_rsp_valid_d0 -ri cv_dma_rd_rsp_rdy -di cvif_rd_rsp_pd -vi cvif_rd_rsp_valid -ro cvif_rd_rsp_ready  ");
-//| eperl: generated_beg (DO NOT EDIT BELOW)
-// Reg
-reg cvif_rd_rsp_ready;
-reg skid_flop_cvif_rd_rsp_ready;
-reg skid_flop_cvif_rd_rsp_valid;
-reg [257-1:0] skid_flop_cvif_rd_rsp_pd;
-reg pipe_skid_cvif_rd_rsp_valid;
-reg [257-1:0] pipe_skid_cvif_rd_rsp_pd;
-// Wire
-wire skid_cvif_rd_rsp_valid;
-wire [257-1:0] skid_cvif_rd_rsp_pd;
-wire skid_cvif_rd_rsp_ready;
-wire pipe_skid_cvif_rd_rsp_ready;
-wire cvif_rd_rsp_valid_d0;
-wire [257-1:0] cvif_rd_rsp_pd_d0;
-// Code
-// SKID READY
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvif_rd_rsp_ready <= 1'b1;
-       skid_flop_cvif_rd_rsp_ready <= 1'b1;
-   end else begin
-       cvif_rd_rsp_ready <= skid_cvif_rd_rsp_ready;
-       skid_flop_cvif_rd_rsp_ready <= skid_cvif_rd_rsp_ready;
-   end
-end
-
-// SKID VALID
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        skid_flop_cvif_rd_rsp_valid <= 1'b0;
-    end else begin
-        if (skid_flop_cvif_rd_rsp_ready) begin
-            skid_flop_cvif_rd_rsp_valid <= cvif_rd_rsp_valid;
-        end
-   end
-end
-assign skid_cvif_rd_rsp_valid = (skid_flop_cvif_rd_rsp_ready) ? cvif_rd_rsp_valid : skid_flop_cvif_rd_rsp_valid;
-
-// SKID DATA
-always @(posedge nvdla_core_clk) begin
-    if (skid_flop_cvif_rd_rsp_ready & cvif_rd_rsp_valid) begin
-        skid_flop_cvif_rd_rsp_pd[257-1:0] <= cvif_rd_rsp_pd[257-1:0];
-    end
-end
-assign skid_cvif_rd_rsp_pd[257-1:0] = (skid_flop_cvif_rd_rsp_ready) ? cvif_rd_rsp_pd[257-1:0] : skid_flop_cvif_rd_rsp_pd[257-1:0];
-
-
-// PIPE READY
-assign skid_cvif_rd_rsp_ready = pipe_skid_cvif_rd_rsp_ready || !pipe_skid_cvif_rd_rsp_valid;
-
-// PIPE VALID
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        pipe_skid_cvif_rd_rsp_valid <= 1'b0;
-    end else begin
-        if (skid_cvif_rd_rsp_ready) begin
-            pipe_skid_cvif_rd_rsp_valid <= skid_cvif_rd_rsp_valid;
-        end
-    end
-end
-
-// PIPE DATA
-always @(posedge nvdla_core_clk) begin
-    if (skid_cvif_rd_rsp_ready && skid_cvif_rd_rsp_valid) begin
-        pipe_skid_cvif_rd_rsp_pd[257-1:0] <= skid_cvif_rd_rsp_pd[257-1:0];
-    end
-end
-
-
-// PIPE OUTPUT
-assign pipe_skid_cvif_rd_rsp_ready = cv_dma_rd_rsp_rdy;
-assign cvif_rd_rsp_valid_d0 = pipe_skid_cvif_rd_rsp_valid;
-assign cvif_rd_rsp_pd_d0 = pipe_skid_cvif_rd_rsp_pd;
-
-//| eperl: generated_end (DO NOT EDIT ABOVE)
 ///////////////////////////////////////
 //mux
 ///////////////////////////////////////
-assign dma_rd_rsp_vld = mcif_rd_rsp_valid_d0 | cvif_rd_rsp_valid_d0;
+assign dma_rd_rsp_vld = mcif_rd_rsp_valid_d0;
 //: my $dmaif = 256;
 //: my $mask = int($dmaif/32/8);
 //: my $maskbw;
 //: $maskbw = $mask;
 //: my $dmabw = ( $dmaif + $maskbw );
 //: print qq(
-//: assign dma_rd_rsp_pd = ({${dmabw}{mcif_rd_rsp_valid_d0}} & mcif_rd_rsp_pd_d0)
-//: | ({${dmabw}{cvif_rd_rsp_valid_d0}} & cvif_rd_rsp_pd_d0);
+//: assign dma_rd_rsp_pd = ({${dmabw}{mcif_rd_rsp_valid_d0}} & mcif_rd_rsp_pd_d0);
 //: );
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign dma_rd_rsp_pd = ({257{mcif_rd_rsp_valid_d0}} & mcif_rd_rsp_pd_d0)
-| ({257{cvif_rd_rsp_valid_d0}} & cvif_rd_rsp_pd_d0);
+assign dma_rd_rsp_pd = ({257{mcif_rd_rsp_valid_d0}} & mcif_rd_rsp_pd_d0);
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 // //: &eperl::assert(" -type never -desc 'DMAIF: mcif and cvif should never return data both' -expr 'mcif_rd_rsp_valid_d0 & cvif_rd_rsp_valid_d0' ");

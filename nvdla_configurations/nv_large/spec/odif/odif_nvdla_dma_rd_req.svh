@@ -5,7 +5,7 @@
 `ifndef SV_STRUCT_DEFINED_DMA_READ_REQ
 `define SV_STRUCT_DEFINED_DMA_READ_REQ
 typedef struct packed {
-  bit [63:0] addr;
+  bit [31:0] addr;
   bit [14:0] size;
 } DMA_READ_REQ_struct;
 `endif

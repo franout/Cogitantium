@@ -19,7 +19,7 @@ module NV_NVDLA_MCIF_READ_ig (
   ,nvdla_core_rstn //|< i
   ,pwrbus_ram_pd
   ,reg2dp_rd_os_cnt
-//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b","sdp_n","sdp_e","pdp","cdp");
+//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b");
 //: foreach my $client (@rdma_name) {
 //: print("  ,reg2dp_rd_weight_${client}\n");
 //: }
@@ -34,10 +34,6 @@ module NV_NVDLA_MCIF_READ_ig (
   ,reg2dp_rd_weight_cdma_wt
   ,reg2dp_rd_weight_sdp
   ,reg2dp_rd_weight_sdp_b
-  ,reg2dp_rd_weight_sdp_n
-  ,reg2dp_rd_weight_sdp_e
-  ,reg2dp_rd_weight_pdp
-  ,reg2dp_rd_weight_cdp
   ,cdma_dat2mcif_rd_cdt_lat_fifo_pop
   ,cdma_dat2mcif_rd_req_valid
   ,cdma_dat2mcif_rd_req_ready
@@ -54,22 +50,6 @@ module NV_NVDLA_MCIF_READ_ig (
   ,sdp_b2mcif_rd_req_valid
   ,sdp_b2mcif_rd_req_ready
   ,sdp_b2mcif_rd_req_pd
-  ,sdp_n2mcif_rd_cdt_lat_fifo_pop
-  ,sdp_n2mcif_rd_req_valid
-  ,sdp_n2mcif_rd_req_ready
-  ,sdp_n2mcif_rd_req_pd
-  ,sdp_e2mcif_rd_cdt_lat_fifo_pop
-  ,sdp_e2mcif_rd_req_valid
-  ,sdp_e2mcif_rd_req_ready
-  ,sdp_e2mcif_rd_req_pd
-  ,pdp2mcif_rd_cdt_lat_fifo_pop
-  ,pdp2mcif_rd_req_valid
-  ,pdp2mcif_rd_req_ready
-  ,pdp2mcif_rd_req_pd
-  ,cdp2mcif_rd_cdt_lat_fifo_pop
-  ,cdp2mcif_rd_req_valid
-  ,cdp2mcif_rd_req_ready
-  ,cdp2mcif_rd_req_pd
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,eg2ig_axi_vld
@@ -83,7 +63,7 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input [31:0] pwrbus_ram_pd;
 input [7:0] reg2dp_rd_os_cnt;
-//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b","sdp_n","sdp_e","pdp","cdp");
+//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b");
 //: foreach my $client (@rdma_name) {
 //: print("input  [7:0] reg2dp_rd_weight_${client};\n");
 //: }
@@ -91,98 +71,78 @@ input [7:0] reg2dp_rd_os_cnt;
 //: print ("input  ${client}2mcif_rd_cdt_lat_fifo_pop;\n");
 //: print ("input  ${client}2mcif_rd_req_valid;\n");
 //: print ("output ${client}2mcif_rd_req_ready;\n");
-//: print qq(input [79 -1:0] ${client}2mcif_rd_req_pd;\n);
+//: print qq(input [47 -1:0] ${client}2mcif_rd_req_pd;\n);
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 input  [7:0] reg2dp_rd_weight_cdma_dat;
 input  [7:0] reg2dp_rd_weight_cdma_wt;
 input  [7:0] reg2dp_rd_weight_sdp;
 input  [7:0] reg2dp_rd_weight_sdp_b;
-input  [7:0] reg2dp_rd_weight_sdp_n;
-input  [7:0] reg2dp_rd_weight_sdp_e;
-input  [7:0] reg2dp_rd_weight_pdp;
-input  [7:0] reg2dp_rd_weight_cdp;
 input  cdma_dat2mcif_rd_cdt_lat_fifo_pop;
 input  cdma_dat2mcif_rd_req_valid;
 output cdma_dat2mcif_rd_req_ready;
-input [79 -1:0] cdma_dat2mcif_rd_req_pd;
+input [47 -1:0] cdma_dat2mcif_rd_req_pd;
 input  cdma_wt2mcif_rd_cdt_lat_fifo_pop;
 input  cdma_wt2mcif_rd_req_valid;
 output cdma_wt2mcif_rd_req_ready;
-input [79 -1:0] cdma_wt2mcif_rd_req_pd;
+input [47 -1:0] cdma_wt2mcif_rd_req_pd;
 input  sdp2mcif_rd_cdt_lat_fifo_pop;
 input  sdp2mcif_rd_req_valid;
 output sdp2mcif_rd_req_ready;
-input [79 -1:0] sdp2mcif_rd_req_pd;
+input [47 -1:0] sdp2mcif_rd_req_pd;
 input  sdp_b2mcif_rd_cdt_lat_fifo_pop;
 input  sdp_b2mcif_rd_req_valid;
 output sdp_b2mcif_rd_req_ready;
-input [79 -1:0] sdp_b2mcif_rd_req_pd;
-input  sdp_n2mcif_rd_cdt_lat_fifo_pop;
-input  sdp_n2mcif_rd_req_valid;
-output sdp_n2mcif_rd_req_ready;
-input [79 -1:0] sdp_n2mcif_rd_req_pd;
-input  sdp_e2mcif_rd_cdt_lat_fifo_pop;
-input  sdp_e2mcif_rd_req_valid;
-output sdp_e2mcif_rd_req_ready;
-input [79 -1:0] sdp_e2mcif_rd_req_pd;
-input  pdp2mcif_rd_cdt_lat_fifo_pop;
-input  pdp2mcif_rd_req_valid;
-output pdp2mcif_rd_req_ready;
-input [79 -1:0] pdp2mcif_rd_req_pd;
-input  cdp2mcif_rd_cdt_lat_fifo_pop;
-input  cdp2mcif_rd_req_valid;
-output cdp2mcif_rd_req_ready;
-input [79 -1:0] cdp2mcif_rd_req_pd;
+input [47 -1:0] sdp_b2mcif_rd_req_pd;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output mcif2noc_axi_ar_arvalid;
 input mcif2noc_axi_ar_arready;
 output [7:0] mcif2noc_axi_ar_arid;
 output [3:0] mcif2noc_axi_ar_arlen;
-output [64 -1:0] mcif2noc_axi_ar_araddr;
+output [32 -1:0] mcif2noc_axi_ar_araddr;
 input eg2ig_axi_vld;
 //:for (my $i=0;$i<8;$i++) {
-//: print qq(wire [64 +10:0] bpt2arb_req${i}_pd;\n);
+//: print qq(wire [32 +10:0] bpt2arb_req${i}_pd;\n);
 //: print ("wire  bpt2arb_req${i}_ready;\n");
 //: print ("wire  bpt2arb_req${i}_valid;\n");
 //:}
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-wire [64 +10:0] bpt2arb_req0_pd;
+wire [32 +10:0] bpt2arb_req0_pd;
 wire  bpt2arb_req0_ready;
 wire  bpt2arb_req0_valid;
-wire [64 +10:0] bpt2arb_req1_pd;
+wire [32 +10:0] bpt2arb_req1_pd;
 wire  bpt2arb_req1_ready;
 wire  bpt2arb_req1_valid;
-wire [64 +10:0] bpt2arb_req2_pd;
+wire [32 +10:0] bpt2arb_req2_pd;
 wire  bpt2arb_req2_ready;
 wire  bpt2arb_req2_valid;
-wire [64 +10:0] bpt2arb_req3_pd;
+wire [32 +10:0] bpt2arb_req3_pd;
 wire  bpt2arb_req3_ready;
 wire  bpt2arb_req3_valid;
-wire [64 +10:0] bpt2arb_req4_pd;
+wire [32 +10:0] bpt2arb_req4_pd;
 wire  bpt2arb_req4_ready;
 wire  bpt2arb_req4_valid;
-wire [64 +10:0] bpt2arb_req5_pd;
+wire [32 +10:0] bpt2arb_req5_pd;
 wire  bpt2arb_req5_ready;
 wire  bpt2arb_req5_valid;
-wire [64 +10:0] bpt2arb_req6_pd;
+wire [32 +10:0] bpt2arb_req6_pd;
 wire  bpt2arb_req6_ready;
 wire  bpt2arb_req6_valid;
-wire [64 +10:0] bpt2arb_req7_pd;
+wire [32 +10:0] bpt2arb_req7_pd;
 wire  bpt2arb_req7_ready;
 wire  bpt2arb_req7_valid;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-wire [64 +10:0] arb2spt_req_pd;
+wire [32 +10:0] arb2spt_req_pd;
 wire arb2spt_req_ready;
 wire arb2spt_req_valid;
-wire [64 +10:0] spt2cvt_req_pd;
+wire [32 +10:0] spt2cvt_req_pd;
 wire spt2cvt_req_valid;
 wire spt2cvt_req_ready;
 //---------------------read_bpt inst--------------------------------//
 //: my $i = 0;
-//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b","sdp_n","sdp_e","pdp","cdp");
+//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b");
 //: foreach my $client (@rdma_name) {
 //: print("NV_NVDLA_MCIF_READ_IG_bpt u_bpt${i} (\n");
 //: print ("   .nvdla_core_clk(nvdla_core_clk)\n");
@@ -252,65 +212,13 @@ NV_NVDLA_MCIF_READ_IG_bpt u_bpt3 (
   ,.tieoff_axid(`tieoff_axid_sdp_b)
   ,.tieoff_lat_fifo_depth(`tieoff_depth_sdp_b)
 );
-NV_NVDLA_MCIF_READ_IG_bpt u_bpt4 (
-   .nvdla_core_clk(nvdla_core_clk)
-  ,.nvdla_core_rstn(nvdla_core_rstn)
-  ,.dma2bpt_cdt_lat_fifo_pop(sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.dma2bpt_req_valid(sdp_n2mcif_rd_req_valid)
-  ,.dma2bpt_req_ready(sdp_n2mcif_rd_req_ready)
-  ,.dma2bpt_req_pd(sdp_n2mcif_rd_req_pd)
-  ,.bpt2arb_req_valid(bpt2arb_req4_valid)
-  ,.bpt2arb_req_ready(bpt2arb_req4_ready)
-  ,.bpt2arb_req_pd(bpt2arb_req4_pd)
-  ,.tieoff_axid(`tieoff_axid_sdp_n)
-  ,.tieoff_lat_fifo_depth(`tieoff_depth_sdp_n)
-);
-NV_NVDLA_MCIF_READ_IG_bpt u_bpt5 (
-   .nvdla_core_clk(nvdla_core_clk)
-  ,.nvdla_core_rstn(nvdla_core_rstn)
-  ,.dma2bpt_cdt_lat_fifo_pop(sdp_e2mcif_rd_cdt_lat_fifo_pop)
-  ,.dma2bpt_req_valid(sdp_e2mcif_rd_req_valid)
-  ,.dma2bpt_req_ready(sdp_e2mcif_rd_req_ready)
-  ,.dma2bpt_req_pd(sdp_e2mcif_rd_req_pd)
-  ,.bpt2arb_req_valid(bpt2arb_req5_valid)
-  ,.bpt2arb_req_ready(bpt2arb_req5_ready)
-  ,.bpt2arb_req_pd(bpt2arb_req5_pd)
-  ,.tieoff_axid(`tieoff_axid_sdp_e)
-  ,.tieoff_lat_fifo_depth(`tieoff_depth_sdp_e)
-);
-NV_NVDLA_MCIF_READ_IG_bpt u_bpt6 (
-   .nvdla_core_clk(nvdla_core_clk)
-  ,.nvdla_core_rstn(nvdla_core_rstn)
-  ,.dma2bpt_cdt_lat_fifo_pop(pdp2mcif_rd_cdt_lat_fifo_pop)
-  ,.dma2bpt_req_valid(pdp2mcif_rd_req_valid)
-  ,.dma2bpt_req_ready(pdp2mcif_rd_req_ready)
-  ,.dma2bpt_req_pd(pdp2mcif_rd_req_pd)
-  ,.bpt2arb_req_valid(bpt2arb_req6_valid)
-  ,.bpt2arb_req_ready(bpt2arb_req6_ready)
-  ,.bpt2arb_req_pd(bpt2arb_req6_pd)
-  ,.tieoff_axid(`tieoff_axid_pdp)
-  ,.tieoff_lat_fifo_depth(`tieoff_depth_pdp)
-);
-NV_NVDLA_MCIF_READ_IG_bpt u_bpt7 (
-   .nvdla_core_clk(nvdla_core_clk)
-  ,.nvdla_core_rstn(nvdla_core_rstn)
-  ,.dma2bpt_cdt_lat_fifo_pop(cdp2mcif_rd_cdt_lat_fifo_pop)
-  ,.dma2bpt_req_valid(cdp2mcif_rd_req_valid)
-  ,.dma2bpt_req_ready(cdp2mcif_rd_req_ready)
-  ,.dma2bpt_req_pd(cdp2mcif_rd_req_pd)
-  ,.bpt2arb_req_valid(bpt2arb_req7_valid)
-  ,.bpt2arb_req_ready(bpt2arb_req7_ready)
-  ,.bpt2arb_req_pd(bpt2arb_req7_pd)
-  ,.tieoff_axid(`tieoff_axid_cdp)
-  ,.tieoff_lat_fifo_depth(`tieoff_depth_cdp)
-);
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 NV_NVDLA_MCIF_READ_IG_arb u_arb (
    .nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
 //: my $i = 0;
-//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b","sdp_n","sdp_e","pdp","cdp");
+//: my @rdma_name = ("cdma_dat","cdma_wt","sdp", "sdp_b");
 //: foreach my $client (@rdma_name) {
 //: print("  ,.reg2dp_rd_weight${i}(reg2dp_rd_weight_${client})\n");
 //: $i++;
@@ -327,10 +235,6 @@ NV_NVDLA_MCIF_READ_IG_arb u_arb (
   ,.reg2dp_rd_weight1(reg2dp_rd_weight_cdma_wt)
   ,.reg2dp_rd_weight2(reg2dp_rd_weight_sdp)
   ,.reg2dp_rd_weight3(reg2dp_rd_weight_sdp_b)
-  ,.reg2dp_rd_weight4(reg2dp_rd_weight_sdp_n)
-  ,.reg2dp_rd_weight5(reg2dp_rd_weight_sdp_e)
-  ,.reg2dp_rd_weight6(reg2dp_rd_weight_pdp)
-  ,.reg2dp_rd_weight7(reg2dp_rd_weight_cdp)
   ,.bpt2arb_req0_valid(bpt2arb_req0_valid)
   ,.bpt2arb_req0_ready(bpt2arb_req0_ready)
   ,.bpt2arb_req0_pd(bpt2arb_req0_pd)
@@ -343,18 +247,6 @@ NV_NVDLA_MCIF_READ_IG_arb u_arb (
   ,.bpt2arb_req3_valid(bpt2arb_req3_valid)
   ,.bpt2arb_req3_ready(bpt2arb_req3_ready)
   ,.bpt2arb_req3_pd(bpt2arb_req3_pd)
-  ,.bpt2arb_req4_valid(bpt2arb_req4_valid)
-  ,.bpt2arb_req4_ready(bpt2arb_req4_ready)
-  ,.bpt2arb_req4_pd(bpt2arb_req4_pd)
-  ,.bpt2arb_req5_valid(bpt2arb_req5_valid)
-  ,.bpt2arb_req5_ready(bpt2arb_req5_ready)
-  ,.bpt2arb_req5_pd(bpt2arb_req5_pd)
-  ,.bpt2arb_req6_valid(bpt2arb_req6_valid)
-  ,.bpt2arb_req6_ready(bpt2arb_req6_ready)
-  ,.bpt2arb_req6_pd(bpt2arb_req6_pd)
-  ,.bpt2arb_req7_valid(bpt2arb_req7_valid)
-  ,.bpt2arb_req7_ready(bpt2arb_req7_ready)
-  ,.bpt2arb_req7_pd(bpt2arb_req7_pd)
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.arb2spt_req_valid (arb2spt_req_valid) //|> w

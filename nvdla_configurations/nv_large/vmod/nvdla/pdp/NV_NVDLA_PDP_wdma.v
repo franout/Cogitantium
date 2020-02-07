@@ -29,10 +29,6 @@ module NV_NVDLA_PDP_wdma (
    nvdla_core_clk //|< i
   ,nvdla_core_clk_orig //|< i
   ,nvdla_core_rstn //|< i
-  ,cvif2pdp_wr_rsp_complete //|< i
-  ,pdp2cvif_wr_req_pd //|> o
-  ,pdp2cvif_wr_req_valid //|> o
-  ,pdp2cvif_wr_req_ready //|< i
   ,mcif2pdp_wr_rsp_complete //|< i
   ,pdp2mcif_wr_req_ready //|< i
   ,pdp_dp2wdma_pd //|< i
@@ -75,10 +71,6 @@ output pdp2mcif_wr_req_valid; /* data valid */
 input pdp2mcif_wr_req_ready; /* data return handshake */
 output [( 256 + (256/8/32) + 1 )-1:0] pdp2mcif_wr_req_pd;
 input mcif2pdp_wr_rsp_complete;
-output pdp2cvif_wr_req_valid;
-input pdp2cvif_wr_req_ready;
-output [( 256 + (256/8/32) + 1 )-1:0] pdp2cvif_wr_req_pd;
-input cvif2pdp_wr_rsp_complete;
 input pdp_dp2wdma_valid;
 output pdp_dp2wdma_ready;
 input [8*8 -1:0] pdp_dp2wdma_pd;
@@ -210,7 +202,7 @@ reg dat_fifo_rd_last_pvld;
 wire dat_rdy;
 wire dma_wr_cmd_accept;
 wire [63:0] dma_wr_cmd_addr;
-wire [64 +13:0] dma_wr_cmd_pd;
+wire [32 +13:0] dma_wr_cmd_pd;
 wire dma_wr_cmd_require_ack;
 wire [22:0] dma_wr_cmd_size;
 wire dma_wr_cmd_vld;
@@ -874,9 +866,9 @@ assign dma_wr_cmd_addr = cmd_fifo_rd_addr;
 assign dma_wr_cmd_size = {10'b0, cmd_fifo_rd_size};
 assign dma_wr_cmd_require_ack = cmd_fifo_rd_cube_end;
 // PKT_PACK_WIRE( dma_write_cmd , dma_wr_cmd_ , dma_wr_cmd_pd )
-assign dma_wr_cmd_pd[64 -1:0] = dma_wr_cmd_addr[64 -1:0];
-assign dma_wr_cmd_pd[64 +12:64] = dma_wr_cmd_size[12:0];
-assign dma_wr_cmd_pd[64 +13] = dma_wr_cmd_require_ack ;
+assign dma_wr_cmd_pd[32 -1:0] = dma_wr_cmd_addr[32 -1:0];
+assign dma_wr_cmd_pd[32 +12:32] = dma_wr_cmd_size[12:0];
+assign dma_wr_cmd_pd[32 +13] = dma_wr_cmd_require_ack ;
 // packet: data
 assign dma_wr_dat_data = dat_data;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
@@ -964,7 +956,7 @@ always @(*) begin
     dma_wr_req_pd[256 + (256/8/32)-1:0] = 0;
 // cmd or dat
     if (cmd_en) begin
-        dma_wr_req_pd[64 +13:0] = dma_wr_cmd_pd;
+        dma_wr_req_pd[32 +13:0] = dma_wr_cmd_pd;
     end else begin
         dma_wr_req_pd[256 + (256/8/32)-1:0] = dma_wr_dat_pd;
     end
@@ -1205,10 +1197,6 @@ NV_NVDLA_DMAIF_wr NV_NVDLA_PDP_WDMA_wr(
    .nvdla_core_clk (nvdla_core_clk_orig )
   ,.nvdla_core_rstn (nvdla_core_rstn )
   ,.reg2dp_dst_ram_type (reg2dp_dst_ram_type )
-  ,.cvif_wr_req_pd (pdp2cvif_wr_req_pd )
-  ,.cvif_wr_req_valid (pdp2cvif_wr_req_valid )
-  ,.cvif_wr_req_ready (pdp2cvif_wr_req_ready )
-  ,.cvif_wr_rsp_complete (cvif2pdp_wr_rsp_complete)
   ,.mcif_wr_req_pd (pdp2mcif_wr_req_pd )
   ,.mcif_wr_req_valid (pdp2mcif_wr_req_valid )
   ,.mcif_wr_req_ready (pdp2mcif_wr_req_ready )

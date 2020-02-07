@@ -25,7 +25,7 @@
     //atomK*2
 //notice, for image case, first atom OP within one strip OP must fetch from entry align place, in the middle of an entry is not supported.
 //thus, when atomC/atomK=4, stripe=4*atomK, feature data still keeps atomK*2
-    `define CC_ATOMC_DIV_ATOMK_EQUAL_2
+    `define CC_ATOMC_DIV_ATOMK_EQUAL_1
 //batch keep 1
 module NV_NVDLA_CSC_sg (
    nvdla_core_clk //|< i
@@ -663,7 +663,7 @@ assign lower_limit_w = is_img ? 7'h40 :
                        7'h20;
 assign upper_limit_w = is_img ? 7'h40 :
                        7'h40;
-assign c_fetch_size = 8'h40  ;
+assign c_fetch_size = 8'h20  ;
 assign data_batch_w = 6'b0;
 //: my $kk="\"7'h20\"";
 //: my $jj="\"7'h40\"";
@@ -983,7 +983,7 @@ end
 assign {mon_channel_up_cnt_inc, channel_up_cnt_inc} = channel_up_cnt + c_fetch_size[6:0];
 assign is_last_channel = (channel_up_cnt_inc >= weight_channel);
 assign channel_up_cnt_w = layer_st ? 14'b0 : is_last_channel ? 14'b0 : channel_up_cnt_inc;
-assign cur_channel = (~is_last_channel) ? c_fetch_size[6:0] : (reg2dp_weight_channel_ext[6 -1:0] + 1'b1);
+assign cur_channel = (~is_last_channel) ? c_fetch_size[6:0] : (reg2dp_weight_channel_ext[5 -1:0] + 1'b1);
 //: &eperl::flop("-nodeclare   -rval \"{14{1'b0}}\"  -en \"layer_st | op_channel_en\" -d \"channel_up_cnt_w\" -q channel_up_cnt");
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin

@@ -11,10 +11,6 @@ module NV_NVDLA_DMAIF_wr (
    nvdla_core_clk
   ,nvdla_core_rstn
   ,reg2dp_dst_ram_type
-  ,cvif_wr_req_pd
-  ,cvif_wr_req_valid
-  ,cvif_wr_req_ready
-  ,cvif_wr_rsp_complete
   ,mcif_wr_req_pd
   ,mcif_wr_req_valid
   ,mcif_wr_req_ready
@@ -28,17 +24,6 @@ module NV_NVDLA_DMAIF_wr (
 input nvdla_core_clk;
 input nvdla_core_rstn;
 input reg2dp_dst_ram_type;
-//: my $dmaif = 256;
-//: my $mask = int($dmaif/32/8);
-//: my $dmabw = ( $dmaif + $mask );
-//: print qq( output [${dmabw}:0] cvif_wr_req_pd; \n);
-//| eperl: generated_beg (DO NOT EDIT BELOW)
- output [257:0] cvif_wr_req_pd; 
-
-//| eperl: generated_end (DO NOT EDIT ABOVE)
-output cvif_wr_req_valid;
-input cvif_wr_req_ready;
-input cvif_wr_rsp_complete;
 //: my $dmaif = 256;
 //: my $mask = int($dmaif/32/8);
 //: my $dmabw = ( $dmaif + $mask );
@@ -68,17 +53,12 @@ wire mc_dma_wr_req_vld;
 wire mc_dma_wr_req_rdy;
 wire mc_wr_req_rdyi;
 wire wr_req_rdyi;
-wire cv_dma_wr_req_vld;
-wire cv_dma_wr_req_rdy;
-wire cv_wr_req_rdyi;
 //==============
 // DMA Interface
 //==============
 assign dma_wr_req_type = reg2dp_dst_ram_type;
 // wr Channel: Request
-assign cv_dma_wr_req_vld = dmaif_wr_req_pvld & (dma_wr_req_type == 1'b0);
-assign cv_wr_req_rdyi = cv_dma_wr_req_rdy & (dma_wr_req_type == 1'b0);
-assign wr_req_rdyi = mc_wr_req_rdyi | cv_wr_req_rdyi;
+assign wr_req_rdyi = mc_wr_req_rdyi;
 assign mc_dma_wr_req_vld = dmaif_wr_req_pvld & (dma_wr_req_type == 1'b1);
 assign mc_wr_req_rdyi = mc_dma_wr_req_rdy & (dma_wr_req_type == 1'b1);
 assign dmaif_wr_req_prdy= wr_req_rdyi;
@@ -163,91 +143,6 @@ assign mcif_wr_req_pd = pipe_skid_dmaif_wr_req_pd;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign mc_dma_wr_req_rdy = mc_dma_wr_req_rdy_f;
-//: my $dmaif = 256;
-//: my $mask = int($dmaif/32/8);
-//: my $dmabw = ( $dmaif + $mask + 1 );
-//: print " wire    [${dmabw}-1:0]  cv_dma_wr_req_pd ;  \n";
-//: print " assign cv_dma_wr_req_pd = dmaif_wr_req_pd;  \n";
-//: &eperl::pipe(" -wid $dmabw -is -do cvif_wr_req_pd -vo cvif_wr_req_valid -ri cvif_wr_req_ready -di cv_dma_wr_req_pd -vi cv_dma_wr_req_vld -ro cv_dma_wr_req_rdy_f  ");
-//| eperl: generated_beg (DO NOT EDIT BELOW)
- wire    [258-1:0]  cv_dma_wr_req_pd ;  
- assign cv_dma_wr_req_pd = dmaif_wr_req_pd;  
-// Reg
-reg cv_dma_wr_req_rdy_f;
-reg skid_flop_cv_dma_wr_req_rdy_f;
-reg skid_flop_cv_dma_wr_req_vld;
-reg [258-1:0] skid_flop_cv_dma_wr_req_pd;
-reg pipe_skid_cv_dma_wr_req_vld;
-reg [258-1:0] pipe_skid_cv_dma_wr_req_pd;
-// Wire
-wire skid_cv_dma_wr_req_vld;
-wire [258-1:0] skid_cv_dma_wr_req_pd;
-wire skid_cv_dma_wr_req_rdy_f;
-wire pipe_skid_cv_dma_wr_req_rdy_f;
-wire cvif_wr_req_valid;
-wire [258-1:0] cvif_wr_req_pd;
-// Code
-// SKID READY
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cv_dma_wr_req_rdy_f <= 1'b1;
-       skid_flop_cv_dma_wr_req_rdy_f <= 1'b1;
-   end else begin
-       cv_dma_wr_req_rdy_f <= skid_cv_dma_wr_req_rdy_f;
-       skid_flop_cv_dma_wr_req_rdy_f <= skid_cv_dma_wr_req_rdy_f;
-   end
-end
-
-// SKID VALID
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        skid_flop_cv_dma_wr_req_vld <= 1'b0;
-    end else begin
-        if (skid_flop_cv_dma_wr_req_rdy_f) begin
-            skid_flop_cv_dma_wr_req_vld <= cv_dma_wr_req_vld;
-        end
-   end
-end
-assign skid_cv_dma_wr_req_vld = (skid_flop_cv_dma_wr_req_rdy_f) ? cv_dma_wr_req_vld : skid_flop_cv_dma_wr_req_vld;
-
-// SKID DATA
-always @(posedge nvdla_core_clk) begin
-    if (skid_flop_cv_dma_wr_req_rdy_f & cv_dma_wr_req_vld) begin
-        skid_flop_cv_dma_wr_req_pd[258-1:0] <= cv_dma_wr_req_pd[258-1:0];
-    end
-end
-assign skid_cv_dma_wr_req_pd[258-1:0] = (skid_flop_cv_dma_wr_req_rdy_f) ? cv_dma_wr_req_pd[258-1:0] : skid_flop_cv_dma_wr_req_pd[258-1:0];
-
-
-// PIPE READY
-assign skid_cv_dma_wr_req_rdy_f = pipe_skid_cv_dma_wr_req_rdy_f || !pipe_skid_cv_dma_wr_req_vld;
-
-// PIPE VALID
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-    if (!nvdla_core_rstn) begin
-        pipe_skid_cv_dma_wr_req_vld <= 1'b0;
-    end else begin
-        if (skid_cv_dma_wr_req_rdy_f) begin
-            pipe_skid_cv_dma_wr_req_vld <= skid_cv_dma_wr_req_vld;
-        end
-    end
-end
-
-// PIPE DATA
-always @(posedge nvdla_core_clk) begin
-    if (skid_cv_dma_wr_req_rdy_f && skid_cv_dma_wr_req_vld) begin
-        pipe_skid_cv_dma_wr_req_pd[258-1:0] <= skid_cv_dma_wr_req_pd[258-1:0];
-    end
-end
-
-
-// PIPE OUTPUT
-assign pipe_skid_cv_dma_wr_req_rdy_f = cvif_wr_req_ready;
-assign cvif_wr_req_valid = pipe_skid_cv_dma_wr_req_vld;
-assign cvif_wr_req_pd = pipe_skid_cv_dma_wr_req_pd;
-
-//| eperl: generated_end (DO NOT EDIT ABOVE)
-assign cv_dma_wr_req_rdy = cv_dma_wr_req_rdy_f;
 // wr Channel: Response
 wire ack_top_rdy;
 wire releasing;
@@ -262,8 +157,6 @@ wire ack_raw_vld;
 wire require_ack;
 wire mc_int_wr_rsp_complete;
 assign mc_int_wr_rsp_complete = mcif_wr_rsp_complete;
-wire cv_int_wr_rsp_complete;
-assign cv_int_wr_rsp_complete = cvif_wr_rsp_complete;
 //: my $dmaif = 256;
 //: my $mask = int($dmaif/32/8);
 //: my $dmabw = ( $dmaif + $mask + 1 );
@@ -318,14 +211,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     mc_dma_wr_rsp_complete <= mc_int_wr_rsp_complete;
   end
 end
-reg cv_dma_wr_rsp_complete;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-  if (!nvdla_core_rstn) begin
-    cv_dma_wr_rsp_complete <= 1'b0;
-  end else begin
-    cv_dma_wr_rsp_complete <= cv_int_wr_rsp_complete;
-  end
-end
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   if (!nvdla_core_rstn) begin
     dmaif_wr_rsp_complete <= 1'b0;
@@ -351,28 +236,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
   end
 end
 assign mc_releasing = ack_top_id==1'b1 & (mc_dma_wr_rsp_complete | mc_pending);
-reg cv_pending;
-wire cv_releasing;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-  if (!nvdla_core_rstn) begin
-    cv_pending <= 1'b0;
-  end else begin
-        if (ack_top_id==1) begin
-            if (cv_dma_wr_rsp_complete) begin
-                cv_pending <= 1'b1;
-            end
-        end else if (ack_top_id==0) begin
-            if (cv_pending) begin
-                cv_pending <= 1'b0;
-            end
-        end
-  end
-end
-assign cv_releasing = ack_top_id==1'b0 & (cv_dma_wr_rsp_complete | cv_pending);
-assign releasing = mc_releasing | cv_releasing;
-// //: &eperl::assert("  -type never -desc 'no release both together'             -expr 'mc_releasing & cv_releasing'   );
-// //: &eperl::assert("  -type never -desc 'no cv resp back and pending together' -expr 'cv_pending & cv_dma_wr_rsp_complete'  );
-// //: &eperl::assert("  -type never -desc 'no ack_top_vld when resp from cv'     -expr '(cv_pending | cv_dma_wr_rsp_complete) & !ack_top_vld'  );
+assign releasing = mc_releasing;
 ////: &eperl::assert("  -type never -desc 'no mc resp back and pending together' -expr 'mc_pending & mc_dma_wr_rsp_complete'  );
 ////: &eperl::assert("  -type never -desc 'no ack_top_vld when resp from mc'     -expr '(mc_pending | mc_dma_wr_rsp_complete) & !ack_top_vld'  );
 //////////////////////////

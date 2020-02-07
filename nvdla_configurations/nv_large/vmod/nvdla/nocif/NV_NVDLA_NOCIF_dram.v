@@ -174,7 +174,7 @@ module NV_NVDLA_NOCIF_dram (
 //: print ("input [3:0] client${i}2mcif_rd_axid;\n");
 //: print("input client${i}2mcif_rd_req_valid;\n");
 //: print qq(
-//: input [64 +14:0] client${i}2mcif_rd_req_pd;
+//: input [32 +14:0] client${i}2mcif_rd_req_pd;
 //: );
 //: print("output client${i}2mcif_rd_req_ready;\n");
 //: print("output mcif2client${i}_rd_rsp_valid;\n");
@@ -200,7 +200,7 @@ input client02mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client02mcif_rd_axid;
 input client02mcif_rd_req_valid;
 
-input [64 +14:0] client02mcif_rd_req_pd;
+input [32 +14:0] client02mcif_rd_req_pd;
 output client02mcif_rd_req_ready;
 output mcif2client0_rd_rsp_valid;
 input mcif2client0_rd_rsp_ready;
@@ -211,7 +211,7 @@ input client12mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client12mcif_rd_axid;
 input client12mcif_rd_req_valid;
 
-input [64 +14:0] client12mcif_rd_req_pd;
+input [32 +14:0] client12mcif_rd_req_pd;
 output client12mcif_rd_req_ready;
 output mcif2client1_rd_rsp_valid;
 input mcif2client1_rd_rsp_ready;
@@ -222,7 +222,7 @@ input client22mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client22mcif_rd_axid;
 input client22mcif_rd_req_valid;
 
-input [64 +14:0] client22mcif_rd_req_pd;
+input [32 +14:0] client22mcif_rd_req_pd;
 output client22mcif_rd_req_ready;
 output mcif2client2_rd_rsp_valid;
 input mcif2client2_rd_rsp_ready;
@@ -233,7 +233,7 @@ input client32mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client32mcif_rd_axid;
 input client32mcif_rd_req_valid;
 
-input [64 +14:0] client32mcif_rd_req_pd;
+input [32 +14:0] client32mcif_rd_req_pd;
 output client32mcif_rd_req_ready;
 output mcif2client3_rd_rsp_valid;
 input mcif2client3_rd_rsp_ready;
@@ -244,7 +244,7 @@ input client42mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client42mcif_rd_axid;
 input client42mcif_rd_req_valid;
 
-input [64 +14:0] client42mcif_rd_req_pd;
+input [32 +14:0] client42mcif_rd_req_pd;
 output client42mcif_rd_req_ready;
 output mcif2client4_rd_rsp_valid;
 input mcif2client4_rd_rsp_ready;
@@ -255,7 +255,7 @@ input client52mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client52mcif_rd_axid;
 input client52mcif_rd_req_valid;
 
-input [64 +14:0] client52mcif_rd_req_pd;
+input [32 +14:0] client52mcif_rd_req_pd;
 output client52mcif_rd_req_ready;
 output mcif2client5_rd_rsp_valid;
 input mcif2client5_rd_rsp_ready;
@@ -266,7 +266,7 @@ input client62mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client62mcif_rd_axid;
 input client62mcif_rd_req_valid;
 
-input [64 +14:0] client62mcif_rd_req_pd;
+input [32 +14:0] client62mcif_rd_req_pd;
 output client62mcif_rd_req_ready;
 output mcif2client6_rd_rsp_valid;
 input mcif2client6_rd_rsp_ready;
@@ -277,7 +277,7 @@ input client72mcif_rd_cdt_lat_fifo_pop;
 input [3:0] client72mcif_rd_axid;
 input client72mcif_rd_req_valid;
 
-input [64 +14:0] client72mcif_rd_req_pd;
+input [32 +14:0] client72mcif_rd_req_pd;
 output client72mcif_rd_req_ready;
 output mcif2client7_rd_rsp_valid;
 input mcif2client7_rd_rsp_ready;
@@ -316,12 +316,12 @@ output mcif2noc_axi_ar_arvalid; /* data valid */
 input mcif2noc_axi_ar_arready; /* data return handshake */
 output [7:0] mcif2noc_axi_ar_arid;
 output [3:0] mcif2noc_axi_ar_arlen;
-output [64 -1:0] mcif2noc_axi_ar_araddr;
+output [32 -1:0] mcif2noc_axi_ar_araddr;
 output mcif2noc_axi_aw_awvalid; /* data valid */
 input mcif2noc_axi_aw_awready; /* data return handshake */
 output [7:0] mcif2noc_axi_aw_awid;
 output [3:0] mcif2noc_axi_aw_awlen;
-output [64 -1:0] mcif2noc_axi_aw_awaddr;
+output [32 -1:0] mcif2noc_axi_aw_awaddr;
 output mcif2noc_axi_w_wvalid; /* data valid */
 input mcif2noc_axi_w_wready; /* data return handshake */
 output [256 -1:0] mcif2noc_axi_w_wdata;
@@ -337,7 +337,7 @@ input noc2mcif_axi_r_rlast;
 input [256 -1:0] noc2mcif_axi_r_rdata;
 //:my $i;
 //:my $nindex=0;
-//: my @dma_index = (0, 1, 1,1, 1,0, 1, 1, 1, 1,0,0,0,0,0,0);
+//: my @dma_index = (0, 1, 1,0, 0,0, 1, 1, 0, 0,0,0,0,0,0,0);
 //: my @dma_name = ("bdma","cdma_dat","cdma_wt","cdp","pdp","rbk","sdp","sdp_b","sdp_e","sdp_n","na","na","na","na","na","na");
 //: for ($i=0;$i<16;$i++) {
 //: if ($dma_index[$i]) {
@@ -355,7 +355,7 @@ input [256 -1:0] noc2mcif_axi_r_rdata;
 //:}
 //:my $i;
 //:my $nindex=0;
-//: my @dma_index = (0, 1,1, 1, 0, 0,0,0,0,0,0);
+//: my @dma_index = (0, 1,0, 0, 0, 0,0,0,0,0,0);
 //: my @dma_name=("bdma","sdp","cdp","pdp","rbk","na","na","na","na","na","na","na","na","na","na","na");
 //: for ($i=0;$i<16;$i++) {
 //: if ($dma_index[$i]) {
@@ -378,34 +378,16 @@ wire [7:0] client02mcif_rd_wt = reg2dp_rd_weight_cdma_dat;
 
 wire [7:0] reg2dp_rd_weight_cdma_wt;
 wire [7:0] client12mcif_rd_wt = reg2dp_rd_weight_cdma_wt;
-
-wire [7:0] reg2dp_rd_weight_cdp;
-wire [7:0] client22mcif_rd_wt = reg2dp_rd_weight_cdp;
-
-wire [7:0] reg2dp_rd_weight_pdp;
-wire [7:0] client32mcif_rd_wt = reg2dp_rd_weight_pdp;
-wire [7:0] reg2dp_rd_weight_rbk;
+wire [7:0] reg2dp_rd_weight_cdp;wire [7:0] reg2dp_rd_weight_pdp;wire [7:0] reg2dp_rd_weight_rbk;
 wire [7:0] reg2dp_rd_weight_sdp;
-wire [7:0] client42mcif_rd_wt = reg2dp_rd_weight_sdp;
+wire [7:0] client22mcif_rd_wt = reg2dp_rd_weight_sdp;
 
 wire [7:0] reg2dp_rd_weight_sdp_b;
-wire [7:0] client52mcif_rd_wt = reg2dp_rd_weight_sdp_b;
-
-wire [7:0] reg2dp_rd_weight_sdp_e;
-wire [7:0] client62mcif_rd_wt = reg2dp_rd_weight_sdp_e;
-
-wire [7:0] reg2dp_rd_weight_sdp_n;
-wire [7:0] client72mcif_rd_wt = reg2dp_rd_weight_sdp_n;
-wire [7:0] reg2dp_wr_weight_bdma;
+wire [7:0] client32mcif_rd_wt = reg2dp_rd_weight_sdp_b;
+wire [7:0] reg2dp_rd_weight_sdp_e;wire [7:0] reg2dp_rd_weight_sdp_n;wire [7:0] reg2dp_wr_weight_bdma;
 wire [7:0] reg2dp_wr_weight_sdp;
 wire [7:0] client02mcif_wr_wt = reg2dp_wr_weight_sdp;
-
-wire [7:0] reg2dp_wr_weight_cdp;
-wire [7:0] client12mcif_wr_wt = reg2dp_wr_weight_cdp;
-
-wire [7:0] reg2dp_wr_weight_pdp;
-wire [7:0] client22mcif_wr_wt = reg2dp_wr_weight_pdp;
-wire [7:0] reg2dp_wr_weight_rbk;
+wire [7:0] reg2dp_wr_weight_cdp;wire [7:0] reg2dp_wr_weight_pdp;wire [7:0] reg2dp_wr_weight_rbk;
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire [7:0] reg2dp_rd_os_cnt;
 wire [7:0] reg2dp_wr_os_cnt;

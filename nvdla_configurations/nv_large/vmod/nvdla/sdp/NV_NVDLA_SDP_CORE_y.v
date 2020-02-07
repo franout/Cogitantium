@@ -85,16 +85,16 @@ module NV_NVDLA_SDP_CORE_y (
   );
 input nvdla_core_clk;
 input nvdla_core_rstn;
-input [16*4 -1:0] ew_alu_in_data;
+input [16*0 -1:0] ew_alu_in_data;
 input ew_alu_in_vld;
 output ew_alu_in_rdy;
-input [32*4 -1:0] ew_data_in_pd;
+input [32*0 -1:0] ew_data_in_pd;
 input ew_data_in_pvld;
 output ew_data_in_prdy;
-input [16*4 -1:0] ew_mul_in_data;
+input [16*0 -1:0] ew_mul_in_data;
 input ew_mul_in_vld;
 output ew_mul_in_rdy;
-output [32*4 -1:0] ew_data_out_pd;
+output [32*0 -1:0] ew_data_out_pd;
 output ew_data_out_pvld;
 input ew_data_out_prdy;
 input [1:0] reg2dp_ew_alu_algo;
@@ -190,25 +190,25 @@ reg cfg_lut_oflow_priority;
 reg cfg_lut_uflow_priority;
 reg cfg_nan_to_zero;
 reg [1:0] cfg_proc_precision;
-wire [32*4 -1:0] alu_cvt_out_pd;
+wire [32*0 -1:0] alu_cvt_out_pd;
 wire alu_cvt_out_prdy;
 wire alu_cvt_out_pvld;
-wire [32*4 -1:0] mul_cvt_out_pd;
+wire [32*0 -1:0] mul_cvt_out_pd;
 wire mul_cvt_out_prdy;
 wire mul_cvt_out_pvld;
-wire [32*4 -1:0] core_out_pd;
+wire [32*0 -1:0] core_out_pd;
 wire core_out_prdy;
 wire core_out_pvld;
-wire [81*4 -1:0] idx2lut_pd;
+wire [81*0 -1:0] idx2lut_pd;
 wire idx2lut_prdy;
 wire idx2lut_pvld;
-wire [32*4 -1:0] idx_in_pd;
+wire [32*0 -1:0] idx_in_pd;
 wire idx_in_prdy;
 wire idx_in_pvld;
-wire [32*4 -1:0] inp_out_pd;
+wire [32*0 -1:0] inp_out_pd;
 wire inp_out_prdy;
 wire inp_out_pvld;
-wire [185*4 -1:0] lut2inp_pd;
+wire [185*0 -1:0] lut2inp_pd;
 wire lut2inp_prdy;
 wire lut2inp_pvld;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
@@ -305,11 +305,11 @@ NV_NVDLA_SDP_HLS_Y_cvt_top u_alu_cvt (
   ,.cfg_cvt_offset (cfg_ew_alu_cvt_offset[31:0]) //|< r
   ,.cfg_cvt_scale (cfg_ew_alu_cvt_scale[15:0]) //|< r
   ,.cfg_cvt_truncate (cfg_ew_alu_cvt_truncate[5:0]) //|< r
-  ,.cvt_data_in (ew_alu_in_data[16*4 -1:0]) //|< w
+  ,.cvt_data_in (ew_alu_in_data[16*0 -1:0]) //|< w
   ,.cvt_in_pvld (ew_alu_in_vld) //|< w
   ,.cvt_in_prdy (ew_alu_in_rdy) //|> w
   ,.cvt_out_prdy (alu_cvt_out_prdy) //|< w
-  ,.cvt_data_out (alu_cvt_out_pd[32*4 -1:0]) //|> w
+  ,.cvt_data_out (alu_cvt_out_pd[32*0 -1:0]) //|> w
   ,.cvt_out_pvld (alu_cvt_out_pvld) //|> w
   ,.nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
@@ -319,11 +319,11 @@ NV_NVDLA_SDP_HLS_Y_cvt_top u_mul_cvt (
   ,.cfg_cvt_offset (cfg_ew_mul_cvt_offset[31:0]) //|< r
   ,.cfg_cvt_scale (cfg_ew_mul_cvt_scale[15:0]) //|< r
   ,.cfg_cvt_truncate (cfg_ew_mul_cvt_truncate[5:0]) //|< r
-  ,.cvt_data_in (ew_mul_in_data[16*4 -1:0]) //|< w
+  ,.cvt_data_in (ew_mul_in_data[16*0 -1:0]) //|< w
   ,.cvt_in_pvld (ew_mul_in_vld) //|< w
   ,.cvt_in_prdy (ew_mul_in_rdy) //|> w
   ,.cvt_out_prdy (mul_cvt_out_prdy) //|< w
-  ,.cvt_data_out (mul_cvt_out_pd[32*4 -1:0]) //|> w
+  ,.cvt_data_out (mul_cvt_out_pd[32*0 -1:0]) //|> w
   ,.cvt_out_pvld (mul_cvt_out_pvld) //|> w
   ,.nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
@@ -338,16 +338,16 @@ NV_NVDLA_SDP_HLS_Y_int_core u_core (
   ,.cfg_mul_prelu (cfg_ew_mul_prelu) //|< r
   ,.cfg_mul_src (cfg_ew_mul_src) //|< r
   ,.cfg_mul_truncate (cfg_ew_truncate[9:0]) //|< r
-  ,.chn_alu_op (alu_cvt_out_pd[32*4 -1:0]) //|< w
+  ,.chn_alu_op (alu_cvt_out_pd[32*0 -1:0]) //|< w
   ,.chn_alu_op_pvld (alu_cvt_out_pvld) //|< w
-  ,.chn_data_in (ew_data_in_pd[32*4 -1:0]) //|< w
+  ,.chn_data_in (ew_data_in_pd[32*0 -1:0]) //|< w
   ,.chn_in_pvld (ew_data_in_pvld) //|< w
   ,.chn_in_prdy (ew_data_in_prdy) //|> w
-  ,.chn_mul_op (mul_cvt_out_pd[32*4 -1:0]) //|< w
+  ,.chn_mul_op (mul_cvt_out_pd[32*0 -1:0]) //|< w
   ,.chn_mul_op_pvld (mul_cvt_out_pvld) //|< w
   ,.chn_alu_op_prdy (alu_cvt_out_prdy) //|> w
   ,.chn_mul_op_prdy (mul_cvt_out_prdy) //|> w
-  ,.chn_data_out (core_out_pd[32*4 -1:0]) //|> w
+  ,.chn_data_out (core_out_pd[32*0 -1:0]) //|> w
   ,.chn_out_pvld (core_out_pvld) //|> w
   ,.chn_out_prdy (core_out_prdy) //|< w
   ,.nvdla_core_clk (nvdla_core_clk) //|< i
@@ -355,7 +355,7 @@ NV_NVDLA_SDP_HLS_Y_int_core u_core (
   );
 assign core_out_prdy = cfg_ew_lut_bypass ? ew_data_out_prdy : idx_in_prdy;
 assign idx_in_pvld = cfg_ew_lut_bypass ? 1'b0 : core_out_pvld;
-assign idx_in_pd = {32*4{idx_in_pvld}} & core_out_pd;
+assign idx_in_pd = {32*0{idx_in_pvld}} & core_out_pd;
 NV_NVDLA_SDP_HLS_Y_idx_top u_idx (
    .cfg_lut_hybrid_priority (cfg_lut_hybrid_priority) //|< r
   ,.cfg_lut_le_function (cfg_lut_le_function) //|< r
@@ -366,11 +366,11 @@ NV_NVDLA_SDP_HLS_Y_idx_top u_idx (
   ,.cfg_lut_lo_start (cfg_lut_lo_start[31:0]) //|< r
   ,.cfg_lut_oflow_priority (cfg_lut_oflow_priority) //|< r
   ,.cfg_lut_uflow_priority (cfg_lut_uflow_priority) //|< r
-  ,.chn_lut_in_pd (idx_in_pd[32*4 -1:0]) //|< w
+  ,.chn_lut_in_pd (idx_in_pd[32*0 -1:0]) //|< w
   ,.chn_lut_in_pvld (idx_in_pvld) //|< w
   ,.chn_lut_out_prdy (idx2lut_prdy) //|< w
   ,.chn_lut_in_prdy (idx_in_prdy) //|> w
-  ,.chn_lut_out_pd (idx2lut_pd[81*4 -1:0]) //|> w
+  ,.chn_lut_out_pd (idx2lut_pd[81*0 -1:0]) //|> w
   ,.chn_lut_out_pvld (idx2lut_pvld) //|> w
   ,.nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
@@ -380,10 +380,10 @@ NV_NVDLA_SDP_CORE_Y_lut u_lut (
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
   ,.lut2inp_pvld (lut2inp_pvld) //|> w
   ,.lut2inp_prdy (lut2inp_prdy) //|< w
-  ,.lut2inp_pd (lut2inp_pd[185*4 -1:0]) //|> w
+  ,.lut2inp_pd (lut2inp_pd[185*0 -1:0]) //|> w
   ,.idx2lut_pvld (idx2lut_pvld) //|< w
   ,.idx2lut_prdy (idx2lut_prdy) //|> w
-  ,.idx2lut_pd (idx2lut_pd[81*4 -1:0]) //|< w
+  ,.idx2lut_pd (idx2lut_pd[81*0 -1:0]) //|< w
   ,.reg2dp_lut_int_access_type (reg2dp_lut_int_access_type) //|< i
   ,.reg2dp_lut_int_addr (reg2dp_lut_int_addr[9:0]) //|< i
   ,.reg2dp_lut_int_data (reg2dp_lut_int_data[15:0]) //|< i
@@ -415,11 +415,11 @@ NV_NVDLA_SDP_CORE_Y_lut u_lut (
   ,.op_en_load (op_en_load) //|< i
   );
 NV_NVDLA_SDP_HLS_Y_inp_top u_inp (
-   .chn_inp_in_pd (lut2inp_pd[185*4 -1:0]) //|< w
+   .chn_inp_in_pd (lut2inp_pd[185*0 -1:0]) //|< w
   ,.chn_inp_in_pvld (lut2inp_pvld) //|< w
   ,.chn_inp_out_prdy (inp_out_prdy) //|< w
   ,.chn_inp_in_prdy (lut2inp_prdy) //|> w
-  ,.chn_inp_out_pd (inp_out_pd[32*4 -1:0]) //|> w
+  ,.chn_inp_out_pd (inp_out_pd[32*0 -1:0]) //|> w
   ,.chn_inp_out_pvld (inp_out_pvld) //|> w
   ,.nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i

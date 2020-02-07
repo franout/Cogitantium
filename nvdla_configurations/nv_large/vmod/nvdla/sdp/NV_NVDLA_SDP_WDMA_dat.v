@@ -55,7 +55,7 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input cmd2dat_dma_pvld;
 output cmd2dat_dma_prdy;
-input [64 -5 +13 +1:0] cmd2dat_dma_pd;
+input [32 -5 +13 +1:0] cmd2dat_dma_pd;
 input cmd2dat_spt_pvld;
 output cmd2dat_spt_prdy;
 input [14:0] cmd2dat_spt_pd;
@@ -131,7 +131,7 @@ NV_NVDLA_SDP_WDMA_DAT_out u_out (
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
   ,.cmd2dat_dma_pvld (cmd2dat_dma_pvld) //|< i
   ,.cmd2dat_dma_prdy (cmd2dat_dma_prdy) //|> o
-  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[64 -5 +13 +1:0]) //|< i
+  ,.cmd2dat_dma_pd (cmd2dat_dma_pd[32 -5 +13 +1:0]) //|< i
   ,.dfifo0_rd_pvld (dfifo0_rd_pvld) //|< w
   ,.dfifo0_rd_prdy (dfifo0_rd_prdy) //|> w
   ,.dfifo0_rd_pd (dfifo0_rd_pd[32*8 -1:0]) //|< w

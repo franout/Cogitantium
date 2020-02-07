@@ -23,14 +23,14 @@
 //:printf "`define  tieoff_depth_pdp    9'd%d\n", 256;
 //:printf "`define  tieoff_depth_cdp    9'd%d\n", 256;
 //:printf "`define  tieoff_depth_sdp_b  9'd%d\n", 256;
-//:printf "`define  tieoff_depth_sdp_n  9'd%d\n", 256;
-//:printf "`define  tieoff_depth_sdp_e  9'd%d\n", 256;
+//:printf "`define  tieoff_depth_sdp_n  9'd%d\n", 4;
+//:printf "`define  tieoff_depth_sdp_e  9'd%d\n", 4;
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 `define  tieoff_depth_sdp    9'd256
 `define  tieoff_depth_pdp    9'd256
 `define  tieoff_depth_cdp    9'd256
 `define  tieoff_depth_sdp_b  9'd256
-`define  tieoff_depth_sdp_n  9'd256
-`define  tieoff_depth_sdp_e  9'd256
+`define  tieoff_depth_sdp_n  9'd4
+`define  tieoff_depth_sdp_e  9'd4
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)

@@ -30,10 +30,6 @@ module NV_NVDLA_CDP_RDMA_eg (
   ,cdp_rdma2dp_ready //|< i
   ,cq_rd_pd //|< i
   ,cq_rd_pvld //|< i
-  ,cvif2cdp_rd_rsp_pd //|< i
-  ,cvif2cdp_rd_rsp_valid //|< i
-  ,cvif2cdp_rd_rsp_ready //|> o
-  ,cdp2cvif_rd_cdt_lat_fifo_pop //|> o
   ,mcif2cdp_rd_rsp_pd //|< i
   ,mcif2cdp_rd_rsp_valid //|< i
   ,pwrbus_ram_pd //|< i
@@ -67,17 +63,6 @@ input [256+1-1:0] mcif2cdp_rd_rsp_pd;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output cdp2mcif_rd_cdt_lat_fifo_pop;
-input cvif2cdp_rd_rsp_valid; /* data valid */
-output cvif2cdp_rd_rsp_ready; /* data return handshake */
-//: my $k=256;
-//: my $jx = 32*8; ##atomic_m BW
-//: my $M = $k/$jx; ##atomic_m number per dma transaction
-//: print "input [${k}+${M}-1:0] cvif2cdp_rd_rsp_pd;  \n";
-//| eperl: generated_beg (DO NOT EDIT BELOW)
-input [256+1-1:0] cvif2cdp_rd_rsp_pd;  
-
-//| eperl: generated_end (DO NOT EDIT ABOVE)
-output cdp2cvif_rd_cdt_lat_fifo_pop;
 output cdp_rdma2dp_valid; /* data valid */
 input cdp_rdma2dp_ready; /* data return handshake */
 output [8*8 +24:0] cdp_rdma2dp_pd;
@@ -98,7 +83,6 @@ input [31:0] pwrbus_ram_pd;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 reg [3:0] beat_cnt;
-reg cdp2cvif_rd_cdt_lat_fifo_pop;
 reg cdp2mcif_rd_cdt_lat_fifo_pop;
 wire [8*8 +24:0] cdp_rdma2dp_pd;
 //reg cdp_rdma2dp_valid_f;
@@ -117,7 +101,7 @@ wire [4:0] ele_in_channel;
 //wire cv_dma_rd_rsp_vld;
 //wire cv_int_rd_rsp_ready;
 //wire cv_int_rd_rsp_valid;
-// #ifdef
+// #ifdef NVDLA_SECONDARY_MEMIF_ENABLE
 //wire cvif2cdp_rd_rsp_ready_d0;
 //wire cvif2cdp_rd_rsp_valid_d0;
 //#endif
@@ -249,9 +233,6 @@ wire tran_vld;
 NV_NVDLA_DMAIF_rdrsp NV_NVDLA_CDP_RDMA_rdrsp(
    .nvdla_core_clk (nvdla_core_clk )
   ,.nvdla_core_rstn (nvdla_core_rstn )
-  ,.cvif_rd_rsp_pd (cvif2cdp_rd_rsp_pd )
-  ,.cvif_rd_rsp_valid (cvif2cdp_rd_rsp_valid )
-  ,.cvif_rd_rsp_ready (cvif2cdp_rd_rsp_ready )
   ,.mcif_rd_rsp_pd (mcif2cdp_rd_rsp_pd )
   ,.mcif_rd_rsp_valid (mcif2cdp_rd_rsp_valid )
   ,.mcif_rd_rsp_ready (mcif2cdp_rd_rsp_ready )
@@ -265,13 +246,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     cdp2mcif_rd_cdt_lat_fifo_pop <= 1'b0;
   end else begin
   cdp2mcif_rd_cdt_lat_fifo_pop <= dma_rd_cdt_lat_fifo_pop & (dma_rd_rsp_type == 1'b1);
-  end
-end
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-  if (!nvdla_core_rstn) begin
-    cdp2cvif_rd_cdt_lat_fifo_pop <= 1'b0;
-  end else begin
-  cdp2cvif_rd_cdt_lat_fifo_pop <= dma_rd_cdt_lat_fifo_pop & (dma_rd_rsp_type == 1'b0);
   end
 end
 assign dma_rd_rsp_type = reg2dp_src_ram_type;

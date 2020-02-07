@@ -146,7 +146,7 @@ input nvdla_core_rstn;
 //: print("input client${i}2mcif_rd_req_valid;\n");
 //: print("output client${i}2mcif_rd_req_ready;\n");
 //: print qq(
-//: input [64 +14:0] client${i}2mcif_rd_req_pd;
+//: input [32 +14:0] client${i}2mcif_rd_req_pd;
 //: );
 //: print("output mcif2client${i}_rd_rsp_valid;\n");
 //: print("output [$w:0] mcif2client${i}_rd_rsp_pd;\n");
@@ -168,7 +168,7 @@ input client02mcif_rd_cdt_lat_fifo_pop;
 input client02mcif_rd_req_valid;
 output client02mcif_rd_req_ready;
 
-input [64 +14:0] client02mcif_rd_req_pd;
+input [32 +14:0] client02mcif_rd_req_pd;
 output mcif2client0_rd_rsp_valid;
 output [256:0] mcif2client0_rd_rsp_pd;
 input mcif2client0_rd_rsp_ready;
@@ -179,7 +179,7 @@ input client12mcif_rd_cdt_lat_fifo_pop;
 input client12mcif_rd_req_valid;
 output client12mcif_rd_req_ready;
 
-input [64 +14:0] client12mcif_rd_req_pd;
+input [32 +14:0] client12mcif_rd_req_pd;
 output mcif2client1_rd_rsp_valid;
 output [256:0] mcif2client1_rd_rsp_pd;
 input mcif2client1_rd_rsp_ready;
@@ -190,7 +190,7 @@ input client22mcif_rd_cdt_lat_fifo_pop;
 input client22mcif_rd_req_valid;
 output client22mcif_rd_req_ready;
 
-input [64 +14:0] client22mcif_rd_req_pd;
+input [32 +14:0] client22mcif_rd_req_pd;
 output mcif2client2_rd_rsp_valid;
 output [256:0] mcif2client2_rd_rsp_pd;
 input mcif2client2_rd_rsp_ready;
@@ -201,7 +201,7 @@ input client32mcif_rd_cdt_lat_fifo_pop;
 input client32mcif_rd_req_valid;
 output client32mcif_rd_req_ready;
 
-input [64 +14:0] client32mcif_rd_req_pd;
+input [32 +14:0] client32mcif_rd_req_pd;
 output mcif2client3_rd_rsp_valid;
 output [256:0] mcif2client3_rd_rsp_pd;
 input mcif2client3_rd_rsp_ready;
@@ -212,7 +212,7 @@ input client42mcif_rd_cdt_lat_fifo_pop;
 input client42mcif_rd_req_valid;
 output client42mcif_rd_req_ready;
 
-input [64 +14:0] client42mcif_rd_req_pd;
+input [32 +14:0] client42mcif_rd_req_pd;
 output mcif2client4_rd_rsp_valid;
 output [256:0] mcif2client4_rd_rsp_pd;
 input mcif2client4_rd_rsp_ready;
@@ -223,7 +223,7 @@ input client52mcif_rd_cdt_lat_fifo_pop;
 input client52mcif_rd_req_valid;
 output client52mcif_rd_req_ready;
 
-input [64 +14:0] client52mcif_rd_req_pd;
+input [32 +14:0] client52mcif_rd_req_pd;
 output mcif2client5_rd_rsp_valid;
 output [256:0] mcif2client5_rd_rsp_pd;
 input mcif2client5_rd_rsp_ready;
@@ -234,7 +234,7 @@ input client62mcif_rd_cdt_lat_fifo_pop;
 input client62mcif_rd_req_valid;
 output client62mcif_rd_req_ready;
 
-input [64 +14:0] client62mcif_rd_req_pd;
+input [32 +14:0] client62mcif_rd_req_pd;
 output mcif2client6_rd_rsp_valid;
 output [256:0] mcif2client6_rd_rsp_pd;
 input mcif2client6_rd_rsp_ready;
@@ -245,7 +245,7 @@ input client72mcif_rd_cdt_lat_fifo_pop;
 input client72mcif_rd_req_valid;
 output client72mcif_rd_req_ready;
 
-input [64 +14:0] client72mcif_rd_req_pd;
+input [32 +14:0] client72mcif_rd_req_pd;
 output mcif2client7_rd_rsp_valid;
 output [256:0] mcif2client7_rd_rsp_pd;
 input mcif2client7_rd_rsp_ready;
@@ -328,7 +328,7 @@ output mcif2noc_axi_ar_arvalid; /* data valid */
 input mcif2noc_axi_ar_arready; /* data return handshake */
 output [7:0] mcif2noc_axi_ar_arid;
 output [3:0] mcif2noc_axi_ar_arlen;
-output [64 -1:0] mcif2noc_axi_ar_araddr;
+output [32 -1:0] mcif2noc_axi_ar_araddr;
 input [31:0] pwrbus_ram_pd;
 wire [3:0] cq_wr_thread_id;
 wire [6:0] cq_wr_pd;
@@ -418,7 +418,7 @@ NV_NVDLA_NOCIF_DRAM_READ_ig u_ig (
   ,.mcif2noc_axi_ar_arready (mcif2noc_axi_ar_arready) //|< i
   ,.mcif2noc_axi_ar_arid (mcif2noc_axi_ar_arid[7:0]) //|> o
   ,.mcif2noc_axi_ar_arlen (mcif2noc_axi_ar_arlen[3:0]) //|> o
-  ,.mcif2noc_axi_ar_araddr (mcif2noc_axi_ar_araddr[64 -1:0]) //|> o
+  ,.mcif2noc_axi_ar_araddr (mcif2noc_axi_ar_araddr[32 -1:0]) //|> o
 );
 NV_NVDLA_NOCIF_DRAM_READ_eg u_eg (
    .nvdla_core_clk (nvdla_core_clk)

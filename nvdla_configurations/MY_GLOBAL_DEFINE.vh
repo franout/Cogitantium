@@ -1,0 +1,9 @@
+`ifndef MY_GLOBAL_DEFINE_VH
+`define MY_GLOBAL_DEFINE_VH
+
+`define  DISABLE_TESTPOINTS 1
+`define  RAM_INTERFACE 1
+`define  SYNTHESIS 1
+`define FPGA 1
+`endif //MY_GLOBAL_DEFINE_VH
+

@@ -14,13 +14,6 @@ module NV_NVDLA_cdp (
   ,nvdla_core_rstn //|< i
   ,cdp2csb_resp_valid //|> o
   ,cdp2csb_resp_pd //|> o
-  ,cdp2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,cdp2cvif_rd_req_valid //|> o
-  ,cdp2cvif_rd_req_ready //|< i
-  ,cdp2cvif_rd_req_pd //|> o
-  ,cdp2cvif_wr_req_valid //|> o
-  ,cdp2cvif_wr_req_ready //|< i
-  ,cdp2cvif_wr_req_pd //|> o
   ,cdp2glb_done_intr_pd //|> o
   ,cdp2mcif_rd_cdt_lat_fifo_pop //|> o
   ,cdp2mcif_rd_req_valid //|> o
@@ -37,10 +30,6 @@ module NV_NVDLA_cdp (
   ,csb2cdp_req_pvld //|< i
   ,csb2cdp_req_prdy //|> o
   ,csb2cdp_req_pd //|< i
-  ,cvif2cdp_rd_rsp_valid //|< i
-  ,cvif2cdp_rd_rsp_ready //|> o
-  ,cvif2cdp_rd_rsp_pd //|< i
-  ,cvif2cdp_wr_rsp_complete //|< i
   ,mcif2cdp_rd_rsp_valid //|< i
   ,mcif2cdp_rd_rsp_ready //|> o
   ,mcif2cdp_rd_rsp_pd //|< i
@@ -58,18 +47,11 @@ input tmc2slcg_disable_clock_gating;
  input nvdla_core_rstn;
  output cdp2csb_resp_valid; /* data valid */
  output [33:0] cdp2csb_resp_pd; /* pkt_id_width=1 pkt_widths=33,33  */
- output cdp2cvif_rd_cdt_lat_fifo_pop;
- output cdp2cvif_rd_req_valid; /* data valid */
- input cdp2cvif_rd_req_ready; /* data return handshake */
- output [79 -1:0] cdp2cvif_rd_req_pd;
- output cdp2cvif_wr_req_valid; /* data valid */
- input cdp2cvif_wr_req_ready; /* data return handshake */
- output [258 -1:0] cdp2cvif_wr_req_pd; /* pkt_id_width=1 pkt_widths=78,514  */
  output [1:0] cdp2glb_done_intr_pd;
  output cdp2mcif_rd_cdt_lat_fifo_pop;
  output cdp2mcif_rd_req_valid; /* data valid */
  input cdp2mcif_rd_req_ready; /* data return handshake */
- output [79 -1:0] cdp2mcif_rd_req_pd;
+ output [47 -1:0] cdp2mcif_rd_req_pd;
  output cdp2mcif_wr_req_valid; /* data valid */
  input cdp2mcif_wr_req_ready; /* data return handshake */
  output [258 -1:0] cdp2mcif_wr_req_pd; /* pkt_id_width=1 pkt_widths=78,514  */
@@ -81,10 +63,6 @@ input tmc2slcg_disable_clock_gating;
  input csb2cdp_req_pvld; /* data valid */
  output csb2cdp_req_prdy; /* data return handshake */
  input [62:0] csb2cdp_req_pd;
- input cvif2cdp_rd_rsp_valid; /* data valid */
- output cvif2cdp_rd_rsp_ready; /* data return handshake */
- input [257 -1:0] cvif2cdp_rd_rsp_pd;
- input cvif2cdp_wr_rsp_complete;
  input mcif2cdp_rd_rsp_valid; /* data valid */
  output mcif2cdp_rd_rsp_ready; /* data return handshake */
  input [257 -1:0] mcif2cdp_rd_rsp_pd;
@@ -186,10 +164,6 @@ input tmc2slcg_disable_clock_gating;
  NV_NVDLA_CDP_rdma u_rdma (
     .nvdla_core_clk (nvdla_core_clk)
    ,.nvdla_core_rstn (nvdla_core_rstn)
-   ,.cdp2cvif_rd_cdt_lat_fifo_pop (cdp2cvif_rd_cdt_lat_fifo_pop)
-   ,.cdp2cvif_rd_req_valid (cdp2cvif_rd_req_valid)
-   ,.cdp2cvif_rd_req_ready (cdp2cvif_rd_req_ready)
-   ,.cdp2cvif_rd_req_pd (cdp2cvif_rd_req_pd )
    ,.cdp2mcif_rd_cdt_lat_fifo_pop (cdp2mcif_rd_cdt_lat_fifo_pop)
    ,.cdp2mcif_rd_req_valid (cdp2mcif_rd_req_valid)
    ,.cdp2mcif_rd_req_ready (cdp2mcif_rd_req_ready)
@@ -202,9 +176,6 @@ input tmc2slcg_disable_clock_gating;
    ,.csb2cdp_rdma_req_pvld (csb2cdp_rdma_req_pvld)
    ,.csb2cdp_rdma_req_prdy (csb2cdp_rdma_req_prdy)
    ,.csb2cdp_rdma_req_pd (csb2cdp_rdma_req_pd[62:0])
-   ,.cvif2cdp_rd_rsp_valid (cvif2cdp_rd_rsp_valid)
-   ,.cvif2cdp_rd_rsp_ready (cvif2cdp_rd_rsp_ready)
-   ,.cvif2cdp_rd_rsp_pd (cvif2cdp_rd_rsp_pd)
    ,.mcif2cdp_rd_rsp_valid (mcif2cdp_rd_rsp_valid)
    ,.mcif2cdp_rd_rsp_ready (mcif2cdp_rd_rsp_ready)
    ,.mcif2cdp_rd_rsp_pd (mcif2cdp_rd_rsp_pd)
@@ -268,10 +239,6 @@ input tmc2slcg_disable_clock_gating;
    ,.cdp2mcif_wr_req_ready (cdp2mcif_wr_req_ready)
    ,.cdp2mcif_wr_req_pd (cdp2mcif_wr_req_pd)
    ,.mcif2cdp_wr_rsp_complete (mcif2cdp_wr_rsp_complete)
-   ,.cdp2cvif_wr_req_valid (cdp2cvif_wr_req_valid)
-   ,.cdp2cvif_wr_req_ready (cdp2cvif_wr_req_ready)
-   ,.cdp2cvif_wr_req_pd (cdp2cvif_wr_req_pd)
-   ,.cvif2cdp_wr_rsp_complete (cvif2cdp_wr_rsp_complete)
    ,.cdp_dp2wdma_valid (cdp_dp2wdma_valid)
    ,.cdp_dp2wdma_ready (cdp_dp2wdma_ready)
    ,.cdp_dp2wdma_pd (cdp_dp2wdma_pd)

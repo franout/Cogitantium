@@ -28,12 +28,6 @@
 module NV_NVDLA_CDMA_IMG_sg (
    nvdla_core_clk
   ,nvdla_core_rstn
-  ,img_dat2cvif_rd_req_pd
-  ,img_dat2cvif_rd_req_valid
-  ,img_dat2cvif_rd_req_ready
-  ,cvif2img_dat_rd_rsp_pd
-  ,cvif2img_dat_rd_rsp_valid
-  ,cvif2img_dat_rd_rsp_ready
   ,img2status_dat_entries
   ,img2status_dat_updt
   ,img_dat2mcif_rd_req_ready
@@ -114,13 +108,7 @@ module NV_NVDLA_CDMA_IMG_sg (
 //////////////////////////////////////////////////////////
 input nvdla_core_clk;
 input nvdla_core_rstn;
-output [( 64 + 15 )-1:0] img_dat2cvif_rd_req_pd;
-output img_dat2cvif_rd_req_valid;
-input img_dat2cvif_rd_req_ready;
-input [( 256 + (256/8/32) )-1:0] cvif2img_dat_rd_rsp_pd;
-input cvif2img_dat_rd_rsp_valid;
-output cvif2img_dat_rd_rsp_ready;
-output [( 64 + 15 )-1:0] img_dat2mcif_rd_req_pd;
+output [( 32 + 15 )-1:0] img_dat2mcif_rd_req_pd;
 output img_dat2mcif_rd_req_valid;
 input img_dat2mcif_rd_req_ready;
 input [( 256 + (256/8/32) )-1:0] mcif2img_dat_rd_rsp_pd;
@@ -316,7 +304,7 @@ wire [14:0] data_entries_w;
 wire [13:0] data_height_w;
 wire dma_blocking;
 wire [63:0] dma_rd_req_addr;
-wire [64 +14:0] dma_rd_req_pd;
+wire [32 +14:0] dma_rd_req_pd;
 wire dma_rd_req_rdy;
 wire [14:0] dma_rd_req_size;
 wire dma_rd_req_type;
@@ -1324,9 +1312,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_PDP_RDMA_rdreq(
   .nvdla_core_clk (nvdla_core_clk )
  ,.nvdla_core_rstn (nvdla_core_rstn )
  ,.reg2dp_src_ram_type (reg2dp_datain_ram_type)
- ,.cvif_rd_req_pd (img_dat2cvif_rd_req_pd )
- ,.cvif_rd_req_valid (img_dat2cvif_rd_req_valid)
- ,.cvif_rd_req_ready (img_dat2cvif_rd_req_ready)
  ,.mcif_rd_req_pd (img_dat2mcif_rd_req_pd )
  ,.mcif_rd_req_valid (img_dat2mcif_rd_req_valid)
  ,.mcif_rd_req_ready (img_dat2mcif_rd_req_ready)
@@ -1338,9 +1323,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_PDP_RDMA_rdreq(
 NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
    .nvdla_core_clk (nvdla_core_clk )
   ,.nvdla_core_rstn (nvdla_core_rstn )
-  ,.cvif_rd_rsp_pd (cvif2img_dat_rd_rsp_pd )
-  ,.cvif_rd_rsp_valid (cvif2img_dat_rd_rsp_valid )
-  ,.cvif_rd_rsp_ready (cvif2img_dat_rd_rsp_ready )
   ,.mcif_rd_rsp_pd (mcif2img_dat_rd_rsp_pd )
   ,.mcif_rd_rsp_valid (mcif2img_dat_rd_rsp_valid )
   ,.mcif_rd_rsp_ready (mcif2img_dat_rd_rsp_ready )
@@ -1350,8 +1332,8 @@ NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
 );
 ///////////////////////////////////////////
 // PKT_PACK_WIRE( dma_read_cmd , dma_rd_req_ , dma_rd_req_pd )
-assign dma_rd_req_pd[64 -1:0] = dma_rd_req_addr[64 -1:0];
-assign dma_rd_req_pd[64 +14:64] = dma_rd_req_size[14:0];
+assign dma_rd_req_pd[32 -1:0] = dma_rd_req_addr[32 -1:0];
+assign dma_rd_req_pd[32 +14:32] = dma_rd_req_size[14:0];
 assign dma_rd_req_vld = req_valid_d1 & dma_req_fifo_ready & is_cbuf_ready & ~req_is_dummy_d1;
 assign dma_rd_req_addr = req_addr_d1;
 assign dma_rd_req_size = {{10{1'b0}}, req_size_out_d1};

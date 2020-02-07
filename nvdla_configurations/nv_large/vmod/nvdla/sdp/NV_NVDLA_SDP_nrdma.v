@@ -23,13 +23,6 @@ module NV_NVDLA_SDP_nrdma (
   ,tmc2slcg_disable_clock_gating //|< i
   ,nrdma_disable //|< i
   ,nrdma_slcg_op_en //|< i
-  ,sdp_n2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,sdp_n2cvif_rd_req_pd //|> o
-  ,sdp_n2cvif_rd_req_valid //|> o
-  ,sdp_n2cvif_rd_req_ready //|< i
-  ,cvif2sdp_n_rd_rsp_pd //|< i
-  ,cvif2sdp_n_rd_rsp_valid //|< i
-  ,cvif2sdp_n_rd_rsp_ready //|> o
   ,sdp_n2mcif_rd_cdt_lat_fifo_pop //|> o
   ,sdp_n2mcif_rd_req_pd //|> o
   ,sdp_n2mcif_rd_req_valid //|> o
@@ -69,16 +62,9 @@ module NV_NVDLA_SDP_nrdma (
  input nvdla_core_clk;
  input nvdla_core_rstn;
  input [31:0] pwrbus_ram_pd;
- output sdp_n2cvif_rd_req_valid;
- input sdp_n2cvif_rd_req_ready;
- output [79 -1:0] sdp_n2cvif_rd_req_pd;
- input cvif2sdp_n_rd_rsp_valid;
- output cvif2sdp_n_rd_rsp_ready;
- input [257 -1:0] cvif2sdp_n_rd_rsp_pd;
- output sdp_n2cvif_rd_cdt_lat_fifo_pop;
  output sdp_n2mcif_rd_req_valid;
  input sdp_n2mcif_rd_req_ready;
- output [79 -1:0] sdp_n2mcif_rd_req_pd;
+ output [47 -1:0] sdp_n2mcif_rd_req_pd;
  input mcif2sdp_n_rd_rsp_valid;
  output mcif2sdp_n_rd_rsp_ready;
  input [257 -1:0] mcif2sdp_n_rd_rsp_pd;
@@ -124,7 +110,7 @@ module NV_NVDLA_SDP_nrdma (
  wire cq2eg_prdy;
  wire cq2eg_pvld;
  wire dma_rd_cdt_lat_fifo_pop;
- wire [79 -1:0] dma_rd_req_pd;
+ wire [47 -1:0] dma_rd_req_pd;
  wire dma_rd_req_rdy;
  wire dma_rd_req_vld;
  wire [257 -1:0] dma_rd_rsp_pd;
@@ -165,7 +151,7 @@ NV_NVDLA_SDP_RDMA_ig u_ig (
   ,.ig2cq_pd (ig2cq_pd[15:0]) //|> w
   ,.ig2cq_pvld (ig2cq_pvld) //|> w
   ,.ig2cq_prdy (ig2cq_prdy) //|< w
-  ,.dma_rd_req_pd (dma_rd_req_pd[79 -1:0]) //|> w
+  ,.dma_rd_req_pd (dma_rd_req_pd[47 -1:0]) //|> w
   ,.dma_rd_req_vld (dma_rd_req_vld) //|> w
   ,.dma_rd_req_rdy (dma_rd_req_rdy) //|< w
   ,.reg2dp_op_en (reg2dp_op_en) //|< i
@@ -184,11 +170,11 @@ NV_NVDLA_SDP_RDMA_ig u_ig (
   ,.reg2dp_surface_stride (reg2dp_bn_surface_stride[31-5:0]) //|< i
   ,.dp2reg_rdma_stall (dp2reg_nrdma_stall[31:0]) //|> o
   );
-//: my $depth = 256;
+//: my $depth = 4;
 //: my $width = 16;
 //: print "NV_NVDLA_SDP_NRDMA_cq_${depth}x${width}  u_cq ( \n";
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-NV_NVDLA_SDP_NRDMA_cq_256x16  u_cq ( 
+NV_NVDLA_SDP_NRDMA_cq_4x16  u_cq ( 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
    .nvdla_core_clk (nvdla_gated_clk) //|< w
@@ -230,11 +216,11 @@ NV_NVDLA_SDP_RDMA_eg u_eg (
   ,.reg2dp_rdma_data_size (reg2dp_nrdma_data_size) //|< i
   ,.reg2dp_rdma_data_use (reg2dp_nrdma_data_use[1:0]) //|< i
   );
-//: my $depth = 256;
+//: my $depth = 4;
 //: my $width = 257;
 //: print "NV_NVDLA_SDP_NRDMA_lat_fifo_${depth}x${width}  u_lat_fifo (\n";
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-NV_NVDLA_SDP_NRDMA_lat_fifo_256x257  u_lat_fifo (
+NV_NVDLA_SDP_NRDMA_lat_fifo_4x257  u_lat_fifo (
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
    .nvdla_core_clk (nvdla_gated_clk)
@@ -250,15 +236,8 @@ NV_NVDLA_SDP_NRDMA_lat_fifo_256x257  u_lat_fifo (
 NV_NVDLA_SDP_RDMA_dmaif u_NV_NVDLA_SDP_RDMA_dmaif (
    .nvdla_core_clk (nvdla_gated_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.sdp2cvif_rd_cdt_lat_fifo_pop (sdp_n2cvif_rd_cdt_lat_fifo_pop) //|> o
-  ,.sdp2cvif_rd_req_pd (sdp_n2cvif_rd_req_pd[79 -1:0]) //|> o
-  ,.sdp2cvif_rd_req_valid (sdp_n2cvif_rd_req_valid) //|> o
-  ,.sdp2cvif_rd_req_ready (sdp_n2cvif_rd_req_ready) //|< i
-  ,.cvif2sdp_rd_rsp_pd (cvif2sdp_n_rd_rsp_pd[257 -1:0]) //|< i
-  ,.cvif2sdp_rd_rsp_valid (cvif2sdp_n_rd_rsp_valid) //|< i
-  ,.cvif2sdp_rd_rsp_ready (cvif2sdp_n_rd_rsp_ready) //|> o
   ,.sdp2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop) //|> o
-  ,.sdp2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd[79 -1:0]) //|> o
+  ,.sdp2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd[47 -1:0]) //|> o
   ,.sdp2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid) //|> o
   ,.sdp2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready) //|< i
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd[257 -1:0]) //|< i
@@ -266,7 +245,7 @@ NV_NVDLA_SDP_RDMA_dmaif u_NV_NVDLA_SDP_RDMA_dmaif (
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready) //|> o
   ,.dma_rd_req_ram_type (reg2dp_nrdma_ram_type) //|< w
   ,.dma_rd_rsp_ram_type (reg2dp_nrdma_ram_type) //|< w
-  ,.dma_rd_req_pd (dma_rd_req_pd[79 -1:0]) //|< w
+  ,.dma_rd_req_pd (dma_rd_req_pd[47 -1:0]) //|< w
   ,.dma_rd_req_vld (dma_rd_req_vld) //|< w
   ,.dma_rd_req_rdy (dma_rd_req_rdy) //|> w
   ,.dma_rd_rsp_pd (dma_rd_rsp_pd[257 -1:0]) //|> w

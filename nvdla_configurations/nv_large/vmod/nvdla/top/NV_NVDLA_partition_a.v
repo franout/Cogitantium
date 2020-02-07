@@ -138,26 +138,26 @@ input [32/2 -1:0] mac_a2accu_mask;
 input mac_a2accu_mode;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: input [22 -1:0] mac_a2accu_data${i}; )
+//: input [21 -1:0] mac_a2accu_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [22 -1:0] mac_a2accu_data0; 
-input [22 -1:0] mac_a2accu_data1; 
-input [22 -1:0] mac_a2accu_data2; 
-input [22 -1:0] mac_a2accu_data3; 
-input [22 -1:0] mac_a2accu_data4; 
-input [22 -1:0] mac_a2accu_data5; 
-input [22 -1:0] mac_a2accu_data6; 
-input [22 -1:0] mac_a2accu_data7; 
-input [22 -1:0] mac_a2accu_data8; 
-input [22 -1:0] mac_a2accu_data9; 
-input [22 -1:0] mac_a2accu_data10; 
-input [22 -1:0] mac_a2accu_data11; 
-input [22 -1:0] mac_a2accu_data12; 
-input [22 -1:0] mac_a2accu_data13; 
-input [22 -1:0] mac_a2accu_data14; 
-input [22 -1:0] mac_a2accu_data15; 
+input [21 -1:0] mac_a2accu_data0; 
+input [21 -1:0] mac_a2accu_data1; 
+input [21 -1:0] mac_a2accu_data2; 
+input [21 -1:0] mac_a2accu_data3; 
+input [21 -1:0] mac_a2accu_data4; 
+input [21 -1:0] mac_a2accu_data5; 
+input [21 -1:0] mac_a2accu_data6; 
+input [21 -1:0] mac_a2accu_data7; 
+input [21 -1:0] mac_a2accu_data8; 
+input [21 -1:0] mac_a2accu_data9; 
+input [21 -1:0] mac_a2accu_data10; 
+input [21 -1:0] mac_a2accu_data11; 
+input [21 -1:0] mac_a2accu_data12; 
+input [21 -1:0] mac_a2accu_data13; 
+input [21 -1:0] mac_a2accu_data14; 
+input [21 -1:0] mac_a2accu_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] mac_a2accu_pd;
 input mac_b2accu_pvld; /* data valid */
@@ -165,26 +165,26 @@ input [32/2 -1:0] mac_b2accu_mask;
 input mac_b2accu_mode;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: input [22 -1:0] mac_b2accu_data${i}; )
+//: input [21 -1:0] mac_b2accu_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [22 -1:0] mac_b2accu_data0; 
-input [22 -1:0] mac_b2accu_data1; 
-input [22 -1:0] mac_b2accu_data2; 
-input [22 -1:0] mac_b2accu_data3; 
-input [22 -1:0] mac_b2accu_data4; 
-input [22 -1:0] mac_b2accu_data5; 
-input [22 -1:0] mac_b2accu_data6; 
-input [22 -1:0] mac_b2accu_data7; 
-input [22 -1:0] mac_b2accu_data8; 
-input [22 -1:0] mac_b2accu_data9; 
-input [22 -1:0] mac_b2accu_data10; 
-input [22 -1:0] mac_b2accu_data11; 
-input [22 -1:0] mac_b2accu_data12; 
-input [22 -1:0] mac_b2accu_data13; 
-input [22 -1:0] mac_b2accu_data14; 
-input [22 -1:0] mac_b2accu_data15; 
+input [21 -1:0] mac_b2accu_data0; 
+input [21 -1:0] mac_b2accu_data1; 
+input [21 -1:0] mac_b2accu_data2; 
+input [21 -1:0] mac_b2accu_data3; 
+input [21 -1:0] mac_b2accu_data4; 
+input [21 -1:0] mac_b2accu_data5; 
+input [21 -1:0] mac_b2accu_data6; 
+input [21 -1:0] mac_b2accu_data7; 
+input [21 -1:0] mac_b2accu_data8; 
+input [21 -1:0] mac_b2accu_data9; 
+input [21 -1:0] mac_b2accu_data10; 
+input [21 -1:0] mac_b2accu_data11; 
+input [21 -1:0] mac_b2accu_data12; 
+input [21 -1:0] mac_b2accu_data13; 
+input [21 -1:0] mac_b2accu_data14; 
+input [21 -1:0] mac_b2accu_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] mac_b2accu_pd;
 input [31:0] pwrbus_ram_pd;
@@ -197,26 +197,26 @@ wire dla_clk_ovr_on_sync;
 wire global_clk_ovr_on_sync;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: wire [22 -1:0] mac_b2accu_data${i}; )
+//: wire [21 -1:0] mac_b2accu_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-wire [22 -1:0] mac_b2accu_data0; 
-wire [22 -1:0] mac_b2accu_data1; 
-wire [22 -1:0] mac_b2accu_data2; 
-wire [22 -1:0] mac_b2accu_data3; 
-wire [22 -1:0] mac_b2accu_data4; 
-wire [22 -1:0] mac_b2accu_data5; 
-wire [22 -1:0] mac_b2accu_data6; 
-wire [22 -1:0] mac_b2accu_data7; 
-wire [22 -1:0] mac_b2accu_data8; 
-wire [22 -1:0] mac_b2accu_data9; 
-wire [22 -1:0] mac_b2accu_data10; 
-wire [22 -1:0] mac_b2accu_data11; 
-wire [22 -1:0] mac_b2accu_data12; 
-wire [22 -1:0] mac_b2accu_data13; 
-wire [22 -1:0] mac_b2accu_data14; 
-wire [22 -1:0] mac_b2accu_data15; 
+wire [21 -1:0] mac_b2accu_data0; 
+wire [21 -1:0] mac_b2accu_data1; 
+wire [21 -1:0] mac_b2accu_data2; 
+wire [21 -1:0] mac_b2accu_data3; 
+wire [21 -1:0] mac_b2accu_data4; 
+wire [21 -1:0] mac_b2accu_data5; 
+wire [21 -1:0] mac_b2accu_data6; 
+wire [21 -1:0] mac_b2accu_data7; 
+wire [21 -1:0] mac_b2accu_data8; 
+wire [21 -1:0] mac_b2accu_data9; 
+wire [21 -1:0] mac_b2accu_data10; 
+wire [21 -1:0] mac_b2accu_data11; 
+wire [21 -1:0] mac_b2accu_data12; 
+wire [21 -1:0] mac_b2accu_data13; 
+wire [21 -1:0] mac_b2accu_data14; 
+wire [21 -1:0] mac_b2accu_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire [32/2 -1:0] mac_b2accu_mask;
 wire mac_b2accu_mode;

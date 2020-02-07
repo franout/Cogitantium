@@ -36,17 +36,6 @@ module NV_NVDLA_pdp (
   ,csb2pdp_req_pvld //|< i
   ,csb2pdp_req_prdy //|> o
   ,csb2pdp_req_pd //|< i
-  ,cvif2pdp_rd_rsp_valid //|< i
-  ,cvif2pdp_rd_rsp_ready //|> o
-  ,cvif2pdp_rd_rsp_pd //|< i
-  ,cvif2pdp_wr_rsp_complete //|< i
-  ,pdp2cvif_rd_cdt_lat_fifo_pop //|> o
-  ,pdp2cvif_rd_req_valid //|> o
-  ,pdp2cvif_rd_req_ready //|< i
-  ,pdp2cvif_rd_req_pd //|> o
-  ,pdp2cvif_wr_req_valid //|> o
-  ,pdp2cvif_wr_req_ready //|< i
-  ,pdp2cvif_wr_req_pd //|> o
   ,mcif2pdp_rd_rsp_valid //|< i
   ,mcif2pdp_rd_rsp_ready //|> o
   ,mcif2pdp_rd_rsp_pd //|< i
@@ -80,17 +69,6 @@ input tmc2slcg_disable_clock_gating;
  input csb2pdp_req_pvld;
  output csb2pdp_req_prdy;
  input [62:0] csb2pdp_req_pd;
- input cvif2pdp_rd_rsp_valid;
- output cvif2pdp_rd_rsp_ready;
- input [( 256 + (256/8/32) )-1:0] cvif2pdp_rd_rsp_pd;
- input cvif2pdp_wr_rsp_complete;
- output pdp2cvif_rd_cdt_lat_fifo_pop;
- output pdp2cvif_rd_req_valid;
- input pdp2cvif_rd_req_ready;
- output [64 +14:0] pdp2cvif_rd_req_pd;
- output pdp2cvif_wr_req_valid;
- input pdp2cvif_wr_req_ready;
- output [( 256 + (256/8/32) + 1 )-1:0] pdp2cvif_wr_req_pd;
  input mcif2pdp_rd_rsp_valid;
  output mcif2pdp_rd_rsp_ready;
  input [( 256 + (256/8/32) )-1:0] mcif2pdp_rd_rsp_pd;
@@ -101,7 +79,7 @@ input tmc2slcg_disable_clock_gating;
  output pdp2mcif_rd_cdt_lat_fifo_pop;
  output pdp2mcif_rd_req_valid;
  input pdp2mcif_rd_req_ready;
- output [64 +14:0] pdp2mcif_rd_req_pd;
+ output [32 +14:0] pdp2mcif_rd_req_pd;
  output pdp2mcif_wr_req_valid;
  input pdp2mcif_wr_req_ready;
  output [( 256 + (256/8/32) + 1 )-1:0] pdp2mcif_wr_req_pd;
@@ -216,13 +194,6 @@ input tmc2slcg_disable_clock_gating;
    ,.csb2pdp_rdma_req_pvld (csb2pdp_rdma_req_pvld)
    ,.csb2pdp_rdma_req_prdy (csb2pdp_rdma_req_prdy)
    ,.csb2pdp_rdma_req_pd (csb2pdp_rdma_req_pd[62:0])
-   ,.cvif2pdp_rd_rsp_valid (cvif2pdp_rd_rsp_valid)
-   ,.cvif2pdp_rd_rsp_ready (cvif2pdp_rd_rsp_ready)
-   ,.cvif2pdp_rd_rsp_pd (cvif2pdp_rd_rsp_pd)
-   ,.pdp2cvif_rd_cdt_lat_fifo_pop (pdp2cvif_rd_cdt_lat_fifo_pop)
-   ,.pdp2cvif_rd_req_valid (pdp2cvif_rd_req_valid)
-   ,.pdp2cvif_rd_req_ready (pdp2cvif_rd_req_ready)
-   ,.pdp2cvif_rd_req_pd (pdp2cvif_rd_req_pd)
    ,.mcif2pdp_rd_rsp_valid (mcif2pdp_rd_rsp_valid)
    ,.mcif2pdp_rd_rsp_ready (mcif2pdp_rd_rsp_ready)
    ,.mcif2pdp_rd_rsp_pd (mcif2pdp_rd_rsp_pd)
@@ -304,10 +275,6 @@ input tmc2slcg_disable_clock_gating;
    ,.pdp2mcif_wr_req_ready (pdp2mcif_wr_req_ready)
    ,.pdp2mcif_wr_req_pd (pdp2mcif_wr_req_pd)
    ,.mcif2pdp_wr_rsp_complete (mcif2pdp_wr_rsp_complete)
-   ,.pdp2cvif_wr_req_valid (pdp2cvif_wr_req_valid)
-   ,.pdp2cvif_wr_req_ready (pdp2cvif_wr_req_ready)
-   ,.pdp2cvif_wr_req_pd (pdp2cvif_wr_req_pd)
-   ,.cvif2pdp_wr_rsp_complete (cvif2pdp_wr_rsp_complete)
    ,.pdp_dp2wdma_valid (pdp_dp2wdma_valid)
    ,.pdp_dp2wdma_ready (pdp_dp2wdma_ready)
    ,.pdp_dp2wdma_pd (pdp_dp2wdma_pd)

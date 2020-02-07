@@ -80,26 +80,26 @@ input [32/2 -1:0] mac2accu_src_mask;
 input mac2accu_src_mode;
 //: for(my $i=0; $i<32/2; $i++){
 //: print qq(
-//: input [22 -1:0] mac2accu_src_data${i}; )
+//: input [21 -1:0] mac2accu_src_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [22 -1:0] mac2accu_src_data0; 
-input [22 -1:0] mac2accu_src_data1; 
-input [22 -1:0] mac2accu_src_data2; 
-input [22 -1:0] mac2accu_src_data3; 
-input [22 -1:0] mac2accu_src_data4; 
-input [22 -1:0] mac2accu_src_data5; 
-input [22 -1:0] mac2accu_src_data6; 
-input [22 -1:0] mac2accu_src_data7; 
-input [22 -1:0] mac2accu_src_data8; 
-input [22 -1:0] mac2accu_src_data9; 
-input [22 -1:0] mac2accu_src_data10; 
-input [22 -1:0] mac2accu_src_data11; 
-input [22 -1:0] mac2accu_src_data12; 
-input [22 -1:0] mac2accu_src_data13; 
-input [22 -1:0] mac2accu_src_data14; 
-input [22 -1:0] mac2accu_src_data15; 
+input [21 -1:0] mac2accu_src_data0; 
+input [21 -1:0] mac2accu_src_data1; 
+input [21 -1:0] mac2accu_src_data2; 
+input [21 -1:0] mac2accu_src_data3; 
+input [21 -1:0] mac2accu_src_data4; 
+input [21 -1:0] mac2accu_src_data5; 
+input [21 -1:0] mac2accu_src_data6; 
+input [21 -1:0] mac2accu_src_data7; 
+input [21 -1:0] mac2accu_src_data8; 
+input [21 -1:0] mac2accu_src_data9; 
+input [21 -1:0] mac2accu_src_data10; 
+input [21 -1:0] mac2accu_src_data11; 
+input [21 -1:0] mac2accu_src_data12; 
+input [21 -1:0] mac2accu_src_data13; 
+input [21 -1:0] mac2accu_src_data14; 
+input [21 -1:0] mac2accu_src_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] mac2accu_src_pd;
 output mac2accu_dst_pvld; /* data valid */
@@ -107,26 +107,26 @@ output [32/2 -1:0] mac2accu_dst_mask;
 output mac2accu_dst_mode;
 //: for(my $i=0; $i<32/2; $i++){
 //: print qq(
-//: output [22 -1:0] mac2accu_dst_data${i}; )
+//: output [21 -1:0] mac2accu_dst_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [22 -1:0] mac2accu_dst_data0; 
-output [22 -1:0] mac2accu_dst_data1; 
-output [22 -1:0] mac2accu_dst_data2; 
-output [22 -1:0] mac2accu_dst_data3; 
-output [22 -1:0] mac2accu_dst_data4; 
-output [22 -1:0] mac2accu_dst_data5; 
-output [22 -1:0] mac2accu_dst_data6; 
-output [22 -1:0] mac2accu_dst_data7; 
-output [22 -1:0] mac2accu_dst_data8; 
-output [22 -1:0] mac2accu_dst_data9; 
-output [22 -1:0] mac2accu_dst_data10; 
-output [22 -1:0] mac2accu_dst_data11; 
-output [22 -1:0] mac2accu_dst_data12; 
-output [22 -1:0] mac2accu_dst_data13; 
-output [22 -1:0] mac2accu_dst_data14; 
-output [22 -1:0] mac2accu_dst_data15; 
+output [21 -1:0] mac2accu_dst_data0; 
+output [21 -1:0] mac2accu_dst_data1; 
+output [21 -1:0] mac2accu_dst_data2; 
+output [21 -1:0] mac2accu_dst_data3; 
+output [21 -1:0] mac2accu_dst_data4; 
+output [21 -1:0] mac2accu_dst_data5; 
+output [21 -1:0] mac2accu_dst_data6; 
+output [21 -1:0] mac2accu_dst_data7; 
+output [21 -1:0] mac2accu_dst_data8; 
+output [21 -1:0] mac2accu_dst_data9; 
+output [21 -1:0] mac2accu_dst_data10; 
+output [21 -1:0] mac2accu_dst_data11; 
+output [21 -1:0] mac2accu_dst_data12; 
+output [21 -1:0] mac2accu_dst_data13; 
+output [21 -1:0] mac2accu_dst_data14; 
+output [21 -1:0] mac2accu_dst_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [8:0] mac2accu_dst_pd;
 wire mac2accu_pvld_d0 = mac2accu_src_pvld;
@@ -138,7 +138,7 @@ wire mac2accu_mode_d0 = mac2accu_src_mode;
 //: my $j;
 //: my $k;
 //: my $kk=32/2;
-//: my $jj=22;
+//: my $jj=21;
 //: for($k = 0; $k <32/2; $k ++) {
 //: print "assign mac2accu_data${k}_d0 = mac2accu_src_data${k};\n";
 //: }
@@ -225,7 +225,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        mac2accu_mask_d1 <= mac2accu_mask_d0;
    end
 end
-reg [21:0] mac2accu_data0_d1;
+reg [20:0] mac2accu_data0_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data0_d1 <= 'b0;
@@ -240,7 +240,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data1_d1;
+reg [20:0] mac2accu_data1_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data1_d1 <= 'b0;
@@ -255,7 +255,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data2_d1;
+reg [20:0] mac2accu_data2_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data2_d1 <= 'b0;
@@ -270,7 +270,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data3_d1;
+reg [20:0] mac2accu_data3_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data3_d1 <= 'b0;
@@ -285,7 +285,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data4_d1;
+reg [20:0] mac2accu_data4_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data4_d1 <= 'b0;
@@ -300,7 +300,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data5_d1;
+reg [20:0] mac2accu_data5_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data5_d1 <= 'b0;
@@ -315,7 +315,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data6_d1;
+reg [20:0] mac2accu_data6_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data6_d1 <= 'b0;
@@ -330,7 +330,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data7_d1;
+reg [20:0] mac2accu_data7_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data7_d1 <= 'b0;
@@ -345,7 +345,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data8_d1;
+reg [20:0] mac2accu_data8_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data8_d1 <= 'b0;
@@ -360,7 +360,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data9_d1;
+reg [20:0] mac2accu_data9_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data9_d1 <= 'b0;
@@ -375,7 +375,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data10_d1;
+reg [20:0] mac2accu_data10_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data10_d1 <= 'b0;
@@ -390,7 +390,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data11_d1;
+reg [20:0] mac2accu_data11_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data11_d1 <= 'b0;
@@ -405,7 +405,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data12_d1;
+reg [20:0] mac2accu_data12_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data12_d1 <= 'b0;
@@ -420,7 +420,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data13_d1;
+reg [20:0] mac2accu_data13_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data13_d1 <= 'b0;
@@ -435,7 +435,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data14_d1;
+reg [20:0] mac2accu_data14_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data14_d1 <= 'b0;
@@ -450,7 +450,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data15_d1;
+reg [20:0] mac2accu_data15_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data15_d1 <= 'b0;
@@ -511,7 +511,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        mac2accu_mask_d2 <= mac2accu_mask_d1;
    end
 end
-reg [21:0] mac2accu_data0_d2;
+reg [20:0] mac2accu_data0_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data0_d2 <= 'b0;
@@ -526,7 +526,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data1_d2;
+reg [20:0] mac2accu_data1_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data1_d2 <= 'b0;
@@ -541,7 +541,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data2_d2;
+reg [20:0] mac2accu_data2_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data2_d2 <= 'b0;
@@ -556,7 +556,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data3_d2;
+reg [20:0] mac2accu_data3_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data3_d2 <= 'b0;
@@ -571,7 +571,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data4_d2;
+reg [20:0] mac2accu_data4_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data4_d2 <= 'b0;
@@ -586,7 +586,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data5_d2;
+reg [20:0] mac2accu_data5_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data5_d2 <= 'b0;
@@ -601,7 +601,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data6_d2;
+reg [20:0] mac2accu_data6_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data6_d2 <= 'b0;
@@ -616,7 +616,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data7_d2;
+reg [20:0] mac2accu_data7_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data7_d2 <= 'b0;
@@ -631,7 +631,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data8_d2;
+reg [20:0] mac2accu_data8_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data8_d2 <= 'b0;
@@ -646,7 +646,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data9_d2;
+reg [20:0] mac2accu_data9_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data9_d2 <= 'b0;
@@ -661,7 +661,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data10_d2;
+reg [20:0] mac2accu_data10_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data10_d2 <= 'b0;
@@ -676,7 +676,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data11_d2;
+reg [20:0] mac2accu_data11_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data11_d2 <= 'b0;
@@ -691,7 +691,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data12_d2;
+reg [20:0] mac2accu_data12_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data12_d2 <= 'b0;
@@ -706,7 +706,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data13_d2;
+reg [20:0] mac2accu_data13_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data13_d2 <= 'b0;
@@ -721,7 +721,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data14_d2;
+reg [20:0] mac2accu_data14_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data14_d2 <= 'b0;
@@ -736,7 +736,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [21:0] mac2accu_data15_d2;
+reg [20:0] mac2accu_data15_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        mac2accu_data15_d2 <= 'b0;

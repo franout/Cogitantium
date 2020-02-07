@@ -117,7 +117,7 @@ input nvdla_core_rstn;
 input mcif2noc_axi_aw_awready; /* data return handshake */
 output [7:0] mcif2noc_axi_aw_awid;
 output [3:0] mcif2noc_axi_aw_awlen;
-output [64 -1:0] mcif2noc_axi_aw_awaddr;
+output [32 -1:0] mcif2noc_axi_aw_awaddr;
 output mcif2noc_axi_w_wvalid; /* data valid */
 input mcif2noc_axi_w_wready; /* data return handshake */
 output [256 -1:0] mcif2noc_axi_w_wdata;
@@ -177,7 +177,7 @@ NV_NVDLA_NOCIF_DRAM_WRITE_ig u_ig (
   ,.mcif2noc_axi_aw_awready (mcif2noc_axi_aw_awready) //|< i
   ,.mcif2noc_axi_aw_awid (mcif2noc_axi_aw_awid[7:0]) //|> o
   ,.mcif2noc_axi_aw_awlen (mcif2noc_axi_aw_awlen[3:0]) //|> o
-  ,.mcif2noc_axi_aw_awaddr (mcif2noc_axi_aw_awaddr[64 -1:0]) //|> o
+  ,.mcif2noc_axi_aw_awaddr (mcif2noc_axi_aw_awaddr[32 -1:0]) //|> o
   ,.mcif2noc_axi_w_wvalid (mcif2noc_axi_w_wvalid) //|> o
   ,.mcif2noc_axi_w_wready (mcif2noc_axi_w_wready) //|< i
   ,.mcif2noc_axi_w_wdata (mcif2noc_axi_w_wdata) //|> o

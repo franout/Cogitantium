@@ -98,52 +98,52 @@ input cfg_is_wg;
 input [4:0] cfg_truncate;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: input [22 -1:0] mac_a2accu_data${i}; )
+//: input [21 -1:0] mac_a2accu_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [22 -1:0] mac_a2accu_data0; 
-input [22 -1:0] mac_a2accu_data1; 
-input [22 -1:0] mac_a2accu_data2; 
-input [22 -1:0] mac_a2accu_data3; 
-input [22 -1:0] mac_a2accu_data4; 
-input [22 -1:0] mac_a2accu_data5; 
-input [22 -1:0] mac_a2accu_data6; 
-input [22 -1:0] mac_a2accu_data7; 
-input [22 -1:0] mac_a2accu_data8; 
-input [22 -1:0] mac_a2accu_data9; 
-input [22 -1:0] mac_a2accu_data10; 
-input [22 -1:0] mac_a2accu_data11; 
-input [22 -1:0] mac_a2accu_data12; 
-input [22 -1:0] mac_a2accu_data13; 
-input [22 -1:0] mac_a2accu_data14; 
-input [22 -1:0] mac_a2accu_data15; 
+input [21 -1:0] mac_a2accu_data0; 
+input [21 -1:0] mac_a2accu_data1; 
+input [21 -1:0] mac_a2accu_data2; 
+input [21 -1:0] mac_a2accu_data3; 
+input [21 -1:0] mac_a2accu_data4; 
+input [21 -1:0] mac_a2accu_data5; 
+input [21 -1:0] mac_a2accu_data6; 
+input [21 -1:0] mac_a2accu_data7; 
+input [21 -1:0] mac_a2accu_data8; 
+input [21 -1:0] mac_a2accu_data9; 
+input [21 -1:0] mac_a2accu_data10; 
+input [21 -1:0] mac_a2accu_data11; 
+input [21 -1:0] mac_a2accu_data12; 
+input [21 -1:0] mac_a2accu_data13; 
+input [21 -1:0] mac_a2accu_data14; 
+input [21 -1:0] mac_a2accu_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [32/2-1:0] mac_a2accu_mask;
 input mac_a2accu_mode;
 input mac_a2accu_pvld;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: input [22 -1:0] mac_b2accu_data${i}; )
+//: input [21 -1:0] mac_b2accu_data${i}; )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [22 -1:0] mac_b2accu_data0; 
-input [22 -1:0] mac_b2accu_data1; 
-input [22 -1:0] mac_b2accu_data2; 
-input [22 -1:0] mac_b2accu_data3; 
-input [22 -1:0] mac_b2accu_data4; 
-input [22 -1:0] mac_b2accu_data5; 
-input [22 -1:0] mac_b2accu_data6; 
-input [22 -1:0] mac_b2accu_data7; 
-input [22 -1:0] mac_b2accu_data8; 
-input [22 -1:0] mac_b2accu_data9; 
-input [22 -1:0] mac_b2accu_data10; 
-input [22 -1:0] mac_b2accu_data11; 
-input [22 -1:0] mac_b2accu_data12; 
-input [22 -1:0] mac_b2accu_data13; 
-input [22 -1:0] mac_b2accu_data14; 
-input [22 -1:0] mac_b2accu_data15; 
+input [21 -1:0] mac_b2accu_data0; 
+input [21 -1:0] mac_b2accu_data1; 
+input [21 -1:0] mac_b2accu_data2; 
+input [21 -1:0] mac_b2accu_data3; 
+input [21 -1:0] mac_b2accu_data4; 
+input [21 -1:0] mac_b2accu_data5; 
+input [21 -1:0] mac_b2accu_data6; 
+input [21 -1:0] mac_b2accu_data7; 
+input [21 -1:0] mac_b2accu_data8; 
+input [21 -1:0] mac_b2accu_data9; 
+input [21 -1:0] mac_b2accu_data10; 
+input [21 -1:0] mac_b2accu_data11; 
+input [21 -1:0] mac_b2accu_data12; 
+input [21 -1:0] mac_b2accu_data13; 
+input [21 -1:0] mac_b2accu_data14; 
+input [21 -1:0] mac_b2accu_data15; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [32/2-1:0] mac_b2accu_mask;
 input mac_b2accu_mode;
@@ -251,7 +251,7 @@ wire calc_stripe_end = accu_ctrl_pd_d1[9];
 wire calc_channel_end = accu_ctrl_pd_d1[10];
 wire calc_layer_end = accu_ctrl_pd_d1[11];
 wire calc_dlv_elem_mask = accu_ctrl_pd_d1[12];
-//: my $kk=22;
+//: my $kk=21;
 //: for(my $i = 0; $i < 32/2; $i ++) {
 //: print "wire [${kk}-1:0] calc_elem_${i} = mac_a2accu_data${i}; \n";
 //: }
@@ -260,38 +260,38 @@ wire calc_dlv_elem_mask = accu_ctrl_pd_d1[12];
 //: print "wire [${kk}-1:0] calc_elem_${i} = mac_b2accu_data${j}; \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-wire [22-1:0] calc_elem_0 = mac_a2accu_data0; 
-wire [22-1:0] calc_elem_1 = mac_a2accu_data1; 
-wire [22-1:0] calc_elem_2 = mac_a2accu_data2; 
-wire [22-1:0] calc_elem_3 = mac_a2accu_data3; 
-wire [22-1:0] calc_elem_4 = mac_a2accu_data4; 
-wire [22-1:0] calc_elem_5 = mac_a2accu_data5; 
-wire [22-1:0] calc_elem_6 = mac_a2accu_data6; 
-wire [22-1:0] calc_elem_7 = mac_a2accu_data7; 
-wire [22-1:0] calc_elem_8 = mac_a2accu_data8; 
-wire [22-1:0] calc_elem_9 = mac_a2accu_data9; 
-wire [22-1:0] calc_elem_10 = mac_a2accu_data10; 
-wire [22-1:0] calc_elem_11 = mac_a2accu_data11; 
-wire [22-1:0] calc_elem_12 = mac_a2accu_data12; 
-wire [22-1:0] calc_elem_13 = mac_a2accu_data13; 
-wire [22-1:0] calc_elem_14 = mac_a2accu_data14; 
-wire [22-1:0] calc_elem_15 = mac_a2accu_data15; 
-wire [22-1:0] calc_elem_16 = mac_b2accu_data0; 
-wire [22-1:0] calc_elem_17 = mac_b2accu_data1; 
-wire [22-1:0] calc_elem_18 = mac_b2accu_data2; 
-wire [22-1:0] calc_elem_19 = mac_b2accu_data3; 
-wire [22-1:0] calc_elem_20 = mac_b2accu_data4; 
-wire [22-1:0] calc_elem_21 = mac_b2accu_data5; 
-wire [22-1:0] calc_elem_22 = mac_b2accu_data6; 
-wire [22-1:0] calc_elem_23 = mac_b2accu_data7; 
-wire [22-1:0] calc_elem_24 = mac_b2accu_data8; 
-wire [22-1:0] calc_elem_25 = mac_b2accu_data9; 
-wire [22-1:0] calc_elem_26 = mac_b2accu_data10; 
-wire [22-1:0] calc_elem_27 = mac_b2accu_data11; 
-wire [22-1:0] calc_elem_28 = mac_b2accu_data12; 
-wire [22-1:0] calc_elem_29 = mac_b2accu_data13; 
-wire [22-1:0] calc_elem_30 = mac_b2accu_data14; 
-wire [22-1:0] calc_elem_31 = mac_b2accu_data15; 
+wire [21-1:0] calc_elem_0 = mac_a2accu_data0; 
+wire [21-1:0] calc_elem_1 = mac_a2accu_data1; 
+wire [21-1:0] calc_elem_2 = mac_a2accu_data2; 
+wire [21-1:0] calc_elem_3 = mac_a2accu_data3; 
+wire [21-1:0] calc_elem_4 = mac_a2accu_data4; 
+wire [21-1:0] calc_elem_5 = mac_a2accu_data5; 
+wire [21-1:0] calc_elem_6 = mac_a2accu_data6; 
+wire [21-1:0] calc_elem_7 = mac_a2accu_data7; 
+wire [21-1:0] calc_elem_8 = mac_a2accu_data8; 
+wire [21-1:0] calc_elem_9 = mac_a2accu_data9; 
+wire [21-1:0] calc_elem_10 = mac_a2accu_data10; 
+wire [21-1:0] calc_elem_11 = mac_a2accu_data11; 
+wire [21-1:0] calc_elem_12 = mac_a2accu_data12; 
+wire [21-1:0] calc_elem_13 = mac_a2accu_data13; 
+wire [21-1:0] calc_elem_14 = mac_a2accu_data14; 
+wire [21-1:0] calc_elem_15 = mac_a2accu_data15; 
+wire [21-1:0] calc_elem_16 = mac_b2accu_data0; 
+wire [21-1:0] calc_elem_17 = mac_b2accu_data1; 
+wire [21-1:0] calc_elem_18 = mac_b2accu_data2; 
+wire [21-1:0] calc_elem_19 = mac_b2accu_data3; 
+wire [21-1:0] calc_elem_20 = mac_b2accu_data4; 
+wire [21-1:0] calc_elem_21 = mac_b2accu_data5; 
+wire [21-1:0] calc_elem_22 = mac_b2accu_data6; 
+wire [21-1:0] calc_elem_23 = mac_b2accu_data7; 
+wire [21-1:0] calc_elem_24 = mac_b2accu_data8; 
+wire [21-1:0] calc_elem_25 = mac_b2accu_data9; 
+wire [21-1:0] calc_elem_26 = mac_b2accu_data10; 
+wire [21-1:0] calc_elem_27 = mac_b2accu_data11; 
+wire [21-1:0] calc_elem_28 = mac_b2accu_data12; 
+wire [21-1:0] calc_elem_29 = mac_b2accu_data13; 
+wire [21-1:0] calc_elem_30 = mac_b2accu_data14; 
+wire [21-1:0] calc_elem_31 = mac_b2accu_data15; 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire [32 -1:0] calc_in_mask = {mac_b2accu_mask, mac_a2accu_mask};
@@ -299,9 +299,9 @@ wire [32 -1:0] calc_op_en = calc_in_mask & {32{cfg_in_en_mask}};
 wire [32 -1:0] calc_op1_vld = calc_in_mask & {32{cfg_in_en_mask & accu_ctrl_ram_valid}};
 wire calc_dlv_valid = calc_valid & calc_channel_end;
 wire calc_wr_en = calc_valid & (~calc_channel_end);
-//: my $hh= 22-22;
+//: my $hh= 22-21;
 //: my $pp= 34;
-//: my $bb= 22;
+//: my $bb= 21;
 //: for(my $i = 0; $i <32; $i ++) {
 //: if($hh == 0) {
 //: print qq(
@@ -318,100 +318,100 @@ wire calc_wr_en = calc_valid & (~calc_channel_end);
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-wire [21:0]calc_op0_0 = {calc_elem_0};
+wire [21:0]calc_op0_0 = {{1{calc_elem_0[21-1]}},calc_elem_0};
 wire [34-1:0] calc_op1_0 = abuf_in_data_0;
 
-wire [21:0]calc_op0_1 = {calc_elem_1};
+wire [21:0]calc_op0_1 = {{1{calc_elem_1[21-1]}},calc_elem_1};
 wire [34-1:0] calc_op1_1 = abuf_in_data_1;
 
-wire [21:0]calc_op0_2 = {calc_elem_2};
+wire [21:0]calc_op0_2 = {{1{calc_elem_2[21-1]}},calc_elem_2};
 wire [34-1:0] calc_op1_2 = abuf_in_data_2;
 
-wire [21:0]calc_op0_3 = {calc_elem_3};
+wire [21:0]calc_op0_3 = {{1{calc_elem_3[21-1]}},calc_elem_3};
 wire [34-1:0] calc_op1_3 = abuf_in_data_3;
 
-wire [21:0]calc_op0_4 = {calc_elem_4};
+wire [21:0]calc_op0_4 = {{1{calc_elem_4[21-1]}},calc_elem_4};
 wire [34-1:0] calc_op1_4 = abuf_in_data_4;
 
-wire [21:0]calc_op0_5 = {calc_elem_5};
+wire [21:0]calc_op0_5 = {{1{calc_elem_5[21-1]}},calc_elem_5};
 wire [34-1:0] calc_op1_5 = abuf_in_data_5;
 
-wire [21:0]calc_op0_6 = {calc_elem_6};
+wire [21:0]calc_op0_6 = {{1{calc_elem_6[21-1]}},calc_elem_6};
 wire [34-1:0] calc_op1_6 = abuf_in_data_6;
 
-wire [21:0]calc_op0_7 = {calc_elem_7};
+wire [21:0]calc_op0_7 = {{1{calc_elem_7[21-1]}},calc_elem_7};
 wire [34-1:0] calc_op1_7 = abuf_in_data_7;
 
-wire [21:0]calc_op0_8 = {calc_elem_8};
+wire [21:0]calc_op0_8 = {{1{calc_elem_8[21-1]}},calc_elem_8};
 wire [34-1:0] calc_op1_8 = abuf_in_data_8;
 
-wire [21:0]calc_op0_9 = {calc_elem_9};
+wire [21:0]calc_op0_9 = {{1{calc_elem_9[21-1]}},calc_elem_9};
 wire [34-1:0] calc_op1_9 = abuf_in_data_9;
 
-wire [21:0]calc_op0_10 = {calc_elem_10};
+wire [21:0]calc_op0_10 = {{1{calc_elem_10[21-1]}},calc_elem_10};
 wire [34-1:0] calc_op1_10 = abuf_in_data_10;
 
-wire [21:0]calc_op0_11 = {calc_elem_11};
+wire [21:0]calc_op0_11 = {{1{calc_elem_11[21-1]}},calc_elem_11};
 wire [34-1:0] calc_op1_11 = abuf_in_data_11;
 
-wire [21:0]calc_op0_12 = {calc_elem_12};
+wire [21:0]calc_op0_12 = {{1{calc_elem_12[21-1]}},calc_elem_12};
 wire [34-1:0] calc_op1_12 = abuf_in_data_12;
 
-wire [21:0]calc_op0_13 = {calc_elem_13};
+wire [21:0]calc_op0_13 = {{1{calc_elem_13[21-1]}},calc_elem_13};
 wire [34-1:0] calc_op1_13 = abuf_in_data_13;
 
-wire [21:0]calc_op0_14 = {calc_elem_14};
+wire [21:0]calc_op0_14 = {{1{calc_elem_14[21-1]}},calc_elem_14};
 wire [34-1:0] calc_op1_14 = abuf_in_data_14;
 
-wire [21:0]calc_op0_15 = {calc_elem_15};
+wire [21:0]calc_op0_15 = {{1{calc_elem_15[21-1]}},calc_elem_15};
 wire [34-1:0] calc_op1_15 = abuf_in_data_15;
 
-wire [21:0]calc_op0_16 = {calc_elem_16};
+wire [21:0]calc_op0_16 = {{1{calc_elem_16[21-1]}},calc_elem_16};
 wire [34-1:0] calc_op1_16 = abuf_in_data_16;
 
-wire [21:0]calc_op0_17 = {calc_elem_17};
+wire [21:0]calc_op0_17 = {{1{calc_elem_17[21-1]}},calc_elem_17};
 wire [34-1:0] calc_op1_17 = abuf_in_data_17;
 
-wire [21:0]calc_op0_18 = {calc_elem_18};
+wire [21:0]calc_op0_18 = {{1{calc_elem_18[21-1]}},calc_elem_18};
 wire [34-1:0] calc_op1_18 = abuf_in_data_18;
 
-wire [21:0]calc_op0_19 = {calc_elem_19};
+wire [21:0]calc_op0_19 = {{1{calc_elem_19[21-1]}},calc_elem_19};
 wire [34-1:0] calc_op1_19 = abuf_in_data_19;
 
-wire [21:0]calc_op0_20 = {calc_elem_20};
+wire [21:0]calc_op0_20 = {{1{calc_elem_20[21-1]}},calc_elem_20};
 wire [34-1:0] calc_op1_20 = abuf_in_data_20;
 
-wire [21:0]calc_op0_21 = {calc_elem_21};
+wire [21:0]calc_op0_21 = {{1{calc_elem_21[21-1]}},calc_elem_21};
 wire [34-1:0] calc_op1_21 = abuf_in_data_21;
 
-wire [21:0]calc_op0_22 = {calc_elem_22};
+wire [21:0]calc_op0_22 = {{1{calc_elem_22[21-1]}},calc_elem_22};
 wire [34-1:0] calc_op1_22 = abuf_in_data_22;
 
-wire [21:0]calc_op0_23 = {calc_elem_23};
+wire [21:0]calc_op0_23 = {{1{calc_elem_23[21-1]}},calc_elem_23};
 wire [34-1:0] calc_op1_23 = abuf_in_data_23;
 
-wire [21:0]calc_op0_24 = {calc_elem_24};
+wire [21:0]calc_op0_24 = {{1{calc_elem_24[21-1]}},calc_elem_24};
 wire [34-1:0] calc_op1_24 = abuf_in_data_24;
 
-wire [21:0]calc_op0_25 = {calc_elem_25};
+wire [21:0]calc_op0_25 = {{1{calc_elem_25[21-1]}},calc_elem_25};
 wire [34-1:0] calc_op1_25 = abuf_in_data_25;
 
-wire [21:0]calc_op0_26 = {calc_elem_26};
+wire [21:0]calc_op0_26 = {{1{calc_elem_26[21-1]}},calc_elem_26};
 wire [34-1:0] calc_op1_26 = abuf_in_data_26;
 
-wire [21:0]calc_op0_27 = {calc_elem_27};
+wire [21:0]calc_op0_27 = {{1{calc_elem_27[21-1]}},calc_elem_27};
 wire [34-1:0] calc_op1_27 = abuf_in_data_27;
 
-wire [21:0]calc_op0_28 = {calc_elem_28};
+wire [21:0]calc_op0_28 = {{1{calc_elem_28[21-1]}},calc_elem_28};
 wire [34-1:0] calc_op1_28 = abuf_in_data_28;
 
-wire [21:0]calc_op0_29 = {calc_elem_29};
+wire [21:0]calc_op0_29 = {{1{calc_elem_29[21-1]}},calc_elem_29};
 wire [34-1:0] calc_op1_29 = abuf_in_data_29;
 
-wire [21:0]calc_op0_30 = {calc_elem_30};
+wire [21:0]calc_op0_30 = {{1{calc_elem_30[21-1]}},calc_elem_30};
 wire [34-1:0] calc_op1_30 = abuf_in_data_30;
 
-wire [21:0]calc_op0_31 = {calc_elem_31};
+wire [21:0]calc_op0_31 = {{1{calc_elem_31[21-1]}},calc_elem_31};
 wire [34-1:0] calc_op1_31 = abuf_in_data_31;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)

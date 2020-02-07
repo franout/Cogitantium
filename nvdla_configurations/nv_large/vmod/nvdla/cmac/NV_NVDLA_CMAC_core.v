@@ -22,7 +22,7 @@ module NV_NVDLA_CMAC_core (
   ,global_clk_ovr_on_sync //|< i
   ,reg2dp_conv_mode //|< i
   ,reg2dp_op_en //|< i
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print qq(
 //: ,sc2mac_dat_data${i} //|< i)
 //: }
@@ -60,43 +60,11 @@ module NV_NVDLA_CMAC_core (
 ,sc2mac_dat_data29 //|< i
 ,sc2mac_dat_data30 //|< i
 ,sc2mac_dat_data31 //|< i
-,sc2mac_dat_data32 //|< i
-,sc2mac_dat_data33 //|< i
-,sc2mac_dat_data34 //|< i
-,sc2mac_dat_data35 //|< i
-,sc2mac_dat_data36 //|< i
-,sc2mac_dat_data37 //|< i
-,sc2mac_dat_data38 //|< i
-,sc2mac_dat_data39 //|< i
-,sc2mac_dat_data40 //|< i
-,sc2mac_dat_data41 //|< i
-,sc2mac_dat_data42 //|< i
-,sc2mac_dat_data43 //|< i
-,sc2mac_dat_data44 //|< i
-,sc2mac_dat_data45 //|< i
-,sc2mac_dat_data46 //|< i
-,sc2mac_dat_data47 //|< i
-,sc2mac_dat_data48 //|< i
-,sc2mac_dat_data49 //|< i
-,sc2mac_dat_data50 //|< i
-,sc2mac_dat_data51 //|< i
-,sc2mac_dat_data52 //|< i
-,sc2mac_dat_data53 //|< i
-,sc2mac_dat_data54 //|< i
-,sc2mac_dat_data55 //|< i
-,sc2mac_dat_data56 //|< i
-,sc2mac_dat_data57 //|< i
-,sc2mac_dat_data58 //|< i
-,sc2mac_dat_data59 //|< i
-,sc2mac_dat_data60 //|< i
-,sc2mac_dat_data61 //|< i
-,sc2mac_dat_data62 //|< i
-,sc2mac_dat_data63 //|< i
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_dat_mask //|< i
   ,sc2mac_dat_pd //|< i
   ,sc2mac_dat_pvld //|< i
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print qq(
 //: ,sc2mac_wt_data${i} //|< i)
 //: }
@@ -134,38 +102,6 @@ module NV_NVDLA_CMAC_core (
 ,sc2mac_wt_data29 //|< i
 ,sc2mac_wt_data30 //|< i
 ,sc2mac_wt_data31 //|< i
-,sc2mac_wt_data32 //|< i
-,sc2mac_wt_data33 //|< i
-,sc2mac_wt_data34 //|< i
-,sc2mac_wt_data35 //|< i
-,sc2mac_wt_data36 //|< i
-,sc2mac_wt_data37 //|< i
-,sc2mac_wt_data38 //|< i
-,sc2mac_wt_data39 //|< i
-,sc2mac_wt_data40 //|< i
-,sc2mac_wt_data41 //|< i
-,sc2mac_wt_data42 //|< i
-,sc2mac_wt_data43 //|< i
-,sc2mac_wt_data44 //|< i
-,sc2mac_wt_data45 //|< i
-,sc2mac_wt_data46 //|< i
-,sc2mac_wt_data47 //|< i
-,sc2mac_wt_data48 //|< i
-,sc2mac_wt_data49 //|< i
-,sc2mac_wt_data50 //|< i
-,sc2mac_wt_data51 //|< i
-,sc2mac_wt_data52 //|< i
-,sc2mac_wt_data53 //|< i
-,sc2mac_wt_data54 //|< i
-,sc2mac_wt_data55 //|< i
-,sc2mac_wt_data56 //|< i
-,sc2mac_wt_data57 //|< i
-,sc2mac_wt_data58 //|< i
-,sc2mac_wt_data59 //|< i
-,sc2mac_wt_data60 //|< i
-,sc2mac_wt_data61 //|< i
-,sc2mac_wt_data62 //|< i
-,sc2mac_wt_data63 //|< i
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_wt_mask //|< i
   ,sc2mac_wt_pvld //|< i
@@ -207,8 +143,8 @@ module NV_NVDLA_CMAC_core (
 input nvdla_core_clk;
 input nvdla_core_rstn;
 input sc2mac_dat_pvld; /* data valid */
-input [64 -1:0] sc2mac_dat_mask;
-//: for(my $i=0; $i<64; $i++){
+input [32 -1:0] sc2mac_dat_mask;
+//: for(my $i=0; $i<32; $i++){
 //: print qq(
 //: input [8 -1:0] sc2mac_dat_data${i}; )
 //: }
@@ -246,43 +182,11 @@ input [8 -1:0] sc2mac_dat_data28;
 input [8 -1:0] sc2mac_dat_data29; 
 input [8 -1:0] sc2mac_dat_data30; 
 input [8 -1:0] sc2mac_dat_data31; 
-input [8 -1:0] sc2mac_dat_data32; 
-input [8 -1:0] sc2mac_dat_data33; 
-input [8 -1:0] sc2mac_dat_data34; 
-input [8 -1:0] sc2mac_dat_data35; 
-input [8 -1:0] sc2mac_dat_data36; 
-input [8 -1:0] sc2mac_dat_data37; 
-input [8 -1:0] sc2mac_dat_data38; 
-input [8 -1:0] sc2mac_dat_data39; 
-input [8 -1:0] sc2mac_dat_data40; 
-input [8 -1:0] sc2mac_dat_data41; 
-input [8 -1:0] sc2mac_dat_data42; 
-input [8 -1:0] sc2mac_dat_data43; 
-input [8 -1:0] sc2mac_dat_data44; 
-input [8 -1:0] sc2mac_dat_data45; 
-input [8 -1:0] sc2mac_dat_data46; 
-input [8 -1:0] sc2mac_dat_data47; 
-input [8 -1:0] sc2mac_dat_data48; 
-input [8 -1:0] sc2mac_dat_data49; 
-input [8 -1:0] sc2mac_dat_data50; 
-input [8 -1:0] sc2mac_dat_data51; 
-input [8 -1:0] sc2mac_dat_data52; 
-input [8 -1:0] sc2mac_dat_data53; 
-input [8 -1:0] sc2mac_dat_data54; 
-input [8 -1:0] sc2mac_dat_data55; 
-input [8 -1:0] sc2mac_dat_data56; 
-input [8 -1:0] sc2mac_dat_data57; 
-input [8 -1:0] sc2mac_dat_data58; 
-input [8 -1:0] sc2mac_dat_data59; 
-input [8 -1:0] sc2mac_dat_data60; 
-input [8 -1:0] sc2mac_dat_data61; 
-input [8 -1:0] sc2mac_dat_data62; 
-input [8 -1:0] sc2mac_dat_data63; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] sc2mac_dat_pd;
 input sc2mac_wt_pvld; /* data valid */
-input [64 -1:0] sc2mac_wt_mask;
-//: for(my $i=0; $i<64; $i++){
+input [32 -1:0] sc2mac_wt_mask;
+//: for(my $i=0; $i<32; $i++){
 //: print qq(
 //: input [8 -1:0] sc2mac_wt_data${i}; )
 //: }
@@ -320,38 +224,6 @@ input [8 -1:0] sc2mac_wt_data28;
 input [8 -1:0] sc2mac_wt_data29; 
 input [8 -1:0] sc2mac_wt_data30; 
 input [8 -1:0] sc2mac_wt_data31; 
-input [8 -1:0] sc2mac_wt_data32; 
-input [8 -1:0] sc2mac_wt_data33; 
-input [8 -1:0] sc2mac_wt_data34; 
-input [8 -1:0] sc2mac_wt_data35; 
-input [8 -1:0] sc2mac_wt_data36; 
-input [8 -1:0] sc2mac_wt_data37; 
-input [8 -1:0] sc2mac_wt_data38; 
-input [8 -1:0] sc2mac_wt_data39; 
-input [8 -1:0] sc2mac_wt_data40; 
-input [8 -1:0] sc2mac_wt_data41; 
-input [8 -1:0] sc2mac_wt_data42; 
-input [8 -1:0] sc2mac_wt_data43; 
-input [8 -1:0] sc2mac_wt_data44; 
-input [8 -1:0] sc2mac_wt_data45; 
-input [8 -1:0] sc2mac_wt_data46; 
-input [8 -1:0] sc2mac_wt_data47; 
-input [8 -1:0] sc2mac_wt_data48; 
-input [8 -1:0] sc2mac_wt_data49; 
-input [8 -1:0] sc2mac_wt_data50; 
-input [8 -1:0] sc2mac_wt_data51; 
-input [8 -1:0] sc2mac_wt_data52; 
-input [8 -1:0] sc2mac_wt_data53; 
-input [8 -1:0] sc2mac_wt_data54; 
-input [8 -1:0] sc2mac_wt_data55; 
-input [8 -1:0] sc2mac_wt_data56; 
-input [8 -1:0] sc2mac_wt_data57; 
-input [8 -1:0] sc2mac_wt_data58; 
-input [8 -1:0] sc2mac_wt_data59; 
-input [8 -1:0] sc2mac_wt_data60; 
-input [8 -1:0] sc2mac_wt_data61; 
-input [8 -1:0] sc2mac_wt_data62; 
-input [8 -1:0] sc2mac_wt_data63; 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [32/2 -1:0] sc2mac_wt_sel;
 output mac2accu_pvld; /* data valid */
@@ -359,26 +231,26 @@ output [32/2 -1:0] mac2accu_mask;
 output mac2accu_mode;
 //: for(my $i=0; $i<32/2; $i++){
 //: print qq(
-//: output [22 -1:0] mac2accu_data${i}; //|< i )
+//: output [21 -1:0] mac2accu_data${i}; //|< i )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [22 -1:0] mac2accu_data0; //|< i 
-output [22 -1:0] mac2accu_data1; //|< i 
-output [22 -1:0] mac2accu_data2; //|< i 
-output [22 -1:0] mac2accu_data3; //|< i 
-output [22 -1:0] mac2accu_data4; //|< i 
-output [22 -1:0] mac2accu_data5; //|< i 
-output [22 -1:0] mac2accu_data6; //|< i 
-output [22 -1:0] mac2accu_data7; //|< i 
-output [22 -1:0] mac2accu_data8; //|< i 
-output [22 -1:0] mac2accu_data9; //|< i 
-output [22 -1:0] mac2accu_data10; //|< i 
-output [22 -1:0] mac2accu_data11; //|< i 
-output [22 -1:0] mac2accu_data12; //|< i 
-output [22 -1:0] mac2accu_data13; //|< i 
-output [22 -1:0] mac2accu_data14; //|< i 
-output [22 -1:0] mac2accu_data15; //|< i 
+output [21 -1:0] mac2accu_data0; //|< i 
+output [21 -1:0] mac2accu_data1; //|< i 
+output [21 -1:0] mac2accu_data2; //|< i 
+output [21 -1:0] mac2accu_data3; //|< i 
+output [21 -1:0] mac2accu_data4; //|< i 
+output [21 -1:0] mac2accu_data5; //|< i 
+output [21 -1:0] mac2accu_data6; //|< i 
+output [21 -1:0] mac2accu_data7; //|< i 
+output [21 -1:0] mac2accu_data8; //|< i 
+output [21 -1:0] mac2accu_data9; //|< i 
+output [21 -1:0] mac2accu_data10; //|< i 
+output [21 -1:0] mac2accu_data11; //|< i 
+output [21 -1:0] mac2accu_data12; //|< i 
+output [21 -1:0] mac2accu_data13; //|< i 
+output [21 -1:0] mac2accu_data14; //|< i 
+output [21 -1:0] mac2accu_data15; //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [8:0] mac2accu_pd;
 input [0:0] reg2dp_op_en;
@@ -424,31 +296,31 @@ NV_NVDLA_CMAC_CORE_cfg u_cfg (
 wire in_dat_pvld;
 assign mac2accu_mode = 1'b0;
 wire [8:0] in_dat_pd;
-wire [64 -1:0] in_wt_mask;
+wire [32 -1:0] in_wt_mask;
 wire in_wt_pvld;
 wire [32/2 -1:0] in_wt_sel;
-wire [64 -1:0] in_dat_mask;
+wire [32 -1:0] in_dat_mask;
 wire in_dat_stripe_end;
 wire in_dat_stripe_st;
 wire [32/2 -1:0] out_mask;
-//: for (my $i=0; $i < 64; ++$i) {
+//: for (my $i=0; $i < 32; ++$i) {
 //: print qq(
 //: wire [8 -1:0] in_dat_data${i};
 //: wire [8 -1:0] in_wt_data${i}; );
 //: }
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: wire [8*64 -1:0] dat${i}_actv_data;
-//: wire [64 -1:0] dat${i}_actv_nz;
-//: wire [64 -1:0] dat${i}_actv_pvld;
-//: wire [64 -1:0] dat${i}_pre_mask;
+//: wire [8*32 -1:0] dat${i}_actv_data;
+//: wire [32 -1:0] dat${i}_actv_nz;
+//: wire [32 -1:0] dat${i}_actv_pvld;
+//: wire [32 -1:0] dat${i}_pre_mask;
 //: wire dat${i}_pre_pvld;
 //: wire dat${i}_pre_stripe_end;
 //: wire dat${i}_pre_stripe_st;
-//: wire [8*64 -1:0] wt${i}_actv_data;
-//: wire [64 -1:0] wt${i}_actv_nz;
-//: wire [64 -1:0] wt${i}_actv_pvld;
-//: wire [64 -1:0] wt${i}_sd_mask;
+//: wire [8*32 -1:0] wt${i}_actv_data;
+//: wire [32 -1:0] wt${i}_actv_nz;
+//: wire [32 -1:0] wt${i}_actv_pvld;
+//: wire [32 -1:0] wt${i}_sd_mask;
 //: wire wt${i}_sd_pvld;
 //: );
 //: }
@@ -520,276 +392,212 @@ wire [8 -1:0] in_dat_data30;
 wire [8 -1:0] in_wt_data30; 
 wire [8 -1:0] in_dat_data31;
 wire [8 -1:0] in_wt_data31; 
-wire [8 -1:0] in_dat_data32;
-wire [8 -1:0] in_wt_data32; 
-wire [8 -1:0] in_dat_data33;
-wire [8 -1:0] in_wt_data33; 
-wire [8 -1:0] in_dat_data34;
-wire [8 -1:0] in_wt_data34; 
-wire [8 -1:0] in_dat_data35;
-wire [8 -1:0] in_wt_data35; 
-wire [8 -1:0] in_dat_data36;
-wire [8 -1:0] in_wt_data36; 
-wire [8 -1:0] in_dat_data37;
-wire [8 -1:0] in_wt_data37; 
-wire [8 -1:0] in_dat_data38;
-wire [8 -1:0] in_wt_data38; 
-wire [8 -1:0] in_dat_data39;
-wire [8 -1:0] in_wt_data39; 
-wire [8 -1:0] in_dat_data40;
-wire [8 -1:0] in_wt_data40; 
-wire [8 -1:0] in_dat_data41;
-wire [8 -1:0] in_wt_data41; 
-wire [8 -1:0] in_dat_data42;
-wire [8 -1:0] in_wt_data42; 
-wire [8 -1:0] in_dat_data43;
-wire [8 -1:0] in_wt_data43; 
-wire [8 -1:0] in_dat_data44;
-wire [8 -1:0] in_wt_data44; 
-wire [8 -1:0] in_dat_data45;
-wire [8 -1:0] in_wt_data45; 
-wire [8 -1:0] in_dat_data46;
-wire [8 -1:0] in_wt_data46; 
-wire [8 -1:0] in_dat_data47;
-wire [8 -1:0] in_wt_data47; 
-wire [8 -1:0] in_dat_data48;
-wire [8 -1:0] in_wt_data48; 
-wire [8 -1:0] in_dat_data49;
-wire [8 -1:0] in_wt_data49; 
-wire [8 -1:0] in_dat_data50;
-wire [8 -1:0] in_wt_data50; 
-wire [8 -1:0] in_dat_data51;
-wire [8 -1:0] in_wt_data51; 
-wire [8 -1:0] in_dat_data52;
-wire [8 -1:0] in_wt_data52; 
-wire [8 -1:0] in_dat_data53;
-wire [8 -1:0] in_wt_data53; 
-wire [8 -1:0] in_dat_data54;
-wire [8 -1:0] in_wt_data54; 
-wire [8 -1:0] in_dat_data55;
-wire [8 -1:0] in_wt_data55; 
-wire [8 -1:0] in_dat_data56;
-wire [8 -1:0] in_wt_data56; 
-wire [8 -1:0] in_dat_data57;
-wire [8 -1:0] in_wt_data57; 
-wire [8 -1:0] in_dat_data58;
-wire [8 -1:0] in_wt_data58; 
-wire [8 -1:0] in_dat_data59;
-wire [8 -1:0] in_wt_data59; 
-wire [8 -1:0] in_dat_data60;
-wire [8 -1:0] in_wt_data60; 
-wire [8 -1:0] in_dat_data61;
-wire [8 -1:0] in_wt_data61; 
-wire [8 -1:0] in_dat_data62;
-wire [8 -1:0] in_wt_data62; 
-wire [8 -1:0] in_dat_data63;
-wire [8 -1:0] in_wt_data63; 
-wire [8*64 -1:0] dat0_actv_data;
-wire [64 -1:0] dat0_actv_nz;
-wire [64 -1:0] dat0_actv_pvld;
-wire [64 -1:0] dat0_pre_mask;
+wire [8*32 -1:0] dat0_actv_data;
+wire [32 -1:0] dat0_actv_nz;
+wire [32 -1:0] dat0_actv_pvld;
+wire [32 -1:0] dat0_pre_mask;
 wire dat0_pre_pvld;
 wire dat0_pre_stripe_end;
 wire dat0_pre_stripe_st;
-wire [8*64 -1:0] wt0_actv_data;
-wire [64 -1:0] wt0_actv_nz;
-wire [64 -1:0] wt0_actv_pvld;
-wire [64 -1:0] wt0_sd_mask;
+wire [8*32 -1:0] wt0_actv_data;
+wire [32 -1:0] wt0_actv_nz;
+wire [32 -1:0] wt0_actv_pvld;
+wire [32 -1:0] wt0_sd_mask;
 wire wt0_sd_pvld;
 
-wire [8*64 -1:0] dat1_actv_data;
-wire [64 -1:0] dat1_actv_nz;
-wire [64 -1:0] dat1_actv_pvld;
-wire [64 -1:0] dat1_pre_mask;
+wire [8*32 -1:0] dat1_actv_data;
+wire [32 -1:0] dat1_actv_nz;
+wire [32 -1:0] dat1_actv_pvld;
+wire [32 -1:0] dat1_pre_mask;
 wire dat1_pre_pvld;
 wire dat1_pre_stripe_end;
 wire dat1_pre_stripe_st;
-wire [8*64 -1:0] wt1_actv_data;
-wire [64 -1:0] wt1_actv_nz;
-wire [64 -1:0] wt1_actv_pvld;
-wire [64 -1:0] wt1_sd_mask;
+wire [8*32 -1:0] wt1_actv_data;
+wire [32 -1:0] wt1_actv_nz;
+wire [32 -1:0] wt1_actv_pvld;
+wire [32 -1:0] wt1_sd_mask;
 wire wt1_sd_pvld;
 
-wire [8*64 -1:0] dat2_actv_data;
-wire [64 -1:0] dat2_actv_nz;
-wire [64 -1:0] dat2_actv_pvld;
-wire [64 -1:0] dat2_pre_mask;
+wire [8*32 -1:0] dat2_actv_data;
+wire [32 -1:0] dat2_actv_nz;
+wire [32 -1:0] dat2_actv_pvld;
+wire [32 -1:0] dat2_pre_mask;
 wire dat2_pre_pvld;
 wire dat2_pre_stripe_end;
 wire dat2_pre_stripe_st;
-wire [8*64 -1:0] wt2_actv_data;
-wire [64 -1:0] wt2_actv_nz;
-wire [64 -1:0] wt2_actv_pvld;
-wire [64 -1:0] wt2_sd_mask;
+wire [8*32 -1:0] wt2_actv_data;
+wire [32 -1:0] wt2_actv_nz;
+wire [32 -1:0] wt2_actv_pvld;
+wire [32 -1:0] wt2_sd_mask;
 wire wt2_sd_pvld;
 
-wire [8*64 -1:0] dat3_actv_data;
-wire [64 -1:0] dat3_actv_nz;
-wire [64 -1:0] dat3_actv_pvld;
-wire [64 -1:0] dat3_pre_mask;
+wire [8*32 -1:0] dat3_actv_data;
+wire [32 -1:0] dat3_actv_nz;
+wire [32 -1:0] dat3_actv_pvld;
+wire [32 -1:0] dat3_pre_mask;
 wire dat3_pre_pvld;
 wire dat3_pre_stripe_end;
 wire dat3_pre_stripe_st;
-wire [8*64 -1:0] wt3_actv_data;
-wire [64 -1:0] wt3_actv_nz;
-wire [64 -1:0] wt3_actv_pvld;
-wire [64 -1:0] wt3_sd_mask;
+wire [8*32 -1:0] wt3_actv_data;
+wire [32 -1:0] wt3_actv_nz;
+wire [32 -1:0] wt3_actv_pvld;
+wire [32 -1:0] wt3_sd_mask;
 wire wt3_sd_pvld;
 
-wire [8*64 -1:0] dat4_actv_data;
-wire [64 -1:0] dat4_actv_nz;
-wire [64 -1:0] dat4_actv_pvld;
-wire [64 -1:0] dat4_pre_mask;
+wire [8*32 -1:0] dat4_actv_data;
+wire [32 -1:0] dat4_actv_nz;
+wire [32 -1:0] dat4_actv_pvld;
+wire [32 -1:0] dat4_pre_mask;
 wire dat4_pre_pvld;
 wire dat4_pre_stripe_end;
 wire dat4_pre_stripe_st;
-wire [8*64 -1:0] wt4_actv_data;
-wire [64 -1:0] wt4_actv_nz;
-wire [64 -1:0] wt4_actv_pvld;
-wire [64 -1:0] wt4_sd_mask;
+wire [8*32 -1:0] wt4_actv_data;
+wire [32 -1:0] wt4_actv_nz;
+wire [32 -1:0] wt4_actv_pvld;
+wire [32 -1:0] wt4_sd_mask;
 wire wt4_sd_pvld;
 
-wire [8*64 -1:0] dat5_actv_data;
-wire [64 -1:0] dat5_actv_nz;
-wire [64 -1:0] dat5_actv_pvld;
-wire [64 -1:0] dat5_pre_mask;
+wire [8*32 -1:0] dat5_actv_data;
+wire [32 -1:0] dat5_actv_nz;
+wire [32 -1:0] dat5_actv_pvld;
+wire [32 -1:0] dat5_pre_mask;
 wire dat5_pre_pvld;
 wire dat5_pre_stripe_end;
 wire dat5_pre_stripe_st;
-wire [8*64 -1:0] wt5_actv_data;
-wire [64 -1:0] wt5_actv_nz;
-wire [64 -1:0] wt5_actv_pvld;
-wire [64 -1:0] wt5_sd_mask;
+wire [8*32 -1:0] wt5_actv_data;
+wire [32 -1:0] wt5_actv_nz;
+wire [32 -1:0] wt5_actv_pvld;
+wire [32 -1:0] wt5_sd_mask;
 wire wt5_sd_pvld;
 
-wire [8*64 -1:0] dat6_actv_data;
-wire [64 -1:0] dat6_actv_nz;
-wire [64 -1:0] dat6_actv_pvld;
-wire [64 -1:0] dat6_pre_mask;
+wire [8*32 -1:0] dat6_actv_data;
+wire [32 -1:0] dat6_actv_nz;
+wire [32 -1:0] dat6_actv_pvld;
+wire [32 -1:0] dat6_pre_mask;
 wire dat6_pre_pvld;
 wire dat6_pre_stripe_end;
 wire dat6_pre_stripe_st;
-wire [8*64 -1:0] wt6_actv_data;
-wire [64 -1:0] wt6_actv_nz;
-wire [64 -1:0] wt6_actv_pvld;
-wire [64 -1:0] wt6_sd_mask;
+wire [8*32 -1:0] wt6_actv_data;
+wire [32 -1:0] wt6_actv_nz;
+wire [32 -1:0] wt6_actv_pvld;
+wire [32 -1:0] wt6_sd_mask;
 wire wt6_sd_pvld;
 
-wire [8*64 -1:0] dat7_actv_data;
-wire [64 -1:0] dat7_actv_nz;
-wire [64 -1:0] dat7_actv_pvld;
-wire [64 -1:0] dat7_pre_mask;
+wire [8*32 -1:0] dat7_actv_data;
+wire [32 -1:0] dat7_actv_nz;
+wire [32 -1:0] dat7_actv_pvld;
+wire [32 -1:0] dat7_pre_mask;
 wire dat7_pre_pvld;
 wire dat7_pre_stripe_end;
 wire dat7_pre_stripe_st;
-wire [8*64 -1:0] wt7_actv_data;
-wire [64 -1:0] wt7_actv_nz;
-wire [64 -1:0] wt7_actv_pvld;
-wire [64 -1:0] wt7_sd_mask;
+wire [8*32 -1:0] wt7_actv_data;
+wire [32 -1:0] wt7_actv_nz;
+wire [32 -1:0] wt7_actv_pvld;
+wire [32 -1:0] wt7_sd_mask;
 wire wt7_sd_pvld;
 
-wire [8*64 -1:0] dat8_actv_data;
-wire [64 -1:0] dat8_actv_nz;
-wire [64 -1:0] dat8_actv_pvld;
-wire [64 -1:0] dat8_pre_mask;
+wire [8*32 -1:0] dat8_actv_data;
+wire [32 -1:0] dat8_actv_nz;
+wire [32 -1:0] dat8_actv_pvld;
+wire [32 -1:0] dat8_pre_mask;
 wire dat8_pre_pvld;
 wire dat8_pre_stripe_end;
 wire dat8_pre_stripe_st;
-wire [8*64 -1:0] wt8_actv_data;
-wire [64 -1:0] wt8_actv_nz;
-wire [64 -1:0] wt8_actv_pvld;
-wire [64 -1:0] wt8_sd_mask;
+wire [8*32 -1:0] wt8_actv_data;
+wire [32 -1:0] wt8_actv_nz;
+wire [32 -1:0] wt8_actv_pvld;
+wire [32 -1:0] wt8_sd_mask;
 wire wt8_sd_pvld;
 
-wire [8*64 -1:0] dat9_actv_data;
-wire [64 -1:0] dat9_actv_nz;
-wire [64 -1:0] dat9_actv_pvld;
-wire [64 -1:0] dat9_pre_mask;
+wire [8*32 -1:0] dat9_actv_data;
+wire [32 -1:0] dat9_actv_nz;
+wire [32 -1:0] dat9_actv_pvld;
+wire [32 -1:0] dat9_pre_mask;
 wire dat9_pre_pvld;
 wire dat9_pre_stripe_end;
 wire dat9_pre_stripe_st;
-wire [8*64 -1:0] wt9_actv_data;
-wire [64 -1:0] wt9_actv_nz;
-wire [64 -1:0] wt9_actv_pvld;
-wire [64 -1:0] wt9_sd_mask;
+wire [8*32 -1:0] wt9_actv_data;
+wire [32 -1:0] wt9_actv_nz;
+wire [32 -1:0] wt9_actv_pvld;
+wire [32 -1:0] wt9_sd_mask;
 wire wt9_sd_pvld;
 
-wire [8*64 -1:0] dat10_actv_data;
-wire [64 -1:0] dat10_actv_nz;
-wire [64 -1:0] dat10_actv_pvld;
-wire [64 -1:0] dat10_pre_mask;
+wire [8*32 -1:0] dat10_actv_data;
+wire [32 -1:0] dat10_actv_nz;
+wire [32 -1:0] dat10_actv_pvld;
+wire [32 -1:0] dat10_pre_mask;
 wire dat10_pre_pvld;
 wire dat10_pre_stripe_end;
 wire dat10_pre_stripe_st;
-wire [8*64 -1:0] wt10_actv_data;
-wire [64 -1:0] wt10_actv_nz;
-wire [64 -1:0] wt10_actv_pvld;
-wire [64 -1:0] wt10_sd_mask;
+wire [8*32 -1:0] wt10_actv_data;
+wire [32 -1:0] wt10_actv_nz;
+wire [32 -1:0] wt10_actv_pvld;
+wire [32 -1:0] wt10_sd_mask;
 wire wt10_sd_pvld;
 
-wire [8*64 -1:0] dat11_actv_data;
-wire [64 -1:0] dat11_actv_nz;
-wire [64 -1:0] dat11_actv_pvld;
-wire [64 -1:0] dat11_pre_mask;
+wire [8*32 -1:0] dat11_actv_data;
+wire [32 -1:0] dat11_actv_nz;
+wire [32 -1:0] dat11_actv_pvld;
+wire [32 -1:0] dat11_pre_mask;
 wire dat11_pre_pvld;
 wire dat11_pre_stripe_end;
 wire dat11_pre_stripe_st;
-wire [8*64 -1:0] wt11_actv_data;
-wire [64 -1:0] wt11_actv_nz;
-wire [64 -1:0] wt11_actv_pvld;
-wire [64 -1:0] wt11_sd_mask;
+wire [8*32 -1:0] wt11_actv_data;
+wire [32 -1:0] wt11_actv_nz;
+wire [32 -1:0] wt11_actv_pvld;
+wire [32 -1:0] wt11_sd_mask;
 wire wt11_sd_pvld;
 
-wire [8*64 -1:0] dat12_actv_data;
-wire [64 -1:0] dat12_actv_nz;
-wire [64 -1:0] dat12_actv_pvld;
-wire [64 -1:0] dat12_pre_mask;
+wire [8*32 -1:0] dat12_actv_data;
+wire [32 -1:0] dat12_actv_nz;
+wire [32 -1:0] dat12_actv_pvld;
+wire [32 -1:0] dat12_pre_mask;
 wire dat12_pre_pvld;
 wire dat12_pre_stripe_end;
 wire dat12_pre_stripe_st;
-wire [8*64 -1:0] wt12_actv_data;
-wire [64 -1:0] wt12_actv_nz;
-wire [64 -1:0] wt12_actv_pvld;
-wire [64 -1:0] wt12_sd_mask;
+wire [8*32 -1:0] wt12_actv_data;
+wire [32 -1:0] wt12_actv_nz;
+wire [32 -1:0] wt12_actv_pvld;
+wire [32 -1:0] wt12_sd_mask;
 wire wt12_sd_pvld;
 
-wire [8*64 -1:0] dat13_actv_data;
-wire [64 -1:0] dat13_actv_nz;
-wire [64 -1:0] dat13_actv_pvld;
-wire [64 -1:0] dat13_pre_mask;
+wire [8*32 -1:0] dat13_actv_data;
+wire [32 -1:0] dat13_actv_nz;
+wire [32 -1:0] dat13_actv_pvld;
+wire [32 -1:0] dat13_pre_mask;
 wire dat13_pre_pvld;
 wire dat13_pre_stripe_end;
 wire dat13_pre_stripe_st;
-wire [8*64 -1:0] wt13_actv_data;
-wire [64 -1:0] wt13_actv_nz;
-wire [64 -1:0] wt13_actv_pvld;
-wire [64 -1:0] wt13_sd_mask;
+wire [8*32 -1:0] wt13_actv_data;
+wire [32 -1:0] wt13_actv_nz;
+wire [32 -1:0] wt13_actv_pvld;
+wire [32 -1:0] wt13_sd_mask;
 wire wt13_sd_pvld;
 
-wire [8*64 -1:0] dat14_actv_data;
-wire [64 -1:0] dat14_actv_nz;
-wire [64 -1:0] dat14_actv_pvld;
-wire [64 -1:0] dat14_pre_mask;
+wire [8*32 -1:0] dat14_actv_data;
+wire [32 -1:0] dat14_actv_nz;
+wire [32 -1:0] dat14_actv_pvld;
+wire [32 -1:0] dat14_pre_mask;
 wire dat14_pre_pvld;
 wire dat14_pre_stripe_end;
 wire dat14_pre_stripe_st;
-wire [8*64 -1:0] wt14_actv_data;
-wire [64 -1:0] wt14_actv_nz;
-wire [64 -1:0] wt14_actv_pvld;
-wire [64 -1:0] wt14_sd_mask;
+wire [8*32 -1:0] wt14_actv_data;
+wire [32 -1:0] wt14_actv_nz;
+wire [32 -1:0] wt14_actv_pvld;
+wire [32 -1:0] wt14_sd_mask;
 wire wt14_sd_pvld;
 
-wire [8*64 -1:0] dat15_actv_data;
-wire [64 -1:0] dat15_actv_nz;
-wire [64 -1:0] dat15_actv_pvld;
-wire [64 -1:0] dat15_pre_mask;
+wire [8*32 -1:0] dat15_actv_data;
+wire [32 -1:0] dat15_actv_nz;
+wire [32 -1:0] dat15_actv_pvld;
+wire [32 -1:0] dat15_pre_mask;
 wire dat15_pre_pvld;
 wire dat15_pre_stripe_end;
 wire dat15_pre_stripe_st;
-wire [8*64 -1:0] wt15_actv_data;
-wire [64 -1:0] wt15_actv_nz;
-wire [64 -1:0] wt15_actv_pvld;
-wire [64 -1:0] wt15_sd_mask;
+wire [8*32 -1:0] wt15_actv_data;
+wire [32 -1:0] wt15_actv_nz;
+wire [32 -1:0] wt15_actv_pvld;
+wire [32 -1:0] wt15_sd_mask;
 wire wt15_sd_pvld;
 reg [9-1:0] in_dat_pd_d1;
 always @(posedge nvdla_core_clk) begin
@@ -835,7 +643,7 @@ assign out_pvld = in_dat_pvld_d2;
 .nvdla_core_clk (nvdla_op_gated_clk_16) //|< w  
 //| eperl: generated_end (DO NOT EDIT ABOVE)
  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_dat_data${i} (sc2mac_dat_data${i}) //|< i )
 //: }
@@ -873,43 +681,11 @@ assign out_pvld = in_dat_pvld_d2;
 ,.sc2mac_dat_data29 (sc2mac_dat_data29) //|< i 
 ,.sc2mac_dat_data30 (sc2mac_dat_data30) //|< i 
 ,.sc2mac_dat_data31 (sc2mac_dat_data31) //|< i 
-,.sc2mac_dat_data32 (sc2mac_dat_data32) //|< i 
-,.sc2mac_dat_data33 (sc2mac_dat_data33) //|< i 
-,.sc2mac_dat_data34 (sc2mac_dat_data34) //|< i 
-,.sc2mac_dat_data35 (sc2mac_dat_data35) //|< i 
-,.sc2mac_dat_data36 (sc2mac_dat_data36) //|< i 
-,.sc2mac_dat_data37 (sc2mac_dat_data37) //|< i 
-,.sc2mac_dat_data38 (sc2mac_dat_data38) //|< i 
-,.sc2mac_dat_data39 (sc2mac_dat_data39) //|< i 
-,.sc2mac_dat_data40 (sc2mac_dat_data40) //|< i 
-,.sc2mac_dat_data41 (sc2mac_dat_data41) //|< i 
-,.sc2mac_dat_data42 (sc2mac_dat_data42) //|< i 
-,.sc2mac_dat_data43 (sc2mac_dat_data43) //|< i 
-,.sc2mac_dat_data44 (sc2mac_dat_data44) //|< i 
-,.sc2mac_dat_data45 (sc2mac_dat_data45) //|< i 
-,.sc2mac_dat_data46 (sc2mac_dat_data46) //|< i 
-,.sc2mac_dat_data47 (sc2mac_dat_data47) //|< i 
-,.sc2mac_dat_data48 (sc2mac_dat_data48) //|< i 
-,.sc2mac_dat_data49 (sc2mac_dat_data49) //|< i 
-,.sc2mac_dat_data50 (sc2mac_dat_data50) //|< i 
-,.sc2mac_dat_data51 (sc2mac_dat_data51) //|< i 
-,.sc2mac_dat_data52 (sc2mac_dat_data52) //|< i 
-,.sc2mac_dat_data53 (sc2mac_dat_data53) //|< i 
-,.sc2mac_dat_data54 (sc2mac_dat_data54) //|< i 
-,.sc2mac_dat_data55 (sc2mac_dat_data55) //|< i 
-,.sc2mac_dat_data56 (sc2mac_dat_data56) //|< i 
-,.sc2mac_dat_data57 (sc2mac_dat_data57) //|< i 
-,.sc2mac_dat_data58 (sc2mac_dat_data58) //|< i 
-,.sc2mac_dat_data59 (sc2mac_dat_data59) //|< i 
-,.sc2mac_dat_data60 (sc2mac_dat_data60) //|< i 
-,.sc2mac_dat_data61 (sc2mac_dat_data61) //|< i 
-,.sc2mac_dat_data62 (sc2mac_dat_data62) //|< i 
-,.sc2mac_dat_data63 (sc2mac_dat_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_dat_mask (sc2mac_dat_mask) //|< i
   ,.sc2mac_dat_pd (sc2mac_dat_pd) //|< i
   ,.sc2mac_dat_pvld (sc2mac_dat_pvld) //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_wt_data${i} (sc2mac_wt_data${i}) //|< i )
 //: }
@@ -947,43 +723,11 @@ assign out_pvld = in_dat_pvld_d2;
 ,.sc2mac_wt_data29 (sc2mac_wt_data29) //|< i 
 ,.sc2mac_wt_data30 (sc2mac_wt_data30) //|< i 
 ,.sc2mac_wt_data31 (sc2mac_wt_data31) //|< i 
-,.sc2mac_wt_data32 (sc2mac_wt_data32) //|< i 
-,.sc2mac_wt_data33 (sc2mac_wt_data33) //|< i 
-,.sc2mac_wt_data34 (sc2mac_wt_data34) //|< i 
-,.sc2mac_wt_data35 (sc2mac_wt_data35) //|< i 
-,.sc2mac_wt_data36 (sc2mac_wt_data36) //|< i 
-,.sc2mac_wt_data37 (sc2mac_wt_data37) //|< i 
-,.sc2mac_wt_data38 (sc2mac_wt_data38) //|< i 
-,.sc2mac_wt_data39 (sc2mac_wt_data39) //|< i 
-,.sc2mac_wt_data40 (sc2mac_wt_data40) //|< i 
-,.sc2mac_wt_data41 (sc2mac_wt_data41) //|< i 
-,.sc2mac_wt_data42 (sc2mac_wt_data42) //|< i 
-,.sc2mac_wt_data43 (sc2mac_wt_data43) //|< i 
-,.sc2mac_wt_data44 (sc2mac_wt_data44) //|< i 
-,.sc2mac_wt_data45 (sc2mac_wt_data45) //|< i 
-,.sc2mac_wt_data46 (sc2mac_wt_data46) //|< i 
-,.sc2mac_wt_data47 (sc2mac_wt_data47) //|< i 
-,.sc2mac_wt_data48 (sc2mac_wt_data48) //|< i 
-,.sc2mac_wt_data49 (sc2mac_wt_data49) //|< i 
-,.sc2mac_wt_data50 (sc2mac_wt_data50) //|< i 
-,.sc2mac_wt_data51 (sc2mac_wt_data51) //|< i 
-,.sc2mac_wt_data52 (sc2mac_wt_data52) //|< i 
-,.sc2mac_wt_data53 (sc2mac_wt_data53) //|< i 
-,.sc2mac_wt_data54 (sc2mac_wt_data54) //|< i 
-,.sc2mac_wt_data55 (sc2mac_wt_data55) //|< i 
-,.sc2mac_wt_data56 (sc2mac_wt_data56) //|< i 
-,.sc2mac_wt_data57 (sc2mac_wt_data57) //|< i 
-,.sc2mac_wt_data58 (sc2mac_wt_data58) //|< i 
-,.sc2mac_wt_data59 (sc2mac_wt_data59) //|< i 
-,.sc2mac_wt_data60 (sc2mac_wt_data60) //|< i 
-,.sc2mac_wt_data61 (sc2mac_wt_data61) //|< i 
-,.sc2mac_wt_data62 (sc2mac_wt_data62) //|< i 
-,.sc2mac_wt_data63 (sc2mac_wt_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_wt_mask (sc2mac_wt_mask) //|< i
   ,.sc2mac_wt_pvld (sc2mac_wt_pvld) //|< i
   ,.sc2mac_wt_sel (sc2mac_wt_sel) //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.in_dat_data${i} (in_dat_data${i}) //|< i )
 //: }
@@ -1021,45 +765,13 @@ assign out_pvld = in_dat_pvld_d2;
 ,.in_dat_data29 (in_dat_data29) //|< i 
 ,.in_dat_data30 (in_dat_data30) //|< i 
 ,.in_dat_data31 (in_dat_data31) //|< i 
-,.in_dat_data32 (in_dat_data32) //|< i 
-,.in_dat_data33 (in_dat_data33) //|< i 
-,.in_dat_data34 (in_dat_data34) //|< i 
-,.in_dat_data35 (in_dat_data35) //|< i 
-,.in_dat_data36 (in_dat_data36) //|< i 
-,.in_dat_data37 (in_dat_data37) //|< i 
-,.in_dat_data38 (in_dat_data38) //|< i 
-,.in_dat_data39 (in_dat_data39) //|< i 
-,.in_dat_data40 (in_dat_data40) //|< i 
-,.in_dat_data41 (in_dat_data41) //|< i 
-,.in_dat_data42 (in_dat_data42) //|< i 
-,.in_dat_data43 (in_dat_data43) //|< i 
-,.in_dat_data44 (in_dat_data44) //|< i 
-,.in_dat_data45 (in_dat_data45) //|< i 
-,.in_dat_data46 (in_dat_data46) //|< i 
-,.in_dat_data47 (in_dat_data47) //|< i 
-,.in_dat_data48 (in_dat_data48) //|< i 
-,.in_dat_data49 (in_dat_data49) //|< i 
-,.in_dat_data50 (in_dat_data50) //|< i 
-,.in_dat_data51 (in_dat_data51) //|< i 
-,.in_dat_data52 (in_dat_data52) //|< i 
-,.in_dat_data53 (in_dat_data53) //|< i 
-,.in_dat_data54 (in_dat_data54) //|< i 
-,.in_dat_data55 (in_dat_data55) //|< i 
-,.in_dat_data56 (in_dat_data56) //|< i 
-,.in_dat_data57 (in_dat_data57) //|< i 
-,.in_dat_data58 (in_dat_data58) //|< i 
-,.in_dat_data59 (in_dat_data59) //|< i 
-,.in_dat_data60 (in_dat_data60) //|< i 
-,.in_dat_data61 (in_dat_data61) //|< i 
-,.in_dat_data62 (in_dat_data62) //|< i 
-,.in_dat_data63 (in_dat_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.in_dat_mask (in_dat_mask) //|> w
   ,.in_dat_pd (in_dat_pd) //|> w
   ,.in_dat_pvld (in_dat_pvld) //|> w
   ,.in_dat_stripe_end (in_dat_stripe_end) //|> w
   ,.in_dat_stripe_st (in_dat_stripe_st) //|> w
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.in_wt_data${i} (in_wt_data${i}) //|< i )
 //: }
@@ -1097,38 +809,6 @@ assign out_pvld = in_dat_pvld_d2;
 ,.in_wt_data29 (in_wt_data29) //|< i 
 ,.in_wt_data30 (in_wt_data30) //|< i 
 ,.in_wt_data31 (in_wt_data31) //|< i 
-,.in_wt_data32 (in_wt_data32) //|< i 
-,.in_wt_data33 (in_wt_data33) //|< i 
-,.in_wt_data34 (in_wt_data34) //|< i 
-,.in_wt_data35 (in_wt_data35) //|< i 
-,.in_wt_data36 (in_wt_data36) //|< i 
-,.in_wt_data37 (in_wt_data37) //|< i 
-,.in_wt_data38 (in_wt_data38) //|< i 
-,.in_wt_data39 (in_wt_data39) //|< i 
-,.in_wt_data40 (in_wt_data40) //|< i 
-,.in_wt_data41 (in_wt_data41) //|< i 
-,.in_wt_data42 (in_wt_data42) //|< i 
-,.in_wt_data43 (in_wt_data43) //|< i 
-,.in_wt_data44 (in_wt_data44) //|< i 
-,.in_wt_data45 (in_wt_data45) //|< i 
-,.in_wt_data46 (in_wt_data46) //|< i 
-,.in_wt_data47 (in_wt_data47) //|< i 
-,.in_wt_data48 (in_wt_data48) //|< i 
-,.in_wt_data49 (in_wt_data49) //|< i 
-,.in_wt_data50 (in_wt_data50) //|< i 
-,.in_wt_data51 (in_wt_data51) //|< i 
-,.in_wt_data52 (in_wt_data52) //|< i 
-,.in_wt_data53 (in_wt_data53) //|< i 
-,.in_wt_data54 (in_wt_data54) //|< i 
-,.in_wt_data55 (in_wt_data55) //|< i 
-,.in_wt_data56 (in_wt_data56) //|< i 
-,.in_wt_data57 (in_wt_data57) //|< i 
-,.in_wt_data58 (in_wt_data58) //|< i 
-,.in_wt_data59 (in_wt_data59) //|< i 
-,.in_wt_data60 (in_wt_data60) //|< i 
-,.in_wt_data61 (in_wt_data61) //|< i 
-,.in_wt_data62 (in_wt_data62) //|< i 
-,.in_wt_data63 (in_wt_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.in_wt_mask (in_wt_mask) //|> w
   ,.in_wt_pvld (in_wt_pvld) //|> w
@@ -1153,7 +833,7 @@ NV_NVDLA_CMAC_CORE_active u_active (
 .nvdla_core_clk (nvdla_op_gated_clk_17) //|< w 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
  ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.in_dat_data${i} (in_dat_data${i}) //|< i )
 //: }
@@ -1191,44 +871,12 @@ NV_NVDLA_CMAC_CORE_active u_active (
 ,.in_dat_data29 (in_dat_data29) //|< i 
 ,.in_dat_data30 (in_dat_data30) //|< i 
 ,.in_dat_data31 (in_dat_data31) //|< i 
-,.in_dat_data32 (in_dat_data32) //|< i 
-,.in_dat_data33 (in_dat_data33) //|< i 
-,.in_dat_data34 (in_dat_data34) //|< i 
-,.in_dat_data35 (in_dat_data35) //|< i 
-,.in_dat_data36 (in_dat_data36) //|< i 
-,.in_dat_data37 (in_dat_data37) //|< i 
-,.in_dat_data38 (in_dat_data38) //|< i 
-,.in_dat_data39 (in_dat_data39) //|< i 
-,.in_dat_data40 (in_dat_data40) //|< i 
-,.in_dat_data41 (in_dat_data41) //|< i 
-,.in_dat_data42 (in_dat_data42) //|< i 
-,.in_dat_data43 (in_dat_data43) //|< i 
-,.in_dat_data44 (in_dat_data44) //|< i 
-,.in_dat_data45 (in_dat_data45) //|< i 
-,.in_dat_data46 (in_dat_data46) //|< i 
-,.in_dat_data47 (in_dat_data47) //|< i 
-,.in_dat_data48 (in_dat_data48) //|< i 
-,.in_dat_data49 (in_dat_data49) //|< i 
-,.in_dat_data50 (in_dat_data50) //|< i 
-,.in_dat_data51 (in_dat_data51) //|< i 
-,.in_dat_data52 (in_dat_data52) //|< i 
-,.in_dat_data53 (in_dat_data53) //|< i 
-,.in_dat_data54 (in_dat_data54) //|< i 
-,.in_dat_data55 (in_dat_data55) //|< i 
-,.in_dat_data56 (in_dat_data56) //|< i 
-,.in_dat_data57 (in_dat_data57) //|< i 
-,.in_dat_data58 (in_dat_data58) //|< i 
-,.in_dat_data59 (in_dat_data59) //|< i 
-,.in_dat_data60 (in_dat_data60) //|< i 
-,.in_dat_data61 (in_dat_data61) //|< i 
-,.in_dat_data62 (in_dat_data62) //|< i 
-,.in_dat_data63 (in_dat_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
  ,.in_dat_mask (in_dat_mask) //|< w
  ,.in_dat_pvld (in_dat_pvld) //|< w
  ,.in_dat_stripe_end (in_dat_stripe_end) //|< w
  ,.in_dat_stripe_st (in_dat_stripe_st) //|< w
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.in_wt_data${i} (in_wt_data${i}) //|< i )
 //: }
@@ -1266,38 +914,6 @@ NV_NVDLA_CMAC_CORE_active u_active (
 ,.in_wt_data29 (in_wt_data29) //|< i 
 ,.in_wt_data30 (in_wt_data30) //|< i 
 ,.in_wt_data31 (in_wt_data31) //|< i 
-,.in_wt_data32 (in_wt_data32) //|< i 
-,.in_wt_data33 (in_wt_data33) //|< i 
-,.in_wt_data34 (in_wt_data34) //|< i 
-,.in_wt_data35 (in_wt_data35) //|< i 
-,.in_wt_data36 (in_wt_data36) //|< i 
-,.in_wt_data37 (in_wt_data37) //|< i 
-,.in_wt_data38 (in_wt_data38) //|< i 
-,.in_wt_data39 (in_wt_data39) //|< i 
-,.in_wt_data40 (in_wt_data40) //|< i 
-,.in_wt_data41 (in_wt_data41) //|< i 
-,.in_wt_data42 (in_wt_data42) //|< i 
-,.in_wt_data43 (in_wt_data43) //|< i 
-,.in_wt_data44 (in_wt_data44) //|< i 
-,.in_wt_data45 (in_wt_data45) //|< i 
-,.in_wt_data46 (in_wt_data46) //|< i 
-,.in_wt_data47 (in_wt_data47) //|< i 
-,.in_wt_data48 (in_wt_data48) //|< i 
-,.in_wt_data49 (in_wt_data49) //|< i 
-,.in_wt_data50 (in_wt_data50) //|< i 
-,.in_wt_data51 (in_wt_data51) //|< i 
-,.in_wt_data52 (in_wt_data52) //|< i 
-,.in_wt_data53 (in_wt_data53) //|< i 
-,.in_wt_data54 (in_wt_data54) //|< i 
-,.in_wt_data55 (in_wt_data55) //|< i 
-,.in_wt_data56 (in_wt_data56) //|< i 
-,.in_wt_data57 (in_wt_data57) //|< i 
-,.in_wt_data58 (in_wt_data58) //|< i 
-,.in_wt_data59 (in_wt_data59) //|< i 
-,.in_wt_data60 (in_wt_data60) //|< i 
-,.in_wt_data61 (in_wt_data61) //|< i 
-,.in_wt_data62 (in_wt_data62) //|< i 
-,.in_wt_data63 (in_wt_data63) //|< i 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
  ,.in_wt_mask (in_wt_mask) //|< w
  ,.in_wt_pvld (in_wt_pvld) //|< w
@@ -1558,7 +1174,7 @@ NV_NVDLA_CMAC_CORE_active u_active (
 //: print qq {
 //: wire nvdla_op_gated_clk_${i};
 //: wire nvdla_wg_gated_clk_${i};
-//: wire [22 -1:0] out_data${i};
+//: wire [21 -1:0] out_data${i};
 //: NV_NVDLA_CMAC_CORE_mac u_mac_${i} (
 //: .nvdla_core_clk (nvdla_op_gated_clk_${i}) //|< w
 //: ,.nvdla_wg_clk (nvdla_op_gated_clk_${i}) //|< w , need update for winograd
@@ -1580,7 +1196,7 @@ NV_NVDLA_CMAC_CORE_active u_active (
 
 wire nvdla_op_gated_clk_0;
 wire nvdla_wg_gated_clk_0;
-wire [22 -1:0] out_data0;
+wire [21 -1:0] out_data0;
 NV_NVDLA_CMAC_CORE_mac u_mac_0 (
 .nvdla_core_clk (nvdla_op_gated_clk_0) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_0) //|< w , need update for winograd
@@ -1599,7 +1215,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_0 (
 
 wire nvdla_op_gated_clk_1;
 wire nvdla_wg_gated_clk_1;
-wire [22 -1:0] out_data1;
+wire [21 -1:0] out_data1;
 NV_NVDLA_CMAC_CORE_mac u_mac_1 (
 .nvdla_core_clk (nvdla_op_gated_clk_1) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_1) //|< w , need update for winograd
@@ -1618,7 +1234,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_1 (
 
 wire nvdla_op_gated_clk_2;
 wire nvdla_wg_gated_clk_2;
-wire [22 -1:0] out_data2;
+wire [21 -1:0] out_data2;
 NV_NVDLA_CMAC_CORE_mac u_mac_2 (
 .nvdla_core_clk (nvdla_op_gated_clk_2) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_2) //|< w , need update for winograd
@@ -1637,7 +1253,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_2 (
 
 wire nvdla_op_gated_clk_3;
 wire nvdla_wg_gated_clk_3;
-wire [22 -1:0] out_data3;
+wire [21 -1:0] out_data3;
 NV_NVDLA_CMAC_CORE_mac u_mac_3 (
 .nvdla_core_clk (nvdla_op_gated_clk_3) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_3) //|< w , need update for winograd
@@ -1656,7 +1272,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_3 (
 
 wire nvdla_op_gated_clk_4;
 wire nvdla_wg_gated_clk_4;
-wire [22 -1:0] out_data4;
+wire [21 -1:0] out_data4;
 NV_NVDLA_CMAC_CORE_mac u_mac_4 (
 .nvdla_core_clk (nvdla_op_gated_clk_4) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_4) //|< w , need update for winograd
@@ -1675,7 +1291,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_4 (
 
 wire nvdla_op_gated_clk_5;
 wire nvdla_wg_gated_clk_5;
-wire [22 -1:0] out_data5;
+wire [21 -1:0] out_data5;
 NV_NVDLA_CMAC_CORE_mac u_mac_5 (
 .nvdla_core_clk (nvdla_op_gated_clk_5) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_5) //|< w , need update for winograd
@@ -1694,7 +1310,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_5 (
 
 wire nvdla_op_gated_clk_6;
 wire nvdla_wg_gated_clk_6;
-wire [22 -1:0] out_data6;
+wire [21 -1:0] out_data6;
 NV_NVDLA_CMAC_CORE_mac u_mac_6 (
 .nvdla_core_clk (nvdla_op_gated_clk_6) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_6) //|< w , need update for winograd
@@ -1713,7 +1329,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_6 (
 
 wire nvdla_op_gated_clk_7;
 wire nvdla_wg_gated_clk_7;
-wire [22 -1:0] out_data7;
+wire [21 -1:0] out_data7;
 NV_NVDLA_CMAC_CORE_mac u_mac_7 (
 .nvdla_core_clk (nvdla_op_gated_clk_7) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_7) //|< w , need update for winograd
@@ -1732,7 +1348,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_7 (
 
 wire nvdla_op_gated_clk_8;
 wire nvdla_wg_gated_clk_8;
-wire [22 -1:0] out_data8;
+wire [21 -1:0] out_data8;
 NV_NVDLA_CMAC_CORE_mac u_mac_8 (
 .nvdla_core_clk (nvdla_op_gated_clk_8) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_8) //|< w , need update for winograd
@@ -1751,7 +1367,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_8 (
 
 wire nvdla_op_gated_clk_9;
 wire nvdla_wg_gated_clk_9;
-wire [22 -1:0] out_data9;
+wire [21 -1:0] out_data9;
 NV_NVDLA_CMAC_CORE_mac u_mac_9 (
 .nvdla_core_clk (nvdla_op_gated_clk_9) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_9) //|< w , need update for winograd
@@ -1770,7 +1386,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_9 (
 
 wire nvdla_op_gated_clk_10;
 wire nvdla_wg_gated_clk_10;
-wire [22 -1:0] out_data10;
+wire [21 -1:0] out_data10;
 NV_NVDLA_CMAC_CORE_mac u_mac_10 (
 .nvdla_core_clk (nvdla_op_gated_clk_10) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_10) //|< w , need update for winograd
@@ -1789,7 +1405,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_10 (
 
 wire nvdla_op_gated_clk_11;
 wire nvdla_wg_gated_clk_11;
-wire [22 -1:0] out_data11;
+wire [21 -1:0] out_data11;
 NV_NVDLA_CMAC_CORE_mac u_mac_11 (
 .nvdla_core_clk (nvdla_op_gated_clk_11) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_11) //|< w , need update for winograd
@@ -1808,7 +1424,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_11 (
 
 wire nvdla_op_gated_clk_12;
 wire nvdla_wg_gated_clk_12;
-wire [22 -1:0] out_data12;
+wire [21 -1:0] out_data12;
 NV_NVDLA_CMAC_CORE_mac u_mac_12 (
 .nvdla_core_clk (nvdla_op_gated_clk_12) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_12) //|< w , need update for winograd
@@ -1827,7 +1443,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_12 (
 
 wire nvdla_op_gated_clk_13;
 wire nvdla_wg_gated_clk_13;
-wire [22 -1:0] out_data13;
+wire [21 -1:0] out_data13;
 NV_NVDLA_CMAC_CORE_mac u_mac_13 (
 .nvdla_core_clk (nvdla_op_gated_clk_13) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_13) //|< w , need update for winograd
@@ -1846,7 +1462,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_13 (
 
 wire nvdla_op_gated_clk_14;
 wire nvdla_wg_gated_clk_14;
-wire [22 -1:0] out_data14;
+wire [21 -1:0] out_data14;
 NV_NVDLA_CMAC_CORE_mac u_mac_14 (
 .nvdla_core_clk (nvdla_op_gated_clk_14) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_14) //|< w , need update for winograd
@@ -1865,7 +1481,7 @@ NV_NVDLA_CMAC_CORE_mac u_mac_14 (
 
 wire nvdla_op_gated_clk_15;
 wire nvdla_wg_gated_clk_15;
-wire [22 -1:0] out_data15;
+wire [21 -1:0] out_data15;
 NV_NVDLA_CMAC_CORE_mac u_mac_15 (
 .nvdla_core_clk (nvdla_op_gated_clk_15) //|< w
 ,.nvdla_wg_clk (nvdla_op_gated_clk_15) //|< w , need update for winograd

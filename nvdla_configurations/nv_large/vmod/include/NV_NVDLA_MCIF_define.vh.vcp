@@ -23,5 +23,5 @@
 //:printf "`define  tieoff_depth_pdp    9'd%d\n", 256;
 //:printf "`define  tieoff_depth_cdp    9'd%d\n", 256;
 //:printf "`define  tieoff_depth_sdp_b  9'd%d\n", 256;
-//:printf "`define  tieoff_depth_sdp_n  9'd%d\n", 256;
-//:printf "`define  tieoff_depth_sdp_e  9'd%d\n", 256;
+//:printf "`define  tieoff_depth_sdp_n  9'd%d\n", 4;
+//:printf "`define  tieoff_depth_sdp_e  9'd%d\n", 4;

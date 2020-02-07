@@ -30,7 +30,7 @@ module NV_NVDLA_CDMA_cvt (
   ,nvdla_core_rstn
   ,dc2cvt_dat_wr_en
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -57,7 +57,6 @@ module NV_NVDLA_CDMA_cvt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,dc2cvt_dat_wr_sel
 ,dc2cvt_dat_wr_addr
 ,dc2cvt_dat_wr_data
 
@@ -65,7 +64,7 @@ module NV_NVDLA_CDMA_cvt (
   ,dc2cvt_dat_wr_info_pd
   ,img2cvt_dat_wr_en
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -98,7 +97,6 @@ module NV_NVDLA_CDMA_cvt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,img2cvt_dat_wr_sel
 ,img2cvt_dat_wr_addr
 ,img2cvt_dat_wr_data
 ,img2cvt_mn_wr_data
@@ -112,7 +110,7 @@ module NV_NVDLA_CDMA_cvt (
   ,img2cvt_dat_wr_info_pd
   ,cdma2buf_dat_wr_en
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: ,cdma2buf_dat_wr_sel
@@ -138,7 +136,6 @@ module NV_NVDLA_CDMA_cvt (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,cdma2buf_dat_wr_sel
 ,cdma2buf_dat_wr_addr
 ,cdma2buf_dat_wr_data
 
@@ -169,7 +166,7 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input dc2cvt_dat_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -196,7 +193,6 @@ input dc2cvt_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [1-1:0] dc2cvt_dat_wr_sel;
 input [16:0] dc2cvt_dat_wr_addr;
 input [256-1:0] dc2cvt_dat_wr_data;
 
@@ -211,7 +207,7 @@ input [11:0] dc2cvt_dat_wr_info_pd;
 input img2cvt_dat_wr_en;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -244,7 +240,6 @@ input img2cvt_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-input [1-1:0] img2cvt_dat_wr_sel;
 input [16:0] img2cvt_dat_wr_addr;
 input [256-1:0] img2cvt_dat_wr_data;
 input [32*16-1:0] img2cvt_mn_wr_data;
@@ -264,7 +259,7 @@ input [11:0] img2cvt_dat_wr_info_pd;
 // input [256 -1:0] img2cvt_mn_wr_data;
 output cdma2buf_dat_wr_en;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int($atmc/$dmaif);
 //: print qq(
@@ -291,7 +286,6 @@ output cdma2buf_dat_wr_en;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-output [2-1:0] cdma2buf_dat_wr_sel;
 output [16:0] cdma2buf_dat_wr_addr;
 output [256-1:0] cdma2buf_dat_wr_data;
 
@@ -604,7 +598,7 @@ wire [256 -1:0] cvt_wr_data;
 wire cvt_wr_en;
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: my $s = int($atmc/$dmaif);
@@ -632,14 +626,9 @@ wire cvt_wr_en;
 //: );
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-wire [1-1:0] cvt_wr_sel;
-wire [1-1:0] cvt_out_sel;
-reg [1-1:0] cvt_out_sel_d1;
-wire [1-1:0] cvt_out_sel_bp;
-reg [2-1:0] cvt_out_sel_reg;
-wire [1-1:0] cvt_out_reg_en;
-reg [1-1:0] cvt_out_reg_en_d1;
-wire [1-1:0] cvt_out_reg_en_bp;
+wire cvt_out_reg_en;
+reg cvt_out_reg_en_d1;
+wire cvt_out_reg_en_bp;
 
 wire [32-1:0] cvt_wr_pad_mask;
 reg [32-1:0] cvt_out_pad_mask_d1;
@@ -934,7 +923,7 @@ assign cvt_wr_sub_h[2:0] = cvt_wr_info_pd[11:9];
 assign cvt_wr_en = (dc2cvt_dat_wr_en | img2cvt_dat_wr_en);
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -976,8 +965,6 @@ assign cvt_wr_en = (dc2cvt_dat_wr_en | img2cvt_dat_wr_en);
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
 assign cvt_wr_pad_mask = img2cvt_dat_wr_en ? img2cvt_dat_wr_pad_mask : 32'd0;
-assign cvt_wr_sel = dc2cvt_dat_wr_en ? dc2cvt_dat_wr_sel
-: img2cvt_dat_wr_en ? img2cvt_dat_wr_sel : 0;
 assign cvt_wr_addr = ({17 {dc2cvt_dat_wr_en}} & dc2cvt_dat_wr_addr)
 | ({17 {img2cvt_dat_wr_en}} & img2cvt_dat_wr_addr);
 assign cvt_wr_data = ({256 {dc2cvt_dat_wr_en}} & dc2cvt_dat_wr_data)
@@ -989,7 +976,7 @@ assign cvt_wr_mean_data = img2cvt_mn_wr_data;
 // generator mux control signals //
 ////////////////////////////////////////////////////////////////////////
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: assign cvt_out_sel = cvt_wr_sel;
@@ -1003,8 +990,8 @@ assign cvt_wr_mean_data = img2cvt_mn_wr_data;
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign cvt_out_sel = cvt_wr_sel;
-assign cvt_out_reg_en = cvt_wr_en ? cvt_out_sel : 0;
+//assign cvt_out_reg_en = cvt_wr_en;
+assign cvt_out_reg_en = 1'b0;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign cvt_out_addr = cvt_wr_addr;
@@ -1049,7 +1036,7 @@ assign cvt_cell_en = (cvt_wr_en & cfg_cvt_en[0]) ? {32{cvt_wr_mask[0]}} : 32'b0;
 //: &eperl::flop("-nodeclare   -rval \"{17{1'b0}}\"  -en \"cvt_wr_en\"          -d \"cvt_out_addr\"          -q cvt_out_addr_d1");
 //: &eperl::flop("-nodeclare   -rval \"{4{1'b0}}\"   -en \"cvt_wr_en\"          -d \"cvt_wr_mask\"           -q cvt_out_nz_mask_d1");
 //: &eperl::flop("-nodeclare   -rval \"${Bnum}'b0\"           -en \"img2cvt_dat_wr_en\"  -d \"cvt_wr_pad_mask\"       -q cvt_out_pad_mask_d1");
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: if($dmaif < $atmc) {
 //: &eperl::flop("-nodeclare   -rval \"${k}'b0\"                                      -d \"cvt_out_reg_en\"        -q cvt_out_reg_en_d1");
@@ -1188,20 +1175,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        cvt_out_reg_en_d1 <= 1'b0;
    end else begin
        cvt_out_reg_en_d1 <= cvt_out_reg_en;
-   end
-end
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvt_out_sel_d1 <= {2{1'b0}};
-   end else begin
-       if ((cvt_wr_en) == 1'b1) begin
-           cvt_out_sel_d1 <= cvt_out_sel;
-       // VCS coverage off
-       end else if ((cvt_wr_en) == 1'b0) begin
-       end else begin
-           cvt_out_sel_d1 <= 'bx;
-       // VCS coverage on
-       end
    end
 end
 
@@ -2782,7 +2755,7 @@ cellout_31[8-1:0], cellout_30[8-1:0], cellout_29[8-1:0], cellout_28[8-1:0], cell
 ////////////////////////////////////////////////////////////////////////
 //: my $dmaif=256;
 //: my $Bnum = $dmaif / 8;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: for(my $i = 1; $i <= 3 +1; $i ++) {
 //: my $j = $i + 1;
@@ -2830,25 +2803,10 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        cvt_out_pad_vld_d2 <= cvt_out_pad_vld_d1;
    end
 end
-reg  cvt_out_sel_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvt_out_sel_d2 <= {1{1'b0}};
-   end else begin
-       if ((cvt_out_vld_d1) == 1'b1) begin
-           cvt_out_sel_d2 <= cvt_out_sel_d1;
-       // VCS coverage off
-       end else if ((cvt_out_vld_d1) == 1'b0) begin
-       end else begin
-           cvt_out_sel_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  cvt_out_reg_en_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       cvt_out_reg_en_d2 <= {1{1'b0}};
+       cvt_out_reg_en_d2 <= 1'b0;
    end else begin
        if ((cvt_out_vld_d1 | cvt_out_vld_d2) == 1'b1) begin
            cvt_out_reg_en_d2 <= cvt_out_reg_en_d1;
@@ -2923,25 +2881,10 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        cvt_out_pad_vld_d3 <= cvt_out_pad_vld_d2;
    end
 end
-reg  cvt_out_sel_d3;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvt_out_sel_d3 <= {1{1'b0}};
-   end else begin
-       if ((cvt_out_vld_d2) == 1'b1) begin
-           cvt_out_sel_d3 <= cvt_out_sel_d2;
-       // VCS coverage off
-       end else if ((cvt_out_vld_d2) == 1'b0) begin
-       end else begin
-           cvt_out_sel_d3 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  cvt_out_reg_en_d3;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       cvt_out_reg_en_d3 <= {1{1'b0}};
+       cvt_out_reg_en_d3 <= 1'b0;
    end else begin
        if ((cvt_out_vld_d2 | cvt_out_vld_d2) == 1'b1) begin
            cvt_out_reg_en_d3 <= cvt_out_reg_en_d2;
@@ -3016,25 +2959,10 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        cvt_out_pad_vld_d4 <= cvt_out_pad_vld_d3;
    end
 end
-reg  cvt_out_sel_d4;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvt_out_sel_d4 <= {1{1'b0}};
-   end else begin
-       if ((cvt_out_vld_d3) == 1'b1) begin
-           cvt_out_sel_d4 <= cvt_out_sel_d3;
-       // VCS coverage off
-       end else if ((cvt_out_vld_d3) == 1'b0) begin
-       end else begin
-           cvt_out_sel_d4 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  cvt_out_reg_en_d4;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       cvt_out_reg_en_d4 <= {1{1'b0}};
+       cvt_out_reg_en_d4 <= 1'b0;
    end else begin
        if ((cvt_out_vld_d3 | cvt_out_vld_d2) == 1'b1) begin
            cvt_out_reg_en_d4 <= cvt_out_reg_en_d3;
@@ -3109,25 +3037,10 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        cvt_out_pad_vld_d5 <= cvt_out_pad_vld_d4;
    end
 end
-reg  cvt_out_sel_d5;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvt_out_sel_d5 <= {1{1'b0}};
-   end else begin
-       if ((cvt_out_vld_d4) == 1'b1) begin
-           cvt_out_sel_d5 <= cvt_out_sel_d4;
-       // VCS coverage off
-       end else if ((cvt_out_vld_d4) == 1'b0) begin
-       end else begin
-           cvt_out_sel_d5 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  cvt_out_reg_en_d5;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
-       cvt_out_reg_en_d5 <= {1{1'b0}};
+       cvt_out_reg_en_d5 <= 1'b0;
    end else begin
        if ((cvt_out_vld_d4 | cvt_out_vld_d2) == 1'b1) begin
            cvt_out_reg_en_d5 <= cvt_out_reg_en_d4;
@@ -3186,8 +3099,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 
 
-
-assign cvt_out_sel_bp = cfg_cvt_en[1] ? cvt_out_sel_d5 : cvt_out_sel_d1;
 
 assign cvt_out_vld_bp = cfg_cvt_en[1] ? cvt_out_vld_d5 : cvt_out_vld_d1;
 assign cvt_out_addr_bp = cfg_cvt_en[1] ? cvt_out_addr_d5 : cvt_out_addr_d1;
@@ -3262,7 +3173,7 @@ end
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign cvt_out_vld_reg_w = cvt_out_vld_bp | dat_cbuf_flush_vld_w;
 //: my $dmaif=256/8;
-//: my $atmc=64;
+//: my $atmc=32;
 //: if ( $dmaif < $atmc ) {
 //: my $k = int( log( int($atmc/$dmaif) ) / log(2) );
 //: print "assign cvt_out_addr_reg_w = dat_cbuf_flush_vld_w ? dat_cbuf_flush_idx[17:${k}] : cvt_out_addr_bp; \n";
@@ -3272,7 +3183,7 @@ assign cvt_out_vld_reg_w = cvt_out_vld_bp | dat_cbuf_flush_vld_w;
 //: my $dmaif=256;
 //: my $bpe = 8;
 //: my $Bnum = $dmaif / $bpe;
-//: my $atmc=64;
+//: my $atmc=32;
 //: if($Bnum < $atmc) {
 //: my $dmaif_num = $atmc / $Bnum;
 //: my $k = int(log($dmaif_num)/log(2));
@@ -3291,23 +3202,7 @@ assign cvt_out_vld_reg_w = cvt_out_vld_bp | dat_cbuf_flush_vld_w;
 //: &eperl::flop("-nodeclare -clk nvdla_core_ng_clk  -rval \"${dmaif_num}'b0\"  -en \"cvt_out_vld_reg_w\" -d \"cvt_out_sel_reg_w\" -q cvt_out_sel_reg");
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-assign cvt_out_addr_reg_w = dat_cbuf_flush_vld_w ? dat_cbuf_flush_idx[17:1] : cvt_out_addr_bp; 
-wire [2-1:0] cvt_out_sel_reg_w; 
-assign cvt_out_sel_reg_w = dat_cbuf_flush_vld_w ? {dat_cbuf_flush_idx[0], ~dat_cbuf_flush_idx[0]} : {cvt_out_sel_bp[0],~cvt_out_sel_bp[0]}; 
-always @(posedge nvdla_core_ng_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       cvt_out_sel_reg <= 2'b0;
-   end else begin
-       if ((cvt_out_vld_reg_w) == 1'b1) begin
-           cvt_out_sel_reg <= cvt_out_sel_reg_w;
-       // VCS coverage off
-       end else if ((cvt_out_vld_reg_w) == 1'b0) begin
-       end else begin
-           cvt_out_sel_reg <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
+assign cvt_out_addr_reg_w = dat_cbuf_flush_vld_w ? dat_cbuf_flush_idx[16:0] : cvt_out_addr_bp; 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //================ Non-SLCG clock domain ================//
@@ -3345,7 +3240,7 @@ assign {mon_dat_cbuf_flush_idx_w,
 //: my $bank_entry = 16 * 512;
 //: my $bank_entry_bw = int( log( $bank_entry)/log(2) );
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: my $k;
 //: if($dmaif < $atmc) {
 //: $k = int(log(int($atmc/$dmaif))/log(2));
@@ -3358,8 +3253,8 @@ assign {mon_dat_cbuf_flush_idx_w,
 //: );
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-assign dat_cbuf_flush_vld_w = ~dat_cbuf_flush_idx[13+1-1];//max value = half bank entry * 2^1
-assign dp2reg_dat_flush_done = dat_cbuf_flush_idx[13+1-1];
+assign dat_cbuf_flush_vld_w = ~dat_cbuf_flush_idx[13+0-1];//max value = half bank entry * 2^0
+assign dp2reg_dat_flush_done = dat_cbuf_flush_idx[13+0-1];
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //assign dat_cbuf_flush_vld_w = ~dat_cbuf_flush_idx[17];
@@ -3391,13 +3286,12 @@ assign cdma2buf_dat_wr_addr = cvt_out_addr_reg;
 //: my $dmaif=256;
 //: my $bpe = 8;
 //: my $Bnum = $dmaif / $bpe;
-//: my $atmc=64;
+//: my $atmc=32;
 //: if($Bnum < $atmc) {
 //: print qq(assign cdma2buf_dat_wr_sel = cvt_out_sel_reg; \n );
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-assign cdma2buf_dat_wr_sel = cvt_out_sel_reg; 
- 
+
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign cdma2buf_dat_wr_data = {
 //: my $dmaif=256;

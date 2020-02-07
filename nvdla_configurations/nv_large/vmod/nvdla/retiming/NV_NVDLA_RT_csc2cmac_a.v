@@ -25,14 +25,14 @@
     //atomK*2
 //notice, for image case, first atom OP within one strip OP must fetch from entry align place, in the middle of an entry is not supported.
 //thus, when atomC/atomK=4, stripe=4*atomK, feature data still keeps atomK*2
-    `define CC_ATOMC_DIV_ATOMK_EQUAL_2
+    `define CC_ATOMC_DIV_ATOMK_EQUAL_1
 //batch keep 1
 module NV_NVDLA_RT_csc2cmac_a (
    nvdla_core_clk
   ,nvdla_core_rstn
   ,sc2mac_wt_src_pvld
   ,sc2mac_wt_src_mask
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print ",sc2mac_wt_src_data${i} \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -68,44 +68,12 @@ module NV_NVDLA_RT_csc2cmac_a (
 ,sc2mac_wt_src_data29 
 ,sc2mac_wt_src_data30 
 ,sc2mac_wt_src_data31 
-,sc2mac_wt_src_data32 
-,sc2mac_wt_src_data33 
-,sc2mac_wt_src_data34 
-,sc2mac_wt_src_data35 
-,sc2mac_wt_src_data36 
-,sc2mac_wt_src_data37 
-,sc2mac_wt_src_data38 
-,sc2mac_wt_src_data39 
-,sc2mac_wt_src_data40 
-,sc2mac_wt_src_data41 
-,sc2mac_wt_src_data42 
-,sc2mac_wt_src_data43 
-,sc2mac_wt_src_data44 
-,sc2mac_wt_src_data45 
-,sc2mac_wt_src_data46 
-,sc2mac_wt_src_data47 
-,sc2mac_wt_src_data48 
-,sc2mac_wt_src_data49 
-,sc2mac_wt_src_data50 
-,sc2mac_wt_src_data51 
-,sc2mac_wt_src_data52 
-,sc2mac_wt_src_data53 
-,sc2mac_wt_src_data54 
-,sc2mac_wt_src_data55 
-,sc2mac_wt_src_data56 
-,sc2mac_wt_src_data57 
-,sc2mac_wt_src_data58 
-,sc2mac_wt_src_data59 
-,sc2mac_wt_src_data60 
-,sc2mac_wt_src_data61 
-,sc2mac_wt_src_data62 
-,sc2mac_wt_src_data63 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_wt_src_sel
   ,sc2mac_dat_src_pvld
   ,sc2mac_dat_src_mask
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print ",sc2mac_dat_src_data${i} \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -141,44 +109,12 @@ module NV_NVDLA_RT_csc2cmac_a (
 ,sc2mac_dat_src_data29 
 ,sc2mac_dat_src_data30 
 ,sc2mac_dat_src_data31 
-,sc2mac_dat_src_data32 
-,sc2mac_dat_src_data33 
-,sc2mac_dat_src_data34 
-,sc2mac_dat_src_data35 
-,sc2mac_dat_src_data36 
-,sc2mac_dat_src_data37 
-,sc2mac_dat_src_data38 
-,sc2mac_dat_src_data39 
-,sc2mac_dat_src_data40 
-,sc2mac_dat_src_data41 
-,sc2mac_dat_src_data42 
-,sc2mac_dat_src_data43 
-,sc2mac_dat_src_data44 
-,sc2mac_dat_src_data45 
-,sc2mac_dat_src_data46 
-,sc2mac_dat_src_data47 
-,sc2mac_dat_src_data48 
-,sc2mac_dat_src_data49 
-,sc2mac_dat_src_data50 
-,sc2mac_dat_src_data51 
-,sc2mac_dat_src_data52 
-,sc2mac_dat_src_data53 
-,sc2mac_dat_src_data54 
-,sc2mac_dat_src_data55 
-,sc2mac_dat_src_data56 
-,sc2mac_dat_src_data57 
-,sc2mac_dat_src_data58 
-,sc2mac_dat_src_data59 
-,sc2mac_dat_src_data60 
-,sc2mac_dat_src_data61 
-,sc2mac_dat_src_data62 
-,sc2mac_dat_src_data63 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_dat_src_pd
   ,sc2mac_wt_dst_pvld
   ,sc2mac_wt_dst_mask
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print ",sc2mac_wt_dst_data${i} \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -214,44 +150,12 @@ module NV_NVDLA_RT_csc2cmac_a (
 ,sc2mac_wt_dst_data29 
 ,sc2mac_wt_dst_data30 
 ,sc2mac_wt_dst_data31 
-,sc2mac_wt_dst_data32 
-,sc2mac_wt_dst_data33 
-,sc2mac_wt_dst_data34 
-,sc2mac_wt_dst_data35 
-,sc2mac_wt_dst_data36 
-,sc2mac_wt_dst_data37 
-,sc2mac_wt_dst_data38 
-,sc2mac_wt_dst_data39 
-,sc2mac_wt_dst_data40 
-,sc2mac_wt_dst_data41 
-,sc2mac_wt_dst_data42 
-,sc2mac_wt_dst_data43 
-,sc2mac_wt_dst_data44 
-,sc2mac_wt_dst_data45 
-,sc2mac_wt_dst_data46 
-,sc2mac_wt_dst_data47 
-,sc2mac_wt_dst_data48 
-,sc2mac_wt_dst_data49 
-,sc2mac_wt_dst_data50 
-,sc2mac_wt_dst_data51 
-,sc2mac_wt_dst_data52 
-,sc2mac_wt_dst_data53 
-,sc2mac_wt_dst_data54 
-,sc2mac_wt_dst_data55 
-,sc2mac_wt_dst_data56 
-,sc2mac_wt_dst_data57 
-,sc2mac_wt_dst_data58 
-,sc2mac_wt_dst_data59 
-,sc2mac_wt_dst_data60 
-,sc2mac_wt_dst_data61 
-,sc2mac_wt_dst_data62 
-,sc2mac_wt_dst_data63 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_wt_dst_sel
   ,sc2mac_dat_dst_pvld
   ,sc2mac_dat_dst_mask
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print ",sc2mac_dat_dst_data${i} \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -287,38 +191,6 @@ module NV_NVDLA_RT_csc2cmac_a (
 ,sc2mac_dat_dst_data29 
 ,sc2mac_dat_dst_data30 
 ,sc2mac_dat_dst_data31 
-,sc2mac_dat_dst_data32 
-,sc2mac_dat_dst_data33 
-,sc2mac_dat_dst_data34 
-,sc2mac_dat_dst_data35 
-,sc2mac_dat_dst_data36 
-,sc2mac_dat_dst_data37 
-,sc2mac_dat_dst_data38 
-,sc2mac_dat_dst_data39 
-,sc2mac_dat_dst_data40 
-,sc2mac_dat_dst_data41 
-,sc2mac_dat_dst_data42 
-,sc2mac_dat_dst_data43 
-,sc2mac_dat_dst_data44 
-,sc2mac_dat_dst_data45 
-,sc2mac_dat_dst_data46 
-,sc2mac_dat_dst_data47 
-,sc2mac_dat_dst_data48 
-,sc2mac_dat_dst_data49 
-,sc2mac_dat_dst_data50 
-,sc2mac_dat_dst_data51 
-,sc2mac_dat_dst_data52 
-,sc2mac_dat_dst_data53 
-,sc2mac_dat_dst_data54 
-,sc2mac_dat_dst_data55 
-,sc2mac_dat_dst_data56 
-,sc2mac_dat_dst_data57 
-,sc2mac_dat_dst_data58 
-,sc2mac_dat_dst_data59 
-,sc2mac_dat_dst_data60 
-,sc2mac_dat_dst_data61 
-,sc2mac_dat_dst_data62 
-,sc2mac_dat_dst_data63 
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,sc2mac_dat_dst_pd
@@ -329,9 +201,9 @@ module NV_NVDLA_RT_csc2cmac_a (
 input nvdla_core_clk;
 input nvdla_core_rstn;
 input sc2mac_wt_src_pvld; /* data valid */
-input [64 -1:0] sc2mac_wt_src_mask;
+input [32 -1:0] sc2mac_wt_src_mask;
 //: my $bb=8;
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print "input   [${bb}-1:0] sc2mac_wt_src_data${i};  \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -367,45 +239,13 @@ input   [8-1:0] sc2mac_wt_src_data28;
 input   [8-1:0] sc2mac_wt_src_data29;  
 input   [8-1:0] sc2mac_wt_src_data30;  
 input   [8-1:0] sc2mac_wt_src_data31;  
-input   [8-1:0] sc2mac_wt_src_data32;  
-input   [8-1:0] sc2mac_wt_src_data33;  
-input   [8-1:0] sc2mac_wt_src_data34;  
-input   [8-1:0] sc2mac_wt_src_data35;  
-input   [8-1:0] sc2mac_wt_src_data36;  
-input   [8-1:0] sc2mac_wt_src_data37;  
-input   [8-1:0] sc2mac_wt_src_data38;  
-input   [8-1:0] sc2mac_wt_src_data39;  
-input   [8-1:0] sc2mac_wt_src_data40;  
-input   [8-1:0] sc2mac_wt_src_data41;  
-input   [8-1:0] sc2mac_wt_src_data42;  
-input   [8-1:0] sc2mac_wt_src_data43;  
-input   [8-1:0] sc2mac_wt_src_data44;  
-input   [8-1:0] sc2mac_wt_src_data45;  
-input   [8-1:0] sc2mac_wt_src_data46;  
-input   [8-1:0] sc2mac_wt_src_data47;  
-input   [8-1:0] sc2mac_wt_src_data48;  
-input   [8-1:0] sc2mac_wt_src_data49;  
-input   [8-1:0] sc2mac_wt_src_data50;  
-input   [8-1:0] sc2mac_wt_src_data51;  
-input   [8-1:0] sc2mac_wt_src_data52;  
-input   [8-1:0] sc2mac_wt_src_data53;  
-input   [8-1:0] sc2mac_wt_src_data54;  
-input   [8-1:0] sc2mac_wt_src_data55;  
-input   [8-1:0] sc2mac_wt_src_data56;  
-input   [8-1:0] sc2mac_wt_src_data57;  
-input   [8-1:0] sc2mac_wt_src_data58;  
-input   [8-1:0] sc2mac_wt_src_data59;  
-input   [8-1:0] sc2mac_wt_src_data60;  
-input   [8-1:0] sc2mac_wt_src_data61;  
-input   [8-1:0] sc2mac_wt_src_data62;  
-input   [8-1:0] sc2mac_wt_src_data63;  
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [32/2 -1:0] sc2mac_wt_src_sel;
 input sc2mac_dat_src_pvld; /* data valid */
-input [64 -1:0] sc2mac_dat_src_mask;
+input [32 -1:0] sc2mac_dat_src_mask;
 //: my $bb=8;
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print "input   [${bb}-1:0] sc2mac_dat_src_data${i};  \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -441,45 +281,13 @@ input   [8-1:0] sc2mac_dat_src_data28;
 input   [8-1:0] sc2mac_dat_src_data29;  
 input   [8-1:0] sc2mac_dat_src_data30;  
 input   [8-1:0] sc2mac_dat_src_data31;  
-input   [8-1:0] sc2mac_dat_src_data32;  
-input   [8-1:0] sc2mac_dat_src_data33;  
-input   [8-1:0] sc2mac_dat_src_data34;  
-input   [8-1:0] sc2mac_dat_src_data35;  
-input   [8-1:0] sc2mac_dat_src_data36;  
-input   [8-1:0] sc2mac_dat_src_data37;  
-input   [8-1:0] sc2mac_dat_src_data38;  
-input   [8-1:0] sc2mac_dat_src_data39;  
-input   [8-1:0] sc2mac_dat_src_data40;  
-input   [8-1:0] sc2mac_dat_src_data41;  
-input   [8-1:0] sc2mac_dat_src_data42;  
-input   [8-1:0] sc2mac_dat_src_data43;  
-input   [8-1:0] sc2mac_dat_src_data44;  
-input   [8-1:0] sc2mac_dat_src_data45;  
-input   [8-1:0] sc2mac_dat_src_data46;  
-input   [8-1:0] sc2mac_dat_src_data47;  
-input   [8-1:0] sc2mac_dat_src_data48;  
-input   [8-1:0] sc2mac_dat_src_data49;  
-input   [8-1:0] sc2mac_dat_src_data50;  
-input   [8-1:0] sc2mac_dat_src_data51;  
-input   [8-1:0] sc2mac_dat_src_data52;  
-input   [8-1:0] sc2mac_dat_src_data53;  
-input   [8-1:0] sc2mac_dat_src_data54;  
-input   [8-1:0] sc2mac_dat_src_data55;  
-input   [8-1:0] sc2mac_dat_src_data56;  
-input   [8-1:0] sc2mac_dat_src_data57;  
-input   [8-1:0] sc2mac_dat_src_data58;  
-input   [8-1:0] sc2mac_dat_src_data59;  
-input   [8-1:0] sc2mac_dat_src_data60;  
-input   [8-1:0] sc2mac_dat_src_data61;  
-input   [8-1:0] sc2mac_dat_src_data62;  
-input   [8-1:0] sc2mac_dat_src_data63;  
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 input [8:0] sc2mac_dat_src_pd;
 output sc2mac_wt_dst_pvld; /* data valid */
-output [64 -1:0] sc2mac_wt_dst_mask;
+output [32 -1:0] sc2mac_wt_dst_mask;
 //: my $bb=8;
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print "output   [${bb}-1:0] sc2mac_wt_dst_data${i};  \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -515,45 +323,13 @@ output   [8-1:0] sc2mac_wt_dst_data28;
 output   [8-1:0] sc2mac_wt_dst_data29;  
 output   [8-1:0] sc2mac_wt_dst_data30;  
 output   [8-1:0] sc2mac_wt_dst_data31;  
-output   [8-1:0] sc2mac_wt_dst_data32;  
-output   [8-1:0] sc2mac_wt_dst_data33;  
-output   [8-1:0] sc2mac_wt_dst_data34;  
-output   [8-1:0] sc2mac_wt_dst_data35;  
-output   [8-1:0] sc2mac_wt_dst_data36;  
-output   [8-1:0] sc2mac_wt_dst_data37;  
-output   [8-1:0] sc2mac_wt_dst_data38;  
-output   [8-1:0] sc2mac_wt_dst_data39;  
-output   [8-1:0] sc2mac_wt_dst_data40;  
-output   [8-1:0] sc2mac_wt_dst_data41;  
-output   [8-1:0] sc2mac_wt_dst_data42;  
-output   [8-1:0] sc2mac_wt_dst_data43;  
-output   [8-1:0] sc2mac_wt_dst_data44;  
-output   [8-1:0] sc2mac_wt_dst_data45;  
-output   [8-1:0] sc2mac_wt_dst_data46;  
-output   [8-1:0] sc2mac_wt_dst_data47;  
-output   [8-1:0] sc2mac_wt_dst_data48;  
-output   [8-1:0] sc2mac_wt_dst_data49;  
-output   [8-1:0] sc2mac_wt_dst_data50;  
-output   [8-1:0] sc2mac_wt_dst_data51;  
-output   [8-1:0] sc2mac_wt_dst_data52;  
-output   [8-1:0] sc2mac_wt_dst_data53;  
-output   [8-1:0] sc2mac_wt_dst_data54;  
-output   [8-1:0] sc2mac_wt_dst_data55;  
-output   [8-1:0] sc2mac_wt_dst_data56;  
-output   [8-1:0] sc2mac_wt_dst_data57;  
-output   [8-1:0] sc2mac_wt_dst_data58;  
-output   [8-1:0] sc2mac_wt_dst_data59;  
-output   [8-1:0] sc2mac_wt_dst_data60;  
-output   [8-1:0] sc2mac_wt_dst_data61;  
-output   [8-1:0] sc2mac_wt_dst_data62;  
-output   [8-1:0] sc2mac_wt_dst_data63;  
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [32/2 -1:0] sc2mac_wt_dst_sel;
 output sc2mac_dat_dst_pvld; /* data valid */
-output [64 -1:0] sc2mac_dat_dst_mask;
+output [32 -1:0] sc2mac_dat_dst_mask;
 //: my $bb=8;
-//: for(my $i=0; $i<64; $i++){
+//: for(my $i=0; $i<32; $i++){
 //: print "output   [${bb}-1:0] sc2mac_dat_dst_data${i};  \n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
@@ -589,38 +365,6 @@ output   [8-1:0] sc2mac_dat_dst_data28;
 output   [8-1:0] sc2mac_dat_dst_data29;  
 output   [8-1:0] sc2mac_dat_dst_data30;  
 output   [8-1:0] sc2mac_dat_dst_data31;  
-output   [8-1:0] sc2mac_dat_dst_data32;  
-output   [8-1:0] sc2mac_dat_dst_data33;  
-output   [8-1:0] sc2mac_dat_dst_data34;  
-output   [8-1:0] sc2mac_dat_dst_data35;  
-output   [8-1:0] sc2mac_dat_dst_data36;  
-output   [8-1:0] sc2mac_dat_dst_data37;  
-output   [8-1:0] sc2mac_dat_dst_data38;  
-output   [8-1:0] sc2mac_dat_dst_data39;  
-output   [8-1:0] sc2mac_dat_dst_data40;  
-output   [8-1:0] sc2mac_dat_dst_data41;  
-output   [8-1:0] sc2mac_dat_dst_data42;  
-output   [8-1:0] sc2mac_dat_dst_data43;  
-output   [8-1:0] sc2mac_dat_dst_data44;  
-output   [8-1:0] sc2mac_dat_dst_data45;  
-output   [8-1:0] sc2mac_dat_dst_data46;  
-output   [8-1:0] sc2mac_dat_dst_data47;  
-output   [8-1:0] sc2mac_dat_dst_data48;  
-output   [8-1:0] sc2mac_dat_dst_data49;  
-output   [8-1:0] sc2mac_dat_dst_data50;  
-output   [8-1:0] sc2mac_dat_dst_data51;  
-output   [8-1:0] sc2mac_dat_dst_data52;  
-output   [8-1:0] sc2mac_dat_dst_data53;  
-output   [8-1:0] sc2mac_dat_dst_data54;  
-output   [8-1:0] sc2mac_dat_dst_data55;  
-output   [8-1:0] sc2mac_dat_dst_data56;  
-output   [8-1:0] sc2mac_dat_dst_data57;  
-output   [8-1:0] sc2mac_dat_dst_data58;  
-output   [8-1:0] sc2mac_dat_dst_data59;  
-output   [8-1:0] sc2mac_dat_dst_data60;  
-output   [8-1:0] sc2mac_dat_dst_data61;  
-output   [8-1:0] sc2mac_dat_dst_data62;  
-output   [8-1:0] sc2mac_dat_dst_data63;  
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 output [8:0] sc2mac_dat_dst_pd;
@@ -630,18 +374,18 @@ output [8:0] sc2mac_dat_dst_pd;
 //: my $k;
 //: my $bb=8;
 //: my $kk=32/2;
-//: my $cc=64;
+//: my $cc=32;
 //: print "wire sc2mac_wt_pvld_d0 = sc2mac_wt_src_pvld;\n";
 //: print "wire[${kk}-1:0] sc2mac_wt_sel_d0 = sc2mac_wt_src_sel;\n";
 //: print "wire[${cc}-1:0] sc2mac_wt_mask_d0 = sc2mac_wt_src_mask;\n";
-//: for($k = 0; $k <64; $k ++) {
+//: for($k = 0; $k <32; $k ++) {
 //: print "wire sc2mac_wt_data${k}_d0 = sc2mac_wt_src_data${k};\n";
 //: }
 //:
 //: print "wire sc2mac_dat_pvld_d0 = sc2mac_dat_src_pvld;\n";
 //: print "wire[8:0] sc2mac_dat_pd_d0 = sc2mac_dat_src_pd;\n";
 //: print "wire[${cc}-1:0] sc2mac_dat_mask_d0 = sc2mac_dat_src_mask;\n";
-//: for($k = 0; $k <64; $k ++) {
+//: for($k = 0; $k <32; $k ++) {
 //: print "wire[${bb}-1:0] sc2mac_dat_data${k}_d0 = sc2mac_dat_src_data${k};\n";
 //: }
 //:
@@ -650,14 +394,14 @@ output [8:0] sc2mac_dat_dst_pd;
 //: &eperl::flop("-q sc2mac_wt_pvld_d${j} -d sc2mac_wt_pvld_d${i}");
 //: &eperl::flop("-wid ${kk} -q sc2mac_wt_sel_d${j}  -en \"(sc2mac_wt_pvld_d${i} | sc2mac_wt_pvld_d${j})\" -d sc2mac_wt_sel_d${i}");
 //: &eperl::flop("-wid ${cc} -q sc2mac_wt_mask_d${j} -en \"(sc2mac_wt_pvld_d${i} | sc2mac_wt_pvld_d${j})\" -d sc2mac_wt_mask_d${i}");
-//: for($k = 0; $k <64; $k ++) {
+//: for($k = 0; $k <32; $k ++) {
 //: &eperl::flop("-wid ${bb} -q sc2mac_wt_data${k}_d${j} -en sc2mac_wt_mask_d${i}[${k}] -d sc2mac_wt_data${k}_d${i}");
 //: }
 //:
 //: &eperl::flop("-q sc2mac_dat_pvld_d${j} -d sc2mac_dat_pvld_d${i}");
 //: &eperl::flop("-wid 9 -q sc2mac_dat_pd_d${j} -en \"(sc2mac_dat_pvld_d${i} | sc2mac_dat_pvld_d${j})\" -d sc2mac_dat_pd_d${i}");
 //: &eperl::flop("-wid ${cc} -q sc2mac_dat_mask_d${j} -en \"(sc2mac_dat_pvld_d${i} | sc2mac_dat_pvld_d${j})\" -d sc2mac_dat_mask_d${i}");
-//: for($k = 0; $k <64; $k ++) {
+//: for($k = 0; $k <32; $k ++) {
 //: &eperl::flop("-wid ${bb} -q sc2mac_dat_data${k}_d${j} -en \"(sc2mac_dat_mask_d${i}[${k}])\" -d sc2mac_dat_data${k}_d${i}");
 //: }
 //: }
@@ -666,20 +410,20 @@ output [8:0] sc2mac_dat_dst_pd;
 //: print "wire sc2mac_wt_dst_pvld = sc2mac_wt_pvld_d${i};\n";
 //: print "wire[${kk}-1:0] sc2mac_wt_dst_sel = sc2mac_wt_sel_d${i};\n";
 //: print "wire[${cc}-1:0] sc2mac_wt_dst_mask = sc2mac_wt_mask_d${i};\n";
-//: for($k = 0; $k <64; $k ++) {
+//: for($k = 0; $k <32; $k ++) {
 //: print "wire[${bb}-1:0] sc2mac_wt_dst_data${k} = sc2mac_wt_data${k}_d${i};\n";
 //: }
 //:
 //: print "wire sc2mac_dat_dst_pvld = sc2mac_dat_pvld_d${i};\n";
 //: print "wire[8:0] sc2mac_dat_dst_pd = sc2mac_dat_pd_d${i};\n";
 //: print "wire[${cc}-1:0] sc2mac_dat_dst_mask = sc2mac_dat_mask_d${i};\n";
-//: for($k = 0; $k <64; $k ++) {
+//: for($k = 0; $k <32; $k ++) {
 //: print "wire[${bb}-1:0] sc2mac_dat_dst_data${k} = sc2mac_dat_data${k}_d${i};\n";
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 wire sc2mac_wt_pvld_d0 = sc2mac_wt_src_pvld;
 wire[16-1:0] sc2mac_wt_sel_d0 = sc2mac_wt_src_sel;
-wire[64-1:0] sc2mac_wt_mask_d0 = sc2mac_wt_src_mask;
+wire[32-1:0] sc2mac_wt_mask_d0 = sc2mac_wt_src_mask;
 wire sc2mac_wt_data0_d0 = sc2mac_wt_src_data0;
 wire sc2mac_wt_data1_d0 = sc2mac_wt_src_data1;
 wire sc2mac_wt_data2_d0 = sc2mac_wt_src_data2;
@@ -712,41 +456,9 @@ wire sc2mac_wt_data28_d0 = sc2mac_wt_src_data28;
 wire sc2mac_wt_data29_d0 = sc2mac_wt_src_data29;
 wire sc2mac_wt_data30_d0 = sc2mac_wt_src_data30;
 wire sc2mac_wt_data31_d0 = sc2mac_wt_src_data31;
-wire sc2mac_wt_data32_d0 = sc2mac_wt_src_data32;
-wire sc2mac_wt_data33_d0 = sc2mac_wt_src_data33;
-wire sc2mac_wt_data34_d0 = sc2mac_wt_src_data34;
-wire sc2mac_wt_data35_d0 = sc2mac_wt_src_data35;
-wire sc2mac_wt_data36_d0 = sc2mac_wt_src_data36;
-wire sc2mac_wt_data37_d0 = sc2mac_wt_src_data37;
-wire sc2mac_wt_data38_d0 = sc2mac_wt_src_data38;
-wire sc2mac_wt_data39_d0 = sc2mac_wt_src_data39;
-wire sc2mac_wt_data40_d0 = sc2mac_wt_src_data40;
-wire sc2mac_wt_data41_d0 = sc2mac_wt_src_data41;
-wire sc2mac_wt_data42_d0 = sc2mac_wt_src_data42;
-wire sc2mac_wt_data43_d0 = sc2mac_wt_src_data43;
-wire sc2mac_wt_data44_d0 = sc2mac_wt_src_data44;
-wire sc2mac_wt_data45_d0 = sc2mac_wt_src_data45;
-wire sc2mac_wt_data46_d0 = sc2mac_wt_src_data46;
-wire sc2mac_wt_data47_d0 = sc2mac_wt_src_data47;
-wire sc2mac_wt_data48_d0 = sc2mac_wt_src_data48;
-wire sc2mac_wt_data49_d0 = sc2mac_wt_src_data49;
-wire sc2mac_wt_data50_d0 = sc2mac_wt_src_data50;
-wire sc2mac_wt_data51_d0 = sc2mac_wt_src_data51;
-wire sc2mac_wt_data52_d0 = sc2mac_wt_src_data52;
-wire sc2mac_wt_data53_d0 = sc2mac_wt_src_data53;
-wire sc2mac_wt_data54_d0 = sc2mac_wt_src_data54;
-wire sc2mac_wt_data55_d0 = sc2mac_wt_src_data55;
-wire sc2mac_wt_data56_d0 = sc2mac_wt_src_data56;
-wire sc2mac_wt_data57_d0 = sc2mac_wt_src_data57;
-wire sc2mac_wt_data58_d0 = sc2mac_wt_src_data58;
-wire sc2mac_wt_data59_d0 = sc2mac_wt_src_data59;
-wire sc2mac_wt_data60_d0 = sc2mac_wt_src_data60;
-wire sc2mac_wt_data61_d0 = sc2mac_wt_src_data61;
-wire sc2mac_wt_data62_d0 = sc2mac_wt_src_data62;
-wire sc2mac_wt_data63_d0 = sc2mac_wt_src_data63;
 wire sc2mac_dat_pvld_d0 = sc2mac_dat_src_pvld;
 wire[8:0] sc2mac_dat_pd_d0 = sc2mac_dat_src_pd;
-wire[64-1:0] sc2mac_dat_mask_d0 = sc2mac_dat_src_mask;
+wire[32-1:0] sc2mac_dat_mask_d0 = sc2mac_dat_src_mask;
 wire[8-1:0] sc2mac_dat_data0_d0 = sc2mac_dat_src_data0;
 wire[8-1:0] sc2mac_dat_data1_d0 = sc2mac_dat_src_data1;
 wire[8-1:0] sc2mac_dat_data2_d0 = sc2mac_dat_src_data2;
@@ -779,38 +491,6 @@ wire[8-1:0] sc2mac_dat_data28_d0 = sc2mac_dat_src_data28;
 wire[8-1:0] sc2mac_dat_data29_d0 = sc2mac_dat_src_data29;
 wire[8-1:0] sc2mac_dat_data30_d0 = sc2mac_dat_src_data30;
 wire[8-1:0] sc2mac_dat_data31_d0 = sc2mac_dat_src_data31;
-wire[8-1:0] sc2mac_dat_data32_d0 = sc2mac_dat_src_data32;
-wire[8-1:0] sc2mac_dat_data33_d0 = sc2mac_dat_src_data33;
-wire[8-1:0] sc2mac_dat_data34_d0 = sc2mac_dat_src_data34;
-wire[8-1:0] sc2mac_dat_data35_d0 = sc2mac_dat_src_data35;
-wire[8-1:0] sc2mac_dat_data36_d0 = sc2mac_dat_src_data36;
-wire[8-1:0] sc2mac_dat_data37_d0 = sc2mac_dat_src_data37;
-wire[8-1:0] sc2mac_dat_data38_d0 = sc2mac_dat_src_data38;
-wire[8-1:0] sc2mac_dat_data39_d0 = sc2mac_dat_src_data39;
-wire[8-1:0] sc2mac_dat_data40_d0 = sc2mac_dat_src_data40;
-wire[8-1:0] sc2mac_dat_data41_d0 = sc2mac_dat_src_data41;
-wire[8-1:0] sc2mac_dat_data42_d0 = sc2mac_dat_src_data42;
-wire[8-1:0] sc2mac_dat_data43_d0 = sc2mac_dat_src_data43;
-wire[8-1:0] sc2mac_dat_data44_d0 = sc2mac_dat_src_data44;
-wire[8-1:0] sc2mac_dat_data45_d0 = sc2mac_dat_src_data45;
-wire[8-1:0] sc2mac_dat_data46_d0 = sc2mac_dat_src_data46;
-wire[8-1:0] sc2mac_dat_data47_d0 = sc2mac_dat_src_data47;
-wire[8-1:0] sc2mac_dat_data48_d0 = sc2mac_dat_src_data48;
-wire[8-1:0] sc2mac_dat_data49_d0 = sc2mac_dat_src_data49;
-wire[8-1:0] sc2mac_dat_data50_d0 = sc2mac_dat_src_data50;
-wire[8-1:0] sc2mac_dat_data51_d0 = sc2mac_dat_src_data51;
-wire[8-1:0] sc2mac_dat_data52_d0 = sc2mac_dat_src_data52;
-wire[8-1:0] sc2mac_dat_data53_d0 = sc2mac_dat_src_data53;
-wire[8-1:0] sc2mac_dat_data54_d0 = sc2mac_dat_src_data54;
-wire[8-1:0] sc2mac_dat_data55_d0 = sc2mac_dat_src_data55;
-wire[8-1:0] sc2mac_dat_data56_d0 = sc2mac_dat_src_data56;
-wire[8-1:0] sc2mac_dat_data57_d0 = sc2mac_dat_src_data57;
-wire[8-1:0] sc2mac_dat_data58_d0 = sc2mac_dat_src_data58;
-wire[8-1:0] sc2mac_dat_data59_d0 = sc2mac_dat_src_data59;
-wire[8-1:0] sc2mac_dat_data60_d0 = sc2mac_dat_src_data60;
-wire[8-1:0] sc2mac_dat_data61_d0 = sc2mac_dat_src_data61;
-wire[8-1:0] sc2mac_dat_data62_d0 = sc2mac_dat_src_data62;
-wire[8-1:0] sc2mac_dat_data63_d0 = sc2mac_dat_src_data63;
 reg  sc2mac_wt_pvld_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
@@ -834,7 +514,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [63:0] sc2mac_wt_mask_d1;
+reg [31:0] sc2mac_wt_mask_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        sc2mac_wt_mask_d1 <= 'b0;
@@ -1329,486 +1009,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [7:0] sc2mac_wt_data32_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data32_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[32]) == 1'b1) begin
-           sc2mac_wt_data32_d1 <= sc2mac_wt_data32_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[32]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data32_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data33_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data33_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[33]) == 1'b1) begin
-           sc2mac_wt_data33_d1 <= sc2mac_wt_data33_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[33]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data33_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data34_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data34_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[34]) == 1'b1) begin
-           sc2mac_wt_data34_d1 <= sc2mac_wt_data34_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[34]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data34_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data35_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data35_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[35]) == 1'b1) begin
-           sc2mac_wt_data35_d1 <= sc2mac_wt_data35_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[35]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data35_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data36_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data36_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[36]) == 1'b1) begin
-           sc2mac_wt_data36_d1 <= sc2mac_wt_data36_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[36]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data36_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data37_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data37_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[37]) == 1'b1) begin
-           sc2mac_wt_data37_d1 <= sc2mac_wt_data37_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[37]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data37_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data38_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data38_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[38]) == 1'b1) begin
-           sc2mac_wt_data38_d1 <= sc2mac_wt_data38_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[38]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data38_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data39_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data39_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[39]) == 1'b1) begin
-           sc2mac_wt_data39_d1 <= sc2mac_wt_data39_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[39]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data39_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data40_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data40_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[40]) == 1'b1) begin
-           sc2mac_wt_data40_d1 <= sc2mac_wt_data40_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[40]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data40_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data41_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data41_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[41]) == 1'b1) begin
-           sc2mac_wt_data41_d1 <= sc2mac_wt_data41_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[41]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data41_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data42_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data42_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[42]) == 1'b1) begin
-           sc2mac_wt_data42_d1 <= sc2mac_wt_data42_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[42]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data42_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data43_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data43_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[43]) == 1'b1) begin
-           sc2mac_wt_data43_d1 <= sc2mac_wt_data43_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[43]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data43_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data44_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data44_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[44]) == 1'b1) begin
-           sc2mac_wt_data44_d1 <= sc2mac_wt_data44_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[44]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data44_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data45_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data45_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[45]) == 1'b1) begin
-           sc2mac_wt_data45_d1 <= sc2mac_wt_data45_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[45]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data45_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data46_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data46_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[46]) == 1'b1) begin
-           sc2mac_wt_data46_d1 <= sc2mac_wt_data46_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[46]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data46_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data47_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data47_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[47]) == 1'b1) begin
-           sc2mac_wt_data47_d1 <= sc2mac_wt_data47_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[47]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data47_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data48_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data48_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[48]) == 1'b1) begin
-           sc2mac_wt_data48_d1 <= sc2mac_wt_data48_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[48]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data48_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data49_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data49_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[49]) == 1'b1) begin
-           sc2mac_wt_data49_d1 <= sc2mac_wt_data49_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[49]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data49_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data50_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data50_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[50]) == 1'b1) begin
-           sc2mac_wt_data50_d1 <= sc2mac_wt_data50_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[50]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data50_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data51_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data51_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[51]) == 1'b1) begin
-           sc2mac_wt_data51_d1 <= sc2mac_wt_data51_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[51]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data51_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data52_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data52_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[52]) == 1'b1) begin
-           sc2mac_wt_data52_d1 <= sc2mac_wt_data52_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[52]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data52_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data53_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data53_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[53]) == 1'b1) begin
-           sc2mac_wt_data53_d1 <= sc2mac_wt_data53_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[53]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data53_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data54_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data54_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[54]) == 1'b1) begin
-           sc2mac_wt_data54_d1 <= sc2mac_wt_data54_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[54]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data54_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data55_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data55_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[55]) == 1'b1) begin
-           sc2mac_wt_data55_d1 <= sc2mac_wt_data55_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[55]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data55_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data56_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data56_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[56]) == 1'b1) begin
-           sc2mac_wt_data56_d1 <= sc2mac_wt_data56_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[56]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data56_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data57_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data57_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[57]) == 1'b1) begin
-           sc2mac_wt_data57_d1 <= sc2mac_wt_data57_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[57]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data57_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data58_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data58_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[58]) == 1'b1) begin
-           sc2mac_wt_data58_d1 <= sc2mac_wt_data58_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[58]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data58_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data59_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data59_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[59]) == 1'b1) begin
-           sc2mac_wt_data59_d1 <= sc2mac_wt_data59_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[59]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data59_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data60_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data60_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[60]) == 1'b1) begin
-           sc2mac_wt_data60_d1 <= sc2mac_wt_data60_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[60]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data60_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data61_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data61_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[61]) == 1'b1) begin
-           sc2mac_wt_data61_d1 <= sc2mac_wt_data61_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[61]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data61_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data62_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data62_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[62]) == 1'b1) begin
-           sc2mac_wt_data62_d1 <= sc2mac_wt_data62_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[62]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data62_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data63_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data63_d1 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d0[63]) == 1'b1) begin
-           sc2mac_wt_data63_d1 <= sc2mac_wt_data63_d0;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d0[63]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data63_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  sc2mac_dat_pvld_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
@@ -1832,7 +1032,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [63:0] sc2mac_dat_mask_d1;
+reg [31:0] sc2mac_dat_mask_d1;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        sc2mac_dat_mask_d1 <= 'b0;
@@ -2327,486 +1527,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [7:0] sc2mac_dat_data32_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data32_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[32])) == 1'b1) begin
-           sc2mac_dat_data32_d1 <= sc2mac_dat_data32_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[32])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data32_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data33_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data33_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[33])) == 1'b1) begin
-           sc2mac_dat_data33_d1 <= sc2mac_dat_data33_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[33])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data33_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data34_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data34_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[34])) == 1'b1) begin
-           sc2mac_dat_data34_d1 <= sc2mac_dat_data34_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[34])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data34_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data35_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data35_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[35])) == 1'b1) begin
-           sc2mac_dat_data35_d1 <= sc2mac_dat_data35_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[35])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data35_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data36_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data36_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[36])) == 1'b1) begin
-           sc2mac_dat_data36_d1 <= sc2mac_dat_data36_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[36])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data36_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data37_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data37_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[37])) == 1'b1) begin
-           sc2mac_dat_data37_d1 <= sc2mac_dat_data37_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[37])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data37_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data38_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data38_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[38])) == 1'b1) begin
-           sc2mac_dat_data38_d1 <= sc2mac_dat_data38_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[38])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data38_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data39_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data39_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[39])) == 1'b1) begin
-           sc2mac_dat_data39_d1 <= sc2mac_dat_data39_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[39])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data39_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data40_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data40_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[40])) == 1'b1) begin
-           sc2mac_dat_data40_d1 <= sc2mac_dat_data40_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[40])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data40_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data41_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data41_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[41])) == 1'b1) begin
-           sc2mac_dat_data41_d1 <= sc2mac_dat_data41_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[41])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data41_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data42_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data42_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[42])) == 1'b1) begin
-           sc2mac_dat_data42_d1 <= sc2mac_dat_data42_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[42])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data42_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data43_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data43_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[43])) == 1'b1) begin
-           sc2mac_dat_data43_d1 <= sc2mac_dat_data43_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[43])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data43_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data44_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data44_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[44])) == 1'b1) begin
-           sc2mac_dat_data44_d1 <= sc2mac_dat_data44_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[44])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data44_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data45_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data45_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[45])) == 1'b1) begin
-           sc2mac_dat_data45_d1 <= sc2mac_dat_data45_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[45])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data45_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data46_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data46_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[46])) == 1'b1) begin
-           sc2mac_dat_data46_d1 <= sc2mac_dat_data46_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[46])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data46_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data47_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data47_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[47])) == 1'b1) begin
-           sc2mac_dat_data47_d1 <= sc2mac_dat_data47_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[47])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data47_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data48_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data48_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[48])) == 1'b1) begin
-           sc2mac_dat_data48_d1 <= sc2mac_dat_data48_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[48])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data48_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data49_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data49_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[49])) == 1'b1) begin
-           sc2mac_dat_data49_d1 <= sc2mac_dat_data49_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[49])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data49_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data50_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data50_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[50])) == 1'b1) begin
-           sc2mac_dat_data50_d1 <= sc2mac_dat_data50_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[50])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data50_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data51_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data51_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[51])) == 1'b1) begin
-           sc2mac_dat_data51_d1 <= sc2mac_dat_data51_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[51])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data51_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data52_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data52_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[52])) == 1'b1) begin
-           sc2mac_dat_data52_d1 <= sc2mac_dat_data52_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[52])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data52_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data53_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data53_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[53])) == 1'b1) begin
-           sc2mac_dat_data53_d1 <= sc2mac_dat_data53_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[53])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data53_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data54_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data54_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[54])) == 1'b1) begin
-           sc2mac_dat_data54_d1 <= sc2mac_dat_data54_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[54])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data54_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data55_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data55_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[55])) == 1'b1) begin
-           sc2mac_dat_data55_d1 <= sc2mac_dat_data55_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[55])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data55_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data56_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data56_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[56])) == 1'b1) begin
-           sc2mac_dat_data56_d1 <= sc2mac_dat_data56_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[56])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data56_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data57_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data57_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[57])) == 1'b1) begin
-           sc2mac_dat_data57_d1 <= sc2mac_dat_data57_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[57])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data57_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data58_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data58_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[58])) == 1'b1) begin
-           sc2mac_dat_data58_d1 <= sc2mac_dat_data58_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[58])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data58_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data59_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data59_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[59])) == 1'b1) begin
-           sc2mac_dat_data59_d1 <= sc2mac_dat_data59_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[59])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data59_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data60_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data60_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[60])) == 1'b1) begin
-           sc2mac_dat_data60_d1 <= sc2mac_dat_data60_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[60])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data60_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data61_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data61_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[61])) == 1'b1) begin
-           sc2mac_dat_data61_d1 <= sc2mac_dat_data61_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[61])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data61_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data62_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data62_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[62])) == 1'b1) begin
-           sc2mac_dat_data62_d1 <= sc2mac_dat_data62_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[62])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data62_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data63_d1;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data63_d1 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d0[63])) == 1'b1) begin
-           sc2mac_dat_data63_d1 <= sc2mac_dat_data63_d0;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d0[63])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data63_d1 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  sc2mac_wt_pvld_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
@@ -2830,7 +1550,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [63:0] sc2mac_wt_mask_d2;
+reg [31:0] sc2mac_wt_mask_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        sc2mac_wt_mask_d2 <= 'b0;
@@ -3325,486 +2045,6 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [7:0] sc2mac_wt_data32_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data32_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[32]) == 1'b1) begin
-           sc2mac_wt_data32_d2 <= sc2mac_wt_data32_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[32]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data32_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data33_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data33_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[33]) == 1'b1) begin
-           sc2mac_wt_data33_d2 <= sc2mac_wt_data33_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[33]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data33_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data34_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data34_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[34]) == 1'b1) begin
-           sc2mac_wt_data34_d2 <= sc2mac_wt_data34_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[34]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data34_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data35_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data35_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[35]) == 1'b1) begin
-           sc2mac_wt_data35_d2 <= sc2mac_wt_data35_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[35]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data35_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data36_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data36_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[36]) == 1'b1) begin
-           sc2mac_wt_data36_d2 <= sc2mac_wt_data36_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[36]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data36_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data37_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data37_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[37]) == 1'b1) begin
-           sc2mac_wt_data37_d2 <= sc2mac_wt_data37_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[37]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data37_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data38_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data38_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[38]) == 1'b1) begin
-           sc2mac_wt_data38_d2 <= sc2mac_wt_data38_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[38]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data38_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data39_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data39_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[39]) == 1'b1) begin
-           sc2mac_wt_data39_d2 <= sc2mac_wt_data39_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[39]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data39_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data40_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data40_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[40]) == 1'b1) begin
-           sc2mac_wt_data40_d2 <= sc2mac_wt_data40_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[40]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data40_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data41_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data41_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[41]) == 1'b1) begin
-           sc2mac_wt_data41_d2 <= sc2mac_wt_data41_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[41]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data41_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data42_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data42_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[42]) == 1'b1) begin
-           sc2mac_wt_data42_d2 <= sc2mac_wt_data42_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[42]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data42_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data43_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data43_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[43]) == 1'b1) begin
-           sc2mac_wt_data43_d2 <= sc2mac_wt_data43_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[43]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data43_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data44_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data44_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[44]) == 1'b1) begin
-           sc2mac_wt_data44_d2 <= sc2mac_wt_data44_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[44]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data44_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data45_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data45_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[45]) == 1'b1) begin
-           sc2mac_wt_data45_d2 <= sc2mac_wt_data45_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[45]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data45_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data46_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data46_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[46]) == 1'b1) begin
-           sc2mac_wt_data46_d2 <= sc2mac_wt_data46_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[46]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data46_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data47_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data47_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[47]) == 1'b1) begin
-           sc2mac_wt_data47_d2 <= sc2mac_wt_data47_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[47]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data47_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data48_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data48_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[48]) == 1'b1) begin
-           sc2mac_wt_data48_d2 <= sc2mac_wt_data48_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[48]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data48_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data49_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data49_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[49]) == 1'b1) begin
-           sc2mac_wt_data49_d2 <= sc2mac_wt_data49_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[49]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data49_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data50_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data50_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[50]) == 1'b1) begin
-           sc2mac_wt_data50_d2 <= sc2mac_wt_data50_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[50]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data50_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data51_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data51_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[51]) == 1'b1) begin
-           sc2mac_wt_data51_d2 <= sc2mac_wt_data51_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[51]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data51_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data52_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data52_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[52]) == 1'b1) begin
-           sc2mac_wt_data52_d2 <= sc2mac_wt_data52_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[52]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data52_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data53_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data53_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[53]) == 1'b1) begin
-           sc2mac_wt_data53_d2 <= sc2mac_wt_data53_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[53]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data53_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data54_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data54_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[54]) == 1'b1) begin
-           sc2mac_wt_data54_d2 <= sc2mac_wt_data54_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[54]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data54_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data55_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data55_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[55]) == 1'b1) begin
-           sc2mac_wt_data55_d2 <= sc2mac_wt_data55_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[55]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data55_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data56_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data56_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[56]) == 1'b1) begin
-           sc2mac_wt_data56_d2 <= sc2mac_wt_data56_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[56]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data56_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data57_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data57_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[57]) == 1'b1) begin
-           sc2mac_wt_data57_d2 <= sc2mac_wt_data57_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[57]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data57_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data58_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data58_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[58]) == 1'b1) begin
-           sc2mac_wt_data58_d2 <= sc2mac_wt_data58_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[58]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data58_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data59_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data59_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[59]) == 1'b1) begin
-           sc2mac_wt_data59_d2 <= sc2mac_wt_data59_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[59]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data59_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data60_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data60_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[60]) == 1'b1) begin
-           sc2mac_wt_data60_d2 <= sc2mac_wt_data60_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[60]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data60_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data61_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data61_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[61]) == 1'b1) begin
-           sc2mac_wt_data61_d2 <= sc2mac_wt_data61_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[61]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data61_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data62_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data62_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[62]) == 1'b1) begin
-           sc2mac_wt_data62_d2 <= sc2mac_wt_data62_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[62]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data62_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_wt_data63_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_wt_data63_d2 <= 'b0;
-   end else begin
-       if ((sc2mac_wt_mask_d1[63]) == 1'b1) begin
-           sc2mac_wt_data63_d2 <= sc2mac_wt_data63_d1;
-       // VCS coverage off
-       end else if ((sc2mac_wt_mask_d1[63]) == 1'b0) begin
-       end else begin
-           sc2mac_wt_data63_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 reg  sc2mac_dat_pvld_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
@@ -3828,7 +2068,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [63:0] sc2mac_dat_mask_d2;
+reg [31:0] sc2mac_dat_mask_d2;
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
    if (!nvdla_core_rstn) begin
        sc2mac_dat_mask_d2 <= 'b0;
@@ -4323,489 +2563,9 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
        end
    end
 end
-reg [7:0] sc2mac_dat_data32_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data32_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[32])) == 1'b1) begin
-           sc2mac_dat_data32_d2 <= sc2mac_dat_data32_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[32])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data32_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data33_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data33_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[33])) == 1'b1) begin
-           sc2mac_dat_data33_d2 <= sc2mac_dat_data33_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[33])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data33_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data34_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data34_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[34])) == 1'b1) begin
-           sc2mac_dat_data34_d2 <= sc2mac_dat_data34_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[34])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data34_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data35_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data35_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[35])) == 1'b1) begin
-           sc2mac_dat_data35_d2 <= sc2mac_dat_data35_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[35])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data35_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data36_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data36_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[36])) == 1'b1) begin
-           sc2mac_dat_data36_d2 <= sc2mac_dat_data36_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[36])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data36_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data37_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data37_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[37])) == 1'b1) begin
-           sc2mac_dat_data37_d2 <= sc2mac_dat_data37_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[37])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data37_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data38_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data38_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[38])) == 1'b1) begin
-           sc2mac_dat_data38_d2 <= sc2mac_dat_data38_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[38])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data38_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data39_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data39_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[39])) == 1'b1) begin
-           sc2mac_dat_data39_d2 <= sc2mac_dat_data39_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[39])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data39_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data40_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data40_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[40])) == 1'b1) begin
-           sc2mac_dat_data40_d2 <= sc2mac_dat_data40_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[40])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data40_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data41_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data41_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[41])) == 1'b1) begin
-           sc2mac_dat_data41_d2 <= sc2mac_dat_data41_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[41])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data41_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data42_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data42_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[42])) == 1'b1) begin
-           sc2mac_dat_data42_d2 <= sc2mac_dat_data42_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[42])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data42_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data43_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data43_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[43])) == 1'b1) begin
-           sc2mac_dat_data43_d2 <= sc2mac_dat_data43_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[43])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data43_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data44_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data44_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[44])) == 1'b1) begin
-           sc2mac_dat_data44_d2 <= sc2mac_dat_data44_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[44])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data44_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data45_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data45_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[45])) == 1'b1) begin
-           sc2mac_dat_data45_d2 <= sc2mac_dat_data45_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[45])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data45_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data46_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data46_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[46])) == 1'b1) begin
-           sc2mac_dat_data46_d2 <= sc2mac_dat_data46_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[46])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data46_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data47_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data47_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[47])) == 1'b1) begin
-           sc2mac_dat_data47_d2 <= sc2mac_dat_data47_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[47])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data47_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data48_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data48_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[48])) == 1'b1) begin
-           sc2mac_dat_data48_d2 <= sc2mac_dat_data48_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[48])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data48_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data49_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data49_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[49])) == 1'b1) begin
-           sc2mac_dat_data49_d2 <= sc2mac_dat_data49_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[49])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data49_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data50_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data50_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[50])) == 1'b1) begin
-           sc2mac_dat_data50_d2 <= sc2mac_dat_data50_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[50])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data50_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data51_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data51_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[51])) == 1'b1) begin
-           sc2mac_dat_data51_d2 <= sc2mac_dat_data51_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[51])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data51_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data52_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data52_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[52])) == 1'b1) begin
-           sc2mac_dat_data52_d2 <= sc2mac_dat_data52_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[52])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data52_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data53_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data53_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[53])) == 1'b1) begin
-           sc2mac_dat_data53_d2 <= sc2mac_dat_data53_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[53])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data53_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data54_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data54_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[54])) == 1'b1) begin
-           sc2mac_dat_data54_d2 <= sc2mac_dat_data54_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[54])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data54_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data55_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data55_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[55])) == 1'b1) begin
-           sc2mac_dat_data55_d2 <= sc2mac_dat_data55_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[55])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data55_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data56_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data56_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[56])) == 1'b1) begin
-           sc2mac_dat_data56_d2 <= sc2mac_dat_data56_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[56])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data56_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data57_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data57_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[57])) == 1'b1) begin
-           sc2mac_dat_data57_d2 <= sc2mac_dat_data57_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[57])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data57_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data58_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data58_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[58])) == 1'b1) begin
-           sc2mac_dat_data58_d2 <= sc2mac_dat_data58_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[58])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data58_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data59_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data59_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[59])) == 1'b1) begin
-           sc2mac_dat_data59_d2 <= sc2mac_dat_data59_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[59])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data59_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data60_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data60_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[60])) == 1'b1) begin
-           sc2mac_dat_data60_d2 <= sc2mac_dat_data60_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[60])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data60_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data61_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data61_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[61])) == 1'b1) begin
-           sc2mac_dat_data61_d2 <= sc2mac_dat_data61_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[61])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data61_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data62_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data62_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[62])) == 1'b1) begin
-           sc2mac_dat_data62_d2 <= sc2mac_dat_data62_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[62])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data62_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
-reg [7:0] sc2mac_dat_data63_d2;
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-   if (!nvdla_core_rstn) begin
-       sc2mac_dat_data63_d2 <= 'b0;
-   end else begin
-       if (((sc2mac_dat_mask_d1[63])) == 1'b1) begin
-           sc2mac_dat_data63_d2 <= sc2mac_dat_data63_d1;
-       // VCS coverage off
-       end else if (((sc2mac_dat_mask_d1[63])) == 1'b0) begin
-       end else begin
-           sc2mac_dat_data63_d2 <= 'bx;
-       // VCS coverage on
-       end
-   end
-end
 wire sc2mac_wt_dst_pvld = sc2mac_wt_pvld_d2;
 wire[16-1:0] sc2mac_wt_dst_sel = sc2mac_wt_sel_d2;
-wire[64-1:0] sc2mac_wt_dst_mask = sc2mac_wt_mask_d2;
+wire[32-1:0] sc2mac_wt_dst_mask = sc2mac_wt_mask_d2;
 wire[8-1:0] sc2mac_wt_dst_data0 = sc2mac_wt_data0_d2;
 wire[8-1:0] sc2mac_wt_dst_data1 = sc2mac_wt_data1_d2;
 wire[8-1:0] sc2mac_wt_dst_data2 = sc2mac_wt_data2_d2;
@@ -4838,41 +2598,9 @@ wire[8-1:0] sc2mac_wt_dst_data28 = sc2mac_wt_data28_d2;
 wire[8-1:0] sc2mac_wt_dst_data29 = sc2mac_wt_data29_d2;
 wire[8-1:0] sc2mac_wt_dst_data30 = sc2mac_wt_data30_d2;
 wire[8-1:0] sc2mac_wt_dst_data31 = sc2mac_wt_data31_d2;
-wire[8-1:0] sc2mac_wt_dst_data32 = sc2mac_wt_data32_d2;
-wire[8-1:0] sc2mac_wt_dst_data33 = sc2mac_wt_data33_d2;
-wire[8-1:0] sc2mac_wt_dst_data34 = sc2mac_wt_data34_d2;
-wire[8-1:0] sc2mac_wt_dst_data35 = sc2mac_wt_data35_d2;
-wire[8-1:0] sc2mac_wt_dst_data36 = sc2mac_wt_data36_d2;
-wire[8-1:0] sc2mac_wt_dst_data37 = sc2mac_wt_data37_d2;
-wire[8-1:0] sc2mac_wt_dst_data38 = sc2mac_wt_data38_d2;
-wire[8-1:0] sc2mac_wt_dst_data39 = sc2mac_wt_data39_d2;
-wire[8-1:0] sc2mac_wt_dst_data40 = sc2mac_wt_data40_d2;
-wire[8-1:0] sc2mac_wt_dst_data41 = sc2mac_wt_data41_d2;
-wire[8-1:0] sc2mac_wt_dst_data42 = sc2mac_wt_data42_d2;
-wire[8-1:0] sc2mac_wt_dst_data43 = sc2mac_wt_data43_d2;
-wire[8-1:0] sc2mac_wt_dst_data44 = sc2mac_wt_data44_d2;
-wire[8-1:0] sc2mac_wt_dst_data45 = sc2mac_wt_data45_d2;
-wire[8-1:0] sc2mac_wt_dst_data46 = sc2mac_wt_data46_d2;
-wire[8-1:0] sc2mac_wt_dst_data47 = sc2mac_wt_data47_d2;
-wire[8-1:0] sc2mac_wt_dst_data48 = sc2mac_wt_data48_d2;
-wire[8-1:0] sc2mac_wt_dst_data49 = sc2mac_wt_data49_d2;
-wire[8-1:0] sc2mac_wt_dst_data50 = sc2mac_wt_data50_d2;
-wire[8-1:0] sc2mac_wt_dst_data51 = sc2mac_wt_data51_d2;
-wire[8-1:0] sc2mac_wt_dst_data52 = sc2mac_wt_data52_d2;
-wire[8-1:0] sc2mac_wt_dst_data53 = sc2mac_wt_data53_d2;
-wire[8-1:0] sc2mac_wt_dst_data54 = sc2mac_wt_data54_d2;
-wire[8-1:0] sc2mac_wt_dst_data55 = sc2mac_wt_data55_d2;
-wire[8-1:0] sc2mac_wt_dst_data56 = sc2mac_wt_data56_d2;
-wire[8-1:0] sc2mac_wt_dst_data57 = sc2mac_wt_data57_d2;
-wire[8-1:0] sc2mac_wt_dst_data58 = sc2mac_wt_data58_d2;
-wire[8-1:0] sc2mac_wt_dst_data59 = sc2mac_wt_data59_d2;
-wire[8-1:0] sc2mac_wt_dst_data60 = sc2mac_wt_data60_d2;
-wire[8-1:0] sc2mac_wt_dst_data61 = sc2mac_wt_data61_d2;
-wire[8-1:0] sc2mac_wt_dst_data62 = sc2mac_wt_data62_d2;
-wire[8-1:0] sc2mac_wt_dst_data63 = sc2mac_wt_data63_d2;
 wire sc2mac_dat_dst_pvld = sc2mac_dat_pvld_d2;
 wire[8:0] sc2mac_dat_dst_pd = sc2mac_dat_pd_d2;
-wire[64-1:0] sc2mac_dat_dst_mask = sc2mac_dat_mask_d2;
+wire[32-1:0] sc2mac_dat_dst_mask = sc2mac_dat_mask_d2;
 wire[8-1:0] sc2mac_dat_dst_data0 = sc2mac_dat_data0_d2;
 wire[8-1:0] sc2mac_dat_dst_data1 = sc2mac_dat_data1_d2;
 wire[8-1:0] sc2mac_dat_dst_data2 = sc2mac_dat_data2_d2;
@@ -4905,38 +2633,6 @@ wire[8-1:0] sc2mac_dat_dst_data28 = sc2mac_dat_data28_d2;
 wire[8-1:0] sc2mac_dat_dst_data29 = sc2mac_dat_data29_d2;
 wire[8-1:0] sc2mac_dat_dst_data30 = sc2mac_dat_data30_d2;
 wire[8-1:0] sc2mac_dat_dst_data31 = sc2mac_dat_data31_d2;
-wire[8-1:0] sc2mac_dat_dst_data32 = sc2mac_dat_data32_d2;
-wire[8-1:0] sc2mac_dat_dst_data33 = sc2mac_dat_data33_d2;
-wire[8-1:0] sc2mac_dat_dst_data34 = sc2mac_dat_data34_d2;
-wire[8-1:0] sc2mac_dat_dst_data35 = sc2mac_dat_data35_d2;
-wire[8-1:0] sc2mac_dat_dst_data36 = sc2mac_dat_data36_d2;
-wire[8-1:0] sc2mac_dat_dst_data37 = sc2mac_dat_data37_d2;
-wire[8-1:0] sc2mac_dat_dst_data38 = sc2mac_dat_data38_d2;
-wire[8-1:0] sc2mac_dat_dst_data39 = sc2mac_dat_data39_d2;
-wire[8-1:0] sc2mac_dat_dst_data40 = sc2mac_dat_data40_d2;
-wire[8-1:0] sc2mac_dat_dst_data41 = sc2mac_dat_data41_d2;
-wire[8-1:0] sc2mac_dat_dst_data42 = sc2mac_dat_data42_d2;
-wire[8-1:0] sc2mac_dat_dst_data43 = sc2mac_dat_data43_d2;
-wire[8-1:0] sc2mac_dat_dst_data44 = sc2mac_dat_data44_d2;
-wire[8-1:0] sc2mac_dat_dst_data45 = sc2mac_dat_data45_d2;
-wire[8-1:0] sc2mac_dat_dst_data46 = sc2mac_dat_data46_d2;
-wire[8-1:0] sc2mac_dat_dst_data47 = sc2mac_dat_data47_d2;
-wire[8-1:0] sc2mac_dat_dst_data48 = sc2mac_dat_data48_d2;
-wire[8-1:0] sc2mac_dat_dst_data49 = sc2mac_dat_data49_d2;
-wire[8-1:0] sc2mac_dat_dst_data50 = sc2mac_dat_data50_d2;
-wire[8-1:0] sc2mac_dat_dst_data51 = sc2mac_dat_data51_d2;
-wire[8-1:0] sc2mac_dat_dst_data52 = sc2mac_dat_data52_d2;
-wire[8-1:0] sc2mac_dat_dst_data53 = sc2mac_dat_data53_d2;
-wire[8-1:0] sc2mac_dat_dst_data54 = sc2mac_dat_data54_d2;
-wire[8-1:0] sc2mac_dat_dst_data55 = sc2mac_dat_data55_d2;
-wire[8-1:0] sc2mac_dat_dst_data56 = sc2mac_dat_data56_d2;
-wire[8-1:0] sc2mac_dat_dst_data57 = sc2mac_dat_data57_d2;
-wire[8-1:0] sc2mac_dat_dst_data58 = sc2mac_dat_data58_d2;
-wire[8-1:0] sc2mac_dat_dst_data59 = sc2mac_dat_data59_d2;
-wire[8-1:0] sc2mac_dat_dst_data60 = sc2mac_dat_data60_d2;
-wire[8-1:0] sc2mac_dat_dst_data61 = sc2mac_dat_data61_d2;
-wire[8-1:0] sc2mac_dat_dst_data62 = sc2mac_dat_data62_d2;
-wire[8-1:0] sc2mac_dat_dst_data63 = sc2mac_dat_data63_d2;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 endmodule // NV_NVDLA_RT_csc2cmac_a

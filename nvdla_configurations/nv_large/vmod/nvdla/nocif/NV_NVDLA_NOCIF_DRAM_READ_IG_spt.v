@@ -40,53 +40,53 @@ input nvdla_core_clk;
 input nvdla_core_rstn;
 input arb2spt_req_valid; /* data valid */
 output arb2spt_req_ready; /* data return handshake */
-input [64 +10:0] arb2spt_req_pd;
+input [32 +10:0] arb2spt_req_pd;
 output spt2cvt_req_valid; /* data valid */
 input spt2cvt_req_ready; /* data return handshake */
-output [64 +10:0] spt2cvt_req_pd;
+output [32 +10:0] spt2cvt_req_pd;
 reg is_2nd_req;
-reg [64 +10:0] p2_pipe_data;
-reg [64 +10:0] p2_pipe_rand_data;
+reg [32 +10:0] p2_pipe_data;
+reg [32 +10:0] p2_pipe_rand_data;
 reg p2_pipe_rand_ready;
 reg p2_pipe_rand_valid;
 reg p2_pipe_ready;
 reg p2_pipe_ready_bc;
-reg [64 +10:0] p2_pipe_skid_data;
+reg [32 +10:0] p2_pipe_skid_data;
 reg p2_pipe_skid_ready;
 reg p2_pipe_skid_valid;
 reg p2_pipe_valid;
 reg p2_skid_catch;
-reg [64 +10:0] p2_skid_data;
+reg [32 +10:0] p2_skid_data;
 reg p2_skid_ready;
 reg p2_skid_ready_flop;
 reg p2_skid_valid;
-reg [64 +10:0] spt2cvt_req_pd;
+reg [32 +10:0] spt2cvt_req_pd;
 reg spt2cvt_req_valid;
 reg spt_out_rdy;
 wire [2:0] end_offset;
 wire end_offset_c;
-wire [64 -1:0] first_req_addr;
+wire [32 -1:0] first_req_addr;
 wire [2:0] first_req_size;
 wire is_cross_256byte_boundary;
 wire req_accept;
-wire [64 -1:0] second_req_addr;
+wire [32 -1:0] second_req_addr;
 wire [2:0] second_req_size;
-wire [64 -1:0] spt2cvt_addr;
+wire [32 -1:0] spt2cvt_addr;
 wire [3:0] spt2cvt_axid;
 wire spt2cvt_ftran;
 wire spt2cvt_ltran;
 wire spt2cvt_odd;
 wire [2:0] spt2cvt_size;
 wire spt2cvt_swizzle;
-wire [64 +10:0] spt_out_pd;
+wire [32 +10:0] spt_out_pd;
 wire spt_out_vld;
-wire [64 -1:0] spt_req_addr;
+wire [32 -1:0] spt_req_addr;
 wire [3:0] spt_req_axid;
 wire spt_req_ftran;
 wire spt_req_ltran;
 wire spt_req_odd;
 wire [2:0] spt_req_offset;
-wire [64 +10:0] spt_req_pd;
+wire [32 +10:0] spt_req_pd;
 wire spt_req_rdy;
 wire [2:0] spt_req_size;
 wire spt_req_swizzle;
@@ -102,24 +102,24 @@ wire spt_req_vld;
 NV_NVDLA_NOCIF_DRAM_READ_IG_SPT_pipe_p1 pipe_p1 (
    .nvdla_core_clk (nvdla_core_clk) //|< i
   ,.nvdla_core_rstn (nvdla_core_rstn) //|< i
-  ,.arb2spt_req_pd (arb2spt_req_pd[64 +10:0]) //|< i
+  ,.arb2spt_req_pd (arb2spt_req_pd[32 +10:0]) //|< i
   ,.arb2spt_req_valid (arb2spt_req_valid) //|< i
   ,.spt_req_rdy (spt_req_rdy) //|< w
   ,.arb2spt_req_ready (arb2spt_req_ready) //|> o
-  ,.spt_req_pd (spt_req_pd[64 +10:0]) //|> w
+  ,.spt_req_pd (spt_req_pd[32 +10:0]) //|> w
   ,.spt_req_vld (spt_req_vld) //|> w
   );
-//my $wi = eval(64 +10+1);
+//my $wi = eval(32 +10+1);
 //&eperl::pipe(" -wid $wi -vo spt_req_vld -do spt_req_pd -ri arb2spt_req_ready -di arb2spt_req_pd -vi arb2spt_req_valid -ro spt_req_rdy");
 assign spt_req_rdy = spt_out_rdy & (!is_cross_256byte_boundary || (is_cross_256byte_boundary & is_2nd_req));
 // PKT_UNPACK_WIRE( cvt_read_cmd , spt_req_ , spt_req_pd )
 assign spt_req_axid[3:0] = spt_req_pd[3:0];
-assign spt_req_addr[64 -1:0] = spt_req_pd[64 -1+4:4];
-assign spt_req_size[2:0] = spt_req_pd[64 +6:64 +4];
-assign spt_req_swizzle = spt_req_pd[64 +7];
-assign spt_req_odd = spt_req_pd[64 +8];
-assign spt_req_ltran = spt_req_pd[64 +9];
-assign spt_req_ftran = spt_req_pd[64 +10];
+assign spt_req_addr[32 -1:0] = spt_req_pd[32 -1+4:4];
+assign spt_req_size[2:0] = spt_req_pd[32 +6:32 +4];
+assign spt_req_swizzle = spt_req_pd[32 +7];
+assign spt_req_odd = spt_req_pd[32 +8];
+assign spt_req_ltran = spt_req_pd[32 +9];
+assign spt_req_ftran = spt_req_pd[32 +10];
 `ifdef SPYGLASS_ASSERT_ON
 `else
 // spyglass disable_block NoWidthInBasedNum-ML
@@ -188,7 +188,7 @@ assign first_req_size = (is_cross_256byte_boundary) ? (7 - spt_req_offset) : spt
 assign first_req_addr = spt_req_addr;
 // second_* is useful only when is_2nd_req needed
 //assign second_req_addr = {spt_req_addr[39:8],{8{1'b0}}};
-reg [64 -1:0] second_req_addr_i;
+reg [32 -1:0] second_req_addr_i;
 //: my $i;
 //: $i = (log(256/8)/log(2)) + 1;
 //:print qq(
@@ -205,7 +205,7 @@ second_req_addr_i[6:0] = 0;
 end
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-//assign second_req_addr = {spt_req_addr[64 -1:8],{8{1'b0}}};
+//assign second_req_addr = {spt_req_addr[32 -1:8],{8{1'b0}}};
 assign second_req_addr = second_req_addr_i;
 assign second_req_size = end_offset; // only usefull when 2nd req is needed
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
@@ -233,12 +233,12 @@ assign req_accept = spt_out_vld & spt_out_rdy;
 assign spt_out_vld = spt_req_vld;
 // PKT_PACK_WIRE( cvt_read_cmd , spt2cvt_ , spt_out_pd )
 assign spt_out_pd[3:0] = spt2cvt_axid[3:0];
-assign spt_out_pd[64 -1+4:4] = spt2cvt_addr[64 -1:0];
-assign spt_out_pd[64 +6:64 +4] = spt2cvt_size[2:0];
-assign spt_out_pd[64 +7] = spt2cvt_swizzle ;
-assign spt_out_pd[64 +8] = spt2cvt_odd ;
-assign spt_out_pd[64 +9] = spt2cvt_ltran ;
-assign spt_out_pd[64 +10] = spt2cvt_ftran ;
+assign spt_out_pd[32 -1+4:4] = spt2cvt_addr[32 -1:0];
+assign spt_out_pd[32 +6:32 +4] = spt2cvt_size[2:0];
+assign spt_out_pd[32 +7] = spt2cvt_swizzle ;
+assign spt_out_pd[32 +8] = spt2cvt_odd ;
+assign spt_out_pd[32 +9] = spt2cvt_ltran ;
+assign spt_out_pd[32 +10] = spt2cvt_ftran ;
 //## pipe (2) randomizer
 `ifndef SYNTHESIS
 reg p2_pipe_rand_active;
@@ -610,21 +610,21 @@ module NV_NVDLA_NOCIF_DRAM_READ_IG_SPT_pipe_p1 (
   );
 input nvdla_core_clk;
 input nvdla_core_rstn;
-input [64 +10:0] arb2spt_req_pd;
+input [32 +10:0] arb2spt_req_pd;
 input arb2spt_req_valid;
 input spt_req_rdy;
 output arb2spt_req_ready;
-output [64 +10:0] spt_req_pd;
+output [32 +10:0] spt_req_pd;
 output spt_req_vld;
 reg arb2spt_req_ready;
-reg [64 +10:0] p1_pipe_data;
-reg [64 +10:0] p1_pipe_rand_data;
+reg [32 +10:0] p1_pipe_data;
+reg [32 +10:0] p1_pipe_rand_data;
 reg p1_pipe_rand_ready;
 reg p1_pipe_rand_valid;
 reg p1_pipe_ready;
 reg p1_pipe_ready_bc;
 reg p1_pipe_valid;
-reg [64 +10:0] spt_req_pd;
+reg [32 +10:0] spt_req_pd;
 reg spt_req_vld;
 //## pipe (1) randomizer
 `ifndef SYNTHESIS
@@ -642,12 +642,12 @@ always @(
   `ifdef SYNTHESIS
   p1_pipe_rand_valid = arb2spt_req_valid;
   arb2spt_req_ready = p1_pipe_rand_ready;
-  p1_pipe_rand_data = arb2spt_req_pd[64 +10:0];
+  p1_pipe_rand_data = arb2spt_req_pd[32 +10:0];
   `else
 // VCS coverage off
   p1_pipe_rand_valid = (p1_pipe_rand_active)? 1'b0 : arb2spt_req_valid;
   arb2spt_req_ready = (p1_pipe_rand_active)? 1'b0 : p1_pipe_rand_ready;
-  p1_pipe_rand_data = (p1_pipe_rand_active)? 'bx : arb2spt_req_pd[64 +10:0];
+  p1_pipe_rand_data = (p1_pipe_rand_active)? 'bx : arb2spt_req_pd[32 +10:0];
 // VCS coverage on
   `endif
 end

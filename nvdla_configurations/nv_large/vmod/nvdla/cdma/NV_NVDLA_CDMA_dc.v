@@ -31,19 +31,13 @@ module NV_NVDLA_CDMA_dc (
 ,input [31:0] pwrbus_ram_pd
 ,output dc_dat2mcif_rd_req_valid
 ,input dc_dat2mcif_rd_req_ready
-,output [( 64 + 15 )-1:0] dc_dat2mcif_rd_req_pd
+,output [( 32 + 15 )-1:0] dc_dat2mcif_rd_req_pd
 ,input mcif2dc_dat_rd_rsp_valid
 ,output mcif2dc_dat_rd_rsp_ready
 ,input [( 256 + (256/8/32) )-1:0] mcif2dc_dat_rd_rsp_pd
-,output dc_dat2cvif_rd_req_valid
-,input dc_dat2cvif_rd_req_ready
-,output [( 64 + 15 )-1:0] dc_dat2cvif_rd_req_pd
-,input cvif2dc_dat_rd_rsp_valid
-,output cvif2dc_dat_rd_rsp_ready
-,input [( 256 + (256/8/32) )-1:0] cvif2dc_dat_rd_rsp_pd
 ,output dc2cvt_dat_wr_en
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -70,7 +64,6 @@ module NV_NVDLA_CDMA_dc (
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,output [1-1:0] dc2cvt_dat_wr_sel
 ,output [16:0] dc2cvt_dat_wr_addr
 ,output [256-1:0] dc2cvt_dat_wr_data
 
@@ -152,7 +145,7 @@ module NV_NVDLA_CDMA_dc (
 reg cbuf_is_ready;
 //: my $dmabw=256;
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: my $m = int($dmaif/$atmc+0.99);
 //: foreach my $i (0..$m-1) {
 //: print qq(
@@ -383,7 +376,7 @@ wire [16:0] cbuf_idx_w;
 wire cbuf_is_ready_w;
 wire cbuf_wr_en_d0;
 //: my $dmaif=256;
-//: my $atmc=64*8;
+//: my $atmc=32*8;
 //: if($dmaif < $atmc) {
 //: my $k = int(log(int($atmc/$dmaif))/log(2));
 //: print qq(
@@ -396,13 +389,6 @@ wire cbuf_wr_en_d0;
 //: );
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
-
-wire [1-1:0] cbuf_wr_hsel_w;
-reg [1-1:0] cbuf_wr_hsel;
-wire [1-1:0] cbuf_wr_hsel_d0;
-reg [1-1:0] cbuf_wr_hsel_d1;
-reg [1-1:0] cbuf_wr_hsel_d2;
-reg [1-1:0] cbuf_wr_hsel_d3;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire [11:0] cbuf_wr_info_pd;
@@ -459,8 +445,8 @@ wire [14:0] dc_entry_onfly_sub;
 wire [14:0] dc_entry_onfly_w;
 wire [4:0] delay_cnt_end;
 wire [63:0] dma_rd_req_addr_f;
-wire [64 -1:0] dma_rd_req_addr;
-wire [( 64 + 15 )-1:0] dma_rd_req_pd;
+wire [32 -1:0] dma_rd_req_addr;
+wire [( 32 + 15 )-1:0] dma_rd_req_pd;
 wire dma_rd_req_rdy;
 wire [15:0] dma_rd_req_size;
 wire dma_rd_req_type;
@@ -1292,7 +1278,7 @@ assign is_req_batch_end = (req_batch_cnt == reg2dp_batches);
 assign req_ch_mode = is_packed_1x1 ? 3'h1 :
                      /*is_data_shrink ? 3'h4 : */
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: my $m = int($dmaif/$atmc);
 //: my $k;
 //: if($m > 1){$k=$atmc;}
@@ -1433,7 +1419,7 @@ assign {mon_req_addr_batch_base_inc,req_addr_batch_base_inc} = req_addr_batch_ba
 assign req_addr_ch_base_add = /*(is_data_shrink) ? {reg2dp_surf_stride, 2'b0} : */
 //{1'b0, reg2dp_surf_stride, 1'b0};
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: my $k;
 //: if(${dmaif} < ${atmc}) {
 //: $k=$dmaif;
@@ -1576,9 +1562,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_PDP_RDMA_rdreq(
   .nvdla_core_clk (nvdla_core_clk )
  ,.nvdla_core_rstn (nvdla_core_rstn )
  ,.reg2dp_src_ram_type (reg2dp_datain_ram_type)
- ,.cvif_rd_req_pd (dc_dat2cvif_rd_req_pd )
- ,.cvif_rd_req_valid (dc_dat2cvif_rd_req_valid)
- ,.cvif_rd_req_ready (dc_dat2cvif_rd_req_ready)
  ,.mcif_rd_req_pd (dc_dat2mcif_rd_req_pd )
  ,.mcif_rd_req_valid (dc_dat2mcif_rd_req_valid)
  ,.mcif_rd_req_ready (dc_dat2mcif_rd_req_ready)
@@ -1590,9 +1573,6 @@ NV_NVDLA_DMAIF_rdreq NV_NVDLA_PDP_RDMA_rdreq(
 NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
    .nvdla_core_clk (nvdla_core_clk )
   ,.nvdla_core_rstn (nvdla_core_rstn )
-  ,.cvif_rd_rsp_pd (cvif2dc_dat_rd_rsp_pd )
-  ,.cvif_rd_rsp_valid (cvif2dc_dat_rd_rsp_valid )
-  ,.cvif_rd_rsp_ready (cvif2dc_dat_rd_rsp_ready )
   ,.mcif_rd_rsp_pd (mcif2dc_dat_rd_rsp_pd )
   ,.mcif_rd_rsp_valid (mcif2dc_dat_rd_rsp_valid )
   ,.mcif_rd_rsp_ready (mcif2dc_dat_rd_rsp_ready )
@@ -1601,17 +1581,17 @@ NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
   ,.dmaif_rd_rsp_prdy (dma_rd_rsp_rdy )
 );
 ///////////////////////////////////////////
-assign dma_rd_req_pd[64 -1:0] = dma_rd_req_addr[64 -1:0];
-assign dma_rd_req_pd[64 +14:64] = dma_rd_req_size[14:0];
+assign dma_rd_req_pd[32 -1:0] = dma_rd_req_addr[32 -1:0];
+assign dma_rd_req_pd[32 +14:32] = dma_rd_req_size[14:0];
 assign dma_rd_req_vld = dma_req_fifo_ready & req_valid_d1;
 //: my $atmm = 32;
 //: my $atmbw = int(log(${atmm})/log(2));
-//: my $k = 64;
+//: my $k = 32;
 //: print "assign dma_rd_req_addr_f = {req_addr_d1, ${atmbw}'d0};  \n";
 //: print "assign dma_rd_req_addr = dma_rd_req_addr_f[${k}-1:0];  \n";
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 assign dma_rd_req_addr_f = {req_addr_d1, 5'd0};  
-assign dma_rd_req_addr = dma_rd_req_addr_f[64-1:0];  
+assign dma_rd_req_addr = dma_rd_req_addr_f[32-1:0];  
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign dma_rd_req_size = {{13{1'b0}}, req_size_out_d1};
@@ -1984,7 +1964,7 @@ assign rsp_ch0_rd_one = ~(rsp_cur_ch == 3'h1) |
 always @(*)
 begin
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: ##my $m = int($dmaif/$atmc);
 //: ##if(($dmaif==1) && ($atmc==1)) {
 //: if($dmaif==1) {
@@ -2111,7 +2091,7 @@ always @(*)
 begin
     if(~is_rsp_done & is_running) begin
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: ##my $m = int($dmaif/$atmc);
 //: ##if(($dmaif==1) && ($atmc==1)) {
 //: if($dmaif==1) {
@@ -2306,7 +2286,7 @@ assign ch3_p0_rd_addr = {2'h3, ch3_p0_rd_addr_cnt[0], ch3_p0_rd_addr_cnt[8 -3:1]
 ///////////// shared buffer read address /////////////
 always @(*) begin
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: my $m = int($dmaif/$atmc+0.99);
 //: ##foreach my $k (0..$m-1){
 //: ## print " p${k}_rd_addr_w = 8'd0; \n";
@@ -2518,7 +2498,7 @@ end
 // generate write signal to convertor //
 ////////////////////////////////////////////////////////////////////////
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: if(($dmaif==1) && ($atmc==1)) {
 //: print qq(
 //: assign {mon_idx_ch_offset_w,
@@ -2594,10 +2574,9 @@ end
 assign {mon_idx_ch_offset_w,
 idx_ch_offset_w} = (layer_st) ? 18'b0 :
 (is_rsp_ch_end) ? {1'b0, idx_batch_offset_w} :
-(rsp_ch_cnt[0]) ? idx_ch_offset + data_width : idx_ch_offset;
+idx_ch_offset + data_width;
 assign is_w_cnt_div4 = 1'b0;
-assign is_w_cnt_div2 = (is_data_normal & is_rsp_ch_end & ~rsp_ch_cnt[0]);
-assign cbuf_wr_hsel_w = (is_w_cnt_div2 & rsp_w_cnt[0]) | (is_data_normal & rsp_ch_cnt[0]) ;
+assign is_w_cnt_div2 = 1'b0;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 assign {mon_idx_batch_offset_w, idx_batch_offset_w} = (layer_st | is_rsp_batch_end) ? 19'b0 : (idx_batch_offset + data_entries);
@@ -2684,7 +2663,7 @@ always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
 end
 //
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: my $m = int($dmaif/$atmc+0.99);
 //: foreach my $i (0..$m-1) {
 //: print qq(
@@ -2698,7 +2677,7 @@ end
 //: );
 //: }
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: if($dmaif < $atmc) {
 //: print qq(
 //: always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
@@ -2746,16 +2725,6 @@ cbuf_wr_addr_0 <= cbuf_idx_w + 0;
 end
 end
 
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-if (!nvdla_core_rstn) begin
-cbuf_wr_hsel <= 0;
-end else begin
-if ((rsp_w_reg_en) == 1'b1) begin
-cbuf_wr_hsel <= cbuf_wr_hsel_w;
-end
-end
-end
-
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
     if (!nvdla_core_rstn) begin
@@ -2789,7 +2758,7 @@ assign cbuf_wr_en_d0 = cbuf_wr_en;
 assign cbuf_wr_info_pd_d0 = cbuf_wr_info_pd;
 //
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: my $latency = (2 +1);
 //:
 //: if($dmaif < $atmc) {
@@ -2841,30 +2810,6 @@ assign cbuf_wr_info_pd_d0 = cbuf_wr_info_pd;
 //: }
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
- assign cbuf_wr_hsel_d0 = cbuf_wr_hsel; 
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-if (!nvdla_core_rstn) begin
-cbuf_wr_hsel_d1 <= 1'b0;
-end else if (cbuf_wr_en_d0) begin
-cbuf_wr_hsel_d1 <= cbuf_wr_hsel_d0;
-end
-end
-
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-if (!nvdla_core_rstn) begin
-cbuf_wr_hsel_d2 <= 1'b0;
-end else if (cbuf_wr_en_d1) begin
-cbuf_wr_hsel_d2 <= cbuf_wr_hsel_d1;
-end
-end
-
-always @(posedge nvdla_core_clk or negedge nvdla_core_rstn) begin
-if (!nvdla_core_rstn) begin
-cbuf_wr_hsel_d3 <= 1'b0;
-end else if (cbuf_wr_en_d2) begin
-cbuf_wr_hsel_d3 <= cbuf_wr_hsel_d2;
-end
-end
 
 assign cbuf_wr_addr_d0_0 = cbuf_wr_addr_0;
 
@@ -2970,7 +2915,7 @@ end
 //: my $latency = (2 +1);
 //: my $lb = $latency - 1;
 //: my $dmaif=256/8/32;
-//: my $atmc=64/32;
+//: my $atmc=32/32;
 //: if($dmaif <= $atmc) {
 //: print qq (
 //: always @(posedge nvdla_core_clk) begin
@@ -3057,8 +3002,6 @@ assign dc2cvt_dat_wr_data = cbuf_wr_data_d3_0;
 
 assign dc2cvt_dat_wr_en = cbuf_wr_en_d3;
 assign dc2cvt_dat_wr_info_pd = cbuf_wr_info_pd_d3;
-
-assign dc2cvt_dat_wr_sel = cbuf_wr_hsel_d3;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 //////////////////////////////////////////////////////
@@ -3789,7 +3732,6 @@ end
   nv_assert_never #(0,0,"Error! req_addr_ch_base_inc is overflow!") zzz_assert_never_72x (nvdla_core_clk, `ASSERT_RESET, (req_ch_reg_en & mon_req_addr_ch_base_inc)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! req_addr_base_inc is overflow!") zzz_assert_never_73x (nvdla_core_clk, `ASSERT_RESET, (req_atm_reg_en & mon_req_addr_base_inc)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! req_addr is overflow!") zzz_assert_never_74x (nvdla_core_clk, `ASSERT_RESET, (req_reg_en & mon_req_addr)); // spyglass disable W504 SelfDeterminedExpr-ML 
-  nv_assert_never #(0,0,"DMAIF: mcif and cvif should never return data both") zzz_assert_never_79x (nvdla_core_clk, `ASSERT_RESET, mc_dma_rd_rsp_vld & cv_dma_rd_rsp_vld); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"Error! Receive input data when not busy") zzz_assert_never_80x (nvdla_core_clk, `ASSERT_RESET, (dma_rd_rsp_vld & ~is_running)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"response fifo pop error") zzz_assert_never_82x (nvdla_core_clk, `ASSERT_RESET, (dma_rsp_fifo_ready & ~dma_rsp_fifo_req)); // spyglass disable W504 SelfDeterminedExpr-ML 
   nv_assert_never #(0,0,"response size mismatch") zzz_assert_never_83x (nvdla_core_clk, `ASSERT_RESET, (dma_rsp_size_cnt_inc > dma_rsp_size)); // spyglass disable W504 SelfDeterminedExpr-ML 

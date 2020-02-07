@@ -30,10 +30,6 @@ module NV_NVDLA_PDP_RDMA_eg (
   ,nvdla_core_rstn //|< i
   ,cq2eg_pd //|< i
   ,cq2eg_pvld //|< i
-  ,cvif2pdp_rd_rsp_pd //|< i
-  ,cvif2pdp_rd_rsp_valid //|< i
-  ,cvif2pdp_rd_rsp_ready //|> o
-  ,pdp2cvif_rd_cdt_lat_fifo_pop //|> o
   ,mcif2pdp_rd_rsp_pd //|< i
   ,mcif2pdp_rd_rsp_valid //|< i
   ,pdp_rdma2dp_ready //|< i
@@ -60,10 +56,6 @@ input mcif2pdp_rd_rsp_valid;
 output mcif2pdp_rd_rsp_ready;
 input [( 256 + (256/8/32) )-1:0] mcif2pdp_rd_rsp_pd;
 output pdp2mcif_rd_cdt_lat_fifo_pop;
-input cvif2pdp_rd_rsp_valid;
-output cvif2pdp_rd_rsp_ready;
-input [( 256 + (256/8/32) )-1:0] cvif2pdp_rd_rsp_pd;
-output pdp2cvif_rd_cdt_lat_fifo_pop;
 output pdp_rdma2dp_valid;
 input pdp_rdma2dp_ready;
 output [8*8 +13:0] pdp_rdma2dp_pd;
@@ -219,9 +211,6 @@ wire tran_vld;
 NV_NVDLA_DMAIF_rdrsp NV_NVDLA_PDP_RDMA_rdrsp(
    .nvdla_core_clk (nvdla_core_clk )
   ,.nvdla_core_rstn (nvdla_core_rstn )
-  ,.cvif_rd_rsp_pd (cvif2pdp_rd_rsp_pd )
-  ,.cvif_rd_rsp_valid (cvif2pdp_rd_rsp_valid )
-  ,.cvif_rd_rsp_ready (cvif2pdp_rd_rsp_ready )
   ,.mcif_rd_rsp_pd (mcif2pdp_rd_rsp_pd )
   ,.mcif_rd_rsp_valid (mcif2pdp_rd_rsp_valid )
   ,.mcif_rd_rsp_ready (mcif2pdp_rd_rsp_ready )

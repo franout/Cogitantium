@@ -23,6 +23,7 @@
 //    #define LARGE_MEMBUS
 //#endif
 `include "NV_HWACC_NVDLA_tick_defines.vh"
+`include"MY_GLOBAL_DEFINE.vh"
 // ================================================================
 // NVDLA Open Source Project
 // 
@@ -32,12 +33,7 @@
 // ================================================================
 // File Name: NV_NVDLA_CMAC.h
 `define DESIGNWARE_NOEXIST 1
-`define  DISABLE_TESTPOINTS 1
-`define  NV_SYNTHESIS 1 
-`define  RAM_INTERFACE 1
-`define  DISABLE_TESTPOINTS 1
-//`define  SYNTHESIS 1
-`define FPGA 1
+
 // ================================================================
 // NVDLA Open Source Project
 // 
@@ -57,7 +53,7 @@
     //atomK*2
 //notice, for image case, first atom OP within one strip OP must fetch from entry align place, in the middle of an entry is not supported.
 //thus, when atomC/atomK=4, stripe=4*atomK, feature data still keeps atomK*2
-    `define CC_ATOMC_DIV_ATOMK_EQUAL_2
+    `define CC_ATOMC_DIV_ATOMK_EQUAL_1
 //batch keep 1
 module NV_nvdla (
    dla_core_clk //|< i
@@ -99,29 +95,6 @@ module NV_nvdla (
   ,nvdla_core2dbb_r_rid //|< i
   ,nvdla_core2dbb_r_rlast //|< i
   ,nvdla_core2dbb_r_rdata //|< i
-  ,nvdla_core2cvsram_aw_awvalid //|> o
-  ,nvdla_core2cvsram_aw_awready //|< i
-  ,nvdla_core2cvsram_aw_awid //|> o
-  ,nvdla_core2cvsram_aw_awlen //|> o
-  ,nvdla_core2cvsram_aw_awaddr //|> o
-  ,nvdla_core2cvsram_w_wvalid //|> o
-  ,nvdla_core2cvsram_w_wready //|< i
-  ,nvdla_core2cvsram_w_wdata //|> o
-  ,nvdla_core2cvsram_w_wstrb //|> o
-  ,nvdla_core2cvsram_w_wlast //|> o
-  ,nvdla_core2cvsram_b_bvalid //|< i
-  ,nvdla_core2cvsram_b_bready //|> o
-  ,nvdla_core2cvsram_b_bid //|< i
-  ,nvdla_core2cvsram_ar_arvalid //|> o
-  ,nvdla_core2cvsram_ar_arready //|< i
-  ,nvdla_core2cvsram_ar_arid //|> o
-  ,nvdla_core2cvsram_ar_arlen //|> o
-  ,nvdla_core2cvsram_ar_araddr //|> o
-  ,nvdla_core2cvsram_r_rvalid //|< i
-  ,nvdla_core2cvsram_r_rready //|> o
-  ,nvdla_core2cvsram_r_rid //|< i
-  ,nvdla_core2cvsram_r_rlast //|< i
-  ,nvdla_core2cvsram_r_rdata //|< i
   ,dla_intr //|> o
   ,nvdla_pwrbus_ram_c_pd //|< i
   ,nvdla_pwrbus_ram_ma_pd //|< i *
@@ -153,7 +126,7 @@ output nvdla_core2dbb_aw_awvalid;
 input nvdla_core2dbb_aw_awready;
 output [7:0] nvdla_core2dbb_aw_awid;
 output [3:0] nvdla_core2dbb_aw_awlen;
-output [64 -1:0] nvdla_core2dbb_aw_awaddr;
+output [32 -1:0] nvdla_core2dbb_aw_awaddr;
 output nvdla_core2dbb_w_wvalid;
 input nvdla_core2dbb_w_wready;
 output [256 -1:0] nvdla_core2dbb_w_wdata;
@@ -163,7 +136,7 @@ output nvdla_core2dbb_ar_arvalid;
 input nvdla_core2dbb_ar_arready;
 output [7:0] nvdla_core2dbb_ar_arid;
 output [3:0] nvdla_core2dbb_ar_arlen;
-output [64 -1:0] nvdla_core2dbb_ar_araddr;
+output [32 -1:0] nvdla_core2dbb_ar_araddr;
 input nvdla_core2dbb_b_bvalid;
 output nvdla_core2dbb_b_bready;
 input [7:0] nvdla_core2dbb_b_bid;
@@ -172,29 +145,6 @@ output nvdla_core2dbb_r_rready;
 input [7:0] nvdla_core2dbb_r_rid;
 input nvdla_core2dbb_r_rlast;
 input [256 -1:0] nvdla_core2dbb_r_rdata;
-output nvdla_core2cvsram_aw_awvalid;
-input nvdla_core2cvsram_aw_awready;
-output [7:0] nvdla_core2cvsram_aw_awid;
-output [3:0] nvdla_core2cvsram_aw_awlen;
-output [64 -1:0] nvdla_core2cvsram_aw_awaddr;
-output nvdla_core2cvsram_w_wvalid;
-input nvdla_core2cvsram_w_wready;
-output [256 -1:0] nvdla_core2cvsram_w_wdata;
-output [256/8-1:0] nvdla_core2cvsram_w_wstrb;
-output nvdla_core2cvsram_w_wlast;
-input nvdla_core2cvsram_b_bvalid;
-output nvdla_core2cvsram_b_bready;
-input [7:0] nvdla_core2cvsram_b_bid;
-output nvdla_core2cvsram_ar_arvalid;
-input nvdla_core2cvsram_ar_arready;
-output [7:0] nvdla_core2cvsram_ar_arid;
-output [3:0] nvdla_core2cvsram_ar_arlen;
-output [64 -1:0] nvdla_core2cvsram_ar_araddr;
-input nvdla_core2cvsram_r_rvalid;
-output nvdla_core2cvsram_r_rready;
-input [7:0] nvdla_core2cvsram_r_rid;
-input nvdla_core2cvsram_r_rlast;
-input [256 -1:0] nvdla_core2cvsram_r_rdata;
 output dla_intr;
 input [31:0] nvdla_pwrbus_ram_c_pd;
 input [31:0] nvdla_pwrbus_ram_ma_pd;
@@ -244,59 +194,59 @@ wire [33:0] csc2csb_resp_pd;
 wire csc2csb_resp_valid;
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: wire [22 -1:0] mac_a2accu_data${i};
-//: wire [22 -1:0] mac_b2accu_data${i};
+//: wire [21 -1:0] mac_a2accu_data${i};
+//: wire [21 -1:0] mac_b2accu_data${i};
 //: );
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-wire [22 -1:0] mac_a2accu_data0;
-wire [22 -1:0] mac_b2accu_data0;
+wire [21 -1:0] mac_a2accu_data0;
+wire [21 -1:0] mac_b2accu_data0;
 
-wire [22 -1:0] mac_a2accu_data1;
-wire [22 -1:0] mac_b2accu_data1;
+wire [21 -1:0] mac_a2accu_data1;
+wire [21 -1:0] mac_b2accu_data1;
 
-wire [22 -1:0] mac_a2accu_data2;
-wire [22 -1:0] mac_b2accu_data2;
+wire [21 -1:0] mac_a2accu_data2;
+wire [21 -1:0] mac_b2accu_data2;
 
-wire [22 -1:0] mac_a2accu_data3;
-wire [22 -1:0] mac_b2accu_data3;
+wire [21 -1:0] mac_a2accu_data3;
+wire [21 -1:0] mac_b2accu_data3;
 
-wire [22 -1:0] mac_a2accu_data4;
-wire [22 -1:0] mac_b2accu_data4;
+wire [21 -1:0] mac_a2accu_data4;
+wire [21 -1:0] mac_b2accu_data4;
 
-wire [22 -1:0] mac_a2accu_data5;
-wire [22 -1:0] mac_b2accu_data5;
+wire [21 -1:0] mac_a2accu_data5;
+wire [21 -1:0] mac_b2accu_data5;
 
-wire [22 -1:0] mac_a2accu_data6;
-wire [22 -1:0] mac_b2accu_data6;
+wire [21 -1:0] mac_a2accu_data6;
+wire [21 -1:0] mac_b2accu_data6;
 
-wire [22 -1:0] mac_a2accu_data7;
-wire [22 -1:0] mac_b2accu_data7;
+wire [21 -1:0] mac_a2accu_data7;
+wire [21 -1:0] mac_b2accu_data7;
 
-wire [22 -1:0] mac_a2accu_data8;
-wire [22 -1:0] mac_b2accu_data8;
+wire [21 -1:0] mac_a2accu_data8;
+wire [21 -1:0] mac_b2accu_data8;
 
-wire [22 -1:0] mac_a2accu_data9;
-wire [22 -1:0] mac_b2accu_data9;
+wire [21 -1:0] mac_a2accu_data9;
+wire [21 -1:0] mac_b2accu_data9;
 
-wire [22 -1:0] mac_a2accu_data10;
-wire [22 -1:0] mac_b2accu_data10;
+wire [21 -1:0] mac_a2accu_data10;
+wire [21 -1:0] mac_b2accu_data10;
 
-wire [22 -1:0] mac_a2accu_data11;
-wire [22 -1:0] mac_b2accu_data11;
+wire [21 -1:0] mac_a2accu_data11;
+wire [21 -1:0] mac_b2accu_data11;
 
-wire [22 -1:0] mac_a2accu_data12;
-wire [22 -1:0] mac_b2accu_data12;
+wire [21 -1:0] mac_a2accu_data12;
+wire [21 -1:0] mac_b2accu_data12;
 
-wire [22 -1:0] mac_a2accu_data13;
-wire [22 -1:0] mac_b2accu_data13;
+wire [21 -1:0] mac_a2accu_data13;
+wire [21 -1:0] mac_b2accu_data13;
 
-wire [22 -1:0] mac_a2accu_data14;
-wire [22 -1:0] mac_b2accu_data14;
+wire [21 -1:0] mac_a2accu_data14;
+wire [21 -1:0] mac_b2accu_data14;
 
-wire [22 -1:0] mac_a2accu_data15;
-wire [22 -1:0] mac_b2accu_data15;
+wire [21 -1:0] mac_a2accu_data15;
+wire [21 -1:0] mac_b2accu_data15;
 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
 wire [32/2-1:0] mac_a2accu_mask;
@@ -307,54 +257,10 @@ wire [32/2-1:0] mac_b2accu_mask;
 wire mac_b2accu_mode;
 wire [8:0] mac_b2accu_pd;
 wire mac_b2accu_pvld;
-wire [64 +14:0] cdma_dat2cvif_rd_req_pd;
-wire cdma_dat2cvif_rd_req_ready;
-wire cdma_dat2cvif_rd_req_valid;
-wire [64 +14:0] cdma_wt2cvif_rd_req_pd;
-wire cdma_wt2cvif_rd_req_ready;
-wire cdma_wt2cvif_rd_req_valid;
-wire [256 +(256/8/32)-1:0] cvif2cdma_dat_rd_rsp_pd;
-wire cvif2cdma_dat_rd_rsp_ready;
-wire cvif2cdma_dat_rd_rsp_valid;
-wire [256 +(256/8/32)-1:0] cvif2cdma_wt_rd_rsp_pd;
-wire cvif2cdma_wt_rd_rsp_ready;
-wire cvif2cdma_wt_rd_rsp_valid;
-wire [256 +(256/8/32)-1:0] cvif2sdp_rd_rsp_pd;
-wire cvif2sdp_rd_rsp_ready;
-wire cvif2sdp_rd_rsp_valid;
-wire cvif2sdp_wr_rsp_complete;
-wire sdp2cvif_rd_cdt_lat_fifo_pop;
-wire [64 +14:0] sdp2cvif_rd_req_pd;
-wire sdp2cvif_rd_req_ready;
-wire sdp2cvif_rd_req_valid;
-wire [256 +(256/8/32):0] sdp2cvif_wr_req_pd;
-wire sdp2cvif_wr_req_ready;
-wire sdp2cvif_wr_req_valid;
-wire [256 +(256/8/32)-1:0] cvif2sdp_b_rd_rsp_pd;
-wire cvif2sdp_b_rd_rsp_ready;
-wire cvif2sdp_b_rd_rsp_valid;
-wire sdp_b2cvif_rd_cdt_lat_fifo_pop;
-wire [64 +14:0] sdp_b2cvif_rd_req_pd;
-wire sdp_b2cvif_rd_req_ready;
-wire sdp_b2cvif_rd_req_valid;
-wire [256 +(256/8/32)-1:0] cvif2sdp_e_rd_rsp_pd;
-wire cvif2sdp_e_rd_rsp_ready;
-wire cvif2sdp_e_rd_rsp_valid;
-wire sdp_e2cvif_rd_cdt_lat_fifo_pop;
-wire [64 +14:0] sdp_e2cvif_rd_req_pd;
-wire sdp_e2cvif_rd_req_ready;
-wire sdp_e2cvif_rd_req_valid;
-wire [256 +(256/8/32)-1:0] cvif2sdp_n_rd_rsp_pd;
-wire cvif2sdp_n_rd_rsp_ready;
-wire cvif2sdp_n_rd_rsp_valid;
-wire sdp_n2cvif_rd_cdt_lat_fifo_pop;
-wire [64 +14:0] sdp_n2cvif_rd_req_pd;
-wire sdp_n2cvif_rd_req_ready;
-wire sdp_n2cvif_rd_req_valid;
-wire [64 +14:0] cdma_dat2mcif_rd_req_pd;
+wire [32 +14:0] cdma_dat2mcif_rd_req_pd;
 wire cdma_dat2mcif_rd_req_ready;
 wire cdma_dat2mcif_rd_req_valid;
-wire [64 +14:0] cdma_wt2mcif_rd_req_pd;
+wire [32 +14:0] cdma_wt2mcif_rd_req_pd;
 wire cdma_wt2mcif_rd_req_ready;
 wire cdma_wt2mcif_rd_req_valid;
 wire [256 +(256/8/32)-1:0] mcif2cdma_dat_rd_rsp_pd;
@@ -367,29 +273,15 @@ wire mcif2cdma_wt_rd_rsp_valid;
   wire mcif2sdp_b_rd_rsp_ready;
   wire mcif2sdp_b_rd_rsp_valid;
   wire sdp_b2mcif_rd_cdt_lat_fifo_pop;
-  wire [64 +14:0] sdp_b2mcif_rd_req_pd;
+  wire [32 +14:0] sdp_b2mcif_rd_req_pd;
   wire sdp_b2mcif_rd_req_ready;
   wire sdp_b2mcif_rd_req_valid;
-  wire [256 +(256/8/32)-1:0] mcif2sdp_e_rd_rsp_pd;
-  wire mcif2sdp_e_rd_rsp_ready;
-  wire mcif2sdp_e_rd_rsp_valid;
-  wire sdp_e2mcif_rd_cdt_lat_fifo_pop;
-  wire [64 +14:0] sdp_e2mcif_rd_req_pd;
-  wire sdp_e2mcif_rd_req_ready;
-  wire sdp_e2mcif_rd_req_valid;
-  wire [256 +(256/8/32)-1:0] mcif2sdp_n_rd_rsp_pd;
-  wire mcif2sdp_n_rd_rsp_ready;
-  wire mcif2sdp_n_rd_rsp_valid;
-  wire sdp_n2mcif_rd_cdt_lat_fifo_pop;
-  wire [64 +14:0] sdp_n2mcif_rd_req_pd;
-  wire sdp_n2mcif_rd_req_ready;
-  wire sdp_n2mcif_rd_req_valid;
 wire [256 +(256/8/32)-1:0] mcif2sdp_rd_rsp_pd;
 wire mcif2sdp_rd_rsp_ready;
 wire mcif2sdp_rd_rsp_valid;
 wire mcif2sdp_wr_rsp_complete;
 wire sdp2mcif_rd_cdt_lat_fifo_pop;
-wire [64 +14:0] sdp2mcif_rd_req_pd;
+wire [32 +14:0] sdp2mcif_rd_req_pd;
 wire sdp2mcif_rd_req_ready;
 wire sdp2mcif_rd_req_valid;
 wire [256 +(256/8/32):0] sdp2mcif_wr_req_pd;
@@ -405,7 +297,7 @@ wire [33:0] sdp_rdma2csb_resp_pd;
 wire sdp_rdma2csb_resp_valid;
 wire nvdla_clk_ovr_on;
 wire nvdla_core_rstn;
-//: my $kk=64 -1;
+//: my $kk=32 -1;
 //: foreach my $i (0..${kk}) {
 //: print qq(
 //: wire [8 -1:0] sc2mac_dat_a_data${i};
@@ -576,180 +468,25 @@ wire [8 -1:0] sc2mac_dat_b_data31;
 wire [8 -1:0] sc2mac_wt_a_data31;
 wire [8 -1:0] sc2mac_wt_b_data31;
 
-wire [8 -1:0] sc2mac_dat_a_data32;
-wire [8 -1:0] sc2mac_dat_b_data32;
-wire [8 -1:0] sc2mac_wt_a_data32;
-wire [8 -1:0] sc2mac_wt_b_data32;
-
-wire [8 -1:0] sc2mac_dat_a_data33;
-wire [8 -1:0] sc2mac_dat_b_data33;
-wire [8 -1:0] sc2mac_wt_a_data33;
-wire [8 -1:0] sc2mac_wt_b_data33;
-
-wire [8 -1:0] sc2mac_dat_a_data34;
-wire [8 -1:0] sc2mac_dat_b_data34;
-wire [8 -1:0] sc2mac_wt_a_data34;
-wire [8 -1:0] sc2mac_wt_b_data34;
-
-wire [8 -1:0] sc2mac_dat_a_data35;
-wire [8 -1:0] sc2mac_dat_b_data35;
-wire [8 -1:0] sc2mac_wt_a_data35;
-wire [8 -1:0] sc2mac_wt_b_data35;
-
-wire [8 -1:0] sc2mac_dat_a_data36;
-wire [8 -1:0] sc2mac_dat_b_data36;
-wire [8 -1:0] sc2mac_wt_a_data36;
-wire [8 -1:0] sc2mac_wt_b_data36;
-
-wire [8 -1:0] sc2mac_dat_a_data37;
-wire [8 -1:0] sc2mac_dat_b_data37;
-wire [8 -1:0] sc2mac_wt_a_data37;
-wire [8 -1:0] sc2mac_wt_b_data37;
-
-wire [8 -1:0] sc2mac_dat_a_data38;
-wire [8 -1:0] sc2mac_dat_b_data38;
-wire [8 -1:0] sc2mac_wt_a_data38;
-wire [8 -1:0] sc2mac_wt_b_data38;
-
-wire [8 -1:0] sc2mac_dat_a_data39;
-wire [8 -1:0] sc2mac_dat_b_data39;
-wire [8 -1:0] sc2mac_wt_a_data39;
-wire [8 -1:0] sc2mac_wt_b_data39;
-
-wire [8 -1:0] sc2mac_dat_a_data40;
-wire [8 -1:0] sc2mac_dat_b_data40;
-wire [8 -1:0] sc2mac_wt_a_data40;
-wire [8 -1:0] sc2mac_wt_b_data40;
-
-wire [8 -1:0] sc2mac_dat_a_data41;
-wire [8 -1:0] sc2mac_dat_b_data41;
-wire [8 -1:0] sc2mac_wt_a_data41;
-wire [8 -1:0] sc2mac_wt_b_data41;
-
-wire [8 -1:0] sc2mac_dat_a_data42;
-wire [8 -1:0] sc2mac_dat_b_data42;
-wire [8 -1:0] sc2mac_wt_a_data42;
-wire [8 -1:0] sc2mac_wt_b_data42;
-
-wire [8 -1:0] sc2mac_dat_a_data43;
-wire [8 -1:0] sc2mac_dat_b_data43;
-wire [8 -1:0] sc2mac_wt_a_data43;
-wire [8 -1:0] sc2mac_wt_b_data43;
-
-wire [8 -1:0] sc2mac_dat_a_data44;
-wire [8 -1:0] sc2mac_dat_b_data44;
-wire [8 -1:0] sc2mac_wt_a_data44;
-wire [8 -1:0] sc2mac_wt_b_data44;
-
-wire [8 -1:0] sc2mac_dat_a_data45;
-wire [8 -1:0] sc2mac_dat_b_data45;
-wire [8 -1:0] sc2mac_wt_a_data45;
-wire [8 -1:0] sc2mac_wt_b_data45;
-
-wire [8 -1:0] sc2mac_dat_a_data46;
-wire [8 -1:0] sc2mac_dat_b_data46;
-wire [8 -1:0] sc2mac_wt_a_data46;
-wire [8 -1:0] sc2mac_wt_b_data46;
-
-wire [8 -1:0] sc2mac_dat_a_data47;
-wire [8 -1:0] sc2mac_dat_b_data47;
-wire [8 -1:0] sc2mac_wt_a_data47;
-wire [8 -1:0] sc2mac_wt_b_data47;
-
-wire [8 -1:0] sc2mac_dat_a_data48;
-wire [8 -1:0] sc2mac_dat_b_data48;
-wire [8 -1:0] sc2mac_wt_a_data48;
-wire [8 -1:0] sc2mac_wt_b_data48;
-
-wire [8 -1:0] sc2mac_dat_a_data49;
-wire [8 -1:0] sc2mac_dat_b_data49;
-wire [8 -1:0] sc2mac_wt_a_data49;
-wire [8 -1:0] sc2mac_wt_b_data49;
-
-wire [8 -1:0] sc2mac_dat_a_data50;
-wire [8 -1:0] sc2mac_dat_b_data50;
-wire [8 -1:0] sc2mac_wt_a_data50;
-wire [8 -1:0] sc2mac_wt_b_data50;
-
-wire [8 -1:0] sc2mac_dat_a_data51;
-wire [8 -1:0] sc2mac_dat_b_data51;
-wire [8 -1:0] sc2mac_wt_a_data51;
-wire [8 -1:0] sc2mac_wt_b_data51;
-
-wire [8 -1:0] sc2mac_dat_a_data52;
-wire [8 -1:0] sc2mac_dat_b_data52;
-wire [8 -1:0] sc2mac_wt_a_data52;
-wire [8 -1:0] sc2mac_wt_b_data52;
-
-wire [8 -1:0] sc2mac_dat_a_data53;
-wire [8 -1:0] sc2mac_dat_b_data53;
-wire [8 -1:0] sc2mac_wt_a_data53;
-wire [8 -1:0] sc2mac_wt_b_data53;
-
-wire [8 -1:0] sc2mac_dat_a_data54;
-wire [8 -1:0] sc2mac_dat_b_data54;
-wire [8 -1:0] sc2mac_wt_a_data54;
-wire [8 -1:0] sc2mac_wt_b_data54;
-
-wire [8 -1:0] sc2mac_dat_a_data55;
-wire [8 -1:0] sc2mac_dat_b_data55;
-wire [8 -1:0] sc2mac_wt_a_data55;
-wire [8 -1:0] sc2mac_wt_b_data55;
-
-wire [8 -1:0] sc2mac_dat_a_data56;
-wire [8 -1:0] sc2mac_dat_b_data56;
-wire [8 -1:0] sc2mac_wt_a_data56;
-wire [8 -1:0] sc2mac_wt_b_data56;
-
-wire [8 -1:0] sc2mac_dat_a_data57;
-wire [8 -1:0] sc2mac_dat_b_data57;
-wire [8 -1:0] sc2mac_wt_a_data57;
-wire [8 -1:0] sc2mac_wt_b_data57;
-
-wire [8 -1:0] sc2mac_dat_a_data58;
-wire [8 -1:0] sc2mac_dat_b_data58;
-wire [8 -1:0] sc2mac_wt_a_data58;
-wire [8 -1:0] sc2mac_wt_b_data58;
-
-wire [8 -1:0] sc2mac_dat_a_data59;
-wire [8 -1:0] sc2mac_dat_b_data59;
-wire [8 -1:0] sc2mac_wt_a_data59;
-wire [8 -1:0] sc2mac_wt_b_data59;
-
-wire [8 -1:0] sc2mac_dat_a_data60;
-wire [8 -1:0] sc2mac_dat_b_data60;
-wire [8 -1:0] sc2mac_wt_a_data60;
-wire [8 -1:0] sc2mac_wt_b_data60;
-
-wire [8 -1:0] sc2mac_dat_a_data61;
-wire [8 -1:0] sc2mac_dat_b_data61;
-wire [8 -1:0] sc2mac_wt_a_data61;
-wire [8 -1:0] sc2mac_wt_b_data61;
-
-wire [8 -1:0] sc2mac_dat_a_data62;
-wire [8 -1:0] sc2mac_dat_b_data62;
-wire [8 -1:0] sc2mac_wt_a_data62;
-wire [8 -1:0] sc2mac_wt_b_data62;
-
-wire [8 -1:0] sc2mac_dat_a_data63;
-wire [8 -1:0] sc2mac_dat_b_data63;
-wire [8 -1:0] sc2mac_wt_a_data63;
-wire [8 -1:0] sc2mac_wt_b_data63;
-
 //| eperl: generated_end (DO NOT EDIT ABOVE)
-wire [64 -1:0] sc2mac_dat_a_mask;
+wire [32 -1:0] sc2mac_dat_a_mask;
 wire [8:0] sc2mac_dat_a_pd;
 wire sc2mac_dat_a_pvld;
-wire [64 -1:0] sc2mac_dat_b_mask;
+wire [32 -1:0] sc2mac_dat_b_mask;
 wire [8:0] sc2mac_dat_b_pd;
 wire sc2mac_dat_b_pvld;
-wire [64 -1:0] sc2mac_wt_a_mask;
+wire [32 -1:0] sc2mac_wt_a_mask;
 wire sc2mac_wt_a_pvld;
 wire [32/2-1:0] sc2mac_wt_a_sel;
-wire [64 -1:0] sc2mac_wt_b_mask;
+wire [32 -1:0] sc2mac_wt_b_mask;
 wire sc2mac_wt_b_pvld;
 wire [32/2-1:0] sc2mac_wt_b_sel;
 ////////////////////////////////////////////////////////////////////////////////
+   assign nvdla_core2cvsram_aw_awvalid = 1'b0;
+   assign nvdla_core2cvsram_w_wvalid = 1'b0;
+   assign nvdla_core2cvsram_w_wlast = 1'b0;
+   assign nvdla_core2cvsram_b_bready = 1'b1;
+   assign nvdla_core2cvsram_r_rready = 1'b1;
 ////////////////////////////////////////////////////////////////////////
 // NVDLA Partition O //
 ////////////////////////////////////////////////////////////////////////
@@ -804,73 +541,6 @@ NV_NVDLA_partition_o u_partition_o (
   ,.csb2sdp_req_pd (csb2sdp_req_pd[62:0])
   ,.csc2csb_resp_valid (csc2csb_resp_valid)
   ,.csc2csb_resp_pd (csc2csb_resp_pd[33:0])
-  ,.cvif2noc_axi_ar_arvalid (nvdla_core2cvsram_ar_arvalid)
-  ,.cvif2noc_axi_ar_arready (nvdla_core2cvsram_ar_arready)
-  ,.cvif2noc_axi_ar_arid (nvdla_core2cvsram_ar_arid[7:0])
-  ,.cvif2noc_axi_ar_arlen (nvdla_core2cvsram_ar_arlen[3:0])
-  ,.cvif2noc_axi_ar_araddr (nvdla_core2cvsram_ar_araddr)
-  ,.cvif2noc_axi_aw_awvalid (nvdla_core2cvsram_aw_awvalid)
-  ,.cvif2noc_axi_aw_awready (nvdla_core2cvsram_aw_awready)
-  ,.cvif2noc_axi_aw_awid (nvdla_core2cvsram_aw_awid[7:0])
-  ,.cvif2noc_axi_aw_awlen (nvdla_core2cvsram_aw_awlen[3:0])
-  ,.cvif2noc_axi_aw_awaddr (nvdla_core2cvsram_aw_awaddr)
-  ,.cvif2noc_axi_w_wvalid (nvdla_core2cvsram_w_wvalid)
-  ,.cvif2noc_axi_w_wready (nvdla_core2cvsram_w_wready)
-  ,.cvif2noc_axi_w_wdata (nvdla_core2cvsram_w_wdata)
-  ,.cvif2noc_axi_w_wstrb (nvdla_core2cvsram_w_wstrb)
-  ,.cvif2noc_axi_w_wlast (nvdla_core2cvsram_w_wlast)
-  ,.noc2cvif_axi_b_bvalid (nvdla_core2cvsram_b_bvalid)
-  ,.noc2cvif_axi_b_bready (nvdla_core2cvsram_b_bready)
-  ,.noc2cvif_axi_b_bid (nvdla_core2cvsram_b_bid[7:0])
-  ,.noc2cvif_axi_r_rvalid (nvdla_core2cvsram_r_rvalid)
-  ,.noc2cvif_axi_r_rready (nvdla_core2cvsram_r_rready)
-  ,.noc2cvif_axi_r_rid (nvdla_core2cvsram_r_rid[7:0])
-  ,.noc2cvif_axi_r_rlast (nvdla_core2cvsram_r_rlast)
-  ,.noc2cvif_axi_r_rdata (nvdla_core2cvsram_r_rdata)
-  ,.cdma_dat2cvif_rd_req_valid (cdma_dat2cvif_rd_req_valid)
-  ,.cdma_dat2cvif_rd_req_ready (cdma_dat2cvif_rd_req_ready)
-  ,.cdma_dat2cvif_rd_req_pd (cdma_dat2cvif_rd_req_pd)
-  ,.cdma_wt2cvif_rd_req_valid (cdma_wt2cvif_rd_req_valid)
-  ,.cdma_wt2cvif_rd_req_ready (cdma_wt2cvif_rd_req_ready)
-  ,.cdma_wt2cvif_rd_req_pd (cdma_wt2cvif_rd_req_pd)
-  ,.cvif2cdma_dat_rd_rsp_valid (cvif2cdma_dat_rd_rsp_valid)
-  ,.cvif2cdma_dat_rd_rsp_ready (cvif2cdma_dat_rd_rsp_ready)
-  ,.cvif2cdma_dat_rd_rsp_pd (cvif2cdma_dat_rd_rsp_pd)
-  ,.cvif2cdma_wt_rd_rsp_valid (cvif2cdma_wt_rd_rsp_valid)
-  ,.cvif2cdma_wt_rd_rsp_ready (cvif2cdma_wt_rd_rsp_ready)
-  ,.cvif2cdma_wt_rd_rsp_pd (cvif2cdma_wt_rd_rsp_pd)
-  ,.sdp_b2cvif_rd_cdt_lat_fifo_pop (sdp_b2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_b2cvif_rd_req_valid (sdp_b2cvif_rd_req_valid)
-  ,.sdp_b2cvif_rd_req_ready (sdp_b2cvif_rd_req_ready)
-  ,.sdp_b2cvif_rd_req_pd (sdp_b2cvif_rd_req_pd)
-  ,.cvif2sdp_b_rd_rsp_valid (cvif2sdp_b_rd_rsp_valid)
-  ,.cvif2sdp_b_rd_rsp_ready (cvif2sdp_b_rd_rsp_ready)
-  ,.cvif2sdp_b_rd_rsp_pd (cvif2sdp_b_rd_rsp_pd)
-  ,.sdp_e2cvif_rd_cdt_lat_fifo_pop (sdp_e2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_e2cvif_rd_req_valid (sdp_e2cvif_rd_req_valid)
-  ,.sdp_e2cvif_rd_req_ready (sdp_e2cvif_rd_req_ready)
-  ,.sdp_e2cvif_rd_req_pd (sdp_e2cvif_rd_req_pd)
-  ,.cvif2sdp_e_rd_rsp_valid (cvif2sdp_e_rd_rsp_valid)
-  ,.cvif2sdp_e_rd_rsp_ready (cvif2sdp_e_rd_rsp_ready)
-  ,.cvif2sdp_e_rd_rsp_pd (cvif2sdp_e_rd_rsp_pd)
-  ,.sdp_n2cvif_rd_cdt_lat_fifo_pop (sdp_n2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2cvif_rd_req_valid (sdp_n2cvif_rd_req_valid)
-  ,.sdp_n2cvif_rd_req_ready (sdp_n2cvif_rd_req_ready)
-  ,.sdp_n2cvif_rd_req_pd (sdp_n2cvif_rd_req_pd)
-  ,.cvif2sdp_n_rd_rsp_valid (cvif2sdp_n_rd_rsp_valid)
-  ,.cvif2sdp_n_rd_rsp_ready (cvif2sdp_n_rd_rsp_ready)
-  ,.cvif2sdp_n_rd_rsp_pd (cvif2sdp_n_rd_rsp_pd)
-  ,.sdp2cvif_rd_cdt_lat_fifo_pop (sdp2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp2cvif_rd_req_valid (sdp2cvif_rd_req_valid)
-  ,.sdp2cvif_rd_req_ready (sdp2cvif_rd_req_ready)
-  ,.sdp2cvif_rd_req_pd (sdp2cvif_rd_req_pd)
-  ,.sdp2cvif_wr_req_valid (sdp2cvif_wr_req_valid)
-  ,.sdp2cvif_wr_req_ready (sdp2cvif_wr_req_ready)
-  ,.sdp2cvif_wr_req_pd (sdp2cvif_wr_req_pd)
-  ,.cvif2sdp_rd_rsp_valid (cvif2sdp_rd_rsp_valid)
-  ,.cvif2sdp_rd_rsp_ready (cvif2sdp_rd_rsp_ready)
-  ,.cvif2sdp_rd_rsp_pd (cvif2sdp_rd_rsp_pd)
-  ,.cvif2sdp_wr_rsp_complete (cvif2sdp_wr_rsp_complete)
   ,.mcif2noc_axi_ar_arvalid (nvdla_core2dbb_ar_arvalid)
   ,.mcif2noc_axi_ar_arready (nvdla_core2dbb_ar_arready)
   ,.mcif2noc_axi_ar_arid (nvdla_core2dbb_ar_arid[7:0])
@@ -907,20 +577,6 @@ NV_NVDLA_partition_o u_partition_o (
   ,.sdp_b2mcif_rd_req_valid (sdp_b2mcif_rd_req_valid)
   ,.sdp_b2mcif_rd_req_ready (sdp_b2mcif_rd_req_ready)
   ,.sdp_b2mcif_rd_req_pd (sdp_b2mcif_rd_req_pd)
-  ,.mcif2sdp_e_rd_rsp_valid (mcif2sdp_e_rd_rsp_valid)
-  ,.mcif2sdp_e_rd_rsp_ready (mcif2sdp_e_rd_rsp_ready)
-  ,.mcif2sdp_e_rd_rsp_pd (mcif2sdp_e_rd_rsp_pd)
-  ,.sdp_e2mcif_rd_cdt_lat_fifo_pop (sdp_e2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_e2mcif_rd_req_valid (sdp_e2mcif_rd_req_valid)
-  ,.sdp_e2mcif_rd_req_ready (sdp_e2mcif_rd_req_ready)
-  ,.sdp_e2mcif_rd_req_pd (sdp_e2mcif_rd_req_pd)
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd)
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd)
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid)
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready)
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd)
@@ -967,18 +623,6 @@ NV_NVDLA_partition_c u_partition_c (
   ,.cdma_dat2mcif_rd_req_valid (cdma_dat2mcif_rd_req_valid)
   ,.cdma_dat2mcif_rd_req_ready (cdma_dat2mcif_rd_req_ready)
   ,.cdma_dat2mcif_rd_req_pd (cdma_dat2mcif_rd_req_pd)
-  ,.cdma_dat2cvif_rd_req_valid (cdma_dat2cvif_rd_req_valid)
-  ,.cdma_dat2cvif_rd_req_ready (cdma_dat2cvif_rd_req_ready)
-  ,.cdma_dat2cvif_rd_req_pd (cdma_dat2cvif_rd_req_pd)
-  ,.cdma_wt2cvif_rd_req_valid (cdma_wt2cvif_rd_req_valid)
-  ,.cdma_wt2cvif_rd_req_ready (cdma_wt2cvif_rd_req_ready)
-  ,.cdma_wt2cvif_rd_req_pd (cdma_wt2cvif_rd_req_pd)
-  ,.cvif2cdma_dat_rd_rsp_valid (cvif2cdma_dat_rd_rsp_valid)
-  ,.cvif2cdma_dat_rd_rsp_ready (cvif2cdma_dat_rd_rsp_ready)
-  ,.cvif2cdma_dat_rd_rsp_pd (cvif2cdma_dat_rd_rsp_pd)
-  ,.cvif2cdma_wt_rd_rsp_valid (cvif2cdma_wt_rd_rsp_valid)
-  ,.cvif2cdma_wt_rd_rsp_ready (cvif2cdma_wt_rd_rsp_ready)
-  ,.cvif2cdma_wt_rd_rsp_pd (cvif2cdma_wt_rd_rsp_pd)
   ,.cdma_wt2glb_done_intr_pd (cdma_wt2glb_done_intr_pd[1:0])
   ,.cdma_wt2mcif_rd_req_valid (cdma_wt2mcif_rd_req_valid)
   ,.cdma_wt2mcif_rd_req_ready (cdma_wt2mcif_rd_req_ready)
@@ -999,8 +643,8 @@ NV_NVDLA_partition_c u_partition_c (
   ,.mcif2cdma_wt_rd_rsp_pd (mcif2cdma_wt_rd_rsp_pd)
   ,.pwrbus_ram_pd (nvdla_pwrbus_ram_c_pd[31:0])
   ,.sc2mac_dat_a_pvld (sc2mac_dat_a_pvld)
-  ,.sc2mac_dat_a_mask (sc2mac_dat_a_mask[64 -1:0])
-//: my $kk=64 -1;
+  ,.sc2mac_dat_a_mask (sc2mac_dat_a_mask[32 -1:0])
+//: my $kk=32 -1;
 //: foreach my $i (0..${kk}){
 //: print qq(
 //: ,.sc2mac_dat_a_data${i} (sc2mac_dat_a_data${i})
@@ -1171,176 +815,16 @@ NV_NVDLA_partition_c u_partition_c (
 ,.sc2mac_wt_a_data31 (sc2mac_wt_a_data31)
 ,.sc2mac_wt_b_data31 (sc2mac_wt_b_data31)
 
-,.sc2mac_dat_a_data32 (sc2mac_dat_a_data32)
-,.sc2mac_dat_b_data32 (sc2mac_dat_b_data32)
-,.sc2mac_wt_a_data32 (sc2mac_wt_a_data32)
-,.sc2mac_wt_b_data32 (sc2mac_wt_b_data32)
-
-,.sc2mac_dat_a_data33 (sc2mac_dat_a_data33)
-,.sc2mac_dat_b_data33 (sc2mac_dat_b_data33)
-,.sc2mac_wt_a_data33 (sc2mac_wt_a_data33)
-,.sc2mac_wt_b_data33 (sc2mac_wt_b_data33)
-
-,.sc2mac_dat_a_data34 (sc2mac_dat_a_data34)
-,.sc2mac_dat_b_data34 (sc2mac_dat_b_data34)
-,.sc2mac_wt_a_data34 (sc2mac_wt_a_data34)
-,.sc2mac_wt_b_data34 (sc2mac_wt_b_data34)
-
-,.sc2mac_dat_a_data35 (sc2mac_dat_a_data35)
-,.sc2mac_dat_b_data35 (sc2mac_dat_b_data35)
-,.sc2mac_wt_a_data35 (sc2mac_wt_a_data35)
-,.sc2mac_wt_b_data35 (sc2mac_wt_b_data35)
-
-,.sc2mac_dat_a_data36 (sc2mac_dat_a_data36)
-,.sc2mac_dat_b_data36 (sc2mac_dat_b_data36)
-,.sc2mac_wt_a_data36 (sc2mac_wt_a_data36)
-,.sc2mac_wt_b_data36 (sc2mac_wt_b_data36)
-
-,.sc2mac_dat_a_data37 (sc2mac_dat_a_data37)
-,.sc2mac_dat_b_data37 (sc2mac_dat_b_data37)
-,.sc2mac_wt_a_data37 (sc2mac_wt_a_data37)
-,.sc2mac_wt_b_data37 (sc2mac_wt_b_data37)
-
-,.sc2mac_dat_a_data38 (sc2mac_dat_a_data38)
-,.sc2mac_dat_b_data38 (sc2mac_dat_b_data38)
-,.sc2mac_wt_a_data38 (sc2mac_wt_a_data38)
-,.sc2mac_wt_b_data38 (sc2mac_wt_b_data38)
-
-,.sc2mac_dat_a_data39 (sc2mac_dat_a_data39)
-,.sc2mac_dat_b_data39 (sc2mac_dat_b_data39)
-,.sc2mac_wt_a_data39 (sc2mac_wt_a_data39)
-,.sc2mac_wt_b_data39 (sc2mac_wt_b_data39)
-
-,.sc2mac_dat_a_data40 (sc2mac_dat_a_data40)
-,.sc2mac_dat_b_data40 (sc2mac_dat_b_data40)
-,.sc2mac_wt_a_data40 (sc2mac_wt_a_data40)
-,.sc2mac_wt_b_data40 (sc2mac_wt_b_data40)
-
-,.sc2mac_dat_a_data41 (sc2mac_dat_a_data41)
-,.sc2mac_dat_b_data41 (sc2mac_dat_b_data41)
-,.sc2mac_wt_a_data41 (sc2mac_wt_a_data41)
-,.sc2mac_wt_b_data41 (sc2mac_wt_b_data41)
-
-,.sc2mac_dat_a_data42 (sc2mac_dat_a_data42)
-,.sc2mac_dat_b_data42 (sc2mac_dat_b_data42)
-,.sc2mac_wt_a_data42 (sc2mac_wt_a_data42)
-,.sc2mac_wt_b_data42 (sc2mac_wt_b_data42)
-
-,.sc2mac_dat_a_data43 (sc2mac_dat_a_data43)
-,.sc2mac_dat_b_data43 (sc2mac_dat_b_data43)
-,.sc2mac_wt_a_data43 (sc2mac_wt_a_data43)
-,.sc2mac_wt_b_data43 (sc2mac_wt_b_data43)
-
-,.sc2mac_dat_a_data44 (sc2mac_dat_a_data44)
-,.sc2mac_dat_b_data44 (sc2mac_dat_b_data44)
-,.sc2mac_wt_a_data44 (sc2mac_wt_a_data44)
-,.sc2mac_wt_b_data44 (sc2mac_wt_b_data44)
-
-,.sc2mac_dat_a_data45 (sc2mac_dat_a_data45)
-,.sc2mac_dat_b_data45 (sc2mac_dat_b_data45)
-,.sc2mac_wt_a_data45 (sc2mac_wt_a_data45)
-,.sc2mac_wt_b_data45 (sc2mac_wt_b_data45)
-
-,.sc2mac_dat_a_data46 (sc2mac_dat_a_data46)
-,.sc2mac_dat_b_data46 (sc2mac_dat_b_data46)
-,.sc2mac_wt_a_data46 (sc2mac_wt_a_data46)
-,.sc2mac_wt_b_data46 (sc2mac_wt_b_data46)
-
-,.sc2mac_dat_a_data47 (sc2mac_dat_a_data47)
-,.sc2mac_dat_b_data47 (sc2mac_dat_b_data47)
-,.sc2mac_wt_a_data47 (sc2mac_wt_a_data47)
-,.sc2mac_wt_b_data47 (sc2mac_wt_b_data47)
-
-,.sc2mac_dat_a_data48 (sc2mac_dat_a_data48)
-,.sc2mac_dat_b_data48 (sc2mac_dat_b_data48)
-,.sc2mac_wt_a_data48 (sc2mac_wt_a_data48)
-,.sc2mac_wt_b_data48 (sc2mac_wt_b_data48)
-
-,.sc2mac_dat_a_data49 (sc2mac_dat_a_data49)
-,.sc2mac_dat_b_data49 (sc2mac_dat_b_data49)
-,.sc2mac_wt_a_data49 (sc2mac_wt_a_data49)
-,.sc2mac_wt_b_data49 (sc2mac_wt_b_data49)
-
-,.sc2mac_dat_a_data50 (sc2mac_dat_a_data50)
-,.sc2mac_dat_b_data50 (sc2mac_dat_b_data50)
-,.sc2mac_wt_a_data50 (sc2mac_wt_a_data50)
-,.sc2mac_wt_b_data50 (sc2mac_wt_b_data50)
-
-,.sc2mac_dat_a_data51 (sc2mac_dat_a_data51)
-,.sc2mac_dat_b_data51 (sc2mac_dat_b_data51)
-,.sc2mac_wt_a_data51 (sc2mac_wt_a_data51)
-,.sc2mac_wt_b_data51 (sc2mac_wt_b_data51)
-
-,.sc2mac_dat_a_data52 (sc2mac_dat_a_data52)
-,.sc2mac_dat_b_data52 (sc2mac_dat_b_data52)
-,.sc2mac_wt_a_data52 (sc2mac_wt_a_data52)
-,.sc2mac_wt_b_data52 (sc2mac_wt_b_data52)
-
-,.sc2mac_dat_a_data53 (sc2mac_dat_a_data53)
-,.sc2mac_dat_b_data53 (sc2mac_dat_b_data53)
-,.sc2mac_wt_a_data53 (sc2mac_wt_a_data53)
-,.sc2mac_wt_b_data53 (sc2mac_wt_b_data53)
-
-,.sc2mac_dat_a_data54 (sc2mac_dat_a_data54)
-,.sc2mac_dat_b_data54 (sc2mac_dat_b_data54)
-,.sc2mac_wt_a_data54 (sc2mac_wt_a_data54)
-,.sc2mac_wt_b_data54 (sc2mac_wt_b_data54)
-
-,.sc2mac_dat_a_data55 (sc2mac_dat_a_data55)
-,.sc2mac_dat_b_data55 (sc2mac_dat_b_data55)
-,.sc2mac_wt_a_data55 (sc2mac_wt_a_data55)
-,.sc2mac_wt_b_data55 (sc2mac_wt_b_data55)
-
-,.sc2mac_dat_a_data56 (sc2mac_dat_a_data56)
-,.sc2mac_dat_b_data56 (sc2mac_dat_b_data56)
-,.sc2mac_wt_a_data56 (sc2mac_wt_a_data56)
-,.sc2mac_wt_b_data56 (sc2mac_wt_b_data56)
-
-,.sc2mac_dat_a_data57 (sc2mac_dat_a_data57)
-,.sc2mac_dat_b_data57 (sc2mac_dat_b_data57)
-,.sc2mac_wt_a_data57 (sc2mac_wt_a_data57)
-,.sc2mac_wt_b_data57 (sc2mac_wt_b_data57)
-
-,.sc2mac_dat_a_data58 (sc2mac_dat_a_data58)
-,.sc2mac_dat_b_data58 (sc2mac_dat_b_data58)
-,.sc2mac_wt_a_data58 (sc2mac_wt_a_data58)
-,.sc2mac_wt_b_data58 (sc2mac_wt_b_data58)
-
-,.sc2mac_dat_a_data59 (sc2mac_dat_a_data59)
-,.sc2mac_dat_b_data59 (sc2mac_dat_b_data59)
-,.sc2mac_wt_a_data59 (sc2mac_wt_a_data59)
-,.sc2mac_wt_b_data59 (sc2mac_wt_b_data59)
-
-,.sc2mac_dat_a_data60 (sc2mac_dat_a_data60)
-,.sc2mac_dat_b_data60 (sc2mac_dat_b_data60)
-,.sc2mac_wt_a_data60 (sc2mac_wt_a_data60)
-,.sc2mac_wt_b_data60 (sc2mac_wt_b_data60)
-
-,.sc2mac_dat_a_data61 (sc2mac_dat_a_data61)
-,.sc2mac_dat_b_data61 (sc2mac_dat_b_data61)
-,.sc2mac_wt_a_data61 (sc2mac_wt_a_data61)
-,.sc2mac_wt_b_data61 (sc2mac_wt_b_data61)
-
-,.sc2mac_dat_a_data62 (sc2mac_dat_a_data62)
-,.sc2mac_dat_b_data62 (sc2mac_dat_b_data62)
-,.sc2mac_wt_a_data62 (sc2mac_wt_a_data62)
-,.sc2mac_wt_b_data62 (sc2mac_wt_b_data62)
-
-,.sc2mac_dat_a_data63 (sc2mac_dat_a_data63)
-,.sc2mac_dat_b_data63 (sc2mac_dat_b_data63)
-,.sc2mac_wt_a_data63 (sc2mac_wt_a_data63)
-,.sc2mac_wt_b_data63 (sc2mac_wt_b_data63)
-
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_dat_a_pd (sc2mac_dat_a_pd[8:0])
   ,.sc2mac_dat_b_pvld (sc2mac_dat_b_pvld)
-  ,.sc2mac_dat_b_mask (sc2mac_dat_b_mask[64 -1:0])
+  ,.sc2mac_dat_b_mask (sc2mac_dat_b_mask[32 -1:0])
   ,.sc2mac_dat_b_pd (sc2mac_dat_b_pd[8:0])
   ,.sc2mac_wt_a_pvld (sc2mac_wt_a_pvld)
-  ,.sc2mac_wt_a_mask (sc2mac_wt_a_mask[64 -1:0])
+  ,.sc2mac_wt_a_mask (sc2mac_wt_a_mask[32 -1:0])
   ,.sc2mac_wt_a_sel (sc2mac_wt_a_sel[32/2-1:0])
   ,.sc2mac_wt_b_pvld (sc2mac_wt_b_pvld)
-  ,.sc2mac_wt_b_mask (sc2mac_wt_b_mask[64 -1:0])
+  ,.sc2mac_wt_b_mask (sc2mac_wt_b_mask[32 -1:0])
   ,.sc2mac_wt_b_sel (sc2mac_wt_b_sel[32/2-1:0])
   ,.nvdla_core_clk (dla_core_clk)
   ,.dla_reset_rstn (nvdla_core_rstn)
@@ -1360,7 +844,7 @@ NV_NVDLA_partition_m u_partition_ma (
   ,.cmac_a2csb_resp_pd (cmac_a2csb_resp_pd) //|> w
   ,.sc2mac_wt_pvld (sc2mac_wt_a_pvld) //|< w
   ,.sc2mac_wt_mask (sc2mac_wt_a_mask) //|< w
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_wt_data${i} (sc2mac_wt_a_data${i}) //|< w )
 //: }
@@ -1398,43 +882,11 @@ NV_NVDLA_partition_m u_partition_ma (
 ,.sc2mac_wt_data29 (sc2mac_wt_a_data29) //|< w 
 ,.sc2mac_wt_data30 (sc2mac_wt_a_data30) //|< w 
 ,.sc2mac_wt_data31 (sc2mac_wt_a_data31) //|< w 
-,.sc2mac_wt_data32 (sc2mac_wt_a_data32) //|< w 
-,.sc2mac_wt_data33 (sc2mac_wt_a_data33) //|< w 
-,.sc2mac_wt_data34 (sc2mac_wt_a_data34) //|< w 
-,.sc2mac_wt_data35 (sc2mac_wt_a_data35) //|< w 
-,.sc2mac_wt_data36 (sc2mac_wt_a_data36) //|< w 
-,.sc2mac_wt_data37 (sc2mac_wt_a_data37) //|< w 
-,.sc2mac_wt_data38 (sc2mac_wt_a_data38) //|< w 
-,.sc2mac_wt_data39 (sc2mac_wt_a_data39) //|< w 
-,.sc2mac_wt_data40 (sc2mac_wt_a_data40) //|< w 
-,.sc2mac_wt_data41 (sc2mac_wt_a_data41) //|< w 
-,.sc2mac_wt_data42 (sc2mac_wt_a_data42) //|< w 
-,.sc2mac_wt_data43 (sc2mac_wt_a_data43) //|< w 
-,.sc2mac_wt_data44 (sc2mac_wt_a_data44) //|< w 
-,.sc2mac_wt_data45 (sc2mac_wt_a_data45) //|< w 
-,.sc2mac_wt_data46 (sc2mac_wt_a_data46) //|< w 
-,.sc2mac_wt_data47 (sc2mac_wt_a_data47) //|< w 
-,.sc2mac_wt_data48 (sc2mac_wt_a_data48) //|< w 
-,.sc2mac_wt_data49 (sc2mac_wt_a_data49) //|< w 
-,.sc2mac_wt_data50 (sc2mac_wt_a_data50) //|< w 
-,.sc2mac_wt_data51 (sc2mac_wt_a_data51) //|< w 
-,.sc2mac_wt_data52 (sc2mac_wt_a_data52) //|< w 
-,.sc2mac_wt_data53 (sc2mac_wt_a_data53) //|< w 
-,.sc2mac_wt_data54 (sc2mac_wt_a_data54) //|< w 
-,.sc2mac_wt_data55 (sc2mac_wt_a_data55) //|< w 
-,.sc2mac_wt_data56 (sc2mac_wt_a_data56) //|< w 
-,.sc2mac_wt_data57 (sc2mac_wt_a_data57) //|< w 
-,.sc2mac_wt_data58 (sc2mac_wt_a_data58) //|< w 
-,.sc2mac_wt_data59 (sc2mac_wt_a_data59) //|< w 
-,.sc2mac_wt_data60 (sc2mac_wt_a_data60) //|< w 
-,.sc2mac_wt_data61 (sc2mac_wt_a_data61) //|< w 
-,.sc2mac_wt_data62 (sc2mac_wt_a_data62) //|< w 
-,.sc2mac_wt_data63 (sc2mac_wt_a_data63) //|< w 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_wt_sel (sc2mac_wt_a_sel) //|< w
   ,.sc2mac_dat_pvld (sc2mac_dat_a_pvld) //|< w
   ,.sc2mac_dat_mask (sc2mac_dat_a_mask) //|< w
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_dat_data${i} (sc2mac_dat_a_data${i}) //|< w )
 //: }
@@ -1472,38 +924,6 @@ NV_NVDLA_partition_m u_partition_ma (
 ,.sc2mac_dat_data29 (sc2mac_dat_a_data29) //|< w 
 ,.sc2mac_dat_data30 (sc2mac_dat_a_data30) //|< w 
 ,.sc2mac_dat_data31 (sc2mac_dat_a_data31) //|< w 
-,.sc2mac_dat_data32 (sc2mac_dat_a_data32) //|< w 
-,.sc2mac_dat_data33 (sc2mac_dat_a_data33) //|< w 
-,.sc2mac_dat_data34 (sc2mac_dat_a_data34) //|< w 
-,.sc2mac_dat_data35 (sc2mac_dat_a_data35) //|< w 
-,.sc2mac_dat_data36 (sc2mac_dat_a_data36) //|< w 
-,.sc2mac_dat_data37 (sc2mac_dat_a_data37) //|< w 
-,.sc2mac_dat_data38 (sc2mac_dat_a_data38) //|< w 
-,.sc2mac_dat_data39 (sc2mac_dat_a_data39) //|< w 
-,.sc2mac_dat_data40 (sc2mac_dat_a_data40) //|< w 
-,.sc2mac_dat_data41 (sc2mac_dat_a_data41) //|< w 
-,.sc2mac_dat_data42 (sc2mac_dat_a_data42) //|< w 
-,.sc2mac_dat_data43 (sc2mac_dat_a_data43) //|< w 
-,.sc2mac_dat_data44 (sc2mac_dat_a_data44) //|< w 
-,.sc2mac_dat_data45 (sc2mac_dat_a_data45) //|< w 
-,.sc2mac_dat_data46 (sc2mac_dat_a_data46) //|< w 
-,.sc2mac_dat_data47 (sc2mac_dat_a_data47) //|< w 
-,.sc2mac_dat_data48 (sc2mac_dat_a_data48) //|< w 
-,.sc2mac_dat_data49 (sc2mac_dat_a_data49) //|< w 
-,.sc2mac_dat_data50 (sc2mac_dat_a_data50) //|< w 
-,.sc2mac_dat_data51 (sc2mac_dat_a_data51) //|< w 
-,.sc2mac_dat_data52 (sc2mac_dat_a_data52) //|< w 
-,.sc2mac_dat_data53 (sc2mac_dat_a_data53) //|< w 
-,.sc2mac_dat_data54 (sc2mac_dat_a_data54) //|< w 
-,.sc2mac_dat_data55 (sc2mac_dat_a_data55) //|< w 
-,.sc2mac_dat_data56 (sc2mac_dat_a_data56) //|< w 
-,.sc2mac_dat_data57 (sc2mac_dat_a_data57) //|< w 
-,.sc2mac_dat_data58 (sc2mac_dat_a_data58) //|< w 
-,.sc2mac_dat_data59 (sc2mac_dat_a_data59) //|< w 
-,.sc2mac_dat_data60 (sc2mac_dat_a_data60) //|< w 
-,.sc2mac_dat_data61 (sc2mac_dat_a_data61) //|< w 
-,.sc2mac_dat_data62 (sc2mac_dat_a_data62) //|< w 
-,.sc2mac_dat_data63 (sc2mac_dat_a_data63) //|< w 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_dat_pd (sc2mac_dat_a_pd) //|< w
   ,.mac2accu_pvld (mac_a2accu_pvld) //|> w
@@ -1552,7 +972,7 @@ NV_NVDLA_partition_m u_partition_mb (
   ,.cmac_a2csb_resp_pd (cmac_b2csb_resp_pd) //|> w
   ,.sc2mac_wt_pvld (sc2mac_wt_b_pvld) //|< w
   ,.sc2mac_wt_mask (sc2mac_wt_b_mask) //|< w
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_wt_data${i} (sc2mac_wt_b_data${i}) //|< w )
 //: }
@@ -1590,43 +1010,11 @@ NV_NVDLA_partition_m u_partition_mb (
 ,.sc2mac_wt_data29 (sc2mac_wt_b_data29) //|< w 
 ,.sc2mac_wt_data30 (sc2mac_wt_b_data30) //|< w 
 ,.sc2mac_wt_data31 (sc2mac_wt_b_data31) //|< w 
-,.sc2mac_wt_data32 (sc2mac_wt_b_data32) //|< w 
-,.sc2mac_wt_data33 (sc2mac_wt_b_data33) //|< w 
-,.sc2mac_wt_data34 (sc2mac_wt_b_data34) //|< w 
-,.sc2mac_wt_data35 (sc2mac_wt_b_data35) //|< w 
-,.sc2mac_wt_data36 (sc2mac_wt_b_data36) //|< w 
-,.sc2mac_wt_data37 (sc2mac_wt_b_data37) //|< w 
-,.sc2mac_wt_data38 (sc2mac_wt_b_data38) //|< w 
-,.sc2mac_wt_data39 (sc2mac_wt_b_data39) //|< w 
-,.sc2mac_wt_data40 (sc2mac_wt_b_data40) //|< w 
-,.sc2mac_wt_data41 (sc2mac_wt_b_data41) //|< w 
-,.sc2mac_wt_data42 (sc2mac_wt_b_data42) //|< w 
-,.sc2mac_wt_data43 (sc2mac_wt_b_data43) //|< w 
-,.sc2mac_wt_data44 (sc2mac_wt_b_data44) //|< w 
-,.sc2mac_wt_data45 (sc2mac_wt_b_data45) //|< w 
-,.sc2mac_wt_data46 (sc2mac_wt_b_data46) //|< w 
-,.sc2mac_wt_data47 (sc2mac_wt_b_data47) //|< w 
-,.sc2mac_wt_data48 (sc2mac_wt_b_data48) //|< w 
-,.sc2mac_wt_data49 (sc2mac_wt_b_data49) //|< w 
-,.sc2mac_wt_data50 (sc2mac_wt_b_data50) //|< w 
-,.sc2mac_wt_data51 (sc2mac_wt_b_data51) //|< w 
-,.sc2mac_wt_data52 (sc2mac_wt_b_data52) //|< w 
-,.sc2mac_wt_data53 (sc2mac_wt_b_data53) //|< w 
-,.sc2mac_wt_data54 (sc2mac_wt_b_data54) //|< w 
-,.sc2mac_wt_data55 (sc2mac_wt_b_data55) //|< w 
-,.sc2mac_wt_data56 (sc2mac_wt_b_data56) //|< w 
-,.sc2mac_wt_data57 (sc2mac_wt_b_data57) //|< w 
-,.sc2mac_wt_data58 (sc2mac_wt_b_data58) //|< w 
-,.sc2mac_wt_data59 (sc2mac_wt_b_data59) //|< w 
-,.sc2mac_wt_data60 (sc2mac_wt_b_data60) //|< w 
-,.sc2mac_wt_data61 (sc2mac_wt_b_data61) //|< w 
-,.sc2mac_wt_data62 (sc2mac_wt_b_data62) //|< w 
-,.sc2mac_wt_data63 (sc2mac_wt_b_data63) //|< w 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_wt_sel (sc2mac_wt_b_sel) //|< w
   ,.sc2mac_dat_pvld (sc2mac_dat_b_pvld) //|< w
   ,.sc2mac_dat_mask (sc2mac_dat_b_mask) //|< w
-//: for(my $i=0; $i<64 ; $i++){
+//: for(my $i=0; $i<32 ; $i++){
 //: print qq(
 //: ,.sc2mac_dat_data${i} (sc2mac_dat_b_data${i}) //|< w )
 //: }
@@ -1664,38 +1052,6 @@ NV_NVDLA_partition_m u_partition_mb (
 ,.sc2mac_dat_data29 (sc2mac_dat_b_data29) //|< w 
 ,.sc2mac_dat_data30 (sc2mac_dat_b_data30) //|< w 
 ,.sc2mac_dat_data31 (sc2mac_dat_b_data31) //|< w 
-,.sc2mac_dat_data32 (sc2mac_dat_b_data32) //|< w 
-,.sc2mac_dat_data33 (sc2mac_dat_b_data33) //|< w 
-,.sc2mac_dat_data34 (sc2mac_dat_b_data34) //|< w 
-,.sc2mac_dat_data35 (sc2mac_dat_b_data35) //|< w 
-,.sc2mac_dat_data36 (sc2mac_dat_b_data36) //|< w 
-,.sc2mac_dat_data37 (sc2mac_dat_b_data37) //|< w 
-,.sc2mac_dat_data38 (sc2mac_dat_b_data38) //|< w 
-,.sc2mac_dat_data39 (sc2mac_dat_b_data39) //|< w 
-,.sc2mac_dat_data40 (sc2mac_dat_b_data40) //|< w 
-,.sc2mac_dat_data41 (sc2mac_dat_b_data41) //|< w 
-,.sc2mac_dat_data42 (sc2mac_dat_b_data42) //|< w 
-,.sc2mac_dat_data43 (sc2mac_dat_b_data43) //|< w 
-,.sc2mac_dat_data44 (sc2mac_dat_b_data44) //|< w 
-,.sc2mac_dat_data45 (sc2mac_dat_b_data45) //|< w 
-,.sc2mac_dat_data46 (sc2mac_dat_b_data46) //|< w 
-,.sc2mac_dat_data47 (sc2mac_dat_b_data47) //|< w 
-,.sc2mac_dat_data48 (sc2mac_dat_b_data48) //|< w 
-,.sc2mac_dat_data49 (sc2mac_dat_b_data49) //|< w 
-,.sc2mac_dat_data50 (sc2mac_dat_b_data50) //|< w 
-,.sc2mac_dat_data51 (sc2mac_dat_b_data51) //|< w 
-,.sc2mac_dat_data52 (sc2mac_dat_b_data52) //|< w 
-,.sc2mac_dat_data53 (sc2mac_dat_b_data53) //|< w 
-,.sc2mac_dat_data54 (sc2mac_dat_b_data54) //|< w 
-,.sc2mac_dat_data55 (sc2mac_dat_b_data55) //|< w 
-,.sc2mac_dat_data56 (sc2mac_dat_b_data56) //|< w 
-,.sc2mac_dat_data57 (sc2mac_dat_b_data57) //|< w 
-,.sc2mac_dat_data58 (sc2mac_dat_b_data58) //|< w 
-,.sc2mac_dat_data59 (sc2mac_dat_b_data59) //|< w 
-,.sc2mac_dat_data60 (sc2mac_dat_b_data60) //|< w 
-,.sc2mac_dat_data61 (sc2mac_dat_b_data61) //|< w 
-,.sc2mac_dat_data62 (sc2mac_dat_b_data62) //|< w 
-,.sc2mac_dat_data63 (sc2mac_dat_b_data63) //|< w 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.sc2mac_dat_pd (sc2mac_dat_b_pd) //|< w
   ,.mac2accu_pvld (mac_b2accu_pvld) //|> w
@@ -1755,26 +1111,26 @@ NV_NVDLA_partition_a u_partition_a (
   ,.mac_a2accu_mode (mac_a2accu_mode)
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: ,.mac_a2accu_data${i} (mac_a2accu_data${i}[22 -1:0]) )
+//: ,.mac_a2accu_data${i} (mac_a2accu_data${i}[21 -1:0]) )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.mac_a2accu_data0 (mac_a2accu_data0[22 -1:0]) 
-,.mac_a2accu_data1 (mac_a2accu_data1[22 -1:0]) 
-,.mac_a2accu_data2 (mac_a2accu_data2[22 -1:0]) 
-,.mac_a2accu_data3 (mac_a2accu_data3[22 -1:0]) 
-,.mac_a2accu_data4 (mac_a2accu_data4[22 -1:0]) 
-,.mac_a2accu_data5 (mac_a2accu_data5[22 -1:0]) 
-,.mac_a2accu_data6 (mac_a2accu_data6[22 -1:0]) 
-,.mac_a2accu_data7 (mac_a2accu_data7[22 -1:0]) 
-,.mac_a2accu_data8 (mac_a2accu_data8[22 -1:0]) 
-,.mac_a2accu_data9 (mac_a2accu_data9[22 -1:0]) 
-,.mac_a2accu_data10 (mac_a2accu_data10[22 -1:0]) 
-,.mac_a2accu_data11 (mac_a2accu_data11[22 -1:0]) 
-,.mac_a2accu_data12 (mac_a2accu_data12[22 -1:0]) 
-,.mac_a2accu_data13 (mac_a2accu_data13[22 -1:0]) 
-,.mac_a2accu_data14 (mac_a2accu_data14[22 -1:0]) 
-,.mac_a2accu_data15 (mac_a2accu_data15[22 -1:0]) 
+,.mac_a2accu_data0 (mac_a2accu_data0[21 -1:0]) 
+,.mac_a2accu_data1 (mac_a2accu_data1[21 -1:0]) 
+,.mac_a2accu_data2 (mac_a2accu_data2[21 -1:0]) 
+,.mac_a2accu_data3 (mac_a2accu_data3[21 -1:0]) 
+,.mac_a2accu_data4 (mac_a2accu_data4[21 -1:0]) 
+,.mac_a2accu_data5 (mac_a2accu_data5[21 -1:0]) 
+,.mac_a2accu_data6 (mac_a2accu_data6[21 -1:0]) 
+,.mac_a2accu_data7 (mac_a2accu_data7[21 -1:0]) 
+,.mac_a2accu_data8 (mac_a2accu_data8[21 -1:0]) 
+,.mac_a2accu_data9 (mac_a2accu_data9[21 -1:0]) 
+,.mac_a2accu_data10 (mac_a2accu_data10[21 -1:0]) 
+,.mac_a2accu_data11 (mac_a2accu_data11[21 -1:0]) 
+,.mac_a2accu_data12 (mac_a2accu_data12[21 -1:0]) 
+,.mac_a2accu_data13 (mac_a2accu_data13[21 -1:0]) 
+,.mac_a2accu_data14 (mac_a2accu_data14[21 -1:0]) 
+,.mac_a2accu_data15 (mac_a2accu_data15[21 -1:0]) 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.mac_a2accu_pd (mac_a2accu_pd[8:0])
   ,.mac_b2accu_pvld (mac_b2accu_pvld)
@@ -1782,26 +1138,26 @@ NV_NVDLA_partition_a u_partition_a (
   ,.mac_b2accu_mode (mac_b2accu_mode)
 //: for(my $i=0; $i<32/2 ; $i++){
 //: print qq(
-//: ,.mac_b2accu_data${i} (mac_b2accu_data${i}[22 -1:0]) )
+//: ,.mac_b2accu_data${i} (mac_b2accu_data${i}[21 -1:0]) )
 //: }
 //| eperl: generated_beg (DO NOT EDIT BELOW)
 
-,.mac_b2accu_data0 (mac_b2accu_data0[22 -1:0]) 
-,.mac_b2accu_data1 (mac_b2accu_data1[22 -1:0]) 
-,.mac_b2accu_data2 (mac_b2accu_data2[22 -1:0]) 
-,.mac_b2accu_data3 (mac_b2accu_data3[22 -1:0]) 
-,.mac_b2accu_data4 (mac_b2accu_data4[22 -1:0]) 
-,.mac_b2accu_data5 (mac_b2accu_data5[22 -1:0]) 
-,.mac_b2accu_data6 (mac_b2accu_data6[22 -1:0]) 
-,.mac_b2accu_data7 (mac_b2accu_data7[22 -1:0]) 
-,.mac_b2accu_data8 (mac_b2accu_data8[22 -1:0]) 
-,.mac_b2accu_data9 (mac_b2accu_data9[22 -1:0]) 
-,.mac_b2accu_data10 (mac_b2accu_data10[22 -1:0]) 
-,.mac_b2accu_data11 (mac_b2accu_data11[22 -1:0]) 
-,.mac_b2accu_data12 (mac_b2accu_data12[22 -1:0]) 
-,.mac_b2accu_data13 (mac_b2accu_data13[22 -1:0]) 
-,.mac_b2accu_data14 (mac_b2accu_data14[22 -1:0]) 
-,.mac_b2accu_data15 (mac_b2accu_data15[22 -1:0]) 
+,.mac_b2accu_data0 (mac_b2accu_data0[21 -1:0]) 
+,.mac_b2accu_data1 (mac_b2accu_data1[21 -1:0]) 
+,.mac_b2accu_data2 (mac_b2accu_data2[21 -1:0]) 
+,.mac_b2accu_data3 (mac_b2accu_data3[21 -1:0]) 
+,.mac_b2accu_data4 (mac_b2accu_data4[21 -1:0]) 
+,.mac_b2accu_data5 (mac_b2accu_data5[21 -1:0]) 
+,.mac_b2accu_data6 (mac_b2accu_data6[21 -1:0]) 
+,.mac_b2accu_data7 (mac_b2accu_data7[21 -1:0]) 
+,.mac_b2accu_data8 (mac_b2accu_data8[21 -1:0]) 
+,.mac_b2accu_data9 (mac_b2accu_data9[21 -1:0]) 
+,.mac_b2accu_data10 (mac_b2accu_data10[21 -1:0]) 
+,.mac_b2accu_data11 (mac_b2accu_data11[21 -1:0]) 
+,.mac_b2accu_data12 (mac_b2accu_data12[21 -1:0]) 
+,.mac_b2accu_data13 (mac_b2accu_data13[21 -1:0]) 
+,.mac_b2accu_data14 (mac_b2accu_data14[21 -1:0]) 
+,.mac_b2accu_data15 (mac_b2accu_data15[21 -1:0]) 
 //| eperl: generated_end (DO NOT EDIT ABOVE)
   ,.mac_b2accu_pd (mac_b2accu_pd[8:0])
   ,.pwrbus_ram_pd (nvdla_pwrbus_ram_a_pd[31:0])
@@ -1826,38 +1182,6 @@ NV_NVDLA_partition_p u_partition_p (
   ,.csb2sdp_req_pvld (csb2sdp_req_pvld)
   ,.csb2sdp_req_prdy (csb2sdp_req_prdy)
   ,.csb2sdp_req_pd (csb2sdp_req_pd[62:0])
-  ,.sdp_b2cvif_rd_cdt_lat_fifo_pop (sdp_b2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_b2cvif_rd_req_valid (sdp_b2cvif_rd_req_valid)
-  ,.sdp_b2cvif_rd_req_ready (sdp_b2cvif_rd_req_ready)
-  ,.sdp_b2cvif_rd_req_pd (sdp_b2cvif_rd_req_pd )
-  ,.cvif2sdp_b_rd_rsp_valid (cvif2sdp_b_rd_rsp_valid)
-  ,.cvif2sdp_b_rd_rsp_ready (cvif2sdp_b_rd_rsp_ready)
-  ,.cvif2sdp_b_rd_rsp_pd (cvif2sdp_b_rd_rsp_pd )
-  ,.sdp_e2cvif_rd_cdt_lat_fifo_pop (sdp_e2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_e2cvif_rd_req_valid (sdp_e2cvif_rd_req_valid)
-  ,.sdp_e2cvif_rd_req_ready (sdp_e2cvif_rd_req_ready)
-  ,.sdp_e2cvif_rd_req_pd (sdp_e2cvif_rd_req_pd )
-  ,.cvif2sdp_e_rd_rsp_valid (cvif2sdp_e_rd_rsp_valid)
-  ,.cvif2sdp_e_rd_rsp_ready (cvif2sdp_e_rd_rsp_ready)
-  ,.cvif2sdp_e_rd_rsp_pd (cvif2sdp_e_rd_rsp_pd )
-  ,.sdp_n2cvif_rd_cdt_lat_fifo_pop (sdp_n2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2cvif_rd_req_valid (sdp_n2cvif_rd_req_valid)
-  ,.sdp_n2cvif_rd_req_ready (sdp_n2cvif_rd_req_ready)
-  ,.sdp_n2cvif_rd_req_pd (sdp_n2cvif_rd_req_pd )
-  ,.cvif2sdp_n_rd_rsp_valid (cvif2sdp_n_rd_rsp_valid)
-  ,.cvif2sdp_n_rd_rsp_ready (cvif2sdp_n_rd_rsp_ready)
-  ,.cvif2sdp_n_rd_rsp_pd (cvif2sdp_n_rd_rsp_pd )
-  ,.cvif2sdp_rd_rsp_valid (cvif2sdp_rd_rsp_valid)
-  ,.cvif2sdp_rd_rsp_ready (cvif2sdp_rd_rsp_ready)
-  ,.cvif2sdp_rd_rsp_pd (cvif2sdp_rd_rsp_pd )
-  ,.sdp2cvif_rd_cdt_lat_fifo_pop (sdp2cvif_rd_cdt_lat_fifo_pop)
-  ,.sdp2cvif_rd_req_valid (sdp2cvif_rd_req_valid)
-  ,.sdp2cvif_rd_req_ready (sdp2cvif_rd_req_ready)
-  ,.sdp2cvif_rd_req_pd (sdp2cvif_rd_req_pd )
-  ,.sdp2cvif_wr_req_valid (sdp2cvif_wr_req_valid)
-  ,.sdp2cvif_wr_req_ready (sdp2cvif_wr_req_ready)
-  ,.sdp2cvif_wr_req_pd (sdp2cvif_wr_req_pd )
-  ,.cvif2sdp_wr_rsp_complete (cvif2sdp_wr_rsp_complete)
   ,.sdp_b2mcif_rd_cdt_lat_fifo_pop (sdp_b2mcif_rd_cdt_lat_fifo_pop)
   ,.sdp_b2mcif_rd_req_valid (sdp_b2mcif_rd_req_valid)
   ,.sdp_b2mcif_rd_req_ready (sdp_b2mcif_rd_req_ready)
@@ -1865,20 +1189,6 @@ NV_NVDLA_partition_p u_partition_p (
   ,.mcif2sdp_b_rd_rsp_valid (mcif2sdp_b_rd_rsp_valid)
   ,.mcif2sdp_b_rd_rsp_ready (mcif2sdp_b_rd_rsp_ready)
   ,.mcif2sdp_b_rd_rsp_pd (mcif2sdp_b_rd_rsp_pd )
-  ,.sdp_e2mcif_rd_cdt_lat_fifo_pop (sdp_e2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_e2mcif_rd_req_valid (sdp_e2mcif_rd_req_valid)
-  ,.sdp_e2mcif_rd_req_ready (sdp_e2mcif_rd_req_ready)
-  ,.sdp_e2mcif_rd_req_pd (sdp_e2mcif_rd_req_pd )
-  ,.mcif2sdp_e_rd_rsp_valid (mcif2sdp_e_rd_rsp_valid)
-  ,.mcif2sdp_e_rd_rsp_ready (mcif2sdp_e_rd_rsp_ready)
-  ,.mcif2sdp_e_rd_rsp_pd (mcif2sdp_e_rd_rsp_pd )
-  ,.sdp_n2mcif_rd_cdt_lat_fifo_pop (sdp_n2mcif_rd_cdt_lat_fifo_pop)
-  ,.sdp_n2mcif_rd_req_valid (sdp_n2mcif_rd_req_valid)
-  ,.sdp_n2mcif_rd_req_ready (sdp_n2mcif_rd_req_ready)
-  ,.sdp_n2mcif_rd_req_pd (sdp_n2mcif_rd_req_pd )
-  ,.mcif2sdp_n_rd_rsp_valid (mcif2sdp_n_rd_rsp_valid)
-  ,.mcif2sdp_n_rd_rsp_ready (mcif2sdp_n_rd_rsp_ready)
-  ,.mcif2sdp_n_rd_rsp_pd (mcif2sdp_n_rd_rsp_pd )
   ,.mcif2sdp_rd_rsp_valid (mcif2sdp_rd_rsp_valid)
   ,.mcif2sdp_rd_rsp_ready (mcif2sdp_rd_rsp_ready)
   ,.mcif2sdp_rd_rsp_pd (mcif2sdp_rd_rsp_pd )

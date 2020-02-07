@@ -19,22 +19,22 @@ cd ./../../
 #compile and sanity check
 #./tools/bin/tmake 
 
-
+./tools/bin/tmake -build vmod_libs
+./tools/bin/tmake -build vmod_fifos
 # compoli&build verilog rtl
 ./tools/bin/tmake -build vmod
 success=$?
 
 ## remove unuseful rams ( keeping only the ram for fpga) 
-rm -rf ./outdir/{$DESIGN}/vmod/rams/synth
-rm -rf ./outdir/{$DESIGN}/vmod/rams/model 
+rm -rf ./outdir/nv_small/vmod/rams/
 
 
 
 ## remove logs files if no errors 
-if [ $sucess -eq 1  ] 
+if [ $sucess -e 1  ] 
 then 
 echo "###################\n ########## ERROR ###########\n ###############"
-	else
+else
 cd ./outdir/
 rm -rf *.log
 find ./ -regex .*\.v\.vcp -exec rm -f {} +
