@@ -19,7 +19,7 @@ cd ./../../
 #compile and sanity check
 #./tools/bin/tmake 
 
-./tools/bin/tmake -build vmod_libs
+./tools/bin/tmake -build vmod_vlibs
 ./tools/bin/tmake -build vmod_fifos
 # compoli&build verilog rtl
 ./tools/bin/tmake -build vmod

@@ -4,6 +4,7 @@ NVDLA wrapper:
     apb2csb interface
     both provided from nvdla repository
 */
+`include "MY_GLOBAL_DEFINE.vh"
 module nv_nvdla_wrapper(
 clk,
 reset_n,
