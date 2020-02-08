@@ -1,6 +1,8 @@
 # ignore repositories and images of boars
 images/
 
+build_zynq/linux-xlnx/
+build_zynq/u-boot-xlnx/
 
 nvdla/hw/
 nvdla/

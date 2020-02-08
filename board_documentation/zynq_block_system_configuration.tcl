@@ -1,5 +1,5 @@
 proc getPresetInfo {} {
-  return [dict create name {mydefault} description {mydefault}  vlnv xilinx.com:ip:processing_system7:5.5 display_name {mydefault} ]
+  return [dict create name {my_qynd} description {my_qynd}  vlnv xilinx.com:ip:processing_system7:5.5 display_name {my_qynd} ]
 }
 
 proc validate_preset {IPINST} { return true }
@@ -106,6 +106,7 @@ proc apply_preset {IPINST} {
     CONFIG.PCW_EN_EMIO_ENET1 {0}  \
     CONFIG.PCW_EN_EMIO_GPIO {1}  \
     CONFIG.PCW_EN_EMIO_I2C1 {0}  \
+    CONFIG.PCW_EN_EMIO_UART0 {0}  \
     CONFIG.PCW_EN_EMIO_TTC0 {0}  \
     CONFIG.PCW_USE_M_AXI_GP0 {1}  \
     CONFIG.PCW_USE_S_AXI_HP0 {1}  \
@@ -121,12 +122,14 @@ proc apply_preset {IPINST} {
     CONFIG.PCW_EN_I2C0 {0}  \
     CONFIG.PCW_EN_I2C1 {0}  \
     CONFIG.PCW_EN_SDIO0 {1}  \
+    CONFIG.PCW_EN_UART0 {0}  \
     CONFIG.PCW_EN_UART1 {1}  \
     CONFIG.PCW_EN_TTC0 {0}  \
     CONFIG.PCW_EN_USB0 {0}  \
     CONFIG.PCW_EN_CLK1_PORT {0}  \
     CONFIG.PCW_IRQ_F2P_INTR {0}  \
     CONFIG.PCW_CORE0_FIQ_INTR {1}  \
+    CONFIG.PCW_CORE0_IRQ_INTR {1}  \
     CONFIG.PCW_IMPORT_BOARD_PRESET {D:/uni/2019-2020/thesis/cogitantium/board_documentation/zynq_block_system_configuration.tcl}  \
     CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 1.8V}  \
     CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V}  \
@@ -179,6 +182,8 @@ proc apply_preset {IPINST} {
     CONFIG.PCW_SD0_GRP_WP_ENABLE {1}  \
     CONFIG.PCW_SD0_GRP_WP_IO {MIO 15}  \
     CONFIG.PCW_SD0_GRP_POW_ENABLE {0}  \
+    CONFIG.PCW_UART0_PERIPHERAL_ENABLE {0}  \
+    CONFIG.PCW_UART0_GRP_FULL_ENABLE {0}  \
     CONFIG.PCW_UART1_PERIPHERAL_ENABLE {1}  \
     CONFIG.PCW_UART1_UART1_IO {MIO 48 .. 49}  \
     CONFIG.PCW_UART1_GRP_FULL_ENABLE {0}  \

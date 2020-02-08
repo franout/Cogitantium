@@ -47,6 +47,8 @@ computations.
     +	Loop Unrolling: parallel computation of conv. MACs ,register arrays and PE architecture
  + Loop Tiling : increase data locality, determine on chip buffer size
  + Loop Interchange :computation order of four conv. loops
+* https://www.xilinx.com/video/soc/build-linux-boot-image-zynq-7000-ap-soc.html
+ * using the bootable linux kernel image's kernel config, put into the choosen linux kernel source tree which get from xilinx's bsp, and make opendla.ko in kmd. if you don't know any flow about linux kernel module compilation, I strongly suggestion you to spend some time to know the flow. this is very important for the debug.
 
 
 ## FUTURE READINGS
