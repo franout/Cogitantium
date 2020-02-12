@@ -1,9 +1,14 @@
 #!/bin/bash
+
+## deprecated
 ## TODO 
 # nvdla software
 ## build linux kernel mode driver
-make KDIR=<path_to_Linux_source> ARCH=arm32 CROSS_COMPILE=/usr/bin/arm-none-eabi-gcc-4.9.3
+cd nvdla/sw/kmd
+make KDIR=./firmware ARCH=arm CROSS_COMPILE=/usr/bin/arm-none-eabi-gcc-4.9.3
 
+cd ../umd
 ## build user mode driver
-export TOP=<path_to_umd>
-make
+export TOP=./
+make compiler 
+make runtime
