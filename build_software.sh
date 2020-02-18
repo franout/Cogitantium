@@ -1,4 +1,8 @@
 #!/bin/bash
+########################################################
+########### KERNEL BUILD IN /lib/modules/ -- you kernel version /build/include  has to be adjusted #######
+#####  remake scripts in /lib/modules/yourkernelversion/source/ make scripts! 
+
 
 #############################################################
 #####RUN ON THE BOARD WITH PROTOBUFF ALREADY INSTALLED ######

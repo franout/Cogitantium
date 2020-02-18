@@ -5,7 +5,10 @@ build_zynq/linux-xlnx/
 build_zynq/u-boot-xlnx/
 build_zynq/device-tree-xlnx/
 nvdla/hw/
-nvdla/sw/
+
+dla_sw/models/
+nvdla/sw/regression/
+nvdla/sw/umd/out/
 tutorial_board/
 PYNQ/
 pynq_z2/
