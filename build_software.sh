@@ -22,8 +22,11 @@ cd ./nvdla/sw/kmd
 ### only for cross compiling 
 #KDIR="$HOME"/moduled/nv_small/build/tmp/work-shared/plnx-zynq7/kernel-source/
 make  ARCH=arm CROSS_COMPILE=/usr/bin/arm-linux-gnueabihf-
-exit
 
+## add kernel module to OS
+insmod ./port/linux/opendla.ko
+
+## rmod for removing it
 cd ../
 ## build user mode driver
 cd ./nvdla/sw/umd

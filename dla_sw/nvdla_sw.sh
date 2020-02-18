@@ -46,3 +46,8 @@ fi
 ###############################
 
 ## execute the model on hw
+
+#./nvdla_runtime --loadable basic.nvdla --rawdump --image ./regression/images/eight.pgm
+
+# check probability prediction 
+#cat output.dimg

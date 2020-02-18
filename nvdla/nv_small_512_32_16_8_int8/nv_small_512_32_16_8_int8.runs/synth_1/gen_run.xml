@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1582020374">
   <File Type="PA-TCL" Name="nv_nvdla_wrapper.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="nv_nvdla_wrapper_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="nv_nvdla_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="nv_nvdla_wrapper.vds"/>
   <File Type="RDS-UTIL" Name="nv_nvdla_wrapper_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="nv_nvdla_wrapper_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="nv_nvdla_wrapper.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="nv_nvdla_wrapper_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="nv_nvdla_wrapper_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../../nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/CKLNQD12.v">
