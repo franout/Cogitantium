@@ -1,0 +1,700 @@
+
+*** Running vivado
+    with args -log nv_nvdla_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source nv_nvdla_wrapper.tcl
+
+
+****** Vivado v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source nv_nvdla_wrapper.tcl -notrace
+Command: synth_design -top nv_nvdla_wrapper -part xc7z020clg484-1 -gated_clock_conversion auto -keep_equivalent_registers
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 15732 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 967.863 ; gain = 236.910
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'nv_nvdla_wrapper' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:8]
+INFO: [Synth 8-6157] synthesizing module 'NV_nvdla' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_nvdla.v:57]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_partition_o' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_NVDLA_partition_o.v:47]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_core_reset' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_core_reset.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sync_reset' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync_reset.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_BLKBOX_SRC0' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/NV_BLKBOX_SRC0.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_BLKBOX_SRC0' (1#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/NV_BLKBOX_SRC0.v:9]
+INFO: [Synth 8-6157] synthesizing module 'OR2D1' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/OR2D1.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'OR2D1' (2#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/OR2D1.v:9]
+INFO: [Synth 8-6157] synthesizing module 'MUX2D4' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/MUX2D4.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'MUX2D4' (3#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/MUX2D4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'p_SSYNC2DO_C_PP' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC2DO_C_PP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'p_SSYNC2DO_C_PP' (4#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC2DO_C_PP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sync_reset' (5#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync_reset.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_core_reset' (6#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_core_reset.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_reset' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_reset.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_reset' (7#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_reset.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_sync3d' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_sync3d.v:9]
+INFO: [Synth 8-6157] synthesizing module 'MUX2HDD2' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/MUX2HDD2.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'MUX2HDD2' (8#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/MUX2HDD2.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sync3d' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync3d.v:9]
+INFO: [Synth 8-6157] synthesizing module 'p_SSYNC3DO' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC3DO.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'p_SSYNC3DO' (9#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC3DO.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sync3d' (10#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync3d.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_sync3d' (11#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_sync3d.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_sync3d_s' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_sync3d_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sync3d_s_ppp' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync3d_s_ppp.v:9]
+INFO: [Synth 8-6157] synthesizing module 'p_SSYNC3DO_S_PPP' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC3DO_S_PPP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'p_SSYNC3DO_S_PPP' (12#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC3DO_S_PPP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sync3d_s_ppp' (13#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync3d_s_ppp.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_sync3d_s' (14#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_sync3d_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_cfgrom' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cfgrom/NV_NVDLA_cfgrom.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CFGROM_rom' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cfgrom/NV_NVDLA_CFGROM_rom.v:116]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CFGROM_rom' (15#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cfgrom/NV_NVDLA_CFGROM_rom.v:116]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_cfgrom' (16#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cfgrom/NV_NVDLA_cfgrom.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_csb_master' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:11]
+INFO: [Synth 8-6157] synthesizing module 'oneHotClk_async_write_clock' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/oneHotClk_async_write_clock.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'oneHotClk_async_write_clock' (17#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/oneHotClk_async_write_clock.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_CLK_gate_power' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/NV_CLK_gate_power.v:9]
+INFO: [Synth 8-6157] synthesizing module 'CKLNQD12' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/CKLNQD12.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'CKLNQD12' (18#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/CKLNQD12.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_CLK_gate_power' (19#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/NV_CLK_gate_power.v:9]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:52]
+INFO: [Synth 8-6157] synthesizing module 'NV_BLKBOX_SINK' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/NV_BLKBOX_SINK.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_BLKBOX_SINK' (20#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/NV_BLKBOX_SINK.v:9]
+INFO: [Synth 8-6157] synthesizing module 'oneHotClk_async_read_clock' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/oneHotClk_async_read_clock.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'oneHotClk_async_read_clock' (21#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/oneHotClk_async_read_clock.v:10]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:61]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo_flopram_rwa_4x50' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:811]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:832]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:833]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:834]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:835]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:836]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:837]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:838]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:839]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:840]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:841]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:842]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:843]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:844]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:845]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:846]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:847]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:848]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:849]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:850]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:851]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:852]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:853]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:854]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:855]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:856]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:857]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:858]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:859]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:860]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:861]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:862]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:863]
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:911]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo_flopram_rwa_4x50' (22#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:811]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo_gray_cntr_strict' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:991]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo_gray_cntr_strict' (23#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:991]
+INFO: [Synth 8-6157] synthesizing module 'p_STRICTSYNC3DOTM_C_PPP' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v:9]
+INFO: [Synth 8-6157] synthesizing module 'p_SSYNC3DO_C_PPP' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC3DO_C_PPP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'p_SSYNC3DO_C_PPP' (24#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_SSYNC3DO_C_PPP.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'p_STRICTSYNC3DOTM_C_PPP' (25#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/p_STRICTSYNC3DOTM_C_PPP.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo_gray_cntr' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:1013]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo_gray_cntr' (26#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:1013]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_falcon2csb_fifo' (27#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_falcon2csb_fifo.v:11]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:11]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:46]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:55]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo_flopram_rwa_2x34' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:553]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:574]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:575]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:576]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:577]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:578]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:579]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:580]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:581]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:582]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:583]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:584]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:585]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:586]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:587]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:588]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:589]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:590]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:591]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:592]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:593]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:594]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:595]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:596]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:597]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:598]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:599]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:600]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:601]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:602]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:603]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:604]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:605]
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:645]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo_flopram_rwa_2x34' (28#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:553]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo_gray_cntr_strict' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:721]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo_gray_cntr_strict' (29#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:721]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo_gray_cntr' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:742]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo_gray_cntr' (30#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:742]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CSB_MASTER_csb2falcon_fifo' (31#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_CSB_MASTER_csb2falcon_fifo.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_csb_master' (32#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csb_master/NV_NVDLA_csb_master.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_mcif' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_mcif.v:16]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_csb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_csb.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_CSB_reg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_CSB_reg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_CSB_reg' (33#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_CSB_reg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_csb' (34#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_csb.v:9]
+WARNING: [Synth 8-7023] instance 'u_csb' of module 'NV_NVDLA_MCIF_csb' has 30 connections declared, but only 20 given [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_mcif.v:202]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_read' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_read.v:16]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_ig' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_ig.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_bpt' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_BPT_pipe_p1' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v:375]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_BPT_pipe_p1' (35#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v:375]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_BPT_pipe_p2' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v:475]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_BPT_pipe_p2' (36#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v:475]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_bpt' (37#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_bpt.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_arb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_ARB_pipe' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v:422]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_ARB_pipe' (38#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v:422]
+INFO: [Synth 8-6157] synthesizing module 'read_ig_arb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_XXIF_libs.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'read_ig_arb' (39#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_XXIF_libs.v:33]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_ARB_pipe_out' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v:519]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_ARB_pipe_out' (40#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v:519]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_arb' (41#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_arb.v:17]
+WARNING: [Synth 8-7023] instance 'u_arb' of module 'NV_NVDLA_MCIF_READ_IG_arb' has 33 connections declared, but only 21 given [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_ig.v:214]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_cvt' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_cvt.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_IG_CVT_pipe_p1' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_cvt.v:214]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_CVT_pipe_p1' (42#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_cvt.v:214]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_IG_cvt' (43#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_IG_cvt.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_ig' (44#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_ig.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_eg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:18]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_EG_pipe_pr' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:426]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_EG_pipe_pr' (45#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:426]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_EG_lat_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:584]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_EG_lat_fifo_flopram_rwsa_4x512' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1152]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1168]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1169]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1170]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1171]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1172]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1173]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1174]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1175]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1176]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1177]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1178]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1179]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1180]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1181]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1182]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1183]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1184]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1185]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1186]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1187]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1188]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1189]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1190]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1191]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1192]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1193]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1194]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1195]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1196]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1197]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1198]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1199]
+INFO: [Common 17-14] Message 'Synth 8-4446' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1240]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_EG_lat_fifo_flopram_rwsa_4x512' (46#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:1152]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_EG_lat_fifo' (47#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:584]
+WARNING: [Synth 8-689] width (32) of port connection 'rq_rd_pd' does not match port width (512) of module 'NV_NVDLA_MCIF_READ_EG_lat_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:287]
+WARNING: [Synth 8-689] width (32) of port connection 'rq_rd_pd' does not match port width (512) of module 'NV_NVDLA_MCIF_READ_EG_lat_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:302]
+WARNING: [Synth 8-689] width (32) of port connection 'rq_rd_pd' does not match port width (512) of module 'NV_NVDLA_MCIF_READ_EG_lat_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:317]
+WARNING: [Synth 8-689] width (32) of port connection 'rq_rd_pd' does not match port width (512) of module 'NV_NVDLA_MCIF_READ_EG_lat_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:332]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_READ_EG_OUT_pipe' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:523]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_EG_OUT_pipe' (48#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:523]
+WARNING: [Synth 8-3848] Net rq4_wr_pvld in module/entity NV_NVDLA_MCIF_READ_eg does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:146]
+WARNING: [Synth 8-3848] Net rq4_wr_prdy in module/entity NV_NVDLA_MCIF_READ_eg does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:145]
+WARNING: [Synth 8-3848] Net rq5_wr_pvld in module/entity NV_NVDLA_MCIF_READ_eg does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:153]
+WARNING: [Synth 8-3848] Net rq5_wr_prdy in module/entity NV_NVDLA_MCIF_READ_eg does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:152]
+WARNING: [Synth 8-3848] Net rq6_wr_pvld in module/entity NV_NVDLA_MCIF_READ_eg does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:160]
+WARNING: [Synth 8-3848] Net rq6_wr_prdy in module/entity NV_NVDLA_MCIF_READ_eg does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:159]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_READ_eg' (49#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_READ_eg.v:18]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_read' (50#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_read.v:16]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_write' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_write.v:16]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_ig' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_bpt' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_pipe_p1' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:323]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_pipe_p1' (51#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:323]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_pipe_p2' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:423]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_pipe_p2' (52#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:423]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_pipe_p3' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:523]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_pipe_p3' (53#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:523]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_dfifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:582]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_BPT_dfifo' (54#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:582]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_bpt' (55#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_bpt.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_arb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_ARB_pipe' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:460]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_ARB_pipe' (56#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:460]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:521]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo_flopram_rwsa_4x65' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:851]
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:1003]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo_flopram_rwsa_4x65' (57#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:851]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_ARB_dfifo' (58#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:521]
+INFO: [Synth 8-6157] synthesizing module 'write_ig_arb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_XXIF_libs.v:3800]
+INFO: [Synth 8-6155] done synthesizing module 'write_ig_arb' (59#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_XXIF_libs.v:3800]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_arb' (60#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_arb.v:17]
+WARNING: [Synth 8-7023] instance 'u_arb' of module 'NV_NVDLA_MCIF_WRITE_IG_arb' has 30 connections declared, but only 28 given [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:177]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_cvt' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p1' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:439]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p1' (61#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:439]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p2' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:501]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p2' (62#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:501]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p3' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:563]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p3' (63#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:563]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p4' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:663]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_CVT_pipe_p4' (64#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:663]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_IG_cvt' (65#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_IG_cvt.v:17]
+WARNING: [Synth 8-689] width (65) of port connection 'spt2cvt_dat_pd' does not match port width (33) of module 'NV_NVDLA_MCIF_WRITE_IG_cvt' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:258]
+WARNING: [Synth 8-3848] Net bpt2arb_cmd1_pd in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:149]
+WARNING: [Synth 8-3848] Net bpt2arb_cmd1_valid in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:147]
+WARNING: [Synth 8-3848] Net bpt2arb_dat1_pd in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:152]
+WARNING: [Synth 8-3848] Net bpt2arb_dat1_valid in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:150]
+WARNING: [Synth 8-3848] Net bpt2arb_cmd2_pd in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:156]
+WARNING: [Synth 8-3848] Net bpt2arb_cmd2_valid in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:154]
+WARNING: [Synth 8-3848] Net bpt2arb_dat2_pd in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:159]
+WARNING: [Synth 8-3848] Net bpt2arb_dat2_valid in module/entity NV_NVDLA_MCIF_WRITE_ig does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:157]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_ig' (66#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_ig.v:17]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_cq' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:11]
+INFO: [Synth 8-6157] synthesizing module 'nv_ram_rws_256x3' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rws_256x3.v:1]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'nv_ram_rws_256x3' (67#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rws_256x3.v:1]
+INFO: [Synth 8-6157] synthesizing module 'nv_ram_rwst_256x8' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwst_256x8.v:1]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'nv_ram_rwst_256x8' (68#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwst_256x8.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_cq' (69#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:11]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_eg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_eg.v:18]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_MCIF_WRITE_EG_pipe' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_eg.v:250]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_EG_pipe' (70#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_eg.v:250]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_WRITE_eg' (71#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_eg.v:18]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_MCIF_write' (72#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_write.v:16]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_mcif' (73#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_mcif.v:16]
+WARNING: [Synth 8-689] width (4) of port connection 'mcif2noc_axi_w_wstrb' does not match port width (8) of module 'NV_NVDLA_mcif' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_NVDLA_partition_o.v:580]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_glb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_glb.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_GLB_csb' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_GLB_CSB_reg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_GLB_CSB_reg' (74#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_CSB_reg.v:9]
+WARNING: [Synth 8-7023] instance 'u_reg' of module 'NV_NVDLA_GLB_CSB_reg' has 56 connections declared, but only 48 given [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v:184]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_GLB_csb' (75#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_GLB_ic' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_sync3d_c' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_sync3d_c.v:9]
+INFO: [Synth 8-6157] synthesizing module 'sync3d_c_ppp' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync3d_c_ppp.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'sync3d_c_ppp' (76#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/sync3d_c_ppp.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_sync3d_c' (77#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/car/NV_NVDLA_sync3d_c.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_GLB_ic' (78#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_ic.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_glb' (79#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_glb.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_partition_o' (80#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_NVDLA_partition_o.v:47]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_partition_c' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_NVDLA_partition_c.v:68]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_cdma' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_cdma.v:28]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_regfile' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_single_reg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_single_reg' (81#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_single_reg.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_dual_reg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_dual_reg' (82#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dual_reg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_regfile' (83#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_regfile.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_wt' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:28]
+	Parameter WT_STATE_IDLE bound to: 2'b00 
+	Parameter WT_STATE_PEND bound to: 2'b01 
+	Parameter WT_STATE_BUSY bound to: 2'b10 
+	Parameter WT_STATE_DONE bound to: 2'b11 
+	Parameter SRC_ID_WT bound to: 2'b00 
+	Parameter SRC_ID_WMB bound to: 2'b01 
+	Parameter SRC_ID_WGS bound to: 2'b10 
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_DMAIF_rdreq' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdreq.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_DMAIF_rdreq' (84#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdreq.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_DMAIF_rdrsp' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdrsp.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_DMAIF_rdrsp' (85#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_DMAIF_rdrsp.v:10]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_WT_8ATMM_fifo_65x8' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v:1268]
+INFO: [Synth 8-6157] synthesizing module 'nv_ram_rwsp_8x65' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwsp_8x65.v:1]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'nv_ram_rwsp_8x65' (86#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwsp_8x65.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_WT_8ATMM_fifo_65x8' (87#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/fifos/NV_NVDLA_CDMA_WT_8ATMM_fifo.v:1268]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_WT_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v:11]
+INFO: [Synth 8-6157] synthesizing module 'nv_ram_rwsp_128x6' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwsp_128x6.v:1]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'nv_ram_rwsp_128x6' (88#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwsp_128x6.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_WT_fifo' (89#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_WT_fifo.v:11]
+WARNING: [Synth 8-6014] Unused sequential element layer_st_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:749]
+WARNING: [Synth 8-6014] Unused sequential element nan_pass_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:836]
+WARNING: [Synth 8-6014] Unused sequential element dbg_src_rd_ptr_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1304]
+WARNING: [Synth 8-6014] Unused sequential element dbg_src_wr_ptr_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1306]
+WARNING: [Synth 8-6014] Unused sequential element dbg_dma_req_src_b0_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1307]
+WARNING: [Synth 8-6014] Unused sequential element dbg_dma_req_src_b1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1307]
+WARNING: [Synth 8-6014] Unused sequential element wt_local_data_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1489]
+WARNING: [Synth 8-6014] Unused sequential element wt_local_data_vld_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1412]
+WARNING: [Synth 8-6014] Unused sequential element wt_rd_latency_inc_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:2245]
+WARNING: [Synth 8-6014] Unused sequential element wt_rd_latency_dec_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:2252]
+WARNING: [Synth 8-6014] Unused sequential element wt_rd_latency_clr_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:2259]
+WARNING: [Synth 8-6014] Unused sequential element wt_rd_latency_cen_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:2266]
+WARNING: [Synth 8-6014] Unused sequential element ltc_1_cnt_cur_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:2292]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_wt' (90#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:28]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_slcg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_slcg' (91#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_slcg.v:9]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_dc' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:28]
+	Parameter DC_STATE_IDLE bound to: 2'b00 
+	Parameter DC_STATE_PEND bound to: 2'b01 
+	Parameter DC_STATE_BUSY bound to: 2'b10 
+	Parameter DC_STATE_DONE bound to: 2'b11 
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_DC_fifo' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_DC_fifo' (92#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_DC_fifo.v:11]
+WARNING: [Synth 8-6014] Unused sequential element mon_req_height_cnt_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1023]
+WARNING: [Synth 8-6014] Unused sequential element mon_req_ch_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1303]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch0_p0_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1685]
+WARNING: [Synth 8-6014] Unused sequential element ch0_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1686]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch0_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1686]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch1_p0_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1697]
+WARNING: [Synth 8-6014] Unused sequential element ch1_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1698]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch1_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1698]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch2_p0_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1709]
+WARNING: [Synth 8-6014] Unused sequential element ch2_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1710]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch2_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1710]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch3_p0_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1721]
+WARNING: [Synth 8-6014] Unused sequential element ch3_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1722]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch3_p1_wr_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1722]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch0_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1794]
+WARNING: [Synth 8-6014] Unused sequential element ch1_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1803]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch1_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1803]
+WARNING: [Synth 8-6014] Unused sequential element ch2_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1812]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch2_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1812]
+WARNING: [Synth 8-6014] Unused sequential element ch3_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1821]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch3_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1821]
+WARNING: [Synth 8-6014] Unused sequential element mon_rsp_ch_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1887]
+WARNING: [Synth 8-6014] Unused sequential element mon_rsp_w_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:1939]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch0_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2227]
+WARNING: [Synth 8-6014] Unused sequential element ch0_p1_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2228]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch0_p1_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2228]
+WARNING: [Synth 8-6014] Unused sequential element ch1_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2239]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch1_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2239]
+WARNING: [Synth 8-6014] Unused sequential element ch1_p1_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2240]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch1_p1_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2240]
+WARNING: [Synth 8-6014] Unused sequential element ch2_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2251]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch2_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2251]
+WARNING: [Synth 8-6014] Unused sequential element ch3_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2260]
+WARNING: [Synth 8-6014] Unused sequential element mon_ch3_p0_rd_addr_cnt_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2260]
+WARNING: [Synth 8-6014] Unused sequential element mon_idx_grain_offset_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2650]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_dc' (93#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:28]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_img' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_img.v:28]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_IMG_ctrl' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v:28]
+	Parameter IMG_STATE_IDLE bound to: 2'b00 
+	Parameter IMG_STATE_PEND bound to: 2'b01 
+	Parameter IMG_STATE_BUSY bound to: 2'b10 
+	Parameter IMG_STATE_DONE bound to: 2'b11 
+INFO: [Synth 8-155] case statement is not full and has no default [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v:540]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_IMG_ctrl' (94#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_ctrl.v:28]
+INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_CDMA_IMG_sg' [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v:28]
+INFO: [Common 17-14] Message 'Synth 8-6157' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+	Parameter SRC_DUMMY bound to: 2'b00 
+	Parameter SRC_P0 bound to: 2'b01 
+	Parameter SRC_P1 bound to: 2'b10 
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'nv_ram_rwsp_128x11' (95#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/rams/fpga/model/nv_ram_rwsp_128x11.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_IMG_fifo' (96#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_fifo.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_IMG_sg2pack_fifo_flopram_rwsa_128x11' (97#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v:369]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_IMG_sg2pack_fifo' (98#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_IMG_sg' (99#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v:28]
+WARNING: [Synth 8-6014] Unused sequential element rd_p0_planar0_ori_idx_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v:1158]
+WARNING: [Synth 8-6014] Unused sequential element rd_p0_planar1_ori_idx_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v:1172]
+INFO: [Synth 8-6155] done synthesizing module 'NV_NVDLA_CDMA_IMG_pack' (100#1) [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_pack.v:28]
+INFO: [Common 17-14] Message 'Synth 8-6155' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+	Parameter IN_WIDTH bound to: 34 - type: integer 
+	Parameter OUT_WIDTH bound to: 17 - type: integer 
+	Parameter SHIFT_WIDTH bound to: 6 - type: integer 
+	Parameter IN_WIDTH bound to: 17 - type: integer 
+	Parameter OUT_WIDTH bound to: 16 - type: integer 
+	Parameter IN_WIDTH bound to: 17 - type: integer 
+	Parameter OUT_WIDTH bound to: 8 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element cfg_in_int8_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:636]
+WARNING: [Synth 8-6014] Unused sequential element cfg_out_int8_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:650]
+WARNING: [Synth 8-6014] Unused sequential element is_input_int8_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:678]
+WARNING: [Synth 8-6014] Unused sequential element is_input_fp16_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:692]
+WARNING: [Synth 8-6014] Unused sequential element is_data_expand_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:706]
+WARNING: [Synth 8-6014] Unused sequential element is_data_normal_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:720]
+WARNING: [Synth 8-6014] Unused sequential element cvt_out_reg_en_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:1031]
+WARNING: [Synth 8-6014] Unused sequential element cvt_out_reg_en_d2_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:1561]
+WARNING: [Synth 8-6014] Unused sequential element cvt_out_reg_en_d3_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:1639]
+WARNING: [Synth 8-6014] Unused sequential element cvt_out_reg_en_d4_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:1717]
+WARNING: [Synth 8-6014] Unused sequential element cvt_out_reg_en_d5_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_cvt.v:1795]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b0 
+WARNING: [Synth 8-6014] Unused sequential element layer_end_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_status.v:229]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b0 
+	Parameter SG_STATE_IDLE bound to: 2'b00 
+	Parameter SG_STATE_PEND bound to: 2'b01 
+	Parameter SG_STATE_BUSY bound to: 2'b10 
+	Parameter SG_STATE_DONE bound to: 2'b11 
+WARNING: [Synth 8-6014] Unused sequential element data_batch_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v:716]
+WARNING: [Synth 8-6014] Unused sequential element dbg_pre_prec_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v:1655]
+WARNING: [Synth 8-6014] Unused sequential element wt_entry_avl_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:700]
+WARNING: [Synth 8-6014] Unused sequential element wmb_entry_avl_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:704]
+WARNING: [Synth 8-6014] Unused sequential element wt_entry_end_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:714]
+WARNING: [Synth 8-6014] Unused sequential element wmb_entry_st_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:719]
+WARNING: [Synth 8-6014] Unused sequential element wmb_entry_end_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:722]
+WARNING: [Synth 8-6014] Unused sequential element wmb_req_addr_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:1010]
+WARNING: [Synth 8-6014] Unused sequential element wmb_req_addr_last_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:1012]
+WARNING: [Synth 8-6014] Unused sequential element sc2buf_wmb_rd_en_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:1101]
+WARNING: [Synth 8-6014] Unused sequential element sc2buf_wmb_rd_addr_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:1108]
+WARNING: [Synth 8-6014] Unused sequential element wmb_rsp_bit_remain_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:1445]
+WARNING: [Synth 8-6014] Unused sequential element wmb_rsp_bit_remain_last_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_wl.v:1444]
+WARNING: [Synth 8-6014] Unused sequential element is_sg_running_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:861]
+WARNING: [Synth 8-6014] Unused sequential element sub_h_total_g7_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1249]
+WARNING: [Synth 8-6014] Unused sequential element sub_h_total_g10_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1291]
+WARNING: [Synth 8-6014] Unused sequential element pixel_x_stride_odd_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1375]
+WARNING: [Synth 8-6014] Unused sequential element pra_truncate_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1725]
+WARNING: [Synth 8-6014] Unused sequential element pra_precision_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1739]
+WARNING: [Synth 8-6014] Unused sequential element dat_slice_avl_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1794]
+WARNING: [Synth 8-6014] Unused sequential element dat_entry_avl_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1798]
+WARNING: [Synth 8-6014] Unused sequential element dat_entry_end_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:1806]
+WARNING: [Synth 8-6014] Unused sequential element cfg_reg_en_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_cfg.v:68]
+WARNING: [Synth 8-6014] Unused sequential element cfg_reg_en_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v:102]
+WARNING: [Synth 8-6014] Unused sequential element cfg_is_wg_d1_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cmac/NV_NVDLA_CMAC_CORE_rt_out.v:110]
+WARNING: [Synth 8-6014] Unused sequential element cfg_winograd_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_assembly_ctrl.v:217]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b0 
+WARNING: [Synth 8-6014] Unused sequential element calc_valid_d2_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_calculator.v:502]
+WARNING: [Synth 8-6014] Unused sequential element cur_op_en_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:106]
+WARNING: [Synth 8-6014] Unused sequential element cur_conv_mode_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:121]
+WARNING: [Synth 8-6014] Unused sequential element cur_proc_precision_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:136]
+WARNING: [Synth 8-6014] Unused sequential element cur_width_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:151]
+WARNING: [Synth 8-6014] Unused sequential element cur_height_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:166]
+WARNING: [Synth 8-6014] Unused sequential element cur_channel_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:181]
+WARNING: [Synth 8-6014] Unused sequential element cur_dataout_addr_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:196]
+WARNING: [Synth 8-6014] Unused sequential element cur_batches_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:211]
+WARNING: [Synth 8-6014] Unused sequential element cur_line_stride_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:226]
+WARNING: [Synth 8-6014] Unused sequential element cur_surf_stride_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:241]
+WARNING: [Synth 8-6014] Unused sequential element cur_line_packed_reg was removed.  [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cacc/NV_NVDLA_CACC_delivery_ctrl.v:256]
+INFO: [Common 17-14] Message 'Synth 8-6014' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b0 
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+	Parameter RATIO bound to: 4 - type: integer 
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_EG_ro.v:316]
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_RDMA_EG_ro.v:331]
+	Parameter FORCE_CONTENTION_ASSERTION_RESET_ACTIVE bound to: 1'b1 
+WARNING: [Synth 8-7023] instance 'u_reg' of module 'NV_NVDLA_SDP_RDMA_reg' has 62 connections declared, but only 42 given [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_rdma.v:260]
+INFO: [Synth 8-226] default block is never used [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_WDMA_intr.v:412]
+	Parameter IW bound to: 256 - type: integer 
+	Parameter CW bound to: 2 - type: integer 
+	Parameter OW bound to: 32 - type: integer 
+	Parameter RATIO bound to: 8 - type: integer 
+	Parameter IW bound to: 128 - type: integer 
+	Parameter CW bound to: 1 - type: integer 
+	Parameter OW bound to: 16 - type: integer 
+	Parameter RATIO bound to: 8 - type: integer 
+	Parameter IW bound to: 32 - type: integer 
+	Parameter OW bound to: 32 - type: integer 
+	Parameter RATIO bound to: 1 - type: integer 
+	Parameter DATA1_WIDTH bound to: 16 - type: integer 
+	Parameter DATA2_WIDTH bound to: 32 - type: integer 
+	Parameter IN_WIDTH bound to: 16 - type: integer 
+	Parameter OUT_WIDTH bound to: 32 - type: integer 
+	Parameter SHIFT_WIDTH bound to: 6 - type: integer 
+	Parameter SHIFT_MAX bound to: 63 - type: integer 
+	Parameter HIGH_WIDTH bound to: 47 - type: integer 
+	Parameter DATA1_WIDTH bound to: 16 - type: integer 
+	Parameter DATA2_WIDTH bound to: 33 - type: integer 
+	Parameter IN_WIDTH bound to: 33 - type: integer 
+	Parameter OP_WIDTH bound to: 16 - type: integer 
+	Parameter OUT_WIDTH bound to: 49 - type: integer 
+	Parameter IN_WIDTH bound to: 49 - type: integer 
+	Parameter OUT_WIDTH bound to: 32 - type: integer 
+	Parameter SHIFT_WIDTH bound to: 6 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter IW bound to: 32 - type: integer 
+	Parameter OW bound to: 32 - type: integer 
+	Parameter RATIO bound to: 1 - type: integer 
+	Parameter IN_WIDTH bound to: 49 - type: integer 
+	Parameter OUT_WIDTH bound to: 17 - type: integer 
+	Parameter SHIFT_WIDTH bound to: 6 - type: integer 
+	Parameter IW bound to: 8 - type: integer 
+	Parameter OW bound to: 64 - type: integer 
+	Parameter RATIO bound to: 8 - type: integer 
+WARNING: [Synth 8-3848] Net flop_bn_data_out_pvld in module/entity NV_NVDLA_SDP_core does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v:202]
+WARNING: [Synth 8-3848] Net flop_bn_data_out_pd in module/entity NV_NVDLA_SDP_core does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v:204]
+WARNING: [Synth 8-7023] instance 'u_reg' of module 'NV_NVDLA_SDP_reg' has 117 connections declared, but only 55 given [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_sdp.v:302]
+WARNING: [Synth 8-3848] Net csb2nvdla_ready in module/entity nv_nvdla_wrapper does not have driver. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:87]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[31]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[30]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[29]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[28]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[27]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[26]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[25]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[24]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[23]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[22]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[21]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[20]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[19]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[18]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_cmux has unconnected port reg2dp_nan_to_zero
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_cmux has unconnected port reg2dp_proc_precision[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_cmux has unconnected port reg2dp_proc_precision[0]
+WARNING: [Synth 8-3331] design NV_CLK_gate_power has unconnected port reset_
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[31]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[30]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[29]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[28]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[27]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[26]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[25]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[24]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[23]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[22]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[21]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[20]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[19]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[18]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[17]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[16]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[15]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[14]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[13]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[12]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[11]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[10]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[9]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[8]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[7]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[6]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[5]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[4]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[3]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[2]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port pwrbus_ram_pd[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_core has unconnected port reg2dp_perf_lut_en
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port cmd2dat_dma_pd[42]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_batch_number[4]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_batch_number[3]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_batch_number[2]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_batch_number[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_batch_number[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_winograd
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[12]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[11]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[10]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[9]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[8]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[7]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[6]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[5]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[4]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[3]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[2]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_height[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[12]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[11]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[10]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[9]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[8]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[7]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[6]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[5]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[4]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[3]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[2]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_width[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_out_precision[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_out_precision[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_proc_precision[1]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_out has unconnected port reg2dp_proc_precision[0]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[31]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[30]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[29]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[28]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[27]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[26]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[25]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[24]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[23]
+WARNING: [Synth 8-3331] design NV_NVDLA_SDP_WDMA_DAT_in has unconnected port pwrbus_ram_pd[22]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1357.191 ; gain = 626.238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1358.711 ; gain = 627.758
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 2 processes.
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+INFO: [Synth 8-5546] ROM "reg_rd_data" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3936] Found unconnected internal register 'req_pd_reg' and it is trimmed from '63' to '56' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_csb.v:118]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:2078]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:2081]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:2084]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:2087]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/nocif/NV_NVDLA_MCIF_WRITE_cq.v:2090]
+WARNING: [Synth 8-3936] Found unconnected internal register 'req_pd_reg' and it is trimmed from '63' to '56' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/glb/NV_NVDLA_GLB_csb.v:132]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_wt.v:1245]
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'NV_NVDLA_CDMA_wt'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:2586]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 2 [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_dc.v:927]
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'NV_NVDLA_CDMA_dc'
+INFO: [Synth 8-5546] ROM "pixel_order_nxt" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "pixel_planar0_sft_nxt" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "pixel_planar1_sft_nxt" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "pixel_planar0_mask_nxt" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "pixel_planar1_mask_nxt" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'NV_NVDLA_CDMA_IMG_ctrl'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg2pack_fifo.v:185]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/cdma/NV_NVDLA_CDMA_IMG_sg.v:1067]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_sg.v:1432]
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'NV_NVDLA_CSC_sg'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:985]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dat_rsp_l2_sft_d3_reg' and it is trimmed from '64' to '16' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:4364]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dat_rsp_l1_sft_d3_reg' and it is trimmed from '64' to '16' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:4364]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dat_rsp_l1_sft_d2_reg' and it is trimmed from '64' to '16' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:4412]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dat_rsp_l0_sft_d3_reg' and it is trimmed from '64' to '16' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:4364]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dat_rsp_l0_sft_d2_reg' and it is trimmed from '64' to '16' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:4392]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dat_rsp_l0_sft_d1_reg' and it is trimmed from '64' to '32' bits. [D:/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/csc/NV_NVDLA_CSC_dl.v:4365]
+INFO: [Synth 8-6430] The Block RAM "nv_ram_rwst_256x8:/M_reg" may get memory collision error if read and write address collide. Use attribute (* rw_addr_collision= "yes" *) to avoid collision 
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+           WT_STATE_IDLE |                               00 |                               00
+           WT_STATE_PEND |                               01 |                               01
+           WT_STATE_BUSY |                               10 |                               10
+           WT_STATE_DONE |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encoding 'sequential' in module 'NV_NVDLA_CDMA_wt'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE2 |                               01 |                               00
+                  iSTATE |                               11 |                               01
+                 iSTATE0 |                               10 |                               10
+                 iSTATE1 |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encoding 'sequential' in module 'NV_NVDLA_CDMA_dc'

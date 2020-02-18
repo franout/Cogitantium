@@ -5,10 +5,7 @@ build_zynq/linux-xlnx/
 build_zynq/u-boot-xlnx/
 build_zynq/device-tree-xlnx/
 nvdla/hw/
-nvdla/
-nvdla/sw/*
-nvdla/project_2/*
-!nvdla/project_2/*.vhd
+nvdla/sw/
 tutorial_board/
 PYNQ/
 pynq_z2/
