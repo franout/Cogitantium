@@ -33,8 +33,7 @@ entity base_zynq_wrapper is
     FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
-    FIXED_IO_ps_srstb : inout STD_LOGIC;
-    leds_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 )
+    FIXED_IO_ps_srstb : inout STD_LOGIC
   );
 end base_zynq_wrapper;
 
@@ -61,8 +60,7 @@ architecture STRUCTURE of base_zynq_wrapper is
     FIXED_IO_ddr_vrp : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
-    FIXED_IO_ps_porb : inout STD_LOGIC;
-    leds_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 )
+    FIXED_IO_ps_porb : inout STD_LOGIC
   );
   end component base_zynq;
 begin
@@ -88,7 +86,6 @@ base_zynq_i: component base_zynq
       FIXED_IO_mio(53 downto 0) => FIXED_IO_mio(53 downto 0),
       FIXED_IO_ps_clk => FIXED_IO_ps_clk,
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
-      FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
-      leds_4bits_tri_o(3 downto 0) => leds_4bits_tri_o(3 downto 0)
+      FIXED_IO_ps_srstb => FIXED_IO_ps_srstb
     );
 end STRUCTURE;

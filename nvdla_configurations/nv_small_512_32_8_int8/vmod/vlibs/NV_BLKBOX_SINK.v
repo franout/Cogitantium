@@ -10,4 +10,5 @@ module NV_BLKBOX_SINK (
   A
  );
 input A ;
+assign A=0;
 endmodule

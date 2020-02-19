@@ -7,7 +7,7 @@
 #############################################################
 #####RUN ON THE BOARD WITH PROTOBUFF ALREADY INSTALLED ######
 #############################################################
-#### for protobuff ##########################################
+#### for protobuff and libjpeg!!#############################
 ### ${proto_dir}/configure --prefix=/usr/
 ### make 
 ### make check
@@ -24,7 +24,9 @@ cd ./nvdla/sw/kmd
 make  ARCH=arm CROSS_COMPILE=/usr/bin/arm-linux-gnueabihf-
 
 ## add kernel module to OS
-insmod ./port/linux/opendla.ko
+mkdir /lib/modules/linux_Versions/kernel/drivers/nvdla
+cp ./port/linux/opendla.ko /lib/modules/linux_Versions/kernel/drivers/nvdla
+insmod /lib/modules/linux_Versions/kernel/drivers/nvdla/opendla.ko
 
 ## rmod for removing it
 cd ../

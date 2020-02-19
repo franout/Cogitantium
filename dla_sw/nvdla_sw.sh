@@ -20,7 +20,7 @@ fi
  ## --batch                                                     batch size (default: 1)
  ## --informat <ncxhwx|nchw|nhwc>                               input data format (default: nhwc)
 
-export LD_LIBRARY_PATH=$PWD/core/src/compiler/libnvdla_compiler
+export LD_LIBRARY_PATH=$PWD/core/src/compiler/libnvdla_compiler/
 export PATH=$PATH:$PWD/apps/compiler/nvdla_compiler/
 
 
@@ -46,6 +46,8 @@ fi
 ###############################
 
 ## execute the model on hw
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/core/src/runtime/libnvdla_runtime/
+export PATH=$PATH:$PWD/apps/runtime/nvdla_runtime/
 
 #./nvdla_runtime --loadable basic.nvdla --rawdump --image ./regression/images/eight.pgm
 
