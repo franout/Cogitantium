@@ -68,6 +68,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param chipscope.maxJobs 2
   set_param ced.repoPaths C:/Users/franc/AppData/Roaming/Xilinx/Vivado/2019.2/xhub/ced_store
+  set_param xicom.use_bs_reader 1
   open_checkpoint base_zynq_wrapper_postroute_physopt.dcp
   set_property webtalk.parent_dir D:/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/nv_small_512_32_16_8_int8.cache/wt [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]

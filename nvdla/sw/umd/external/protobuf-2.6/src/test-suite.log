@@ -3,12 +3,50 @@
 ================================================
 
 # TOTAL: 5
-# PASS:  5
+# PASS:  0
 # SKIP:  0
 # XFAIL: 0
-# FAIL:  0
+# FAIL:  5
 # XPASS: 0
 # ERROR: 0
 
 .. contents:: :depth: 2
+
+FAIL: protobuf-test
+===================
+
+/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-protobuf-test: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotobuf.so.9: file too short
+FAIL protobuf-test (exit status: 127)
+
+FAIL: protobuf-lazy-descriptor-test
+===================================
+
+/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-protobuf-lazy-descriptor-test: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotobuf.so.9: file too short
+FAIL protobuf-lazy-descriptor-test (exit status: 127)
+
+FAIL: protobuf-lite-test
+========================
+
+/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-protobuf-lite-test: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotobuf-lite.so.9: file too short
+FAIL protobuf-lite-test (exit status: 127)
+
+FAIL: google/protobuf/compiler/zip_output_unittest.sh
+=====================================================
+
+/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-protoc: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotoc.so.9: file too short
+protoc failed.
+FAIL google/protobuf/compiler/zip_output_unittest.sh (exit status: 1)
+
+FAIL: google/protobuf/io/gzip_stream_unittest.sh
+================================================
+
++ TESTFILE=Makefile
++ ./zcgzip
++ gunzip
++ cmp - Makefile
+/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-zcgzip: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotobuf.so.9: file too short
+
+gzip: stdin: unexpected end of file
+cmp: EOF on -
+FAIL google/protobuf/io/gzip_stream_unittest.sh (exit status: 1)
 

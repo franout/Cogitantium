@@ -329,7 +329,7 @@ int32_t nvdla_gem_dma_addr(struct drm_device *dev, struct drm_file *file,
 
 	*addr = nobj->dma_addr;
 
-	drm_gem_object_put_unlocked(dobj);
+	drm_gem_object_unreference_unlocked(dobj);
 
 	return 0;
 }
@@ -438,7 +438,7 @@ int32_t nvdla_drm_probe(struct nvdla_device *nvdla_dev)
 	 */
 	dma = dma_declare_coherent_memory(drm->dev, 0xC0000000, 0xC0000000,
 			0x40000000, DMA_MEMORY_MAP | DMA_MEMORY_EXCLUSIVE);
-	if (!(dma & DMA_MEMORY_MAP)) {
+	if ((dma)) {
 		err = -ENOMEM;
 		goto unref;
 	}

@@ -1,0 +1,931 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+| Date             : Fri Feb 21 16:42:58 2020
+| Host             : fra running 64-bit Ubuntu 16.04.6 LTS
+| Command          : report_power -file base_zynq_wrapper_power_routed.rpt -pb base_zynq_wrapper_power_summary_routed.pb -rpx base_zynq_wrapper_power_routed.rpx
+| Design           : base_zynq_wrapper
+| Device           : xc7z020clg400-1
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+--------------+
+| Total On-Chip Power (W)  | 1.977        |
+| Design Power Budget (W)  | Unspecified* |
+| Power Budget Margin (W)  | NA           |
+| Dynamic (W)              | 1.820        |
+| Device Static (W)        | 0.157        |
+| Effective TJA (C/W)      | 11.5         |
+| Max Ambient (C)          | 62.2         |
+| Junction Temperature (C) | 47.8         |
+| Confidence Level         | Medium       |
+| Setting File             | ---          |
+| Simulation Activity File | ---          |
+| Design Nets Matched      | NA           |
++--------------------------+--------------+
+* Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
+
+
+1.1 On-Chip Components
+----------------------
+
++--------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
++--------------------------+-----------+----------+-----------+-----------------+
+| Clocks                   |     0.082 |        3 |       --- |             --- |
+| Slice Logic              |     0.017 |   104200 |       --- |             --- |
+|   LUT as Logic           |     0.015 |    47223 |     53200 |           88.77 |
+|   CARRY4                 |     0.001 |     2381 |     13300 |           17.90 |
+|   Register               |    <0.001 |    45878 |    106400 |           43.12 |
+|   LUT as Distributed RAM |    <0.001 |      260 |     17400 |            1.49 |
+|   F7/F8 Muxes            |    <0.001 |      809 |     53200 |            1.52 |
+|   LUT as Shift Register  |    <0.001 |       85 |     17400 |            0.49 |
+|   Others                 |     0.000 |     1036 |       --- |             --- |
+| Signals                  |     0.028 |    83157 |       --- |             --- |
+| Block RAM                |     0.127 |       90 |       140 |           64.29 |
+| DSPs                     |    <0.001 |       23 |       220 |           10.45 |
+| PS7                      |     1.565 |        1 |       --- |             --- |
+| Static Power             |     0.157 |          |           |                 |
+| Total                    |     1.977 |          |           |                 |
++--------------------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.272 |       0.251 |      0.020 |
+| Vccaux    |       1.800 |     0.016 |       0.000 |      0.016 |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.011 |       0.004 |      0.007 |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
+| MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccpint   |       1.000 |     0.752 |       0.718 |      0.034 |
+| Vccpaux   |       1.800 |     0.084 |       0.074 |      0.010 |
+| Vccpll    |       1.800 |     0.017 |       0.014 |      0.003 |
+| Vcco_ddr  |       1.500 |     0.459 |       0.457 |      0.002 |
+| Vcco_mio0 |       1.800 |     0.003 |       0.002 |      0.001 |
+| Vcco_mio1 |       1.800 |     0.002 |       0.001 |      0.001 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                        | Action                                                                                                     |
++-----------------------------+------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                               |                                                                                                            |
+| Clock nodes activity        | High       | User specified more than 95% of clocks         |                                                                                                            |
+| I/O nodes activity          | High       | User specified more than 95% of inputs         |                                                                                                            |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
+| Device models               | High       | Device models are Production                   |                                                                                                            |
+|                             |            |                                                |                                                                                                            |
+| Overall confidence level    | Medium     |                                                |                                                                                                            |
++-----------------------------+------------+------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+------------------------+
+| Ambient Temp (C)      | 25.0                   |
+| ThetaJA (C/W)         | 11.5                   |
+| Airflow (LFM)         | 250                    |
+| Heat Sink             | none                   |
+| ThetaSA (C/W)         | 0.0                    |
+| Board Selection       | medium (10"x10")       |
+| # of Board Layers     | 8to11 (8 to 11 Layers) |
+| Board Temperature (C) | 25.0                   |
++-----------------------+------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++------------+--------------------------------------------------------------+-----------------+
+| Clock      | Domain                                                       | Constraint (ns) |
++------------+--------------------------------------------------------------+-----------------+
+| clk_fpga_0 | base_zynq_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0] |            20.0 |
++------------+--------------------------------------------------------------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++---------------------------------------------------------------------------------------------------+-----------+
+| Name                                                                                              | Power (W) |
++---------------------------------------------------------------------------------------------------+-----------+
+| base_zynq_wrapper                                                                                 |     1.820 |
+|   base_zynq_i                                                                                     |     1.820 |
+|     apb_bridge_wrapper_0                                                                          |    <0.001 |
+|       inst                                                                                        |    <0.001 |
+|         axi_apb_bridge                                                                            |    <0.001 |
+|           U0                                                                                      |    <0.001 |
+|             APB_MASTER_IF_MODULE                                                                  |    <0.001 |
+|             AXILITE_SLAVE_IF_MODULE                                                               |    <0.001 |
+|             MULTIPLEXOR_MODULE                                                                    |    <0.001 |
+|     axi_smc                                                                                       |     0.007 |
+|       inst                                                                                        |     0.007 |
+|         clk_map                                                                                   |    <0.001 |
+|           psr_aclk                                                                                |    <0.001 |
+|             U0                                                                                    |    <0.001 |
+|               EXT_LPF                                                                             |    <0.001 |
+|                 ACTIVE_LOW_AUX.ACT_LO_AUX                                                         |    <0.001 |
+|               SEQ                                                                                 |    <0.001 |
+|                 SEQ_COUNTER                                                                       |    <0.001 |
+|         m00_exit_pipeline                                                                         |     0.002 |
+|           m00_exit                                                                                |     0.002 |
+|             inst                                                                                  |     0.002 |
+|               ar_reg                                                                              |    <0.001 |
+|               aw_reg                                                                              |    <0.001 |
+|               b_reg                                                                               |    <0.001 |
+|               exit_inst                                                                           |    <0.001 |
+|                 gen_r_cmd_fifo.r_cmd_fifo                                                         |    <0.001 |
+|                 gen_w_cmd_fifo.w_cmd_fifo                                                         |    <0.001 |
+|               r_reg                                                                               |    <0.001 |
+|               splitter_inst                                                                       |    <0.001 |
+|                 gen_axi3.axi3_conv_inst                                                           |    <0.001 |
+|                   USE_READ.USE_SPLIT_R.read_addr_inst                                             |    <0.001 |
+|                     USE_R_CHANNEL.cmd_queue                                                       |    <0.001 |
+|                       gen_srls[0].srl_nx1                                                         |    <0.001 |
+|                   USE_WRITE.USE_SPLIT_W.write_resp_inst                                           |    <0.001 |
+|                   USE_WRITE.write_addr_inst                                                       |    <0.001 |
+|                     USE_BURSTS.cmd_queue                                                          |    <0.001 |
+|                       gen_srls[0].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[1].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[2].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[3].srl_nx1                                                         |    <0.001 |
+|                     USE_B_CHANNEL.cmd_b_queue                                                     |    <0.001 |
+|                       gen_srls[0].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[1].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[2].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[3].srl_nx1                                                         |    <0.001 |
+|                       gen_srls[4].srl_nx1                                                         |    <0.001 |
+|                   USE_WRITE.write_data_inst                                                       |    <0.001 |
+|               w_reg                                                                               |    <0.001 |
+|         s00_entry_pipeline                                                                        |     0.003 |
+|           s00_mmu                                                                                 |     0.002 |
+|             inst                                                                                  |     0.002 |
+|               ar_reg_stall                                                                        |    <0.001 |
+|               ar_sreg                                                                             |    <0.001 |
+|               aw_reg_stall                                                                        |    <0.001 |
+|               aw_sreg                                                                             |    <0.001 |
+|               b_sreg                                                                              |    <0.001 |
+|               gen_endpoint.decerr_slave_inst                                                      |    <0.001 |
+|               r_sreg                                                                              |    <0.001 |
+|               w_sreg                                                                              |    <0.001 |
+|           s00_si_converter                                                                        |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               splitter_inst                                                                       |    <0.001 |
+|                 gen_no_wsplitter.gen_endpoint_woffset.gen_wbypass_offset_fifo.wbypass_offset_fifo |    <0.001 |
+|                   gen_srls[13].srl_nx1                                                            |    <0.001 |
+|                   gen_srls[4].srl_nx1                                                             |    <0.001 |
+|                   gen_srls[5].srl_nx1                                                             |    <0.001 |
+|                   gen_srls[6].srl_nx1                                                             |    <0.001 |
+|           s00_transaction_regulator                                                               |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               gen_endpoint.gen_r_singleorder.r_singleorder                                        |    <0.001 |
+|                 gen_cmd_reg.cmd_reg                                                               |    <0.001 |
+|                 gen_id_fifo.singleorder_fifo                                                      |    <0.001 |
+|                   gen_srls[0].srl_nx1                                                             |    <0.001 |
+|                   gen_srls[2].srl_nx1                                                             |    <0.001 |
+|                   gen_srls[3].srl_nx1                                                             |    <0.001 |
+|                   gen_srls[7].srl_nx1                                                             |    <0.001 |
+|               gen_endpoint.gen_w_singleorder.w_singleorder                                        |    <0.001 |
+|                 gen_cmd_reg.cmd_reg                                                               |    <0.001 |
+|                 gen_id_fifo.singleorder_fifo                                                      |    <0.001 |
+|                   gen_srls[0].srl_nx1                                                             |    <0.001 |
+|                   gen_srls[7].srl_nx1                                                             |    <0.001 |
+|         s00_nodes                                                                                 |     0.002 |
+|           s00_ar_node                                                                             |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               inst_mi_handler                                                                     |    <0.001 |
+|                 gen_normal_area.inst_fifo_node_payld                                              |    <0.001 |
+|                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
+|                     gen_mem_rep[0].inst_rd_addrb                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_wr_addra                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_xpm_memory                                                |    <0.001 |
+|                       xpm_memory_base_inst                                                        |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_0_5                                 |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_102_107                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_108_113                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_114_119                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_120_125                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_126_131                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_132_137                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_6_11                                |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_90_95                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_96_101                              |    <0.001 |
+|                     gen_wr.inst_wr_addra_p1                                                       |    <0.001 |
+|               inst_si_handler                                                                     |    <0.001 |
+|                 inst_arb_stall_late                                                               |    <0.001 |
+|           s00_aw_node                                                                             |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               inst_mi_handler                                                                     |    <0.001 |
+|                 gen_normal_area.inst_fifo_node_payld                                              |    <0.001 |
+|                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
+|                     gen_mem_rep[0].inst_rd_addrb                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_wr_addra                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_xpm_memory                                                |    <0.001 |
+|                       xpm_memory_base_inst                                                        |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_0_5                                 |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_102_107                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_108_113                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_114_119                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_120_125                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_126_131                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_132_137                             |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_6_11                                |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_90_95                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_96_101                              |    <0.001 |
+|                     gen_wr.inst_wr_addra_p1                                                       |    <0.001 |
+|               inst_si_handler                                                                     |    <0.001 |
+|                 inst_arb_stall_late                                                               |    <0.001 |
+|           s00_b_node                                                                              |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               inst_mi_handler                                                                     |    <0.001 |
+|                 gen_normal_area.inst_fifo_node_payld                                              |    <0.001 |
+|                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
+|                     gen_mem_rep[0].inst_rd_addrb                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_wr_addra                                                  |    <0.001 |
+|                     gen_wr.inst_wr_addra_p1                                                       |    <0.001 |
+|               inst_si_handler                                                                     |    <0.001 |
+|                 inst_arb_stall_late                                                               |    <0.001 |
+|           s00_r_node                                                                              |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               inst_mi_handler                                                                     |    <0.001 |
+|                 gen_normal_area.inst_fifo_node_payld                                              |    <0.001 |
+|                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
+|                     gen_mem_rep[0].inst_rd_addrb                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_wr_addra                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_xpm_memory                                                |    <0.001 |
+|                       xpm_memory_base_inst                                                        |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_18_23                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_24_29                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_30_35                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_36_41                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_42_47                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_48_53                               |    <0.001 |
+|                     gen_wr.inst_wr_addra_p1                                                       |    <0.001 |
+|               inst_si_handler                                                                     |    <0.001 |
+|                 inst_arb_stall_late                                                               |    <0.001 |
+|           s00_w_node                                                                              |    <0.001 |
+|             inst                                                                                  |    <0.001 |
+|               inst_mi_handler                                                                     |    <0.001 |
+|                 gen_normal_area.inst_fifo_node_payld                                              |    <0.001 |
+|                   gen_xpm_memory_fifo.inst_fifo                                                   |    <0.001 |
+|                     gen_mem_rep[0].inst_rd_addrb                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_wr_addra                                                  |    <0.001 |
+|                     gen_mem_rep[0].inst_xpm_memory                                                |    <0.001 |
+|                       xpm_memory_base_inst                                                        |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_12_17                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_18_23                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_24_29                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_30_35                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_36_41                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_42_47                               |    <0.001 |
+|                         gen_wr_a.gen_word_narrow.mem_reg_0_31_48_53                               |    <0.001 |
+|                     gen_wr.inst_wr_addra_p1                                                       |    <0.001 |
+|               inst_si_handler                                                                     |    <0.001 |
+|                 inst_arb_stall_late                                                               |    <0.001 |
+|     nv_nvdla_wrapper_0                                                                            |     0.246 |
+|       inst                                                                                        |     0.245 |
+|         apb2csb_interface                                                                         |    <0.001 |
+|         nv_core                                                                                   |     0.245 |
+|           u_partition_a                                                                           |     0.012 |
+|             u_NV_NVDLA_cacc                                                                       |     0.012 |
+|               u_assembly_buffer                                                                   |    <0.001 |
+|                 u_accu_abuf_0                                                                     |    <0.001 |
+|               u_assembly_ctrl                                                                     |    <0.001 |
+|               u_calculator                                                                        |     0.004 |
+|                 u_cell_int8_0                                                                     |    <0.001 |
+|                 u_cell_int8_1                                                                     |    <0.001 |
+|                 u_cell_int8_2                                                                     |    <0.001 |
+|                 u_cell_int8_3                                                                     |    <0.001 |
+|                 u_cell_int8_4                                                                     |    <0.001 |
+|                 u_cell_int8_5                                                                     |    <0.001 |
+|                 u_cell_int8_6                                                                     |    <0.001 |
+|                 u_cell_int8_7                                                                     |    <0.001 |
+|               u_delivery_buffer                                                                   |     0.007 |
+|                 u_accu_dbuf                                                                       |     0.006 |
+|               u_delivery_ctrl                                                                     |    <0.001 |
+|               u_regfile                                                                           |    <0.001 |
+|                 u_dual_reg_d0                                                                     |    <0.001 |
+|                 u_dual_reg_d1                                                                     |    <0.001 |
+|                 u_single_reg                                                                      |    <0.001 |
+|               u_slcg_cell_0                                                                       |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|               u_slcg_op_2                                                                         |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|           u_partition_c                                                                           |     0.182 |
+|             u_NV_NVDLA_cbuf                                                                       |     0.117 |
+|               u_cbuf_ram_bank0_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank0_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank10_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank10_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank11_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank11_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank12_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank12_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank13_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank13_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank14_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank14_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank15_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank15_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank16_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank16_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank17_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank17_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank18_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank18_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank19_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank19_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank1_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank1_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank20_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank20_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank21_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank21_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank22_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank22_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank23_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank23_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank24_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank24_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank25_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank25_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank26_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank26_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank27_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank27_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank28_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank28_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank29_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank29_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank2_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank2_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank30_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank30_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank31_ram0                                                              |     0.001 |
+|               u_cbuf_ram_bank31_ram1                                                              |     0.001 |
+|               u_cbuf_ram_bank3_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank3_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank4_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank4_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank5_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank5_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank6_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank6_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank7_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank7_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank8_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank8_ram1                                                               |     0.001 |
+|               u_cbuf_ram_bank9_ram0                                                               |     0.001 |
+|               u_cbuf_ram_bank9_ram1                                                               |     0.001 |
+|             u_NV_NVDLA_cdma                                                                       |     0.053 |
+|               u_cvt                                                                               |     0.004 |
+|                 u_cell_0                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_1                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_2                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_3                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_4                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_5                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_6                                                                          |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                 u_cell_7                                                                          |    <0.001 |
+|                   pipe_p1                                                                         |    <0.001 |
+|                   pipe_p2                                                                         |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|               u_dc                                                                                |     0.005 |
+|                 NV_NVDLA_PDP_RDMA_rdreq                                                           |    <0.001 |
+|                 NV_NVDLA_PDP_RDMA_rdrsp                                                           |    <0.001 |
+|                 u_fifo                                                                            |    <0.001 |
+|                   clk_mgate                                                                       |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   ram                                                                             |    <0.001 |
+|                     M_reg_0_63_0_2                                                                |    <0.001 |
+|                     M_reg_0_63_3_5                                                                |    <0.001 |
+|                     M_reg_64_127_0_2                                                              |    <0.001 |
+|                     M_reg_64_127_3_5                                                              |    <0.001 |
+|               u_dma_mux                                                                           |    <0.001 |
+|               u_img                                                                               |     0.009 |
+|                 u_ctrl                                                                            |    <0.001 |
+|                 u_pack                                                                            |     0.003 |
+|                 u_sg                                                                              |     0.005 |
+|                   NV_NVDLA_PDP_RDMA_rdreq                                                         |    <0.001 |
+|                   NV_NVDLA_PDP_RDMA_rdrsp                                                         |    <0.001 |
+|                   u_NV_NVDLA_CDMA_IMG_fifo                                                        |    <0.001 |
+|                     clk_mgate                                                                     |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                   u_NV_NVDLA_CDMA_IMG_sg2pack_fifo                                                |     0.002 |
+|                     clk_mgate                                                                     |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |     0.001 |
+|               u_regfile                                                                           |     0.004 |
+|                 u_dual_reg_d0                                                                     |     0.001 |
+|                 u_dual_reg_d1                                                                     |     0.002 |
+|                 u_single_reg                                                                      |    <0.001 |
+|               u_shared_buffer                                                                     |     0.025 |
+|                 u_shared_buffer_00                                                                |     0.002 |
+|                 u_shared_buffer_01                                                                |     0.002 |
+|                 u_shared_buffer_02                                                                |     0.002 |
+|                 u_shared_buffer_03                                                                |     0.001 |
+|                 u_shared_buffer_04                                                                |     0.002 |
+|                 u_shared_buffer_05                                                                |     0.002 |
+|                 u_shared_buffer_06                                                                |     0.002 |
+|                 u_shared_buffer_07                                                                |     0.001 |
+|                 u_shared_buffer_08                                                                |     0.002 |
+|                 u_shared_buffer_09                                                                |     0.001 |
+|                 u_shared_buffer_10                                                                |     0.001 |
+|                 u_shared_buffer_11                                                                |     0.001 |
+|                 u_shared_buffer_12                                                                |     0.001 |
+|                 u_shared_buffer_13                                                                |     0.001 |
+|                 u_shared_buffer_14                                                                |     0.001 |
+|                 u_shared_buffer_15                                                                |     0.001 |
+|               u_slcg_dc                                                                           |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|               u_slcg_hls                                                                          |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|               u_slcg_img                                                                          |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|               u_slcg_mux                                                                          |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|               u_status                                                                            |    <0.001 |
+|               u_wt                                                                                |     0.004 |
+|                 NV_NVDLA_PDP_RDMA_rdreq                                                           |    <0.001 |
+|                 NV_NVDLA_PDP_RDMA_rdrsp                                                           |    <0.001 |
+|                 u_8atmm_fifo                                                                      |    <0.001 |
+|                   nvdla_core_clk_mgate                                                            |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   ram                                                                             |    <0.001 |
+|                     M_reg_0_7_0_5                                                                 |    <0.001 |
+|                     M_reg_0_7_12_17                                                               |    <0.001 |
+|                     M_reg_0_7_18_23                                                               |    <0.001 |
+|                     M_reg_0_7_24_29                                                               |    <0.001 |
+|                     M_reg_0_7_30_35                                                               |    <0.001 |
+|                     M_reg_0_7_60_64                                                               |    <0.001 |
+|                     M_reg_0_7_6_11                                                                |    <0.001 |
+|                 u_fifo                                                                            |    <0.001 |
+|                   clk_mgate                                                                       |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   ram                                                                             |    <0.001 |
+|                     M_reg_0_63_0_2                                                                |    <0.001 |
+|                     M_reg_0_63_3_5                                                                |    <0.001 |
+|                     M_reg_64_127_0_2                                                              |    <0.001 |
+|                     M_reg_64_127_3_5                                                              |    <0.001 |
+|             u_NV_NVDLA_csc                                                                        |     0.012 |
+|               u_dl                                                                                |     0.005 |
+|               u_regfile                                                                           |     0.001 |
+|                 u_dual_reg_d0                                                                     |    <0.001 |
+|                 u_dual_reg_d1                                                                     |    <0.001 |
+|                 u_single_reg                                                                      |    <0.001 |
+|               u_sg                                                                                |     0.003 |
+|                 u_dat_fifo                                                                        |    <0.001 |
+|                   clk_mgate                                                                       |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   ram                                                                             |    <0.001 |
+|                 u_wt_fifo                                                                         |    <0.001 |
+|                   clk_mgate                                                                       |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   ram                                                                             |    <0.001 |
+|               u_slcg_op_2                                                                         |    <0.001 |
+|                 nvdla_core_clk_slcg_0                                                             |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|               u_wl                                                                                |     0.004 |
+|                 u_dec                                                                             |    <0.001 |
+|             u_global_csc_clk_ovr_on_sync                                                          |    <0.001 |
+|               sync_0                                                                              |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|             u_partition_c_reset                                                                   |    <0.001 |
+|               sync_reset_synced_rstn                                                              |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|           u_partition_ma                                                                          |     0.004 |
+|             u_NV_NVDLA_cmac                                                                       |     0.004 |
+|               u_core                                                                              |     0.004 |
+|                 u_active                                                                          |     0.002 |
+|                 u_mac_0                                                                           |    <0.001 |
+|                 u_mac_1                                                                           |    <0.001 |
+|                 u_mac_2                                                                           |    <0.001 |
+|                 u_mac_3                                                                           |    <0.001 |
+|                 u_rt_in                                                                           |    <0.001 |
+|                 u_rt_out                                                                          |    <0.001 |
+|                 u_slcg_op_6                                                                       |    <0.001 |
+|                   nvdla_core_clk_slcg_0                                                           |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|               u_reg                                                                               |    <0.001 |
+|                 u_dual_reg_d0                                                                     |    <0.001 |
+|                 u_dual_reg_d1                                                                     |    <0.001 |
+|                 u_single_reg                                                                      |    <0.001 |
+|             u_global_clk_ovr_on_sync                                                              |    <0.001 |
+|               sync_0                                                                              |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|           u_partition_mb                                                                          |     0.003 |
+|             u_NV_NVDLA_cmac                                                                       |     0.003 |
+|               u_core                                                                              |     0.003 |
+|                 u_active                                                                          |     0.002 |
+|                 u_mac_0                                                                           |    <0.001 |
+|                 u_mac_1                                                                           |    <0.001 |
+|                 u_mac_2                                                                           |    <0.001 |
+|                 u_mac_3                                                                           |    <0.001 |
+|                 u_rt_in                                                                           |    <0.001 |
+|                 u_rt_out                                                                          |    <0.001 |
+|                 u_slcg_op_6                                                                       |    <0.001 |
+|                   nvdla_core_clk_slcg_0                                                           |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|               u_reg                                                                               |    <0.001 |
+|                 u_dual_reg_d0                                                                     |    <0.001 |
+|                 u_dual_reg_d1                                                                     |    <0.001 |
+|                 u_single_reg                                                                      |    <0.001 |
+|           u_partition_o                                                                           |     0.019 |
+|             u_NV_NVDLA_cfgrom                                                                     |    <0.001 |
+|             u_NV_NVDLA_csb_master                                                                 |     0.004 |
+|               u_fifo_csb2nvdla                                                                    |     0.002 |
+|                 NV_AFIFO_rd_popping_sync0                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_rd_popping_sync1                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_rd_popping_sync2                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_wr_pushing_sync0                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_wr_pushing_sync1                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_wr_pushing_sync2                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 ram                                                                               |    <0.001 |
+|                 rd_clk_rd_mgate                                                                   |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 rd_clk_rd_mgated_snd_gate                                                         |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 rd_popping_gray                                                                   |    <0.001 |
+|                 rd_pushing_gray                                                                   |    <0.001 |
+|                 wr_clk_rcv_gate                                                                   |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 wr_clk_wr_mgate                                                                   |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 wr_clk_wr_mgated_snd_gate                                                         |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 wr_popping_gray                                                                   |    <0.001 |
+|                 wr_pushing_gray                                                                   |    <0.001 |
+|               u_fifo_nvdla2csb                                                                    |    <0.001 |
+|                 NV_AFIFO_rd_popping_sync0                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_rd_popping_sync1                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_wr_pushing_sync0                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 NV_AFIFO_wr_pushing_sync1                                                         |    <0.001 |
+|                   sync3d                                                                          |    <0.001 |
+|                 ram                                                                               |    <0.001 |
+|                 rd_clk_rd_mgate                                                                   |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 rd_clk_rd_mgated_snd_gate                                                         |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 rd_pushing_gray                                                                   |    <0.001 |
+|                 wr_clk_rcv_gate                                                                   |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 wr_clk_wr_mgate                                                                   |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 wr_clk_wr_mgated_snd_gate                                                         |    <0.001 |
+|                   p_clkgate                                                                       |    <0.001 |
+|                 wr_popping_gray                                                                   |    <0.001 |
+|             u_NV_NVDLA_glb                                                                        |    <0.001 |
+|               u_csb                                                                               |    <0.001 |
+|                 u_reg                                                                             |    <0.001 |
+|               u_ic                                                                                |    <0.001 |
+|                 u_sync_core_intr                                                                  |    <0.001 |
+|                   sync_0                                                                          |    <0.001 |
+|                     NV_GENERIC_CELL                                                               |    <0.001 |
+|             u_NV_NVDLA_mcif                                                                       |     0.015 |
+|               u_csb                                                                               |    <0.001 |
+|                 u_reg                                                                             |    <0.001 |
+|               u_read                                                                              |     0.007 |
+|                 u_eg                                                                              |     0.004 |
+|                   lat_fifo0                                                                       |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                   lat_fifo1                                                                       |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                   lat_fifo2                                                                       |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                   lat_fifo3                                                                       |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                   pipe_p0                                                                         |    <0.001 |
+|                   pipe_p1                                                                         |    <0.001 |
+|                   pipe_p2                                                                         |    <0.001 |
+|                   pipe_p3                                                                         |    <0.001 |
+|                   pipe_pr                                                                         |    <0.001 |
+|                 u_ig                                                                              |     0.002 |
+|                   u_arb                                                                           |    <0.001 |
+|                     pipe_out                                                                      |    <0.001 |
+|                     pipe_p0                                                                       |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                     pipe_p3                                                                       |    <0.001 |
+|                     u_read_ig_arb                                                                 |    <0.001 |
+|                   u_bpt0                                                                          |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                   u_bpt1                                                                          |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                   u_bpt2                                                                          |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                   u_bpt3                                                                          |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                   u_cvt                                                                           |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|               u_write                                                                             |     0.008 |
+|                 u_cq                                                                              |     0.006 |
+|                   adr_ram                                                                         |    <0.001 |
+|                   nvdla_core_clk_mgate                                                            |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   nvdla_core_clk_rd_mgate_skid                                                    |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                   ram                                                                             |    <0.001 |
+|                     M_reg_0_63_0_2                                                                |    <0.001 |
+|                     M_reg_128_191_0_2                                                             |    <0.001 |
+|                     M_reg_192_255_0_2                                                             |    <0.001 |
+|                     M_reg_64_127_0_2                                                              |    <0.001 |
+|                 u_eg                                                                              |    <0.001 |
+|                   u_pipe                                                                          |    <0.001 |
+|                 u_ig                                                                              |     0.002 |
+|                   u_arb                                                                           |    <0.001 |
+|                     pipe_0                                                                        |    <0.001 |
+|                     u_dfifo0                                                                      |    <0.001 |
+|                       nvdla_core_clk_mgate                                                        |    <0.001 |
+|                         p_clkgate                                                                 |    <0.001 |
+|                       ram                                                                         |    <0.001 |
+|                   u_bpt0                                                                          |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                     pipe_p3                                                                       |    <0.001 |
+|                     u_dfifo                                                                       |    <0.001 |
+|                   u_cvt                                                                           |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                     pipe_p3                                                                       |    <0.001 |
+|                     pipe_p4                                                                       |    <0.001 |
+|             u_sync_core_reset                                                                     |    <0.001 |
+|               sync_reset_synced_core_rstn                                                         |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|               sync_reset_synced_dla_rstn                                                          |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|               sync_reset_synced_rstn                                                              |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|             u_sync_falcon_reset                                                                   |    <0.001 |
+|               sync_reset_synced_rstn                                                              |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|           u_partition_p                                                                           |     0.026 |
+|             u_NV_NVDLA_sdp                                                                        |     0.026 |
+|               u_core                                                                              |     0.006 |
+|                 u_NV_NVDLA_SDP_cmux                                                               |    <0.001 |
+|                   pipe_p1                                                                         |    <0.001 |
+|                   pipe_p2                                                                         |    <0.001 |
+|                 u_bs                                                                              |     0.002 |
+|                   u_sdp_x_alu_0                                                                   |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                     x_alu_shiftleft_su                                                            |    <0.001 |
+|                   u_sdp_x_mul_0                                                                   |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     x_mul_prelu                                                                   |    <0.001 |
+|                   u_sdp_x_relu_0                                                                  |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                   u_sdp_x_trt_0                                                                   |    <0.001 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                 u_bs_alu_pack                                                                     |    <0.001 |
+|                 u_bs_dppack                                                                       |    <0.001 |
+|                 u_bs_dpunpack                                                                     |    <0.001 |
+|                 u_bs_mul_pack                                                                     |    <0.001 |
+|                 u_c                                                                               |     0.002 |
+|                   c_int_0                                                                         |     0.002 |
+|                     pipe_p1                                                                       |    <0.001 |
+|                     pipe_p2                                                                       |    <0.001 |
+|                     pipe_p3                                                                       |    <0.001 |
+|                     pipe_p4                                                                       |    <0.001 |
+|                 u_dpin_pack                                                                       |    <0.001 |
+|                 u_dpout_unpack                                                                    |    <0.001 |
+|                 u_gate                                                                            |    <0.001 |
+|                   nvdla_core_clk_slcg_0                                                           |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|               u_rdma                                                                              |     0.013 |
+|                 u_brdma                                                                           |     0.006 |
+|                   u_NV_NVDLA_SDP_RDMA_dmaif                                                       |    <0.001 |
+|                     NV_NVDLA_SDP_RDMA_rdreq                                                       |    <0.001 |
+|                     NV_NVDLA_SDP_RDMA_rdrsp                                                       |    <0.001 |
+|                   u_cq                                                                            |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                       M_reg_0_15_0_5                                                              |    <0.001 |
+|                       M_reg_0_15_12_14                                                            |    <0.001 |
+|                       M_reg_0_15_6_11                                                             |    <0.001 |
+|                   u_eg                                                                            |     0.004 |
+|                     u_alu                                                                         |     0.001 |
+|                       pipe_p1                                                                     |    <0.001 |
+|                       u_roc                                                                       |    <0.001 |
+|                         nvdla_core_clk_mgate                                                      |    <0.001 |
+|                           p_clkgate                                                               |    <0.001 |
+|                         ram                                                                       |    <0.001 |
+|                       u_rod0                                                                      |    <0.001 |
+|                       u_rod1                                                                      |    <0.001 |
+|                       u_rod2                                                                      |    <0.001 |
+|                       u_rod3                                                                      |    <0.001 |
+|                     u_mul                                                                         |     0.002 |
+|                       pipe_p1                                                                     |    <0.001 |
+|                       u_roc                                                                       |    <0.001 |
+|                         nvdla_core_clk_mgate                                                      |    <0.001 |
+|                           p_clkgate                                                               |    <0.001 |
+|                         ram                                                                       |    <0.001 |
+|                       u_rod0                                                                      |    <0.001 |
+|                       u_rod1                                                                      |    <0.001 |
+|                       u_rod2                                                                      |    <0.001 |
+|                       u_rod3                                                                      |    <0.001 |
+|                     u_rdma_unpack                                                                 |    <0.001 |
+|                   u_gate                                                                          |    <0.001 |
+|                     nvdla_core_clk_slcg_0                                                         |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                   u_ig                                                                            |    <0.001 |
+|                   u_lat_fifo                                                                      |     0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                 u_mrdma                                                                           |     0.004 |
+|                   u_NV_NVDLA_SDP_RDMA_dmaif                                                       |    <0.001 |
+|                     NV_NVDLA_SDP_RDMA_rdreq                                                       |    <0.001 |
+|                     NV_NVDLA_SDP_RDMA_rdrsp                                                       |    <0.001 |
+|                   u_cq                                                                            |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                       M_reg_0_15_0_5                                                              |    <0.001 |
+|                       M_reg_0_15_12_13                                                            |    <0.001 |
+|                       M_reg_0_15_6_11                                                             |    <0.001 |
+|                   u_eg                                                                            |     0.003 |
+|                     u_cmd                                                                         |    <0.001 |
+|                       u_dfifo                                                                     |    <0.001 |
+|                         nvdla_core_clk_mgate                                                      |    <0.001 |
+|                           p_clkgate                                                               |    <0.001 |
+|                         ram                                                                       |    <0.001 |
+|                       u_sfifo                                                                     |    <0.001 |
+|                         nvdla_core_clk_mgate                                                      |    <0.001 |
+|                           p_clkgate                                                               |    <0.001 |
+|                         ram                                                                       |    <0.001 |
+|                     u_din                                                                         |     0.002 |
+|                       u_lat_fifo                                                                  |    <0.001 |
+|                         nvdla_core_clk_mgate                                                      |    <0.001 |
+|                           p_clkgate                                                               |    <0.001 |
+|                         ram                                                                       |    <0.001 |
+|                           M_reg_0_7_0_5                                                           |    <0.001 |
+|                           M_reg_0_7_12_17                                                         |    <0.001 |
+|                           M_reg_0_7_18_23                                                         |    <0.001 |
+|                           M_reg_0_7_24_29                                                         |    <0.001 |
+|                           M_reg_0_7_30_35                                                         |    <0.001 |
+|                           M_reg_0_7_60_64                                                         |    <0.001 |
+|                           M_reg_0_7_6_11                                                          |    <0.001 |
+|                       u_pfifo0                                                                    |    <0.001 |
+|                       u_pfifo1                                                                    |    <0.001 |
+|                       u_pfifo2                                                                    |    <0.001 |
+|                       u_pfifo3                                                                    |    <0.001 |
+|                       u_rdma_unpack                                                               |    <0.001 |
+|                     u_dout                                                                        |    <0.001 |
+|                       pipe_p1                                                                     |    <0.001 |
+|                   u_gate                                                                          |    <0.001 |
+|                     nvdla_core_clk_slcg_0                                                         |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                   u_ig                                                                            |    <0.001 |
+|                 u_reg                                                                             |     0.003 |
+|                   u_dual_reg_d0                                                                   |     0.001 |
+|                   u_dual_reg_d1                                                                   |     0.001 |
+|                   u_single_reg                                                                    |    <0.001 |
+|               u_reg                                                                               |     0.003 |
+|                 u_dual_reg_d0                                                                     |    <0.001 |
+|                 u_dual_reg_d1                                                                     |    <0.001 |
+|                 u_single_reg                                                                      |    <0.001 |
+|               u_wdma                                                                              |     0.003 |
+|                 u_cmd                                                                             |     0.002 |
+|                   u_dfifo                                                                         |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                   u_sfifo                                                                         |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|                     ram                                                                           |    <0.001 |
+|                 u_dat                                                                             |     0.001 |
+|                   u_in                                                                            |     0.001 |
+|                     u_dfifo0                                                                      |    <0.001 |
+|                     u_dfifo1                                                                      |    <0.001 |
+|                     u_dfifo2                                                                      |    <0.001 |
+|                     u_dfifo3                                                                      |    <0.001 |
+|                   u_out                                                                           |    <0.001 |
+|                 u_dmaif_wr                                                                        |    <0.001 |
+|                 u_gate                                                                            |    <0.001 |
+|                   nvdla_core_clk_slcg_0                                                           |    <0.001 |
+|                     p_clkgate                                                                     |    <0.001 |
+|                 u_intr                                                                            |    <0.001 |
+|                   u_NV_NVDLA_SDP_WDMA_DAT_DMAIF_intr_fifo                                         |    <0.001 |
+|                     nvdla_core_clk_mgate                                                          |    <0.001 |
+|                       p_clkgate                                                                   |    <0.001 |
+|             u_global_clk_ovr_on_sync                                                              |    <0.001 |
+|               sync_0                                                                              |    <0.001 |
+|                 NV_GENERIC_CELL                                                                   |    <0.001 |
+|     processing_system7_0                                                                          |     1.565 |
+|       inst                                                                                        |     1.565 |
+|     ps7_0_axi_periph                                                                              |     0.002 |
+|       s00_couplers                                                                                |     0.002 |
+|         auto_pc                                                                                   |     0.002 |
+|           inst                                                                                    |     0.002 |
+|             gen_axilite.gen_b2s_conv.axilite_b2s                                                  |     0.002 |
+|               RD.ar_channel_0                                                                     |    <0.001 |
+|                 ar_cmd_fsm_0                                                                      |    <0.001 |
+|                 cmd_translator_0                                                                  |    <0.001 |
+|                   incr_cmd_0                                                                      |    <0.001 |
+|                   wrap_cmd_0                                                                      |    <0.001 |
+|               RD.r_channel_0                                                                      |    <0.001 |
+|                 rd_data_fifo_0                                                                    |    <0.001 |
+|                 transaction_fifo_0                                                                |    <0.001 |
+|               SI_REG                                                                              |    <0.001 |
+|                 ar.ar_pipe                                                                        |    <0.001 |
+|                 aw.aw_pipe                                                                        |    <0.001 |
+|                 b.b_pipe                                                                          |    <0.001 |
+|                 r.r_pipe                                                                          |    <0.001 |
+|               WR.aw_channel_0                                                                     |    <0.001 |
+|                 aw_cmd_fsm_0                                                                      |    <0.001 |
+|                 cmd_translator_0                                                                  |    <0.001 |
+|                   incr_cmd_0                                                                      |    <0.001 |
+|                   wrap_cmd_0                                                                      |    <0.001 |
+|               WR.b_channel_0                                                                      |    <0.001 |
+|                 bid_fifo_0                                                                        |    <0.001 |
+|                 bresp_fifo_0                                                                      |    <0.001 |
+|     rst_ps7_0_50M                                                                                 |    <0.001 |
+|       U0                                                                                          |    <0.001 |
+|         EXT_LPF                                                                                   |    <0.001 |
+|           ACTIVE_LOW_AUX.ACT_LO_AUX                                                               |    <0.001 |
+|           ACTIVE_LOW_EXT.ACT_LO_EXT                                                               |    <0.001 |
+|         SEQ                                                                                       |    <0.001 |
+|           SEQ_COUNTER                                                                             |    <0.001 |
++---------------------------------------------------------------------------------------------------+-----------+
+
+

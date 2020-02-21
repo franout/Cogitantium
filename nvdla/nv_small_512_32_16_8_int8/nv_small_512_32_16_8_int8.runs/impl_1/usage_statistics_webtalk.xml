@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<webTalkData  fileName='usage_statistics_webtalk.xml'  majorVersion='1' minorVersion='0' timeStamp='Wed Feb 19 11:44:30 2020'>
+<webTalkData  fileName='usage_statistics_webtalk.xml'  majorVersion='1' minorVersion='0' timeStamp='Wed Feb 19 11:50:51 2020'>
 <section name="__ROOT__" level="0" order="1" description="">
  <section name="software_version_and_target_device" level="1" order="1" description="">
   <keyValuePair key="beta" value="FALSE" description="" />
   <keyValuePair key="build_version" value="2729669" description="" />
-  <keyValuePair key="date_generated" value="Wed Feb 19 11:44:30 2020" description="" />
+  <keyValuePair key="date_generated" value="Wed Feb 19 11:50:51 2020" description="" />
   <keyValuePair key="os_platform" value="WIN64" description="" />
   <keyValuePair key="product_version" value="Vivado v2019.2.1 (64-bit)" description="" />
   <keyValuePair key="project_id" value="8c53db1e37404b36a7d25a21c8e0e144" description="" />
-  <keyValuePair key="project_iteration" value="1" description="" />
+  <keyValuePair key="project_iteration" value="2" description="" />
   <keyValuePair key="random_id" value="3001e30016325fc689b2dc604d0b6b87" description="" />
   <keyValuePair key="registration_id" value="211614688_0_0_264" description="" />
   <keyValuePair key="route_design" value="TRUE" description="" />
@@ -1197,7 +1197,7 @@
    <keyValuePair key="basedialog_apply" value="4" description="" />
    <keyValuePair key="basedialog_cancel" value="17" description="" />
    <keyValuePair key="basedialog_no" value="4" description="" />
-   <keyValuePair key="basedialog_ok" value="48" description="" />
+   <keyValuePair key="basedialog_ok" value="53" description="" />
    <keyValuePair key="basedialog_yes" value="4" description="" />
    <keyValuePair key="basereporttab_rerun" value="1" description="" />
    <keyValuePair key="boardchooser_board_table" value="4" description="" />
@@ -1210,18 +1210,23 @@
    <keyValuePair key="customizecoredialog_apply_configuration" value="1" description="" />
    <keyValuePair key="customizecoredialog_presets" value="1" description="" />
    <keyValuePair key="ddrconfigtreetablepanel_ddr_config_tree_table" value="2" description="" />
+   <keyValuePair key="expreporttreepanel_exp_report_tree_table" value="3" description="" />
    <keyValuePair key="expruntreepanel_exp_run_tree_table" value="7" description="" />
    <keyValuePair key="filesetpanel_file_set_panel_tree" value="234" description="" />
-   <keyValuePair key="flownavigatortreepanel_flow_navigator_tree" value="25" description="" />
+   <keyValuePair key="flownavigatortreepanel_flow_navigator_tree" value="26" description="" />
    <keyValuePair key="gensettingtreetablepanel_gen_setting_tree_table" value="45" description="" />
    <keyValuePair key="gettingstartedview_open_example_project" value="1" description="" />
    <keyValuePair key="gictreetablepanel_gic_tree_table" value="7" description="" />
+   <keyValuePair key="hardwaredashboardoptionspanel_layer_tree" value="1" description="" />
+   <keyValuePair key="hardwaretreepanel_hardware_tree_table" value="7" description="" />
    <keyValuePair key="hcodeeditor_close" value="1" description="" />
    <keyValuePair key="hcodeeditor_search_text_combo_box" value="1" description="" />
    <keyValuePair key="hpopuptitle_close" value="1" description="" />
    <keyValuePair key="ipstatussectionpanel_upgrade_selected" value="1" description="" />
    <keyValuePair key="ipstatustablepanel_ip_status_table" value="4" description="" />
    <keyValuePair key="ipstatustablepanel_more_info" value="3" description="" />
+   <keyValuePair key="labtoolsmenu_jtag_scan_rate" value="1" description="" />
+   <keyValuePair key="labtoolsmenu_track_time" value="1" description="" />
    <keyValuePair key="logmonitor_monitor" value="2" description="" />
    <keyValuePair key="mainmenumgr_checkpoint" value="8" description="" />
    <keyValuePair key="mainmenumgr_edit" value="4" description="" />
@@ -1240,8 +1245,10 @@
    <keyValuePair key="newprojectwizard_project_template_tree" value="2" description="" />
    <keyValuePair key="pacommandnames_add_sources" value="3" description="" />
    <keyValuePair key="pacommandnames_auto_assign_address" value="1" description="" />
+   <keyValuePair key="pacommandnames_auto_connect_target" value="1" description="" />
    <keyValuePair key="pacommandnames_auto_update_hier" value="16" description="" />
    <keyValuePair key="pacommandnames_message_window" value="1" description="" />
+   <keyValuePair key="pacommandnames_open_hardware_manager" value="1" description="" />
    <keyValuePair key="pacommandnames_recustomize_core" value="1" description="" />
    <keyValuePair key="pacommandnames_report_ip_status" value="1" description="" />
    <keyValuePair key="pacommandnames_run_bitgen" value="1" description="" />
@@ -1250,9 +1257,15 @@
    <keyValuePair key="pacommandnames_upgrade_ip" value="1" description="" />
    <keyValuePair key="pacommandnames_validate_rsb_design" value="4" description="" />
    <keyValuePair key="paviews_code" value="7" description="" />
+   <keyValuePair key="paviews_dashboard" value="1" description="" />
    <keyValuePair key="paviews_ip_catalog" value="4" description="" />
+   <keyValuePair key="paviews_par_report" value="1" description="" />
    <keyValuePair key="paviews_project_summary" value="3" description="" />
+   <keyValuePair key="paviews_system_monitor" value="1" description="" />
    <keyValuePair key="planaheadtab_refresh_changed_modules" value="1" description="" />
+   <keyValuePair key="programdebugtab_open_target" value="1" description="" />
+   <keyValuePair key="programdebugtab_program_device" value="1" description="" />
+   <keyValuePair key="programfpgadialog_program" value="1" description="" />
    <keyValuePair key="programoptionspanelimpl_strategy" value="2" description="" />
    <keyValuePair key="progressdialog_background" value="1" description="" />
    <keyValuePair key="projectnamechooser_project_name" value="1" description="" />
@@ -1273,6 +1286,7 @@
    <keyValuePair key="statemonitor_reset_run" value="1" description="" />
    <keyValuePair key="syntheticagettingstartedview_recent_projects" value="2" description="" />
    <keyValuePair key="syntheticastatemonitor_cancel" value="2" description="" />
+   <keyValuePair key="sysmonlegendpanel_selectable_list" value="1" description="" />
    <keyValuePair key="systembuildermenu_add_module" value="11" description="" />
    <keyValuePair key="systembuildermenu_create_interface_port" value="1" description="" />
    <keyValuePair key="systembuildermenu_ip_documentation" value="1" description="" />
@@ -1287,6 +1301,7 @@
   <section name="java_command_handlers" level="2" order="2" description="">
    <keyValuePair key="addsources" value="3" description="" />
    <keyValuePair key="autoassignaddress" value="1" description="" />
+   <keyValuePair key="autoconnecttarget" value="1" description="" />
    <keyValuePair key="coreview" value="1" description="" />
    <keyValuePair key="createblockdesign" value="1" description="" />
    <keyValuePair key="customizecore" value="1" description="" />
@@ -1294,11 +1309,14 @@
    <keyValuePair key="editdelete" value="6" description="" />
    <keyValuePair key="editproperties" value="1" description="" />
    <keyValuePair key="editundo" value="6" description="" />
+   <keyValuePair key="launchprogramfpga" value="1" description="" />
    <keyValuePair key="managecompositetargets" value="2" description="" />
+   <keyValuePair key="newhardwaredashboard" value="2" description="" />
    <keyValuePair key="openblockdesign" value="3" description="" />
+   <keyValuePair key="openhardwaremanager" value="1" description="" />
    <keyValuePair key="recustomizecore" value="9" description="" />
    <keyValuePair key="reportipstatus" value="1" description="" />
-   <keyValuePair key="runbitgen" value="1" description="" />
+   <keyValuePair key="runbitgen" value="2" description="" />
    <keyValuePair key="runimplementation" value="6" description="" />
    <keyValuePair key="runsynthesis" value="7" description="" />
    <keyValuePair key="savefileproxyhandler" value="1" description="" />

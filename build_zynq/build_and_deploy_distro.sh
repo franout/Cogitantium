@@ -10,7 +10,7 @@ source "$PETALINUX_PATH"/petalinux/settings.sh
 
 boot_device="sd"
 
-petalinux-create -t project   --template zynq --name nv_small 
+petalinux-create --type project   --template zynq --name nv_small
 
 cd  ./nv_small
 ## copy configuration with external local path for u-boot and linux kernel and DTB ( generated from Vitis) 
@@ -22,7 +22,7 @@ cd  ./nv_small
 
 ## get hardware description generated from VIVADO
 petalinux-config --get-hw-description="$core"nvdla_configurations/nv_small_512_32_8_int8/
-
+exit
 ## KMD nvdla
 #petalinux-create -t modules --name kmdnvdla --enable
 #rm -rf ./project-spec/meta-user/recipes-module/kmdnvdla/files/*

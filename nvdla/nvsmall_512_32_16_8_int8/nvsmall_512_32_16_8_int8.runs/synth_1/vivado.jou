@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Feb 21 15:32:20 2020
+# Process ID: 9227
+# Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.runs/synth_1
+# Command line: vivado -log base_zynq_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source base_zynq_wrapper.tcl
+# Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.runs/synth_1/base_zynq_wrapper.vds
+# Journal file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source base_zynq_wrapper.tcl -notrace

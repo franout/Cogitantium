@@ -38,8 +38,8 @@
 typedef uint8_t NvU8;
 typedef uint16_t NvU16;
 typedef uint32_t NvU32;
-typedef uint32_t NvU64;
-typedef int32_t NvS64;
+typedef uint64_t NvU64;
+typedef int64_t NvS64;
 typedef int32_t NvS32;
 typedef int16_t NvS16;
 typedef int8_t NvS8;

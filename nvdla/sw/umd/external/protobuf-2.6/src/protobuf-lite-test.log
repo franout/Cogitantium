@@ -1,2 +1,2 @@
-PASS
-PASS protobuf-lite-test (exit status: 0)
+/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-protobuf-lite-test: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotobuf-lite.so.9: file too short
+FAIL protobuf-lite-test (exit status: 127)
