@@ -51,6 +51,7 @@
 #include <linux/spinlock.h>
 #include <linux/time.h>
 #include <linux/uaccess.h>
+#include <linux/time64.h>
 
 #include <nvdla_interface.h>
 #include <nvdla_linux.h>
@@ -121,8 +122,9 @@ void *dla_memcpy(void *dest, const void *src, uint64_t len)
 }
 
 int64_t dla_get_time_us(void)
-{
-	return ktime_get_ns() / NSEC_PER_USEC;
+{		uint64_t time=ktime_get_ns();
+	return ((int64_t)do_div( time, NSEC_PER_USEC));
+	
 }
 
 void dla_reg_write(void *driver_context, uint32_t addr, uint32_t reg)
