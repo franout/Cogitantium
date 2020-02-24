@@ -1,3 +1,6 @@
-/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-protoc: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotoc.so.9: file too short
-protoc failed.
-FAIL google/protobuf/compiler/zip_output_unittest.sh (exit status: 1)
+Testing output to zip...
+Testing output to jar...
+./google/protobuf/compiler/zip_output_unittest.sh: line 76: jar: command not found
+Warning:  'jar' command not available.  Skipping test.
+PASS
+PASS google/protobuf/compiler/zip_output_unittest.sh (exit status: 0)

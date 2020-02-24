@@ -1,9 +1,8 @@
 + TESTFILE=Makefile
 + ./zcgzip
-+ gunzip
 + cmp - Makefile
-/mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/lt-zcgzip: error while loading shared libraries: /mnt/d/uni/2019-2020/thesis/cogitantium/nvdla/sw/umd/external/protobuf-2.6/src/.libs/libprotobuf.so.9: file too short
-
-gzip: stdin: unexpected end of file
-cmp: EOF on -
-FAIL google/protobuf/io/gzip_stream_unittest.sh (exit status: 1)
++ gunzip
++ gzip
++ ./zcgunzip
++ cmp - Makefile
+PASS google/protobuf/io/gzip_stream_unittest.sh (exit status: 0)
