@@ -1417,17 +1417,6 @@ Enable DDR Controller of Zynq PS
 </TR>
 <TR valign="top">
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>Enable DDR</B>
-</TD>
-<TD width=10% BGCOLOR=#FBF5EF>
-1
-</TD>
-<TD width=10% BGCOLOR=#FBF5EF>
-Enable DDR Controller of Zynq PS
-</TD>
-</TR>
-<TR valign="top">
-<TD width=10% BGCOLOR=#FBF5EF>
 <B>Memory Part</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
@@ -1801,7 +1790,7 @@ The average of the data midpoint delay, of the data delays associated with a byt
 ARM PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-666.666687
+660,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1812,7 +1801,7 @@ ARM PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-200.000000
+187,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1823,7 +1812,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-25.000000
+24,933332
 </TD>
 </TR>
 <TR valign="top">
@@ -1834,7 +1823,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-50.000000
+51,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1845,7 +1834,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-50.000000
+51,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1856,7 +1845,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-23.809523
+22,897961
 </TD>
 </TR>
 <TR valign="top">
@@ -1867,7 +1856,7 @@ IO PLL
 CPU_1X
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-111.111115
+110,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1878,7 +1867,7 @@ CPU_1X
 CPU_1X
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-111.111115
+110,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1889,7 +1878,7 @@ CPU_1X
 CPU_1X
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-111.111115
+110,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1900,7 +1889,7 @@ CPU_1X
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-50.000000
+51,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1911,7 +1900,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-10.000000
+10,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1922,7 +1911,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-10.000000
+10,000000
 </TD>
 </TR>
 <TR valign="top">
@@ -1933,7 +1922,7 @@ IO PLL
 IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-10.000000
+10,000000
 </TD>
 </TR>
 </TABLE>
@@ -4639,10 +4628,10 @@ SLCR_LOCK
 <B>f0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>c0</B>
+<B>20</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the PLL_RES[3:0] input of the PLL to set the PLL loop filter resistor control.</B>
@@ -4679,10 +4668,10 @@ SLCR_LOCK
 <B>3ff000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>145</B>
+<B>113</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>145000</B>
+<B>113000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the LOCK_CNT[9:0] input of the PLL to set the number of clock cycles the PLL needs to have clkref and clkfb aligned with a certain window before staying locked.</B>
@@ -4702,7 +4691,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1452c0</B>
+<B>113220</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Configuration</B>
@@ -4787,10 +4776,10 @@ SLCR_LOCK
 <B>7f000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1e</B>
+<B>22</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1e000</B>
+<B>22000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provide the feedback divisor for the PLL. Note: Before changing this value, the PLL must first be bypassed and then put into reset mode. Refer to the Zynq-7000 TRM, UG585, Clocks chapter for CP/RES/CNT values for programming the PLL.</B>
@@ -4810,7 +4799,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1e000</B>
+<B>22000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Control</B>
@@ -6027,10 +6016,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f</B>
+<B>35</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f00</B>
+<B>3500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -6047,10 +6036,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>7</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>700000</B>
+<B>200000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider</B>
@@ -6070,7 +6059,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>700f01</B>
+<B>203501</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DCI clock control</B>
@@ -6321,10 +6310,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>8</B>
+<B>9</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>900</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>First divisor for Ethernet controller 0 source clock.</B>
@@ -6364,7 +6353,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>500801</B>
+<B>500901</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>GigE 0 Ref Clock Control</B>
@@ -6488,10 +6477,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>6</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Divisor for Quad SPI Controller source clock.</B>
@@ -6511,7 +6500,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>501</B>
+<B>601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Quad SPI Ref Clock Control</B>
@@ -6655,10 +6644,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>14</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1400</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -6678,7 +6667,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1401</B>
+<B>1601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>SDIO Ref Clock Control</B>
@@ -6822,10 +6811,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>14</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1400</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Divisor for UART Controller source clock.</B>
@@ -6845,7 +6834,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1402</B>
+<B>1602</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>UART Ref Clock Control</B>
@@ -6989,10 +6978,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>7</B>
+<B>31</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>700</B>
+<B>3100</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -7009,10 +6998,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>6</B>
+<B>1</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>600000</B>
+<B>100000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider.</B>
@@ -7032,7 +7021,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>600701</B>
+<B>103101</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>CAN Ref Clock Control</B>
@@ -7324,10 +7313,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>6</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -7347,7 +7336,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>501</B>
+<B>601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PCAP Clock Control</B>
@@ -7451,10 +7440,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider.</B>
@@ -7471,10 +7460,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>1</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>400000</B>
+<B>100000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divide</B>
@@ -7494,7 +7483,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>400500</B>
+<B>101600</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PL Clock 0 Output control</B>
@@ -10298,10 +10287,10 @@ ddrc_ctrl
 <B>fff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>81</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>81</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tREFI - Average time between refreshes. Unit: in multiples of 32 clocks. DRAM related. Default value is set for DDR3. Dynamic Bit Field.</B>
@@ -10361,7 +10350,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1081</B>
+<B>1080</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Two Rank Configuration</B>
@@ -10886,10 +10875,10 @@ ddrc_ctrl
 <B>3f</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1b</B>
+<B>1a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1b</B>
+<B>1a</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tRC - Min time between activates to same bank (spec: 65 ns for DDR2-400 and smaller for faster parts). DRAM Related. Default value is set for DDR3.</B>
@@ -10906,10 +10895,10 @@ ddrc_ctrl
 <B>3fc0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>56</B>
+<B>55</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1580</B>
+<B>1540</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tRFC(min) - Minimum time from refresh to refresh or activate (spec: 75nS to 195nS). DRAM Related. Default value is set for DDR3. Dynamic Bit Field.</B>
@@ -10949,7 +10938,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>4159b</B>
+<B>4155a</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DRAM Parameters 0</B>
@@ -12422,10 +12411,10 @@ ddrc_ctrl
 <B>3ff0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>16d</B>
+<B>169</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>16d0</B>
+<B>1690</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Clock cycles to wait after a DDR software reset before driving CKE high to start the DRAM initialization sequence. Units: 1024 clock cycles. DDR2 Specifications typically require this to be programmed for a delay of >= 200 uS. LPDDR2 - tINIT0 of 20 mS (max) + tINIT1 of 100 nS (min)</B>
@@ -12485,7 +12474,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>116d4</B>
+<B>11694</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DRAM Burst 8 read/write</B>
@@ -15314,10 +15303,10 @@ ddrc_ctrl
 <B>fffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>cb73</B>
+<B>c96a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>cb73</B>
+<B>c96a</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>DDR2: not used. LPDDR2 and DDR3: Average interval to wait between automatically issuing ZQCS (ZQ calibration short) commands to DDR3 devices. Meaningless if reg_ddrc_dis_auto_zq=1. Units: 1024 Clock cycles.</B>
@@ -15334,10 +15323,10 @@ ddrc_ctrl
 <B>ff00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>69</B>
+<B>68</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>6900000</B>
+<B>6800000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Number of cycles to assert DRAM reset signal during init sequence. Units: 1024 Clock cycles. Applicable for DDR3 only.</B>
@@ -15357,7 +15346,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>690cb73</B>
+<B>680c96a</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Misc parameters</B>
@@ -17699,10 +17688,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1d</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1d</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -17719,10 +17708,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f2</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>3c800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -17742,7 +17731,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3c81d</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -17826,10 +17815,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -17846,10 +17835,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>d8</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>36000</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -17869,7 +17858,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>36012</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -17953,10 +17942,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -17973,10 +17962,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>de</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>37800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -17996,7 +17985,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3780c</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -18080,10 +18069,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>21</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>21</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -18100,10 +18089,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>ee</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>3b800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -18123,7 +18112,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3b821</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -18795,10 +18784,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. (Used to program the manual training ratio value)</B>
@@ -18858,7 +18847,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -18942,10 +18931,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. (Used to program the manual training ratio value)</B>
@@ -19005,7 +18994,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -19089,10 +19078,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. (Used to program the manual training ratio value)</B>
@@ -19152,7 +19141,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -19236,10 +19225,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. (Used to program the manual training ratio value)</B>
@@ -19299,7 +19288,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -19383,10 +19372,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when reg_phy_fifo_we_in_force is set to 0.</B>
@@ -19446,7 +19435,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 0.</B>
@@ -19530,10 +19519,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when reg_phy_fifo_we_in_force is set to 0.</B>
@@ -19593,7 +19582,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 0.</B>
@@ -19677,10 +19666,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when reg_phy_fifo_we_in_force is set to 0.</B>
@@ -19740,7 +19729,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 0.</B>
@@ -19824,10 +19813,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when reg_phy_fifo_we_in_force is set to 0.</B>
@@ -19887,7 +19876,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 0.</B>
@@ -19971,10 +19960,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -20034,7 +20023,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 0.</B>
@@ -20118,10 +20107,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -20181,7 +20170,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 0.</B>
@@ -20265,10 +20254,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -20328,7 +20317,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 0.</B>
@@ -20412,10 +20401,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -20475,7 +20464,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 0.</B>
@@ -23057,10 +23046,10 @@ ddrc_ctrl
 <B>ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>a8</B>
+<B>a7</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>a8</B>
+<B>a7</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Maximum duration of the auto initialization, tINIT5. Units: 1024 clock cycles. LPDDR2 typically requires 10 us.</B>
@@ -23100,7 +23089,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>12a8</B>
+<B>12a7</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>LPDDR2 Control 3</B>
@@ -46481,24 +46470,6 @@ MASK_DATA_0_LSW
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>USB1 RESET</H1>
-<H1>DIR MODE BANK 0</H1>
-<H1>DIR MODE BANK 1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE BANK 0</H1>
-<H1>OUTPUT ENABLE BANK 1</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
 <H1>ENET RESET</H1>
 <H1>ENET0 RESET</H1>
 <H1>DIR MODE BANK 0</H1>
@@ -47113,24 +47084,6 @@ MASK_DATA_0_LSW
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>ENET1 RESET</H1>
-<H1>DIR MODE BANK 0</H1>
-<H1>DIR MODE BANK 1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE BANK 0</H1>
-<H1>OUTPUT ENABLE BANK 1</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
 <H1>I2C RESET</H1>
 <H1>I2C0 RESET</H1>
 <H1>DIR MODE GPIO BANK0</H1>
@@ -47742,24 +47695,6 @@ MASK_DATA_0_LSW
 </TR>
 </TABLE>
 <P>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>I2C1 RESET</H1>
-<H1>DIR MODE GPIO BANK0</H1>
-<H1>DIR MODE GPIO BANK1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE</H1>
-<H1>OUTPUT ENABLE</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
@@ -52206,10 +52141,10 @@ SLCR_LOCK
 <B>f0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>c0</B>
+<B>20</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the PLL_RES[3:0] input of the PLL to set the PLL loop filter resistor control.</B>
@@ -52246,10 +52181,10 @@ SLCR_LOCK
 <B>3ff000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>145</B>
+<B>113</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>145000</B>
+<B>113000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the LOCK_CNT[9:0] input of the PLL to set the number of clock cycles the PLL needs to have clkref and clkfb aligned withth a certain window before staying locked.</B>
@@ -52269,7 +52204,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1452c0</B>
+<B>113220</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Configuration</B>
@@ -52354,10 +52289,10 @@ SLCR_LOCK
 <B>7f000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1e</B>
+<B>22</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1e000</B>
+<B>22000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provide the feedback divisor for the PLL. Note: Before changing this value, the PLL must first be bypassed and then put into powerdown or reset state.</B>
@@ -52377,7 +52312,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1e000</B>
+<B>22000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Control</B>
@@ -53594,10 +53529,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f</B>
+<B>35</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f00</B>
+<B>3500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -53614,10 +53549,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>7</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>700000</B>
+<B>200000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider</B>
@@ -53637,7 +53572,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>700f01</B>
+<B>203501</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DCI clock control</B>
@@ -53888,10 +53823,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>8</B>
+<B>9</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>900</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>First divisor for Ethernet controller 0 source clock.</B>
@@ -53931,7 +53866,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>500801</B>
+<B>500901</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>GigE 0 Ref Clock Control</B>
@@ -54055,10 +53990,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>6</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Divisor for Quad SPI Controller source clock.</B>
@@ -54078,7 +54013,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>501</B>
+<B>601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Quad SPI Ref Clock Control</B>
@@ -54222,10 +54157,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>14</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1400</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -54245,7 +54180,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1401</B>
+<B>1601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>SDIO Ref Clock Control</B>
@@ -54389,10 +54324,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>14</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1400</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Divisor for UART Controller source clock.</B>
@@ -54412,7 +54347,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1402</B>
+<B>1602</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>UART Ref Clock Control</B>
@@ -54556,10 +54491,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>7</B>
+<B>31</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>700</B>
+<B>3100</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -54576,10 +54511,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>6</B>
+<B>1</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>600000</B>
+<B>100000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider.</B>
@@ -54599,7 +54534,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>600701</B>
+<B>103101</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>CAN Ref Clock Control</B>
@@ -54891,10 +54826,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>6</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -54914,7 +54849,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>501</B>
+<B>601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PCAP Clock Control</B>
@@ -55018,10 +54953,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider.</B>
@@ -55038,10 +54973,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>1</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>400000</B>
+<B>100000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divide</B>
@@ -55061,7 +54996,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>400500</B>
+<B>101600</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PL Clock 0 Output control</B>
@@ -57887,10 +57822,10 @@ ddrc_ctrl
 <B>fff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>81</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>81</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tREFI - Average time between refreshes. Unit: in multiples of 32 clocks. DRAM related. Default value is set for DDR3. Dynamic Bit Field.</B>
@@ -58050,7 +57985,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>81081</B>
+<B>81080</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Two Rank Configuration</B>
@@ -58575,10 +58510,10 @@ ddrc_ctrl
 <B>3f</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1b</B>
+<B>1a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1b</B>
+<B>1a</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tRC - Min time between activates to same bank (spec: 65 ns for DDR2-400 and smaller for faster parts). DRAM Related. Default value is set for DDR3.</B>
@@ -58595,10 +58530,10 @@ ddrc_ctrl
 <B>3fc0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>56</B>
+<B>55</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1580</B>
+<B>1540</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tRFC(min) - Minimum time from refresh to refresh or activate (spec: 75nS to 195nS). DRAM Related. Default value is set for DDR3. Dynamic Bit Field.</B>
@@ -58638,7 +58573,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>4159b</B>
+<B>4155a</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DRAM Parameters 0</B>
@@ -60171,10 +60106,10 @@ ddrc_ctrl
 <B>3ff0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>16d</B>
+<B>169</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>16d0</B>
+<B>1690</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Clock cycles to wait after a DDR software reset before driving CKE high to start the DRAM initialization sequence. Units: 1024 clock cycles. DDR2 Specifications typically require this to be programmed for a delay of >= 200 uS. LPDDR2 - tINIT0 of 20 mS (max) + tINIT1 of 100 nS (min)</B>
@@ -60234,7 +60169,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>116d4</B>
+<B>11694</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DRAM Burst 8 read/write</B>
@@ -63430,10 +63365,10 @@ ddrc_ctrl
 <B>fffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>cb73</B>
+<B>c96a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>cb73</B>
+<B>c96a</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>DDR2: not used. LPDDR2 and DDR3: Average interval to wait between automatically issuing ZQCS (ZQ calibration short) commands to DDR3 devices. Meaningless if reg_ddrc_dis_auto_zq=1. Units: 1024 Clock cycles.</B>
@@ -63450,10 +63385,10 @@ ddrc_ctrl
 <B>ff00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>69</B>
+<B>68</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>6900000</B>
+<B>6800000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Number of cycles to assert DRAM reset signal during init sequence. Units: 1024 Clock cycles. Applicable for DDR3 only.</B>
@@ -63473,7 +63408,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>690cb73</B>
+<B>680c96a</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Misc parameters</B>
@@ -66195,10 +66130,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1d</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1d</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -66215,10 +66150,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f2</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>3c800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -66238,7 +66173,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3c81d</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -66322,10 +66257,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -66342,10 +66277,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>d8</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>36000</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -66365,7 +66300,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>36012</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 1.</B>
@@ -66449,10 +66384,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -66469,10 +66404,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>de</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>37800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -66492,7 +66427,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3780c</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 2.</B>
@@ -66576,10 +66511,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>21</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>21</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -66596,10 +66531,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>ee</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>3b800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -66619,7 +66554,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3b821</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 3.</B>
@@ -67291,10 +67226,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -67354,7 +67289,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -67438,10 +67373,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -67501,7 +67436,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 1.</B>
@@ -67585,10 +67520,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -67648,7 +67583,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 2.</B>
@@ -67732,10 +67667,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -67795,7 +67730,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 3.</B>
@@ -67879,10 +67814,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -67942,7 +67877,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 0.</B>
@@ -68026,10 +67961,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -68089,7 +68024,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 1.</B>
@@ -68173,10 +68108,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -68236,7 +68171,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 2.</B>
@@ -68320,10 +68255,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -68383,7 +68318,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY FIFO write enable configuration for data slice 3.</B>
@@ -68467,10 +68402,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -68530,7 +68465,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 0.</B>
@@ -68614,10 +68549,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -68677,7 +68612,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 1.</B>
@@ -68761,10 +68696,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -68824,7 +68759,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 2.</B>
@@ -68908,10 +68843,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -68971,7 +68906,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio config for data slice 3.</B>
@@ -71733,10 +71668,10 @@ ddrc_ctrl
 <B>ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>a8</B>
+<B>a7</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>a8</B>
+<B>a7</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Maximum duration of the auto initialization, tINIT5. Units: 1024 clock cycles. LPDDR2 typically requires 10 us.</B>
@@ -71776,7 +71711,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>12a8</B>
+<B>12a7</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>LPDDR2 Control 3</B>
@@ -95257,24 +95192,6 @@ MASK_DATA_0_LSW
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>USB1 RESET</H1>
-<H1>DIR MODE BANK 0</H1>
-<H1>DIR MODE BANK 1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE BANK 0</H1>
-<H1>OUTPUT ENABLE BANK 1</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
 <H1>ENET RESET</H1>
 <H1>ENET0 RESET</H1>
 <H1>DIR MODE BANK 0</H1>
@@ -95889,24 +95806,6 @@ MASK_DATA_0_LSW
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>ENET1 RESET</H1>
-<H1>DIR MODE BANK 0</H1>
-<H1>DIR MODE BANK 1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE BANK 0</H1>
-<H1>OUTPUT ENABLE BANK 1</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
 <H1>I2C RESET</H1>
 <H1>I2C0 RESET</H1>
 <H1>DIR MODE GPIO BANK0</H1>
@@ -96518,24 +96417,6 @@ MASK_DATA_0_LSW
 </TR>
 </TABLE>
 <P>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>I2C1 RESET</H1>
-<H1>DIR MODE GPIO BANK0</H1>
-<H1>DIR MODE GPIO BANK1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE</H1>
-<H1>OUTPUT ENABLE</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
@@ -100941,10 +100822,10 @@ SLCR_LOCK
 <B>f0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>c0</B>
+<B>20</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drives the PLL_RES[3:0] input of the PLL to set the PLL loop filter resistor control</B>
@@ -100981,10 +100862,10 @@ SLCR_LOCK
 <B>3ff000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>145</B>
+<B>113</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>145000</B>
+<B>113000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drives the LOCK_CNT[9:0] input of the PLL to set the number of clock cycles the PLL needs to have clkref and clkfb aligned withth a certain window before syaing locked.</B>
@@ -101004,7 +100885,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1452c0</B>
+<B>113220</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Configuration</B>
@@ -101089,10 +100970,10 @@ SLCR_LOCK
 <B>7f000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1e</B>
+<B>22</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1e000</B>
+<B>22000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the feedback divisor for the PLL. NOTE: Before changing this value the PLL must first be bypassed and then put into powerdown or reset state.</B>
@@ -101112,7 +100993,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1e000</B>
+<B>22000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Control</B>
@@ -102329,10 +102210,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f</B>
+<B>35</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f00</B>
+<B>3500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -102349,10 +102230,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>7</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>700000</B>
+<B>200000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider</B>
@@ -102372,7 +102253,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>700f01</B>
+<B>203501</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DCI clock control</B>
@@ -102623,10 +102504,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>8</B>
+<B>9</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>900</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -102666,7 +102547,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>500801</B>
+<B>500901</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Gigabit Ethernet MAC 0 Ref Clock Control</B>
@@ -102790,10 +102671,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>6</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -102813,7 +102694,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>501</B>
+<B>601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Linear Quad-SPI Reference Clock Control</B>
@@ -102957,10 +102838,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>14</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1400</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -102980,7 +102861,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1401</B>
+<B>1601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>SDIO Reference Clock Control</B>
@@ -103124,10 +103005,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>14</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1400</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -103147,7 +103028,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1402</B>
+<B>1602</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>UART Reference Clock Control</B>
@@ -103291,10 +103172,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>7</B>
+<B>31</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>700</B>
+<B>3100</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -103311,10 +103192,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>6</B>
+<B>1</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>600000</B>
+<B>100000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider</B>
@@ -103334,7 +103215,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>600701</B>
+<B>103101</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>CAN Reference Clock Control</B>
@@ -103626,10 +103507,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>6</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -103649,7 +103530,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>501</B>
+<B>601</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PCAP 2X Clock Contol</B>
@@ -103753,10 +103634,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>5</B>
+<B>16</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>500</B>
+<B>1600</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -103773,10 +103654,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>1</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>400000</B>
+<B>100000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider</B>
@@ -103796,7 +103677,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>400500</B>
+<B>101600</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>FPGA 0 Output Clock Control</B>
@@ -106578,10 +106459,10 @@ ddrc_ctrl
 <B>fff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>81</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>81</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tREFI - Average time between refreshes. Unit: in multiples of 32 clocks. DRAM RELATED. Default value is set for DDR3.</B>
@@ -106741,7 +106622,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>81081</B>
+<B>81080</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Two rank configuration register</B>
@@ -107266,10 +107147,10 @@ ddrc_ctrl
 <B>3f</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1b</B>
+<B>1a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1b</B>
+<B>1a</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tRC - Min time between activates to same bank (spec: 65 ns for DDR2-400 and smaller for faster parts). DRAM RELATED. Default value is set for DDR3.</B>
@@ -107286,10 +107167,10 @@ ddrc_ctrl
 <B>3fc0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>56</B>
+<B>55</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1580</B>
+<B>1540</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>tRFC(min) - Minimum time from refresh to refresh or activate (spec: 75ns to 195ns). DRAM RELATED. Default value is set for DDR3.</B>
@@ -107329,7 +107210,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>4159b</B>
+<B>4155a</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DRAM Parameters register 0</B>
@@ -108862,10 +108743,10 @@ ddrc_ctrl
 <B>3ff0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>16d</B>
+<B>169</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>16d0</B>
+<B>1690</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Cycles to wait after reset before driving CKE high to start the DRAM initialization sequence. Units: 1024 clock cycles. DDR2 Specifications typically require this to be programmed for a delay of >= 200 us. LPDDR2 - tINIT0 of 20 ms (max) + tINIT1 of 100 ns (min)</B>
@@ -108925,7 +108806,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>116d4</B>
+<B>11694</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>DRAM burst 8 read/write register</B>
@@ -111727,10 +111608,10 @@ ddrc_ctrl
 <B>fffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>cb73</B>
+<B>c96a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>cb73</B>
+<B>c96a</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Average interval to wait between automatically issuing ZQCS (ZQ calibration short) commands to DDR3 devices. Meaningless if reg_ddrc_dis_auto_zq=1. Units: 1024 Clock cycles. Applicable for DDR3 and LPDDR2 devices.</B>
@@ -111747,10 +111628,10 @@ ddrc_ctrl
 <B>ff00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>69</B>
+<B>68</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>6900000</B>
+<B>6800000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Number of cycles to assert DRAM reset signal during init sequence. Units: 1024 Clock cycles. Applicable for DDR3 only.</B>
@@ -111770,7 +111651,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>690cb73</B>
+<B>680c96a</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Misc parameters register</B>
@@ -114312,10 +114193,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1d</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1d</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -114332,10 +114213,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f2</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>3c800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -114355,7 +114236,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3c81d</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -114439,10 +114320,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -114459,10 +114340,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>d8</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>36000</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -114482,7 +114363,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>36012</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -114566,10 +114447,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>c</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -114586,10 +114467,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>de</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>37800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -114609,7 +114490,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3780c</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -114693,10 +114574,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>21</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>21</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used by Write Leveling FSM</B>
@@ -114713,10 +114594,10 @@ ddrc_ctrl
 <B>ffc00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>ee</B>
+<B>60</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>3b800</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>The user programmable init ratio used Gate Leveling FSM</B>
@@ -114736,7 +114617,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>3b821</B>
+<B>18000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY init ratio register for data slice 0.</B>
@@ -115408,10 +115289,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -115471,7 +115352,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>9d</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -115555,10 +115436,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -115618,7 +115499,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>92</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -115702,10 +115583,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -115765,7 +115646,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>8c</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -115849,10 +115730,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write DQS slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -115912,7 +115793,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>a1</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write DQS configuration register for data slice 0.</B>
@@ -115996,10 +115877,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -116059,7 +115940,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>147</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY fifo write enable configuration register for data slice 0.</B>
@@ -116143,10 +116024,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -116206,7 +116087,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>12d</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY fifo write enable configuration register for data slice 0.</B>
@@ -116290,10 +116171,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -116353,7 +116234,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>133</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY fifo write enable configuration register for data slice 0.</B>
@@ -116437,10 +116318,10 @@ ddrc_ctrl
 <B>7ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value to be used when fifo_we_X_force_mode is set to 0.</B>
@@ -116500,7 +116381,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>143</B>
+<B>b5</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY fifo write enable configuration register for data slice 0.</B>
@@ -116584,10 +116465,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -116647,7 +116528,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>dd</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio configuration register for data slice 0.</B>
@@ -116731,10 +116612,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -116794,7 +116675,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>d2</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio configuration register for data slice 0.</B>
@@ -116878,10 +116759,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -116941,7 +116822,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>cc</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio configuration register for data slice 0.</B>
@@ -117025,10 +116906,10 @@ ddrc_ctrl
 <B>3ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Ratio value for write data slave DLL. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line.</B>
@@ -117088,7 +116969,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>e1</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PHY write data slave ratio configuration register for data slice 0.</B>
@@ -119850,10 +119731,10 @@ ddrc_ctrl
 <B>ff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>a8</B>
+<B>a7</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>a8</B>
+<B>a7</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Maximum duration of the auto initialization, tINIT5. Present only in designs configured to support LPDDR2. Units: 1024 clock cycles. LPDDR2 typically requires 10 us.</B>
@@ -119893,7 +119774,7 @@ ddrc_ctrl
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>12a8</B>
+<B>12a7</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>LPDDR2 Control 3 Register</B>
@@ -143354,24 +143235,6 @@ MASK_DATA_0_LSW
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>USB1 RESET</H1>
-<H1>DIR MODE BANK 0</H1>
-<H1>DIR MODE BANK 1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE BANK 0</H1>
-<H1>OUTPUT ENABLE BANK 1</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
 <H1>ENET RESET</H1>
 <H1>ENET0 RESET</H1>
 <H1>DIR MODE BANK 0</H1>
@@ -143986,24 +143849,6 @@ MASK_DATA_0_LSW
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>ENET1 RESET</H1>
-<H1>DIR MODE BANK 0</H1>
-<H1>DIR MODE BANK 1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE BANK 0</H1>
-<H1>OUTPUT ENABLE BANK 1</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
 <H1>I2C RESET</H1>
 <H1>I2C0 RESET</H1>
 <H1>DIR MODE GPIO BANK0</H1>
@@ -144615,24 +144460,6 @@ MASK_DATA_0_LSW
 </TR>
 </TABLE>
 <P>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>I2C1 RESET</H1>
-<H1>DIR MODE GPIO BANK0</H1>
-<H1>DIR MODE GPIO BANK1</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>
-<H1>OUTPUT ENABLE</H1>
-<H1>OUTPUT ENABLE</H1>
-<H1>MASK_DATA_0_LSW LOW BANK [15:0]</H1>
-<H1>MASK_DATA_0_MSW LOW BANK [31:16]</H1>
-<H1>MASK_DATA_1_LSW LOW BANK [47:32]</H1>
-<H1>MASK_DATA_1_MSW LOW BANK [53:48]</H1>
-<H1>ADD 1 MS DELAY</H1>
-<H1>MASK_DATA_0_LSW HIGH BANK [15:0]</H1>
 <H1>MASK_DATA_0_MSW HIGH BANK [31:16]</H1>
 <H1>MASK_DATA_1_LSW HIGH BANK [47:32]</H1>
 <H1>MASK_DATA_1_MSW HIGH BANK [53:48]</H1>

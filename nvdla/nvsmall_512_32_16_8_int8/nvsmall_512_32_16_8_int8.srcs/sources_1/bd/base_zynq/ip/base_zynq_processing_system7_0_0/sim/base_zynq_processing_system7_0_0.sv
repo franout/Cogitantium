@@ -842,7 +842,7 @@
       parameter C_FCLK_CLK1_BUF = "FALSE";
       parameter C_FCLK_CLK2_BUF = "FALSE";
       parameter C_FCLK_CLK3_BUF = "FALSE";
-      parameter C_PACKAGE_NAME = "clg484";
+      parameter C_PACKAGE_NAME = "clg400";
       parameter C_GP0_EN_MODIFIABLE_TXN = "1";
       parameter C_GP1_EN_MODIFIABLE_TXN = "1";
 

@@ -193,7 +193,7 @@ begin
   ------------------------------------------------------------------------------
   
     XST_WA:if C_AB > 0 generate
-      CS  <= AValid when A(0 to C_AB-1) = BAR (0 to C_AB-1) else
+      CS  <= AValid when A(0 to C_AB-1) = BAR (64-C_AW to 64-C_AW+C_AB-1) else
              '0' ;
     end generate XST_WA;
     
@@ -489,64 +489,64 @@ use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.CONV_INTEGER;
-library axi_apb_bridge_v3_0_13;
-use axi_apb_bridge_v3_0_13.pselect_f;
+library axi_apb_bridge_v3_0_15;
+use axi_apb_bridge_v3_0_15.pselect_f;
 
 
 entity psel_decoder is
   generic (
     C_FAMILY               : string                    := "virtex7";
 
-    C_S_AXI_ADDR_WIDTH     : integer range 32 to 32    := 32;
+    C_S_AXI_ADDR_WIDTH     : integer range 1 to 64    := 32;
     C_APB_NUM_SLAVES       : integer range 1 to 16     := 4;
 
-    C_S_AXI_RNG1_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG1_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG1_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG1_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG2_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG2_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG2_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG2_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG3_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG3_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG3_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG3_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG4_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG4_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG4_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG4_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG5_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG5_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG5_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG5_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG6_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG6_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG6_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG6_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG7_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG7_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG7_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG7_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG8_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG8_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG8_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG8_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG9_BASEADDR  : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG9_HIGHADDR  : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG9_BASEADDR  : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG9_HIGHADDR  : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG10_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG10_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG10_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG10_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG11_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG11_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG11_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG11_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG12_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG12_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG12_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG12_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG13_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG13_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG13_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG13_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG14_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG14_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG14_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG14_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG15_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG15_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_S_AXI_RNG15_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG15_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
 
-    C_S_AXI_RNG16_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG16_HIGHADDR : std_logic_vector(0 to 31) := X"00000000"
+    C_S_AXI_RNG16_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG16_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000"
 
     );
   port (
@@ -576,20 +576,21 @@ attribute DowngradeIPIdentifiedWarnings of RTL : architecture is "yes";
 -- upon the selected base and high addresses.
 -------------------------------------------------------------------------------
 
-    function Get_Addr_Bits (x : std_logic_vector(0 to C_S_AXI_ADDR_WIDTH-1);
-                            y : std_logic_vector(0 to C_S_AXI_ADDR_WIDTH-1)
+    function Get_Addr_Bits (x : std_logic_vector(0 to 63);
+                            y : std_logic_vector(0 to 63);
+                            a : integer
                            )
              return integer is
-        variable addr_nor : std_logic_vector(0 to C_S_AXI_ADDR_WIDTH-1);
+        variable addr_nor : std_logic_vector(0 to 63);
         begin
             addr_nor := x xor y;
-            for i in 0 to C_S_AXI_ADDR_WIDTH-1 loop
+            for i in 0 to 63 loop
                 if addr_nor(i)='1' then
-                    return i;
+                    return (i-(64-a));
                 end if;
             end loop;
     -- coverage off
-            return(C_S_AXI_ADDR_WIDTH);
+            return(a);
     -- coverage on
     end function Get_Addr_Bits;
 -------------------------------------------------------------------------------
@@ -627,9 +628,9 @@ begin
     GEN_2_ADDR_RANGES : if C_APB_NUM_SLAVES = 2 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
 
@@ -647,11 +648,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -667,11 +668,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -691,11 +692,11 @@ begin
     GEN_3_ADDR_RANGES : if C_APB_NUM_SLAVES = 3 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -714,11 +715,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -734,11 +735,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -754,11 +755,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -778,13 +779,13 @@ begin
     GEN_4_ADDR_RANGES : if C_APB_NUM_SLAVES = 4 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -805,11 +806,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -825,11 +826,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -845,11 +846,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -865,11 +866,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -889,15 +890,15 @@ begin
     GEN_5_ADDR_RANGES : if C_APB_NUM_SLAVES = 5 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -920,11 +921,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -940,11 +941,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -960,11 +961,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -980,11 +981,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1000,11 +1001,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1024,17 +1025,17 @@ begin
     GEN_6_ADDR_RANGES : if C_APB_NUM_SLAVES = 6 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -1058,11 +1059,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1078,11 +1079,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1098,11 +1099,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1118,11 +1119,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1138,11 +1139,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1158,11 +1159,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1181,19 +1182,19 @@ begin
     GEN_7_ADDR_RANGES : if C_APB_NUM_SLAVES = 7 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -1219,11 +1220,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1239,11 +1240,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1259,11 +1260,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1279,11 +1280,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1299,11 +1300,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1319,11 +1320,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1339,11 +1340,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1363,21 +1364,21 @@ begin
     GEN_8_ADDR_RANGES : if C_APB_NUM_SLAVES = 8 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -1404,11 +1405,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1424,11 +1425,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1444,11 +1445,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1464,11 +1465,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1484,11 +1485,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1504,11 +1505,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1524,11 +1525,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1544,11 +1545,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1568,23 +1569,23 @@ begin
     GEN_9_ADDR_RANGES : if C_APB_NUM_SLAVES = 9 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -1613,11 +1614,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1633,11 +1634,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1653,11 +1654,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1673,11 +1674,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1693,11 +1694,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1713,11 +1714,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1733,11 +1734,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1753,11 +1754,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1772,11 +1773,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1796,25 +1797,25 @@ begin
     GEN_10_ADDR_RANGES : if C_APB_NUM_SLAVES = 10 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -1844,11 +1845,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1864,11 +1865,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1884,11 +1885,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1904,11 +1905,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1924,11 +1925,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1944,11 +1945,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1964,11 +1965,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -1984,11 +1985,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2003,11 +2004,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2023,11 +2024,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2047,27 +2048,27 @@ begin
     GEN_11_ADDR_RANGES : if C_APB_NUM_SLAVES = 11 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG11      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -2099,11 +2100,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2119,11 +2120,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2139,11 +2140,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2159,11 +2160,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2179,11 +2180,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2199,11 +2200,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2219,11 +2220,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2239,11 +2240,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2258,11 +2259,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2278,11 +2279,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2298,11 +2299,11 @@ begin
  -- library v4_0 for Range 11
 -------------------------------------------------------------------------------
 
-          RANGE11_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE11_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG11,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG11_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2322,29 +2323,29 @@ begin
     GEN_12_ADDR_RANGES : if C_APB_NUM_SLAVES = 12 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG11      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG12      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -2377,11 +2378,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2397,11 +2398,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2417,11 +2418,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2437,11 +2438,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2457,11 +2458,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2477,11 +2478,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2497,11 +2498,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2517,11 +2518,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2536,11 +2537,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2556,11 +2557,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2576,11 +2577,11 @@ begin
  -- library v4_0 for Range 11
 -------------------------------------------------------------------------------
 
-          RANGE11_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE11_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG11,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG11_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2595,11 +2596,11 @@ begin
  -- library v4_0 for Range 12
 -------------------------------------------------------------------------------
 
-          RANGE12_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE12_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG12,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG12_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2619,31 +2620,31 @@ begin
     GEN_13_ADDR_RANGES : if C_APB_NUM_SLAVES = 13 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG11      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG12      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG13      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -2678,11 +2679,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2698,11 +2699,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2718,11 +2719,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2738,11 +2739,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2758,11 +2759,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2778,11 +2779,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2798,11 +2799,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2818,11 +2819,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2837,11 +2838,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2857,11 +2858,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2877,11 +2878,11 @@ begin
  -- library v4_0 for Range 11
 -------------------------------------------------------------------------------
 
-          RANGE11_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE11_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG11,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG11_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2896,11 +2897,11 @@ begin
  -- library v4_0 for Range 12
 -------------------------------------------------------------------------------
 
-          RANGE12_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE12_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG12,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG12_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2916,11 +2917,11 @@ begin
  -- library v4_0 for Range 13
 -------------------------------------------------------------------------------
 
-          RANGE13_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE13_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG13,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG13_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -2940,33 +2941,33 @@ begin
     GEN_14_ADDR_RANGES : if C_APB_NUM_SLAVES = 14 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG11      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG12      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG13      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG14      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG14_BASEADDR, C_S_AXI_RNG14_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG14_BASEADDR, C_S_AXI_RNG14_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -3002,11 +3003,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3022,11 +3023,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3042,11 +3043,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3062,11 +3063,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3082,11 +3083,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3102,11 +3103,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3122,11 +3123,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3142,11 +3143,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3161,11 +3162,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3181,11 +3182,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3201,11 +3202,11 @@ begin
  -- library v4_0 for Range 11
 -------------------------------------------------------------------------------
 
-          RANGE11_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE11_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG11,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG11_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3220,11 +3221,11 @@ begin
  -- library v4_0 for Range 12
 -------------------------------------------------------------------------------
 
-          RANGE12_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE12_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG12,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG12_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3240,11 +3241,11 @@ begin
  -- library v4_0 for Range 13
 -------------------------------------------------------------------------------
 
-          RANGE13_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE13_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG13,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG13_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3260,11 +3261,11 @@ begin
  -- library v4_0 for Range 14
 -------------------------------------------------------------------------------
 
-          RANGE14_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE14_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG14,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG14_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3284,35 +3285,35 @@ begin
     GEN_15_ADDR_RANGES : if C_APB_NUM_SLAVES = 15 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG11      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG12      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG13      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG14      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG14_BASEADDR, C_S_AXI_RNG14_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG14_BASEADDR, C_S_AXI_RNG14_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG15      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG15_BASEADDR, C_S_AXI_RNG15_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG15_BASEADDR, C_S_AXI_RNG15_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -3350,11 +3351,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3370,11 +3371,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3390,11 +3391,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3410,11 +3411,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3430,11 +3431,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3450,11 +3451,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3470,11 +3471,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3490,11 +3491,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3509,11 +3510,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3529,11 +3530,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3549,11 +3550,11 @@ begin
  -- library v4_0 for Range 11
 -------------------------------------------------------------------------------
 
-          RANGE11_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE11_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG11,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG11_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3568,11 +3569,11 @@ begin
  -- library v4_0 for Range 12
 -------------------------------------------------------------------------------
 
-          RANGE12_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE12_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG12,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG12_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3588,11 +3589,11 @@ begin
  -- library v4_0 for Range 13
 -------------------------------------------------------------------------------
 
-          RANGE13_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE13_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG13,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG13_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3608,11 +3609,11 @@ begin
  -- library v4_0 for Range 14
 -------------------------------------------------------------------------------
 
-          RANGE14_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE14_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG14,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG14_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3627,11 +3628,11 @@ begin
  -- library v4_0 for Range 15
 -------------------------------------------------------------------------------
 
-          RANGE15_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE15_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG15,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG15_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3652,37 +3653,37 @@ begin
     GEN_16_ADDR_RANGES : if C_APB_NUM_SLAVES = 16 generate
 
         constant DECODE_BITS_RNG1      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG1_BASEADDR, C_S_AXI_RNG1_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG2      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG2_BASEADDR, C_S_AXI_RNG2_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG3      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG3_BASEADDR, C_S_AXI_RNG3_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG4      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG4_BASEADDR, C_S_AXI_RNG4_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG5      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG5_BASEADDR, C_S_AXI_RNG5_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG6      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG6_BASEADDR, C_S_AXI_RNG6_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG7      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG7_BASEADDR, C_S_AXI_RNG7_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG8      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG8_BASEADDR, C_S_AXI_RNG8_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG9      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG9_BASEADDR, C_S_AXI_RNG9_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG10      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG10_BASEADDR, C_S_AXI_RNG10_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG11      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG11_BASEADDR, C_S_AXI_RNG11_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG12      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG12_BASEADDR, C_S_AXI_RNG12_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG13      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG13_BASEADDR, C_S_AXI_RNG13_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG14      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG14_BASEADDR, C_S_AXI_RNG14_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG14_BASEADDR, C_S_AXI_RNG14_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG15      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG15_BASEADDR, C_S_AXI_RNG15_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG15_BASEADDR, C_S_AXI_RNG15_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         constant DECODE_BITS_RNG16      : integer :=
-                 Get_Addr_Bits(C_S_AXI_RNG16_BASEADDR, C_S_AXI_RNG16_HIGHADDR);
+                 Get_Addr_Bits(C_S_AXI_RNG16_BASEADDR, C_S_AXI_RNG16_HIGHADDR, C_S_AXI_ADDR_WIDTH);
         signal addr_hit_range1 : std_logic;
         signal addr_hit_range2 : std_logic;
         signal addr_hit_range3 : std_logic;
@@ -3721,11 +3722,11 @@ begin
  -- library v4_0 for Range 1
 -------------------------------------------------------------------------------
 
-          RANGE1_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE1_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG1,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG1_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3741,11 +3742,11 @@ begin
  -- library v4_0 for Range 2
 -------------------------------------------------------------------------------
 
-          RANGE2_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE2_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG2,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG2_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3761,11 +3762,11 @@ begin
  -- library v4_0 for Range 3
 -------------------------------------------------------------------------------
 
-          RANGE3_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE3_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG3,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG3_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3781,11 +3782,11 @@ begin
  -- library v4_0 for Range 4
 -------------------------------------------------------------------------------
 
-          RANGE4_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE4_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG4,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG4_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3801,11 +3802,11 @@ begin
  -- library v4_0 for Range 5
 -------------------------------------------------------------------------------
 
-          RANGE5_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE5_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG5,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG5_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3821,11 +3822,11 @@ begin
  -- library v4_0 for Range 6
 -------------------------------------------------------------------------------
 
-          RANGE6_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE6_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG6,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG6_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3841,11 +3842,11 @@ begin
  -- library v4_0 for Range 7
 -------------------------------------------------------------------------------
 
-          RANGE7_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE7_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG7,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG7_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3861,11 +3862,11 @@ begin
  -- library v4_0 for Range 8
 -------------------------------------------------------------------------------
 
-          RANGE8_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE8_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG8,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG8_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3880,11 +3881,11 @@ begin
  -- library v4_0 for Range 9
 -------------------------------------------------------------------------------
 
-          RANGE9_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE9_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG9,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG9_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3900,11 +3901,11 @@ begin
  -- library v4_0 for Range 10
 -------------------------------------------------------------------------------
 
-          RANGE10_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE10_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG10,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG10_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3920,11 +3921,11 @@ begin
  -- library v4_0 for Range 11
 -------------------------------------------------------------------------------
 
-          RANGE11_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE11_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG11,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG11_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3939,11 +3940,11 @@ begin
  -- library v4_0 for Range 12
 -------------------------------------------------------------------------------
 
-          RANGE12_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE12_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG12,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG12_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3959,11 +3960,11 @@ begin
  -- library v4_0 for Range 13
 -------------------------------------------------------------------------------
 
-          RANGE13_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE13_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG13,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG13_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3979,11 +3980,11 @@ begin
  -- library v4_0 for Range 14
 -------------------------------------------------------------------------------
 
-          RANGE14_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE14_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG14,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG14_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -3998,11 +3999,11 @@ begin
  -- library v4_0 for Range 15
 -------------------------------------------------------------------------------
 
-          RANGE15_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE15_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG15,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG15_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -4018,11 +4019,11 @@ begin
  -- library v4_0 for Range 16
 -------------------------------------------------------------------------------
 
-          RANGE16_SELECT: entity axi_apb_bridge_v3_0_13.pselect_f
+          RANGE16_SELECT: entity axi_apb_bridge_v3_0_15.pselect_f
               generic map
               (
                   C_AB     => DECODE_BITS_RNG16,
-                  C_AW     => 32,
+                  C_AW     => C_S_AXI_ADDR_WIDTH,
                   C_BAR    => C_S_AXI_RNG16_BASEADDR,
                   C_FAMILY => C_FAMILY
               )
@@ -6042,13 +6043,13 @@ use ieee.numeric_std.all;
 
 library lib_pkg_v1_0_2;
 use lib_pkg_v1_0_2.lib_pkg.clog2;
-library axi_apb_bridge_v3_0_13;
-use axi_apb_bridge_v3_0_13.counter_f;
+library axi_apb_bridge_v3_0_15;
+use axi_apb_bridge_v3_0_15.counter_f;
 
 entity axilite_sif is
   generic (
     C_FAMILY              : string                   := "virtex7";
-    C_S_AXI_ADDR_WIDTH    : integer range 32 to 32   := 32;
+    C_S_AXI_ADDR_WIDTH    : integer range 1 to 64   := 32;
     C_S_AXI_DATA_WIDTH    : integer range 32 to 32   := 32;
     C_DPHASE_TIMEOUT      : integer range 0 to 256   := 0;
     C_M_APB_PROTOCOL      : string                   := "apb3"
@@ -6507,7 +6508,7 @@ begin
 -- Instantiation of counter from proc_common
 -- ****************************************************************************
 
-      I_DPTO_COUNTER : entity axi_apb_bridge_v3_0_13.counter_f
+      I_DPTO_COUNTER : entity axi_apb_bridge_v3_0_15.counter_f
          generic map(
            C_NUM_BITS    =>  COUNTER_WIDTH,
            C_FAMILY      =>  C_FAMILY
@@ -6622,7 +6623,7 @@ use ieee.std_logic_unsigned.all;
 
 entity apb_mif is
   generic (
-    C_M_APB_ADDR_WIDTH   : integer range 32 to 32   := 32;
+    C_M_APB_ADDR_WIDTH   : integer range 1 to 64   := 32;
     C_M_APB_DATA_WIDTH   : integer range 32 to 32   := 32;
     C_S_AXI_DATA_WIDTH   : integer range 32 to 32   := 32;
     C_APB_NUM_SLAVES     : integer range 1 to 16    := 4;
@@ -6997,7 +6998,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
-library axi_apb_bridge_v3_0_13;
+library axi_apb_bridge_v3_0_15;
 
 -------------------------------------------------------------------------------
 -- Port Declaration
@@ -7176,46 +7177,46 @@ entity axi_apb_bridge is
     C_FAMILY              : string                    := "virtex7";
     C_INSTANCE            : string                    := "axi_apb_bridge_inst";
 
-    C_S_AXI_ADDR_WIDTH    : integer range 32 to 32    := 32;
+    C_S_AXI_ADDR_WIDTH    : integer range 1 to 64    := 32;
     C_S_AXI_DATA_WIDTH    : integer range 32 to 32    := 32;
 
-    C_M_APB_ADDR_WIDTH    : integer range 32 to 32    := 32;
+    C_M_APB_ADDR_WIDTH    : integer range 1 to 64    := 32;
     C_M_APB_DATA_WIDTH    : integer range 32 to 32    := 32;
     C_APB_NUM_SLAVES      : integer range 1 to 16     := 4;
     C_M_APB_PROTOCOL      : string                    := "apb3";
 
-    C_BASEADDR            : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_HIGHADDR            : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG2_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG2_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG3_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG3_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG4_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG4_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG5_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG5_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG6_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG6_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG7_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG7_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG8_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG8_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG9_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG9_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG10_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG10_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG11_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG11_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG12_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG12_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG13_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG13_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG14_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG14_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG15_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG15_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
-    C_S_AXI_RNG16_BASEADDR : std_logic_vector(0 to 31) := X"FFFFFFFF";
-    C_S_AXI_RNG16_HIGHADDR : std_logic_vector(0 to 31) := X"00000000";
+    C_BASEADDR            : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_HIGHADDR            : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG2_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG2_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG3_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG3_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG4_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG4_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG5_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG5_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG6_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG6_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG7_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG7_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG8_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG8_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG9_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG9_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG10_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG10_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG11_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG11_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG12_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG12_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG13_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG13_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG14_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG14_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG15_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG15_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
+    C_S_AXI_RNG16_BASEADDR : std_logic_vector(0 to 63) := X"FFFFFFFFFFFFFFFF";
+    C_S_AXI_RNG16_HIGHADDR : std_logic_vector(0 to 63) := X"0000000000000000";
     C_DPHASE_TIMEOUT      : integer range 0 to 256    := 0
     );
   port (
@@ -7223,7 +7224,7 @@ entity axi_apb_bridge is
     s_axi_aclk         : in  std_logic;
     s_axi_aresetn      : in  std_logic;
 
-    s_axi_awaddr       : in  std_logic_vector(31 downto 0);
+    s_axi_awaddr       : in  std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
     s_axi_awprot       : in  std_logic_vector(2 downto 0);
     s_axi_awvalid      : in  std_logic;
     s_axi_awready      : out std_logic;
@@ -7236,7 +7237,7 @@ entity axi_apb_bridge is
     s_axi_bvalid       : out std_logic;
     s_axi_bready       : in  std_logic;
 
-    s_axi_araddr       : in  std_logic_vector(31 downto 0);
+    s_axi_araddr       : in  std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
     s_axi_arprot       : in  std_logic_vector(2 downto 0);
     s_axi_arvalid      : in  std_logic;
     s_axi_arready      : out std_logic;
@@ -7246,7 +7247,7 @@ entity axi_apb_bridge is
     s_axi_rready       : in  std_logic;
 
 -- APB signals
-    m_apb_paddr        : out std_logic_vector(31 downto 0);
+    m_apb_paddr        : out std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
     m_apb_psel         : out std_logic_vector(C_APB_NUM_SLAVES-1 downto 0);
     m_apb_penable      : out std_logic;
     m_apb_pwrite       : out std_logic;
@@ -7326,7 +7327,7 @@ begin
  -- Instantiate the address decoder as APB is shared
 -------------------------------------------------------------------------------
 
-        PSEL_DECODER_MODULE : entity axi_apb_bridge_v3_0_13.psel_decoder
+        PSEL_DECODER_MODULE : entity axi_apb_bridge_v3_0_15.psel_decoder
         generic map
         (
          C_FAMILY                         => C_FAMILY,
@@ -7375,7 +7376,7 @@ begin
  -- Instantiate the Multiplexor as APB is shared
 -------------------------------------------------------------------------------
 
-        MULTIPLEXOR_MODULE : entity axi_apb_bridge_v3_0_13.multiplexor
+        MULTIPLEXOR_MODULE : entity axi_apb_bridge_v3_0_15.multiplexor
         generic map
         (
          C_M_APB_DATA_WIDTH               => C_M_APB_DATA_WIDTH,
@@ -7415,7 +7416,7 @@ begin
  -- Instantiate the AXI Lite Slave Interface module
 -------------------------------------------------------------------------------
 
-        AXILITE_SLAVE_IF_MODULE : entity axi_apb_bridge_v3_0_13.axilite_sif
+        AXILITE_SLAVE_IF_MODULE : entity axi_apb_bridge_v3_0_15.axilite_sif
         generic map
         (
          C_FAMILY                         => C_FAMILY,
@@ -7461,7 +7462,7 @@ begin
  -- Instantiate the APB Master Interface module
 -------------------------------------------------------------------------------
 
-        APB_MASTER_IF_MODULE : entity axi_apb_bridge_v3_0_13.apb_mif
+        APB_MASTER_IF_MODULE : entity axi_apb_bridge_v3_0_15.apb_mif
         generic map
         (
          C_M_APB_ADDR_WIDTH               => C_M_APB_ADDR_WIDTH,

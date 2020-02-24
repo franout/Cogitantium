@@ -11,4 +11,13 @@ nvdla/sw/regression/
 nvdla/sw/umd/out/
 tutorial_board/
 PYNQ/
-pynq_z2/
+
+
+## load only petalinux project without outputs
+Pynq-Z2/image.its
+Pynq-Z2/system.dtb
+Pynq-Z2/zImage
+Pynq-Z2/petalinux_bsp/xilinx-pynqz2-2019.1.bsp
+Pynq-Z2/petalinux_bsp/xilinx-pynqz2-2019.1/buildPynq-Z2/petalinux_bsp/xilinx-pynqz2-2019.1/build
+
+## gitignore in petalinux project already present

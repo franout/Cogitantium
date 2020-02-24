@@ -49,7 +49,10 @@ computations.
  + Loop Interchange :computation order of four conv. loops
 * https://www.xilinx.com/video/soc/build-linux-boot-image-zynq-7000-ap-soc.html
  * using the bootable linux kernel image's kernel config, put into the choosen linux kernel source tree which get from xilinx's bsp, and make opendla.ko in kmd. if you don't know any flow about linux kernel module compilation, I strongly suggestion you to spend some time to know the flow. this is very important for the debug.
-
+* https://mc.ai/run-lenet-on-nvdla/ running lenet on  nvdla( it has to be trained )
+* https://vvviy.github.io/2018/09/17/nv_small-FPGA-Mapping-Workflow-II/
+* For building opendla_small.ko you have to add CFLAG_MODULE='-DDLA_SMALL_CONFIG' to the make command
+* Disabling the clock gating by setting to 1 the VLIB_BYPASS_POWER_CG 
 
 ## FUTURE READINGS
 

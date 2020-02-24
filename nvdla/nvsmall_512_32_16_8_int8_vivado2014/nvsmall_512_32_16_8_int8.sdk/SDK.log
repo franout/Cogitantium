@@ -1,0 +1,38 @@
+10:17:12 INFO  : Registering command handlers for SDK TCF services
+10:17:24 INFO  : Launching XSCT server: xsct -n -interactive /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.sdk/temp_xsdb_launch_script.tcl
+10:17:30 INFO  : XSCT server has started successfully.
+10:17:30 INFO  : Successfully done setting XSCT server connection channel  
+10:17:32 INFO  : Successfully done setting SDK workspace  
+10:17:32 INFO  : Processing command line option -hwspec /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/base_zynq_wrapper.hdf.
+10:27:36 INFO  : Launching XSCT server: xsct -n -interactive /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.sdk/temp_xsdb_launch_script.tcl
+10:27:37 INFO  : XSCT server has started successfully.
+10:27:39 INFO  : Successfully done setting XSCT server connection channel  
+10:27:39 INFO  : Successfully done setting SDK workspace  
+10:27:41 INFO  : Registering command handlers for SDK TCF services
+10:27:42 INFO  : Processing command line option -hwspec /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/base_zynq_wrapper.hdf.
+10:27:42 INFO  : Checking for hwspec changes in the project base_zynq_wrapper_hw_platform_0.
+16:46:28 INFO  : Launching XSCT server: xsct -n -interactive /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.sdk/temp_xsdb_launch_script.tcl
+16:49:28 ERROR : Timed out. 180 seconds have elapsed while waiting for XSCT server to launch.
+16:59:35 INFO  : Launching XSCT server: xsct -n -interactive /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.sdk/temp_xsdb_launch_script.tcl
+16:59:38 INFO  : XSCT server has started successfully.
+16:59:38 INFO  : Successfully done setting XSCT server connection channel  
+16:59:51 INFO  : Successfully done setting SDK workspace  
+16:59:53 INFO  : Registering command handlers for SDK TCF services
+16:59:58 INFO  : Processing command line option -hwspec /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/base_zynq_wrapper.hdf.
+16:59:59 INFO  : Checking for hwspec changes in the project base_zynq_wrapper_hw_platform_0.
+16:59:59 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1582299931000,  Project:1582276308000
+16:59:59 INFO  : The hardware specification for project 'base_zynq_wrapper_hw_platform_0' is different from /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/base_zynq_wrapper.hdf.
+17:00:03 INFO  : Copied contents of /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/base_zynq_wrapper.hdf into /base_zynq_wrapper_hw_platform_0/system.hdf.
+17:00:14 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+17:00:27 INFO  : 
+17:00:28 INFO  : Updating hardware inferred compiler options for fsbl.
+17:00:28 INFO  : Clearing existing target manager status.
+17:00:28 WARN  : Given IPC port value is invalid. Using default port 2350
+17:00:28 WARN  : Given XMD timeout value is invalid. Using default value of 50000
+17:00:41 WARN  : Given XMD transaction timeout value is invalid. Using default value of 60000 milli seconds
+17:00:41 INFO  : Closing and re-opening the MSS file of ther project fsbl_bsp
+17:00:41 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+17:00:43 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+17:01:53 INFO  : No changes in MSS file content so not generating sources.
+17:03:05 INFO  : No changes in MSS file content so not generating sources.
+17:09:40 ERROR : Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near 

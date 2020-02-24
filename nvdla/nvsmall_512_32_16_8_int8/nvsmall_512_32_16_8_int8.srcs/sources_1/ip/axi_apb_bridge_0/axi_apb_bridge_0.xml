@@ -57,6 +57,15 @@
             </xilinx:parameterInfo>
           </spirit:vendorExtensions>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>INSERT_VIP</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.ACLK.INSERT_VIP">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>simulation.rtl</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
@@ -79,6 +88,15 @@
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.ARESETN.POLARITY">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>INSERT_VIP</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.ARESETN.INSERT_VIP">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>simulation.rtl</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -510,6 +528,15 @@
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>INSERT_VIP</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.AXI4_LITE.INSERT_VIP">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>simulation.rtl</xilinx:parameterUsage>
             </xilinx:parameterInfo>
           </spirit:vendorExtensions>
         </spirit:parameter>
@@ -2266,11 +2293,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Feb 21 08:29:42 UTC 2020</spirit:value>
+            <spirit:value>Sun Feb 23 16:49:38 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:3ec6488d</spirit:value>
+            <spirit:value>9:e01e4b82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2279,6 +2306,7 @@
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>axi_apb_bridge</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -2288,11 +2316,22 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Feb 21 08:29:43 UTC 2020</spirit:value>
+            <spirit:value>Sun Feb 23 16:52:24 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:3ec6488d</spirit:value>
+            <spirit:value>9:e01e4b82</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_synthesisconstraints</spirit:name>
+        <spirit:displayName>Synthesis Constraints</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:e01e4b82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2301,76 +2340,18 @@
         <spirit:displayName>VHDL Synthesis Wrapper</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>axi_apb_bridge_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Feb 21 08:29:43 UTC 2020</spirit:value>
+            <spirit:value>Sun Feb 23 16:52:24 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:3ec6488d</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlbehavioralsimulation</spirit:name>
-        <spirit:displayName>VHDL Simulation</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Feb 21 08:29:43 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:437084a0</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlsimulationwrapper</spirit:name>
-        <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Feb 21 08:29:43 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:437084a0</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_versioninformation</spirit:name>
-        <spirit:displayName>Version Information</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:docs.versioninfo</spirit:envIdentifier>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_versioninformation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Feb 21 08:29:43 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:3ec6488d</spirit:value>
+            <spirit:value>9:e01e4b82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2384,7 +2365,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2400,7 +2380,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2413,18 +2392,17 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH&apos;))-1">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
-            <spirit:defaultValue spirit:format="long" spirit:bitStringLength="32">0</spirit:defaultValue>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
       </spirit:port>
@@ -2440,7 +2418,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2463,7 +2440,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2479,7 +2455,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2496,11 +2471,10 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
-            <spirit:defaultValue spirit:format="long" spirit:bitStringLength="32">0</spirit:defaultValue>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
       </spirit:port>
@@ -2516,7 +2490,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2539,7 +2512,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2555,7 +2527,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2572,7 +2543,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2585,7 +2555,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2598,7 +2567,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2611,18 +2579,17 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH&apos;))-1">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
-            <spirit:defaultValue spirit:format="long" spirit:bitStringLength="32">0</spirit:defaultValue>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
       </spirit:port>
@@ -2638,7 +2605,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2661,7 +2627,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2677,7 +2642,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2694,7 +2658,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2711,7 +2674,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2724,7 +2686,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2737,7 +2698,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2750,16 +2710,18 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">31</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH&apos;))-1">31</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -2774,7 +2736,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2787,7 +2748,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2800,7 +2760,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2817,7 +2776,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2834,7 +2792,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -2851,7 +2808,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2871,7 +2827,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2898,7 +2853,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2925,7 +2879,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2952,7 +2905,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -2979,7 +2931,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3006,7 +2957,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3033,7 +2983,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3060,7 +3009,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3087,7 +3035,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3114,7 +3061,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3141,7 +3087,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3168,7 +3113,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3195,7 +3139,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3222,7 +3165,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3249,7 +3191,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
@@ -3276,7 +3217,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -3293,7 +3233,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -3317,7 +3256,6 @@
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic_vector</spirit:typeName>
               <spirit:viewNameRef>xilinx_vhdlsynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_vhdlbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -3343,7 +3281,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_S_AXI_ADDR_WIDTH</spirit:name>
         <spirit:displayName>C S Axi Addr Width</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:id="MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH">32</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH" spirit:minimum="1" spirit:maximum="64" spirit:rangeType="long">32</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_S_AXI_DATA_WIDTH</spirit:name>
@@ -3353,7 +3291,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_M_APB_ADDR_WIDTH</spirit:name>
         <spirit:displayName>C M Apb Addr Width</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:id="MODELPARAM_VALUE.C_M_APB_ADDR_WIDTH">32</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_M_APB_ADDR_WIDTH" spirit:minimum="1" spirit:maximum="64" spirit:rangeType="long">32</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_M_APB_DATA_WIDTH</spirit:name>
@@ -3370,165 +3308,165 @@
         <spirit:displayName>APB Protocol</spirit:displayName>
         <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_M_APB_PROTOCOL">apb3</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_BASEADDR</spirit:name>
         <spirit:displayName>Slave1 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_BASEADDR" spirit:bitStringLength="32">0x40000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_BASEADDR" spirit:bitStringLength="64">0x0000000040000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_HIGHADDR</spirit:name>
         <spirit:displayName>Slave1 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_HIGHADDR" spirit:bitStringLength="32">0x4003FFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_HIGHADDR" spirit:bitStringLength="64">0x000000004003FFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG2_BASEADDR</spirit:name>
         <spirit:displayName>Slave2 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG2_BASEADDR" spirit:bitStringLength="32">0x10000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG2_BASEADDR" spirit:bitStringLength="64">0x0000000010000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG2_HIGHADDR</spirit:name>
         <spirit:displayName>Slave2 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG2_HIGHADDR" spirit:bitStringLength="32">0x1FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG2_HIGHADDR" spirit:bitStringLength="64">0x000000001FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG3_BASEADDR</spirit:name>
         <spirit:displayName>Slave3 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG3_BASEADDR" spirit:bitStringLength="32">0x20000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG3_BASEADDR" spirit:bitStringLength="64">0x0000000020000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG3_HIGHADDR</spirit:name>
         <spirit:displayName>Slave3 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG3_HIGHADDR" spirit:bitStringLength="32">0x2FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG3_HIGHADDR" spirit:bitStringLength="64">0x000000002FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG4_BASEADDR</spirit:name>
         <spirit:displayName>Slave4 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG4_BASEADDR" spirit:bitStringLength="32">0x30000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG4_BASEADDR" spirit:bitStringLength="64">0x0000000030000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG4_HIGHADDR</spirit:name>
         <spirit:displayName>Slave4 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG4_HIGHADDR" spirit:bitStringLength="32">0x3FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG4_HIGHADDR" spirit:bitStringLength="64">0x000000003FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG5_BASEADDR</spirit:name>
         <spirit:displayName>Slave5 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG5_BASEADDR" spirit:bitStringLength="32">0x40000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG5_BASEADDR" spirit:bitStringLength="64">0x0000000040000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG5_HIGHADDR</spirit:name>
         <spirit:displayName>Slave5 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG5_HIGHADDR" spirit:bitStringLength="32">0x4FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG5_HIGHADDR" spirit:bitStringLength="64">0x000000004FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG6_BASEADDR</spirit:name>
         <spirit:displayName>Slave6 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG6_BASEADDR" spirit:bitStringLength="32">0x50000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG6_BASEADDR" spirit:bitStringLength="64">0x0000000050000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG6_HIGHADDR</spirit:name>
         <spirit:displayName>Slave6 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG6_HIGHADDR" spirit:bitStringLength="32">0x5FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG6_HIGHADDR" spirit:bitStringLength="64">0x000000005FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG7_BASEADDR</spirit:name>
         <spirit:displayName>Slave7 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG7_BASEADDR" spirit:bitStringLength="32">0x60000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG7_BASEADDR" spirit:bitStringLength="64">0x0000000060000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG7_HIGHADDR</spirit:name>
         <spirit:displayName>Slave7 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG7_HIGHADDR" spirit:bitStringLength="32">0x6FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG7_HIGHADDR" spirit:bitStringLength="64">0x000000006FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG8_BASEADDR</spirit:name>
         <spirit:displayName>Slave8 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG8_BASEADDR" spirit:bitStringLength="32">0x70000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG8_BASEADDR" spirit:bitStringLength="64">0x0000000070000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG8_HIGHADDR</spirit:name>
         <spirit:displayName>Slave8 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG8_HIGHADDR" spirit:bitStringLength="32">0x7FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG8_HIGHADDR" spirit:bitStringLength="64">0x000000007FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG9_BASEADDR</spirit:name>
         <spirit:displayName>Slave9 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG9_BASEADDR" spirit:bitStringLength="32">0x80000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG9_BASEADDR" spirit:bitStringLength="64">0x0000000080000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG9_HIGHADDR</spirit:name>
         <spirit:displayName>Slave9 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG9_HIGHADDR" spirit:bitStringLength="32">0x8FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG9_HIGHADDR" spirit:bitStringLength="64">0x000000008FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG10_BASEADDR</spirit:name>
         <spirit:displayName>Slave10 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG10_BASEADDR" spirit:bitStringLength="32">0x90000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG10_BASEADDR" spirit:bitStringLength="64">0x0000000090000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG10_HIGHADDR</spirit:name>
         <spirit:displayName>Slave10 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG10_HIGHADDR" spirit:bitStringLength="32">0x9FFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG10_HIGHADDR" spirit:bitStringLength="64">0x000000009FFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG11_BASEADDR</spirit:name>
         <spirit:displayName>Slave11 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG11_BASEADDR" spirit:bitStringLength="32">0xA0000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG11_BASEADDR" spirit:bitStringLength="64">0x00000000A0000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG11_HIGHADDR</spirit:name>
         <spirit:displayName>Slave11 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG11_HIGHADDR" spirit:bitStringLength="32">0xAFFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG11_HIGHADDR" spirit:bitStringLength="64">0x00000000AFFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG12_BASEADDR</spirit:name>
         <spirit:displayName>Slave12 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG12_BASEADDR" spirit:bitStringLength="32">0xB0000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG12_BASEADDR" spirit:bitStringLength="64">0x00000000B0000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG12_HIGHADDR</spirit:name>
         <spirit:displayName>Slave12 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG12_HIGHADDR" spirit:bitStringLength="32">0xBFFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG12_HIGHADDR" spirit:bitStringLength="64">0x00000000BFFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG13_BASEADDR</spirit:name>
         <spirit:displayName>Slave13 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG13_BASEADDR" spirit:bitStringLength="32">0xC0000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG13_BASEADDR" spirit:bitStringLength="64">0x00000000C0000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG13_HIGHADDR</spirit:name>
         <spirit:displayName>Slave13 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG13_HIGHADDR" spirit:bitStringLength="32">0xCFFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG13_HIGHADDR" spirit:bitStringLength="64">0x00000000CFFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG14_BASEADDR</spirit:name>
         <spirit:displayName>Slave14 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG14_BASEADDR" spirit:bitStringLength="32">0xD0000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG14_BASEADDR" spirit:bitStringLength="64">0x00000000D0000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG14_HIGHADDR</spirit:name>
         <spirit:displayName>Slave14 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG14_HIGHADDR" spirit:bitStringLength="32">0xDFFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG14_HIGHADDR" spirit:bitStringLength="64">0x00000000DFFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG15_BASEADDR</spirit:name>
         <spirit:displayName>Slave15 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG15_BASEADDR" spirit:bitStringLength="32">0xE0000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG15_BASEADDR" spirit:bitStringLength="64">0x00000000E0000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG15_HIGHADDR</spirit:name>
         <spirit:displayName>Slave15 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG15_HIGHADDR" spirit:bitStringLength="32">0xEFFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG15_HIGHADDR" spirit:bitStringLength="64">0x00000000EFFFFFFF</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG16_BASEADDR</spirit:name>
         <spirit:displayName>Slave16 Base Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG16_BASEADDR" spirit:bitStringLength="32">0xF0000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG16_BASEADDR" spirit:bitStringLength="64">0x00000000F0000000</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 31)">
+      <spirit:modelParameter spirit:dataType="std_logic_vector(0 to 63)">
         <spirit:name>C_S_AXI_RNG16_HIGHADDR</spirit:name>
         <spirit:displayName>Slave16 High Address</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG16_HIGHADDR" spirit:bitStringLength="32">0xFFFFFFFF</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_RNG16_HIGHADDR" spirit:bitStringLength="64">0x00000000FFFFFFFF</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_DPHASE_TIMEOUT</spirit:name>
@@ -3585,7 +3523,7 @@
       <spirit:file>
         <spirit:name>hdl/axi_apb_bridge_v3_0_vh_rfs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_apb_bridge_v3_0_13</spirit:logicalName>
+        <spirit:logicalName>axi_apb_bridge_v3_0_15</spirit:logicalName>
       </spirit:file>
       <spirit:file>
         <spirit:name>axi_apb_bridge_0_ooc.xdc</spirit:name>
@@ -3601,46 +3539,6 @@
         <spirit:name>synth/axi_apb_bridge_0.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>hdl/lib_pkg_v1_0_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>lib_pkg_v1_0_2</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_pkg" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="7b6d6b71">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>hdl/axi_apb_bridge_v3_0_vh_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>axi_apb_bridge_v3_0_13</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsimulationwrapper_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>sim/axi_apb_bridge_0.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_versioninformation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>doc/axi_apb_bridge_v3_0_changelog.txt</spirit:name>
-        <spirit:userFileType>text</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -3663,7 +3561,7 @@
       <spirit:name>C_S_AXI_RNG16_HIGHADDR</spirit:name>
       <spirit:displayName>Slave16 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG16_HIGHADDR" spirit:order="4400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xFFFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG16_HIGHADDR" spirit:order="4400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000FFFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3676,7 +3574,7 @@
       <spirit:name>C_S_AXI_RNG16_BASEADDR</spirit:name>
       <spirit:displayName>Slave16 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG16_BASEADDR" spirit:order="4300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xF0000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG16_BASEADDR" spirit:order="4300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000F0000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3689,7 +3587,7 @@
       <spirit:name>C_S_AXI_RNG15_HIGHADDR</spirit:name>
       <spirit:displayName>Slave15 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG15_HIGHADDR" spirit:order="4200" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xEFFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG15_HIGHADDR" spirit:order="4200" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000EFFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3702,7 +3600,7 @@
       <spirit:name>C_S_AXI_RNG15_BASEADDR</spirit:name>
       <spirit:displayName>Slave15 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG15_BASEADDR" spirit:order="4100" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xE0000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG15_BASEADDR" spirit:order="4100" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000E0000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3715,7 +3613,7 @@
       <spirit:name>C_S_AXI_RNG14_HIGHADDR</spirit:name>
       <spirit:displayName>Slave14 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG14_HIGHADDR" spirit:order="4000" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xDFFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG14_HIGHADDR" spirit:order="4000" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000DFFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3728,7 +3626,7 @@
       <spirit:name>C_S_AXI_RNG14_BASEADDR</spirit:name>
       <spirit:displayName>Slave14 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG14_BASEADDR" spirit:order="3900" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xD0000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG14_BASEADDR" spirit:order="3900" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000D0000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3741,7 +3639,7 @@
       <spirit:name>C_S_AXI_RNG13_HIGHADDR</spirit:name>
       <spirit:displayName>Slave13 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG13_HIGHADDR" spirit:order="3800" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xCFFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG13_HIGHADDR" spirit:order="3800" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000CFFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3754,7 +3652,7 @@
       <spirit:name>C_S_AXI_RNG13_BASEADDR</spirit:name>
       <spirit:displayName>Slave13 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG13_BASEADDR" spirit:order="3700" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xC0000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG13_BASEADDR" spirit:order="3700" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000C0000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3767,7 +3665,7 @@
       <spirit:name>C_S_AXI_RNG12_HIGHADDR</spirit:name>
       <spirit:displayName>Slave12 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG12_HIGHADDR" spirit:order="3600" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xBFFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG12_HIGHADDR" spirit:order="3600" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000BFFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3780,7 +3678,7 @@
       <spirit:name>C_S_AXI_RNG12_BASEADDR</spirit:name>
       <spirit:displayName>Slave12 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG12_BASEADDR" spirit:order="3500" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xB0000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG12_BASEADDR" spirit:order="3500" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000B0000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3793,7 +3691,7 @@
       <spirit:name>C_S_AXI_RNG11_HIGHADDR</spirit:name>
       <spirit:displayName>Slave11 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG11_HIGHADDR" spirit:order="3400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xAFFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG11_HIGHADDR" spirit:order="3400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000AFFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3806,7 +3704,7 @@
       <spirit:name>C_S_AXI_RNG11_BASEADDR</spirit:name>
       <spirit:displayName>Slave11 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG11_BASEADDR" spirit:order="3300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0xA0000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG11_BASEADDR" spirit:order="3300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x00000000A0000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3819,7 +3717,7 @@
       <spirit:name>C_S_AXI_RNG10_HIGHADDR</spirit:name>
       <spirit:displayName>Slave10 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG10_HIGHADDR" spirit:order="3200" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x9FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG10_HIGHADDR" spirit:order="3200" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000009FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3832,7 +3730,7 @@
       <spirit:name>C_S_AXI_RNG10_BASEADDR</spirit:name>
       <spirit:displayName>Slave10 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG10_BASEADDR" spirit:order="3100" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x90000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG10_BASEADDR" spirit:order="3100" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000090000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3845,7 +3743,7 @@
       <spirit:name>C_S_AXI_RNG9_HIGHADDR</spirit:name>
       <spirit:displayName>Slave9 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG9_HIGHADDR" spirit:order="3000" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x8FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG9_HIGHADDR" spirit:order="3000" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000008FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3858,7 +3756,7 @@
       <spirit:name>C_S_AXI_RNG9_BASEADDR</spirit:name>
       <spirit:displayName>Slave9 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG9_BASEADDR" spirit:order="2900" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x80000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG9_BASEADDR" spirit:order="2900" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000080000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3871,7 +3769,7 @@
       <spirit:name>C_S_AXI_RNG8_HIGHADDR</spirit:name>
       <spirit:displayName>Slave8 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG8_HIGHADDR" spirit:order="2800" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x7FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG8_HIGHADDR" spirit:order="2800" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000007FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3884,7 +3782,7 @@
       <spirit:name>C_S_AXI_RNG8_BASEADDR</spirit:name>
       <spirit:displayName>Slave8 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG8_BASEADDR" spirit:order="2700" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x70000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG8_BASEADDR" spirit:order="2700" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000070000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3897,7 +3795,7 @@
       <spirit:name>C_S_AXI_RNG7_HIGHADDR</spirit:name>
       <spirit:displayName>Slave7 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG7_HIGHADDR" spirit:order="2600" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x6FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG7_HIGHADDR" spirit:order="2600" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000006FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3910,7 +3808,7 @@
       <spirit:name>C_S_AXI_RNG7_BASEADDR</spirit:name>
       <spirit:displayName>Slave7 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG7_BASEADDR" spirit:order="2500" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x60000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG7_BASEADDR" spirit:order="2500" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000060000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3923,7 +3821,7 @@
       <spirit:name>C_S_AXI_RNG6_HIGHADDR</spirit:name>
       <spirit:displayName>Slave6 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG6_HIGHADDR" spirit:order="2400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x5FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG6_HIGHADDR" spirit:order="2400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000005FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3936,7 +3834,7 @@
       <spirit:name>C_S_AXI_RNG6_BASEADDR</spirit:name>
       <spirit:displayName>Slave6 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG6_BASEADDR" spirit:order="2300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x50000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG6_BASEADDR" spirit:order="2300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000050000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3949,7 +3847,7 @@
       <spirit:name>C_S_AXI_RNG5_HIGHADDR</spirit:name>
       <spirit:displayName>Slave5 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG5_HIGHADDR" spirit:order="2200" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x4FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG5_HIGHADDR" spirit:order="2200" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000004FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3962,7 +3860,7 @@
       <spirit:name>C_S_AXI_RNG5_BASEADDR</spirit:name>
       <spirit:displayName>Slave5 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG5_BASEADDR" spirit:order="2100" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x40000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG5_BASEADDR" spirit:order="2100" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000040000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3975,7 +3873,7 @@
       <spirit:name>C_S_AXI_RNG4_HIGHADDR</spirit:name>
       <spirit:displayName>Slave4 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG4_HIGHADDR" spirit:order="2000" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x3FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG4_HIGHADDR" spirit:order="2000" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000003FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -3988,7 +3886,7 @@
       <spirit:name>C_S_AXI_RNG4_BASEADDR</spirit:name>
       <spirit:displayName>Slave4 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG4_BASEADDR" spirit:order="1900" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x30000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG4_BASEADDR" spirit:order="1900" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000030000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4001,7 +3899,7 @@
       <spirit:name>C_S_AXI_RNG3_HIGHADDR</spirit:name>
       <spirit:displayName>Slave3 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG3_HIGHADDR" spirit:order="1800" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x2FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG3_HIGHADDR" spirit:order="1800" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000002FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4014,7 +3912,7 @@
       <spirit:name>C_S_AXI_RNG3_BASEADDR</spirit:name>
       <spirit:displayName>Slave3 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG3_BASEADDR" spirit:order="1700" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x20000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG3_BASEADDR" spirit:order="1700" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000020000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4027,7 +3925,7 @@
       <spirit:name>C_S_AXI_RNG2_HIGHADDR</spirit:name>
       <spirit:displayName>Slave2 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG2_HIGHADDR" spirit:order="1600" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x1FFFFFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG2_HIGHADDR" spirit:order="1600" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000001FFFFFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4040,7 +3938,7 @@
       <spirit:name>C_S_AXI_RNG2_BASEADDR</spirit:name>
       <spirit:displayName>Slave2 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG2_BASEADDR" spirit:order="1500" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x10000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_RNG2_BASEADDR" spirit:order="1500" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000010000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4053,7 +3951,7 @@
       <spirit:name>C_HIGHADDR</spirit:name>
       <spirit:displayName>Slave1 High Address</spirit:displayName>
       <spirit:description>Address must be greater than Base address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_HIGHADDR" spirit:order="1400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x4003FFFF</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_HIGHADDR" spirit:order="1400" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x000000004003FFFF</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4066,7 +3964,7 @@
       <spirit:name>C_BASEADDR</spirit:name>
       <spirit:displayName>Slave1 Base Address</spirit:displayName>
       <spirit:description>Address must be lower than High address and should not overlap with other slaves</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_BASEADDR" spirit:order="1300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="32">0x40000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_BASEADDR" spirit:order="1300" spirit:configGroups="2 UnGrouped" spirit:bitStringLength="64">0x0000000040000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4102,6 +4000,19 @@
       </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>C_ADDR_WIDTH</spirit:name>
+      <spirit:displayName>Address Width</spirit:displayName>
+      <spirit:description>Specify the width of the address bus</spirit:description>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_ADDR_WIDTH" spirit:order="1100" spirit:configGroups="1 UnGrouped" spirit:minimum="1" spirit:maximum="64" spirit:rangeType="long">32</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.C_ADDR_WIDTH">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">axi_apb_bridge_0</spirit:value>
       <spirit:vendorExtensions>
@@ -4116,20 +4027,68 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>AXI APB Bridge</xilinx:displayName>
-      <xilinx:coreRevision>13</xilinx:coreRevision>
+      <xilinx:coreRevision>15</xilinx:coreRevision>
       <xilinx:configElementInfos>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.ARUSER_WIDTH" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.AWUSER_WIDTH" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.BUSER_WIDTH" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.DATA_WIDTH" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_BRESP" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_BURST" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_CACHE" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_LOCK" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_PROT" xilinx:valueSource="auto"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_QOS" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_REGION" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_RRESP" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.HAS_WSTRB" xilinx:valueSource="auto"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.ID_WIDTH" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.PROTOCOL" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.READ_WRITE_MODE" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.RUSER_WIDTH" xilinx:valueSource="constant"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI4_LITE.WUSER_WIDTH" xilinx:valueSource="constant"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_APB_NUM_SLAVES" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_BASEADDR" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG10_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG10_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG11_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG11_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG12_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG12_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG13_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG13_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG14_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG14_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG15_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG15_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG16_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG16_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG2_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG2_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG3_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG3_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG4_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG4_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG5_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG5_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG6_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG6_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG7_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG7_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG8_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG8_HIGHADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG9_BASEADDR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_S_AXI_RNG9_HIGHADDR" xilinx:valueSource="user"/>
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2017.4</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2019.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="80dcaa27"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="018a8a33"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="ccd7b27f"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="0f670903"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="2c34410b"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="11cd264e"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="b4b28bcb"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="1cd81044"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="62404c9d"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

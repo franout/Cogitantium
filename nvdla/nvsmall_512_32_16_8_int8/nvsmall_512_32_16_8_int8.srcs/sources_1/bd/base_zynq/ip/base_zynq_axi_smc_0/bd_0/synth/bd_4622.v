@@ -1,4 +1,4 @@
-//Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+//Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Command: generate_target bd_4622.bd
 //Design : bd_4622
@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bd_4622,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_4622,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=17,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=Global}" *) (* HW_HANDOFF = "base_zynq_axi_smc_0.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_4622,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_4622,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=17,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "base_zynq_axi_smc_0.hwdef" *) 
 module bd_4622
    (M00_AXI_araddr,
     M00_AXI_arburst,
@@ -81,7 +81,7 @@ module bd_4622
     S00_AXI_wvalid,
     aclk,
     aresetn);
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M00_AXI, ADDR_WIDTH 32, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, DATA_WIDTH 32, FREQ_HZ 50000000, HAS_BRESP 1, HAS_BURST 1, HAS_CACHE 1, HAS_LOCK 1, HAS_PROT 1, HAS_QOS 1, HAS_REGION 0, HAS_RRESP 1, HAS_WSTRB 1, ID_WIDTH 0, MAX_BURST_LENGTH 16, NUM_READ_OUTSTANDING 2, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 2, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI3, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) output [31:0]M00_AXI_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M00_AXI, ADDR_WIDTH 32, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, DATA_WIDTH 32, FREQ_HZ 50000000, HAS_BRESP 1, HAS_BURST 1, HAS_CACHE 1, HAS_LOCK 1, HAS_PROT 1, HAS_QOS 1, HAS_REGION 0, HAS_RRESP 1, HAS_WSTRB 1, ID_WIDTH 0, INSERT_VIP 0, MAX_BURST_LENGTH 16, NUM_READ_OUTSTANDING 2, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 2, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI3, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) output [31:0]M00_AXI_araddr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARBURST" *) output [1:0]M00_AXI_arburst;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARCACHE" *) output [3:0]M00_AXI_arcache;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARLEN" *) output [3:0]M00_AXI_arlen;
@@ -114,7 +114,7 @@ module bd_4622
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WREADY" *) input M00_AXI_wready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WSTRB" *) output [3:0]M00_AXI_wstrb;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WVALID" *) output M00_AXI_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI, ADDR_WIDTH 32, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, DATA_WIDTH 32, FREQ_HZ 50000000, HAS_BRESP 0, HAS_BURST 0, HAS_CACHE 0, HAS_LOCK 0, HAS_PROT 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 0, HAS_WSTRB 1, ID_WIDTH 8, MAX_BURST_LENGTH 16, NUM_READ_OUTSTANDING 2, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 2, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI3, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) input [31:0]S00_AXI_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI, ADDR_WIDTH 32, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, DATA_WIDTH 32, FREQ_HZ 50000000, HAS_BRESP 0, HAS_BURST 0, HAS_CACHE 0, HAS_LOCK 0, HAS_PROT 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 0, HAS_WSTRB 1, ID_WIDTH 8, INSERT_VIP 0, MAX_BURST_LENGTH 16, NUM_READ_OUTSTANDING 2, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 2, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI3, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) input [31:0]S00_AXI_araddr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARBURST" *) input [1:0]S00_AXI_arburst;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARCACHE" *) input [3:0]S00_AXI_arcache;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARID" *) input [7:0]S00_AXI_arid;
@@ -152,8 +152,8 @@ module bd_4622
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output S00_AXI_wready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]S00_AXI_wstrb;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input S00_AXI_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.ACLK, ASSOCIATED_BUSIF M00_AXI:S00_AXI, ASSOCIATED_CLKEN s_sc_aclken, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, FREQ_HZ 50000000, PHASE 0.000" *) input aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.ARESETN, POLARITY ACTIVE_LOW" *) input aresetn;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.ACLK, ASSOCIATED_BUSIF M00_AXI:S00_AXI, ASSOCIATED_CLKEN s_sc_aclken, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, FREQ_HZ 50000000, INSERT_VIP 0, PHASE 0.000" *) input aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.ARESETN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input aresetn;
 
   wire [31:0]S00_AXI_1_ARADDR;
   wire [1:0]S00_AXI_1_ARBURST;
@@ -1448,6 +1448,7 @@ module s00_entry_pipeline_imp_BPWVPJ
   wire [2:0]s00_transaction_regulator_M_AXI_ARPROT;
   wire [3:0]s00_transaction_regulator_M_AXI_ARQOS;
   wire s00_transaction_regulator_M_AXI_ARREADY;
+  wire [2:0]s00_transaction_regulator_M_AXI_ARSIZE;
   wire [1023:0]s00_transaction_regulator_M_AXI_ARUSER;
   wire s00_transaction_regulator_M_AXI_ARVALID;
   wire [31:0]s00_transaction_regulator_M_AXI_AWADDR;
@@ -1458,6 +1459,7 @@ module s00_entry_pipeline_imp_BPWVPJ
   wire [2:0]s00_transaction_regulator_M_AXI_AWPROT;
   wire [3:0]s00_transaction_regulator_M_AXI_AWQOS;
   wire s00_transaction_regulator_M_AXI_AWREADY;
+  wire [2:0]s00_transaction_regulator_M_AXI_AWSIZE;
   wire [1023:0]s00_transaction_regulator_M_AXI_AWUSER;
   wire s00_transaction_regulator_M_AXI_AWVALID;
   wire [0:0]s00_transaction_regulator_M_AXI_BID;
@@ -1727,6 +1729,7 @@ module s00_entry_pipeline_imp_BPWVPJ
         .s_axi_arprot(s00_transaction_regulator_M_AXI_ARPROT),
         .s_axi_arqos(s00_transaction_regulator_M_AXI_ARQOS),
         .s_axi_arready(s00_transaction_regulator_M_AXI_ARREADY),
+        .s_axi_arsize(s00_transaction_regulator_M_AXI_ARSIZE),
         .s_axi_aruser(s00_transaction_regulator_M_AXI_ARUSER),
         .s_axi_arvalid(s00_transaction_regulator_M_AXI_ARVALID),
         .s_axi_awaddr(s00_transaction_regulator_M_AXI_AWADDR),
@@ -1737,6 +1740,7 @@ module s00_entry_pipeline_imp_BPWVPJ
         .s_axi_awprot(s00_transaction_regulator_M_AXI_AWPROT),
         .s_axi_awqos(s00_transaction_regulator_M_AXI_AWQOS),
         .s_axi_awready(s00_transaction_regulator_M_AXI_AWREADY),
+        .s_axi_awsize(s00_transaction_regulator_M_AXI_AWSIZE),
         .s_axi_awuser(s00_transaction_regulator_M_AXI_AWUSER),
         .s_axi_awvalid(s00_transaction_regulator_M_AXI_AWVALID),
         .s_axi_bid(s00_transaction_regulator_M_AXI_BID),
@@ -1768,6 +1772,7 @@ module s00_entry_pipeline_imp_BPWVPJ
         .m_axi_arprot(s00_transaction_regulator_M_AXI_ARPROT),
         .m_axi_arqos(s00_transaction_regulator_M_AXI_ARQOS),
         .m_axi_arready(s00_transaction_regulator_M_AXI_ARREADY),
+        .m_axi_arsize(s00_transaction_regulator_M_AXI_ARSIZE),
         .m_axi_aruser(s00_transaction_regulator_M_AXI_ARUSER),
         .m_axi_arvalid(s00_transaction_regulator_M_AXI_ARVALID),
         .m_axi_awaddr(s00_transaction_regulator_M_AXI_AWADDR),
@@ -1778,6 +1783,7 @@ module s00_entry_pipeline_imp_BPWVPJ
         .m_axi_awprot(s00_transaction_regulator_M_AXI_AWPROT),
         .m_axi_awqos(s00_transaction_regulator_M_AXI_AWQOS),
         .m_axi_awready(s00_transaction_regulator_M_AXI_AWREADY),
+        .m_axi_awsize(s00_transaction_regulator_M_AXI_AWSIZE),
         .m_axi_awuser(s00_transaction_regulator_M_AXI_AWUSER),
         .m_axi_awvalid(s00_transaction_regulator_M_AXI_AWVALID),
         .m_axi_bid(s00_transaction_regulator_M_AXI_BID),

@@ -22,7 +22,8 @@ cd  ./nv_small
 
 ## get hardware description generated from VIVADO
 petalinux-config --get-hw-description="$core"nvdla_configurations/nv_small_512_32_8_int8/
-exit
+
+
 ## KMD nvdla
 #petalinux-create -t modules --name kmdnvdla --enable
 #rm -rf ./project-spec/meta-user/recipes-module/kmdnvdla/files/*
