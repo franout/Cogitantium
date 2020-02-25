@@ -20,7 +20,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2017.4
+set scripts_vivado_version 2019.2
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -164,7 +164,9 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
+
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
+
 
   # Create ports
 
@@ -179,17 +181,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.NUM_READ_OUTSTANDING {1} \
-   CONFIG.NUM_WRITE_OUTSTANDING {1} \
- ] [get_bd_intf_pins /apb_bridge_wrapper_0/s_axi]
-
-  # Create instance: axi_smc, and set properties
-  set axi_smc [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 axi_smc ]
-  set_property -dict [ list \
-   CONFIG.NUM_SI {1} \
- ] $axi_smc
-
   # Create instance: nv_nvdla_wrapper_0, and set properties
   set block_name nv_nvdla_wrapper
   set block_cell_name nv_nvdla_wrapper_0
@@ -201,13 +192,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.SUPPORTS_NARROW_BURST {0} \
-   CONFIG.NUM_READ_OUTSTANDING {2} \
-   CONFIG.NUM_WRITE_OUTSTANDING {2} \
-   CONFIG.MAX_BURST_LENGTH {16} \
- ] [get_bd_intf_pins /nv_nvdla_wrapper_0/M_AXI]
-
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
   set_property -dict [ list \
@@ -1023,13 +1007,19 @@ proc create_root_design { parentCell } {
   # Create instance: rst_ps7_0_50M, and set properties
   set rst_ps7_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_50M ]
 
+  # Create instance: smartconnect_0, and set properties
+  set smartconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 smartconnect_0 ]
+  set_property -dict [ list \
+   CONFIG.NUM_SI {1} \
+ ] $smartconnect_0
+
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_GP0]
-  connect_bd_intf_net -intf_net nv_nvdla_wrapper_0_M_AXI [get_bd_intf_pins axi_smc/S00_AXI] [get_bd_intf_pins nv_nvdla_wrapper_0/M_AXI]
+  connect_bd_intf_net -intf_net nv_nvdla_wrapper_0_M_AXI [get_bd_intf_pins nv_nvdla_wrapper_0/M_AXI] [get_bd_intf_pins smartconnect_0/S00_AXI]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins apb_bridge_wrapper_0/s_axi] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
+  connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_pins processing_system7_0/S_AXI_GP0] [get_bd_intf_pins smartconnect_0/M00_AXI]
 
   # Create port connections
   connect_bd_net -net apb_bridge_wrapper_0_m_apb_paddr [get_bd_pins apb_bridge_wrapper_0/m_apb_paddr] [get_bd_pins nv_nvdla_wrapper_0/apb2slave_dla_paddr]
@@ -1040,23 +1030,23 @@ proc create_root_design { parentCell } {
   connect_bd_net -net nv_nvdla_wrapper_0_apb2slave_dla_prdata [get_bd_pins apb_bridge_wrapper_0/m_apb_prdata] [get_bd_pins nv_nvdla_wrapper_0/apb2slave_dla_prdata]
   connect_bd_net -net nv_nvdla_wrapper_0_apb2slave_dla_pready [get_bd_pins apb_bridge_wrapper_0/m_apb_pready] [get_bd_pins nv_nvdla_wrapper_0/apb2slave_dla_pready]
   connect_bd_net -net nv_nvdla_wrapper_0_dla_int_request [get_bd_pins nv_nvdla_wrapper_0/dla_int_request] [get_bd_pins processing_system7_0/Core0_nFIQ]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins apb_bridge_wrapper_0/s_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins nv_nvdla_wrapper_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins apb_bridge_wrapper_0/s_axi_aclk] [get_bd_pins nv_nvdla_wrapper_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins smartconnect_0/aclk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_50M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_50M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins apb_bridge_wrapper_0/s_axi_aresetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins nv_nvdla_wrapper_0/reset_n] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins apb_bridge_wrapper_0/s_axi_aresetn] [get_bd_pins nv_nvdla_wrapper_0/reset_n] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins smartconnect_0/aresetn]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs apb_bridge_wrapper_0/s_axi/reg0] SEG_apb_bridge_wrapper_0_reg0
-  create_bd_addr_seg -range 0x40000000 -offset 0x00000000 [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM] SEG_processing_system7_0_GP0_DDR_LOWOCM
-  create_bd_addr_seg -range 0x00400000 -offset 0xE0000000 [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_IOP] SEG_processing_system7_0_GP0_IOP
-  create_bd_addr_seg -range 0x40000000 -offset 0x40000000 [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0] SEG_processing_system7_0_GP0_M_AXI_GP0
-  create_bd_addr_seg -range 0x01000000 -offset 0xFC000000 [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_QSPI_LINEAR] SEG_processing_system7_0_GP0_QSPI_LINEAR
-  create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs apb_bridge_wrapper_0/s_axi/reg0] SEG_apb_bridge_wrapper_0_reg0
+  assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM] -force
+  assign_bd_address -offset 0xE0000000 -range 0x00400000 -target_address_space [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_IOP] -force
+  assign_bd_address -offset 0x60000000 -range 0x01000000 -target_address_space [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0] -force
+  assign_bd_address -offset 0xFC000000 -range 0x01000000 -target_address_space [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_QSPI_LINEAR] -force
+  assign_bd_address -offset 0x50000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs apb_bridge_wrapper_0/s_axi/reg0] -force
 
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()

@@ -20,9 +20,9 @@
 
 
 module to_gd(
-    input a
+     a
     );
-    
+    input a;
 assign a=1'b0;
 
 endmodule;

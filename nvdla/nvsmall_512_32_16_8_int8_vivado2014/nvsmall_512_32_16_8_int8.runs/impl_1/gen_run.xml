@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1582295533">
+  <File Type="ROUTE-PWR" Name="base_zynq_wrapper_power_routed.rpt"/>
   <File Type="PA-TCL" Name="base_zynq_wrapper.tcl"/>
   <File Type="PLACE-DCP" Name="base_zynq_wrapper_placed.dcp"/>
+  <File Type="OPT-DCP" Name="base_zynq_wrapper_opt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="base_zynq_wrapper_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="base_zynq_wrapper_reports.tcl"/>
   <File Type="PWROPT-DCP" Name="base_zynq_wrapper_pwropt.dcp"/>
-  <File Type="OPT-DCP" Name="base_zynq_wrapper_opt.dcp"/>
+  <File Type="ROUTE-CLK" Name="base_zynq_wrapper_clock_utilization_routed.rpt"/>
+  <File Type="RDI-RDI" Name="base_zynq_wrapper.vdi"/>
   <File Type="OPT-DRC" Name="base_zynq_wrapper_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="base_zynq_wrapper.hwdef"/>
-  <File Type="RDI-RDI" Name="base_zynq_wrapper.vdi"/>
   <File Type="PLACE-IO" Name="base_zynq_wrapper_io_placed.rpt"/>
   <File Type="PLACE-UTIL" Name="base_zynq_wrapper_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="base_zynq_wrapper_utilization_placed.pb"/>
@@ -27,28 +30,26 @@
   <File Type="ROUTE-TIMING-RPX" Name="base_zynq_wrapper_timing_summary_routed.rpx"/>
   <File Type="BITSTR-NKY" Name="base_zynq_wrapper.nky"/>
   <File Type="BITSTR-BMM" Name="base_zynq_wrapper_bd.bmm"/>
-  <File Type="ROUTE-CLK" Name="base_zynq_wrapper_clock_utilization_routed.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="base_zynq_wrapper_postroute_physopt.dcp"/>
   <File Type="BG-DRC" Name="base_zynq_wrapper.drc"/>
   <File Type="ROUTE-ERROR-DCP" Name="base_zynq_wrapper_routed_error.dcp"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="base_zynq_wrapper_methodology_drc_routed.rpt"/>
   <File Type="BITSTR-MMI" Name="base_zynq_wrapper.mmi"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="base_zynq_wrapper_postroute_physopt_bb.dcp"/>
   <File Type="BG-BGN" Name="base_zynq_wrapper.bgn"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="base_zynq_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="base_zynq_wrapper_methodology_drc_routed.pb"/>
   <File Type="BITSTR-SYSDEF" Name="base_zynq_wrapper.sysdef"/>
+  <File Type="ROUTE-DRC-RPX" Name="base_zynq_wrapper_drc_routed.rpx"/>
   <File Type="BITSTR-LTX" Name="base_zynq_wrapper.ltx"/>
   <File Type="ROUTE-STATUS" Name="base_zynq_wrapper_route_status.rpt"/>
   <File Type="ROUTE-PWR-RPX" Name="base_zynq_wrapper_power_routed.rpx"/>
-  <File Type="ROUTE-PWR-SUM" Name="base_zynq_wrapper_power_summary_routed.pb"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="base_zynq_wrapper_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-PWR" Name="base_zynq_wrapper_power_routed.rpt"/>
-  <File Type="ROUTE-DRC-RPX" Name="base_zynq_wrapper_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="base_zynq_wrapper_methodology_drc_routed.pb"/>
   <File Type="ROUTE-DRC-PB" Name="base_zynq_wrapper_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="base_zynq_wrapper_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-DRC" Name="base_zynq_wrapper_drc_routed.rpt"/>
   <File Type="ROUTE-DCP" Name="base_zynq_wrapper_routed.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="base_zynq_wrapper_timing_summary_postroute_physopted.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/ip/axi_apb_bridge_0/axi_apb_bridge_0.xci">
@@ -4344,5 +4345,6 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design" EnableStepBool="1"/>
     <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
   </Strategy>
 </GenRun>

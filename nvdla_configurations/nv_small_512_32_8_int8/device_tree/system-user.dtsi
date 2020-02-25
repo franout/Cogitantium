@@ -1,0 +1,69 @@
+/include/ "system-conf.dtsi"
+/ {
+
+
+
+
+reserved-memory {
+#address-cells = <2 >;
+#size-cells = <2 >;
+ranges ;
+
+	nvdla_reserved: buffer@0 {
+	no-map;
+reg = <0x0 0x40000000 0x0 0x40000000 >;
+};
+};
+
+	amba {
+
+		audio0:audio-codec-ctrl@43c00000 {
+			compatible = "xlnk,audio-codec-ctrl-1.0";
+			reg = <0x43c00000 0x10000>;
+		};
+
+		ethernet@e000b000 {
+			phy-handle = <&ethernet_phy>;
+			ethernet_phy: ethernet-phy@1{
+				reg = <1>;
+			};
+		};
+	};
+        usb_phy0: phy0 {
+                compatible = "ulpi-phy";
+                #phy-cells = <0>;
+                reg = <0xe0002000 0x1000>;
+                view-port = <0x170>;
+                drv-vbus;
+        };
+
+nv_nvdla_wrapper_0: nv_nvdla_wrapper@40000000 {
+     compatible = "xlnx,nv-nvdla-wrapper-1.0";
+	interrupt-parent = < &gic >;
+	interrupts = <0 28 1>;
+	reg = <0x0 0x40000000 0x0 0x10000 >;
+};
+
+};
+
+&i2c0 {
+	status = "okay";
+};
+
+&i2c1 {
+	status = "okay";
+};
+
+&audio0 {
+		compatible = "generic-uio";
+};
+
+&usb0 {
+        usb-phy = <&usb_phy0>;
+};
+
+&nv_nvdla_wrapper {
+	memory-region = <&nvdla_reserved>;
+	status="okay";
+	compatible = " nvidia , nv_small ";
+}

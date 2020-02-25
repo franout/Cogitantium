@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<Runs Version="1" Minor="0">
-	<Run Id="synth_1" LaunchDir="/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nvsmall_512_32_16_8_int8/nvsmall_512_32_16_8_int8.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-</Runs>
-

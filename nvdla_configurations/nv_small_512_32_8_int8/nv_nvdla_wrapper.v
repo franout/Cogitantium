@@ -10,13 +10,16 @@ clk,
 reset_n,
 test_mode,
 dla_int_request,
-apb2slave_dla_paddr,
-apb2slave_dla_penable,
-apb2slave_dla_psel,
-apb2slave_dla_pwdata,
-apb2slave_dla_pwrite,
-apb2slave_dla_prdata,
-apb2slave_dla_pready,
+s_axi_aclk,
+s_axi_prstn,
+APB_S_paddr,
+    APB_S_penable,
+    APB_S_prdata,
+    APB_S_pready,
+    APB_S_psel,
+    APB_S_pslverr,
+    APB_S_pwdata,
+    APB_S_pwrite,
 // data backbone interface aka AXI 
 M_AXI_awvalid
   ,M_AXI_awready 
@@ -46,15 +49,18 @@ M_AXI_awvalid
   input clk;
   input reset_n;
   input test_mode;
-  output dla_int_request;
-// apb interface
-input [31:0] apb2slave_dla_paddr;
-input apb2slave_dla_penable;
-input apb2slave_dla_psel;
-input [31:0] apb2slave_dla_pwdata;
-input apb2slave_dla_pwrite;
-output [31:0]apb2slave_dla_prdata;
-output apb2slave_dla_pready;  
+  input s_axi_prstn;
+  input s_axi_aclk;
+    output dla_int_request;
+
+ (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PADDR" *) input [31:0]APB_S_paddr; // apb interface
+   (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PENABLE" *) input APB_S_penable;
+ (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PRDATA" *) output [31:0]APB_S_prdata;
+   (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PREADY" *) output [0:0]APB_S_pready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PSEL" *) input [0:0]APB_S_psel;
+   (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PSLVERR" *) output [0:0]APB_S_pslverr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PWDATA" *) input [31:0]APB_S_pwdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PWRITE" *) input APB_S_pwrite;  
   // data backbone interface aka AXI 
   output M_AXI_awvalid;
 input M_AXI_awready;
@@ -80,6 +86,7 @@ input [7:0] M_AXI_rid;
 input M_AXI_rlast;
 input [32 -1:0] M_AXI_rdata;
   //defualt values
+  assign s_apb_pslverr=1'b0;
   assign gnd=1'b0;
   assign gnd_v=32'b0;
 //interconnections wires   
@@ -154,23 +161,23 @@ input [32 -1:0] M_AXI_rdata;
  //apb2csb provided from NVDLA
  
  NV_NVDLA_apb2csb apb2csb_interface(
-   .pclk(clk)
-  ,.prstn(reset_n)
+   .pclk(s_axi_aclk)
+  ,.prstn(s_axi_prstn)
   ,.csb2nvdla_ready(csb2nvdla_ready)
   ,.nvdla2csb_data(nvdla2csb_data)
   ,.nvdla2csb_valid(nvdla2csb_valid)
-  ,.paddr(apb2slave_dla_paddr)
-  ,.penable(apb2slave_dla_penable)
-  ,.psel(apb2slave_dla_psel)
-  ,.pwdata(apb2slave_dla_pwdata)
-  ,.pwrite(apb2slave_dla_pwrite)
+  ,.paddr(APB_S_paddr)
+  ,.penable(APB_S_penable)
+  ,.psel(APB_S_psel)
+  ,.pwdata(APB_S_pwdata)
+  ,.pwrite(APB_S_pwrite)
   ,.csb2nvdla_addr(csb2nvdla_addr)
   ,.csb2nvdla_nposted(csb2nvdla_nposted)
   ,.csb2nvdla_valid(csb2nvdla_valid)
   ,.csb2nvdla_wdat(csb2nvdla_wdat)
   ,.csb2nvdla_write(csb2nvdla_write)
-  ,.prdata(apb2slave_dla_prdata)
-  ,.pready(apb2slave_dla_pready)
+  ,.prdata(APB_S_prdata)
+  ,.pready(APB_S_pready)
   );
 
 endmodule

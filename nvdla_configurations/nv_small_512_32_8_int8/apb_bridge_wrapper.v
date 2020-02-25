@@ -19,14 +19,15 @@ s_axi_aclk,        // input wire s_axi_aclk
   s_axi_rresp,      // output wire [1 : 0] s_axi_rresp
   s_axi_rvalid,    // output wire s_axi_rvalid
   s_axi_rready,    // input wire s_axi_rready
+  
   m_apb_paddr,      // output wire [31 : 0] m_apb_paddr
   m_apb_psel,        // output wire [0 : 0] m_apb_psel
   m_apb_penable,  // output wire m_apb_penable
-  m_apb_pwrite,    // output wire m_apb_pwrite
-  m_apb_pwdata,    // output wire [31 : 0] m_apb_pwdata
-  m_apb_pready,    // input wire [0 : 0] m_apb_pready
-  m_apb_prdata,    // input wire [31 : 0] m_apb_prdata
-  m_apb_pslverr  // input wire [0 : 0] m_apb_pslverr
+  m_apb_pwrite,    // output wire m_axi_pwrite
+  m_apb_pwdata,    // output wire [31 : 0] m_axi_pwdata
+  m_apb_pready,    // input wire [0 : 0] m_axi_pready
+  m_apb_prdata,    // input wire [31 : 0] m_axi_prdata
+  m_apb_pslverr  // input wire [0 : 0] m_axi_pslverr
     );
 
 
@@ -48,14 +49,15 @@ input s_axi_aclk;        // input wire s_axi_aclk
   output[1:0] s_axi_rresp;      // output wire [1 : 0] s_axi_rresp
   output s_axi_rvalid;    // output wire s_axi_rvalid
   input s_axi_rready;    // input wire s_axi_rready
-  output[31:0] m_apb_paddr;      // output wire [31 : 0] m_apb_paddr
-  output[0:0] m_apb_psel;        // output wire [0 : 0] m_apb_psel
-  output m_apb_penable;  // output wire m_apb_penable
-output   m_apb_pwrite;    // output wire m_apb_pwrite
-  output[31:0] m_apb_pwdata;    // output wire [31 : 0] m_apb_pwdata
- input[0:0] m_apb_pready;    // input wire [0 : 0] m_apb_pready
-    input [31:0] m_apb_prdata;    // input wire [31 : 0] m_apb_prdata
- input[0:0] m_apb_pslverr;  // input wire [0 : 0] m_apb_pslverr
+  
+  output[31:0] m_apb_paddr;      // output wire [31 : 0] m_axi_paddr
+  output[0:0] m_apb_psel;        // output wire [0 : 0] m_axi_psel
+  output m_apb_penable;  // output wire m_axi_penable
+output   m_apb_pwrite;    // output wire m_axi_pwrite
+  output[31:0] m_apb_pwdata;    // output wire [31 : 0] m_axi_pwdata
+ input[0:0] m_apb_pready;    // input wire [0 : 0] m_axi_pready
+    input [31:0] m_apb_prdata;    // input wire [31 : 0] m_axi_prdata
+ input[0:0] m_apb_pslverr;  // input wire [0 : 0] m_axi_pslverr
  
 
 
@@ -78,13 +80,13 @@ axi_apb_bridge_0 axi_apb_bridge (
   .s_axi_rresp(s_axi_rresp),      // output wire [1 : 0] s_axi_rresp
   .s_axi_rvalid(s_axi_rvalid),    // output wire s_axi_rvalid
   .s_axi_rready(s_axi_rready),    // input wire s_axi_rready
-  .m_apb_paddr(m_apb_paddr),      // output wire [31 : 0] m_apb_paddr
-  .m_apb_psel(m_apb_psel),        // output wire [0 : 0] m_apb_psel
-  .m_apb_penable(m_apb_penable),  // output wire m_apb_penable
-  .m_apb_pwrite(m_apb_pwrite),    // output wire m_apb_pwrite
-  .m_apb_pwdata(m_apb_pwdata),    // output wire [31 : 0] m_apb_pwdata
-  .m_apb_pready(m_apb_pready),    // input wire [0 : 0] m_apb_pready
-  .m_apb_prdata(m_apb_prdata),    // input wire [31 : 0] m_apb_prdata
-  .m_apb_pslverr(m_apb_pslverr)  // input wire [0 : 0] m_apb_pslverr
+  .m_axi_paddr(m_apb_paddr),      // output wire [31 : 0] m_axi_paddr
+  .m_axi_psel(m_apb_psel),        // output wire [0 : 0] m_axi_psel
+  .m_axi_penable(m_apb_penable),  // output wire m_axi_penable
+  .m_axi_pwrite(m_apb_pwrite),    // output wire m_axi_pwrite
+  .m_axi_pwdata(m_apb_pwdata),    // output wire [31 : 0] m_axi_pwdata
+  .m_axi_pready(m_apb_pready),    // input wire [0 : 0] m_axi_pready
+  .m_axi_prdata(m_apb_prdata),    // input wire [31 : 0] m_axi_prdata
+  .m_axi_pslverr(m_apb_pslverr)  // input wire [0 : 0] m_axi_pslverr
 );
 endmodule
