@@ -1,0 +1,4 @@
+vhdl xil_defaultlib  \
+"../../../ip/vivado_mac/sim/vivado_mac.vhd" \
+
+nosort

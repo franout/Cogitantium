@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Wed Mar  4 10:23:18 2020
+# Process ID: 19968
+# Current directory: D:/uni/2019-2020/thesis/cogitantium/mxu/vivado/mxu_core/mxu_core.runs/blk_mem_gen_0_synth_1
+# Command line: vivado.exe -log blk_mem_gen_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_0.tcl
+# Log file: D:/uni/2019-2020/thesis/cogitantium/mxu/vivado/mxu_core/mxu_core.runs/blk_mem_gen_0_synth_1/blk_mem_gen_0.vds
+# Journal file: D:/uni/2019-2020/thesis/cogitantium/mxu/vivado/mxu_core/mxu_core.runs/blk_mem_gen_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source blk_mem_gen_0.tcl -notrace
