@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Tue Feb 25 18:48:50 2020
+| Date         : Sat Feb 29 13:08:42 2020
 | Host         : fra running 64-bit Ubuntu 16.04.6 LTS
 | Command      : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
 | Design       : pynqz2_wrapper

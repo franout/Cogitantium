@@ -1,0 +1,6 @@
+19:17:34 INFO  : Registering command handlers for SDK TCF services
+19:17:37 INFO  : Launching XSCT server: xsct -n -interactive /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.sdk/temp_xsdb_launch_script.tcl
+19:17:46 INFO  : XSCT server has started successfully.
+19:18:25 INFO  : Successfully done setting XSCT server connection channel  
+19:18:25 INFO  : Successfully done setting SDK workspace  
+19:18:25 INFO  : Processing command line option -hwspec /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/pynqz2_wrapper.hdf.

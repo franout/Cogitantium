@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Tue Feb 25 18:41:05 2020
-# Process ID: 16656
+# Start of session at: Sat Feb 29 13:00:26 2020
+# Process ID: 22804
 # Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1
 # Command line: vivado -log pynqz2_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynqz2_wrapper.tcl
 # Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/pynqz2_wrapper.vds
@@ -13,30 +13,31 @@ source pynqz2_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/fra/Desktop/Vivado/2019.1/data/ip'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'dlaintc2ps' of definition 'xilinx.com:signal:interrupt:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'dlaintc2ps' of definition 'xilinx.com:signal:interrupt:1.0' (from 'X_INTERFACE_INFO' attribute).
 INFO: [IP_Flow 19-5107] Inferred bus interface 'APB_S' of definition 'xilinx.com:interface:apb:1.0' (from X_INTERFACE_INFO parameter from HDL file).
 INFO: [IP_Flow 19-5107] Inferred bus interface 'APB_S' of definition 'xilinx.com:interface:apb:1.0' (from 'X_INTERFACE_INFO' attribute).
 INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
 INFO: [IP_Flow 19-5107] Inferred bus interface 'reset_n' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
 INFO: [IP_Flow 19-5107] Inferred bus interface 'clk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
-INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aclk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
 INFO: [IP_Flow 19-4728] Bus Interface 'clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI'.
-WARNING: [IP_Flow 19-3153] Bus Interface 's_axi_aclk': ASSOCIATED_BUSIF bus parameter is missing.
+INFO: [IP_Flow 19-4728] Bus Interface 'dlaintc2ps': Added interface parameter 'SENSITIVITY' with value 'LEVEL_HIGH'.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-add_files: Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1500.969 ; gain = 112.055 ; free physical = 7706 ; free virtual = 28172
+add_files: Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1492.969 ; gain = 104.051 ; free physical = 3884 ; free virtual = 27988
 Command: synth_design -top pynqz2_wrapper -part xc7z020clg400-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 16734 
+INFO: Helper process launched with PID 22857 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:20 . Memory (MB): peak = 1786.211 ; gain = 173.684 ; free physical = 7267 ; free virtual = 27738
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:22 . Memory (MB): peak = 1787.215 ; gain = 172.715 ; free physical = 3400 ; free virtual = 27495
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:13]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_axi_apb_bridge_0_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_0/synth/pynqz2_axi_apb_bridge_0_0.vhd:90]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_axi_apb_bridge_0_3' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_3/synth/pynqz2_axi_apb_bridge_0_3.vhd:90]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_INSTANCE bound to: axi_apb_bridge_inst - type: string 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -45,8 +46,8 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_axi_apb_bridge_0_0' [/media/fra/
 	Parameter C_M_APB_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_APB_NUM_SLAVES bound to: 1 - type: integer 
 	Parameter C_M_APB_PROTOCOL bound to: apb3 - type: string 
-	Parameter C_BASEADDR bound to: 64'b0000000000000000000000000000000001000000000000000000000000000000 
-	Parameter C_HIGHADDR bound to: 64'b0000000000000000000000000000000001000000000000001111111111111111 
+	Parameter C_BASEADDR bound to: 64'b0000000000000000000000000000000001000011110000000000000000000000 
+	Parameter C_HIGHADDR bound to: 64'b0000000000000000000000000000000001000011110000001111111111111111 
 	Parameter C_S_AXI_RNG2_BASEADDR bound to: 64'b0000000000000000000000000000000000010000000000000000000000000000 
 	Parameter C_S_AXI_RNG2_HIGHADDR bound to: 64'b0000000000000000000000000000000000011111111111111111111111111111 
 	Parameter C_S_AXI_RNG3_BASEADDR bound to: 64'b0000000000000000000000000000000000100000000000000000000000000000 
@@ -78,7 +79,7 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_axi_apb_bridge_0_0' [/media/fra/
 	Parameter C_S_AXI_RNG16_BASEADDR bound to: 64'b0000000000000000000000000000000011110000000000000000000000000000 
 	Parameter C_S_AXI_RNG16_HIGHADDR bound to: 64'b0000000000000000000000000000000011111111111111111111111111111111 
 	Parameter C_DPHASE_TIMEOUT bound to: 0 - type: integer 
-INFO: [Synth 8-3491] module 'axi_apb_bridge' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/7df3/hdl/axi_apb_bridge_v3_0_vh_rfs.vhd:7175' bound to instance 'U0' of component 'axi_apb_bridge' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_0/synth/pynqz2_axi_apb_bridge_0_0.vhd:228]
+INFO: [Synth 8-3491] module 'axi_apb_bridge' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/7df3/hdl/axi_apb_bridge_v3_0_vh_rfs.vhd:7175' bound to instance 'U0' of component 'axi_apb_bridge' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_3/synth/pynqz2_axi_apb_bridge_0_3.vhd:228]
 INFO: [Synth 8-638] synthesizing module 'axi_apb_bridge' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/7df3/hdl/axi_apb_bridge_v3_0_vh_rfs.vhd:7284]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_INSTANCE bound to: axi_apb_bridge_inst - type: string 
@@ -88,8 +89,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_apb_bridge' [/media/fra/DATA/uni/20
 	Parameter C_M_APB_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_APB_NUM_SLAVES bound to: 1 - type: integer 
 	Parameter C_M_APB_PROTOCOL bound to: apb3 - type: string 
-	Parameter C_BASEADDR bound to: 64'b0000000000000000000000000000000001000000000000000000000000000000 
-	Parameter C_HIGHADDR bound to: 64'b0000000000000000000000000000000001000000000000001111111111111111 
+	Parameter C_BASEADDR bound to: 64'b0000000000000000000000000000000001000011110000000000000000000000 
+	Parameter C_HIGHADDR bound to: 64'b0000000000000000000000000000000001000011110000001111111111111111 
 	Parameter C_S_AXI_RNG2_BASEADDR bound to: 64'b0000000000000000000000000000000000010000000000000000000000000000 
 	Parameter C_S_AXI_RNG2_HIGHADDR bound to: 64'b0000000000000000000000000000000000011111111111111111111111111111 
 	Parameter C_S_AXI_RNG3_BASEADDR bound to: 64'b0000000000000000000000000000000000100000000000000000000000000000 
@@ -125,8 +126,8 @@ INFO: [Synth 8-638] synthesizing module 'psel_decoder' [/media/fra/DATA/uni/2019
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_APB_NUM_SLAVES bound to: 1 - type: integer 
-	Parameter C_S_AXI_RNG1_BASEADDR bound to: 64'b0000000000000000000000000000000001000000000000000000000000000000 
-	Parameter C_S_AXI_RNG1_HIGHADDR bound to: 64'b0000000000000000000000000000000001000000000000001111111111111111 
+	Parameter C_S_AXI_RNG1_BASEADDR bound to: 64'b0000000000000000000000000000000001000011110000000000000000000000 
+	Parameter C_S_AXI_RNG1_HIGHADDR bound to: 64'b0000000000000000000000000000000001000011110000001111111111111111 
 	Parameter C_S_AXI_RNG2_BASEADDR bound to: 64'b0000000000000000000000000000000000010000000000000000000000000000 
 	Parameter C_S_AXI_RNG2_HIGHADDR bound to: 64'b0000000000000000000000000000000000011111111111111111111111111111 
 	Parameter C_S_AXI_RNG3_BASEADDR bound to: 64'b0000000000000000000000000000000000100000000000000000000000000000 
@@ -178,9 +179,9 @@ INFO: [Synth 8-638] synthesizing module 'apb_mif' [/media/fra/DATA/uni/2019-2020
 	Parameter C_M_APB_PROTOCOL bound to: apb3 - type: string 
 INFO: [Synth 8-256] done synthesizing module 'apb_mif' (4#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/7df3/hdl/axi_apb_bridge_v3_0_vh_rfs.vhd:6674]
 INFO: [Synth 8-256] done synthesizing module 'axi_apb_bridge' (5#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/7df3/hdl/axi_apb_bridge_v3_0_vh_rfs.vhd:7284]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_axi_apb_bridge_0_0' (6#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_0/synth/pynqz2_axi_apb_bridge_0_0.vhd:90]
-INFO: [Synth 8-6157] synthesizing module 'pynqz2_axi_interconnect_0_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:513]
-INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_V1CATC' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:813]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_axi_apb_bridge_0_3' (6#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_3/synth/pynqz2_axi_apb_bridge_0_3.vhd:90]
+INFO: [Synth 8-6157] synthesizing module 'pynqz2_axi_mem_intercon_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:513]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1JNWH51' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:813]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_auto_pc_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/synth/pynqz2_auto_pc_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_19_axi_protocol_converter' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c83a/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4808]
 	Parameter C_FAMILY bound to: zynq - type: string 
@@ -954,18 +955,18 @@ INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_19_b2
 INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_19_axi_protocol_converter' (22#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c83a/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4808]
 INFO: [Synth 8-6155] done synthesizing module 'pynqz2_auto_pc_0' (23#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/synth/pynqz2_auto_pc_0.v:58]
 WARNING: [Synth 8-7023] instance 'auto_pc' of module 'pynqz2_auto_pc_0' has 59 connections declared, but only 56 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:1044]
-INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_V1CATC' (24#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:813]
-INFO: [Synth 8-6155] done synthesizing module 'pynqz2_axi_interconnect_0_0' (25#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:513]
-INFO: [Synth 8-6157] synthesizing module 'pynqz2_axi_smc_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/synth/pynqz2_axi_smc_0.v:57]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:10]
-INFO: [Synth 8-6157] synthesizing module 'clk_map_imp_1AKUXHR' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:793]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_one_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_0/synth/bd_5356_one_0.v:57]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1JNWH51' (24#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:813]
+INFO: [Synth 8-6155] done synthesizing module 'pynqz2_axi_mem_intercon_0' (25#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:513]
+INFO: [Synth 8-6157] synthesizing module 'pynqz2_axi_smc_4' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/synth/pynqz2_axi_smc_4.v:57]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:10]
+INFO: [Synth 8-6157] synthesizing module 'clk_map_imp_16AXM60' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:788]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_one_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_0/synth/bd_9057_one_0.v:57]
 INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_6_xlconstant' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/66e7/hdl/xlconstant_v1_1_vl_rfs.v:23]
 	Parameter CONST_VAL bound to: 1 - type: integer 
 	Parameter CONST_WIDTH bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_6_xlconstant' (26#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/66e7/hdl/xlconstant_v1_1_vl_rfs.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_one_0' (27#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_0/synth/bd_5356_one_0.v:57]
-INFO: [Synth 8-638] synthesizing module 'bd_5356_psr_aclk_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/synth/bd_5356_psr_aclk_0.vhd:74]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_one_0' (27#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_0/synth/bd_9057_one_0.v:57]
+INFO: [Synth 8-638] synthesizing module 'bd_9057_psr_aclk_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/synth/bd_9057_psr_aclk_0.vhd:74]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
 	Parameter C_AUX_RST_WIDTH bound to: 1 - type: integer 
@@ -975,7 +976,7 @@ INFO: [Synth 8-638] synthesizing module 'bd_5356_psr_aclk_0' [/media/fra/DATA/un
 	Parameter C_NUM_PERP_RST bound to: 1 - type: integer 
 	Parameter C_NUM_INTERCONNECT_ARESETN bound to: 1 - type: integer 
 	Parameter C_NUM_PERP_ARESETN bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'proc_sys_reset' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1264' bound to instance 'U0' of component 'proc_sys_reset' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/synth/bd_5356_psr_aclk_0.vhd:129]
+INFO: [Synth 8-3491] module 'proc_sys_reset' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1264' bound to instance 'U0' of component 'proc_sys_reset' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/synth/bd_9057_psr_aclk_0.vhd:129]
 INFO: [Synth 8-638] synthesizing module 'proc_sys_reset' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
@@ -1047,29 +1048,29 @@ INFO: [Synth 8-638] synthesizing module 'upcnt_n' [/media/fra/DATA/uni/2019-2020
 INFO: [Synth 8-256] done synthesizing module 'upcnt_n' (31#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
 INFO: [Synth 8-256] done synthesizing module 'sequence_psr' (32#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
 INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset' (33#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
-INFO: [Synth 8-256] done synthesizing module 'bd_5356_psr_aclk_0' (34#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/synth/bd_5356_psr_aclk_0.vhd:74]
-WARNING: [Synth 8-7023] instance 'psr_aclk' of module 'bd_5356_psr_aclk_0' has 10 connections declared, but only 6 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:830]
-WARNING: [Synth 8-3848] Net aresetn_out in module/entity clk_map_imp_1AKUXHR does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:811]
-INFO: [Synth 8-6155] done synthesizing module 'clk_map_imp_1AKUXHR' (35#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:793]
-INFO: [Synth 8-6157] synthesizing module 'm00_exit_pipeline_imp_QG0PUC' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:839]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_m00e_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_12/synth/bd_5356_m00e_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_m00e_0' (45#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_12/synth/bd_5356_m00e_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'm00_exit_pipeline_imp_QG0PUC' (46#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:839]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_m00s2a_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_11/synth/bd_5356_m00s2a_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_m00s2a_0' (48#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_11/synth/bd_5356_m00s2a_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_s00a2s_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_5/synth/bd_5356_s00a2s_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_s00a2s_0' (50#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_5/synth/bd_5356_s00a2s_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 's00_entry_pipeline_imp_1P5J5CN' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:1210]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_s00mmu_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_2/synth/bd_5356_s00mmu_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_s00mmu_0' (54#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_2/synth/bd_5356_s00mmu_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_s00sic_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_4/synth/bd_5356_s00sic_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_s00sic_0' (57#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_4/synth/bd_5356_s00sic_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_s00tr_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_3/synth/bd_5356_s00tr_0.sv:58]
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_s00tr_0' (60#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_3/synth/bd_5356_s00tr_0.sv:58]
-WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_5356_s00tr_0' has 86 connections declared, but only 84 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:1771]
-INFO: [Synth 8-6155] done synthesizing module 's00_entry_pipeline_imp_1P5J5CN' (61#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:1210]
-INFO: [Synth 8-6157] synthesizing module 's00_nodes_imp_1K0GGJX' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:1858]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_sarn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_6/synth/bd_5356_sarn_0.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'bd_9057_psr_aclk_0' (34#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/synth/bd_9057_psr_aclk_0.vhd:74]
+WARNING: [Synth 8-7023] instance 'psr_aclk' of module 'bd_9057_psr_aclk_0' has 10 connections declared, but only 6 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:823]
+WARNING: [Synth 8-3848] Net aresetn_out in module/entity clk_map_imp_16AXM60 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:804]
+INFO: [Synth 8-6155] done synthesizing module 'clk_map_imp_16AXM60' (35#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:788]
+INFO: [Synth 8-6157] synthesizing module 'm00_exit_pipeline_imp_QVCHPF' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:832]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_m00e_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_12/synth/bd_9057_m00e_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_m00e_0' (45#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_12/synth/bd_9057_m00e_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'm00_exit_pipeline_imp_QVCHPF' (46#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:832]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_m00s2a_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_11/synth/bd_9057_m00s2a_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_m00s2a_0' (48#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_11/synth/bd_9057_m00s2a_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_s00a2s_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_5/synth/bd_9057_s00a2s_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_s00a2s_0' (50#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_5/synth/bd_9057_s00a2s_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 's00_entry_pipeline_imp_1R8VNA8' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:1203]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_s00mmu_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_2/synth/bd_9057_s00mmu_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_s00mmu_0' (54#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_2/synth/bd_9057_s00mmu_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_s00sic_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_4/synth/bd_9057_s00sic_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_s00sic_0' (57#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_4/synth/bd_9057_s00sic_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_s00tr_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_3/synth/bd_9057_s00tr_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_s00tr_0' (60#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_3/synth/bd_9057_s00tr_0.sv:58]
+WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_9057_s00tr_0' has 86 connections declared, but only 84 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:1764]
+INFO: [Synth 8-6155] done synthesizing module 's00_entry_pipeline_imp_1R8VNA8' (61#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:1203]
+INFO: [Synth 8-6157] synthesizing module 's00_nodes_imp_1WC25YY' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:1851]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_sarn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_6/synth/bd_9057_sarn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:8320]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -1146,13 +1147,13 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_sarn_0' (76#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_6/synth/bd_5356_sarn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_sawn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_8/synth/bd_5356_sawn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_sarn_0' (76#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_6/synth/bd_9057_sarn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_sawn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_8/synth/bd_9057_sawn_0.sv:58]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_sawn_0' (77#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_8/synth/bd_5356_sawn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_sbn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_10/synth/bd_5356_sbn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_sawn_0' (77#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_8/synth/bd_9057_sawn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_sbn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_10/synth/bd_9057_sbn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized0' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:8320]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized0' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -1229,8 +1230,8 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_sbn_0' (78#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_10/synth/bd_5356_sbn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_srn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_7/synth/bd_5356_srn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_sbn_0' (78#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_10/synth/bd_9057_sbn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_srn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_7/synth/bd_9057_srn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized1' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:8320]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized1' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -1307,8 +1308,8 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_srn_0' (79#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_7/synth/bd_5356_srn_0.sv:58]
-INFO: [Synth 8-6157] synthesizing module 'bd_5356_swn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_9/synth/bd_5356_swn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_srn_0' (79#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_7/synth/bd_9057_srn_0.sv:58]
+INFO: [Synth 8-6157] synthesizing module 'bd_9057_swn_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_9/synth/bd_9057_swn_0.sv:58]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_sdpram__parameterized2' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:8320]
 INFO: [Synth 8-6157] synthesizing module 'xpm_memory_base__parameterized2' [/home/fra/Desktop/Vivado/2019.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
@@ -1385,27 +1386,27 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356_swn_0' (80#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_9/synth/bd_5356_swn_0.sv:58]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057_swn_0' (80#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_9/synth/bd_9057_swn_0.sv:58]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 's00_nodes_imp_1K0GGJX' (81#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:1858]
+INFO: [Synth 8-6155] done synthesizing module 's00_nodes_imp_1WC25YY' (81#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:1851]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'bd_5356' (82#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/synth/bd_5356.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'bd_9057' (82#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/synth/bd_9057.v:10]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-6155] done synthesizing module 'pynqz2_axi_smc_0' (83#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/synth/pynqz2_axi_smc_0.v:57]
-WARNING: [Synth 8-7023] instance 'axi_smc' of module 'pynqz2_axi_smc_0' has 74 connections declared, but only 72 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:289]
-INFO: [Synth 8-6157] synthesizing module 'pynqz2_nv_nvdla_wrapper_0_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_nv_nvdla_wrapper_0_0/synth/pynqz2_nv_nvdla_wrapper_0_0.v:58]
+INFO: [Synth 8-6155] done synthesizing module 'pynqz2_axi_smc_4' (83#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/synth/pynqz2_axi_smc_4.v:57]
+WARNING: [Synth 8-7023] instance 'axi_smc' of module 'pynqz2_axi_smc_4' has 73 connections declared, but only 71 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:290]
+INFO: [Synth 8-6157] synthesizing module 'pynqz2_nv_nvdla_wrapper_0_3' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_nv_nvdla_wrapper_0_3/synth/pynqz2_nv_nvdla_wrapper_0_3.v:58]
 INFO: [Synth 8-6157] synthesizing module 'nv_nvdla_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:8]
 INFO: [Synth 8-6157] synthesizing module 'NV_nvdla' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_nvdla.v:57]
 INFO: [Synth 8-6157] synthesizing module 'NV_NVDLA_partition_o' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/top/NV_NVDLA_partition_o.v:47]
@@ -1832,8 +1833,8 @@ INFO: [Synth 8-226] default block is never used [/media/fra/DATA/uni/2019-2020/t
 WARNING: [Synth 8-3848] Net flop_bn_data_out_pvld in module/entity NV_NVDLA_SDP_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v:202]
 WARNING: [Synth 8-3848] Net flop_bn_data_out_pd in module/entity NV_NVDLA_SDP_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v:204]
 WARNING: [Synth 8-7023] instance 'u_reg' of module 'NV_NVDLA_SDP_reg' has 117 connections declared, but only 55 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_sdp.v:302]
-WARNING: [Synth 8-3848] Net APB_S_pslverr in module/entity nv_nvdla_wrapper does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:61]
-WARNING: [Synth 8-3848] Net csb2nvdla_ready in module/entity nv_nvdla_wrapper does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:94]
+WARNING: [Synth 8-3848] Net APB_S_pslverr in module/entity nv_nvdla_wrapper does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:63]
+WARNING: [Synth 8-3848] Net csb2nvdla_ready in module/entity nv_nvdla_wrapper does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/nv_nvdla_wrapper.v:99]
 	Parameter C_USE_DEFAULT_ACP_USER_VAL bound to: 0 - type: integer 
 	Parameter C_S_AXI_ACP_ARUSER_VAL bound to: 31 - type: integer 
 	Parameter C_S_AXI_ACP_AWUSER_VAL bound to: 31 - type: integer 
@@ -1893,7 +1894,7 @@ WARNING: [Synth 8-3848] Net csb2nvdla_ready in module/entity nv_nvdla_wrapper do
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/hdl/verilog/processing_system7_v5_5_processing_system7.v:1347]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/hdl/verilog/processing_system7_v5_5_processing_system7.v:1348]
 WARNING: [Synth 8-7023] instance 'inst' of module 'processing_system7_v5_5_processing_system7' has 685 connections declared, but only 672 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/synth/pynqz2_ps7_0.v:465]
-WARNING: [Synth 8-7023] instance 'ps7' of module 'pynqz2_ps7_0' has 111 connections declared, but only 103 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:400]
+WARNING: [Synth 8-7023] instance 'ps7' of module 'pynqz2_ps7_0' has 111 connections declared, but only 103 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:398]
 INFO: [Synth 8-638] synthesizing module 'pynqz2_rst_ps7_30M_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/synth/pynqz2_rst_ps7_30M_0.vhd:74]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
@@ -1949,7 +1950,7 @@ INFO: [Synth 8-3491] module 'SRL16' declared at '/home/fra/Desktop/Vivado/2019.1
 INFO: [Synth 8-256] done synthesizing module 'lpf__parameterized0' (331#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
 INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset__parameterized1' (331#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
 INFO: [Synth 8-256] done synthesizing module 'pynqz2_rst_ps7_30M_0' (332#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/synth/pynqz2_rst_ps7_30M_0.vhd:74]
-WARNING: [Synth 8-7023] instance 'rst_ps7_30M' of module 'pynqz2_rst_ps7_30M_0' has 10 connections declared, but only 6 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:504]
+WARNING: [Synth 8-7023] instance 'rst_ps7_30M' of module 'pynqz2_rst_ps7_30M_0' has 10 connections declared, but only 6 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:502]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
@@ -2062,7 +2063,7 @@ WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[1]
 WARNING: [Synth 8-3331] design NV_NVDLA_apb2csb has unconnected port paddr[0]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:40 ; elapsed = 00:01:07 . Memory (MB): peak = 2296.070 ; gain = 683.543 ; free physical = 6886 ; free virtual = 27448
+Finished RTL Elaboration : Time (s): cpu = 00:00:44 ; elapsed = 00:01:13 . Memory (MB): peak = 2297.074 ; gain = 682.574 ; free physical = 2886 ; free virtual = 27225
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -2075,10 +2076,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:44 ; elapsed = 00:01:12 . Memory (MB): peak = 2296.070 ; gain = 683.543 ; free physical = 6899 ; free virtual = 27532
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:49 ; elapsed = 00:01:19 . Memory (MB): peak = 2297.074 ; gain = 682.574 ; free physical = 2938 ; free virtual = 27304
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:44 ; elapsed = 00:01:12 . Memory (MB): peak = 2296.070 ; gain = 683.543 ; free physical = 6899 ; free virtual = 27532
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:49 ; elapsed = 00:01:19 . Memory (MB): peak = 2297.074 ; gain = 682.574 ; free physical = 2938 ; free virtual = 27304
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 26 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -2090,14 +2091,16 @@ Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_smal
 Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/pynqz2_ps7_0.xdc] for cell 'pynqz2_i/ps7/inst'
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/pynqz2_ps7_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pynqz2_wrapper_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/pynqz2_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/bd_5356_psr_aclk_0_board.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
-Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/bd_5356_psr_aclk_0_board.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
-Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/bd_5356_psr_aclk_0.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
-Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/bd_5356_psr_aclk_0.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
 Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0_board.xdc] for cell 'pynqz2_i/rst_ps7_30M/U0'
 Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0_board.xdc] for cell 'pynqz2_i/rst_ps7_30M/U0'
 Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xdc] for cell 'pynqz2_i/rst_ps7_30M/U0'
 Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xdc] for cell 'pynqz2_i/rst_ps7_30M/U0'
+Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/bd_9057_psr_aclk_0_board.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/bd_9057_psr_aclk_0_board.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/bd_9057_psr_aclk_0.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/bd_9057_psr_aclk_0.xdc] for cell 'pynqz2_i/axi_smc/inst/clk_map/psr_aclk/U0'
+Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc]
+Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc]
 Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pynqz2_wrapper_propImpl.xdc].
@@ -2121,15 +2124,15 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/pynqz2_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2867.062 ; gain = 0.000 ; free physical = 6097 ; free virtual = 26730
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2868.098 ; gain = 0.000 ; free physical = 2209 ; free virtual = 26570
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 26 instances were transformed.
   FDR => FDRE: 24 instances
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.77 ; elapsed = 00:00:00.77 . Memory (MB): peak = 2867.062 ; gain = 0.000 ; free physical = 6096 ; free virtual = 26730
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.73 ; elapsed = 00:00:00.74 . Memory (MB): peak = 2868.098 ; gain = 0.000 ; free physical = 2208 ; free virtual = 26569
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:23 ; elapsed = 00:01:48 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 6720 ; free virtual = 27425
+Finished Constraint Validation : Time (s): cpu = 00:01:30 ; elapsed = 00:01:57 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 2798 ; free virtual = 27233
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 4 processes.
 ---------------------------------------------------------------------------------
@@ -2137,28 +2140,29 @@ Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:23 ; elapsed = 00:01:48 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 6720 ; free virtual = 27425
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:30 ; elapsed = 00:01:57 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 2797 ; free virtual = 27232
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for pynqz2_i/ps7/inst. (constraint file  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc, line 71).
-Applied set_property DONT_TOUCH = true for pynqz2_i/rst_ps7_30M/U0. (constraint file  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc, line 96).
+Applied set_property DONT_TOUCH = true for pynqz2_i/ps7/inst. (constraint file  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc, line 76).
+Applied set_property DONT_TOUCH = true for pynqz2_i/rst_ps7_30M/U0. (constraint file  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/dont_touch.xdc, line 79).
 Applied set_property DONT_TOUCH = true for pynqz2_i. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/ps7. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for pynqz2_i/axi_interconnect_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/rst_ps7_30M. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/axi_mem_intercon. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/xlconstant_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/nv_nvdla_wrapper_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_smc. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for pynqz2_i/rst_ps7_30M. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_apb_bridge_0. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for pynqz2_i/axi_interconnect_0/s00_couplers/auto_pc. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/axi_mem_intercon/s00_couplers/auto_pc. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_smc/inst/s00_nodes/s00_ar_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_smc/inst/s00_nodes/s00_aw_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_smc/inst/s00_nodes/s00_b_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_smc/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_smc/inst/s00_nodes/s00_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:23 ; elapsed = 00:01:48 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 6709 ; free virtual = 27414
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:30 ; elapsed = 00:01:57 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 2786 ; free virtual = 27220
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'axi_wr_rd_cs_reg' in module 'axilite_sif'
 INFO: [Synth 8-802] inferred FSM for state register 'apb_wr_rd_cs_reg' in module 'apb_mif'
@@ -2354,7 +2358,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encod
 INFO: [Synth 8-6430] The Block RAM "nv_ram_rws_16x272:/M_reg" may get memory collision error if read and write address collide. Use attribute (* rw_addr_collision= "yes" *) to avoid collision 
 INFO: [Synth 8-6430] The Block RAM "nv_ram_rws_16x256:/M_reg" may get memory collision error if read and write address collide. Use attribute (* rw_addr_collision= "yes" *) to avoid collision 
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:54 ; elapsed = 00:02:23 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 4379 ; free virtual = 25204
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:03 ; elapsed = 00:02:34 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 429 ; free virtual = 24990
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'NV_NVDLA_sync3d:/UJ_dft_xclamp_ctrl_hold_sync_i' (NV_BLKBOX_SRC0) to 'NV_NVDLA_sync3d:/UJ_dft_xclamp_scan_hold_sync_i'
 INFO: [Synth 8-223] decloning instance 'NV_NVDLA_sync3d_s:/UJ_dft_xclamp_ctrl_hold_sync_i' (NV_BLKBOX_SRC0) to 'NV_NVDLA_sync3d_s:/UJ_dft_xclamp_scan_hold_sync_i'
@@ -2454,8 +2458,8 @@ Report RTL Partitions:
 |3     |sc_exit_v1_0_8_splitter__GC0        |           1|        18|
 |4     |sc_exit_v1_0_8_top__GC0             |           1|       529|
 |5     |sc_mmu_v1_0_7_top__GC0              |           1|      2147|
-|6     |s00_entry_pipeline_imp_1P5J5CN__GC0 |           1|       516|
-|7     |bd_5356__GC0                        |           1|      2724|
+|6     |s00_entry_pipeline_imp_1R8VNA8__GC0 |           1|       516|
+|7     |bd_9057__GC0                        |           1|      2724|
 |8     |NV_NVDLA_MCIF_read                  |           1|     35541|
 |9     |NV_NVDLA_mcif__GB1                  |           1|     12812|
 |10    |NV_NVDLA_partition_o__GC0           |           1|      4234|
@@ -8731,7 +8735,7 @@ INFO: [Synth 8-6430] The Block RAM "NV_nvdla__GC0/u_partition_a/u_NV_NVDLA_cacc/
 RAM Pipeline Warning: Read Address Register Found For RAM u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/u_accu_abuf_0/M_reg. We will not be able to pipeline it. This may degrade performance. 
 RAM Pipeline Warning: Read Address Register Found For RAM u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/u_accu_dbuf/M_reg. We will not be able to pipeline it. This may degrade performance. 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:03:29 ; elapsed = 00:04:03 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 3648 ; free virtual = 24794
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:03:39 ; elapsed = 00:04:14 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 406 ; free virtual = 24554
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -8996,8 +9000,8 @@ Report RTL Partitions:
 |3     |sc_exit_v1_0_8_splitter__GC0        |           1|        19|
 |4     |sc_exit_v1_0_8_top__GC0             |           1|       236|
 |5     |sc_mmu_v1_0_7_top__GC0              |           1|       367|
-|6     |s00_entry_pipeline_imp_1P5J5CN__GC0 |           1|       415|
-|7     |bd_5356__GC0                        |           1|      2203|
+|6     |s00_entry_pipeline_imp_1R8VNA8__GC0 |           1|       415|
+|7     |bd_9057__GC0                        |           1|      2203|
 |8     |NV_NVDLA_MCIF_read                  |           1|      6536|
 |9     |NV_NVDLA_mcif__GB1                  |           1|      6799|
 |10    |NV_NVDLA_partition_o__GC0           |           1|      3222|
@@ -9026,13 +9030,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:03:41 ; elapsed = 00:04:19 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 3123 ; free virtual = 24476
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:03:52 ; elapsed = 00:04:31 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 318 ; free virtual = 24389
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:04:36 ; elapsed = 00:05:16 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 2969 ; free virtual = 24324
+Finished Timing Optimization : Time (s): cpu = 00:04:53 ; elapsed = 00:05:35 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 216 ; free virtual = 24177
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -9161,8 +9165,8 @@ Report RTL Partitions:
 |3     |sc_exit_v1_0_8_splitter__GC0        |           1|        19|
 |4     |sc_exit_v1_0_8_top__GC0             |           1|       236|
 |5     |sc_mmu_v1_0_7_top__GC0              |           1|       367|
-|6     |s00_entry_pipeline_imp_1P5J5CN__GC0 |           1|       415|
-|7     |bd_5356__GC0                        |           1|      2203|
+|6     |s00_entry_pipeline_imp_1R8VNA8__GC0 |           1|       415|
+|7     |bd_9057__GC0                        |           1|      2203|
 |8     |NV_NVDLA_MCIF_read                  |           1|      6347|
 |9     |NV_NVDLA_mcif__GB1                  |           1|      6593|
 |10    |NV_NVDLA_partition_o__GC0           |           1|      2891|
@@ -9235,7 +9239,7 @@ INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM bloc
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v:289]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8/vmod/nvdla/sdp/NV_NVDLA_SDP_core.v:289]
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:05:06 ; elapsed = 00:05:53 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1972 ; free virtual = 23469
+Finished Technology Mapping : Time (s): cpu = 00:05:23 ; elapsed = 00:06:12 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 260 ; free virtual = 23354
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -9247,8 +9251,8 @@ Report RTL Partitions:
 |3     |sc_exit_v1_0_8_splitter__GC0        |           1|        16|
 |4     |sc_exit_v1_0_8_top__GC0             |           1|       135|
 |5     |sc_mmu_v1_0_7_top__GC0              |           1|       202|
-|6     |s00_entry_pipeline_imp_1P5J5CN__GC0 |           1|       224|
-|7     |bd_5356__GC0                        |           1|       985|
+|6     |s00_entry_pipeline_imp_1R8VNA8__GC0 |           1|       224|
+|7     |bd_9057__GC0                        |           1|       985|
 |8     |NV_NVDLA_MCIF_read                  |           1|      3713|
 |9     |NV_NVDLA_mcif__GB1                  |           1|      3033|
 |10    |NV_NVDLA_partition_o__GC0           |           1|      1675|
@@ -9323,7 +9327,7 @@ INFO: [Synth 8-5365] Flop inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:05:30 ; elapsed = 00:06:20 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1788 ; free virtual = 23519
+Finished IO Insertion : Time (s): cpu = 00:05:48 ; elapsed = 00:06:41 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 250 ; free virtual = 23413
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -9336,7 +9340,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:05:31 ; elapsed = 00:06:21 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1788 ; free virtual = 23520
+Finished Renaming Generated Instances : Time (s): cpu = 00:05:49 ; elapsed = 00:06:42 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 250 ; free virtual = 23413
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -9348,25 +9352,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:50 ; elapsed = 00:06:41 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1758 ; free virtual = 23490
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:06:10 ; elapsed = 00:07:04 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 218 ; free virtual = 23381
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:05:50 ; elapsed = 00:06:41 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1758 ; free virtual = 23490
+Finished Renaming Generated Ports : Time (s): cpu = 00:06:11 ; elapsed = 00:07:05 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 218 ; free virtual = 23381
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:05:53 ; elapsed = 00:06:44 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1752 ; free virtual = 23484
+Finished Handling Custom Attributes : Time (s): cpu = 00:06:14 ; elapsed = 00:07:08 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 219 ; free virtual = 23382
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:05:54 ; elapsed = 00:06:45 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1752 ; free virtual = 23484
+Finished Renaming Generated Nets : Time (s): cpu = 00:06:14 ; elapsed = 00:07:08 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 219 ; free virtual = 23382
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -9376,10 +9380,10 @@ Static Shift Register Report:
 +----------------------------+------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Module Name                 | RTL Name                                                                     | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +----------------------------+------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|pynqz2_nv_nvdla_wrapper_0_0 | inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/sc2buf_dat_rd_shift_d5_reg[6]     | 5      | 5     | NO           | NO                 | YES               | 5      | 0       | 
-|pynqz2_nv_nvdla_wrapper_0_0 | inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/sc2buf_dat_rd_valid_w_d4_reg      | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-|pynqz2_nv_nvdla_wrapper_0_0 | inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/sc2buf_wt_rd_valid_w_d4_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-|pynqz2_nv_nvdla_wrapper_0_0 | inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_calculator/calc_valid_in_d3_reg | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|pynqz2_nv_nvdla_wrapper_0_3 | inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/sc2buf_dat_rd_shift_d5_reg[6]     | 5      | 5     | NO           | NO                 | YES               | 5      | 0       | 
+|pynqz2_nv_nvdla_wrapper_0_3 | inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/sc2buf_dat_rd_valid_w_d4_reg      | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|pynqz2_nv_nvdla_wrapper_0_3 | inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/sc2buf_wt_rd_valid_w_d4_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|pynqz2_nv_nvdla_wrapper_0_3 | inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_calculator/calc_valid_in_d3_reg | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 +----------------------------+------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 
@@ -9448,17 +9452,17 @@ Report Instance Areas:
 +------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------+-------+
 |1     |top                                                                                                 |                                                               | 104106|
 |2     |  pynqz2_i                                                                                          |pynqz2                                                         | 104106|
-|3     |    axi_smc                                                                                         |pynqz2_axi_smc_0                                               |   4151|
-|4     |      inst                                                                                          |bd_5356                                                        |   4151|
-|5     |        clk_map                                                                                     |clk_map_imp_1AKUXHR                                            |     41|
-|6     |          psr_aclk                                                                                  |bd_5356_psr_aclk_0                                             |     41|
+|3     |    axi_smc                                                                                         |pynqz2_axi_smc_4                                               |   4151|
+|4     |      inst                                                                                          |bd_9057                                                        |   4151|
+|5     |        clk_map                                                                                     |clk_map_imp_16AXM60                                            |     41|
+|6     |          psr_aclk                                                                                  |bd_9057_psr_aclk_0                                             |     41|
 |7     |            U0                                                                                      |proc_sys_reset                                                 |     41|
 |8     |              EXT_LPF                                                                               |lpf                                                            |      9|
 |9     |                \ACTIVE_LOW_AUX.ACT_LO_AUX                                                          |cdc_sync_402                                                   |      5|
 |10    |              SEQ                                                                                   |sequence_psr_400                                               |     31|
 |11    |                SEQ_COUNTER                                                                         |upcnt_n_401                                                    |     13|
-|12    |        m00_exit_pipeline                                                                           |m00_exit_pipeline_imp_QG0PUC                                   |   1662|
-|13    |          m00_exit                                                                                  |bd_5356_m00e_0                                                 |   1662|
+|12    |        m00_exit_pipeline                                                                           |m00_exit_pipeline_imp_QVCHPF                                   |   1662|
+|13    |          m00_exit                                                                                  |bd_9057_m00e_0                                                 |   1662|
 |14    |            inst                                                                                    |sc_exit_v1_0_8_top                                             |   1662|
 |15    |              ar_reg                                                                                |sc_util_v1_0_4_axi_reg_stall_369                               |    156|
 |16    |              aw_reg                                                                                |sc_util_v1_0_4_axi_reg_stall_370                               |    156|
@@ -9498,8 +9502,8 @@ Report Instance Areas:
 |50    |                    \gen_srls[3].srl_nx1                                                            |sc_util_v1_0_4_srl_rtl_380                                     |      2|
 |51    |                    \gen_srls[4].srl_nx1                                                            |sc_util_v1_0_4_srl_rtl_381                                     |      3|
 |52    |              w_reg                                                                                 |sc_util_v1_0_4_axi_reg_stall_373                               |    121|
-|53    |        s00_entry_pipeline                                                                          |s00_entry_pipeline_imp_1P5J5CN                                 |   1500|
-|54    |          s00_mmu                                                                                   |bd_5356_s00mmu_0                                               |   1276|
+|53    |        s00_entry_pipeline                                                                          |s00_entry_pipeline_imp_1R8VNA8                                 |   1500|
+|54    |          s00_mmu                                                                                   |bd_9057_s00mmu_0                                               |   1276|
 |55    |            inst                                                                                    |sc_mmu_v1_0_7_top                                              |   1276|
 |56    |              ar_reg_stall                                                                          |sc_util_v1_0_4_axi_reg_stall                                   |    197|
 |57    |              ar_sreg                                                                               |sc_util_v1_0_4_axi_reg_stall_363                               |    207|
@@ -9509,7 +9513,7 @@ Report Instance Areas:
 |61    |              \gen_endpoint.decerr_slave_inst                                                       |sc_mmu_v1_0_7_decerr_slave                                     |     85|
 |62    |              r_sreg                                                                                |sc_util_v1_0_4_axi_reg_stall_367                               |    174|
 |63    |              w_sreg                                                                                |sc_util_v1_0_4_axi_reg_stall_368                               |    125|
-|64    |          s00_si_converter                                                                          |bd_5356_s00sic_0                                               |    115|
+|64    |          s00_si_converter                                                                          |bd_9057_s00sic_0                                               |    115|
 |65    |            inst                                                                                    |sc_si_converter_v1_0_8_top                                     |    115|
 |66    |              splitter_inst                                                                         |sc_si_converter_v1_0_8_splitter                                |    103|
 |67    |                \gen_no_wsplitter.gen_endpoint_woffset.gen_wbypass_offset_fifo.wbypass_offset_fifo  |sc_util_v1_0_4_axic_reg_srl_fifo__parameterized4               |    102|
@@ -9527,7 +9531,7 @@ Report Instance Areas:
 |79    |                  \gen_srls[7].srl_nx1                                                              |sc_util_v1_0_4_srl_rtl_360                                     |      2|
 |80    |                  \gen_srls[8].srl_nx1                                                              |sc_util_v1_0_4_srl_rtl_361                                     |      2|
 |81    |                  \gen_srls[9].srl_nx1                                                              |sc_util_v1_0_4_srl_rtl_362                                     |      2|
-|82    |          s00_transaction_regulator                                                                 |bd_5356_s00tr_0                                                |    109|
+|82    |          s00_transaction_regulator                                                                 |bd_9057_s00tr_0                                                |    109|
 |83    |            inst                                                                                    |sc_transaction_regulator_v1_0_8_top                            |    109|
 |84    |              \gen_endpoint.gen_r_singleorder.r_singleorder                                         |sc_transaction_regulator_v1_0_8_singleorder                    |     53|
 |85    |                \gen_id_fifo.singleorder_fifo                                                       |sc_util_v1_0_4_axic_reg_srl_fifo__parameterized5_340           |     53|
@@ -9549,8 +9553,8 @@ Report Instance Areas:
 |101   |                  \gen_srls[5].srl_nx1                                                              |sc_util_v1_0_4_srl_rtl_337                                     |      2|
 |102   |                  \gen_srls[6].srl_nx1                                                              |sc_util_v1_0_4_srl_rtl_338                                     |      2|
 |103   |                  \gen_srls[7].srl_nx1                                                              |sc_util_v1_0_4_srl_rtl_339                                     |      3|
-|104   |        s00_nodes                                                                                   |s00_nodes_imp_1K0GGJX                                          |    948|
-|105   |          s00_ar_node                                                                               |bd_5356_sarn_0                                                 |    260|
+|104   |        s00_nodes                                                                                   |s00_nodes_imp_1WC25YY                                          |    948|
+|105   |          s00_ar_node                                                                               |bd_9057_sarn_0                                                 |    260|
 |106   |            inst                                                                                    |sc_node_v1_0_10_top                                            |    260|
 |107   |              inst_mi_handler                                                                       |sc_node_v1_0_10_mi_handler                                     |    253|
 |108   |                \gen_normal_area.inst_fifo_node_payld                                               |sc_node_v1_0_10_fifo__xdcDup__1                                |    251|
@@ -9562,7 +9566,7 @@ Report Instance Areas:
 |114   |                    \gen_wr.inst_wr_addra_p1                                                        |sc_util_v1_0_4_counter__parameterized0_331                     |     31|
 |115   |              inst_si_handler                                                                       |sc_node_v1_0_10_si_handler                                     |      3|
 |116   |                inst_arb_stall_late                                                                 |sc_util_v1_0_4_pipeline_328                                    |      3|
-|117   |          s00_aw_node                                                                               |bd_5356_sawn_0                                                 |    260|
+|117   |          s00_aw_node                                                                               |bd_9057_sawn_0                                                 |    260|
 |118   |            inst                                                                                    |sc_node_v1_0_10_top__parameterized0                            |    260|
 |119   |              inst_mi_handler                                                                       |sc_node_v1_0_10_mi_handler__parameterized0                     |    253|
 |120   |                \gen_normal_area.inst_fifo_node_payld                                               |sc_node_v1_0_10_fifo                                           |    251|
@@ -9574,7 +9578,7 @@ Report Instance Areas:
 |126   |                    \gen_wr.inst_wr_addra_p1                                                        |sc_util_v1_0_4_counter__parameterized0_327                     |     31|
 |127   |              inst_si_handler                                                                       |sc_node_v1_0_10_si_handler__parameterized0                     |      3|
 |128   |                inst_arb_stall_late                                                                 |sc_util_v1_0_4_pipeline_324                                    |      3|
-|129   |          s00_b_node                                                                                |bd_5356_sbn_0                                                  |    106|
+|129   |          s00_b_node                                                                                |bd_9057_sbn_0                                                  |    106|
 |130   |            inst                                                                                    |sc_node_v1_0_10_top__parameterized1                            |    106|
 |131   |              inst_mi_handler                                                                       |sc_node_v1_0_10_mi_handler__parameterized1                     |     98|
 |132   |                \gen_normal_area.inst_fifo_node_payld                                               |sc_node_v1_0_10_fifo__parameterized0                           |     96|
@@ -9586,7 +9590,7 @@ Report Instance Areas:
 |138   |                    \gen_wr.inst_wr_addra_p1                                                        |sc_util_v1_0_4_counter__parameterized0_323                     |     31|
 |139   |              inst_si_handler                                                                       |sc_node_v1_0_10_si_handler__parameterized1                     |      4|
 |140   |                inst_arb_stall_late                                                                 |sc_util_v1_0_4_pipeline_320                                    |      4|
-|141   |          s00_r_node                                                                                |bd_5356_srn_0                                                  |    161|
+|141   |          s00_r_node                                                                                |bd_9057_srn_0                                                  |    161|
 |142   |            inst                                                                                    |sc_node_v1_0_10_top__parameterized2                            |    161|
 |143   |              inst_mi_handler                                                                       |sc_node_v1_0_10_mi_handler__parameterized2                     |    153|
 |144   |                \gen_normal_area.inst_fifo_node_payld                                               |sc_node_v1_0_10_fifo__parameterized1                           |    151|
@@ -9598,7 +9602,7 @@ Report Instance Areas:
 |150   |                    \gen_wr.inst_wr_addra_p1                                                        |sc_util_v1_0_4_counter__parameterized0_319                     |     31|
 |151   |              inst_si_handler                                                                       |sc_node_v1_0_10_si_handler__parameterized2                     |      4|
 |152   |                inst_arb_stall_late                                                                 |sc_util_v1_0_4_pipeline_316                                    |      4|
-|153   |          s00_w_node                                                                                |bd_5356_swn_0                                                  |    161|
+|153   |          s00_w_node                                                                                |bd_9057_swn_0                                                  |    161|
 |154   |            inst                                                                                    |sc_node_v1_0_10_top__parameterized3                            |    161|
 |155   |              inst_mi_handler                                                                       |sc_node_v1_0_10_mi_handler__parameterized3                     |    154|
 |156   |                \gen_normal_area.inst_fifo_node_payld                                               |sc_node_v1_0_10_fifo__parameterized2                           |    152|
@@ -9610,7 +9614,7 @@ Report Instance Areas:
 |162   |                    \gen_wr.inst_wr_addra_p1                                                        |sc_util_v1_0_4_counter__parameterized0                         |     31|
 |163   |              inst_si_handler                                                                       |sc_node_v1_0_10_si_handler__parameterized3                     |      3|
 |164   |                inst_arb_stall_late                                                                 |sc_util_v1_0_4_pipeline                                        |      3|
-|165   |    nv_nvdla_wrapper_0                                                                              |pynqz2_nv_nvdla_wrapper_0_0                                    |  98202|
+|165   |    nv_nvdla_wrapper_0                                                                              |pynqz2_nv_nvdla_wrapper_0_3                                    |  98202|
 |166   |      inst                                                                                          |nv_nvdla_wrapper                                               |  96289|
 |167   |        apb2csb_interface                                                                           |NV_NVDLA_apb2csb                                               |      1|
 |168   |        nv_core                                                                                     |NV_nvdla                                                       |  96288|
@@ -10146,13 +10150,13 @@ Report Instance Areas:
 |698   |            u_global_clk_ovr_on_sync                                                                |NV_NVDLA_sync3d_s                                              |      3|
 |699   |              sync_0                                                                                |sync3d_s_ppp                                                   |      3|
 |700   |                NV_GENERIC_CELL                                                                     |p_SSYNC3DO_S_PPP                                               |      3|
-|701   |    axi_apb_bridge_0                                                                                |pynqz2_axi_apb_bridge_0_0                                      |    303|
+|701   |    axi_apb_bridge_0                                                                                |pynqz2_axi_apb_bridge_0_3                                      |    303|
 |702   |      U0                                                                                            |axi_apb_bridge                                                 |    303|
 |703   |        APB_MASTER_IF_MODULE                                                                        |apb_mif                                                        |     76|
 |704   |        AXILITE_SLAVE_IF_MODULE                                                                     |axilite_sif                                                    |    226|
 |705   |        MULTIPLEXOR_MODULE                                                                          |multiplexor                                                    |      1|
-|706   |    axi_interconnect_0                                                                              |pynqz2_axi_interconnect_0_0                                    |   1140|
-|707   |      s00_couplers                                                                                  |s00_couplers_imp_V1CATC                                        |   1140|
+|706   |    axi_mem_intercon                                                                                |pynqz2_axi_mem_intercon_0                                      |   1140|
+|707   |      s00_couplers                                                                                  |s00_couplers_imp_1JNWH51                                       |   1140|
 |708   |        auto_pc                                                                                     |pynqz2_auto_pc_0                                               |   1140|
 |709   |          inst                                                                                      |axi_protocol_converter_v2_1_19_axi_protocol_converter          |   1140|
 |710   |            \gen_axilite.gen_b2s_conv.axilite_b2s                                                   |axi_protocol_converter_v2_1_19_b2s                             |   1140|
@@ -10186,19 +10190,20 @@ Report Instance Areas:
 |738   |          \ACTIVE_LOW_EXT.ACT_LO_EXT                                                                |cdc_sync_0                                                     |      6|
 |739   |        SEQ                                                                                         |sequence_psr                                                   |     38|
 |740   |          SEQ_COUNTER                                                                               |upcnt_n                                                        |     13|
+|741   |    xlconstant_0                                                                                    |pynqz2_xlconstant_0_1                                          |      0|
 +------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------+-------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:05:54 ; elapsed = 00:06:45 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 1751 ; free virtual = 23483
+Finished Writing Synthesis Report : Time (s): cpu = 00:06:14 ; elapsed = 00:07:08 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 219 ; free virtual = 23383
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 3635 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:05:21 ; elapsed = 00:06:19 . Memory (MB): peak = 2867.062 ; gain = 683.543 ; free physical = 5230 ; free virtual = 26962
-Synthesis Optimization Complete : Time (s): cpu = 00:05:55 ; elapsed = 00:06:48 . Memory (MB): peak = 2867.062 ; gain = 1254.535 ; free physical = 5264 ; free virtual = 26962
+Synthesis Optimization Runtime : Time (s): cpu = 00:05:40 ; elapsed = 00:06:44 . Memory (MB): peak = 2868.098 ; gain = 682.574 ; free physical = 3702 ; free virtual = 26866
+Synthesis Optimization Complete : Time (s): cpu = 00:06:16 ; elapsed = 00:07:14 . Memory (MB): peak = 2868.098 ; gain = 1253.598 ; free physical = 3737 ; free virtual = 26866
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 3169 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2891.074 ; gain = 0.000 ; free physical = 5128 ; free virtual = 26826
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2892.109 ; gain = 0.000 ; free physical = 3744 ; free virtual = 26796
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 126 instances were transformed.
   FDR => FDRE: 12 instances
@@ -10207,13 +10212,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   SRL16 => SRL16E: 2 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-991 Infos, 437 Warnings, 0 Critical Warnings and 0 Errors encountered.
+993 Infos, 435 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:06:14 ; elapsed = 00:07:07 . Memory (MB): peak = 2891.074 ; gain = 1390.105 ; free physical = 5499 ; free virtual = 27197
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2891.074 ; gain = 0.000 ; free physical = 5499 ; free virtual = 27197
+synth_design: Time (s): cpu = 00:06:37 ; elapsed = 00:07:35 . Memory (MB): peak = 2892.109 ; gain = 1399.141 ; free physical = 4035 ; free virtual = 27173
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2892.109 ; gain = 0.000 ; free physical = 4034 ; free virtual = 27171
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/synth_1/pynqz2_wrapper.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:19 ; elapsed = 00:00:18 . Memory (MB): peak = 2915.086 ; gain = 24.012 ; free physical = 5346 ; free virtual = 27204
+write_checkpoint: Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 2916.121 ; gain = 24.012 ; free physical = 3780 ; free virtual = 27189
 INFO: [runtcl-4] Executing : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Feb 25 18:48:50 2020...
+INFO: [Common 17-206] Exiting Vivado at Sat Feb 29 13:08:43 2020...

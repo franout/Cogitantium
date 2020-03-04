@@ -80,6 +80,7 @@ set rc [catch {
   set_param project.isImplRun true
   add_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
   set_param project.isImplRun false
+  read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
   set_param project.isImplRun true
   link_design -top pynqz2_wrapper -part xc7z020clg400-1
   set_param project.isImplRun false

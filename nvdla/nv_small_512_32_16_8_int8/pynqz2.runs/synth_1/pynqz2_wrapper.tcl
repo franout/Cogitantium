@@ -223,19 +223,19 @@ read_verilog -library xil_defaultlib {
 }
 add_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/pynqz2_ps7_0.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/bd_5356_psr_aclk_0_board.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_1/bd_5356_psr_aclk_0.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_5/bd_5356_s00a2s_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_6/bd_5356_sarn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_7/bd_5356_srn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_8/bd_5356_sawn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_9/bd_5356_swn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_10/bd_5356_sbn_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_0/bd_0/ip/ip_11/bd_5356_m00s2a_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0_board.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_0/pynqz2_axi_apb_bridge_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/bd_9057_psr_aclk_0_board.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_1/bd_9057_psr_aclk_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_5/bd_9057_s00a2s_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_6/bd_9057_sarn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_7/bd_9057_srn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_8/bd_9057_sawn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_9/bd_9057_swn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_10/bd_9057_sbn_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_smc_4/bd_0/ip/ip_11/bd_9057_m00s2a_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_3/pynqz2_axi_apb_bridge_0_3_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
 
@@ -247,6 +247,9 @@ set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/20
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
+set_property used_in_implementation false [get_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc]
+
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1

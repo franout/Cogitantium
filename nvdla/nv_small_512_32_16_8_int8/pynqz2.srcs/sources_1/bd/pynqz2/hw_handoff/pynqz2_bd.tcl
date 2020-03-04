@@ -162,9 +162,9 @@ proc create_root_design { parentCell } {
 
 
   # Create interface ports
-  set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
+  set DDR_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR_0 ]
 
-  set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
+  set FIXED_IO_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO_0 ]
 
 
   # Create ports
@@ -173,20 +173,17 @@ proc create_root_design { parentCell } {
   set axi_apb_bridge_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_apb_bridge:3.0 axi_apb_bridge_0 ]
   set_property -dict [ list \
    CONFIG.C_APB_NUM_SLAVES {1} \
-   CONFIG.C_DPHASE_TIMEOUT {0} \
  ] $axi_apb_bridge_0
 
-  # Create instance: axi_interconnect_0, and set properties
-  set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
+  # Create instance: axi_mem_intercon, and set properties
+  set axi_mem_intercon [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_mem_intercon ]
   set_property -dict [ list \
    CONFIG.NUM_MI {1} \
- ] $axi_interconnect_0
+ ] $axi_mem_intercon
 
   # Create instance: axi_smc, and set properties
   set axi_smc [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 axi_smc ]
   set_property -dict [ list \
-   CONFIG.NUM_CLKS {2} \
-   CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {1} \
  ] $axi_smc
 
@@ -201,11 +198,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.ASSOCIATED_BUSIF {APB_S} \
-   CONFIG.ASSOCIATED_RESET {s_axi_prstn} \
- ] [get_bd_pins /nv_nvdla_wrapper_0/s_axi_aclk]
-
   # Create instance: ps7, and set properties
   set ps7 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7 ]
   set_property -dict [ list \
@@ -266,7 +258,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_CLK1_FREQ {10000000} \
    CONFIG.PCW_CLK2_FREQ {10000000} \
    CONFIG.PCW_CLK3_FREQ {10000000} \
-   CONFIG.PCW_CORE0_FIQ_INTR {1} \
+   CONFIG.PCW_CORE0_FIQ_INTR {0} \
    CONFIG.PCW_CORE0_IRQ_INTR {0} \
    CONFIG.PCW_CORE1_FIQ_INTR {0} \
    CONFIG.PCW_CORE1_IRQ_INTR {0} \
@@ -461,7 +453,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_INCLUDE_TRACE_BUFFER {0} \
    CONFIG.PCW_IOPLL_CTRL_FBDIV {20} \
    CONFIG.PCW_IO_IO_PLL_FREQMHZ {1000.000} \
-   CONFIG.PCW_IRQ_F2P_INTR {0} \
+   CONFIG.PCW_IRQ_F2P_INTR {1} \
    CONFIG.PCW_IRQ_F2P_MODE {DIRECT} \
    CONFIG.PCW_MIO_0_DIRECTION {inout} \
    CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 3.3V} \
@@ -1072,24 +1064,28 @@ proc create_root_design { parentCell } {
   # Create instance: rst_ps7_30M, and set properties
   set rst_ps7_30M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_30M ]
 
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+
   # Create interface connections
+  connect_bd_intf_net -intf_net S00_AXI_1 [get_bd_intf_pins axi_mem_intercon/S00_AXI] [get_bd_intf_pins ps7/M_AXI_GP0]
   connect_bd_intf_net -intf_net axi_apb_bridge_0_APB_M [get_bd_intf_pins axi_apb_bridge_0/APB_M] [get_bd_intf_pins nv_nvdla_wrapper_0/APB_S]
-  connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_apb_bridge_0/AXI4_LITE] [get_bd_intf_pins axi_interconnect_0/M00_AXI]
+  connect_bd_intf_net -intf_net axi_mem_intercon_M00_AXI [get_bd_intf_pins axi_apb_bridge_0/AXI4_LITE] [get_bd_intf_pins axi_mem_intercon/M00_AXI]
   connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins ps7/S_AXI_HP0]
   connect_bd_intf_net -intf_net nv_nvdla_wrapper_0_M_AXI [get_bd_intf_pins axi_smc/S00_AXI] [get_bd_intf_pins nv_nvdla_wrapper_0/M_AXI]
-  connect_bd_intf_net -intf_net ps7_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins ps7/DDR]
-  connect_bd_intf_net -intf_net ps7_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins ps7/FIXED_IO]
-  connect_bd_intf_net -intf_net ps7_M_AXI_GP0 [get_bd_intf_pins axi_interconnect_0/S00_AXI] [get_bd_intf_pins ps7/M_AXI_GP0]
+  connect_bd_intf_net -intf_net ps7_DDR [get_bd_intf_ports DDR_0] [get_bd_intf_pins ps7/DDR]
+  connect_bd_intf_net -intf_net ps7_FIXED_IO [get_bd_intf_ports FIXED_IO_0] [get_bd_intf_pins ps7/FIXED_IO]
 
   # Create port connections
-  connect_bd_net -net nv_nvdla_wrapper_0_dla_int_request [get_bd_pins nv_nvdla_wrapper_0/dla_int_request] [get_bd_pins ps7/Core0_nFIQ]
-  connect_bd_net -net ps7_FCLK_CLK0 [get_bd_pins axi_apb_bridge_0/s_axi_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_smc/aclk] [get_bd_pins axi_smc/aclk1] [get_bd_pins nv_nvdla_wrapper_0/clk] [get_bd_pins nv_nvdla_wrapper_0/s_axi_aclk] [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] [get_bd_pins rst_ps7_30M/slowest_sync_clk]
+  connect_bd_net -net ARESETN_1 [get_bd_pins axi_apb_bridge_0/s_axi_aresetn] [get_bd_pins axi_mem_intercon/ARESETN] [get_bd_pins axi_mem_intercon/M00_ARESETN] [get_bd_pins axi_mem_intercon/S00_ARESETN] [get_bd_pins axi_smc/aresetn] [get_bd_pins nv_nvdla_wrapper_0/reset_n] [get_bd_pins rst_ps7_30M/peripheral_aresetn]
+  connect_bd_net -net nv_nvdla_wrapper_0_dlaintc2ps [get_bd_pins nv_nvdla_wrapper_0/dlaintc2ps] [get_bd_pins ps7/IRQ_F2P]
+  connect_bd_net -net ps7_FCLK_CLK0 [get_bd_pins axi_apb_bridge_0/s_axi_aclk] [get_bd_pins axi_mem_intercon/ACLK] [get_bd_pins axi_mem_intercon/M00_ACLK] [get_bd_pins axi_mem_intercon/S00_ACLK] [get_bd_pins axi_smc/aclk] [get_bd_pins nv_nvdla_wrapper_0/clk] [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] [get_bd_pins rst_ps7_30M/slowest_sync_clk]
   connect_bd_net -net ps7_FCLK_RESET0_N [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins rst_ps7_30M/ext_reset_in]
-  connect_bd_net -net rst_ps7_30M_peripheral_aresetn [get_bd_pins axi_apb_bridge_0/s_axi_aresetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_smc/aresetn] [get_bd_pins nv_nvdla_wrapper_0/reset_n] [get_bd_pins nv_nvdla_wrapper_0/s_axi_prstn] [get_bd_pins rst_ps7_30M/peripheral_aresetn]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins nv_nvdla_wrapper_0/test_mode] [get_bd_pins xlconstant_0/dout]
 
   # Create address segments
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces nv_nvdla_wrapper_0/M_AXI] [get_bd_addr_segs ps7/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_ps7_HP0_DDR_LOWOCM
-  create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs nv_nvdla_wrapper_0/APB_S/Reg] SEG_nv_nvdla_wrapper_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs nv_nvdla_wrapper_0/APB_S/Reg] SEG_nv_nvdla_wrapper_0_Reg
 
 
   # Restore current instance

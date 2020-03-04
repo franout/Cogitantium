@@ -71,13 +71,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/CKLNQD12.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../../nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/MUX2D4.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -1344,6 +1337,7 @@
       </File>
       <File Path="$PPRDIR/../../nvdla_configurations/MY_GLOBAL_DEFINE.vh">
         <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -1365,6 +1359,14 @@
       <File Path="$PSRCDIR/sources_1/bd/base_zynq/hdl/base_zynq_wrapper.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../nvdla_configurations/nv_small_512_32_8_int8/vmod/vlibs/CKLNQD12.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>

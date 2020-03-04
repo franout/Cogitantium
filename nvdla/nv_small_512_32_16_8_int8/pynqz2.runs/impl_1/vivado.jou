@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Tue Feb 25 18:48:52 2020
-# Process ID: 18079
+# Start of session at: Sat Feb 29 13:08:44 2020
+# Process ID: 23883
 # Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/impl_1
 # Command line: vivado -log pynqz2_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pynqz2_wrapper.tcl -notrace
 # Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8/pynqz2.runs/impl_1/pynqz2_wrapper.vdi

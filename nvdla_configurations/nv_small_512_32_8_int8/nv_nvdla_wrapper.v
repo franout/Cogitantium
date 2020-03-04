@@ -9,9 +9,7 @@ module nv_nvdla_wrapper(
 clk,
 reset_n,
 test_mode,
-dla_int_request,
-s_axi_aclk,
-s_axi_prstn,
+dlaintc2ps,
 APB_S_paddr,
     APB_S_penable,
     APB_S_prdata,
@@ -49,9 +47,13 @@ M_AXI_awvalid
   input clk;
   input reset_n;
   input test_mode;
-  input s_axi_prstn;
-  input s_axi_aclk;
-    output dla_int_request;
+  
+  // Declare the attributes above the port declaration
+(* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 dlaintc2ps INTERRUPT" *)
+// Supported parameter: SENSITIVITY { LEVEL_HIGH, LEVEL_LOW, EDGE_RISING, EDGE_FALLING }
+// Normally LEVEL_HIGH is assumed.  Use this parameter to force the level
+(* X_INTERFACE_PARAMETER = "SENSITIVITY LEVEL_HIGH" *)
+output dlaintc2ps;
 
  (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PADDR" *) input [31:0]APB_S_paddr; // apb interface
    (* X_INTERFACE_INFO = "xilinx.com:interface:apb:1.0 APB_S PENABLE" *) input APB_S_penable;
@@ -90,6 +92,9 @@ input [32 -1:0] M_AXI_rdata;
   assign gnd=1'b0;
   assign gnd_v=32'b0;
 //interconnections wires   
+  
+  wire s_axi_prstn;
+  wire s_axi_aclk;
    wire csb2nvdla_valid;
   wire csb2nvdla_ready ;
   wire [15:0] csb2nvdla_addr ;
@@ -100,7 +105,8 @@ input [32 -1:0] M_AXI_rdata;
   wire [31:0]nvdla2csb_data ;
   wire nvdla2csb_wr_complete;
     
-    
+    assign s_axi_prstn=reset_n;
+    assign s_axi_aclk=clk;
 
 
     //////////////////////
@@ -148,7 +154,7 @@ input [32 -1:0] M_AXI_rdata;
   ,.nvdla_core2dbb_r_rdata(M_AXI_rdata)
   
   
-  ,.dla_intr(dla_int_request)
+  ,.dla_intr(dlaintc2ps)
   ,.nvdla_pwrbus_ram_c_pd(gnd_v)
   ,.nvdla_pwrbus_ram_ma_pd(gnd_v)
   ,.nvdla_pwrbus_ram_mb_pd(gnd_v)

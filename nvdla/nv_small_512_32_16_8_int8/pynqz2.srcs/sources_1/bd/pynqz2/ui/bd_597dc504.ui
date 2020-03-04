@@ -2,29 +2,33 @@
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 7 -x 2050 -y 200 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 7 -x 2050 -y 220 -defaultsOSRD
-preplace inst ps7 -pg 1 -lvl 6 -x 1790 -y 250 -defaultsOSRD
-preplace inst axi_interconnect_0 -pg 1 -lvl 2 -x 550 -y 140 -defaultsOSRD
-preplace inst nv_nvdla_wrapper_0 -pg 1 -lvl 4 -x 1110 -y 210 -defaultsOSRD
-preplace inst axi_smc -pg 1 -lvl 5 -x 1420 -y 230 -defaultsOSRD
-preplace inst rst_ps7_30M -pg 1 -lvl 1 -x 200 -y 160 -defaultsOSRD
-preplace inst axi_apb_bridge_0 -pg 1 -lvl 3 -x 830 -y 160 -defaultsOSRD
-preplace netloc ps7_FCLK_CLK0 1 0 7 20 60 380 10 700 80 960 330 1280 330 1560 360 2020
-preplace netloc nv_nvdla_wrapper_0_dla_int_request 1 4 2 1270 320 1570J
-preplace netloc rst_ps7_30M_peripheral_aresetn 1 1 4 390 260 700 240 950 320 1260J
-preplace netloc ps7_FCLK_RESET0_N 1 0 7 20 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 2010
-preplace netloc ps7_FIXED_IO 1 6 1 NJ 220
-preplace netloc ps7_DDR 1 6 1 NJ 200
-preplace netloc ps7_M_AXI_GP0 1 1 6 390 20 NJ 20 NJ 20 NJ 20 NJ 20 2020
-preplace netloc nv_nvdla_wrapper_0_M_AXI 1 4 1 N 200
-preplace netloc axi_smc_M00_AXI 1 5 1 N 230
-preplace netloc axi_apb_bridge_0_APB_M 1 3 1 N 160
-preplace netloc axi_interconnect_0_M00_AXI 1 2 1 N 140
-levelinfo -pg 1 0 200 550 830 1110 1420 1790 2050
-pagesize -pg 1 -db -bbox -sgen 0 0 2170 390
+preplace port DDR_0 -pg 1 -lvl 7 -x 2080 -y 260 -defaultsOSRD
+preplace port FIXED_IO_0 -pg 1 -lvl 7 -x 2080 -y 280 -defaultsOSRD
+preplace inst ps7 -pg 1 -lvl 6 -x 1820 -y 310 -defaultsOSRD
+preplace inst rst_ps7_30M -pg 1 -lvl 1 -x 210 -y 100 -defaultsOSRD
+preplace inst axi_mem_intercon -pg 1 -lvl 2 -x 560 -y 330 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 3 -x 860 -y 320 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 5 -x 1450 -y 110 -defaultsOSRD
+preplace inst axi_apb_bridge_0 -pg 1 -lvl 3 -x 860 -y 50 -defaultsOSRD
+preplace inst nv_nvdla_wrapper_0 -pg 1 -lvl 4 -x 1150 -y 290 -defaultsOSRD
+preplace netloc ps7_FCLK_RESET0_N 1 0 7 30 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 2050
+preplace netloc xlconstant_0_dout 1 3 1 NJ 320
+preplace netloc ARESETN_1 1 1 4 390 130 730J 130 1000 130 NJ
+preplace netloc nv_nvdla_wrapper_0_dlaintc2ps 1 4 2 1290 350 NJ
+preplace netloc ps7_FCLK_CLK0 1 0 7 20 210 400 190 720 190 990J 190 1290 210 1590 420 2040
+preplace netloc axi_mem_intercon_M00_AXI 1 2 1 710 30n
+preplace netloc axi_smc_M00_AXI 1 5 1 1600 110n
+preplace netloc S00_AXI_1 1 1 6 410 180 NJ 180 NJ 180 1300J 190 NJ 190 2060
+preplace netloc ps7_DDR 1 6 1 NJ 260
+preplace netloc axi_apb_bridge_0_APB_M 1 3 1 980 50n
+preplace netloc ps7_FIXED_IO 1 6 1 NJ 280
+preplace netloc nv_nvdla_wrapper_0_M_AXI 1 4 1 1280 90n
+levelinfo -pg 1 0 210 560 860 1150 1450 1820 2080
+pagesize -pg 1 -db -bbox -sgen 0 -90 2210 450
 "
 }
 {
-   "da_axi4_cnt":"1"
+   "da_axi4_cnt":"8",
+   "da_clkrst_cnt":"23",
+   "da_ps7_cnt":"1"
 }
