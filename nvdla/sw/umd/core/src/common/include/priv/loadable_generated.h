@@ -438,8 +438,8 @@ struct Blob FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *name() const {
     return GetPointer<const flatbuffers::String *>(VT_NAME);
   }
-  uint64_t size() const {
-    return GetField<uint64_t>(VT_SIZE, 0);
+  uint32_t size() const {
+    return GetField<uint32_t>(VT_SIZE, 0);
   }
   Interface interface() const {
     return static_cast<Interface>(GetField<uint32_t>(VT_INTERFACE, 0));
@@ -457,7 +457,7 @@ struct Blob FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     return VerifyTableStart(verifier) &&
            VerifyField<flatbuffers::uoffset_t>(verifier, VT_NAME) &&
            verifier.Verify(name()) &&
-           VerifyField<uint64_t>(verifier, VT_SIZE) &&
+           VerifyField<uint32_t>(verifier, VT_SIZE) &&
            VerifyField<uint32_t>(verifier, VT_INTERFACE) &&
            VerifyField<uint32_t>(verifier, VT_SUB_INTERFACE) &&
            VerifyField<Version>(verifier, VT_VERSION) &&
@@ -473,8 +473,8 @@ struct BlobBuilder {
   void add_name(flatbuffers::Offset<flatbuffers::String> name) {
     fbb_.AddOffset(Blob::VT_NAME, name);
   }
-  void add_size(uint64_t size) {
-    fbb_.AddElement<uint64_t>(Blob::VT_SIZE, size, 0);
+  void add_size(uint32_t size) {
+    fbb_.AddElement<uint32_t>(Blob::VT_SIZE, size, 0);
   }
   void add_interface(Interface interface) {
     fbb_.AddElement<uint32_t>(Blob::VT_INTERFACE, static_cast<uint32_t>(interface), 0);
@@ -503,7 +503,7 @@ struct BlobBuilder {
 inline flatbuffers::Offset<Blob> CreateBlob(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::String> name = 0,
-    uint64_t size = 0,
+    uint32_t size = 0,
     Interface interface = Interface_NONE,
     uint32_t sub_interface = 0,
     const Version *version = 0,
@@ -521,7 +521,7 @@ inline flatbuffers::Offset<Blob> CreateBlob(
 inline flatbuffers::Offset<Blob> CreateBlobDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const char *name = nullptr,
-    uint64_t size = 0,
+    uint32_t size = 0,
     Interface interface = Interface_NONE,
     uint32_t sub_interface = 0,
     const Version *version = 0,
@@ -557,8 +557,8 @@ struct MemoryListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   MemoryFlags flags() const {
     return static_cast<MemoryFlags>(GetField<uint16_t>(VT_FLAGS, 0));
   }
-  uint64_t size() const {
-    return GetField<uint64_t>(VT_SIZE, 0);
+  uint32_t size() const {
+    return GetField<uint32_t>(VT_SIZE, 0);
   }
   uint32_t alignment() const {
     return GetField<uint32_t>(VT_ALIGNMENT, 0);
@@ -566,8 +566,8 @@ struct MemoryListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *contents() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_CONTENTS);
   }
-  const flatbuffers::Vector<uint64_t> *offsets() const {
-    return GetPointer<const flatbuffers::Vector<uint64_t> *>(VT_OFFSETS);
+  const flatbuffers::Vector<uint32_t> *offsets() const {
+    return GetPointer<const flatbuffers::Vector<uint32_t> *>(VT_OFFSETS);
   }
   uint16_t bind_id() const {
     return GetField<uint16_t>(VT_BIND_ID, 0);
@@ -580,7 +580,7 @@ struct MemoryListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            VerifyField<uint16_t>(verifier, VT_ID) &&
            VerifyField<uint8_t>(verifier, VT_DOMAIN) &&
            VerifyField<uint16_t>(verifier, VT_FLAGS) &&
-           VerifyField<uint64_t>(verifier, VT_SIZE) &&
+           VerifyField<uint32_t>(verifier, VT_SIZE) &&
            VerifyField<uint32_t>(verifier, VT_ALIGNMENT) &&
            VerifyField<flatbuffers::uoffset_t>(verifier, VT_CONTENTS) &&
            verifier.Verify(contents()) &&
@@ -605,8 +605,8 @@ struct MemoryListEntryBuilder {
   void add_flags(MemoryFlags flags) {
     fbb_.AddElement<uint16_t>(MemoryListEntry::VT_FLAGS, static_cast<uint16_t>(flags), 0);
   }
-  void add_size(uint64_t size) {
-    fbb_.AddElement<uint64_t>(MemoryListEntry::VT_SIZE, size, 0);
+  void add_size(uint32_t size) {
+    fbb_.AddElement<uint32_t>(MemoryListEntry::VT_SIZE, size, 0);
   }
   void add_alignment(uint32_t alignment) {
     fbb_.AddElement<uint32_t>(MemoryListEntry::VT_ALIGNMENT, alignment, 0);
@@ -614,7 +614,7 @@ struct MemoryListEntryBuilder {
   void add_contents(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> contents) {
     fbb_.AddOffset(MemoryListEntry::VT_CONTENTS, contents);
   }
-  void add_offsets(flatbuffers::Offset<flatbuffers::Vector<uint64_t>> offsets) {
+  void add_offsets(flatbuffers::Offset<flatbuffers::Vector<uint32_t>> offsets) {
     fbb_.AddOffset(MemoryListEntry::VT_OFFSETS, offsets);
   }
   void add_bind_id(uint16_t bind_id) {
@@ -640,10 +640,10 @@ inline flatbuffers::Offset<MemoryListEntry> CreateMemoryListEntry(
     uint16_t id = 0,
     MemoryDomain domain = MemoryDomain_SYSTEM,
     MemoryFlags flags = MemoryFlags_NONE,
-    uint64_t size = 0,
+    uint32_t size = 0,
     uint32_t alignment = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> contents = 0,
-    flatbuffers::Offset<flatbuffers::Vector<uint64_t>> offsets = 0,
+    flatbuffers::Offset<flatbuffers::Vector<uint32_t>> offsets = 0,
     uint16_t bind_id = 0,
     uint16_t tensor_desc_id = 0) {
   MemoryListEntryBuilder builder_(_fbb);
@@ -664,10 +664,10 @@ inline flatbuffers::Offset<MemoryListEntry> CreateMemoryListEntryDirect(
     uint16_t id = 0,
     MemoryDomain domain = MemoryDomain_SYSTEM,
     MemoryFlags flags = MemoryFlags_NONE,
-    uint64_t size = 0,
+    uint32_t size = 0,
     uint32_t alignment = 0,
     const std::vector<flatbuffers::Offset<flatbuffers::String>> *contents = nullptr,
-    const std::vector<uint64_t> *offsets = nullptr,
+    const std::vector<uint32_t> *offsets = nullptr,
     uint16_t bind_id = 0,
     uint16_t tensor_desc_id = 0) {
   return nvdla::loadable::CreateMemoryListEntry(
@@ -678,7 +678,7 @@ inline flatbuffers::Offset<MemoryListEntry> CreateMemoryListEntryDirect(
       size,
       alignment,
       contents ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*contents) : 0,
-      offsets ? _fbb.CreateVector<uint64_t>(*offsets) : 0,
+      offsets ? _fbb.CreateVector<uint32_t>(*offsets) : 0,
       bind_id,
       tensor_desc_id);
 }
@@ -887,18 +887,18 @@ struct AddressListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   uint16_t mem_id() const {
     return GetField<uint16_t>(VT_MEM_ID, 0);
   }
-  uint64_t offset() const {
-    return GetField<uint64_t>(VT_OFFSET, 0);
+  uint32_t offset() const {
+    return GetField<uint32_t>(VT_OFFSET, 0);
   }
-  uint64_t size() const {
-    return GetField<uint64_t>(VT_SIZE, 0);
+  uint32_t size() const {
+    return GetField<uint32_t>(VT_SIZE, 0);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<uint16_t>(verifier, VT_ID) &&
            VerifyField<uint16_t>(verifier, VT_MEM_ID) &&
-           VerifyField<uint64_t>(verifier, VT_OFFSET) &&
-           VerifyField<uint64_t>(verifier, VT_SIZE) &&
+           VerifyField<uint32_t>(verifier, VT_OFFSET) &&
+           VerifyField<uint32_t>(verifier, VT_SIZE) &&
            verifier.EndTable();
   }
 };
@@ -912,11 +912,11 @@ struct AddressListEntryBuilder {
   void add_mem_id(uint16_t mem_id) {
     fbb_.AddElement<uint16_t>(AddressListEntry::VT_MEM_ID, mem_id, 0);
   }
-  void add_offset(uint64_t offset) {
-    fbb_.AddElement<uint64_t>(AddressListEntry::VT_OFFSET, offset, 0);
+  void add_offset(uint32_t offset) {
+    fbb_.AddElement<uint32_t>(AddressListEntry::VT_OFFSET, offset, 0);
   }
-  void add_size(uint64_t size) {
-    fbb_.AddElement<uint64_t>(AddressListEntry::VT_SIZE, size, 0);
+  void add_size(uint32_t size) {
+    fbb_.AddElement<uint32_t>(AddressListEntry::VT_SIZE, size, 0);
   }
   AddressListEntryBuilder(flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
@@ -934,8 +934,8 @@ inline flatbuffers::Offset<AddressListEntry> CreateAddressListEntry(
     flatbuffers::FlatBufferBuilder &_fbb,
     uint16_t id = 0,
     uint16_t mem_id = 0,
-    uint64_t offset = 0,
-    uint64_t size = 0) {
+    uint32_t offset = 0,
+    uint32_t size = 0) {
   AddressListEntryBuilder builder_(_fbb);
   builder_.add_size(size);
   builder_.add_offset(offset);
@@ -1039,11 +1039,11 @@ struct TensorDescListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
   uint16_t mem_id() const {
     return GetField<uint16_t>(VT_MEM_ID, 0);
   }
-  uint64_t size() const {
-    return GetField<uint64_t>(VT_SIZE, 0);
+  uint32_t size() const {
+    return GetField<uint32_t>(VT_SIZE, 0);
   }
-  uint64_t offset() const {
-    return GetField<uint64_t>(VT_OFFSET, 0);
+  uint32_t offset() const {
+    return GetField<uint32_t>(VT_OFFSET, 0);
   }
   DataFormat data_format() const {
     return static_cast<DataFormat>(GetField<uint8_t>(VT_DATA_FORMAT, 0));
@@ -1102,8 +1102,8 @@ struct TensorDescListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
            verifier.Verify(name()) &&
            VerifyField<uint16_t>(verifier, VT_ID) &&
            VerifyField<uint16_t>(verifier, VT_MEM_ID) &&
-           VerifyField<uint64_t>(verifier, VT_SIZE) &&
-           VerifyField<uint64_t>(verifier, VT_OFFSET) &&
+           VerifyField<uint32_t>(verifier, VT_SIZE) &&
+           VerifyField<uint32_t>(verifier, VT_OFFSET) &&
            VerifyField<uint8_t>(verifier, VT_DATA_FORMAT) &&
            VerifyField<uint8_t>(verifier, VT_DATA_TYPE) &&
            VerifyField<uint8_t>(verifier, VT_DATA_CATEGORY) &&
@@ -1137,11 +1137,11 @@ struct TensorDescListEntryBuilder {
   void add_mem_id(uint16_t mem_id) {
     fbb_.AddElement<uint16_t>(TensorDescListEntry::VT_MEM_ID, mem_id, 0);
   }
-  void add_size(uint64_t size) {
-    fbb_.AddElement<uint64_t>(TensorDescListEntry::VT_SIZE, size, 0);
+  void add_size(uint32_t size) {
+    fbb_.AddElement<uint32_t>(TensorDescListEntry::VT_SIZE, size, 0);
   }
-  void add_offset(uint64_t offset) {
-    fbb_.AddElement<uint64_t>(TensorDescListEntry::VT_OFFSET, offset, 0);
+  void add_offset(uint32_t offset) {
+    fbb_.AddElement<uint32_t>(TensorDescListEntry::VT_OFFSET, offset, 0);
   }
   void add_data_format(DataFormat data_format) {
     fbb_.AddElement<uint8_t>(TensorDescListEntry::VT_DATA_FORMAT, static_cast<uint8_t>(data_format), 0);
@@ -1211,8 +1211,8 @@ inline flatbuffers::Offset<TensorDescListEntry> CreateTensorDescListEntry(
     flatbuffers::Offset<flatbuffers::String> name = 0,
     uint16_t id = 0,
     uint16_t mem_id = 0,
-    uint64_t size = 0,
-    uint64_t offset = 0,
+    uint32_t size = 0,
+    uint32_t offset = 0,
     DataFormat data_format = DataFormat_UNKNOWN,
     DataType data_type = DataType_UNKNOWN,
     DataCategory data_category = DataCategory_IMAGE,
@@ -1261,8 +1261,8 @@ inline flatbuffers::Offset<TensorDescListEntry> CreateTensorDescListEntryDirect(
     const char *name = nullptr,
     uint16_t id = 0,
     uint16_t mem_id = 0,
-    uint64_t size = 0,
-    uint64_t offset = 0,
+    uint32_t size = 0,
+    uint32_t offset = 0,
     DataFormat data_format = DataFormat_UNKNOWN,
     DataType data_type = DataType_UNKNOWN,
     DataCategory data_category = DataCategory_IMAGE,
@@ -1321,8 +1321,8 @@ struct RelocListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   uint16_t write_id() const {
     return GetField<uint16_t>(VT_WRITE_ID, 0);
   }
-  uint64_t offset() const {
-    return GetField<uint64_t>(VT_OFFSET, 0);
+  uint32_t offset() const {
+    return GetField<uint32_t>(VT_OFFSET, 0);
   }
   uint32_t interface() const {
     return GetField<uint32_t>(VT_INTERFACE, 0);
@@ -1337,7 +1337,7 @@ struct RelocListEntry FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     return VerifyTableStart(verifier) &&
            VerifyField<uint16_t>(verifier, VT_ADDRESS_ID) &&
            VerifyField<uint16_t>(verifier, VT_WRITE_ID) &&
-           VerifyField<uint64_t>(verifier, VT_OFFSET) &&
+           VerifyField<uint32_t>(verifier, VT_OFFSET) &&
            VerifyField<uint32_t>(verifier, VT_INTERFACE) &&
            VerifyField<uint32_t>(verifier, VT_SUB_INTERFACE) &&
            VerifyField<uint8_t>(verifier, VT_RELOC_TYPE) &&
@@ -1354,8 +1354,8 @@ struct RelocListEntryBuilder {
   void add_write_id(uint16_t write_id) {
     fbb_.AddElement<uint16_t>(RelocListEntry::VT_WRITE_ID, write_id, 0);
   }
-  void add_offset(uint64_t offset) {
-    fbb_.AddElement<uint64_t>(RelocListEntry::VT_OFFSET, offset, 0);
+  void add_offset(uint32_t offset) {
+    fbb_.AddElement<uint32_t>(RelocListEntry::VT_OFFSET, offset, 0);
   }
   void add_interface(uint32_t interface) {
     fbb_.AddElement<uint32_t>(RelocListEntry::VT_INTERFACE, interface, 0);
@@ -1382,7 +1382,7 @@ inline flatbuffers::Offset<RelocListEntry> CreateRelocListEntry(
     flatbuffers::FlatBufferBuilder &_fbb,
     uint16_t address_id = 0,
     uint16_t write_id = 0,
-    uint64_t offset = 0,
+    uint32_t offset = 0,
     uint32_t interface = 0,
     uint32_t sub_interface = 0,
     uint8_t reloc_type = 0) {

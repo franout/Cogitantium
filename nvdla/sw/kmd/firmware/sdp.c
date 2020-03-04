@@ -258,9 +258,9 @@ static int32_t
 processor_sdp_program(struct dla_processor_group *group)
 {
 	int32_t ret = 0;
-	uint64_t src_addr = -1, x1_addr = -1, x2_addr = -1;
-	uint64_t  y_addr = -1, dst_addr = -1;
-	uint32_t reg, high, low;
+	uint32_t src_addr = -1, x1_addr = -1, x2_addr = -1;
+	uint32_t  y_addr = -1, dst_addr = -1;
+	uint16_t reg, high, low;
 	uint8_t fly;
 	uint32_t atom_size;
 	struct dla_sdp_op *x1_op;

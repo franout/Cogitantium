@@ -562,7 +562,7 @@ bool Runtime::fillEMUTaskAddressList(Task *task, EMUTaskDescAccessor taskDescAcc
 
         Memory *mem = &m_memory[memory_id];
         void *hMem = mem->getVirtAddr();
-        NvU64         offset = m_address[address_list_entry_id].mEntry.offset;
+        NvU32         offset = m_address[address_list_entry_id].mEntry.offset;
 
         if ( mem->domain() == ILoadable::MemoryListEntry::domain_sram() )
         {
@@ -716,7 +716,7 @@ fail:
     return e;
 }
 
-NvDlaError Runtime::allocateSystemMemory(void **phMem, NvU64 size, void **pData)
+NvDlaError Runtime::allocateSystemMemory(void **phMem, NvU32 size, void **pData)
 {
     NvDlaError e = NvDlaSuccess;
     void *hDla = getDLADeviceContext(m_loaded_instance);
@@ -733,7 +733,7 @@ fail:
     return e;
 }
 
-void Runtime::freeSystemMemory(void *phMem, NvU64 size)
+void Runtime::freeSystemMemory(void *phMem, NvU32 size)
 {
     void *hDla = getDLADeviceContext(m_loaded_instance);
     void *pData = m_hmem_memory_map[phMem];
@@ -755,7 +755,7 @@ void Runtime::unloadMemory(Memory *memory)
         void *hDla = getDLADeviceContext(m_loaded_instance);
         void *hMem = memory->getHandle();
         void *pData = memory->getVirtAddr();
-        NvU64 size = memory->size();
+        NvU32 size = memory->size();
 
         // TODO: unmap the memory before freeing
         NvDlaFreeMem(NULL, hDla, hMem, pData, size);
@@ -785,7 +785,7 @@ NvDlaError Runtime::loadMemory(Loadable *l, Memory *memory)
 
         void *mapped_mem = NULL;
 
-        NvU64 size = memory->size();
+        NvU32 size = memory->size();
         void *hDla = getDLADeviceContext(m_loaded_instance);
         void *hMem = memory->getHandle();
 
@@ -808,7 +808,7 @@ NvDlaError Runtime::loadMemory(Loadable *l, Memory *memory)
                                      "mismatch on num content blobs vs. num offsets in memory id");
             }
             vector<string> &contents = memory->contents();
-            vector<uint64_t> &offsets  = memory->offsets();
+            vector<uint32_t> &offsets  = memory->offsets();
 
             for ( size_t ci = 0, CI = contents.size(); ci != CI; ++ci )
             {
@@ -824,7 +824,7 @@ NvDlaError Runtime::loadMemory(Loadable *l, Memory *memory)
                                          content_symbol.c_str());
                 }
 
-                if ( memory->size() >= (NvU64)(offsets[ci] + content_blob.size) )
+                if ( memory->size() >= (NvU32)(offsets[ci] + content_blob.size) )
                 {
                     NvU8 *src = data;
                     NvU8 *dst = (NvU8*)mapped_mem + offsets[ci];

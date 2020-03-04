@@ -151,8 +151,8 @@ processor_cdp_program(struct dla_processor_group *group)
 {
 	int32_t ret = 0;
 	uint32_t reg, high, low;
-	uint64_t input_address = 0;
-	uint64_t output_address = 0;
+	uint32_t input_address = 0;
+	uint32_t output_address = 0;
 	struct dla_lut_param lut;
 	struct dla_engine *engine = dla_get_engine();
 	struct dla_cdp_op_desc *cdp_op;

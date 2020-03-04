@@ -129,8 +129,8 @@ processor_bdma_program_slot(struct dla_bdma_surface_desc *bdma_surface,
 				struct dla_bdma_transfer_desc *transfer)
 {
 	int32_t ret = 0;
-	uint64_t source_addr = 0;
-	uint64_t destination_addr = 0;
+	uint32_t source_addr = 0;
+	uint32_t destination_addr = 0;
 	uint32_t high, low, reg;
 	uint8_t  bdma_free_slots = 0;
 	struct dla_engine *engine = dla_get_engine();

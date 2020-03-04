@@ -359,7 +359,7 @@ struct dla_conv_surface_desc {
 	 * this field should be set when YUV is not interleave format
 	 *
 	 */
-	int64_t offset_u;
+	int32_t offset_u;
 
 	/* line stride for 2nd plane, must be 32bytes aligned */
 	uint32_t in_line_uv_stride;
@@ -581,10 +581,10 @@ struct dla_lut_param {
 	 * The start and end point of raw table,
 	 * valid when raw_method=LINEAR only
 	 */
-	uint64_t linear_exp_start;
-	uint64_t linear_exp_end;
-	uint64_t linear_only_start;
-	uint64_t linear_only_end;
+	uint32_t linear_exp_start;
+	uint32_t linear_exp_end;
+	uint32_t linear_only_start;
+	uint32_t linear_only_end;
 
 	union dla_slope linear_exp_underflow_slope;
 	union dla_slope linear_exp_overflow_slope;

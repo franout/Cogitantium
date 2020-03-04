@@ -82,7 +82,7 @@ typedef struct NvDlaLoadableVersion
 typedef struct NvDlaLoadableMemoryListEntry
 {
     NvU16 id;
-    NvU64 size;
+    NvU32 size;
     NvU32 alignment;
     NvU8  domain;
     NvU8  flags;
@@ -118,14 +118,14 @@ typedef struct NvDlaLoadableAddressListEntry
 {
     NvU16 id;
     NvU16 memId;
-    NvU64 size;
-    NvU64 offset;
+    NvU32 size;
+    NvU32 offset;
 } NvDlaLoadableAddressListEntry;
 
 typedef struct NvDlaLoadableBlob
 {
     char *name;
-    NvU64 size;
+    NvU32 size;
     NvU32 interface;
     NvU32 sub_interface;
     NvDlaLoadableVersion version;

@@ -55,7 +55,7 @@
 #define NVDLA_MEM_READ (PROT_READ)
 #define NVDLA_MEM_WRITE (PROT_WRITE)
 
-static int nvdla_mem_map(void **pVirtAddr, int size, NvS64 offset, int fd, NvU32 flags)
+static int nvdla_mem_map(void **pVirtAddr, int size, NvS32 offset, int fd, NvU32 flags)
 {
     void *ptr;
 

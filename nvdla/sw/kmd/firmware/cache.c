@@ -67,8 +67,8 @@ dla_get_op_desc(struct dla_task *task, int16_t index,
 {
 	int32_t i;
 	int32_t ret;
-	uint64_t op_base;
-	uint64_t dep_graph_addr;
+	uint32_t op_base;
+	uint32_t dep_graph_addr;
 	struct dla_common_op_desc *desc = NULL;
 	struct dla_engine *engine = dla_get_engine();
 
@@ -101,7 +101,7 @@ dla_get_op_desc(struct dla_task *task, int16_t index,
 		if (desc->index == -1) {
 			op_base = dep_graph_addr +
 					(sizeof(struct dla_common_op_desc) *
-					(uint64_t)index);
+					(uint32_t)index);
 			ret = dla_data_read(engine->driver_context,
 					task->task_data,
 					task->dependency_graph_addr,
@@ -152,8 +152,8 @@ exit:
 static void
 dla_free_op_desc(struct dla_common_op_desc *op_desc)
 {
-	uint64_t op_base;
-	uint64_t dep_graph_addr;
+	uint32_t op_base;
+	uint32_t dep_graph_addr;
 	struct dla_task *task;
 	struct dla_engine *engine = dla_get_engine();
 
@@ -177,7 +177,7 @@ dla_free_op_desc(struct dla_common_op_desc *op_desc)
 	 */
 	op_base = (dep_graph_addr +
 			(sizeof(struct dla_common_op_desc) *
-			(uint64_t)op_desc->index));
+			(uint32_t)op_desc->index));
 
 	/**
 	 * Flush descriptor to DRAM

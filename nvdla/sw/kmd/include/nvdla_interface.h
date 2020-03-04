@@ -174,8 +174,8 @@ void dla_reg_write(void *driver_context, uint32_t addr, uint32_t reg);
  *
  */
 int32_t dla_data_read(void *driver_context, void *task_data,
-				uint64_t src, void *dst,
-				uint32_t size, uint64_t offset);
+				uint32_t src, void *dst,
+				uint32_t size, uint32_t offset);
 
 /**
  * @brief			Write data to DMA mapped memory from local buffer
@@ -199,8 +199,8 @@ int32_t dla_data_read(void *driver_context, void *task_data,
  *
  */
 int32_t dla_data_write(void *driver_context, void *task_data,
-				void *src, uint64_t dst,
-				uint32_t size, uint64_t offset);
+				void *src, uint32_t dst,
+				uint32_t size, uint32_t offset);
 
 /* Destination for DMA buffer */
 #define DESTINATION_PROCESSOR	0
@@ -306,7 +306,7 @@ void dla_error(const char *str, ...);
  * @return			Memory area address
  *
  */
-void *dla_memset(void *src, int ch, uint64_t len);
+void *dla_memset(void *src, int ch, uint32_t len);
 
 /**
  * @brief			Copy memory
@@ -316,12 +316,12 @@ void *dla_memset(void *src, int ch, uint64_t len);
  * Copies len bytes from memory area src to memory area dest.
  *
  * @param dest			Destination memory area address
- * @param src			Source memory area address
+ * @param src			Source memory area addressw
  * @param len			Length of memory area to copy
  *
  * @return			Destination memory area address
  *
  */
-void *dla_memcpy(void *dest, const void *src, uint64_t len);
+void *dla_memcpy(void *dest, const void *src, uint32_t len);
 
 #endif

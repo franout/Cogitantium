@@ -51,7 +51,6 @@
 #include <linux/spinlock.h>
 #include <linux/time.h>
 #include <linux/uaccess.h>
-#include <linux/time64.h>
 
 #include <nvdla_interface.h>
 #include <nvdla_linux.h>
@@ -111,20 +110,19 @@ void dla_error(const char *str, ...)
 	va_end(args);
 }
 
-void *dla_memset(void *src, int ch, uint64_t len)
+void *dla_memset(void *src, int ch, uint32_t len)
 {
 	return memset(src, ch, len);
 }
 
-void *dla_memcpy(void *dest, const void *src, uint64_t len)
+void *dla_memcpy(void *dest, const void *src, uint32_t len)
 {
 	return memcpy(dest, src, len);
 }
 
 int64_t dla_get_time_us(void)
-{		uint64_t time=ktime_get_ns();
-	return ((int64_t)do_div( time, NSEC_PER_USEC));
-	
+{
+	return do_div((uint_64)ktime_get_ns() ,NSEC_PER_USEC);
 }
 
 void dla_reg_write(void *driver_context, uint32_t addr, uint32_t reg)
@@ -192,13 +190,13 @@ static int32_t dla_read_dma_address(void *driver_context, void *task_data,
 static int32_t dla_read_cpu_address(void *driver_context, void *task_data,
 						int16_t index, void *dst)
 {
-	uint64_t *temp = (uint64_t *)dst;
+	uint32_t *temp = (uint32_t *)dst;
 	struct nvdla_task *task = (struct nvdla_task *)task_data;
 
 	if (index == -1 || index > task->num_addresses)
 		return -EINVAL;
 
-	*temp = (uint64_t)index;
+	*temp = (uint32_t)index;
 	return 0;
 }
 
@@ -222,8 +220,8 @@ int32_t dla_get_dma_address(void *driver_context, void *task_data,
 }
 
 int32_t dla_data_write(void *driver_context, void *task_data,
-				void *src, uint64_t dst,
-				uint32_t size, uint64_t offset)
+				void *src, uint32_t dst,
+				uint32_t size, uint32_t offset)
 {
 	int32_t ret;
 	void *ptr = NULL;
@@ -266,8 +264,8 @@ put_dma_buf:
 }
 
 int32_t dla_data_read(void *driver_context, void *task_data,
-				uint64_t src, void *dst,
-				uint32_t size, uint64_t offset)
+				uint32_t src, void *dst,
+				uint32_t size, uint32_t offset)
 {
 	int32_t ret;
 	void *ptr = NULL;

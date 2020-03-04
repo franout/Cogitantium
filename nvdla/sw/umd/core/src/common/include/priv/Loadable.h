@@ -128,7 +128,7 @@ public: // internally facing
 
     virtual bool serialize();
     virtual NvDlaError getSerializedData(NvU8 *buffer);
-    virtual NvDlaError getSerializedDataSize(NvU64 *size);
+    virtual NvDlaError getSerializedDataSize(NvU32 *size);
     virtual bool deserializeFrom(NvU8 *);
 
     struct Symbol {

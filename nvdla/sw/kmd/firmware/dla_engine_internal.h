@@ -39,8 +39,8 @@
 #define BITS(num, range) ((((0xFFFFFFFF >> (31 - (1 ? range))) & \
 			(0xFFFFFFFF << (0 ? range))) & num) >> \
 			(0 ? range))
-#define HIGH32BITS(val64bit) ((uint32_t)(val64bit >> 32))
-#define LOW32BITS(val64bit) ((uint32_t)(val64bit))
+#define HIGH32BITS(val64bit) ((uint16_t)(val64bit >> 16))
+#define LOW32BITS(val64bit) ((uint16_t)(val64bit))
 
 #ifdef MIN
 #undef MIN
@@ -161,7 +161,7 @@ dla_get_dma_cube_address(void *driver_context,
 						uint32_t destination);
 int
 dla_read_input_address(struct dla_data_cube *data,
-		       uint64_t *address,
+		       uint32_t *address,
 		       int16_t op_index,
 		       uint8_t roi_index,
 		       uint8_t bpp);

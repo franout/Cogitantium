@@ -84,8 +84,8 @@ public: // externally facing
 
     virtual bool load(NvU8 *buf, int instance);
     virtual void unload(void);
-    virtual NvDlaError allocateSystemMemory(void **h_mem, NvU64 size, void **pData);
-    virtual void freeSystemMemory(void *phMem, NvU64 size);
+    virtual NvDlaError allocateSystemMemory(void **h_mem, NvU32 size, void **pData);
+    virtual void freeSystemMemory(void *phMem, NvU32 size);
 
     virtual bool bindInputTensor (int index, void *hMem);
     virtual bool bindOutputTensor(int index, void *hMem);
@@ -177,7 +177,7 @@ protected:
         Memory(const ILoadable::MemoryListEntry &e) : hMem(0), pVirtAddr(0), mEntry(e) { }
         Memory(const Memory &o)                     : hMem(o.hMem), pVirtAddr(0), mEntry(o.mEntry) { }
         inline NvU16 id() { return mEntry.id; }
-        inline NvU64 size() { return mEntry.size; }
+        inline NvU32 size() { return mEntry.size; }
         inline NvU32 alignment() { return mEntry.alignment; }
         inline NvU8 domain() { return mEntry.domain; }
         inline bool bound() { return hMem != 0; }
@@ -187,7 +187,7 @@ protected:
         inline void setVirtAddr(void *addr) { pVirtAddr = addr; }
         inline void *getVirtAddr() const { return pVirtAddr; }
         inline std::vector<std::string> & contents() { return mEntry.contents; }
-        inline std::vector<uint64_t> & offsets() { return mEntry.offsets; }
+        inline std::vector<uint32_t> & offsets() { return mEntry.offsets; }
         inline int inputBindId() const {
             if ( mEntry.flags & mEntry.flags_input() ) {
                 return (int) mEntry.bind_id;
@@ -249,7 +249,7 @@ protected:
         Address(const Address &o) : mEntry(o.mEntry) { }
         NvU16 id() const { return mEntry.id; }
         NvU16 mem_id() const { return mEntry.mem_id; }
-        NvU64 offset() const { return mEntry.offset; }
+        NvU32 offset() const { return mEntry.offset; }
     public:
         friend class Runtime;
         ILoadable::AddressListEntry mEntry;

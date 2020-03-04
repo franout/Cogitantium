@@ -69,9 +69,9 @@ public:
     virtual NvDlaError setUseGreedyEviction(bool) = 0;
     virtual NvDlaError setCONVDataBanksAllotted(NvU32) = 0;
     virtual NvDlaError setCONVWeightBanksAllotted(NvU32) = 0;
-    virtual NvDlaError setGlobalDRAMSize(NvU64) = 0;
-    virtual NvDlaError setLocalDRAMSize(NvU64) = 0;
-    virtual NvDlaError setLocalCVSRAMSize(NvU64) = 0;
+    virtual NvDlaError setGlobalDRAMSize(NvU32) = 0;
+    virtual NvDlaError setLocalDRAMSize(NvU32) = 0;
+    virtual NvDlaError setLocalCVSRAMSize(NvU32) = 0;
     virtual NvDlaError setMultiBatchSize(NvU32) = 0;
     virtual NvDlaError setCanIMGPostChnlExtend(bool) = 0;
     virtual NvDlaError setComputePrecision(nvdla::DataType) = 0;
@@ -114,9 +114,9 @@ public:
         bool    useReusePooledMemory;
         bool    greedyEviction;
         bool    copyOutDebugSurfaces;
-        NvU64   globalDramSize;
-        NvU64   localDramSize;
-        NvU64   localCvsramSize;
+        NvU32   globalDramSize;
+        NvU32   localDramSize;
+        NvU32   localCvsramSize;
         NvU32   multiBatchSize;
         bool    canImgPostChnlExtend;
         nvdla::DataType computePrecision;

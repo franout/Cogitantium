@@ -117,7 +117,7 @@ public:
     struct NvDlaTensor
     {
         char name[NVDLA_RUNTIME_TENSOR_DESC_NAME_MAX_LEN + 1];
-        NvU64 bufferSize;
+        NvU32 bufferSize;
         NvDlaDims4 dims;
         NvU8 dataFormat;    /* _DATA_FORMAT   */
         NvU8 dataType;      /* _DATA_TYPE     */
@@ -137,8 +137,8 @@ public:
 
     virtual bool load(NvU8 *buf, int instance) = 0;
     virtual void unload(void) = 0;
-    virtual NvDlaError allocateSystemMemory(void **h_mem, NvU64 size, void **pData) = 0;
-    virtual void freeSystemMemory(void *phMem, NvU64 size) = 0;
+    virtual NvDlaError allocateSystemMemory(void **h_mem, NvU32 size, void **pData) = 0;
+    virtual void freeSystemMemory(void *phMem, NvU32 size) = 0;
 
     virtual bool bindInputTensor(int index, void *hMem) = 0;
     virtual bool bindOutputTensor(int index, void *hMem) = 0;

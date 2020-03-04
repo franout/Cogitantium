@@ -138,7 +138,7 @@ public:
     struct MemoryListEntry
     {
         NvU16 id;
-        NvU64 size;
+        NvU32 size;
         NvU32 alignment; // 0 for n/a, otherwise byte alignment
         NvU8  domain;
         static inline NvU8 domain_sysmem() { return MemoryDomain_SYSMEM; }
@@ -152,7 +152,7 @@ public:
         NvU16 bind_id;  // valid iff flag_{input|output|debug}()  is set
         NvU16 tensor_desc_id; // valid iff bind_id is valid ( != -1 )
         std::vector<std::string> contents;  // symbolic reference to content blob
-        std::vector<uint64_t>    offsets;   // associated offset for contents
+        std::vector<uint32_t>    offsets;   // associated offset for contents
 
         MemoryListEntry() : id(0), size(0), alignment(0), domain(0), flags(0),
                             bind_id(0), tensor_desc_id(0), contents(), offsets() { }
@@ -161,7 +161,7 @@ public:
                                                     tensor_desc_id(o.tensor_desc_id),
                                                     contents(o.contents),
                                                     offsets(o.offsets) { }
-        MemoryListEntry(NvU16 i, NvU64 s, NvU32 a, NvU8 d, NvU8 f, std::string sym = std::string(), uint64_t o = 0) :
+        MemoryListEntry(NvU16 i, NvU32 s, NvU32 a, NvU8 d, NvU8 f, std::string sym = std::string(), uint32_t o = 0) :
             id(i), size(s), alignment(a), domain(d), flags(f), bind_id(0), tensor_desc_id(0)
         {
             if ( sym.size() )
@@ -229,10 +229,10 @@ public:
     {
         NvU16 id;     // all possible address list entries are given an id
         NvU16 mem_id; // determines hRm (+offset from below)
-        NvU64 size;   // assert size <= memory[mem_id].size
-        NvU64 offset; // assert (offset + size) <= memory[mem_id].size
+        NvU32 size;   // assert size <= memory[mem_id].size
+        NvU32 offset; // assert (offset + size) <= memory[mem_id].size
         AddressListEntry() : id(0), mem_id(0), size(0), offset(0) { }
-        AddressListEntry(NvU16 i, NvU16 m, NvU64 s, NvU64 o = 0) : id(i), mem_id(m), size(s), offset(o) { }
+        AddressListEntry(NvU16 i, NvU16 m, NvU32 s, NvU32 o = 0) : id(i), mem_id(m), size(s), offset(o) { }
         AddressListEntry(const AddressListEntry &o) : id(o.id), mem_id(o.mem_id), size(o.size), offset(o.offset) { }
         void toC(NvDlaLoadableAddressListEntry &c) const {
             c.id = id;
@@ -247,8 +247,8 @@ public:
         std::string name;
         NvU16 id;
         NvU16 memId;
-        NvU64 size;
-        NvU64 offset;
+        NvU32 size;
+        NvU32 offset;
         NvDlaDims4 dims;
         NvU8 dataFormat;
         NvU8 dataType;
@@ -262,7 +262,7 @@ public:
     {
         NvU16 addressListId; // fix vs. this addr list item
         NvU16 writeId;   // fix *within this* memory id given offset below
-        NvU64 offset;    // buffer offset to the fixup
+        NvU32 offset;    // buffer offset to the fixup
         NvU32 interface; // dla1, emu1, etc.
         NvU32 subInterface; //  dla1-surf_desc, etc.
         NvU8  relocType; // stride0..7 (aka line, surf)
@@ -275,7 +275,7 @@ public:
             subInterface(o.subInterface),
             relocType(o.relocType) { }
 
-        RelocEntry(NvS16 a, NvU64 o, NvU32 i, NvU32 s, NvU8 r) :
+        RelocEntry(NvS16 a, NvU32 o, NvU32 i, NvU32 s, NvU8 r) :
             addressListId(a),
             writeId(0), // invalid
             offset(o),
@@ -283,7 +283,7 @@ public:
             subInterface(s),
             relocType(r) { }
 
-        RelocEntry(NvS16 a, NvS16 w, NvU64 o, NvU32 i, NvU32 s, NvU8 r) :
+        RelocEntry(NvS16 a, NvS16 w, NvU32 o, NvU32 i, NvU32 s, NvU8 r) :
             addressListId(a),
             writeId(w),
             offset(o),
@@ -295,7 +295,7 @@ public:
     struct Blob
     {
         std::string name;
-        NvU64 size;
+        NvU32 size;
         Interface interface;
         NvU32 subInterface;
         Version version;
@@ -305,7 +305,7 @@ public:
             interface(Interface_NONE),
             subInterface(0) { }
 
-        Blob(const std::string &n, NvU64 s, Interface i, NvU32 si, Version v) :
+        Blob(const std::string &n, NvU32 s, Interface i, NvU32 si, Version v) :
             name(n),
             size(s),
             interface(i),

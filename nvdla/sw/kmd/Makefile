@@ -25,7 +25,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 KDIR ?= /lib/modules/`uname -r`/build
-CC=${CROSS_COMPILE}
+
 .PHONY: default
 default: modules
 

@@ -506,7 +506,7 @@ template<> inline int EnumMax<PixelFormat::Enum>() { return PixelFormat::max() +
 
 struct TensorDesc
 {
-    NvU64 bufferSize;
+    NvU32 bufferSize;
     Dims4 dims;
     DataFormat::UnderlyingType dataFormat;
     DataType::UnderlyingType   dataType;

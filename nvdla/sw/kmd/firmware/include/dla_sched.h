@@ -35,25 +35,25 @@ struct dla_task {
 	/* task state */
 	uint32_t state;
 	/* Task base address */
-	uint64_t base;
+	uint32_t base;
 	/* start address of a list of dla_operation_container */
-	uint64_t operation_desc_addr;
+	uint32_t operation_desc_addr;
 	/* start address of a list of dla_surface_container */
-	uint64_t surface_desc_addr;
+	uint32_t surface_desc_addr;
 	/* start address of a list of dla_common_op_desc */
-	uint64_t dependency_graph_addr;
-	/* start address of a list of dla_lut_param */
-	uint64_t lut_data_addr;
+	uint32_t dependency_graph_addr;
+	/* starrt address of a list of dla_lut_param */
+	uint32_t lut_data_addr;
 	/*
 	 * start address of a list of dla_roi_desc,
 	 * the first one is dla_roi_array_desc
 	 * valid when network.dynamic_roi is true
 	 */
-	uint64_t roi_array_addr;
+	uint32_t roi_array_addr;
 	/* start address of a list of dla_surface_container */
-	uint64_t surface_addr;
+	uint32_t surface_addr;
 	/* start address of a list of dla_stat_container */
-	uint64_t stat_data_addr;
+	uint32_t stat_data_addr;
 } __packed __aligned(256);
 
 /**

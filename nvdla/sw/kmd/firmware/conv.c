@@ -251,13 +251,13 @@ static int32_t
 processor_conv_program(struct dla_processor_group *group)
 {
 	int32_t ret = 0;
-	uint32_t reg, high, low, shift, mask;
+	uint16_t reg, high, low, shift, mask;
 	uint32_t stride_x, stride_y, pad_x, pad_y;
-	uint64_t weight_address = 0;
-	uint64_t wmb_address = 0;
-	uint64_t wgs_address = 0;
-	uint64_t input_address = 0;
-	uint64_t output_address = 0;
+	uint32_t weight_address = 0;
+	uint32_t wmb_address = 0;
+	uint32_t wgs_address = 0;
+	uint32_t input_address = 0;
+	uint32_t output_address = 0;
 	uint32_t atom_size = 0;
 	bool weight_compress_support = false;
 	struct dla_engine *engine = dla_get_engine();

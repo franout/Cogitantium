@@ -132,9 +132,9 @@ static int32_t
 processor_rubik_program(struct dla_processor_group *group)
 {
 	int32_t ret = 0;
-	uint32_t reg, high, low;
-	uint64_t input_address = 0;
-	uint64_t output_address = 0;
+	uint16_t reg, high, low;
+	uint32_t input_address = 0;
+	uint32_t output_address = 0;
 	struct dla_engine *engine = dla_get_engine();
 	struct dla_rubik_op_desc *rubik_op;
 	struct dla_rubik_surface_desc *rubik_surface;

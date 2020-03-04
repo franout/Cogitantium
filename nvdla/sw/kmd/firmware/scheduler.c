@@ -37,7 +37,7 @@
 
 #define MAX_NUM_ADDRESSES	256
 
-static uint64_t roi_array_length __aligned(8);
+static uint32_t roi_array_length __aligned(8);
 static struct dla_network_desc network;
 
 static int
@@ -54,7 +54,7 @@ int32_t
 dla_read_lut(struct dla_engine *engine, int16_t index, void *dst)
 {
 	int32_t ret = 0;
-	uint64_t src_addr;
+	uint32_t src_addr;
 
 	if (index == -1) {
 		ret = ERR(INVALID_INPUT);
@@ -67,7 +67,7 @@ dla_read_lut(struct dla_engine *engine, int16_t index, void *dst)
 			engine->task->task_data,
 			src_addr, (void *)dst,
 			sizeof(struct dla_lut_param),
-			(sizeof(struct dla_lut_param) * (uint64_t)index));
+			(sizeof(struct dla_lut_param) * (uint32_t)index));
 
 exit:
 	RETURN(ret);
@@ -116,7 +116,7 @@ dla_read_config(struct dla_task *task, struct dla_processor *processor,
 					struct dla_processor_group *group)
 {
 	int32_t ret;
-	uint64_t base;
+	uint32_t base;
 	int16_t index;
 	uint8_t roi_index;
 	struct dla_engine *engine;
@@ -129,10 +129,10 @@ dla_read_config(struct dla_task *task, struct dla_processor *processor,
 	index = group->op_desc->index;
 
 	base = (sizeof(union dla_operation_container) *
-			(uint64_t)engine->network->num_operations *
-			(uint64_t)roi_index);
+			(uint32_t)engine->network->num_operations *
+			(uint32_t)roi_index);
 	base = base + (sizeof(union dla_operation_container) *
-			(uint64_t)index);
+			(uint32_t)index);
 
 	LOG_EVENT(roi_index, group->id, processor->op_type,
 					LOG_READ_OP_CONFIG_START);
@@ -149,11 +149,11 @@ dla_read_config(struct dla_task *task, struct dla_processor *processor,
 					LOG_READ_OP_CONFIG_END);
 
 	base = (sizeof(union dla_surface_container) *
-			(uint64_t)engine->network->num_operations *
-			(uint64_t)roi_index);
+			(uint32_t)engine->network->num_operations *
+			(uint32_t)roi_index);
 
 	base = base + (sizeof(union dla_surface_container) *
-			(uint64_t)index);
+			(uint32_t)index);
 
 	LOG_EVENT(roi_index, group->id, processor->op_type,
 					LOG_READ_SURF_CONFIG_START);
@@ -584,8 +584,8 @@ dla_op_completion(struct dla_processor *processor,
 {
 	int32_t ret;
 #if STAT_ENABLE
-	uint64_t stat_data_address;
-	uint64_t stat_base;
+	uint32_t stat_data_address;
+	uint32_t stat_base;
 #endif /* STAT_ENABLE */
 	struct dla_task *task;
 	struct dla_common_op_desc *op_desc;
@@ -617,14 +617,14 @@ dla_op_completion(struct dla_processor *processor,
 
 		processor->dump_stat(processor);
 
-		stat_data_address = (uint64_t)(engine->task->stat_data_addr +
+		stat_data_address = (uint32_t)(engine->task->stat_data_addr +
 				(sizeof(union dla_stat_container) *
-				(uint64_t)(engine->network->num_operations) *
-				(uint64_t)(op_desc->roi_index)));
+				(uint32_t)(engine->network->num_operations) *
+				(uint32_t)(op_desc->roi_index)));
 
 		stat_base = (stat_data_address +
 				(sizeof(union dla_stat_container) *
-				(uint64_t)op_desc->index));
+				(uint32_t)op_desc->index));
 
 		/**
 		 * Flush stat descriptor to DRAM
@@ -732,7 +732,7 @@ static int
 dla_read_network_config(struct dla_engine *engine)
 {
 	int32_t ret;
-	uint64_t network_addr;
+	uint32_t network_addr;
 	struct dla_task *task = engine->task;
 
 	dla_debug("Enter:%s\n", __func__);
@@ -847,7 +847,7 @@ dla_read_network_config(struct dla_engine *engine)
 		ret = dla_data_read(engine->driver_context, task->task_data,
 					task->roi_array_addr,
 					(void *)&roi_array_length,
-					sizeof(uint64_t),
+					sizeof(uint32_t),
 					0);
 		if (ret) {
 			dla_error("Failed to read ROI array length");

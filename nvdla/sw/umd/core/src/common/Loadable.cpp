@@ -506,7 +506,7 @@ bool Loadable::serialize()
     for ( size_t mi = 0, MI = mMemoryListEntries.size(); mi != MI; ++mi) {
         const ILoadable::MemoryListEntry & mle = mMemoryListEntries[mi];
         flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> contents = mFbb.CreateVectorOfStrings(mle.contents);
-        flatbuffers::Offset<flatbuffers::Vector<uint64_t>> offsets = mFbb.CreateVector<uint64_t>(mle.offsets);
+        flatbuffers::Offset<flatbuffers::Vector<uint32_t>> offsets = mFbb.CreateVector<uint32_t>(mle.offsets);
 
         nvdla::loadable::MemoryListEntryBuilder mleb(mFbb);
         mleb.add_contents(contents);
@@ -633,7 +633,7 @@ fail:
     return e;
 }
 
-NvDlaError Loadable::getSerializedDataSize(NvU64 *size)
+NvDlaError Loadable::getSerializedDataSize(NvU32 *size)
 {
     NvDlaError e = NvDlaSuccess;
     if (size == NULL)
@@ -730,7 +730,7 @@ bool Loadable::deserializeFrom(NvU8 *flatbuf)
         }
 
         if ( li->offsets() ) {
-            flatbuffers::Vector<uint64_t>::const_iterator mli = li->offsets()->begin();
+            flatbuffers::Vector<uint32_t>::const_iterator mli = li->offsets()->begin();
             for (; mli != li->offsets()->end(); ++mli) {
                 mle.offsets.push_back(*mli);
             }
