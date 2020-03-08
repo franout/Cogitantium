@@ -1,0 +1,13 @@
+0.6
+2019.2
+Dec  5 2019
+05:06:03
+D:/uni/2019-2020/thesis/cogitantium/dtpu/dtpu/dtpu.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,,,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/dtpu/dtpu.srcs/sources_1/ip/mult_gen_0/sim/mult_gen_0.vhd,1583594568,vhdl,,,,mult_gen_0,,,,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/dtpu/dtpu.srcs/sources_1/ip/vivado_mac/sim/vivado_mac.vhd,1583519540,vhdl,,,,vivado_mac,,,,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v,1583575398,verilog,,D:/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v,D:/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh,mxu_core,,,../../../../../files,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v,1583577605,verilog,,D:/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v,,mxu_mac,,,../../../../../files,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v,1583580903,verilog,,D:/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v,D:/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh,mxu_wrapper,,,../../../../../files,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh,1583435565,verilog,,,,,,,,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v,1583494070,verilog,,D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb_kernel_mxu.v,,register,,,../../../../../files,,,,,
+D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mul.v,1583596350,verilog,,,,tb_mul,,,../../../../../files,,,,,

@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../files" \
+"../../../../../files/mxu_core.v" \
+"../../../../../files/mxu_mac.v" \
+"../../../../../files/mxu_wrapper.v" \
+"../../../../../files/register.v" \
+"../../../../../files/tb_kernel_mxu.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mul.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_mul
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/uni/2019-2020/thesis/cogitantium/dtpu/dtpu/dtpu.srcs/sources_1/ip/mult_gen_0/sim/mult_gen_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mult_gen_0'

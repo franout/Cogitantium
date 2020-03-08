@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../dtpu.srcs/sources_1/ip/vivado_mac/sim/vivado_mac.vhd" \
+"../../../../dtpu.srcs/sources_1/ip/mult_gen_0/sim/mult_gen_0.vhd" \
+
+# Do not sort compile order
+nosort
