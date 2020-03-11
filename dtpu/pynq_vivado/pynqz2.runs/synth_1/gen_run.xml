@@ -1,16 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1583939367">
-  <File Type="PA-TCL" Name="pynqz2_wrapper.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="pynqz2_wrapper_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
-  <File Type="RDS-RDS" Name="pynqz2_wrapper.vds"/>
-  <File Type="RDS-UTIL" Name="pynqz2_wrapper_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="pynqz2_wrapper_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="pynqz2_wrapper.dcp"/>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1583955995">
   <File Type="VDS-TIMINGSUMMARY" Name="pynqz2_wrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="pynqz2_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="pynqz2_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="pynqz2_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="pynqz2_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="pynqz2_wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
   <File Type="VDS-TIMING-PB" Name="pynqz2_wrapper_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="pynqz2_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/ip/vivado_mac/vivado_mac.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/mult_gen_0/mult_gen_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/precision_def.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/csr_definition.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/control_unit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/mxu_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/mxu_mac.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/mxu_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/register.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/dtpu_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/bd/pynqz2/pynqz2.bd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -20,6 +88,22 @@
     </File>
     <File Path="$PSRCDIR/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/filter_and_selectc.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../files/counter.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -56,15 +140,13 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design">
-      <Option Id="KeepEquivalentRegisters">1</Option>
-      <Option Id="ResourceSharing">2</Option>
       <Option Id="MaxClockBufferCount">20</Option>
       <Option Id="Directive">7</Option>
       <Option Id="ReTiming">1</Option>
+      <Option Id="ResourceSharing">2</Option>
+      <Option Id="KeepEquivalentRegisters">1</Option>
     </Step>
   </Strategy>
 </GenRun>

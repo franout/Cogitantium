@@ -1,0 +1,2 @@
+vivado_mac.vhd,vhdl,xil_defaultlib,../../../../pynqz2.srcs/sources_1/ip/vivado_mac/sim/vivado_mac.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

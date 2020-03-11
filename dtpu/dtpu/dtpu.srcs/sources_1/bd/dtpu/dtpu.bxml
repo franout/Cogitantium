@@ -7,7 +7,7 @@
     <Generation Name="SIMULATION" State="GENERATED" Timestamp="1583934762"/>
     <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1583934762"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
-      <File Name="ip\dtpu_axis_accelerator_ada_0_0\dtpu_axis_accelerator_ada_0_0.xci" Type="IP">
+      <File Name="ip/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0.xci" Type="IP">
         <Instance HierarchyPath="axis_accelerator_ada_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -15,7 +15,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\dtpu_dtpu_core_0_2\dtpu_dtpu_core_0_2.xci" Type="IP">
+      <File Name="ip/dtpu_dtpu_core_0_2/dtpu_dtpu_core_0_2.xci" Type="IP">
         <Instance HierarchyPath="dtpu_core_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -23,13 +23,13 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="synth\dtpu.v" Type="Verilog">
+      <File Name="synth/dtpu.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
       </File>
-      <File Name="sim\dtpu.v" Type="Verilog">
+      <File Name="sim/dtpu.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
@@ -41,22 +41,22 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="OUT_OF_CONTEXT"/>
       </File>
-      <File Name="hw_handoff\dtpu.hwh" Type="HwHandoff">
+      <File Name="hw_handoff/dtpu.hwh" Type="HwHandoff">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="hw_handoff\dtpu_bd.tcl">
+      <File Name="hw_handoff/dtpu_bd.tcl">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="synth\dtpu.hwdef">
+      <File Name="synth/dtpu.hwdef">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="sim\dtpu.protoinst">
+      <File Name="sim/dtpu.protoinst">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>

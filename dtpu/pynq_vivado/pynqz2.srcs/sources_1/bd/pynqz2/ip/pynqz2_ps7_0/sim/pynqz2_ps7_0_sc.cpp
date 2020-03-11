@@ -91,7 +91,7 @@ pynqz2_ps7_0_sc::pynqz2_ps7_0_sc(const sc_core::sc_module_name& nm) : sc_core::s
   model_param_props.addLong("C_S_AXI_HP3_DATA_WIDTH", "64");
   model_param_props.addLong("C_M_AXI_GP0_THREAD_ID_WIDTH", "12");
   model_param_props.addLong("C_M_AXI_GP1_THREAD_ID_WIDTH", "12");
-  model_param_props.addLong("C_NUM_F2P_INTR_INPUTS", "5");
+  model_param_props.addLong("C_NUM_F2P_INTR_INPUTS", "4");
   model_param_props.addLong("C_DQ_WIDTH", "32");
   model_param_props.addLong("C_DQS_WIDTH", "4");
   model_param_props.addLong("C_DM_WIDTH", "4");

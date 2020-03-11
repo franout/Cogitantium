@@ -1,8 +1,8 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-//Date        : Wed Mar 11 16:09:21 2020
-//Host        : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+//Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+//Date        : Wed Mar 11 20:46:00 2020
+//Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2_wrapper.bd
 //Design      : pynqz2_wrapper
 //Purpose     : IP block netlist

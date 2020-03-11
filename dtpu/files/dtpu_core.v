@@ -35,7 +35,7 @@ module dtpu_core
     )
 (
     clk,
-    reset,
+    areset,
     test_mode,
     enable,
     ////////////////////////////
@@ -93,7 +93,7 @@ module dtpu_core
     ///************************************///
     //////////////////////////////////////////
     input wire clk;
-    input wire reset;
+    input wire areset;
     input wire test_mode;
     input wire enable;
     
@@ -180,7 +180,7 @@ module dtpu_core
         .max_data_width(DATA_WIDTH_MAC)// it must be a divisor of 64
         ) engine  (   
             .data_type(data_type),
-            .reset(reset),
+            .reset(areset),
             .clk(clk),
             .enable(enable_i),
             .test_mode(test_mode),
@@ -203,7 +203,7 @@ module dtpu_core
                                 
                 cu(
         .clk(clk),
-        .reset(reset),
+        .reset(areset),
         .test_mode(test_mode),
         .enable_mxu(enable_i),
        .csr_address(csr_address),               

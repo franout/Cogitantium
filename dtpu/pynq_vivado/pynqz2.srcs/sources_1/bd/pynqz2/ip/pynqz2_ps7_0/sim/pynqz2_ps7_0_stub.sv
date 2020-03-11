@@ -154,7 +154,7 @@ module pynqz2_ps7_0 (
   input bit [5 : 0] S_AXI_HP0_WID,
   input bit [63 : 0] S_AXI_HP0_WDATA,
   input bit [7 : 0] S_AXI_HP0_WSTRB,
-  input bit [4 : 0] IRQ_F2P,
+  input bit [3 : 0] IRQ_F2P,
   output bit_as_bool FCLK_CLK0,
   output bit_as_bool FCLK_CLK1,
   output bit_as_bool FCLK_RESET0_N,
@@ -278,7 +278,7 @@ module pynqz2_ps7_0 (TTC0_WAVE0_OUT,TTC0_WAVE1_OUT,TTC0_WAVE2_OUT,USB0_PORT_INDC
   input bit [5 : 0] S_AXI_HP0_WID;
   input bit [63 : 0] S_AXI_HP0_WDATA;
   input bit [7 : 0] S_AXI_HP0_WSTRB;
-  input bit [4 : 0] IRQ_F2P;
+  input bit [3 : 0] IRQ_F2P;
   output wire FCLK_CLK0;
   output wire FCLK_CLK1;
   output wire FCLK_RESET0_N;
@@ -399,7 +399,7 @@ module pynqz2_ps7_0 (TTC0_WAVE0_OUT,TTC0_WAVE1_OUT,TTC0_WAVE2_OUT,USB0_PORT_INDC
   input bit [5 : 0] S_AXI_HP0_WID;
   input bit [63 : 0] S_AXI_HP0_WDATA;
   input bit [7 : 0] S_AXI_HP0_WSTRB;
-  input bit [4 : 0] IRQ_F2P;
+  input bit [3 : 0] IRQ_F2P;
   output wire FCLK_CLK0;
   output wire FCLK_CLK1;
   output wire FCLK_RESET0_N;

@@ -1,4 +1,6 @@
+#!/bin/usr/python3
 
+#######TODO
 DTPU_BASE_ADDRESS_AXI =0x43C00000  
 ADDRESS_RANGE = 0x10000
 DTPU_BASE_ADDRESS_SAXI_WM =0x10000000  #TODO
@@ -19,9 +21,59 @@ ADDRESS_OFFSET = 0x10
 from pynq import Overlay
 from pynq import MMIO
 from pynq import allocate
-#from pynq import buffer
-#from pynq import xlnk
-#from pynq import interrupt
+
+
+# load overlay
+overlay = Overlay("dtpu.bit") # tcl is also parsed
+
+overlay.download() # Explicitly download bitstream to PL
+
+if overlay.is_loaded():
+ # Checks if a bitstream is loaded
+ print("overlay is loaded")
+else :
+	print("overlay is not loaded")
+	exit(-1)
+
+
+### allocate buffers for input and outpuf fifo
+## default 32 bit integer
+input_fifo_buffer = allocate(shape=(2048),dtype='u4')
+output_fifo_buffer=allocate(shape=(2048),dtype='u4')
+
+
+
+## populate input fifo
+for i in range(input_fifo_buffer.size):
+    input_fifo_buffer[i]=0xcafecafe
+
+
+#Flushing the buffer to ensure the updated data is visible to the programmable logic:
+input_fifo_buffer.flush()
+
+
+## instantiate thee memory i/o classes
+wm = MMIO(DTPU_BASE_ADDRESS_SAXI_WM, ADDRESS_RANGE)
+csr = MMIO(DTPU_BASE_ADDRESS_SAXI_CSR, ADDRESS_RANGE)
+infifo = MMIO(DTPU_BASE_ADDRESS_SAXI_INFIFO, ADDRESS_RANGE)
+outfifo = MMIO(DTPU_BASE_ADDRESS_SAXI_OUTFIFO, ADDRESS_RANGE)
+
+
+
+
+data = 0xcafecafe
+weight= 0x11111111
+
+wm.write( ADDRESS_OFFSET,wwm.eight)
+csr.write(  ,weight) # just check
+infifo.write(,data)
+
+
+result = outfifo.read(ADDRESS_OFFSET)
+## print result
+print(*result)
+
+
 
 
 
@@ -34,58 +86,6 @@ async def interrupt_handler_async(self, value):
         # Do something when an interrupt is received
         print("interrupt re")
         self.iop.interrupt.clear()
-
-
-# load overlay
-overlay = Overlay("base_pynq.bit") # tcl is also parsed
-
-overlay.download() # Explicitly download bitstream to PL
-
-if overlay.is_loaded():
- # Checks if a bitstream is loaded
- print("overlay is loaded")
-else :
-	print("overlay is not loaded")
-	exit(-1)
-
-#base.load_ip_data(myIP, data) # Provides a function to write data to the memory space of an IP
-                              # data is assumed to be in binary format
-
-from pynq import allocate
-input_buffer = allocate(shape=(5,), dtype='u4')
-
-    input_buffer.device_address
-
-#Writing data to the buffer:
-
-  input_buffer[:] = range(5)
-
-#Flushing the buffer to ensure the updated data is visible to the programmable logic:
-
-    input_buffer.flush()
-
-
-
-
-
-## instantiate the memory i/o classes
-wm = MMIO(DTPU_BASE_ADDRESS_SAXI_WM, ADDRESS_RANGE)
-csr = MMIO(DTPU_BASE_ADDRESS_SAXI_CSR, ADDRESS_RANGE)
-infifo = MMIO(DTPU_BASE_ADDRESS_SAXI_INFIFO, ADDRESS_RANGE)
-outfifo = MMIO(DTPU_BASE_ADDRESS_SAXI_OUTFIFO, ADDRESS_RANGE)
-
-
-data = 0xcafecafe
-weight= 0x11111111
-
-wm.write( ADDRESS_OFFSET,weight)
-csr.write(  ,weight) # just check
-infifo.write(,data)
-
-
-result = outfifo.read(ADDRESS_OFFSET)
-## print result
-print(*result)
 
 interrupt_handler_async(self,89)
 
@@ -125,3 +125,52 @@ drier.recvchannel.wait()
 
 
 https://pynq.readthedocs.io/en/v2.4/pynq_libraries/dma.html
+
+
+
+
+
+
+
+
+from pynq import Overlay
+import pynq.lib.dma
+
+# Load the overlay
+overlay = Overlay('/home/xilinx/pynq/overlays/fir_accel/fir_accel.bit')
+
+# Load the FIR DMA
+dma = overlay.filter.fir_dma
+
+In [7]:
+
+from pynq import Xlnk
+import numpy as np
+
+# Allocate buffers for the input and output signals
+xlnk = Xlnk()
+in_buffer = xlnk.cma_array(shape=(n,), dtype=np.int32)
+out_buffer = xlnk.cma_array(shape=(n,), dtype=np.int32)
+
+# Copy the samples to the in_buffer
+np.copyto(in_buffer,samples)
+
+# Trigger the DMA transfer and wait for the result
+import time
+start_time = time.time()
+dma.sendchannel.transfer(in_buffer)
+dma.recvchannel.transfer(out_buffer)
+dma.sendchannel.wait()
+dma.recvchannel.wait()
+stop_time = time.time()
+hw_exec_time = stop_time-start_time
+print('Hardware FIR execution time: ',hw_exec_time)
+print('Hardware acceleration factor: ',sw_exec_time / hw_exec_time)
+
+# Plot to the notebook
+plot_to_notebook(t,samples,1000,out_signal=out_buffer)
+
+# Free the buffers
+in_buffer.close()
+out_buffer.close()
+

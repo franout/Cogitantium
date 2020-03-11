@@ -18,8 +18,6 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 2
-set_param ced.repoPaths C:/Users/franc/AppData/Roaming/Xilinx/Vivado/2019.2/xhub/ced_store
-set_param simulator.vcsmxInstallPath C:/.Xilinx
 set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
 
@@ -27,8 +25,8 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.cache/wt [current_project]
-set_property parent.project_path D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.xpr [current_project]
+set_property webtalk.parent_dir /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.cache/wt [current_project]
+set_property parent.project_path /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
@@ -38,37 +36,45 @@ update_ip_catalog
 set_property ip_output_repo d:/home/fra/Desktop/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 set_property generic VIVADO_MAC=1 [current_fileset]
-read_verilog -library xil_defaultlib D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v
-add_files D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/pynqz2_ps7_0.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0_board.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_mcdma_0_0/pynqz2_axi_mcdma_0_0.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_mcdma_0_0/pynqz2_axi_mcdma_0_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_xbar_4/pynqz2_xbar_4_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0_xdc_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0_xdc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_dtpu_core_0_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_1/pynqz2_auto_us_1_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_1/pynqz2_auto_us_1_clocks.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_1/pynqz2_auto_us_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_1/pynqz2_auto_pc_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_2/pynqz2_auto_us_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_ss_k_0/pynqz2_auto_ss_k_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_ss_slidr_0/pynqz2_auto_ss_slidr_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_3/pynqz2_auto_us_3_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_ss_k_1/pynqz2_auto_ss_k_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_ss_slidr_1/pynqz2_auto_ss_slidr_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_4/pynqz2_auto_us_4_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_ss_k_2/pynqz2_auto_ss_k_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_ss_slidr_2/pynqz2_auto_ss_slidr_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
+read_verilog {
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/csr_definition.vh
+}
+read_verilog -library xil_defaultlib {
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v
+}
+read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/vivado_mac/vivado_mac.xci
+
+read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
+
+add_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/pynqz2_ps7_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0_board.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_core_0_0/pynqz2_dtpu_core_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axis_accelerator_ada_0_0/pynqz2_axis_accelerator_ada_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axis_accelerator_ada_0_0/pynqz2_axis_accelerator_ada_0_0_xdc_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axis_accelerator_ada_0_0/pynqz2_axis_accelerator_ada_0_0_xdc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_xbar_10/pynqz2_xbar_10_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_1/pynqz2_axi_dma_0_1.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_1/pynqz2_axi_dma_0_1_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_1/pynqz2_axi_dma_0_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_xbar_11/pynqz2_xbar_11_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
+set_property used_in_synthesis false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_1/pynqz2_auto_pc_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -78,11 +84,11 @@ set_property used_in_implementation false [get_files -all D:/uni/2019-2020/thesi
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
-set_property used_in_implementation false [get_files D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc]
+read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
+set_property used_in_implementation false [get_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc]
 
-read_xdc D:/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
-set_property used_in_implementation false [get_files D:/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc]
+read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
+set_property used_in_implementation false [get_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
