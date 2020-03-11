@@ -1,8 +1,8 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
--------------------------------------------------------------------------------------------------
-| Tool Version              : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date                      : Wed Mar  4 20:44:25 2020
-| Host                      : fra running 64-bit Ubuntu 18.04.4 LTS
+---------------------------------------------------------------------------------------------------
+| Tool Version              : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date                      : Wed Mar 11 16:19:52 2020
+| Host                      : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 | Command                   : report_io -file pynqz2_wrapper_io_placed.rpt
 | Design                    : pynqz2_wrapper
 | Device                    : xc7z020
@@ -10,7 +10,7 @@ Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 | Package                   : clg400
 | Package Version           : FINAL 2012-06-26
 | Package Pin Delay Version : VERS. 2.0 2012-06-26
--------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
 IO Information
 
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           133 |
+|           134 |
 +---------------+
 
 
@@ -249,7 +249,7 @@ Table of Contents
 | L12        |                     |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | L13        |                     |            | VCCINT                  | VCCINT      |                   |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | L14        |                     | High Range | IO_L22P_T3_AD7P_35      | User IO     |                   |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| L15        | inter_dla           | High Range | IO_L22N_T3_AD7N_35      | OUTPUT      | LVCMOS33          |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| L15        | idle_signal         | High Range | IO_L22N_T3_AD7N_35      | OUTPUT      | LVCMOS33          |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | L16        |                     | High Range | IO_L11P_T1_SRCC_35      | User IO     |                   |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | L17        |                     | High Range | IO_L11N_T1_SRCC_35      | User IO     |                   |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | L18        |                     |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
@@ -273,8 +273,8 @@ Table of Contents
 | M16        |                     | High Range | VCCO_35                 | VCCO        |                   |      35 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | M17        |                     | High Range | IO_L8P_T1_AD10P_35      | User IO     |                   |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | M18        |                     | High Range | IO_L8N_T1_AD10N_35      | User IO     |                   |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| M19        |                     | High Range | IO_L7P_T1_AD2P_35       | User IO     |                   |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| M20        | reset_n_0           | High Range | IO_L7N_T1_AD2N_35       | INPUT       | LVCMOS33          |      35 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| M19        | enable              | High Range | IO_L7P_T1_AD2P_35       | INPUT       | LVCMOS33          |      35 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| M20        | reset_n             | High Range | IO_L7N_T1_AD2N_35       | INPUT       | LVCMOS33          |      35 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | N1         | DDR_0_cs_n          |            | PS_DDR_CS_B_502         | OUT         | SSTL15            |         |            | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | N2         | DDR_0_addr[0]       |            | PS_DDR_A0_502           | OUT         | SSTL15            |         |            | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | N3         | DDR_0_cke           |            | PS_DDR_CKE_502          | OUT         | SSTL15            |         |            | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |

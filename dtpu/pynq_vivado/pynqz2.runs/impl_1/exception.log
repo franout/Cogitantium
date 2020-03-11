@@ -1,0 +1,4 @@
+ERROR: Exception caught trying to open file D:\uni\2019-2020\thesis\cogitantium\dtpu\pynq_vivado\pynqz2.runs\impl_1/runme.log
+	Exception name: Error
+	Exception error code: 70
+	Exception message: Permission denied

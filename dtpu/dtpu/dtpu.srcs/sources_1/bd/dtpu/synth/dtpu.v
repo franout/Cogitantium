@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-//Date        : Sun Mar  8 20:35:55 2020
+//Date        : Wed Mar 11 14:52:42 2020
 //Host        : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 //Command     : generate_target dtpu.bd
 //Design      : dtpu
@@ -11,7 +11,7 @@
 
 /* axi stream are for input/output  fifo and bram 
  */
-(* CORE_GENERATION_INFO = "dtpu,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=dtpu,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=2,numReposBlks=2,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_bram_cntlr_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "dtpu.hwdef" *) 
+(* CORE_GENERATION_INFO = "dtpu,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=dtpu,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=2,numReposBlks=2,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"da_bram_cntlr_cnt\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"=1,da_clkrst_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "dtpu.hwdef" *) 
 module dtpu
    (M_AXIS_0_0_tdata,
     M_AXIS_0_0_tdest,
@@ -58,40 +58,42 @@ module dtpu
     S_AXI_wready,
     S_AXI_wstrb,
     S_AXI_wvalid,
+    axi_aclk,
     axi_resetn,
     clk,
     enable,
+    idle_signal,
     intr_dtpu,
     test_mode);
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS_0_0, CLK_DOMAIN dtpu_clk, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) output [63:0]M_AXIS_0_0_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS_0_0, CLK_DOMAIN dtpu_aclk_0, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) output [63:0]M_AXIS_0_0_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TDEST" *) output [3:0]M_AXIS_0_0_tdest;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TID" *) output [3:0]M_AXIS_0_0_tid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TLAST" *) output M_AXIS_0_0_tlast;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TREADY" *) input M_AXIS_0_0_tready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TUSER" *) output [7:0]M_AXIS_0_0_tuser;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_0_0 TVALID" *) output M_AXIS_0_0_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS_0_0, CLK_DOMAIN dtpu_clk, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) input [63:0]S_AXIS_0_0_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS_0_0, CLK_DOMAIN dtpu_aclk_0, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) input [63:0]S_AXIS_0_0_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TDEST" *) input [3:0]S_AXIS_0_0_tdest;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TID" *) input [3:0]S_AXIS_0_0_tid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TLAST" *) input S_AXIS_0_0_tlast;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TREADY" *) output S_AXIS_0_0_tready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TUSER" *) input [7:0]S_AXIS_0_0_tuser;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_0_0 TVALID" *) input S_AXIS_0_0_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS_1_0, CLK_DOMAIN dtpu_clk, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) input [63:0]S_AXIS_1_0_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS_1_0, CLK_DOMAIN dtpu_aclk_0, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) input [63:0]S_AXIS_1_0_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TDEST" *) input [3:0]S_AXIS_1_0_tdest;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TID" *) input [3:0]S_AXIS_1_0_tid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TLAST" *) input S_AXIS_1_0_tlast;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TREADY" *) output S_AXIS_1_0_tready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TUSER" *) input [7:0]S_AXIS_1_0_tuser;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_1_0 TVALID" *) input S_AXIS_1_0_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS_2_0, CLK_DOMAIN dtpu_clk, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) input [63:0]S_AXIS_2_0_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS_2_0, CLK_DOMAIN dtpu_aclk_0, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.000, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8" *) input [63:0]S_AXIS_2_0_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TDEST" *) input [3:0]S_AXIS_2_0_tdest;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TID" *) input [3:0]S_AXIS_2_0_tid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TLAST" *) input S_AXIS_2_0_tlast;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TREADY" *) output S_AXIS_2_0_tready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TUSER" *) input [7:0]S_AXIS_2_0_tuser;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_2_0 TVALID" *) input S_AXIS_2_0_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI, ADDR_WIDTH 32, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN dtpu_clk, DATA_WIDTH 32, FREQ_HZ 100000000, HAS_BRESP 1, HAS_BURST 0, HAS_CACHE 0, HAS_LOCK 0, HAS_PROT 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, HAS_WSTRB 1, ID_WIDTH 0, INSERT_VIP 0, MAX_BURST_LENGTH 1, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 1, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI4LITE, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) input [12:0]S_AXI_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI, ADDR_WIDTH 32, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN dtpu_aclk_0, DATA_WIDTH 32, FREQ_HZ 100000000, HAS_BRESP 1, HAS_BURST 0, HAS_CACHE 0, HAS_LOCK 0, HAS_PROT 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, HAS_WSTRB 1, ID_WIDTH 0, INSERT_VIP 0, MAX_BURST_LENGTH 1, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 1, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI4LITE, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) input [12:0]S_AXI_araddr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARREADY" *) output S_AXI_arready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARVALID" *) input S_AXI_arvalid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) input [12:0]S_AXI_awaddr;
@@ -108,9 +110,11 @@ module dtpu
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WREADY" *) output S_AXI_wready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WSTRB" *) input [3:0]S_AXI_wstrb;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WVALID" *) input S_AXI_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.AXI_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.AXI_ACLK, ASSOCIATED_BUSIF S_AXI:S_AXIS_0_0:M_AXIS_0_0:S_AXIS_1_0:S_AXIS_2_0, ASSOCIATED_RESET axi_resetn:axi_resetn, CLK_DOMAIN dtpu_aclk_0, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000" *) input axi_aclk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.AXI_RESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.AXI_RESETN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input axi_resetn;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF S_AXI:M_AXIS_0_0:S_AXIS_1_0:S_AXIS_0_0:S_AXIS_2_0, ASSOCIATED_RESET axi_resetn, CLK_DOMAIN dtpu_clk, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, CLK_DOMAIN dtpu_clk, FREQ_HZ 40000000, INSERT_VIP 0, PHASE 0.000" *) input clk;
   input enable;
+  output idle_signal;
   (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 INTR.INTR_DTPU INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME INTR.INTR_DTPU, PortWidth 1, SENSITIVITY LEVEL_HIGH" *) output intr_dtpu;
   input test_mode;
 
@@ -152,10 +156,10 @@ module dtpu
   wire S_AXI_1_WREADY;
   wire [3:0]S_AXI_1_WSTRB;
   wire S_AXI_1_WVALID;
+  wire axi_aclk_1;
   wire axi_resetn_1;
   wire axis_accelerator_ada_0_AP_CTRL_ap_continue;
   wire axis_accelerator_ada_0_AP_CTRL_ap_done;
-  wire axis_accelerator_ada_0_AP_CTRL_ap_idle;
   wire axis_accelerator_ada_0_AP_CTRL_ap_ready;
   wire axis_accelerator_ada_0_AP_CTRL_ap_start;
   wire [63:0]axis_accelerator_ada_0_M_AXIS_0_TDATA;
@@ -168,6 +172,7 @@ module dtpu
   wire axis_accelerator_ada_0_aresetn;
   wire axis_accelerator_ada_0_interrupt;
   wire clk_1;
+  wire dtpu_core_0_cs_idle;
   wire [31:0]dtpu_core_0_csr_mem_interface_ADDR;
   wire dtpu_core_0_csr_mem_interface_CLK;
   wire [7:0]dtpu_core_0_csr_mem_interface_DIN;
@@ -235,10 +240,12 @@ module dtpu
   assign S_AXI_rresp[1:0] = S_AXI_1_RRESP;
   assign S_AXI_rvalid = S_AXI_1_RVALID;
   assign S_AXI_wready = S_AXI_1_WREADY;
+  assign axi_aclk_1 = axi_aclk;
   assign axi_resetn_1 = axi_resetn;
   assign axis_accelerator_ada_0_M_AXIS_0_TREADY = M_AXIS_0_0_tready;
   assign clk_1 = clk;
   assign enable_1 = enable;
+  assign idle_signal = dtpu_core_0_cs_idle;
   assign intr_dtpu = axis_accelerator_ada_0_interrupt;
   assign test_mode_1 = test_mode;
   dtpu_axis_accelerator_ada_0_0 axis_accelerator_ada_0
@@ -265,7 +272,7 @@ module dtpu
         .ap_iarg_1_dout(dtpu_core_0_weight_mem_interface_DOUT),
         .ap_iarg_1_rst(dtpu_core_0_weight_mem_interface_RST),
         .ap_iarg_1_we({dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE,dtpu_core_0_weight_mem_interface_WE}),
-        .ap_idle(axis_accelerator_ada_0_AP_CTRL_ap_idle),
+        .ap_idle(1'b0),
         .ap_ready(axis_accelerator_ada_0_AP_CTRL_ap_ready),
         .ap_start(axis_accelerator_ada_0_AP_CTRL_ap_start),
         .aresetn(axis_accelerator_ada_0_aresetn),
@@ -277,9 +284,9 @@ module dtpu
         .m_axis_0_tready(axis_accelerator_ada_0_M_AXIS_0_TREADY),
         .m_axis_0_tuser(axis_accelerator_ada_0_M_AXIS_0_TUSER),
         .m_axis_0_tvalid(axis_accelerator_ada_0_M_AXIS_0_TVALID),
-        .m_axis_aclk(clk_1),
+        .m_axis_aclk(axi_aclk_1),
         .m_axis_aresetn(axi_resetn_1),
-        .s_axi_aclk(clk_1),
+        .s_axi_aclk(axi_aclk_1),
         .s_axi_araddr(S_AXI_1_ARADDR),
         .s_axi_aresetn(axi_resetn_1),
         .s_axi_arready(S_AXI_1_ARREADY),
@@ -319,13 +326,13 @@ module dtpu
         .s_axis_2_tready(S_AXIS_2_0_1_TREADY),
         .s_axis_2_tuser(S_AXIS_2_0_1_TUSER),
         .s_axis_2_tvalid(S_AXIS_2_0_1_TVALID),
-        .s_axis_aclk(clk_1),
+        .s_axis_aclk(axi_aclk_1),
         .s_axis_aresetn(axi_resetn_1));
   dtpu_dtpu_core_0_2 dtpu_core_0
        (.clk(clk_1),
         .cs_continue(axis_accelerator_ada_0_AP_CTRL_ap_continue),
         .cs_done(axis_accelerator_ada_0_AP_CTRL_ap_done),
-        .cs_idle(axis_accelerator_ada_0_AP_CTRL_ap_idle),
+        .cs_idle(dtpu_core_0_cs_idle),
         .cs_ready(axis_accelerator_ada_0_AP_CTRL_ap_ready),
         .cs_start(axis_accelerator_ada_0_AP_CTRL_ap_start),
         .csr_address(dtpu_core_0_csr_mem_interface_ADDR),

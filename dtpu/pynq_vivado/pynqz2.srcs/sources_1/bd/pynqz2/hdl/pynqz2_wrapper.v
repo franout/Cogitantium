@@ -1,8 +1,8 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-//Date        : Wed Mar  4 20:30:11 2020
-//Host        : fra running 64-bit Ubuntu 18.04.4 LTS
+//Tool Version: Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+//Date        : Wed Mar 11 16:09:21 2020
+//Host        : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 //Command     : generate_target pynqz2_wrapper.bd
 //Design      : pynqz2_wrapper
 //Purpose     : IP block netlist
@@ -32,8 +32,9 @@ module pynqz2_wrapper
     FIXED_IO_0_ps_porb,
     FIXED_IO_0_ps_srstb,
     clk_pl,
-    inter_dla,
-    reset_n_0);
+    enable,
+    idle_signal,
+    reset_n);
   inout [14:0]DDR_0_addr;
   inout [2:0]DDR_0_ba;
   inout DDR_0_cas_n;
@@ -56,8 +57,9 @@ module pynqz2_wrapper
   inout FIXED_IO_0_ps_porb;
   inout FIXED_IO_0_ps_srstb;
   output clk_pl;
-  output inter_dla;
-  input reset_n_0;
+  input enable;
+  output idle_signal;
+  input reset_n;
 
   wire [14:0]DDR_0_addr;
   wire [2:0]DDR_0_ba;
@@ -81,8 +83,9 @@ module pynqz2_wrapper
   wire FIXED_IO_0_ps_porb;
   wire FIXED_IO_0_ps_srstb;
   wire clk_pl;
-  wire inter_dla;
-  wire reset_n_0;
+  wire enable;
+  wire idle_signal;
+  wire reset_n;
 
   pynqz2 pynqz2_i
        (.DDR_0_addr(DDR_0_addr),
@@ -107,6 +110,7 @@ module pynqz2_wrapper
         .FIXED_IO_0_ps_porb(FIXED_IO_0_ps_porb),
         .FIXED_IO_0_ps_srstb(FIXED_IO_0_ps_srstb),
         .clk_pl(clk_pl),
-        .inter_dla(inter_dla),
-        .reset_n_0(reset_n_0));
+        .enable(enable),
+        .idle_signal(idle_signal),
+        .reset_n(reset_n));
 endmodule

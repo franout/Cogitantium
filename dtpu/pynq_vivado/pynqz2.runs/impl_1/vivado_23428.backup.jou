@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Wed Mar 11 15:43:40 2020
+# Process ID: 23428
+# Current directory: D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/impl_1
+# Command line: vivado.exe -log pynqz2_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pynqz2_wrapper.tcl -notrace
+# Log file: D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/impl_1/pynqz2_wrapper.vdi
+# Journal file: D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source pynqz2_wrapper.tcl -notrace

@@ -1,2 +1,5 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mul.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_mul
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module control_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_cu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_cu
+INFO: [VRFC 10-2458] undeclared symbol test_mode, assumed default net type wire [D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_cu.v:84]

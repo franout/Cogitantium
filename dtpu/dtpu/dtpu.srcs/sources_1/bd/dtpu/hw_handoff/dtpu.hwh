@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Mar  8 20:35:56 2020" VIVADOVERSION="2019.2.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Mar 11 14:52:42 2020" VIVADOVERSION="2019.2.1">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="dtpu" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -19,109 +19,22 @@
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="interrupt"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="63" NAME="S_AXIS_0_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tdata">
+    <PORT CLKFREQUENCY="40000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tdata"/>
+        <CONNECTION INSTANCE="dtpu_core_0" PORT="clk"/>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="aclk"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="3" NAME="S_AXIS_0_0_tdest" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tdest">
+    <PORT DIR="I" NAME="axi_resetn" SIGIS="rst" SIGNAME="External_Ports_axi_resetn">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tdest"/>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_aresetn"/>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_aresetn"/>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axi_aresetn"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="3" NAME="S_AXIS_0_0_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tid">
+    <PORT DIR="O" NAME="idle_signal" SIGIS="undef" SIGNAME="dtpu_core_0_cs_idle">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tid"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="S_AXIS_0_0_tlast" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tlast">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tlast"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="S_AXIS_0_0_tready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tready">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tready"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="7" NAME="S_AXIS_0_0_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tuser">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tuser"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="S_AXIS_0_0_tvalid" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tvalid">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tvalid"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="63" NAME="M_AXIS_0_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tdata">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tdata"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="3" NAME="M_AXIS_0_0_tdest" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tdest">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tdest"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="3" NAME="M_AXIS_0_0_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tid">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tid"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="M_AXIS_0_0_tlast" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tlast">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tlast"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="M_AXIS_0_0_tready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tready">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tready"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="7" NAME="M_AXIS_0_0_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tuser">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tuser"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="M_AXIS_0_0_tvalid" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tvalid">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tvalid"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="63" NAME="S_AXIS_2_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tdata">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tdata"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="3" NAME="S_AXIS_2_0_tdest" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tdest">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tdest"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="3" NAME="S_AXIS_2_0_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tid">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tid"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="S_AXIS_2_0_tlast" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tlast">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tlast"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="S_AXIS_2_0_tready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tready">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tready"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="7" NAME="S_AXIS_2_0_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tuser">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tuser"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="S_AXIS_2_0_tvalid" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tvalid">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tvalid"/>
+        <CONNECTION INSTANCE="dtpu_core_0" PORT="cs_idle"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="12" NAME="S_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axi_araddr">
@@ -209,6 +122,111 @@
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axi_wvalid"/>
       </CONNECTIONS>
     </PORT>
+    <PORT DIR="I" LEFT="63" NAME="S_AXIS_2_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tdata">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tdata"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="3" NAME="S_AXIS_2_0_tdest" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tdest">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tdest"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="3" NAME="S_AXIS_2_0_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tid"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_AXIS_2_0_tlast" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tlast">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tlast"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="S_AXIS_2_0_tready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tready">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tready"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="7" NAME="S_AXIS_2_0_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tuser">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tuser"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_AXIS_2_0_tvalid" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_2_tvalid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_2_tvalid"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="63" NAME="M_AXIS_0_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tdata">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tdata"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="3" NAME="M_AXIS_0_0_tdest" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tdest">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tdest"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="3" NAME="M_AXIS_0_0_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tid"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="M_AXIS_0_0_tlast" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tlast">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tlast"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="M_AXIS_0_0_tready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tready">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tready"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="7" NAME="M_AXIS_0_0_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tuser">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tuser"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="M_AXIS_0_0_tvalid" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_m_axis_0_tvalid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_0_tvalid"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="63" NAME="S_AXIS_0_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tdata">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tdata"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="3" NAME="S_AXIS_0_0_tdest" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tdest">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tdest"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="3" NAME="S_AXIS_0_0_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tid"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_AXIS_0_0_tlast" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tlast">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tlast"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="S_AXIS_0_0_tready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tready">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tready"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="7" NAME="S_AXIS_0_0_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tuser">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tuser"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="S_AXIS_0_0_tvalid" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_0_tvalid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_0_tvalid"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="I" LEFT="63" NAME="S_AXIS_1_0_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_s_axis_1_tdata">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_1_tdata"/>
@@ -244,20 +262,11 @@
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_1_tvalid"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="axi_aclk" SIGIS="clk" SIGNAME="External_Ports_axi_aclk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="aclk"/>
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_aclk"/>
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_aclk"/>
         <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axi_aclk"/>
-        <CONNECTION INSTANCE="dtpu_core_0" PORT="clk"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="axi_resetn" SIGIS="rst" SIGNAME="External_Ports_axi_resetn">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="m_axis_aresetn"/>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axis_aresetn"/>
-        <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="s_axi_aresetn"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -289,7 +298,7 @@
       <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
       <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
       <PARAMETER NAME="PHASE" VALUE="0.000"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
       <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
       <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
       <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -332,7 +341,7 @@
       <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
       <PARAMETER NAME="PHASE" VALUE="0.000"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
       <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
       <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
       <PORTMAPS>
@@ -356,7 +365,7 @@
       <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
       <PARAMETER NAME="PHASE" VALUE="0.000"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
       <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
       <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
       <PORTMAPS>
@@ -380,7 +389,7 @@
       <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
       <PARAMETER NAME="PHASE" VALUE="0.000"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
       <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
       <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
       <PORTMAPS>
@@ -404,7 +413,7 @@
       <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
       <PARAMETER NAME="PHASE" VALUE="0.000"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
       <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
       <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
       <PORTMAPS>
@@ -715,9 +724,9 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x00007FFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="External_Ports_axi_aclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="axi_aclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="s_axi_aresetn" SIGIS="rst" SIGNAME="External_Ports_axi_resetn">
@@ -810,9 +819,9 @@
             <CONNECTION INSTANCE="dtpu_imp" PORT="S_AXI_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="External_Ports_axi_aclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="axi_aclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="s_axis_aresetn" SIGIS="rst" SIGNAME="External_Ports_axi_resetn">
@@ -1010,9 +1019,9 @@
             <CONNECTION INSTANCE="dtpu_core_0" PORT="infifo_is_empty"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="m_axis_aclk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="m_axis_aclk" SIGIS="clk" SIGNAME="External_Ports_axi_aclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="axi_aclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="m_axis_aresetn" SIGIS="rst" SIGNAME="External_Ports_axi_resetn">
@@ -1070,7 +1079,7 @@
             <CONNECTION INSTANCE="dtpu_core_0" PORT="outfifo_is_full"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="40000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="External_Ports_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
           </CONNECTIONS>
@@ -1138,7 +1147,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -1175,7 +1184,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1199,7 +1208,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1223,7 +1232,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1247,7 +1256,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_clk"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="dtpu_aclk_0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1335,7 +1344,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+        <PORT CLKFREQUENCY="40000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
           </CONNECTIONS>
@@ -1465,9 +1474,10 @@
             <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="ap_done"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="cs_idle" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_ap_idle">
+        <PORT DIR="O" NAME="cs_idle" SIGIS="undef" SIGNAME="dtpu_core_0_cs_idle">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_accelerator_ada_0" PORT="ap_idle"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="idle_signal"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="cs_ready" SIGIS="undef" SIGNAME="axis_accelerator_ada_0_ap_ready">

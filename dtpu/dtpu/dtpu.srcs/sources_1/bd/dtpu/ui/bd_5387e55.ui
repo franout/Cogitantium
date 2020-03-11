@@ -1,49 +1,54 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.25",
-   "Default View_TopLeft":"-130,-101",
+   "Default View_ScaleFactor":"1.4318",
+   "Default View_TopLeft":"-169,-1",
    "ExpandedHierarchyInLayout":"",
    "comment_0":"axi stream are for input/output  fifo and bram 
 ",
    "commentid":"comment_0|",
    "font_comment_0":"12",
-   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 non-TLS-threadsafe
 #  -string -flagsOSRD
-preplace port S_AXI -pg 1 -lvl 0 -x -30 -y 50 -defaultsOSRD
-preplace port M_AXIS_0_0 -pg 1 -lvl 3 -x 760 -y 180 -defaultsOSRD
-preplace port S_AXIS_1_0 -pg 1 -lvl 0 -x -30 -y 110 -defaultsOSRD
-preplace port S_AXIS_0_0 -pg 1 -lvl 0 -x -30 -y 80 -defaultsOSRD
-preplace port S_AXIS_2_0 -pg 1 -lvl 0 -x -30 -y 140 -defaultsOSRD
-preplace port test_mode -pg 1 -lvl 0 -x -30 -y 260 -defaultsOSRD
-preplace port enable -pg 1 -lvl 0 -x -30 -y 290 -defaultsOSRD
-preplace port intr_dtpu -pg 1 -lvl 3 -x 760 -y 240 -defaultsOSRD
-preplace port clk -pg 1 -lvl 0 -x -30 -y 230 -defaultsOSRD
-preplace port axi_resetn -pg 1 -lvl 0 -x -30 -y 200 -defaultsOSRD
-preplace inst axis_accelerator_ada_0 -pg 1 -lvl 2 -x 600 -y 210 -defaultsOSRD
-preplace inst dtpu_core_0 -pg 1 -lvl 1 -x 210 -y 250 -defaultsOSRD
-preplace netloc axi_resetn_1 1 0 2 0J 140 410
+preplace port S_AXI -pg 1 -lvl 0 -x -50 -y 50 -defaultsOSRD
+preplace port M_AXIS_0_0 -pg 1 -lvl 3 -x 780 -y 180 -defaultsOSRD
+preplace port S_AXIS_1_0 -pg 1 -lvl 0 -x -50 -y 110 -defaultsOSRD
+preplace port S_AXIS_0_0 -pg 1 -lvl 0 -x -50 -y 80 -defaultsOSRD
+preplace port S_AXIS_2_0 -pg 1 -lvl 0 -x -50 -y 140 -defaultsOSRD
+preplace port test_mode -pg 1 -lvl 0 -x -50 -y 260 -defaultsOSRD
+preplace port enable -pg 1 -lvl 0 -x -50 -y 290 -defaultsOSRD
+preplace port intr_dtpu -pg 1 -lvl 3 -x 780 -y 240 -defaultsOSRD
+preplace port clk -pg 1 -lvl 0 -x -50 -y 230 -defaultsOSRD
+preplace port axi_resetn -pg 1 -lvl 0 -x -50 -y 200 -defaultsOSRD
+preplace port idle_signal -pg 1 -lvl 3 -x 780 -y 350 -defaultsOSRD
+preplace port axi_aclk -pg 1 -lvl 0 -x -50 -y 350 -defaultsOSRD
+preplace inst axis_accelerator_ada_0 -pg 1 -lvl 2 -x 610 -y 210 -defaultsOSRD
+preplace inst dtpu_core_0 -pg 1 -lvl 1 -x 220 -y 300 -defaultsOSRD
+preplace netloc axi_resetn_1 1 0 2 -10J 190 430
 preplace netloc axis_accelerator_ada_0_interrupt 1 2 1 NJ 240
 preplace netloc test_mode_1 1 0 1 0J 260n
-preplace netloc enable_1 1 0 1 NJ 290
-preplace netloc clk_1 1 0 2 10J 150 400
-preplace netloc axis_accelerator_ada_0_aresetn 1 0 3 20 410 NJ 410 740
-preplace netloc S_AXIS_0_0_1 1 0 2 NJ 80 400J
+preplace netloc enable_1 1 0 1 -20J 290n
+preplace netloc axis_accelerator_ada_0_aresetn 1 0 3 10 10 NJ 10 750
+preplace netloc dtpu_core_0_cs_idle 1 0 3 20 430 NJ 430 760J
+preplace netloc clk_1 1 0 2 -10 420 470
+preplace netloc axi_aclk_1 1 0 2 -30J 410 460
+preplace netloc S_AXI_1 1 0 2 NJ 50 410J
+preplace netloc dtpu_core_0_csr_mem_interface 1 1 1 450 190n
+preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 0 0 NJ 0 760
+preplace netloc dtpu_core_0_input_fifo 1 1 1 440 150n
+preplace netloc S_AXIS_2_0_1 1 0 2 NJ 140 410J
+preplace netloc dtpu_core_0_weight_mem_interface 1 1 1 420 210n
 preplace netloc axis_accelerator_ada_0_M_AXIS_0 1 2 1 NJ 180
-preplace netloc S_AXIS_2_0_1 1 0 2 -10J 130 NJ
-preplace netloc S_AXI_1 1 0 2 NJ 50 400J
+preplace netloc dtpu_core_0_output_fifo 1 1 1 410 170n
+preplace netloc S_AXIS_0_0_1 1 0 2 NJ 80 410J
 preplace netloc S_AXIS_1_0_1 1 0 2 NJ 110 NJ
-preplace netloc dtpu_core_0_weight_mem_interface 1 1 1 450 210n
-preplace netloc dtpu_core_0_input_fifo 1 1 1 420 150n
-preplace netloc dtpu_core_0_output_fifo 1 1 1 440 170n
-preplace netloc dtpu_core_0_csr_mem_interface 1 1 1 430 190n
-preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 20 10 NJ 10 740
 preplace cgraphic comment_0 place top 90 -51 textcolor 4 linecolor 3 linewidth 2
-levelinfo -pg 1 -30 210 600 760
-pagesize -pg 1 -db -bbox -sgen -150 0 890 560
+levelinfo -pg 1 -50 220 610 780
+pagesize -pg 1 -db -bbox -sgen -170 -20 910 560
 "
 }
 {
-   "da_bram_cntlr_cnt":"1"
+   """"""""""""""""""""""""""""""""""da_bram_cntlr_cnt"""""""""""""""""""""""""""""""""":"1",
+   "da_clkrst_cnt":"1"
 }
 {
    "/comment_0":"comment_0"

@@ -3,7 +3,7 @@
 
 # XDC: new/avoid_trimmer.xdc
 
-# XDC: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
+# XDC: D:/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
 
 # Block Designs: bd/pynqz2/pynqz2.bd
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2 || ORIG_REF_NAME==pynqz2} -quiet] -quiet
@@ -14,65 +14,83 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_ps7_0 ||
 # IP: bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_rst_ps7_30M_0 || ORIG_REF_NAME==pynqz2_rst_ps7_30M_0} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_mem_intercon_0/pynqz2_axi_mem_intercon_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_mem_intercon_0 || ORIG_REF_NAME==pynqz2_axi_mem_intercon_0} -quiet] -quiet
-
 # IP: bd/pynqz2/ip/pynqz2_xlconstant_0_1/pynqz2_xlconstant_0_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xlconstant_0_1 || ORIG_REF_NAME==pynqz2_xlconstant_0_1} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_3/pynqz2_axi_apb_bridge_0_3.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_apb_bridge_0_3 || ORIG_REF_NAME==pynqz2_axi_apb_bridge_0_3} -quiet] -quiet
+# IP: bd/pynqz2/ip/pynqz2_xbar_5/pynqz2_xbar_5.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xbar_5 || ORIG_REF_NAME==pynqz2_xbar_5} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_nv_nvdla_wrapper_0_4/pynqz2_nv_nvdla_wrapper_0_4.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_nv_nvdla_wrapper_0_4 || ORIG_REF_NAME==pynqz2_nv_nvdla_wrapper_0_4} -quiet] -quiet
+# IP: bd/pynqz2/ip/pynqz2_ps7_axi_periph_2/pynqz2_ps7_axi_periph_2.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_ps7_axi_periph_2 || ORIG_REF_NAME==pynqz2_ps7_axi_periph_2} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/pynqz2_axi_smc_5.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_smc_5 || ORIG_REF_NAME==pynqz2_axi_smc_5} -quiet] -quiet
+# IP: bd/pynqz2/ip/pynqz2_xbar_3/pynqz2_xbar_3.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xbar_3 || ORIG_REF_NAME==pynqz2_xbar_3} -quiet] -quiet
 
-# Block Designs: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/bd_5096.bd
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_axi_mem_intercon_4/pynqz2_axi_mem_intercon_4.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_mem_intercon_4 || ORIG_REF_NAME==pynqz2_axi_mem_intercon_4} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_0/bd_5096_one_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_xlconcat_0_0/pynqz2_xlconcat_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xlconcat_0_0 || ORIG_REF_NAME==pynqz2_xlconcat_0_0} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_1/bd_5096_psr_aclk_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_axi_mcdma_0_0/pynqz2_axi_mcdma_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_mcdma_0_0 || ORIG_REF_NAME==pynqz2_axi_mcdma_0_0} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_2/bd_5096_s00mmu_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_xbar_4/pynqz2_xbar_4.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xbar_4 || ORIG_REF_NAME==pynqz2_xbar_4} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_3/bd_5096_s00tr_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_axis_interconnect_0_0/pynqz2_axis_interconnect_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axis_interconnect_0_0 || ORIG_REF_NAME==pynqz2_axis_interconnect_0_0} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_4/bd_5096_s00sic_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_dtpu_0_1/pynqz2_dtpu_0_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_dtpu_0_1 || ORIG_REF_NAME==pynqz2_dtpu_0_1} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_5/bd_5096_s00a2s_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==dtpu_axis_accelerator_ada_0_0 || ORIG_REF_NAME==dtpu_axis_accelerator_ada_0_0} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_6/bd_5096_sarn_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/vivado_mac/vivado_mac.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==vivado_mac || ORIG_REF_NAME==vivado_mac} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_7/bd_5096_srn_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
-
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_8/bd_5096_sawn_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
-
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_9/bd_5096_swn_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
-
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_10/bd_5096_sbn_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
-
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_11/bd_5096_m00s2a_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
-
-# IP: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_12/bd_5096_m00e_0.xci
-# DONT_TOUCH constraint suppressed by (parent) sub-design file.
+# IP: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/mult_gen_0/mult_gen_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==mult_gen_0 || ORIG_REF_NAME==mult_gen_0} -quiet] -quiet
 
 # IP: bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_pc_0 || ORIG_REF_NAME==pynqz2_auto_pc_0} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_0 || ORIG_REF_NAME==pynqz2_auto_us_0} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_us_1/pynqz2_auto_us_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_1 || ORIG_REF_NAME==pynqz2_auto_us_1} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_pc_1/pynqz2_auto_pc_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_pc_1 || ORIG_REF_NAME==pynqz2_auto_pc_1} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_us_2/pynqz2_auto_us_2.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_2 || ORIG_REF_NAME==pynqz2_auto_us_2} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_ss_k_0/pynqz2_auto_ss_k_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_ss_k_0 || ORIG_REF_NAME==pynqz2_auto_ss_k_0} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_ss_slidr_0/pynqz2_auto_ss_slidr_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_ss_slidr_0 || ORIG_REF_NAME==pynqz2_auto_ss_slidr_0} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_us_3/pynqz2_auto_us_3.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_3 || ORIG_REF_NAME==pynqz2_auto_us_3} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_ss_k_1/pynqz2_auto_ss_k_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_ss_k_1 || ORIG_REF_NAME==pynqz2_auto_ss_k_1} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_ss_slidr_1/pynqz2_auto_ss_slidr_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_ss_slidr_1 || ORIG_REF_NAME==pynqz2_auto_ss_slidr_1} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_us_4/pynqz2_auto_us_4.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_4 || ORIG_REF_NAME==pynqz2_auto_us_4} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_ss_k_2/pynqz2_auto_ss_k_2.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_ss_k_2 || ORIG_REF_NAME==pynqz2_auto_ss_k_2} -quiet] -quiet
+
+# IP: bd/pynqz2/ip/pynqz2_auto_ss_slidr_2/pynqz2_auto_ss_slidr_2.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_ss_slidr_2 || ORIG_REF_NAME==pynqz2_auto_ss_slidr_2} -quiet] -quiet
 
 # XDC: bd/pynqz2/ip/pynqz2_ps7_0/pynqz2_ps7_0.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_ps7_0 || ORIG_REF_NAME==pynqz2_ps7_0} -quiet] {/inst } ]/inst ] -quiet] -quiet
@@ -83,30 +101,56 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 # XDC: bd/pynqz2/ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xdc
 #dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_rst_ps7_30M_0 || ORIG_REF_NAME==pynqz2_rst_ps7_30M_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_apb_bridge_0_3/pynqz2_axi_apb_bridge_0_3_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_axi_mcdma_0_0/pynqz2_axi_mcdma_0_0.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_axi_mcdma_0_0 || ORIG_REF_NAME==pynqz2_axi_mcdma_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_axi_mcdma_0_0/pynqz2_axi_mcdma_0_0_clocks.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_axi_mcdma_0_0 || ORIG_REF_NAME==pynqz2_axi_mcdma_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_1/bd_5096_psr_aclk_0_board.xdc
-# DONT_TOUCH constraint suppressed by parent sub-design file.
+# XDC: bd/pynqz2/ip/pynqz2_xbar_4/pynqz2_xbar_4_ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_1/bd_5096_psr_aclk_0.xdc
-# DONT_TOUCH constraint suppressed by parent sub-design file.
+# XDC: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0_ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_5/bd_5096_s00a2s_0_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0_xdc_clocks.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==dtpu_axis_accelerator_ada_0_0 || ORIG_REF_NAME==dtpu_axis_accelerator_ada_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_6/bd_5096_sarn_0_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_axis_accelerator_ada_0_0/dtpu_axis_accelerator_ada_0_0_xdc.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==dtpu_axis_accelerator_ada_0_0 || ORIG_REF_NAME==dtpu_axis_accelerator_ada_0_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_7/bd_5096_srn_0_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_dtpu_core_0_2_ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_8/bd_5096_sawn_0_ooc.xdc
-
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_9/bd_5096_swn_0_ooc.xdc
-
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_10/bd_5096_sbn_0_ooc.xdc
-
-# XDC: bd/pynqz2/ip/pynqz2_axi_smc_5/bd_0/ip/ip_11/bd_5096_m00s2a_0_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_dtpu_0_1/src/dtpu_ooc.xdc
 
 # XDC: bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_0 || ORIG_REF_NAME==pynqz2_auto_us_0} -quiet] {/inst } ]/inst ] -quiet] -quiet
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_1/pynqz2_auto_us_1_clocks.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_auto_us_1 || ORIG_REF_NAME==pynqz2_auto_us_1} -quiet] {/inst } ]/inst ] -quiet] -quiet
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_1/pynqz2_auto_us_1_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_pc_1/pynqz2_auto_pc_1_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_2/pynqz2_auto_us_2_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_ss_k_0/pynqz2_auto_ss_k_0_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_ss_slidr_0/pynqz2_auto_ss_slidr_0_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_3/pynqz2_auto_us_3_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_ss_k_1/pynqz2_auto_ss_k_1_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_ss_slidr_1/pynqz2_auto_ss_slidr_1_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_us_4/pynqz2_auto_us_4_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_ss_k_2/pynqz2_auto_ss_k_2_ooc.xdc
+
+# XDC: bd/pynqz2/ip/pynqz2_auto_ss_slidr_2/pynqz2_auto_ss_slidr_2_ooc.xdc
 
 # XDC: bd/pynqz2/pynqz2_ooc.xdc

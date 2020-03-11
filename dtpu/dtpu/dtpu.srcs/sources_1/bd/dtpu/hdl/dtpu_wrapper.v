@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-//Date        : Sun Mar  8 20:35:55 2020
+//Date        : Wed Mar 11 14:52:42 2020
 //Host        : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 //Command     : generate_target dtpu_wrapper.bd
 //Design      : dtpu_wrapper
@@ -55,9 +55,11 @@ module dtpu_wrapper
     S_AXI_wready,
     S_AXI_wstrb,
     S_AXI_wvalid,
+    axi_aclk,
     axi_resetn,
     clk,
     enable,
+    idle_signal,
     intr_dtpu,
     test_mode);
   output [63:0]M_AXIS_0_0_tdata;
@@ -105,9 +107,11 @@ module dtpu_wrapper
   output S_AXI_wready;
   input [3:0]S_AXI_wstrb;
   input S_AXI_wvalid;
+  input axi_aclk;
   input axi_resetn;
   input clk;
   input enable;
+  output idle_signal;
   output intr_dtpu;
   input test_mode;
 
@@ -156,9 +160,11 @@ module dtpu_wrapper
   wire S_AXI_wready;
   wire [3:0]S_AXI_wstrb;
   wire S_AXI_wvalid;
+  wire axi_aclk;
   wire axi_resetn;
   wire clk;
   wire enable;
+  wire idle_signal;
   wire intr_dtpu;
   wire test_mode;
 
@@ -208,9 +214,11 @@ module dtpu_wrapper
         .S_AXI_wready(S_AXI_wready),
         .S_AXI_wstrb(S_AXI_wstrb),
         .S_AXI_wvalid(S_AXI_wvalid),
+        .axi_aclk(axi_aclk),
         .axi_resetn(axi_resetn),
         .clk(clk),
         .enable(enable),
+        .idle_signal(idle_signal),
         .intr_dtpu(intr_dtpu),
         .test_mode(test_mode));
 endmodule

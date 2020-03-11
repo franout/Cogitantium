@@ -60,27 +60,33 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
+  set_param ced.repoPaths C:/Users/franc/AppData/Roaming/Xilinx/Vivado/2019.2/xhub/ced_store
+  set_param simulator.vcsmxInstallPath C:/.Xilinx
   create_project -in_memory -part xc7z020clg400-1
+  set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8_64mem/pynqz2.cache/wt [current_project]
-  set_property parent.project_path /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8_64mem/pynqz2.xpr [current_project]
-  set_property ip_output_repo /home/fra/Desktop/ip [current_project]
+  set_property webtalk.parent_dir D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.cache/wt [current_project]
+  set_property parent.project_path D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.xpr [current_project]
+  set_property ip_repo_paths C:/Users/franc/AppData/Roaming/Xilinx/ip_repo [current_project]
+  update_ip_catalog
+  set_property ip_output_repo D:/home/fra/Desktop/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  add_files -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8_64mem/pynqz2.runs/synth_1/pynqz2_wrapper.dcp
+  add_files -quiet D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8_64mem/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
+  add_files D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
   set_param project.isImplRun false
-  read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8_64mem/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
-  read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
+  read_xdc D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
+  read_xdc D:/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
   set_param project.isImplRun true
   link_design -top pynqz2_wrapper -part xc7z020clg400-1
   set_param project.isImplRun false
@@ -119,7 +125,7 @@ set rc [catch {
   if { [llength [get_debug_cores -quiet] ] > 0 }  { 
     implement_debug_core 
   } 
-  place_design 
+  place_design -directive AltSpreadLogic_medium
   write_checkpoint -force pynqz2_wrapper_placed.dcp
   create_report "impl_1_place_report_io_0" "report_io -file pynqz2_wrapper_io_placed.rpt"
   create_report "impl_1_place_report_utilization_0" "report_utilization -file pynqz2_wrapper_utilization_placed.rpt -pb pynqz2_wrapper_utilization_placed.pb"
@@ -134,11 +140,27 @@ if {$rc} {
   unset ACTIVE_STEP 
 }
 
+start_step phys_opt_design
+set ACTIVE_STEP phys_opt_design
+set rc [catch {
+  create_msg_db phys_opt_design.pb
+  phys_opt_design -directive ExploreWithHoldFix
+  write_checkpoint -force pynqz2_wrapper_physopt.dcp
+  close_msg_db -file phys_opt_design.pb
+} RESULT]
+if {$rc} {
+  step_failed phys_opt_design
+  return -code error $RESULT
+} else {
+  end_step phys_opt_design
+  unset ACTIVE_STEP 
+}
+
 start_step route_design
 set ACTIVE_STEP route_design
 set rc [catch {
   create_msg_db route_design.pb
-  route_design 
+  route_design -directive AlternateCLBRouting
   write_checkpoint -force pynqz2_wrapper_routed.dcp
   create_report "impl_1_route_report_drc_0" "report_drc -file pynqz2_wrapper_drc_routed.rpt -pb pynqz2_wrapper_drc_routed.pb -rpx pynqz2_wrapper_drc_routed.rpx"
   create_report "impl_1_route_report_methodology_0" "report_methodology -file pynqz2_wrapper_methodology_drc_routed.rpt -pb pynqz2_wrapper_methodology_drc_routed.pb -rpx pynqz2_wrapper_methodology_drc_routed.rpx"
@@ -166,7 +188,6 @@ set rc [catch {
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
   catch { write_mem_info -force pynqz2_wrapper.mmi }
   write_bitstream -force pynqz2_wrapper.bit 
-  catch { write_sysdef -hwdef pynqz2_wrapper.hwdef -bitfile pynqz2_wrapper.bit -meminfo pynqz2_wrapper.mmi -file pynqz2_wrapper.sysdef }
   catch {write_debug_probes -quiet -force pynqz2_wrapper}
   catch {file copy -force pynqz2_wrapper.ltx debug_nets.ltx}
   close_msg_db -file write_bitstream.pb

@@ -168,6 +168,9 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set M_AXIS_0_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:axis_rtl:1.0 M_AXIS_0_0 ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {100000000} \
+   ] $M_AXIS_0_0
 
   set S_AXI [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI ]
   set_property -dict [ list \
@@ -176,6 +179,7 @@ proc create_root_design { parentCell } {
    CONFIG.AWUSER_WIDTH {0} \
    CONFIG.BUSER_WIDTH {0} \
    CONFIG.DATA_WIDTH {32} \
+   CONFIG.FREQ_HZ {100000000} \
    CONFIG.HAS_BRESP {1} \
    CONFIG.HAS_BURST {0} \
    CONFIG.HAS_CACHE {0} \
@@ -202,6 +206,7 @@ proc create_root_design { parentCell } {
 
   set S_AXIS_0_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 S_AXIS_0_0 ]
   set_property -dict [ list \
+   CONFIG.FREQ_HZ {100000000} \
    CONFIG.HAS_TKEEP {0} \
    CONFIG.HAS_TLAST {1} \
    CONFIG.HAS_TREADY {1} \
@@ -215,6 +220,7 @@ proc create_root_design { parentCell } {
 
   set S_AXIS_1_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 S_AXIS_1_0 ]
   set_property -dict [ list \
+   CONFIG.FREQ_HZ {100000000} \
    CONFIG.HAS_TKEEP {0} \
    CONFIG.HAS_TLAST {1} \
    CONFIG.HAS_TREADY {1} \
@@ -228,6 +234,7 @@ proc create_root_design { parentCell } {
 
   set S_AXIS_2_0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 S_AXIS_2_0 ]
   set_property -dict [ list \
+   CONFIG.FREQ_HZ {100000000} \
    CONFIG.HAS_TKEEP {0} \
    CONFIG.HAS_TLAST {1} \
    CONFIG.HAS_TREADY {1} \
@@ -241,9 +248,19 @@ proc create_root_design { parentCell } {
 
 
   # Create ports
+  set axi_aclk [ create_bd_port -dir I -type clk -freq_hz 100000000 axi_aclk ]
+  set_property -dict [ list \
+   CONFIG.ASSOCIATED_BUSIF {S_AXI:S_AXIS_0_0:M_AXIS_0_0:S_AXIS_1_0:S_AXIS_2_0} \
+   CONFIG.ASSOCIATED_RESET {axi_resetn:axi_resetn} \
+ ] $axi_aclk
   set axi_resetn [ create_bd_port -dir I -type rst axi_resetn ]
-  set clk [ create_bd_port -dir I -type clk -freq_hz 100000000 clk ]
+  set clk [ create_bd_port -dir I -type clk -freq_hz 40000000 clk ]
+  set_property -dict [ list \
+   CONFIG.ASSOCIATED_BUSIF {} \
+   CONFIG.ASSOCIATED_RESET {} \
+ ] $clk
   set enable [ create_bd_port -dir I enable ]
+  set idle_signal [ create_bd_port -dir O idle_signal ]
   set intr_dtpu [ create_bd_port -dir O -type intr intr_dtpu ]
   set test_mode [ create_bd_port -dir I test_mode ]
 
@@ -279,7 +296,11 @@ proc create_root_design { parentCell } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
-  
+    set_property -dict [ list \
+   CONFIG.COLUMNS {3} \
+   CONFIG.ROWS {3} \
+ ] $dtpu_core_0
+
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXIS_0_0_1 [get_bd_intf_ports S_AXIS_0_0] [get_bd_intf_pins axis_accelerator_ada_0/S_AXIS_0]
   connect_bd_intf_net -intf_net S_AXIS_1_0_1 [get_bd_intf_ports S_AXIS_1_0] [get_bd_intf_pins axis_accelerator_ada_0/S_AXIS_1]
@@ -293,10 +314,12 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net dtpu_core_0_weight_mem_interface [get_bd_intf_pins axis_accelerator_ada_0/AP_BRAM_IARG_1] [get_bd_intf_pins dtpu_core_0/weight_mem_interface]
 
   # Create port connections
+  connect_bd_net -net axi_aclk_1 [get_bd_ports axi_aclk] [get_bd_pins axis_accelerator_ada_0/m_axis_aclk] [get_bd_pins axis_accelerator_ada_0/s_axi_aclk] [get_bd_pins axis_accelerator_ada_0/s_axis_aclk]
   connect_bd_net -net axi_resetn_1 [get_bd_ports axi_resetn] [get_bd_pins axis_accelerator_ada_0/m_axis_aresetn] [get_bd_pins axis_accelerator_ada_0/s_axi_aresetn] [get_bd_pins axis_accelerator_ada_0/s_axis_aresetn]
   connect_bd_net -net axis_accelerator_ada_0_aresetn [get_bd_pins axis_accelerator_ada_0/aresetn] [get_bd_pins dtpu_core_0/reset]
   connect_bd_net -net axis_accelerator_ada_0_interrupt [get_bd_ports intr_dtpu] [get_bd_pins axis_accelerator_ada_0/interrupt]
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins axis_accelerator_ada_0/aclk] [get_bd_pins axis_accelerator_ada_0/m_axis_aclk] [get_bd_pins axis_accelerator_ada_0/s_axi_aclk] [get_bd_pins axis_accelerator_ada_0/s_axis_aclk] [get_bd_pins dtpu_core_0/clk]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins axis_accelerator_ada_0/aclk] [get_bd_pins dtpu_core_0/clk]
+  connect_bd_net -net dtpu_core_0_cs_idle [get_bd_ports idle_signal] [get_bd_pins dtpu_core_0/cs_idle]
   connect_bd_net -net enable_1 [get_bd_ports enable] [get_bd_pins dtpu_core_0/enable]
   connect_bd_net -net test_mode_1 [get_bd_ports test_mode] [get_bd_pins dtpu_core_0/test_mode]
 

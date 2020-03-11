@@ -6,10 +6,14 @@
 # Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 # 
 
+echo "This script was generated under a different operating system."
+echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executing this script"
+exit
+
 if [ -z "$PATH" ]; then
-  PATH=/home/fra/Desktop/SDK/2019.1/bin:/home/fra/Desktop/Vivado/2019.1/ids_lite/ISE/bin/lin64:/home/fra/Desktop/Vivado/2019.1/bin
+  PATH=D:/programmi/Xilinx/Vitis/2019.2/bin;D:/programmi/Xilinx/Vivado/2019.2/ids_lite/ISE/bin/nt64;D:/programmi/Xilinx/Vivado/2019.2/ids_lite/ISE/lib/nt64:D:/programmi/Xilinx/Vivado/2019.2/bin
 else
-  PATH=/home/fra/Desktop/SDK/2019.1/bin:/home/fra/Desktop/Vivado/2019.1/ids_lite/ISE/bin/lin64:/home/fra/Desktop/Vivado/2019.1/bin:$PATH
+  PATH=D:/programmi/Xilinx/Vitis/2019.2/bin;D:/programmi/Xilinx/Vivado/2019.2/ids_lite/ISE/bin/nt64;D:/programmi/Xilinx/Vivado/2019.2/ids_lite/ISE/lib/nt64:D:/programmi/Xilinx/Vivado/2019.2/bin:$PATH
 fi
 export PATH
 
@@ -20,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla/nv_small_512_32_16_8_int8_64mem/pynqz2.runs/impl_1'
+HD_PWD='D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

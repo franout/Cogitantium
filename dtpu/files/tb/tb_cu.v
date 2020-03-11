@@ -20,17 +20,49 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module tb_kernel_mxu();
+module tb_cu();
         parameter clk_period= 10;
               reg clk,reset;
-              reg [(4)*(3)-1:0]input_data;
-              reg [(4)*(3)-1:0]weight;
-              reg [(4)*(4)-1:0]input_data4;
-              reg [(4)*(4)-1:0]weight4;
-              reg enable;
-              wire test_mode;
-              wire [4*3-1:0]y;
-              wire [4*4-1:0]y4;
+                  
+                   wire enable_mxu;
+                   ////////////////////////////
+                   ////// CSR INTERFACE ///////
+                   ////////////////////////////
+                    wire         csr_ce;
+                     reg [8-1:0]    csr_dout;
+                    wire         csr_we;
+                    wire [32-1:0]    csr_address;
+                    wire         csr_reset;
+                   ////////////////////////////
+                   ////// WEIGHT MEMORY ///////
+                   ///////////////////////////
+                   wire  wm_ce;
+                   wire              wm_we;  
+                   wire [32-1:0]  wm_address;
+                   wire           wm_reset;
+                   ////////////////////////////////////////////
+                   /////////// INPUT DATA FIFO ////////////////
+                   ////////////////////////////////////////////
+                   /////////// using stream axi 
+                   wire infifo_read; 
+                   reg infifo_is_empty;
+                   ////////////////////////////////////////////
+                   /////////// OUTPUT DATA FIFO ///////////////
+                   ////////////////////////////////////////////
+                   /////////// using stream axi 
+                   wire outfifo_write;
+                   reg outfifo_is_full;
+                   ////////////////////////////////////////////
+                   /////////// CONTROL FROM/TO PS /////////////
+                   ////////////////////////////////////////////             
+                   reg cs_start;
+                   wire cs_ready;
+                   wire cs_done;
+                   reg cs_continue;
+                   wire cs_idle;
+
+     
+     
               integer k;
     
     /////////////////////////////////////
@@ -38,29 +70,38 @@ module tb_kernel_mxu();
     `define VIVADO_MAC SIMULATION
      /////////////////////////////////////
      
-        mxu_wrapper #(.M(4),.K(4) , .max_data_width(4)) uut4x4 (
-           .data_type(data_type),
-           .reset(reset),
-           .enable(enable),
-            .clk(clk),
-            .test_mode(test_mode),
-            .input_data(input_data4),
-            .weight(weight4),
-            .y(y4)           
-         );
-          
-          
-         mxu_wrapper #(.M(3),.K(3) , .max_data_width(4)) uut3x3 (
-                    .data_type(data_type),
-                     .clk(clk),
-                     .reset(reset),
-                     .enable(enable),
-                     .test_mode(test_mode),
-                     .input_data(input_data),
-                     .weight(weight),
-                     .y(y)           
-                  );
-                   
+           control_unit 
+     #( .DATA_WIDTH_FIFO_IN(64),
+        .DATA_WIDTH_FIFO_OUT(64), 
+        .DATA_WIDTH_WMEMORY(64),
+        .DATA_WIDTH_CSR(8),
+        .ADDRESS_SIZE_CSR(32),
+        .ADDRESS_SIZE_WMEMORY(32)) uut 
+     (
+     .clk(clk),
+     .reset(reset),
+     .enable_mxu(enable_mxu),
+     .test_mode(test_mode),
+     .csr_address(csr_address),               
+     .csr_dout(csr_dout),
+     .csr_ce(csr_ce),
+     .csr_reset(csr_reset),
+     .csr_we(csr_we),
+     .wm_address(wm_address),
+     .wm_ce(wm_ce),
+     .wm_reset(wm_reset),
+     .wm_we(wm_we),
+     .infifo_is_empty(infifo_is_empty),
+     .infifo_read(infifo_read),
+     .outfifo_is_full(outfifo_is_full),
+     .outfifo_write(outfifo_write),
+     .cs_done(cs_done),
+     .cs_continue(cs_continue),
+     .cs_idle(cs_idle),
+     .cs_ready(cs_ready),
+     .cs_start(cs_start)
+     );
+     
               
                     always begin
                        clk = 1'b1;
@@ -72,40 +113,38 @@ module tb_kernel_mxu();
 
               
               initial begin 
-              enable=1'b0;
               reset=1'b1;
+              csr_dout<=8'hFE;
+              cs_continue<=1;
+              infifo_is_empty=1'b0;
               #clk_period;
               reset=1'b0;
-              input_data=12'h253;
-              weight=12'h312;
-              input_data4=16'h8253;
-              weight4=16'h7312;              
+              cs_start=1'b1;
+              #clk_period;#clk_period;
+              #clk_period;#clk_period;
+              #clk_period;#clk_period;
+             cs_start=1'b0;
+
+              outfifo_is_full=1'b1;
+              // check stall in retriev data
               #clk_period;
-              enable=1'b1;
               #clk_period;
-              // first input chaanges delay on second input of 1 cc and on third 1 of 2cc 
-              // the delay of input chian depends from the number of columns 
-               input_data=12'h353;
-               input_data4=16'h1253;
               #clk_period;
-              input_data=12'h463;
-              input_data4=16'h3253;
-              #clk_period;
-              input_data=12'h564;
-              input_data4=16'hA253;
-              for(k=0;k<6;k=k+1) begin 
-              #clk_period;
-              end
-              
-              
-                            
-                            weight=12'h111;
-                            weight4=16'h111;
-                            for(k=0;k<10;k=k+1) begin 
-                                            #clk_period;
-                                            end
-                                             
-                              
+              outfifo_is_full=1'b0;
+             #clk_period;
+             // i n compute 
+             #clk_period;
+                 outfifo_is_full=1'b1;
+             #clk_period;
+             #clk_period;
+             #clk_period;     
+                 outfifo_is_full=1'b0;
+                              #clk_period;
+                              #clk_period;     
+                       infifo_is_empty=1'b1;
+                 #clk_period;
+                  #clk_period;
+                  // it should be in idle
               end 
 
         

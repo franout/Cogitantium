@@ -1,18 +1,18 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Sat Mar  7 16:17:43 2020
+| Date         : Wed Mar 11 15:15:31 2020
 | Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
 --------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_xlconstant_0_1'
+Upgrade Log for IP 'pynqz2_dtpu_0_1'
 
 1. Summary
 ----------
 
-SUCCESS in the conversion of pynqz2_xlconstant_0_1 (xilinx.com:ip:xlconstant:1.1 (Rev. 6)) to Vivado generation flows.
+SUCCESS in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 3)) to Vivado generation flows.
 
 
 
@@ -22,18 +22,18 @@ SUCCESS in the conversion of pynqz2_xlconstant_0_1 (xilinx.com:ip:xlconstant:1.1
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Sat Mar  7 16:17:43 2020
+| Date         : Wed Mar 11 15:13:11 2020
 | Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
 --------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_rst_ps7_30M_0'
+Upgrade Log for IP 'pynqz2_dtpu_0_1'
 
 1. Summary
 ----------
 
-SUCCESS in the conversion of pynqz2_rst_ps7_30M_0 (xilinx.com:ip:proc_sys_reset:5.0 (Rev. 13)) to Vivado generation flows.
+SUCCESS in the upgrade of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0) from (Rev. 2) to (Rev. 3)
 
 
 
@@ -43,68 +43,28 @@ SUCCESS in the conversion of pynqz2_rst_ps7_30M_0 (xilinx.com:ip:proc_sys_reset:
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Sat Mar  7 16:17:43 2020
+| Date         : Wed Mar 11 14:53:31 2020
 | Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
 --------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_ps7_0'
+Upgrade Log for IP 'pynqz2_dtpu_0_1'
 
 1. Summary
 ----------
 
-SUCCESS in the conversion of pynqz2_ps7_0 (xilinx.com:ip:processing_system7:5.5 (Rev. 6)) to Vivado generation flows.
-
-2. Upgrade messages
--------------------
-
-WARNING: upgrade cannot add parameter PCW_TRACE_INTERNAL_WIDTH with default value 32 : a parameter called PCW_TRACE_INTERNAL_WIDTH already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_USE_AXI_NONSECURE with default value 0 : a parameter called PCW_USE_AXI_NONSECURE already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_EN_PTP_ENET0 with default value 1 : a parameter called PCW_EN_PTP_ENET0 already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_EN_PTP_ENET0 with default value 1 : a parameter called PCW_EN_PTP_ENET0 already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_GP0_NUM_WRITE_THREADS with default value 4 : a parameter called PCW_GP0_NUM_WRITE_THREADS already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_GP0_NUM_READ_THREADS with default value 4 : a parameter called PCW_GP0_NUM_READ_THREADS already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_GP1_NUM_WRITE_THREADS with default value 4 : a parameter called PCW_GP1_NUM_WRITE_THREADS already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_GP1_NUM_READ_THREADS with default value 4 : a parameter called PCW_GP1_NUM_READ_THREADS already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_GP0_EN_MODIFIABLE_TXN with default value 0 : a parameter called PCW_GP0_EN_MODIFIABLE_TXN already exists in processing_system7_v5_5
-WARNING: upgrade cannot add parameter PCW_GP1_EN_MODIFIABLE_TXN with default value 0 : a parameter called PCW_GP1_EN_MODIFIABLE_TXN already exists in processing_system7_v5_5
-
-
-
-
-
-
-Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Sat Mar  7 16:17:43 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
-| Command      : upgrade_ip
-| Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
-
-Upgrade Log for IP 'pynqz2_axi_smc_5'
-
-1. Summary
-----------
-
-SUCCESS in the upgrade of pynqz2_axi_smc_5 (xilinx.com:ip:smartconnect:1.0) from (Rev. 11) to (Rev. 12)
+CAUTION (success, with warnings) in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 2)) to Vivado generation flows.
 
 After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
 
-2. Interface Information
-------------------------
-
-Detected external interface differences while upgrading 'pynqz2_axi_smc_5'.
-
-
-
-3. Connection Warnings
+2. Connection Warnings
 ----------------------
 
-Detected external port differences while upgrading 'pynqz2_axi_smc_5'. These changes may impact your design.
+Detected external port differences while upgrading 'pynqz2_dtpu_0_1'. These changes may impact your design.
 
+
+-Upgrade has added port 'axi_aclk'
 
 
 
@@ -115,18 +75,18 @@ Detected external port differences while upgrading 'pynqz2_axi_smc_5'. These cha
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Sat Mar  7 16:17:43 2020
+| Date         : Wed Mar 11 14:29:28 2020
 | Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
 --------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_axi_mem_intercon_0'
+Upgrade Log for IP 'pynqz2_dtpu_0_1'
 
 1. Summary
 ----------
 
-SUCCESS in the upgrade of pynqz2_axi_mem_intercon_0 (xilinx.com:ip:axi_interconnect:2.1) from (Rev. 20) to (Rev. 21)
+SUCCESS in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 2)) to Vivado generation flows.
 
 
 
@@ -136,16 +96,58 @@ SUCCESS in the upgrade of pynqz2_axi_mem_intercon_0 (xilinx.com:ip:axi_interconn
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Sat Mar  7 16:17:43 2020
+| Date         : Tue Mar 10 19:25:14 2020
 | Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
 --------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_axi_apb_bridge_0_3'
+Upgrade Log for IP 'pynqz2_dtpu_0_1'
 
 1. Summary
 ----------
 
-SUCCESS in the upgrade of pynqz2_axi_apb_bridge_0_3 (xilinx.com:ip:axi_apb_bridge:3.0) from (Rev. 15) to (Rev. 16)
+SUCCESS in the upgrade of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0) from (Rev. 1) to (Rev. 2)
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Mar 10 18:41:10 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'pynqz2_dtpu_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of pynqz2_dtpu_0_0 (xilinx.com:user:dtpu:1.2) from (Rev. 2) to (Rev. 3)
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
+| Date         : Tue Mar 10 18:15:54 2020
+| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+--------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'pynqz2_dtpu_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of pynqz2_dtpu_0_0 from xilinx.com:user:dtpu:1.0 (Rev. 2) to xilinx.com:user:dtpu:1.2 (Rev. 2)
 

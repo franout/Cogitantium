@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1D618D8922054CE8",
+      "boundary_crc": "0xD6F4CEC6C4491094",
       "device": "xc7z020clg400-1",
       "name": "dtpu",
       "synth_flow_mode": "Hierarchical",
@@ -24,8 +24,7 @@
             "value": "AXI4LITE"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "100000000"
           },
           "ID_WIDTH": {
             "value": "0"
@@ -95,7 +94,7 @@
             "value_src": "default"
           },
           "CLK_DOMAIN": {
-            "value": "dtpu_clk",
+            "value": "dtpu_aclk_0",
             "value_src": "default"
           },
           "NUM_READ_THREADS": {
@@ -153,15 +152,14 @@
             "value_src": "auto_prop"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "100000000"
           },
           "PHASE": {
             "value": "0.000",
             "value_src": "default"
           },
           "CLK_DOMAIN": {
-            "value": "dtpu_clk",
+            "value": "dtpu_aclk_0",
             "value_src": "default"
           },
           "LAYERED_METADATA": {
@@ -203,15 +201,14 @@
             "value": "1"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "100000000"
           },
           "PHASE": {
             "value": "0.000",
             "value_src": "default"
           },
           "CLK_DOMAIN": {
-            "value": "dtpu_clk",
+            "value": "dtpu_aclk_0",
             "value_src": "default"
           },
           "LAYERED_METADATA": {
@@ -252,15 +249,14 @@
             "value": "1"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "100000000"
           },
           "PHASE": {
             "value": "0.000",
             "value_src": "default"
           },
           "CLK_DOMAIN": {
-            "value": "dtpu_clk",
+            "value": "dtpu_aclk_0",
             "value_src": "default"
           },
           "LAYERED_METADATA": {
@@ -301,15 +297,14 @@
             "value": "1"
           },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
+            "value": "100000000"
           },
           "PHASE": {
             "value": "0.000",
             "value_src": "default"
           },
           "CLK_DOMAIN": {
-            "value": "dtpu_clk",
+            "value": "dtpu_aclk_0",
             "value_src": "default"
           },
           "LAYERED_METADATA": {
@@ -347,20 +342,12 @@
         "type": "clk",
         "direction": "I",
         "parameters": {
-          "ASSOCIATED_BUSIF": {
-            "value": "S_AXI:M_AXIS_0_0:S_AXIS_1_0:S_AXIS_0_0:S_AXIS_2_0",
-            "value_src": "default"
-          },
-          "ASSOCIATED_RESET": {
-            "value": "axi_resetn",
-            "value_src": "default"
-          },
           "CLK_DOMAIN": {
             "value": "dtpu_clk",
             "value_src": "default"
           },
           "FREQ_HZ": {
-            "value": "100000000"
+            "value": "40000000"
           },
           "INSERT_VIP": {
             "value": "0",
@@ -382,6 +369,36 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "idle_signal": {
+        "direction": "O"
+      },
+      "axi_aclk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_BUSIF": {
+            "value": "S_AXI:S_AXIS_0_0:M_AXIS_0_0:S_AXIS_1_0:S_AXIS_2_0"
+          },
+          "ASSOCIATED_RESET": {
+            "value": "axi_resetn:axi_resetn"
+          },
+          "CLK_DOMAIN": {
+            "value": "dtpu_aclk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
             "value_src": "default"
           }
         }
@@ -448,6 +465,14 @@
       "dtpu_core_0": {
         "vlnv": "xilinx.com:module_ref:dtpu_core:1.0",
         "xci_name": "dtpu_dtpu_core_0_2",
+        "parameters": {
+          "COLUMNS": {
+            "value": "3"
+          },
+          "ROWS": {
+            "value": "3"
+          }
+        },
         "reference_info": {
           "ref_type": "hdl",
           "ref_name": "dtpu_core",
@@ -651,7 +676,7 @@
                 "value_src": "default_prop"
               },
               "FREQ_HZ": {
-                "value": "100000000",
+                "value": "40000000",
                 "value_src": "user_prop"
               }
             }
@@ -676,28 +701,10 @@
       }
     },
     "interface_nets": {
-      "S_AXIS_2_0_1": {
-        "interface_ports": [
-          "S_AXIS_2_0",
-          "axis_accelerator_ada_0/S_AXIS_2"
-        ]
-      },
-      "axis_accelerator_ada_0_M_AXIS_0": {
-        "interface_ports": [
-          "M_AXIS_0_0",
-          "axis_accelerator_ada_0/M_AXIS_0"
-        ]
-      },
       "S_AXI_1": {
         "interface_ports": [
           "S_AXI",
           "axis_accelerator_ada_0/S_AXI"
-        ]
-      },
-      "S_AXIS_0_0_1": {
-        "interface_ports": [
-          "S_AXIS_0_0",
-          "axis_accelerator_ada_0/S_AXIS_0"
         ]
       },
       "S_AXIS_1_0_1": {
@@ -706,10 +713,10 @@
           "axis_accelerator_ada_0/S_AXIS_1"
         ]
       },
-      "dtpu_core_0_csr_mem_interface": {
+      "dtpu_core_0_input_fifo": {
         "interface_ports": [
-          "dtpu_core_0/csr_mem_interface",
-          "axis_accelerator_ada_0/AP_BRAM_IARG_0"
+          "dtpu_core_0/input_fifo",
+          "axis_accelerator_ada_0/AP_FIFO_IARG_2"
         ]
       },
       "dtpu_core_0_output_fifo": {
@@ -718,22 +725,40 @@
           "axis_accelerator_ada_0/AP_FIFO_OARG_0"
         ]
       },
-      "axis_accelerator_ada_0_AP_CTRL": {
+      "S_AXIS_2_0_1": {
         "interface_ports": [
-          "axis_accelerator_ada_0/AP_CTRL",
-          "dtpu_core_0/control_interface"
-        ]
-      },
-      "dtpu_core_0_input_fifo": {
-        "interface_ports": [
-          "dtpu_core_0/input_fifo",
-          "axis_accelerator_ada_0/AP_FIFO_IARG_2"
+          "S_AXIS_2_0",
+          "axis_accelerator_ada_0/S_AXIS_2"
         ]
       },
       "dtpu_core_0_weight_mem_interface": {
         "interface_ports": [
           "dtpu_core_0/weight_mem_interface",
           "axis_accelerator_ada_0/AP_BRAM_IARG_1"
+        ]
+      },
+      "axis_accelerator_ada_0_M_AXIS_0": {
+        "interface_ports": [
+          "M_AXIS_0_0",
+          "axis_accelerator_ada_0/M_AXIS_0"
+        ]
+      },
+      "dtpu_core_0_csr_mem_interface": {
+        "interface_ports": [
+          "dtpu_core_0/csr_mem_interface",
+          "axis_accelerator_ada_0/AP_BRAM_IARG_0"
+        ]
+      },
+      "S_AXIS_0_0_1": {
+        "interface_ports": [
+          "S_AXIS_0_0",
+          "axis_accelerator_ada_0/S_AXIS_0"
+        ]
+      },
+      "axis_accelerator_ada_0_AP_CTRL": {
+        "interface_ports": [
+          "axis_accelerator_ada_0/AP_CTRL",
+          "dtpu_core_0/control_interface"
         ]
       }
     },
@@ -764,20 +789,31 @@
           "dtpu_core_0/enable"
         ]
       },
-      "clk_1": {
-        "ports": [
-          "clk",
-          "axis_accelerator_ada_0/aclk",
-          "axis_accelerator_ada_0/m_axis_aclk",
-          "axis_accelerator_ada_0/s_axis_aclk",
-          "axis_accelerator_ada_0/s_axi_aclk",
-          "dtpu_core_0/clk"
-        ]
-      },
       "axis_accelerator_ada_0_aresetn": {
         "ports": [
           "axis_accelerator_ada_0/aresetn",
           "dtpu_core_0/reset"
+        ]
+      },
+      "dtpu_core_0_cs_idle": {
+        "ports": [
+          "dtpu_core_0/cs_idle",
+          "idle_signal"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "dtpu_core_0/clk",
+          "axis_accelerator_ada_0/aclk"
+        ]
+      },
+      "axi_aclk_1": {
+        "ports": [
+          "axi_aclk",
+          "axis_accelerator_ada_0/m_axis_aclk",
+          "axis_accelerator_ada_0/s_axis_aclk",
+          "axis_accelerator_ada_0/s_axi_aclk"
         ]
       }
     },

@@ -2,8 +2,8 @@
 # Vivado v2019.2.1 (64-bit)
 # SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
 # IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
-# Start of session at: Sun Mar  8 20:39:03 2020
-# Process ID: 17000
+# Start of session at: Tue Mar 10 15:54:00 2020
+# Process ID: 15348
 # Current directory: D:/uni/2019-2020/thesis/cogitantium/dtpu/dtpu/dtpu.runs/synth_1
 # Command line: vivado.exe -log dtpu_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dtpu_wrapper.tcl
 # Log file: D:/uni/2019-2020/thesis/cogitantium/dtpu/dtpu/dtpu.runs/synth_1/dtpu_wrapper.vds
