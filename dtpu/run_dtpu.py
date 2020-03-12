@@ -2,7 +2,7 @@
 from pynq import Overlay
 from pynq import MMIO
 from pynq import allocate
-from pynq.lib import DMA
+#from pynq.lib import dma
 from pynq import Xlnk
 import time
 
@@ -11,23 +11,116 @@ import time
 #########################################
 BASE_ADDRESS_ACCELERATOR=0x43C00000
 ADDRESS_RANGE_ACCELERATOR=0x10000
-ADDRESS_OFFSET_SOFT_RESET_CSR=0x0000
-ADDRESS_OFFSET_INPUT_REQUEST_EN=0x0010
-ADDRESS_OFFSET_OUTPUT_REQUEST_EN=0x0014
-ADDRESS_OFFSET_INSCALAR_REQUEST_EN=0x0048
-ADDRESS_OFFSET_OUTSCALAR_REQUEST_EN=0x004C
-ADDRESS_OFFSET_UPDATE_OUTCMD=0x0028
-ADDRESS_OFFSET_TDEST_IN=0x0240 
-ADDRESS_OFFSET_TDEST_FIN=0x025C
-ADDDRES_OFFSET_EXECUTE_CMD_REG=0x0028
-ADDRESS_OFFSET_DONE_REG=0x0004
+
+# address reg offset 
+CTRL =0x0000
+STATUS =0x0004
+IARG_RQT_EN =0x0010
+OARG_RQT_EN =0x0014
+CMD =0x0028 
+OARG_LENGTH_MODE =0x003C 
+ISCALAR_FIFO_RST =0x0040 
+OSCALAR_FIFO_RST =0x0044 
+ISCALAR_RQT_EN =0x0048 
+OSCALAR_RQT_EN =0x004C 
+ISCALAR0_DATA =0x0080 
+ISCALAR1_DATA =0x0084 
+ISCALAR2_DATA =0x0088 
+ISCALAR3_DATA =0x008C 
+ISCALAR4_DATA =0x0090 
+ISCALAR5_DATA =0x0094 
+ISCALAR6_DATA =0x0098 
+ISCALAR7_DATA =0x009C
+ISCALAR8_DATA =0x00A0
+ISCALAR9_DATA =0x00A4
+ISCALAR10_DATA=0x00A8
+ISCALAR11_DATA =0x00AC
+ISCALAR12_DATA =0x00B0
+ISCALAR13_DATA =0x00B4
+ISCALAR14_DATA =0x00B8
+ISCALAR15_DATA =0x00BC
+OSCALAR0_DATA =0x00C0
+OSCALAR1_DATA =0x00C4
+OSCALAR2_DATA =0x00C8
+OSCALAR3_DATA =0x00CC
+OSCALAR4_DATA =0x00D0
+OSCALAR5_DATA =0x00D4
+OSCALAR6_DATA =0x00D8
+OSCALAR7_DATA =0x00DC
+IARG0_STATUS =0x0100
+IARG1_STATUS =0x0104
+IARG2_STATUS =0x0108
+IARG3_STATUS =0x010C
+IARG4_STATUS =0x0110
+IARG5_STATUS =0x0114
+IARG6_STATUS =0x0118
+IARG7_STATUS =0x011C
+OARG0_STATUS =0x0140
+OARG1_STATUS =0x0144
+OARG2_STATUS =0x0148
+OARG3_STATUS =0x014C
+OARG4_STATUS =0x0150
+OARG5_STATUS =0x0154
+OARG6_STATUS =0x0158
+OARG7_STATUS =0x015C
+ISCALAR0_STATUS =0x0180
+ISCALAR1_STATUS =0x0184
+ISCALAR2_STATUS =0x0188
+ISCALAR3_STATUS =0x018C
+ISCALAR4_STATUS =0x0190 
+ISCALAR5_STATUS =0x0194 
+ISCALAR6_STATUS =0x0198 
+ISCALAR7_STATUS =0x019C 
+ISCALAR8_STATUS =0x01A0 
+ISCALAR9_STATUS =0x01A4 
+ISCALAR10_STATUS =0x01A8 
+ISCALAR11_STATUS =0x01AC 
+ISCALAR12_STATUS =0x01B0 
+ISCALAR13_STATUS =0x01B4 
+ISCALAR14_STATUS =0x01B8 
+ISCALAR15_STATUS =0x01BC 
+OSCALAR0_STATUS =0x01C0 
+OSCALAR1_STATUS =0x01C4 
+OSCALAR2_STATUS =0x01C8 
+OSCALAR3_STATUS =0x01CC 
+OSCALAR4_STATUS =0x01D0 
+OSCALAR5_STATUS =0x01D4 
+OSCALAR6_STATUS =0x01D8 
+OSCALAR7_STATUS =0x01DC 
+OSCALAR8_STATUS =0x01E0 
+OSCALAR9_STATUS =0x01E4 
+OSCALAR10_STATUS =0x01E8 
+OSCALAR11_STATUS =0x01EC 
+OSCALAR12_STATUS =0x01F0 
+OSCALAR13_STATUS =0x01F4 
+OSCALAR14_STATUS =0x01F8 
+OSCALAR15_STATUS =0x01FC 
+OARG0_LENGTH =0x0200 
+OARG1_LENGTH =0x0204 
+OARG2_LENGTH =0x0208 
+OARG3_LENGTH =0x020C 
+OARG4_LENGTH =0x0210 
+OARG5_LENGTH =0x0214 
+OARG6_LENGTH =0x0218 
+OARG7_LENGTH =0x021C 
+OARG0_TDEST =0x0240 
+OARG1_TDEST =0x0244 
+OARG2_TDEST =0x0248 
+OARG3_TDEST =0x024C 
+OARG4_TDEST =0x0250 
+OARG5_TDEST =0x0254 
+OARG6_TDEST =0x0258 
+OARG7_TDEST =0x025C 
+BASE_ADDRESS_INTC=0x40800000
+ADDRESS_RANGE_INTC=0x10000
+
 
 BASE_ADDRESS_DMA_INFIFO=0x40400000
 ADDRESS_RANGE_DMA_INFIFO=0x10000
 BASE_ADDRESS_DMA_WM=0x40410000
 ADDRESS_RANGE_DMA_WM=0x10000
 # load overlay
-overlay = Overlay("/home/xilinx/dtpu.bit") # tcl is also parsed
+overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
 
 overlay.download() # Explicitly download bitstream to PL
 
@@ -45,7 +138,8 @@ else :
 xlnk = Xlnk()
 input_fifo_buffer = xlnk.cma_array(shape=(4096,),dtype='u4')
 output_fifo_buffer=xlnk.cma_array(shape=(4096,),dtype='u4')
-weight_buffer=xlnk.cma_array(shape=(32768,),dtype='u4')
+weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u4')
+csr_buffer=xlnk.cma_array(shape=(1024,),dtype='u4')
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
@@ -55,29 +149,38 @@ for i in range(input_fifo_buffer.size):
 for i in range(weight_buffer.size):
     weight_buffer[i]=0xFFFFFFFF
 
+## populate csr 
+for i in range(csr_buffer.size)
+    csr_buffer[i]=1   
+
 input_fifo_buffer.flush()
 weight_buffer.flush()
+csr_buffer.flush()
+################################################
+###### program the dma for the csr reg #########
+################################################
+driver_csr=overlay.axi_dma_csr_mem
+
+driver_csr.sendchannel.transfer(csr_buffer)
+driver_csr.sendchannel.wait()
+
 
 ################################################
 ###### program the dma for the weight ##########
 ################################################
 
-dma_ip_weight=overlay.ip_dict['axi_dma_infifo']
-driver_wm=dma_ip_weight['driver']
+driver_wm=overlay.axi_dma_weight_mem
 
-## load in accelerator memory 
 driver_wm.sendchannel.transfer(weight_buffer)
 driver_wm.sendchannel.wait()
-
 
 
 
 ######################################################
 ###### program the dma for the in/out fifos ##########
 ######################################################
-dma_ip_fifo=overlay.ip_dict['axi_dma_weight_mem']
-driver_fifo=dma_ip_fifo['']
 
+driver_fifo=overlay.axi_dma_infifo
 
 driver_fifo.sendchannel.transfer(input_fifo_buffer)
 driver_fifo.sendchannel.wait()
@@ -87,52 +190,56 @@ driver_fifo.sendchannel.wait()
 ### program accelerator&start computation ######
 ################################################
 
-accelerator= MMIO(BASE_ADDRESS_ACCELERATOR,ADDRESS_RANGE_ACCELERATOR)
+#accelerator= MMIO(BASE_ADDRESS_ACCELERATOR,ADDRESS_RANGE_ACCELERATOR)
+accelerator=overlay.dtpu.axis_accelerator_ada
 # soft reset 
-accelerator.write( ADDRESS_SOFT_RESET_CSR,hex(1))
+accelerator.write(CTRL ,0x0000001)
 
  #Configure Input Argument Request Enable Register (0x0010) to define input buffer
 #selection for ap_start generation. start is generated only if the selected input
 #argument buffer has data available. By default, all input argument buffer are considered
 #for start generation
-accelerator.write(ADDRESS_OFFSET_INPUT_REQUEST_EN,hex())
+accelerator.write(IARG_RQT_EN,7) ## all data avialable csr, weights and data
 #Configure Output Argument Request Enable Register (0x0014) to define output buffer
 #selection for ap_start generation. start is generated only if the selected output
 #argument buffer has space available. By default, all input argument buffer are
 #considered for start generation.
-accelerator.write(ADDRESS_OFFSET_OUTPUT_REQUEST_EN,hex())
-# optional configure input scalar request enable  and update them 
+accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
+accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
 
+# optional configure input scalar request enable  and update them 
 
 #Write Update Output command to adapter by writing 0x00010001 to Command Register
 #(0x0028). By writing 1 to the argument, mask moves the output buffer to the next
 #position on every data output on stream channel
-accelerator.write(ADDRESS_OFFSET_UPDATE_OUTCMD ,hex(0x00010001))
+accelerator.write( CMD,0x00010001)
+
 
 #Write TDEST value in Output Argument TDEST Register (0x0240 to 0x025C).
-accelerator.write(ADDRESS_OFFSET_TDEST_IN,hex())
+accelerator.write(OARG0_TDEST,0)
 
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
 start_time = time.time()
-accelerator.write(ADDDRES_OFFSET_EXECUTE_CMD_REG,hex(0x000200000))
+accelerator.write(CMD,0x000200000) #execute command 
 
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
+done=0
+while done==0:
+    time.sleep(3)
+    ## check done signal
+    done=(accelerator.read(STATUS)& 2)>>1
+    if done:
+        print ("accelerator is done")
+    else:
+        print("accelerator is still working")
 
 #Write Update Output command to adapter by writing 0x00000003 to Command Register
 #(0x0028). By writing 1 to the argument, mask moves the input buffer pointer to the next
 #position in multi-buffer. Writing 0 reuses the same buffer.
-accelerator.write(ADDDRES_OFFSET_EXECUTE_CMD_REG,hex(0x00000003))
-
-time.sleep(3)
-## check done signal 
-done=accelerator.read(ADDRESS_OFFSET_DONE_REG)
-if done:
-    print ("accelerator is done")
-else:
-    print("accelerator is still working")
+accelerator.write(CMD,0x00000001)
 
 
 ## retrieve the results and print 
@@ -140,8 +247,7 @@ driver_fifo.recvchannel.transfer(output_fifo_buffer)
 driver_fifo.recvchannel.wait()
 stop_time = time.time()
 
-print(*output_fifo_buffer)
-
+print(*output_fifo_buffer[0:10])
 hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)
 
@@ -178,14 +284,3 @@ output_fifo_buffer.close()
 
 
 exit()
-
-async def interrupt_handler_async(self, value):
-    if self.iop.interrupt is None:
-        raise RuntimeError('Interrupts not available in this Overlay')
-    while(1):
-        await self.iop.interrupt.wait() # Wait for interrupt
-        # Do something when an interrupt is received
-        print("interrupt re")
-        self.iop.interrupt.clear()
-
-interrupt_handler_async(self,89)
