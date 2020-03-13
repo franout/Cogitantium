@@ -38,13 +38,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="19"/>
-    <Option Name="WTModelSimExportSim" Val="19"/>
-    <Option Name="WTQuestaExportSim" Val="19"/>
-    <Option Name="WTIesExportSim" Val="19"/>
-    <Option Name="WTVcsExportSim" Val="19"/>
-    <Option Name="WTRivieraExportSim" Val="19"/>
-    <Option Name="WTActivehdlExportSim" Val="19"/>
+    <Option Name="WTXSimExportSim" Val="20"/>
+    <Option Name="WTModelSimExportSim" Val="20"/>
+    <Option Name="WTQuestaExportSim" Val="20"/>
+    <Option Name="WTIesExportSim" Val="20"/>
+    <Option Name="WTVcsExportSim" Val="20"/>
+    <Option Name="WTRivieraExportSim" Val="20"/>
+    <Option Name="WTActivehdlExportSim" Val="20"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -276,15 +276,14 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="11">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default options plus the FewerCarryChains directive for less inference of carry chains, turning off the LUT combining, resource sharing off, retaining equivalent registers" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
+        <StratHandle Name="Flow_PerfThresholdCarry" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design">
-          <Option Id="Directive">7</Option>
-          <Option Id="ReTiming">1</Option>
-          <Option Id="ResourceSharing">2</Option>
+          <Option Id="NoCombineLuts">1</Option>
           <Option Id="KeepEquivalentRegisters">1</Option>
-          <Option Id="MaxClockBufferCount">20</Option>
+          <Option Id="ResourceSharing">2</Option>
+          <Option Id="Directive">6</Option>
         </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -292,23 +291,23 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Spread logic throughout the device to avoid creating congested regions. (medium setting)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Combines retiming in phys_opt_design with extra placement optimization and higher router delay cost." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Congestion_SpreadLogic_medium" Flow="Vivado Implementation 2019"/>
+        <StratHandle Name="Performance_Retiming" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
-        <Step Id="place_design">
-          <Option Id="Directive">5</Option>
-        </Step>
+        <Step Id="place_design"/>
         <Step Id="post_place_power_opt_design"/>
         <Step Id="phys_opt_design" EnableStepBool="1">
-          <Option Id="Directive">1</Option>
+          <Option Id="Directive">8</Option>
         </Step>
         <Step Id="route_design">
-          <Option Id="Directive">7</Option>
+          <Option Id="Directive">8</Option>
         </Step>
-        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="post_route_phys_opt_design">
+          <Option Id="Directive">3</Option>
+        </Step>
         <Step Id="write_bitstream"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>

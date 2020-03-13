@@ -17,8 +17,12 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param synth.incrementalSynthesisCache ./.Xil/Vivado-3639-fra/incrSyn
 set_param chipscope.maxJobs 2
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -66,14 +70,17 @@ set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/20
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_1/pynqz2_axi_dma_0_1_clocks.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_1/pynqz2_axi_dma_0_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_xbar_11/pynqz2_xbar_11_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_us_0/pynqz2_auto_us_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_1/pynqz2_auto_pc_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2_clocks.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_intc_0_0/pynqz2_axi_intc_0_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_intc_0_0/pynqz2_axi_intc_0_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_intc_0_0/pynqz2_axi_intc_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_3/pynqz2_axi_dma_0_3.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_3/pynqz2_axi_dma_0_3_clocks.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_3/pynqz2_axi_dma_0_3_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_1/pynqz2_auto_pc_1_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -95,7 +102,7 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -bufg 20 -directive PerformanceOptimized -retiming -keep_equivalent_registers -resource_sharing off
+synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -directive FewerCarryChains -keep_equivalent_registers -resource_sharing off -no_lc
 
 
 # disable binary constraint mode for synth run checkpoints

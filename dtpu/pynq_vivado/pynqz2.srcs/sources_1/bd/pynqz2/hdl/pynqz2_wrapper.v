@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Wed Mar 11 20:46:00 2020
+//Date        : Fri Mar 13 18:48:05 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2_wrapper.bd
 //Design      : pynqz2_wrapper
@@ -33,8 +33,8 @@ module pynqz2_wrapper
     FIXED_IO_0_ps_srstb,
     clk_pl,
     enable,
-    idle_signal,
-    reset_n);
+    reset_n,
+    state_0);
   inout [14:0]DDR_0_addr;
   inout [2:0]DDR_0_ba;
   inout DDR_0_cas_n;
@@ -58,8 +58,8 @@ module pynqz2_wrapper
   inout FIXED_IO_0_ps_srstb;
   output clk_pl;
   input enable;
-  output idle_signal;
   input reset_n;
+  output [3:0]state_0;
 
   wire [14:0]DDR_0_addr;
   wire [2:0]DDR_0_ba;
@@ -84,8 +84,8 @@ module pynqz2_wrapper
   wire FIXED_IO_0_ps_srstb;
   wire clk_pl;
   wire enable;
-  wire idle_signal;
   wire reset_n;
+  wire [3:0]state_0;
 
   pynqz2 pynqz2_i
        (.DDR_0_addr(DDR_0_addr),
@@ -111,6 +111,6 @@ module pynqz2_wrapper
         .FIXED_IO_0_ps_srstb(FIXED_IO_0_ps_srstb),
         .clk_pl(clk_pl),
         .enable(enable),
-        .idle_signal(idle_signal),
-        .reset_n(reset_n));
+        .reset_n(reset_n),
+        .state_0(state_0));
 endmodule

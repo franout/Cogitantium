@@ -59,13 +59,10 @@
 #create_clock -name clock_name -period 10 [get_ports clock_name] 
 ################################################################################
 
-    create_clock -name s_axi_aclk -period 10 [get_ports s_axi_aclk] 
-
-    create_clock -name aclk -period 12 [get_ports aclk] 
-
-   create_clock -name m_axis_aclk -period 12 [get_ports m_axis_aclk] 
-   create_clock -name s_axis_aclk -period 12 [get_ports s_axis_aclk] 
-
+create_clock -name all_clock -period 10 [get_ports {s_axi_aclk aclk \
+         s_axis_aclk \
+         m_axis_aclk  \
+}]
 
 
 

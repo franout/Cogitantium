@@ -150,7 +150,7 @@ for i in range(weight_buffer.size):
     weight_buffer[i]=0xFFFFFFFF
 
 ## populate csr 
-for i in range(csr_buffer.size)
+for i in range(csr_buffer.size):
     csr_buffer[i]=1   
 
 input_fifo_buffer.flush()
@@ -194,11 +194,12 @@ driver_fifo.sendchannel.wait()
 accelerator=overlay.dtpu.axis_accelerator_ada
 # soft reset 
 accelerator.write(CTRL ,0x0000001)
-
+accelerator.write(CTRL,0x0000000)
  #Configure Input Argument Request Enable Register (0x0010) to define input buffer
 #selection for ap_start generation. start is generated only if the selected input
 #argument buffer has data available. By default, all input argument buffer are considered
 #for start generation
+# with zero start independently from dava avialability
 accelerator.write(IARG_RQT_EN,7) ## all data avialable csr, weights and data
 #Configure Output Argument Request Enable Register (0x0014) to define output buffer
 #selection for ap_start generation. start is generated only if the selected output
@@ -209,11 +210,6 @@ accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
 
 # optional configure input scalar request enable  and update them 
 
-#Write Update Output command to adapter by writing 0x00010001 to Command Register
-#(0x0028). By writing 1 to the argument, mask moves the output buffer to the next
-#position on every data output on stream channel
-accelerator.write( CMD,0x00010001)
-
 
 #Write TDEST value in Output Argument TDEST Register (0x0240 to 0x025C).
 accelerator.write(OARG0_TDEST,0)
@@ -221,20 +217,24 @@ accelerator.write(OARG0_TDEST,0)
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
 start_time = time.time()
-accelerator.write(CMD,0x000200000) #execute command 
+accelerator.write(CMD,0x0FF20001) #execute command 
 
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
 done=0
-while done==0:
+while done!=2:
     time.sleep(3)
     ## check done signal
-    done=(accelerator.read(STATUS)& 2)>>1
-    if done:
+    done=accelerator.read(STATUS)
+    if done== 2:
         print ("accelerator is done")
+    elif done== 4:
+        print("accelerator is idle")
+    elif done == 8:
+        print("accelerator is ready")
     else:
-        print("accelerator is still working")
+        print("accelerator is still working",bin(done))
 
 #Write Update Output command to adapter by writing 0x00000003 to Command Register
 #(0x0028). By writing 1 to the argument, mask moves the input buffer pointer to the next

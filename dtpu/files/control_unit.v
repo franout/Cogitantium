@@ -6,6 +6,7 @@ module control_unit
 (
 clk,
 reset,
+glb_enable,
 enable_mxu,
 test_mode,
 csr_address,               
@@ -26,10 +27,13 @@ cs_continue,
 cs_idle,
 cs_ready,
 cs_start
+
+,state_out
 );
 input clk;
 input reset;
 input test_mode;
+input glb_enable;
 output reg enable_mxu;
 ////////////////////////////
 ////// CSR INTERFACE ///////
@@ -66,70 +70,14 @@ output reg cs_ready;
 output reg cs_done;
 input wire cs_continue;
 output reg cs_idle;
+
+output wire [3:0]state_out;
             
-     //// stream to memory bram                     
-/*The Accelerator Adapter core ensures that the entire data packet has
- been received (as marked by tlast on the final data beat) 
-before issuing a task-start signal to the accelerator over the ap_ctrl (acc_handshake) bus.*/
-
-
-
-// stream to fifo 
-/*
-Unlike the S2M interface, for which the Accelerator Adapter 
-core waits until tlast is asserted before issuing a task-start signal to the accelerator, 
-any input packet sent over an S2F interface is not treated as part of the input barrier group. T
-*/
-
-
-// memory to stream 
-/*
-The Accelerator Adapter core does not initiate this 
-data stream (by asserting TVALID) until the accelerator has issued the ap_done signal
- over the acc_handshake interface, and terminates the 
- stream by asserting tlast on the final data beat. T
-*/
-
-
-
-
-// fifo to stream 
-/*
-Unlike the M2S interface, for which the Accelerator 
-Adapter core waits until ap_done is asserted before 
-initiating the data stream by asserting tvalid, the 
-output stream is available to the AXI4-Stream transport 
-network with a single data beat latency. The AXI4-Stream 
-tlast signal is only asserted with the 
-final data beat when the accelerator asserts task completion by 
-ap_done over the acc_handshake bus.
-*/
-
-
-
-/*
-It then waits the done signal before reading any additional commands from the queue. 
-Generation of the accelerator start signal is based on two main inputs:
-•Status of the input and output buffers and scalars (for example, req/ack signal from each Multi-Buffer signaling if there 
-is data available in the input Multi-Buffers or if there is a Multi-Buffer free at the output).
-•Software Control registers, which specify the input/output Multi-Buffers to consider when triggering the accelerator 
-(that is, generate the start signal
-AXI4-Stream Accelerator Adapter v2.1www.xilinx.com11PG081 November 18, 2015Chapter 1:OverviewAdditionally, 
-there are commands to specify the activation of a specific input/output Multi-Buffers and/or scalars. 
-This mechanism supports task pipelining by the means of specific command to the command queue.
-This mechanism can be used to implement slow-changing data buffers (for example, it can be used to implement
- Quasi-Static buffers, which are buffers where the data does not change in 
-each call to the accelerator) or applications where the output buffer(s) is used to accumulate multiple calls to the accelerator
-
-*/
-
-
-/*ap_start, ap_ready, ap_done) are used to transfer the ownership of the data buffers*/
+ /*ap_start, ap_ready, ap_done) are used to transfer the ownership of the data buffers*/
 
 
 /* the axi adapter has also a csr for its own regarding buffers  control and status */
 //// FSM /////
-reg [3:0]state;
 localparam Power_up = 4'h0;
 localparam idle = 4'h1;
 localparam compute = 4'h2;
@@ -142,12 +90,11 @@ localparam start_p1=4'h8;
 localparam start_p2=4'h9;
 localparam start_p3=4'hA;
 
-reg tReset;
+reg [3:0]state;
 
 
 always @(posedge clk) begin
-tReset <= reset;
-if(tReset) begin
+if(reset) begin
 state <= Power_up;
 
 end else begin
@@ -175,10 +122,10 @@ Power_up: begin
         end
 idle: begin
         cs_idle<=1;
-        if(!cs_start)begin  
-        state<=state;        
+        if(cs_start && glb_enable)begin  
+        state<=start_p1;        
         end else begin 
-        state<=start_p1;
+        state<=state;
         end 
      end
      
@@ -207,13 +154,12 @@ start_p3:  begin
             end
 retrieve_data: begin
                 // first set of fata TODO it the full implementation if should loop for all the rows and force the flush of output fifo
-                
-                     wm_address<=0;
-                     wm_ce<=1'b1;
-                if( !infifo_is_empty && !outfifo_is_full) begin 
-                state<=activate_enable_data_type;
-                end else begin 
+                wm_address<=0;
+                wm_ce<=1'b1;
+                if( infifo_is_empty) begin 
                 state<=state;                
+                end else begin
+                state<=activate_enable_data_type; 
                 end 
                  end
 
@@ -222,7 +168,11 @@ activate_enable_data_type: begin
                             csr_ce<=1;
                             enable_mxu<=1'b1;
                              wm_ce<=1'b1;
+                             if (outfifo_is_full) begin 
+                             state<=state;
+                             end else begin 
                             state<=compute;
+                            end
                          end
 
 compute: begin
@@ -266,5 +216,7 @@ endcase
 end
 
 end 
+
+assign state_out=state;
 
 endmodule

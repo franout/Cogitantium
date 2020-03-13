@@ -83,7 +83,9 @@ module dtpu_core
         cs_done,
         cs_idle,
         cs_ready,
-        cs_start
+        cs_start,
+        
+        state
         
         );
     //////////////////////////////////////////
@@ -93,6 +95,8 @@ module dtpu_core
     ///************************************///
     //////////////////////////////////////////
     input wire clk;
+    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 areset RST" *)
+    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_HIGH" *)
     input wire areset;
     input wire test_mode;
     input wire enable;
@@ -170,6 +174,9 @@ module dtpu_core
              (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_idle" *)
             output wire cs_idle;
        
+       
+       output wire[3:0]state;
+       
        wire enable_i;     
      ////////////////////////////////////////////
     ////// MATRIX MULTIPLICATION UNIT //////////
@@ -205,6 +212,7 @@ module dtpu_core
         .clk(clk),
         .reset(areset),
         .test_mode(test_mode),
+        .glb_enable(enable),
         .enable_mxu(enable_i),
        .csr_address(csr_address),               
         .csr_dout(csr_dout),
@@ -223,7 +231,8 @@ module dtpu_core
         .cs_done(cs_done),
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
-        .cs_start(cs_start)
+        .cs_start(cs_start),
+        .state_out(state)
            );
   
   /////////////////////////////////////////////
@@ -245,6 +254,7 @@ module dtpu_core
   // same clock for bram interface
   assign csr_clk=clk;
   assign wm_clk=clk;
+      
       
   
 endmodule

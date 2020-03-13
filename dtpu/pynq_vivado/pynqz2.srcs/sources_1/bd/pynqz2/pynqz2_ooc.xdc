@@ -6,7 +6,6 @@
 # This constraints file is not used in normal top-down synthesis (default flow
 # of Vivado)
 ################################################################################
-create_clock -name ps7_FCLK_CLK0 -period 17 [get_pins ps7/FCLK_CLK0]
-create_clock -name ps7_FCLK_CLK1 -period 33 [get_pins ps7/FCLK_CLK1]
+create_clock -name ps7_FCLK_CLK0 -period 20 [get_pins ps7/FCLK_CLK0]
 
 ################################################################################
