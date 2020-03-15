@@ -156,11 +156,11 @@ retrieve_data: begin
                 // first set of fata TODO it the full implementation if should loop for all the rows and force the flush of output fifo
                 wm_address<=0;
                 wm_ce<=1'b1;
-                if( infifo_is_empty) begin 
-                state<=state;                
-                end else begin
+               // if( infifo_is_empty) begin 
+                //state<=state;                
+                //end else begin
                 state<=activate_enable_data_type; 
-                end 
+                //end 
                  end
 
 activate_enable_data_type: begin
@@ -168,11 +168,11 @@ activate_enable_data_type: begin
                             csr_ce<=1;
                             enable_mxu<=1'b1;
                              wm_ce<=1'b1;
-                             if (outfifo_is_full) begin 
-                             state<=state;
-                             end else begin 
+                      //       if (outfifo_is_full) begin 
+                        //     state<=state;
+                          //   end else begin 
                             state<=compute;
-                            end
+                            //end
                          end
 
 compute: begin
@@ -180,28 +180,28 @@ compute: begin
              wm_ce<=1'b1;
             outfifo_write<=1'b1;
             infifo_read<=1'b1;
-            if(outfifo_is_full && !infifo_is_empty) begin 
+            /*if(outfifo_is_full && !infifo_is_empty) begin 
             state<=flush_out_fifo;
-            end else if(infifo_is_empty) begin 
+            end else if(infifo_is_empty) begin*/ 
              state<=flush_out_fifo;
-            end else begin 
+            /*end else begin 
             state<=state;
-            end
+            end*/
              end
 
 stop: begin end // skip for the moment 
 flush_out_fifo: begin
                 outfifo_write<=1'b1; // force the flush
-                if(infifo_is_empty) begin 
+               // if(infifo_is_empty) begin 
                 state<=done;
-                end else if (!infifo_is_empty && outfifo_is_full) begin
+                //end else if (!infifo_is_empty && outfifo_is_full) begin
                 // wait for the flush of out fifo 
-                state<=state;
+               /* state<=state;
                 end else begin 
                 // it is not full ( outfifo ) and input fifo not empty
                 state<=compute; 
                 end 
-    
+    */
              end
 done: begin 
       state<=idle;

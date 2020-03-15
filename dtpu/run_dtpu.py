@@ -136,10 +136,10 @@ else :
 ## default 32 bit integer
 # Allocate buffers for the input and output signals ( contigous memory allocation )
 xlnk = Xlnk()
-input_fifo_buffer = xlnk.cma_array(shape=(4096,),dtype='u4')
-output_fifo_buffer=xlnk.cma_array(shape=(4096,),dtype='u4')
-weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u4')
-csr_buffer=xlnk.cma_array(shape=(1024,),dtype='u4')
+input_fifo_buffer = xlnk.cma_array(shape=(4096,),dtype='u4',cacheable=1)
+output_fifo_buffer=xlnk.cma_array(shape=(4096,),dtype='u4',cacheable=1)
+weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u4',cacheable=1)
+csr_buffer=xlnk.cma_array(shape=(2048,),dtype='u4',cacheable=1)
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
@@ -153,9 +153,9 @@ for i in range(weight_buffer.size):
 for i in range(csr_buffer.size):
     csr_buffer[i]=1   
 
-input_fifo_buffer.flush()
-weight_buffer.flush()
-csr_buffer.flush()
+#input_fifo_buffer.flush()
+#weight_buffer.flush()
+#csr_buffer.flush()
 ################################################
 ###### program the dma for the csr reg #########
 ################################################
@@ -183,6 +183,8 @@ driver_wm.sendchannel.wait()
 driver_fifo=overlay.axi_dma_infifo
 
 driver_fifo.sendchannel.transfer(input_fifo_buffer)
+driver_fifo.recvchannel.transfer(output_fifo_buffer)
+
 driver_fifo.sendchannel.wait()
 
 
@@ -200,7 +202,7 @@ accelerator.write(CTRL,0x0000000)
 #argument buffer has data available. By default, all input argument buffer are considered
 #for start generation
 # with zero start independently from dava avialability
-accelerator.write(IARG_RQT_EN,7) ## all data avialable csr, weights and data
+accelerator.write(IARG_RQT_EN,0x000000000) ## all data avialable csr, weights and data
 #Configure Output Argument Request Enable Register (0x0014) to define output buffer
 #selection for ap_start generation. start is generated only if the selected output
 #argument buffer has space available. By default, all input argument buffer are
@@ -209,7 +211,8 @@ accelerator.write(OARG_RQT_EN,1) # out fifo must be empty
 accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
 
 # optional configure input scalar request enable  and update them 
-
+accelerator.write(ISCALAR_RQT_EN,0) # NO SCALAR
+accelerator.write(OSCALAR_RQT_EN,0)
 
 #Write TDEST value in Output Argument TDEST Register (0x0240 to 0x025C).
 accelerator.write(OARG0_TDEST,0)
@@ -223,15 +226,17 @@ accelerator.write(CMD,0x0FF20001) #execute command
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
 done=0
-while done!=2:
+while (done&0x2)!=2:
+    accelerator.write(CMD,0x0FF10001)#update output
+    accelerator.write(CMD,0x0FF20001)#update output
     time.sleep(3)
     ## check done signal
     done=accelerator.read(STATUS)
-    if done== 2:
+    if (done&0x2)== 2:
         print ("accelerator is done")
-    elif done== 4:
+    elif (done&0x4)== 4:
         print("accelerator is idle")
-    elif done == 8:
+    elif (done&0x8) == 8:
         print("accelerator is ready")
     else:
         print("accelerator is still working",bin(done))
@@ -241,9 +246,9 @@ while done!=2:
 #position in multi-buffer. Writing 0 reuses the same buffer.
 accelerator.write(CMD,0x00000001)
 
+accelerator.write(STATUS,0x00000003)##clear status
 
 ## retrieve the results and print 
-driver_fifo.recvchannel.transfer(output_fifo_buffer)
 driver_fifo.recvchannel.wait()
 stop_time = time.time()
 

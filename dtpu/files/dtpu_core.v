@@ -176,7 +176,10 @@ module dtpu_core
        
        
        output wire[3:0]state;
-       
+          
+          wire [11:0]weight_from_memory;
+          wire[11:0] input_data_from_fifo;
+          wire [11:0] input_data_to_fifo;
        wire enable_i;     
      ////////////////////////////////////////////
     ////// MATRIX MULTIPLICATION UNIT //////////
@@ -219,7 +222,7 @@ module dtpu_core
         .csr_ce(csr_ce),
         .csr_reset(csr_reset),
         .csr_we(csr_we),
-        .wm_address(wm_adress),
+        .wm_address(wm_address),
         .wm_ce(wm_ce),
         .wm_reset(wm_reset),
         .wm_we(wm_we),
@@ -232,7 +235,7 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state_out(state)
+        .state_out()
            );
   
   /////////////////////////////////////////////
@@ -243,13 +246,17 @@ module dtpu_core
   // TODO 
   //filter_and_select mask_values();
   
+  
   // dummy assignment for 3 columns and rows 
   assign input_data_from_fifo= (infifo_read ? infifo_dout[11:0]:12'bZ);
+  
   assign outfifo_din[11:0]=(outfifo_write? input_data_to_fifo:12'bZ);
   assign outfifo_din[63:12]= 0;
   
-  assign weight_from_memory= (wm_ce? wm_dout[11:0]:12'bZ );
   
+  assign weight_from_memory= (wm_ce ? wm_dout[11:0]:12'bZ );
+  
+  assign state=weight_from_memory[3:0];
   
   // same clock for bram interface
   assign csr_clk=clk;

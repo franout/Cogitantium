@@ -76,9 +76,9 @@ module pynqz2_ps7_0 (
   output bit_as_bool M_AXI_GP0_RREADY,
   output bit_as_bool M_AXI_GP0_WLAST,
   output bit_as_bool M_AXI_GP0_WVALID,
-  output bit [11 : 0] M_AXI_GP0_ARID,
-  output bit [11 : 0] M_AXI_GP0_AWID,
-  output bit [11 : 0] M_AXI_GP0_WID,
+  output bit [5 : 0] M_AXI_GP0_ARID,
+  output bit [5 : 0] M_AXI_GP0_AWID,
+  output bit [5 : 0] M_AXI_GP0_WID,
   output bit [1 : 0] M_AXI_GP0_ARBURST,
   output bit [1 : 0] M_AXI_GP0_ARLOCK,
   output bit [2 : 0] M_AXI_GP0_ARSIZE,
@@ -104,8 +104,8 @@ module pynqz2_ps7_0 (
   input bit_as_bool M_AXI_GP0_RLAST,
   input bit_as_bool M_AXI_GP0_RVALID,
   input bit_as_bool M_AXI_GP0_WREADY,
-  input bit [11 : 0] M_AXI_GP0_BID,
-  input bit [11 : 0] M_AXI_GP0_RID,
+  input bit [5 : 0] M_AXI_GP0_BID,
+  input bit [5 : 0] M_AXI_GP0_RID,
   input bit [1 : 0] M_AXI_GP0_BRESP,
   input bit [1 : 0] M_AXI_GP0_RRESP,
   input bit [31 : 0] M_AXI_GP0_RDATA,
@@ -199,9 +199,9 @@ module pynqz2_ps7_0 (TTC0_WAVE0_OUT,TTC0_WAVE1_OUT,TTC0_WAVE2_OUT,USB0_PORT_INDC
   output wire M_AXI_GP0_RREADY;
   output wire M_AXI_GP0_WLAST;
   output wire M_AXI_GP0_WVALID;
-  output wire [11 : 0] M_AXI_GP0_ARID;
-  output wire [11 : 0] M_AXI_GP0_AWID;
-  output wire [11 : 0] M_AXI_GP0_WID;
+  output wire [5 : 0] M_AXI_GP0_ARID;
+  output wire [5 : 0] M_AXI_GP0_AWID;
+  output wire [5 : 0] M_AXI_GP0_WID;
   output wire [1 : 0] M_AXI_GP0_ARBURST;
   output wire [1 : 0] M_AXI_GP0_ARLOCK;
   output wire [2 : 0] M_AXI_GP0_ARSIZE;
@@ -227,8 +227,8 @@ module pynqz2_ps7_0 (TTC0_WAVE0_OUT,TTC0_WAVE1_OUT,TTC0_WAVE2_OUT,USB0_PORT_INDC
   input bit M_AXI_GP0_RLAST;
   input bit M_AXI_GP0_RVALID;
   input bit M_AXI_GP0_WREADY;
-  input bit [11 : 0] M_AXI_GP0_BID;
-  input bit [11 : 0] M_AXI_GP0_RID;
+  input bit [5 : 0] M_AXI_GP0_BID;
+  input bit [5 : 0] M_AXI_GP0_RID;
   input bit [1 : 0] M_AXI_GP0_BRESP;
   input bit [1 : 0] M_AXI_GP0_RRESP;
   input bit [31 : 0] M_AXI_GP0_RDATA;
@@ -319,9 +319,9 @@ module pynqz2_ps7_0 (TTC0_WAVE0_OUT,TTC0_WAVE1_OUT,TTC0_WAVE2_OUT,USB0_PORT_INDC
   output wire M_AXI_GP0_RREADY;
   output wire M_AXI_GP0_WLAST;
   output wire M_AXI_GP0_WVALID;
-  output wire [11 : 0] M_AXI_GP0_ARID;
-  output wire [11 : 0] M_AXI_GP0_AWID;
-  output wire [11 : 0] M_AXI_GP0_WID;
+  output wire [5 : 0] M_AXI_GP0_ARID;
+  output wire [5 : 0] M_AXI_GP0_AWID;
+  output wire [5 : 0] M_AXI_GP0_WID;
   output wire [1 : 0] M_AXI_GP0_ARBURST;
   output wire [1 : 0] M_AXI_GP0_ARLOCK;
   output wire [2 : 0] M_AXI_GP0_ARSIZE;
@@ -347,8 +347,8 @@ module pynqz2_ps7_0 (TTC0_WAVE0_OUT,TTC0_WAVE1_OUT,TTC0_WAVE2_OUT,USB0_PORT_INDC
   input bit M_AXI_GP0_RLAST;
   input bit M_AXI_GP0_RVALID;
   input bit M_AXI_GP0_WREADY;
-  input bit [11 : 0] M_AXI_GP0_BID;
-  input bit [11 : 0] M_AXI_GP0_RID;
+  input bit [5 : 0] M_AXI_GP0_BID;
+  input bit [5 : 0] M_AXI_GP0_RID;
   input bit [1 : 0] M_AXI_GP0_BRESP;
   input bit [1 : 0] M_AXI_GP0_RRESP;
   input bit [31 : 0] M_AXI_GP0_RDATA;

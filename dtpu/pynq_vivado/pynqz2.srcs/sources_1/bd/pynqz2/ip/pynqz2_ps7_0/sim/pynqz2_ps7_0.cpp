@@ -120,7 +120,7 @@ void pynqz2_ps7_0::before_end_of_elaboration()
     M_AXI_GP0_transactor_param_props.addLong("SUPPORTS_NARROW_BURST", "0");
     M_AXI_GP0_transactor_param_props.addLong("DATA_WIDTH", "32");
     M_AXI_GP0_transactor_param_props.addLong("FREQ_HZ", "50000000");
-    M_AXI_GP0_transactor_param_props.addLong("ID_WIDTH", "12");
+    M_AXI_GP0_transactor_param_props.addLong("ID_WIDTH", "6");
     M_AXI_GP0_transactor_param_props.addLong("ADDR_WIDTH", "32");
     M_AXI_GP0_transactor_param_props.addLong("AWUSER_WIDTH", "0");
     M_AXI_GP0_transactor_param_props.addLong("ARUSER_WIDTH", "0");
@@ -147,7 +147,7 @@ void pynqz2_ps7_0::before_end_of_elaboration()
     M_AXI_GP0_transactor_param_props.addString("PROTOCOL", "AXI3");
     M_AXI_GP0_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
     M_AXI_GP0_transactor_param_props.addString("CLK_DOMAIN", "pynqz2_ps7_0_FCLK_CLK0");
-    mp_M_AXI_GP0_transactor = new xtlm::xaximm_xtlm2pin_t<32,32,12,1,1,1,1,1>("M_AXI_GP0_transactor", M_AXI_GP0_transactor_param_props);
+    mp_M_AXI_GP0_transactor = new xtlm::xaximm_xtlm2pin_t<32,32,6,1,1,1,1,1>("M_AXI_GP0_transactor", M_AXI_GP0_transactor_param_props);
     mp_M_AXI_GP0_transactor->ARVALID(M_AXI_GP0_ARVALID);
     mp_M_AXI_GP0_transactor->AWVALID(M_AXI_GP0_AWVALID);
     mp_M_AXI_GP0_transactor->BREADY(M_AXI_GP0_BREADY);
@@ -227,7 +227,7 @@ void pynqz2_ps7_0::before_end_of_elaboration()
     S_AXI_HP0_transactor_param_props.addLong("HAS_BRESP", "1");
     S_AXI_HP0_transactor_param_props.addLong("HAS_RRESP", "1");
     S_AXI_HP0_transactor_param_props.addLong("SUPPORTS_NARROW_BURST", "0");
-    S_AXI_HP0_transactor_param_props.addLong("MAX_BURST_LENGTH", "16");
+    S_AXI_HP0_transactor_param_props.addLong("MAX_BURST_LENGTH", "8");
     S_AXI_HP0_transactor_param_props.addLong("NUM_READ_THREADS", "1");
     S_AXI_HP0_transactor_param_props.addLong("NUM_WRITE_THREADS", "1");
     S_AXI_HP0_transactor_param_props.addLong("RUSER_BITS_PER_BYTE", "0");

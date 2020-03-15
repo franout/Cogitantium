@@ -75,7 +75,7 @@ pynqz2_ps7_0_sc::pynqz2_ps7_0_sc(const sc_core::sc_module_name& nm) : sc_core::s
   model_param_props.addLong("C_S_AXI_ACP_ARUSER_VAL", "31");
   model_param_props.addLong("C_S_AXI_ACP_AWUSER_VAL", "31");
   model_param_props.addLong("C_M_AXI_GP0_ID_WIDTH", "12");
-  model_param_props.addLong("C_M_AXI_GP0_ENABLE_STATIC_REMAP", "0");
+  model_param_props.addLong("C_M_AXI_GP0_ENABLE_STATIC_REMAP", "1");
   model_param_props.addLong("C_M_AXI_GP1_ID_WIDTH", "12");
   model_param_props.addLong("C_M_AXI_GP1_ENABLE_STATIC_REMAP", "0");
   model_param_props.addLong("C_S_AXI_GP0_ID_WIDTH", "6");
@@ -84,12 +84,12 @@ pynqz2_ps7_0_sc::pynqz2_ps7_0_sc(const sc_core::sc_module_name& nm) : sc_core::s
   model_param_props.addLong("C_S_AXI_HP0_ID_WIDTH", "6");
   model_param_props.addLong("C_S_AXI_HP0_DATA_WIDTH", "64");
   model_param_props.addLong("C_S_AXI_HP1_ID_WIDTH", "6");
-  model_param_props.addLong("C_S_AXI_HP1_DATA_WIDTH", "64");
+  model_param_props.addLong("C_S_AXI_HP1_DATA_WIDTH", "32");
   model_param_props.addLong("C_S_AXI_HP2_ID_WIDTH", "6");
   model_param_props.addLong("C_S_AXI_HP2_DATA_WIDTH", "64");
   model_param_props.addLong("C_S_AXI_HP3_ID_WIDTH", "6");
   model_param_props.addLong("C_S_AXI_HP3_DATA_WIDTH", "64");
-  model_param_props.addLong("C_M_AXI_GP0_THREAD_ID_WIDTH", "12");
+  model_param_props.addLong("C_M_AXI_GP0_THREAD_ID_WIDTH", "6");
   model_param_props.addLong("C_M_AXI_GP1_THREAD_ID_WIDTH", "12");
   model_param_props.addLong("C_NUM_F2P_INTR_INPUTS", "1");
   model_param_props.addLong("C_DQ_WIDTH", "32");
