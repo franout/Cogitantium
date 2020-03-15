@@ -148,7 +148,7 @@ module bd_7d7d_wrapper
   output S00_AXI_arready;
   input [2:0]S00_AXI_arsize;
   input S00_AXI_arvalid;
-  output [31:0]S00_AXI_rdata;
+  output [63:0]S00_AXI_rdata;
   output S00_AXI_rlast;
   input S00_AXI_rready;
   output [1:0]S00_AXI_rresp;
@@ -163,7 +163,7 @@ module bd_7d7d_wrapper
   output S01_AXI_arready;
   input [2:0]S01_AXI_arsize;
   input S01_AXI_arvalid;
-  output [31:0]S01_AXI_rdata;
+  output [63:0]S01_AXI_rdata;
   output S01_AXI_rlast;
   input S01_AXI_rready;
   output [1:0]S01_AXI_rresp;
@@ -181,10 +181,10 @@ module bd_7d7d_wrapper
   input S02_AXI_bready;
   output [1:0]S02_AXI_bresp;
   output S02_AXI_bvalid;
-  input [31:0]S02_AXI_wdata;
+  input [63:0]S02_AXI_wdata;
   input S02_AXI_wlast;
   output S02_AXI_wready;
-  input [3:0]S02_AXI_wstrb;
+  input [7:0]S02_AXI_wstrb;
   input S02_AXI_wvalid;
   input [31:0]S03_AXI_araddr;
   input [1:0]S03_AXI_arburst;
@@ -196,7 +196,7 @@ module bd_7d7d_wrapper
   output S03_AXI_arready;
   input [2:0]S03_AXI_arsize;
   input S03_AXI_arvalid;
-  output [31:0]S03_AXI_rdata;
+  output [63:0]S03_AXI_rdata;
   output S03_AXI_rlast;
   input S03_AXI_rready;
   output [1:0]S03_AXI_rresp;
@@ -247,7 +247,7 @@ module bd_7d7d_wrapper
   wire S00_AXI_arready;
   wire [2:0]S00_AXI_arsize;
   wire S00_AXI_arvalid;
-  wire [31:0]S00_AXI_rdata;
+  wire [63:0]S00_AXI_rdata;
   wire S00_AXI_rlast;
   wire S00_AXI_rready;
   wire [1:0]S00_AXI_rresp;
@@ -262,7 +262,7 @@ module bd_7d7d_wrapper
   wire S01_AXI_arready;
   wire [2:0]S01_AXI_arsize;
   wire S01_AXI_arvalid;
-  wire [31:0]S01_AXI_rdata;
+  wire [63:0]S01_AXI_rdata;
   wire S01_AXI_rlast;
   wire S01_AXI_rready;
   wire [1:0]S01_AXI_rresp;
@@ -280,10 +280,10 @@ module bd_7d7d_wrapper
   wire S02_AXI_bready;
   wire [1:0]S02_AXI_bresp;
   wire S02_AXI_bvalid;
-  wire [31:0]S02_AXI_wdata;
+  wire [63:0]S02_AXI_wdata;
   wire S02_AXI_wlast;
   wire S02_AXI_wready;
-  wire [3:0]S02_AXI_wstrb;
+  wire [7:0]S02_AXI_wstrb;
   wire S02_AXI_wvalid;
   wire [31:0]S03_AXI_araddr;
   wire [1:0]S03_AXI_arburst;
@@ -295,7 +295,7 @@ module bd_7d7d_wrapper
   wire S03_AXI_arready;
   wire [2:0]S03_AXI_arsize;
   wire S03_AXI_arvalid;
-  wire [31:0]S03_AXI_rdata;
+  wire [63:0]S03_AXI_rdata;
   wire S03_AXI_rlast;
   wire S03_AXI_rready;
   wire [1:0]S03_AXI_rresp;

@@ -60,7 +60,7 @@ mult_gen_0 your_instance_name (
   .B(B),        // input wire [3 : 0] B
   .CE(CE),      // input wire CE
   .SCLR(SCLR),  // input wire SCLR
-  .P(P)        // output wire [4 : 0] P
+  .P(P)        // output wire [3 : 0] P
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

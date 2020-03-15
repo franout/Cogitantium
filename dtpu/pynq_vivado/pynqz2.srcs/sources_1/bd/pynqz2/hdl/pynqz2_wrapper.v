@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Sun Mar 15 17:57:16 2020
+//Date        : Sun Mar 15 20:28:21 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2_wrapper.bd
 //Design      : pynqz2_wrapper
@@ -31,8 +31,10 @@ module pynqz2_wrapper
     FIXED_IO_0_ps_clk,
     FIXED_IO_0_ps_porb,
     FIXED_IO_0_ps_srstb,
-    clk_pl,
+    csr_0_0,
     enable,
+    ie_0,
+    ofifo_0,
     reset_n,
     state_0);
   inout [14:0]DDR_0_addr;
@@ -56,8 +58,10 @@ module pynqz2_wrapper
   inout FIXED_IO_0_ps_clk;
   inout FIXED_IO_0_ps_porb;
   inout FIXED_IO_0_ps_srstb;
-  output clk_pl;
+  output csr_0_0;
   input enable;
+  output ie_0;
+  output ofifo_0;
   input reset_n;
   output [3:0]state_0;
 
@@ -82,8 +86,10 @@ module pynqz2_wrapper
   wire FIXED_IO_0_ps_clk;
   wire FIXED_IO_0_ps_porb;
   wire FIXED_IO_0_ps_srstb;
-  wire clk_pl;
+  wire csr_0_0;
   wire enable;
+  wire ie_0;
+  wire ofifo_0;
   wire reset_n;
   wire [3:0]state_0;
 
@@ -109,8 +115,10 @@ module pynqz2_wrapper
         .FIXED_IO_0_ps_clk(FIXED_IO_0_ps_clk),
         .FIXED_IO_0_ps_porb(FIXED_IO_0_ps_porb),
         .FIXED_IO_0_ps_srstb(FIXED_IO_0_ps_srstb),
-        .clk_pl(clk_pl),
+        .csr_0_0(csr_0_0),
         .enable(enable),
+        .ie_0(ie_0),
+        .ofifo_0(ofifo_0),
         .reset_n(reset_n),
         .state_0(state_0));
 endmodule

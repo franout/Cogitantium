@@ -83,7 +83,6 @@ set rc [catch {
   read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
   add_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
   set_param project.isImplRun false
-  read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
   read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
   set_param project.isImplRun true
   link_design -top pynqz2_wrapper -part xc7z020clg400-1

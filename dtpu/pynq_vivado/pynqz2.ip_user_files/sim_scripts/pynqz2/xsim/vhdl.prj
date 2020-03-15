@@ -5,5 +5,6 @@ vhdl xil_defaultlib  \
 "../../../bd/pynqz2/ip/pynqz2_axi_dma_0_2/sim/pynqz2_axi_dma_0_2.vhd" \
 "../../../bd/pynqz2/ip/pynqz2_axi_intc_0_0/sim/pynqz2_axi_intc_0_0.vhd" \
 "../../../bd/pynqz2/ip/pynqz2_axi_dma_0_3/sim/pynqz2_axi_dma_0_3.vhd" \
+"../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_1/sim/bd_7d7d_psr_aclk_0.vhd" \
 
 nosort

@@ -29,6 +29,7 @@ cs_ready,
 cs_start
 
 ,state_out
+,a,b,c
 );
 input clk;
 input reset;
@@ -72,6 +73,9 @@ input wire cs_continue;
 output reg cs_idle;
 
 output wire [3:0]state_out;
+output wire a;
+output wire b;
+output wire c;
             
  /*ap_start, ap_ready, ap_done) are used to transfer the ownership of the data buffers*/
 
@@ -156,11 +160,19 @@ retrieve_data: begin
                 // first set of fata TODO it the full implementation if should loop for all the rows and force the flush of output fifo
                 wm_address<=0;
                 wm_ce<=1'b1;
+                
+                csr_ce<=1'b1;
+                csr_address<=0;
                // if( infifo_is_empty) begin 
                 //state<=state;                
                 //end else begin
-                state<=activate_enable_data_type; 
+                //state<=activate_enable_data_type;
+                state<=state; 
                 //end 
+                
+                
+                outfifo_write<=1'b1;
+            infifo_read<=1'b1;
                  end
 
 activate_enable_data_type: begin
@@ -217,6 +229,10 @@ end
 
 end 
 
+// debug
 assign state_out=state;
 
+assign a=outfifo_is_full;
+assign b=infifo_is_empty;
+assign c=csr_dout[0];
 endmodule

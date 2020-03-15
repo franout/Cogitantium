@@ -153,9 +153,14 @@ for i in range(weight_buffer.size):
 for i in range(csr_buffer.size):
     csr_buffer[i]=1   
 
-#input_fifo_buffer.flush()
-#weight_buffer.flush()
-#csr_buffer.flush()
+
+## accelerator 
+accelerator=overlay.dtpu.axis_accelerator_ada
+# soft reset 
+accelerator.write(CTRL ,0x0000001)
+accelerator.write(CTRL,0x0000000)
+
+
 ################################################
 ###### program the dma for the csr reg #########
 ################################################
@@ -192,17 +197,14 @@ driver_fifo.sendchannel.wait()
 ### program accelerator&start computation ######
 ################################################
 
-#accelerator= MMIO(BASE_ADDRESS_ACCELERATOR,ADDRESS_RANGE_ACCELERATOR)
-accelerator=overlay.dtpu.axis_accelerator_ada
-# soft reset 
-accelerator.write(CTRL ,0x0000001)
-accelerator.write(CTRL,0x0000000)
+
+
  #Configure Input Argument Request Enable Register (0x0010) to define input buffer
 #selection for ap_start generation. start is generated only if the selected input
 #argument buffer has data available. By default, all input argument buffer are considered
 #for start generation
 # with zero start independently from dava avialability
-accelerator.write(IARG_RQT_EN,0x000000000) ## all data avialable csr, weights and data
+accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights and data
 #Configure Output Argument Request Enable Register (0x0014) to define output buffer
 #selection for ap_start generation. start is generated only if the selected output
 #argument buffer has space available. By default, all input argument buffer are
@@ -229,7 +231,7 @@ done=0
 while (done&0x2)!=2:
     accelerator.write(CMD,0x0FF10001)#update output
     accelerator.write(CMD,0x0FF20001)#update output
-    time.sleep(3)
+    #time.sleep(3)
     ## check done signal
     done=accelerator.read(STATUS)
     if (done&0x2)== 2:
@@ -243,6 +245,7 @@ while (done&0x2)!=2:
 
 #Write Update Output command to adapter by writing 0x00000003 to Command Register
 #(0x0028). By writing 1 to the argument, mask moves the input buffer pointer to the next
+
 #position in multi-buffer. Writing 0 reuses the same buffer.
 accelerator.write(CMD,0x00000001)
 
@@ -257,7 +260,10 @@ hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)
 
 
-### free buffers
+### fr
+
+
+ee buffers
 
 input_fifo_buffer.close()
 output_fifo_buffer.close()

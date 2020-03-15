@@ -76,7 +76,7 @@ module pynqz2_smartconnect_0_0 (
   input bit [3 : 0] S00_AXI_arqos,
   input bit_as_bool S00_AXI_arvalid,
   output bit_as_bool S00_AXI_arready,
-  output bit [31 : 0] S00_AXI_rdata,
+  output bit [63 : 0] S00_AXI_rdata,
   output bit [1 : 0] S00_AXI_rresp,
   output bit_as_bool S00_AXI_rlast,
   output bit_as_bool S00_AXI_rvalid,
@@ -91,7 +91,7 @@ module pynqz2_smartconnect_0_0 (
   input bit [3 : 0] S01_AXI_arqos,
   input bit_as_bool S01_AXI_arvalid,
   output bit_as_bool S01_AXI_arready,
-  output bit [31 : 0] S01_AXI_rdata,
+  output bit [63 : 0] S01_AXI_rdata,
   output bit [1 : 0] S01_AXI_rresp,
   output bit_as_bool S01_AXI_rlast,
   output bit_as_bool S01_AXI_rvalid,
@@ -106,8 +106,8 @@ module pynqz2_smartconnect_0_0 (
   input bit [3 : 0] S02_AXI_awqos,
   input bit_as_bool S02_AXI_awvalid,
   output bit_as_bool S02_AXI_awready,
-  input bit [31 : 0] S02_AXI_wdata,
-  input bit [3 : 0] S02_AXI_wstrb,
+  input bit [63 : 0] S02_AXI_wdata,
+  input bit [7 : 0] S02_AXI_wstrb,
   input bit_as_bool S02_AXI_wlast,
   input bit_as_bool S02_AXI_wvalid,
   output bit_as_bool S02_AXI_wready,
@@ -124,7 +124,7 @@ module pynqz2_smartconnect_0_0 (
   input bit [3 : 0] S03_AXI_arqos,
   input bit_as_bool S03_AXI_arvalid,
   output bit_as_bool S03_AXI_arready,
-  output bit [31 : 0] S03_AXI_rdata,
+  output bit [63 : 0] S03_AXI_rdata,
   output bit [1 : 0] S03_AXI_rresp,
   output bit_as_bool S03_AXI_rlast,
   output bit_as_bool S03_AXI_rvalid,
@@ -183,7 +183,7 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S00_AXI_arqos;
   input bit S00_AXI_arvalid;
   output wire S00_AXI_arready;
-  output wire [31 : 0] S00_AXI_rdata;
+  output wire [63 : 0] S00_AXI_rdata;
   output wire [1 : 0] S00_AXI_rresp;
   output wire S00_AXI_rlast;
   output wire S00_AXI_rvalid;
@@ -198,7 +198,7 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S01_AXI_arqos;
   input bit S01_AXI_arvalid;
   output wire S01_AXI_arready;
-  output wire [31 : 0] S01_AXI_rdata;
+  output wire [63 : 0] S01_AXI_rdata;
   output wire [1 : 0] S01_AXI_rresp;
   output wire S01_AXI_rlast;
   output wire S01_AXI_rvalid;
@@ -213,8 +213,8 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S02_AXI_awqos;
   input bit S02_AXI_awvalid;
   output wire S02_AXI_awready;
-  input bit [31 : 0] S02_AXI_wdata;
-  input bit [3 : 0] S02_AXI_wstrb;
+  input bit [63 : 0] S02_AXI_wdata;
+  input bit [7 : 0] S02_AXI_wstrb;
   input bit S02_AXI_wlast;
   input bit S02_AXI_wvalid;
   output wire S02_AXI_wready;
@@ -231,7 +231,7 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S03_AXI_arqos;
   input bit S03_AXI_arvalid;
   output wire S03_AXI_arready;
-  output wire [31 : 0] S03_AXI_rdata;
+  output wire [63 : 0] S03_AXI_rdata;
   output wire [1 : 0] S03_AXI_rresp;
   output wire S03_AXI_rlast;
   output wire S03_AXI_rvalid;
@@ -287,7 +287,7 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S00_AXI_arqos;
   input bit S00_AXI_arvalid;
   output wire S00_AXI_arready;
-  output wire [31 : 0] S00_AXI_rdata;
+  output wire [63 : 0] S00_AXI_rdata;
   output wire [1 : 0] S00_AXI_rresp;
   output wire S00_AXI_rlast;
   output wire S00_AXI_rvalid;
@@ -302,7 +302,7 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S01_AXI_arqos;
   input bit S01_AXI_arvalid;
   output wire S01_AXI_arready;
-  output wire [31 : 0] S01_AXI_rdata;
+  output wire [63 : 0] S01_AXI_rdata;
   output wire [1 : 0] S01_AXI_rresp;
   output wire S01_AXI_rlast;
   output wire S01_AXI_rvalid;
@@ -317,8 +317,8 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S02_AXI_awqos;
   input bit S02_AXI_awvalid;
   output wire S02_AXI_awready;
-  input bit [31 : 0] S02_AXI_wdata;
-  input bit [3 : 0] S02_AXI_wstrb;
+  input bit [63 : 0] S02_AXI_wdata;
+  input bit [7 : 0] S02_AXI_wstrb;
   input bit S02_AXI_wlast;
   input bit S02_AXI_wvalid;
   output wire S02_AXI_wready;
@@ -335,7 +335,7 @@ module pynqz2_smartconnect_0_0 (aclk,aresetn,S00_AXI_araddr,S00_AXI_arlen,S00_AX
   input bit [3 : 0] S03_AXI_arqos;
   input bit S03_AXI_arvalid;
   output wire S03_AXI_arready;
-  output wire [31 : 0] S03_AXI_rdata;
+  output wire [63 : 0] S03_AXI_rdata;
   output wire [1 : 0] S03_AXI_rresp;
   output wire S03_AXI_rlast;
   output wire S03_AXI_rvalid;

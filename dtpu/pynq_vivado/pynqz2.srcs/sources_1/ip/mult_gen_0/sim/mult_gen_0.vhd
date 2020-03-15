@@ -63,7 +63,7 @@ ENTITY mult_gen_0 IS
     B : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
     CE : IN STD_LOGIC;
     SCLR : IN STD_LOGIC;
-    P : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+    P : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
   );
 END mult_gen_0;
 
@@ -99,7 +99,7 @@ ARCHITECTURE mult_gen_0_arch OF mult_gen_0 IS
       B : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
       CE : IN STD_LOGIC;
       SCLR : IN STD_LOGIC;
-      P : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+      P : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
     );
   END COMPONENT mult_gen_v12_0_16;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -130,7 +130,7 @@ BEGIN
       C_A_TYPE => 0,
       C_B_WIDTH => 4,
       C_B_TYPE => 0,
-      C_OUT_HIGH => 4,
+      C_OUT_HIGH => 3,
       C_OUT_LOW => 0,
       C_MULT_TYPE => 0,
       C_CE_OVERRIDES_SCLR => 0,

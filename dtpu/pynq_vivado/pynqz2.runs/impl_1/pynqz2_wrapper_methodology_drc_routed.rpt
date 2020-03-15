@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Sun Mar 15 18:06:54 2020
+| Date         : Sun Mar 15 20:38:46 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_methodology -file pynqz2_wrapper_methodology_drc_routed.rpt -pb pynqz2_wrapper_methodology_drc_routed.pb -rpx pynqz2_wrapper_methodology_drc_routed.rpx
 | Design       : pynqz2_wrapper
@@ -23,23 +23,17 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 10
-+-----------+------------------+-------------------------------------------------+------------+
-| Rule      | Severity         | Description                                     | Violations |
-+-----------+------------------+-------------------------------------------------+------------+
-| TIMING-14 | Critical Warning | LUT on the clock tree                           | 1          |
-| LUTAR-1   | Warning          | LUT drives async reset alert                    | 2          |
-| PDRC-190  | Warning          | Suboptimally placed synchronized register chain | 1          |
-| TIMING-18 | Warning          | Missing input or output delay                   | 6          |
-+-----------+------------------+-------------------------------------------------+------------+
+             Violations found: 12
++-----------+----------+-------------------------------------------------+------------+
+| Rule      | Severity | Description                                     | Violations |
++-----------+----------+-------------------------------------------------+------------+
+| LUTAR-1   | Warning  | LUT drives async reset alert                    | 2          |
+| PDRC-190  | Warning  | Suboptimally placed synchronized register chain | 1          |
+| TIMING-18 | Warning  | Missing input or output delay                   | 9          |
++-----------+----------+-------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-TIMING-14#1 Critical Warning
-LUT on the clock tree  
-The LUT pynqz2_i/dtpu/dtpu_core/n_0_29_BUFG_inst_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
-Related violations: <none>
-
 LUTAR-1#1 Warning
 LUT drives async reset alert  
 LUT cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/ap_rst_axi1_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/ap_rst_axi1_reg/PRE, pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/ap_rst_axi_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
@@ -52,7 +46,7 @@ Related violations: <none>
 
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/XD_SW_LENGTH_WE_SYNC/GENERATE_LEVEL_P_S_CDC.MULTI_BIT.s_level_out_bus_d4_reg[0] in site SLICE_X43Y86 is part of a synchronized register chain that is suboptimally placed as the load FDCE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/wr_stg_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/XD_SW_LENGTH_WE_SYNC/GENERATE_LEVEL_P_S_CDC.MULTI_BIT.s_level_out_bus_d4_reg[0] in site SLICE_X41Y58 is part of a synchronized register chain that is suboptimally placed as the load FDCE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/wr_stg_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 TIMING-18#1 Warning
@@ -67,20 +61,35 @@ Related violations: <none>
 
 TIMING-18#3 Warning
 Missing input or output delay  
-An output delay is missing on state_0[0] relative to clock(s) clk_fpga_0
+An output delay is missing on csr_0_0 relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#4 Warning
 Missing input or output delay  
-An output delay is missing on state_0[1] relative to clock(s) clk_fpga_0
+An output delay is missing on ie_0 relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#5 Warning
 Missing input or output delay  
-An output delay is missing on state_0[2] relative to clock(s) clk_fpga_0
+An output delay is missing on ofifo_0 relative to clock(s) clk_fpga_0
 Related violations: <none>
 
 TIMING-18#6 Warning
+Missing input or output delay  
+An output delay is missing on state_0[0] relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An output delay is missing on state_0[1] relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An output delay is missing on state_0[2] relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#9 Warning
 Missing input or output delay  
 An output delay is missing on state_0[3] relative to clock(s) clk_fpga_0
 Related violations: <none>

@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Sun Mar 15 17:57:16 2020
+//Date        : Sun Mar 15 20:28:20 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2.bd
 //Design      : pynqz2
@@ -49,29 +49,32 @@ module dtpu_imp_WM72SM
     S_AXI_wvalid,
     axi_aclk,
     clk,
+    csr_0_0,
     enable,
+    ie_0,
     interrupt_dtpu,
+    ofifo_0,
     reset_n,
     s_axi_aresetn,
     state_0,
     test_mode);
-  output [31:0]M_AXIS_outfifo_tdata;
-  output [3:0]M_AXIS_outfifo_tkeep;
+  output [63:0]M_AXIS_outfifo_tdata;
+  output [7:0]M_AXIS_outfifo_tkeep;
   output M_AXIS_outfifo_tlast;
   input M_AXIS_outfifo_tready;
   output M_AXIS_outfifo_tvalid;
-  input [31:0]S_AXIS_csr_tdata;
-  input [3:0]S_AXIS_csr_tkeep;
+  input [63:0]S_AXIS_csr_tdata;
+  input [7:0]S_AXIS_csr_tkeep;
   input S_AXIS_csr_tlast;
   output S_AXIS_csr_tready;
   input S_AXIS_csr_tvalid;
-  input [31:0]S_AXIS_infifo_tdata;
-  input [3:0]S_AXIS_infifo_tkeep;
+  input [63:0]S_AXIS_infifo_tdata;
+  input [7:0]S_AXIS_infifo_tkeep;
   input S_AXIS_infifo_tlast;
   output S_AXIS_infifo_tready;
   input S_AXIS_infifo_tvalid;
-  input [31:0]S_AXIS_wm_tdata;
-  input [3:0]S_AXIS_wm_tkeep;
+  input [63:0]S_AXIS_wm_tdata;
+  input [7:0]S_AXIS_wm_tkeep;
   input S_AXIS_wm_tlast;
   output S_AXIS_wm_tready;
   input S_AXIS_wm_tvalid;
@@ -94,15 +97,18 @@ module dtpu_imp_WM72SM
   input [0:0]S_AXI_wvalid;
   input axi_aclk;
   input clk;
+  output csr_0_0;
   input enable;
+  output ie_0;
   output interrupt_dtpu;
+  output ofifo_0;
   input [0:0]reset_n;
   input s_axi_aresetn;
   output [3:0]state_0;
   input test_mode;
 
-  wire [31:0]Conn1_TDATA;
-  wire [3:0]Conn1_TKEEP;
+  wire [63:0]Conn1_TDATA;
+  wire [7:0]Conn1_TKEEP;
   wire Conn1_TLAST;
   wire Conn1_TREADY;
   wire Conn1_TVALID;
@@ -123,18 +129,18 @@ module dtpu_imp_WM72SM
   wire Conn2_WREADY;
   wire [3:0]Conn2_WSTRB;
   wire [0:0]Conn2_WVALID;
-  wire [31:0]Conn3_TDATA;
-  wire [3:0]Conn3_TKEEP;
+  wire [63:0]Conn3_TDATA;
+  wire [7:0]Conn3_TKEEP;
   wire Conn3_TLAST;
   wire Conn3_TREADY;
   wire Conn3_TVALID;
-  wire [31:0]Conn4_TDATA;
-  wire [3:0]Conn4_TKEEP;
+  wire [63:0]Conn4_TDATA;
+  wire [7:0]Conn4_TKEEP;
   wire Conn4_TLAST;
   wire Conn4_TREADY;
   wire Conn4_TVALID;
-  wire [31:0]Conn5_TDATA;
-  wire [3:0]Conn5_TKEEP;
+  wire [63:0]Conn5_TDATA;
+  wire [7:0]Conn5_TKEEP;
   wire Conn5_TLAST;
   wire Conn5_TREADY;
   wire Conn5_TVALID;
@@ -147,6 +153,9 @@ module dtpu_imp_WM72SM
   wire axis_accelerator_ada_0_interrupt;
   wire axis_accelerator_ada_aresetn;
   wire clk_0_1;
+  wire dtpu_core_csr_0;
+  wire dtpu_core_ie;
+  wire dtpu_core_ofifo;
   wire [3:0]dtpu_core_state;
   wire [31:0]dtpu_coro_csr_mem_interface_ADDR;
   wire dtpu_coro_csr_mem_interface_CLK;
@@ -186,20 +195,20 @@ module dtpu_imp_WM72SM
   assign Conn2_WDATA = S_AXI_wdata[31:0];
   assign Conn2_WSTRB = S_AXI_wstrb[3:0];
   assign Conn2_WVALID = S_AXI_wvalid[0];
-  assign Conn3_TDATA = S_AXIS_csr_tdata[31:0];
-  assign Conn3_TKEEP = S_AXIS_csr_tkeep[3:0];
+  assign Conn3_TDATA = S_AXIS_csr_tdata[63:0];
+  assign Conn3_TKEEP = S_AXIS_csr_tkeep[7:0];
   assign Conn3_TLAST = S_AXIS_csr_tlast;
   assign Conn3_TVALID = S_AXIS_csr_tvalid;
-  assign Conn4_TDATA = S_AXIS_infifo_tdata[31:0];
-  assign Conn4_TKEEP = S_AXIS_infifo_tkeep[3:0];
+  assign Conn4_TDATA = S_AXIS_infifo_tdata[63:0];
+  assign Conn4_TKEEP = S_AXIS_infifo_tkeep[7:0];
   assign Conn4_TLAST = S_AXIS_infifo_tlast;
   assign Conn4_TVALID = S_AXIS_infifo_tvalid;
-  assign Conn5_TDATA = S_AXIS_wm_tdata[31:0];
-  assign Conn5_TKEEP = S_AXIS_wm_tkeep[3:0];
+  assign Conn5_TDATA = S_AXIS_wm_tdata[63:0];
+  assign Conn5_TKEEP = S_AXIS_wm_tkeep[7:0];
   assign Conn5_TLAST = S_AXIS_wm_tlast;
   assign Conn5_TVALID = S_AXIS_wm_tvalid;
-  assign M_AXIS_outfifo_tdata[31:0] = Conn1_TDATA;
-  assign M_AXIS_outfifo_tkeep[3:0] = Conn1_TKEEP;
+  assign M_AXIS_outfifo_tdata[63:0] = Conn1_TDATA;
+  assign M_AXIS_outfifo_tkeep[7:0] = Conn1_TKEEP;
   assign M_AXIS_outfifo_tlast = Conn1_TLAST;
   assign M_AXIS_outfifo_tvalid = Conn1_TVALID;
   assign S_AXIS_csr_tready = Conn3_TREADY;
@@ -215,8 +224,11 @@ module dtpu_imp_WM72SM
   assign S_AXI_wready[0] = Conn2_WREADY;
   assign aclk_0_1 = axi_aclk;
   assign clk_0_1 = clk;
+  assign csr_0_0 = dtpu_core_csr_0;
   assign enable_0_1 = enable;
+  assign ie_0 = dtpu_core_ie;
   assign interrupt_dtpu = axis_accelerator_ada_0_interrupt;
+  assign ofifo_0 = dtpu_core_ofifo;
   assign reset_n_1 = reset_n[0];
   assign s_axi_aresetn_0_1 = s_axi_aresetn;
   assign state_0[3:0] = dtpu_core_state;
@@ -301,6 +313,7 @@ module dtpu_imp_WM72SM
         .cs_idle(axis_accelerator_ada_0_AP_CTRL_ap_idle),
         .cs_ready(axis_accelerator_ada_0_AP_CTRL_ap_ready),
         .cs_start(axis_accelerator_ada_0_AP_CTRL_ap_start),
+        .csr_0(dtpu_core_csr_0),
         .csr_address(dtpu_coro_csr_mem_interface_ADDR),
         .csr_ce(dtpu_coro_csr_mem_interface_EN),
         .csr_clk(dtpu_coro_csr_mem_interface_CLK),
@@ -309,9 +322,11 @@ module dtpu_imp_WM72SM
         .csr_reset(dtpu_coro_csr_mem_interface_RST),
         .csr_we(dtpu_coro_csr_mem_interface_WE),
         .enable(enable_0_1),
+        .ie(dtpu_core_ie),
         .infifo_dout(dtpu_coro_input_fifo_RD_DATA),
         .infifo_is_empty(dtpu_coro_input_fifo_EMPTY_N),
         .infifo_read(dtpu_coro_input_fifo_RD_EN),
+        .ofifo(dtpu_core_ofifo),
         .outfifo_din(dtpu_coro_output_fifo_WR_DATA),
         .outfifo_is_full(dtpu_coro_output_fifo_FULL_N),
         .outfifo_write(dtpu_coro_output_fifo_WR_EN),
@@ -998,8 +1013,10 @@ module pynqz2
     FIXED_IO_0_ps_clk,
     FIXED_IO_0_ps_porb,
     FIXED_IO_0_ps_srstb,
-    clk_pl,
+    csr_0_0,
     enable,
+    ie_0,
+    ofifo_0,
     reset_n,
     state_0);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR_0 ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR_0, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_0_addr;
@@ -1023,24 +1040,26 @@ module pynqz2
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_CLK" *) inout FIXED_IO_0_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_PORB" *) inout FIXED_IO_0_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_SRSTB" *) inout FIXED_IO_0_ps_srstb;
-  output clk_pl;
+  output csr_0_0;
   input enable;
+  output ie_0;
+  output ofifo_0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset_n;
   output [3:0]state_0;
 
   wire S00_ACLK_1;
-  wire [31:0]S_AXIS_csr_1_TDATA;
-  wire [3:0]S_AXIS_csr_1_TKEEP;
+  wire [63:0]S_AXIS_csr_1_TDATA;
+  wire [7:0]S_AXIS_csr_1_TKEEP;
   wire S_AXIS_csr_1_TLAST;
   wire S_AXIS_csr_1_TREADY;
   wire S_AXIS_csr_1_TVALID;
-  wire [31:0]S_AXIS_infifo_1_TDATA;
-  wire [3:0]S_AXIS_infifo_1_TKEEP;
+  wire [63:0]S_AXIS_infifo_1_TDATA;
+  wire [7:0]S_AXIS_infifo_1_TKEEP;
   wire S_AXIS_infifo_1_TLAST;
   wire S_AXIS_infifo_1_TREADY;
   wire S_AXIS_infifo_1_TVALID;
-  wire [31:0]S_AXIS_wm_1_TDATA;
-  wire [3:0]S_AXIS_wm_1_TKEEP;
+  wire [63:0]S_AXIS_wm_1_TDATA;
+  wire [7:0]S_AXIS_wm_1_TKEEP;
   wire S_AXIS_wm_1_TLAST;
   wire S_AXIS_wm_1_TREADY;
   wire S_AXIS_wm_1_TVALID;
@@ -1053,7 +1072,7 @@ module pynqz2
   wire axi_dma_csr_mem_M_AXI_MM2S_ARREADY;
   wire [2:0]axi_dma_csr_mem_M_AXI_MM2S_ARSIZE;
   wire axi_dma_csr_mem_M_AXI_MM2S_ARVALID;
-  wire [31:0]axi_dma_csr_mem_M_AXI_MM2S_RDATA;
+  wire [63:0]axi_dma_csr_mem_M_AXI_MM2S_RDATA;
   wire axi_dma_csr_mem_M_AXI_MM2S_RLAST;
   wire axi_dma_csr_mem_M_AXI_MM2S_RREADY;
   wire [1:0]axi_dma_csr_mem_M_AXI_MM2S_RRESP;
@@ -1067,7 +1086,7 @@ module pynqz2
   wire axi_dma_infifo_M_AXI_MM2S_ARREADY;
   wire [2:0]axi_dma_infifo_M_AXI_MM2S_ARSIZE;
   wire axi_dma_infifo_M_AXI_MM2S_ARVALID;
-  wire [31:0]axi_dma_infifo_M_AXI_MM2S_RDATA;
+  wire [63:0]axi_dma_infifo_M_AXI_MM2S_RDATA;
   wire axi_dma_infifo_M_AXI_MM2S_RLAST;
   wire axi_dma_infifo_M_AXI_MM2S_RREADY;
   wire [1:0]axi_dma_infifo_M_AXI_MM2S_RRESP;
@@ -1083,10 +1102,10 @@ module pynqz2
   wire axi_dma_infifo_M_AXI_S2MM_BREADY;
   wire [1:0]axi_dma_infifo_M_AXI_S2MM_BRESP;
   wire axi_dma_infifo_M_AXI_S2MM_BVALID;
-  wire [31:0]axi_dma_infifo_M_AXI_S2MM_WDATA;
+  wire [63:0]axi_dma_infifo_M_AXI_S2MM_WDATA;
   wire axi_dma_infifo_M_AXI_S2MM_WLAST;
   wire axi_dma_infifo_M_AXI_S2MM_WREADY;
-  wire [3:0]axi_dma_infifo_M_AXI_S2MM_WSTRB;
+  wire [7:0]axi_dma_infifo_M_AXI_S2MM_WSTRB;
   wire axi_dma_infifo_M_AXI_S2MM_WVALID;
   wire axi_dma_infifo_mm2s_introut;
   wire axi_dma_infifo_s2mm_introut;
@@ -1098,18 +1117,21 @@ module pynqz2
   wire axi_dma_weight_mem_M_AXI_MM2S_ARREADY;
   wire [2:0]axi_dma_weight_mem_M_AXI_MM2S_ARSIZE;
   wire axi_dma_weight_mem_M_AXI_MM2S_ARVALID;
-  wire [31:0]axi_dma_weight_mem_M_AXI_MM2S_RDATA;
+  wire [63:0]axi_dma_weight_mem_M_AXI_MM2S_RDATA;
   wire axi_dma_weight_mem_M_AXI_MM2S_RLAST;
   wire axi_dma_weight_mem_M_AXI_MM2S_RREADY;
   wire [1:0]axi_dma_weight_mem_M_AXI_MM2S_RRESP;
   wire axi_dma_weight_mem_M_AXI_MM2S_RVALID;
   wire axi_intc_irq;
-  wire [31:0]dtpu_M_AXIS_outfifo_TDATA;
-  wire [3:0]dtpu_M_AXIS_outfifo_TKEEP;
+  wire [63:0]dtpu_M_AXIS_outfifo_TDATA;
+  wire [7:0]dtpu_M_AXIS_outfifo_TKEEP;
   wire dtpu_M_AXIS_outfifo_TLAST;
   wire dtpu_M_AXIS_outfifo_TREADY;
   wire dtpu_M_AXIS_outfifo_TVALID;
+  wire dtpu_csr_0_0;
+  wire dtpu_ie_0;
   wire dtpu_interrupt_dtpu;
+  wire dtpu_ofifo_0;
   wire [3:0]dtpu_state_0;
   wire enable_1;
   wire [14:0]ps7_DDR_ADDR;
@@ -1255,7 +1277,7 @@ module pynqz2
   wire [3:0]ps7_axi_periph_M04_AXI_WSTRB;
   wire [0:0]ps7_axi_periph_M04_AXI_WVALID;
   wire reset_n_1;
-  wire [0:0]rst_ps7_30M_peripheral_aresetn;
+  wire [0:0]rst_ps7_30M_interconnect_aresetn;
   wire [31:0]smartconnect_0_M00_AXI_ARADDR;
   wire [1:0]smartconnect_0_M00_AXI_ARBURST;
   wire [3:0]smartconnect_0_M00_AXI_ARCACHE;
@@ -1293,12 +1315,14 @@ module pynqz2
   wire [4:0]xlconcat_0_dout;
   wire [0:0]xlconstant_0_dout;
 
-  assign clk_pl = S00_ACLK_1;
+  assign csr_0_0 = dtpu_csr_0_0;
   assign enable_1 = enable;
+  assign ie_0 = dtpu_ie_0;
+  assign ofifo_0 = dtpu_ofifo_0;
   assign reset_n_1 = reset_n;
   assign state_0[3:0] = dtpu_state_0;
   pynqz2_axi_dma_0_3 axi_dma_csr_mem
-       (.axi_resetn(rst_ps7_30M_peripheral_aresetn),
+       (.axi_resetn(rst_ps7_30M_interconnect_aresetn),
         .m_axi_mm2s_aclk(S00_ACLK_1),
         .m_axi_mm2s_araddr(axi_dma_csr_mem_M_AXI_MM2S_ARADDR),
         .m_axi_mm2s_arburst(axi_dma_csr_mem_M_AXI_MM2S_ARBURST),
@@ -1337,7 +1361,7 @@ module pynqz2
         .s_axi_lite_wready(ps7_axi_periph_M00_AXI_WREADY),
         .s_axi_lite_wvalid(ps7_axi_periph_M00_AXI_WVALID));
   pynqz2_axi_dma_0_1 axi_dma_infifo
-       (.axi_resetn(rst_ps7_30M_peripheral_aresetn),
+       (.axi_resetn(rst_ps7_30M_interconnect_aresetn),
         .m_axi_mm2s_aclk(S00_ACLK_1),
         .m_axi_mm2s_araddr(axi_dma_infifo_M_AXI_MM2S_ARADDR),
         .m_axi_mm2s_arburst(axi_dma_infifo_M_AXI_MM2S_ARBURST),
@@ -1399,7 +1423,7 @@ module pynqz2
         .s_axis_s2mm_tready(dtpu_M_AXIS_outfifo_TREADY),
         .s_axis_s2mm_tvalid(dtpu_M_AXIS_outfifo_TVALID));
   pynqz2_axi_dma_0_2 axi_dma_weight_mem
-       (.axi_resetn(rst_ps7_30M_peripheral_aresetn),
+       (.axi_resetn(rst_ps7_30M_interconnect_aresetn),
         .m_axi_mm2s_aclk(S00_ACLK_1),
         .m_axi_mm2s_araddr(axi_dma_weight_mem_M_AXI_MM2S_ARADDR),
         .m_axi_mm2s_arburst(axi_dma_weight_mem_M_AXI_MM2S_ARBURST),
@@ -1442,7 +1466,7 @@ module pynqz2
         .irq(axi_intc_irq),
         .s_axi_aclk(S00_ACLK_1),
         .s_axi_araddr(ps7_axi_periph_M03_AXI_ARADDR[8:0]),
-        .s_axi_aresetn(rst_ps7_30M_peripheral_aresetn),
+        .s_axi_aresetn(rst_ps7_30M_interconnect_aresetn),
         .s_axi_arready(ps7_axi_periph_M03_AXI_ARREADY),
         .s_axi_arvalid(ps7_axi_periph_M03_AXI_ARVALID),
         .s_axi_awaddr(ps7_axi_periph_M03_AXI_AWADDR[8:0]),
@@ -1499,10 +1523,13 @@ module pynqz2
         .S_AXI_wvalid(ps7_axi_periph_M04_AXI_WVALID),
         .axi_aclk(S00_ACLK_1),
         .clk(S00_ACLK_1),
+        .csr_0_0(dtpu_csr_0_0),
         .enable(enable_1),
+        .ie_0(dtpu_ie_0),
         .interrupt_dtpu(dtpu_interrupt_dtpu),
+        .ofifo_0(dtpu_ofifo_0),
         .reset_n(reset_n_1),
-        .s_axi_aresetn(rst_ps7_30M_peripheral_aresetn),
+        .s_axi_aresetn(rst_ps7_30M_interconnect_aresetn),
         .state_0(dtpu_state_0),
         .test_mode(xlconstant_0_dout));
   pynqz2_ps7_0 ps7
@@ -1611,9 +1638,9 @@ module pynqz2
         .USB0_VBUS_PWRFAULT(1'b0));
   pynqz2_ps7_axi_periph_5 ps7_axi_periph
        (.ACLK(S00_ACLK_1),
-        .ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .ARESETN(rst_ps7_30M_interconnect_aresetn),
         .M00_ACLK(S00_ACLK_1),
-        .M00_ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .M00_ARESETN(rst_ps7_30M_interconnect_aresetn),
         .M00_AXI_araddr(ps7_axi_periph_M00_AXI_ARADDR),
         .M00_AXI_arready(ps7_axi_periph_M00_AXI_ARREADY),
         .M00_AXI_arvalid(ps7_axi_periph_M00_AXI_ARVALID),
@@ -1631,7 +1658,7 @@ module pynqz2
         .M00_AXI_wready(ps7_axi_periph_M00_AXI_WREADY),
         .M00_AXI_wvalid(ps7_axi_periph_M00_AXI_WVALID),
         .M01_ACLK(S00_ACLK_1),
-        .M01_ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .M01_ARESETN(rst_ps7_30M_interconnect_aresetn),
         .M01_AXI_araddr(ps7_axi_periph_M01_AXI_ARADDR),
         .M01_AXI_arready(ps7_axi_periph_M01_AXI_ARREADY),
         .M01_AXI_arvalid(ps7_axi_periph_M01_AXI_ARVALID),
@@ -1649,7 +1676,7 @@ module pynqz2
         .M01_AXI_wready(ps7_axi_periph_M01_AXI_WREADY),
         .M01_AXI_wvalid(ps7_axi_periph_M01_AXI_WVALID),
         .M02_ACLK(S00_ACLK_1),
-        .M02_ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .M02_ARESETN(rst_ps7_30M_interconnect_aresetn),
         .M02_AXI_araddr(ps7_axi_periph_M02_AXI_ARADDR),
         .M02_AXI_arready(ps7_axi_periph_M02_AXI_ARREADY),
         .M02_AXI_arvalid(ps7_axi_periph_M02_AXI_ARVALID),
@@ -1667,7 +1694,7 @@ module pynqz2
         .M02_AXI_wready(ps7_axi_periph_M02_AXI_WREADY),
         .M02_AXI_wvalid(ps7_axi_periph_M02_AXI_WVALID),
         .M03_ACLK(S00_ACLK_1),
-        .M03_ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .M03_ARESETN(rst_ps7_30M_interconnect_aresetn),
         .M03_AXI_araddr(ps7_axi_periph_M03_AXI_ARADDR),
         .M03_AXI_arready(ps7_axi_periph_M03_AXI_ARREADY),
         .M03_AXI_arvalid(ps7_axi_periph_M03_AXI_ARVALID),
@@ -1686,7 +1713,7 @@ module pynqz2
         .M03_AXI_wstrb(ps7_axi_periph_M03_AXI_WSTRB),
         .M03_AXI_wvalid(ps7_axi_periph_M03_AXI_WVALID),
         .M04_ACLK(S00_ACLK_1),
-        .M04_ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .M04_ARESETN(rst_ps7_30M_interconnect_aresetn),
         .M04_AXI_araddr(ps7_axi_periph_M04_AXI_ARADDR),
         .M04_AXI_arready(ps7_axi_periph_M04_AXI_ARREADY),
         .M04_AXI_arvalid(ps7_axi_periph_M04_AXI_ARVALID),
@@ -1705,7 +1732,7 @@ module pynqz2
         .M04_AXI_wstrb(ps7_axi_periph_M04_AXI_WSTRB),
         .M04_AXI_wvalid(ps7_axi_periph_M04_AXI_WVALID),
         .S00_ACLK(S00_ACLK_1),
-        .S00_ARESETN(rst_ps7_30M_peripheral_aresetn),
+        .S00_ARESETN(rst_ps7_30M_interconnect_aresetn),
         .S00_AXI_araddr(ps7_M_AXI_GP0_ARADDR),
         .S00_AXI_arburst(ps7_M_AXI_GP0_ARBURST),
         .S00_AXI_arcache(ps7_M_AXI_GP0_ARCACHE),
@@ -1748,8 +1775,8 @@ module pynqz2
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
         .ext_reset_in(util_vector_logic_0_Res),
+        .interconnect_aresetn(rst_ps7_30M_interconnect_aresetn),
         .mb_debug_sys_rst(1'b0),
-        .peripheral_aresetn(rst_ps7_30M_peripheral_aresetn),
         .slowest_sync_clk(S00_ACLK_1));
   pynqz2_smartconnect_0_0 smartconnect_0
        (.M00_AXI_araddr(smartconnect_0_M00_AXI_ARADDR),
@@ -1849,7 +1876,7 @@ module pynqz2
         .S03_AXI_rresp(axi_dma_weight_mem_M_AXI_MM2S_RRESP),
         .S03_AXI_rvalid(axi_dma_weight_mem_M_AXI_MM2S_RVALID),
         .aclk(S00_ACLK_1),
-        .aresetn(rst_ps7_30M_peripheral_aresetn));
+        .aresetn(rst_ps7_30M_interconnect_aresetn));
   pynqz2_util_vector_logic_0_0 util_vector_logic_0
        (.Op1(ps7_FCLK_RESET0_N),
         .Op2(reset_n_1),

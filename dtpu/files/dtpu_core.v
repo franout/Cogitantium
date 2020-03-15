@@ -85,7 +85,8 @@ module dtpu_core
         cs_ready,
         cs_start,
         
-        state
+        state,
+        ofifo, ie, csr_0
         
         );
     //////////////////////////////////////////
@@ -176,6 +177,10 @@ module dtpu_core
        
        
        output wire[3:0]state;
+          output wire ofifo;
+        output wire ie;
+        output wire csr_0;
+          
           
           wire [11:0]weight_from_memory;
           wire[11:0] input_data_from_fifo;
@@ -235,7 +240,10 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state_out()
+        .state_out(),
+        .a(ofifo),
+        .b(ie),
+        .c(csr_0)
            );
   
   /////////////////////////////////////////////
@@ -252,11 +260,9 @@ module dtpu_core
   
   assign outfifo_din[11:0]=(outfifo_write? input_data_to_fifo:12'bZ);
   assign outfifo_din[63:12]= 0;
-  
-  
   assign weight_from_memory= (wm_ce ? wm_dout[11:0]:12'bZ );
   
-  assign state=weight_from_memory[3:0];
+  assign state=input_data_from_fifo[3:0];
   
   // same clock for bram interface
   assign csr_clk=clk;

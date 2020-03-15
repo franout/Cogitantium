@@ -110,9 +110,6 @@ set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/20
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc
-set_property used_in_implementation false [get_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/constrs_1/new/avoid_trimmer.xdc]
-
 read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
 set_property used_in_implementation false [get_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc]
 

@@ -116,10 +116,8 @@ ENTITY pynqz2_axis_accelerator_ada_0_0 IS
     m_axis_0_tvalid : OUT STD_LOGIC;
     m_axis_0_tready : IN STD_LOGIC;
     m_axis_0_tdata : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+    m_axis_0_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     m_axis_0_tlast : OUT STD_LOGIC;
-    m_axis_0_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-    m_axis_0_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-    m_axis_0_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     ap_fifo_oarg_0_din : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
     ap_fifo_oarg_0_write : IN STD_LOGIC;
     ap_fifo_oarg_0_full_n : OUT STD_LOGIC;
@@ -438,9 +436,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_0_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_0_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_0_tlast : OUT STD_LOGIC;
-      m_axis_0_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_0_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_0_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_0_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_0_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_0_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_1_aclk : IN STD_LOGIC;
       m_axis_1_aresetn : IN STD_LOGIC;
       m_axis_1_tvalid : OUT STD_LOGIC;
@@ -449,9 +447,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_1_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_1_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_1_tlast : OUT STD_LOGIC;
-      m_axis_1_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_1_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_1_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_1_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_1_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_1_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_2_aclk : IN STD_LOGIC;
       m_axis_2_aresetn : IN STD_LOGIC;
       m_axis_2_tvalid : OUT STD_LOGIC;
@@ -460,9 +458,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_2_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_2_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_2_tlast : OUT STD_LOGIC;
-      m_axis_2_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_2_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_2_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_2_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_2_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_2_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_3_aclk : IN STD_LOGIC;
       m_axis_3_aresetn : IN STD_LOGIC;
       m_axis_3_tvalid : OUT STD_LOGIC;
@@ -471,9 +469,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_3_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_3_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_3_tlast : OUT STD_LOGIC;
-      m_axis_3_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_3_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_3_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_3_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_3_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_3_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_4_aclk : IN STD_LOGIC;
       m_axis_4_aresetn : IN STD_LOGIC;
       m_axis_4_tvalid : OUT STD_LOGIC;
@@ -482,9 +480,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_4_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_4_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_4_tlast : OUT STD_LOGIC;
-      m_axis_4_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_4_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_4_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_4_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_4_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_4_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_5_aclk : IN STD_LOGIC;
       m_axis_5_aresetn : IN STD_LOGIC;
       m_axis_5_tvalid : OUT STD_LOGIC;
@@ -493,9 +491,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_5_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_5_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_5_tlast : OUT STD_LOGIC;
-      m_axis_5_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_5_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_5_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_5_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_5_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_5_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_6_aclk : IN STD_LOGIC;
       m_axis_6_aresetn : IN STD_LOGIC;
       m_axis_6_tvalid : OUT STD_LOGIC;
@@ -504,9 +502,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_6_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_6_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_6_tlast : OUT STD_LOGIC;
-      m_axis_6_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_6_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_6_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_6_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_6_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_6_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_7_aclk : IN STD_LOGIC;
       m_axis_7_aresetn : IN STD_LOGIC;
       m_axis_7_tvalid : OUT STD_LOGIC;
@@ -515,9 +513,9 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
       m_axis_7_tstrb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_7_tkeep : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_7_tlast : OUT STD_LOGIC;
-      m_axis_7_tid : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_7_tdest : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      m_axis_7_tuser : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axis_7_tid : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_7_tdest : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_7_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       ap_oarg_0_clk : IN STD_LOGIC;
       ap_oarg_0_rst : IN STD_LOGIC;
       ap_oarg_0_addr : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -720,13 +718,11 @@ ARCHITECTURE pynqz2_axis_accelerator_ada_0_0_arch OF pynqz2_axis_accelerator_ada
   ATTRIBUTE X_INTERFACE_INFO OF ap_fifo_oarg_0_full_n: SIGNAL IS "xilinx.com:interface:acc_fifo_write:1.0 AP_FIFO_OARG_0 FULL_N";
   ATTRIBUTE X_INTERFACE_INFO OF ap_fifo_oarg_0_write: SIGNAL IS "xilinx.com:interface:acc_fifo_write:1.0 AP_FIFO_OARG_0 WR_EN";
   ATTRIBUTE X_INTERFACE_INFO OF ap_fifo_oarg_0_din: SIGNAL IS "xilinx.com:interface:acc_fifo_write:1.0 AP_FIFO_OARG_0 WR_DATA";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tuser: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TUSER";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tdest: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TDEST";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tid: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TID";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TLAST";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tkeep: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TKEEP";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TDATA";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TREADY";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_0_tvalid: SIGNAL IS "XIL_INTERFACENAME M_AXIS_0, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 4, TUSER_WIDTH 8, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN pynqz2_ps7_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_0_tvalid: SIGNAL IS "XIL_INTERFACENAME M_AXIS_0, TDATA_NUM_BYTES 8, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN pynqz2_ps7_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_0_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_0 TVALID";
   ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_aresetn: SIGNAL IS "XIL_INTERFACENAME m_axis_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 m_axis_aresetn RST";
@@ -810,7 +806,7 @@ BEGIN
       C_S_AXIS_TID_WIDTH => 1,
       C_S_AXIS_TDEST_WIDTH => 1,
       C_AP_IARG_TYPE => X"0000000000000000000000000000000000000000000000010000000000000000",
-      C_AP_IARG_MB_DEPTH => X"0000000400000004000000040000000400000004000000040000000100000001",
+      C_AP_IARG_MB_DEPTH => X"0000000400000004000000040000000400000004000000040000000200000002",
       C_AP_IARG_WIDTH => X"0000002000000020000000200000002000000020000000400000004000000008",
       C_AP_IARG_N_DIM => X"0000000100000001000000010000000100000001000000010000000100000001",
       C_AP_IARG_DIM_1 => X"0000040000000400000004000000040000000400000008000000080000000400",
@@ -827,9 +823,9 @@ BEGIN
       C_AP_IARG_6_DWIDTH => 32,
       C_AP_IARG_7_DWIDTH => 32,
       C_M_AXIS_TDATA_WIDTH => 64,
-      C_M_AXIS_TUSER_WIDTH => 8,
-      C_M_AXIS_TID_WIDTH => 4,
-      C_M_AXIS_TDEST_WIDTH => 4,
+      C_M_AXIS_TUSER_WIDTH => 1,
+      C_M_AXIS_TID_WIDTH => 1,
+      C_M_AXIS_TDEST_WIDTH => 1,
       C_AP_OARG_TYPE => X"0000000000000000000000000000000000000000000000000000000000000001",
       C_AP_OARG_MB_DEPTH => X"0000000400000004000000040000000400000004000000040000000400000004",
       C_AP_OARG_WIDTH => X"0000002000000020000000200000002000000020000000200000002000000040",
@@ -892,7 +888,7 @@ BEGIN
       C_AP_OSCALAR_DIN_WIDTH => 32,
       C_AP_OSCALAR_IO_DIN_WIDTH => 32,
       C_ENABLE_STREAM_CLK => 0,
-      C_PRMRY_IS_ACLK_ASYNC => 1,
+      C_PRMRY_IS_ACLK_ASYNC => 0,
       C_S_AXIS_HAS_TSTRB => 0,
       C_S_AXIS_HAS_TKEEP => 1,
       C_NONE => 2,
@@ -1070,10 +1066,8 @@ BEGIN
       m_axis_0_tvalid => m_axis_0_tvalid,
       m_axis_0_tready => m_axis_0_tready,
       m_axis_0_tdata => m_axis_0_tdata,
+      m_axis_0_tkeep => m_axis_0_tkeep,
       m_axis_0_tlast => m_axis_0_tlast,
-      m_axis_0_tid => m_axis_0_tid,
-      m_axis_0_tdest => m_axis_0_tdest,
-      m_axis_0_tuser => m_axis_0_tuser,
       m_axis_1_aclk => '0',
       m_axis_1_aresetn => '0',
       m_axis_1_tready => '0',
