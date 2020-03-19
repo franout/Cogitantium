@@ -176,7 +176,7 @@ module dtpu_core
             output wire cs_idle;
        
        
-       output wire[3:0]state;
+       output reg[3:0]state;
           output wire ofifo;
         output wire ie;
         output wire csr_0;
@@ -256,13 +256,20 @@ module dtpu_core
   
   
   // dummy assignment for 3 columns and rows 
-  assign input_data_from_fifo= (infifo_read ? infifo_dout[11:0]:12'bZ);
+  assign input_data_from_fifo= (infifo_read ? infifo_dout[11:0]:12'b0);
   
-  assign outfifo_din[11:0]=(outfifo_write? input_data_to_fifo:12'bZ);
+  assign outfifo_din[11:0]=(outfifo_write? input_data_to_fifo:12'b0);
   assign outfifo_din[63:12]= 0;
   assign weight_from_memory= (wm_ce ? wm_dout[11:0]:12'bZ );
   
-  assign state=input_data_from_fifo[3:0];
+  
+  
+  //assign state=infifo_dout[3:0];
+  
+  always @(infifo_read)
+  begin
+  state<=infifo_dout[3:0];
+  end 
   
   // same clock for bram interface
   assign csr_clk=clk;

@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="pynqz2" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1584300508"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1584300508"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1584300508"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1584300508"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1584645314"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1584645314"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1584645314"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1584645314"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/pynqz2_ps7_0/pynqz2_ps7_0.xci" Type="IP">
         <Instance HierarchyPath="ps7"/>

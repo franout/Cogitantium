@@ -78,6 +78,7 @@ module tb_cu();
         .ADDRESS_SIZE_CSR(32),
         .ADDRESS_SIZE_WMEMORY(32)) uut 
      (
+     .glb_enable(1),
      .clk(clk),
      .reset(reset),
      .enable_mxu(enable_mxu),

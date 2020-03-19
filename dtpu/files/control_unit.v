@@ -141,7 +141,7 @@ start_p1: begin
                 state<=idle;
                 end
                 end  
-start_p2:  begin 
+start_p2:  begin
             if(cs_start) begin 
             state<=start_p3; 
             end else begin 
@@ -167,12 +167,13 @@ retrieve_data: begin
                 //state<=state;                
                 //end else begin
                 //state<=activate_enable_data_type;
-                state<=state; 
+               // state<=state; 
                 //end 
                 
                 
-                outfifo_write<=1'b1;
+                //outfifo_write<=1'b1;
             infifo_read<=1'b1;
+            state<=activate_enable_data_type;
                  end
 
 activate_enable_data_type: begin
@@ -181,9 +182,9 @@ activate_enable_data_type: begin
                             enable_mxu<=1'b1;
                              wm_ce<=1'b1;
                       //       if (outfifo_is_full) begin 
-                        //     state<=state;
+                             state<=state;
                           //   end else begin 
-                            state<=compute;
+                        //    state<=compute;
                             //end
                          end
 

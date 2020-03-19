@@ -181,6 +181,7 @@ driver_wm.sendchannel.wait()
 
 
 
+
 ######################################################
 ###### program the dma for the in/out fifos ##########
 ######################################################
@@ -188,8 +189,6 @@ driver_wm.sendchannel.wait()
 driver_fifo=overlay.axi_dma_infifo
 
 driver_fifo.sendchannel.transfer(input_fifo_buffer)
-driver_fifo.recvchannel.transfer(output_fifo_buffer)
-
 driver_fifo.sendchannel.wait()
 
 
@@ -213,17 +212,19 @@ accelerator.write(OARG_RQT_EN,1) # out fifo must be empty
 accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
 
 # optional configure input scalar request enable  and update them 
-accelerator.write(ISCALAR_RQT_EN,0) # NO SCALAR
-accelerator.write(OSCALAR_RQT_EN,0)
+accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
+accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
 
 #Write TDEST value in Output Argument TDEST Register (0x0240 to 0x025C).
-accelerator.write(OARG0_TDEST,0)
+accelerator.write(OARG0_TDEST,0) # only one output 
 
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
 start_time = time.time()
 accelerator.write(CMD,0x0FF20001) #execute command 
 
+
+accelerator.read(OARG0_STATUS) # check output buffer status
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
@@ -251,6 +252,7 @@ accelerator.write(CMD,0x00000001)
 
 accelerator.write(STATUS,0x00000003)##clear status
 
+driver_fifo.recvchannel.transfer(output_fifo_buffer)
 ## retrieve the results and print 
 driver_fifo.recvchannel.wait()
 stop_time = time.time()

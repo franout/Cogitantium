@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Sun Mar 15 20:35:24 2020
+| Date         : Thu Mar 19 20:22:41 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
 | Design       : pynqz2_wrapper
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 11965 |     0 |     53200 | 22.49 |
-|   LUT as Logic             | 10355 |     0 |     53200 | 19.46 |
-|   LUT as Memory            |  1610 |     0 |     17400 |  9.25 |
+| Slice LUTs*                | 11951 |     0 |     53200 | 22.46 |
+|   LUT as Logic             | 10343 |     0 |     53200 | 19.44 |
+|   LUT as Memory            |  1608 |     0 |     17400 |  9.24 |
 |     LUT as Distributed RAM |  1170 |     0 |           |       |
-|     LUT as Shift Register  |   440 |     0 |           |       |
-| Slice Registers            | 13846 |     0 |    106400 | 13.01 |
-|   Register as Flip Flop    | 13846 |     0 |    106400 | 13.01 |
+|     LUT as Shift Register  |   438 |     0 |           |       |
+| Slice Registers            | 13856 |     0 |    106400 | 13.02 |
+|   Register as Flip Flop    | 13856 |     0 |    106400 | 13.02 |
 |   Register as Latch        |     0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |   120 |     0 |     26600 |  0.45 |
 | F8 Muxes                   |     1 |     0 |     13300 | <0.01 |
@@ -59,7 +59,7 @@ Table of Contents
 | 55    |          Yes |           - |          Set |
 | 725   |          Yes |           - |        Reset |
 | 361   |          Yes |         Set |            - |
-| 12705 |          Yes |       Reset |            - |
+| 12715 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -151,17 +151,17 @@ Table of Contents
 +----------+-------+----------------------+
 | Ref Name |  Used |  Functional Category |
 +----------+-------+----------------------+
-| FDRE     | 12705 |         Flop & Latch |
-| LUT3     |  2893 |                  LUT |
-| LUT6     |  2602 |                  LUT |
-| LUT5     |  2005 |                  LUT |
+| FDRE     | 12715 |         Flop & Latch |
+| LUT3     |  2888 |                  LUT |
+| LUT6     |  2594 |                  LUT |
+| LUT5     |  1995 |                  LUT |
 | RAMD32   |  1744 |   Distributed Memory |
-| LUT4     |  1452 |                  LUT |
-| LUT2     |   941 |                  LUT |
+| LUT4     |  1453 |                  LUT |
+| LUT2     |   967 |                  LUT |
 | FDCE     |   725 |         Flop & Latch |
 | RAMS32   |   574 |   Distributed Memory |
-| LUT1     |   544 |                  LUT |
-| SRL16E   |   383 |   Distributed Memory |
+| LUT1     |   528 |                  LUT |
+| SRL16E   |   381 |   Distributed Memory |
 | FDSE     |   361 |         Flop & Latch |
 | CARRY4   |   191 |           CarryLogic |
 | BIBUF    |   130 |                   IO |
@@ -169,10 +169,9 @@ Table of Contents
 | SRLC32E  |    57 |   Distributed Memory |
 | FDPE     |    55 |         Flop & Latch |
 | RAMB36E1 |    21 |         Block Memory |
+| OBUF     |     7 |                   IO |
 | DSP48E1  |     6 |     Block Arithmetic |
 | RAMB18E1 |     4 |         Block Memory |
-| OBUFT    |     4 |                   IO |
-| OBUF     |     3 |                   IO |
 | IBUF     |     2 |                   IO |
 | PS7      |     1 | Specialized Resource |
 | MUXF8    |     1 |                MuxFx |

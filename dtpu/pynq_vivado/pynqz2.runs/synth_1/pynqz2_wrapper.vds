@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Sun Mar 15 20:28:39 2020
-# Process ID: 25799
+# Start of session at: Thu Mar 19 20:15:23 2020
+# Process ID: 26501
 # Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1
 # Command line: vivado -log pynqz2_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynqz2_wrapper.tcl
 # Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.vds
@@ -36,16 +36,16 @@ INFO: [IP_Flow 19-4728] Bus Interface 'weight_mem_interface': Added interface pa
 WARNING: [IP_Flow 19-3153] Bus Interface 'clk': ASSOCIATED_BUSIF bus parameter is missing.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1682.551 ; gain = 208.102 ; free physical = 1433 ; free virtual = 11436
+add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1674.551 ; gain = 200.098 ; free physical = 6574 ; free virtual = 13709
 Command: synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -directive FewerCarryChains -keep_equivalent_registers -resource_sharing off -no_lc
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 25870 
+INFO: Helper process launched with PID 26577 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:29 . Memory (MB): peak = 1960.684 ; gain = 201.684 ; free physical = 869 ; free virtual = 10878
+Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:32 . Memory (MB): peak = 1960.719 ; gain = 202.715 ; free physical = 5935 ; free virtual = 13081
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:994]
@@ -5902,7 +5902,7 @@ INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM ge
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
-	Parameter MEMORY_SIZE bound to: 5152 - type: integer 
+	Parameter MEMORY_SIZE bound to: 5088 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
@@ -5917,32 +5917,32 @@ INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM ge
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
-	Parameter WRITE_DATA_WIDTH_A bound to: 161 - type: integer 
-	Parameter READ_DATA_WIDTH_A bound to: 161 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_A bound to: 161 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 159 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 159 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 159 - type: integer 
 	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
 	Parameter READ_LATENCY_A bound to: 2 - type: integer 
 	Parameter WRITE_MODE_A bound to: 1 - type: integer 
 	Parameter RST_MODE_A bound to: SYNC - type: string 
-	Parameter WRITE_DATA_WIDTH_B bound to: 161 - type: integer 
-	Parameter READ_DATA_WIDTH_B bound to: 161 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_B bound to: 161 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 159 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 159 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 159 - type: integer 
 	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 1 - type: integer 
 	Parameter WRITE_MODE_B bound to: 1 - type: integer 
 	Parameter RST_MODE_B bound to: SYNC - type: string 
 	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
-	Parameter P_MIN_WIDTH_DATA_A bound to: 161 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_B bound to: 161 - type: integer 
-	Parameter P_MIN_WIDTH_DATA bound to: 161 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_ECC bound to: 161 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 159 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 159 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 159 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 159 - type: integer 
 	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
 	Parameter P_ECC_MODE bound to: no_ecc - type: string 
 	Parameter P_MEMORY_OPT bound to: yes - type: string 
-	Parameter P_WIDTH_COL_WRITE_A bound to: 161 - type: integer 
-	Parameter P_WIDTH_COL_WRITE_B bound to: 161 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 159 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 159 - type: integer 
 	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
 	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
 	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
@@ -5960,11 +5960,11 @@ INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM ge
 	Parameter P_ENABLE_BYTE_WRITE_A bound to: 0 - type: integer 
 	Parameter P_ENABLE_BYTE_WRITE_B bound to: 0 - type: integer 
 	Parameter P_SDP_WRITE_MODE bound to: yes - type: string 
-	Parameter rsta_loop_iter bound to: 164 - type: integer 
-	Parameter rstb_loop_iter bound to: 164 - type: integer 
+	Parameter rsta_loop_iter bound to: 160 - type: integer 
+	Parameter rstb_loop_iter bound to: 160 - type: integer 
 	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 161 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 159 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_ecc = "no_ecc" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
@@ -6054,7 +6054,7 @@ INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instan
 	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 21 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
-	Parameter MEMORY_SIZE bound to: 320 - type: integer 
+	Parameter MEMORY_SIZE bound to: 288 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
@@ -6069,32 +6069,32 @@ INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instan
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
-	Parameter WRITE_DATA_WIDTH_A bound to: 10 - type: integer 
-	Parameter READ_DATA_WIDTH_A bound to: 10 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_A bound to: 10 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 9 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 9 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 9 - type: integer 
 	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
 	Parameter READ_LATENCY_A bound to: 2 - type: integer 
 	Parameter WRITE_MODE_A bound to: 1 - type: integer 
 	Parameter RST_MODE_A bound to: SYNC - type: string 
-	Parameter WRITE_DATA_WIDTH_B bound to: 10 - type: integer 
-	Parameter READ_DATA_WIDTH_B bound to: 10 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_B bound to: 10 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 9 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 9 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 9 - type: integer 
 	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 1 - type: integer 
 	Parameter WRITE_MODE_B bound to: 1 - type: integer 
 	Parameter RST_MODE_B bound to: SYNC - type: string 
 	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
-	Parameter P_MIN_WIDTH_DATA_A bound to: 10 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_B bound to: 10 - type: integer 
-	Parameter P_MIN_WIDTH_DATA bound to: 10 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_ECC bound to: 10 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 9 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 9 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 9 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 9 - type: integer 
 	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
 	Parameter P_ECC_MODE bound to: no_ecc - type: string 
 	Parameter P_MEMORY_OPT bound to: yes - type: string 
-	Parameter P_WIDTH_COL_WRITE_A bound to: 10 - type: integer 
-	Parameter P_WIDTH_COL_WRITE_B bound to: 10 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 9 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 9 - type: integer 
 	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
 	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
 	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
@@ -6116,10 +6116,10 @@ INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instan
 	Parameter rstb_loop_iter bound to: 12 - type: integer 
 	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 10 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 9 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
-	Parameter MEMORY_SIZE bound to: 2816 - type: integer 
+	Parameter MEMORY_SIZE bound to: 2784 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
@@ -6134,32 +6134,32 @@ INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instan
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
-	Parameter WRITE_DATA_WIDTH_A bound to: 88 - type: integer 
-	Parameter READ_DATA_WIDTH_A bound to: 88 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_A bound to: 88 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 87 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 87 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 87 - type: integer 
 	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
 	Parameter READ_LATENCY_A bound to: 2 - type: integer 
 	Parameter WRITE_MODE_A bound to: 1 - type: integer 
 	Parameter RST_MODE_A bound to: SYNC - type: string 
-	Parameter WRITE_DATA_WIDTH_B bound to: 88 - type: integer 
-	Parameter READ_DATA_WIDTH_B bound to: 88 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_B bound to: 88 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 87 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 87 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 87 - type: integer 
 	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 1 - type: integer 
 	Parameter WRITE_MODE_B bound to: 1 - type: integer 
 	Parameter RST_MODE_B bound to: SYNC - type: string 
 	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
-	Parameter P_MIN_WIDTH_DATA_A bound to: 88 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_B bound to: 88 - type: integer 
-	Parameter P_MIN_WIDTH_DATA bound to: 88 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_ECC bound to: 88 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 87 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 87 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 87 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 87 - type: integer 
 	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
 	Parameter P_ECC_MODE bound to: no_ecc - type: string 
 	Parameter P_MEMORY_OPT bound to: yes - type: string 
-	Parameter P_WIDTH_COL_WRITE_A bound to: 88 - type: integer 
-	Parameter P_WIDTH_COL_WRITE_B bound to: 88 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 87 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 87 - type: integer 
 	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
 	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
 	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
@@ -6181,7 +6181,7 @@ INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instan
 	Parameter rstb_loop_iter bound to: 88 - type: integer 
 	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 88 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 87 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
 	Parameter MEMORY_SIZE bound to: 4 - type: integer 
@@ -6380,7 +6380,7 @@ WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_7d7d_
 	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 18 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
-	Parameter MEMORY_SIZE bound to: 4544 - type: integer 
+	Parameter MEMORY_SIZE bound to: 4480 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
@@ -6395,32 +6395,32 @@ WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_7d7d_
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
-	Parameter WRITE_DATA_WIDTH_A bound to: 142 - type: integer 
-	Parameter READ_DATA_WIDTH_A bound to: 142 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_A bound to: 142 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 140 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 140 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 140 - type: integer 
 	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
 	Parameter READ_LATENCY_A bound to: 2 - type: integer 
 	Parameter WRITE_MODE_A bound to: 1 - type: integer 
 	Parameter RST_MODE_A bound to: SYNC - type: string 
-	Parameter WRITE_DATA_WIDTH_B bound to: 142 - type: integer 
-	Parameter READ_DATA_WIDTH_B bound to: 142 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_B bound to: 142 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 140 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 140 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 140 - type: integer 
 	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 1 - type: integer 
 	Parameter WRITE_MODE_B bound to: 1 - type: integer 
 	Parameter RST_MODE_B bound to: SYNC - type: string 
 	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
-	Parameter P_MIN_WIDTH_DATA_A bound to: 142 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_B bound to: 142 - type: integer 
-	Parameter P_MIN_WIDTH_DATA bound to: 142 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_ECC bound to: 142 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 140 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 140 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 140 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 140 - type: integer 
 	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
 	Parameter P_ECC_MODE bound to: no_ecc - type: string 
 	Parameter P_MEMORY_OPT bound to: yes - type: string 
-	Parameter P_WIDTH_COL_WRITE_A bound to: 142 - type: integer 
-	Parameter P_WIDTH_COL_WRITE_B bound to: 142 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 140 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 140 - type: integer 
 	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
 	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
 	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
@@ -6438,14 +6438,14 @@ WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_7d7d_
 	Parameter P_ENABLE_BYTE_WRITE_A bound to: 0 - type: integer 
 	Parameter P_ENABLE_BYTE_WRITE_B bound to: 0 - type: integer 
 	Parameter P_SDP_WRITE_MODE bound to: yes - type: string 
-	Parameter rsta_loop_iter bound to: 144 - type: integer 
-	Parameter rstb_loop_iter bound to: 144 - type: integer 
+	Parameter rsta_loop_iter bound to: 140 - type: integer 
+	Parameter rstb_loop_iter bound to: 140 - type: integer 
 	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 142 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 140 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
-	Parameter MEMORY_SIZE bound to: 3392 - type: integer 
+	Parameter MEMORY_SIZE bound to: 3360 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
@@ -6460,32 +6460,32 @@ WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_7d7d_
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
-	Parameter WRITE_DATA_WIDTH_A bound to: 106 - type: integer 
-	Parameter READ_DATA_WIDTH_A bound to: 106 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_A bound to: 106 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 105 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 105 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 105 - type: integer 
 	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
 	Parameter READ_LATENCY_A bound to: 2 - type: integer 
 	Parameter WRITE_MODE_A bound to: 1 - type: integer 
 	Parameter RST_MODE_A bound to: SYNC - type: string 
-	Parameter WRITE_DATA_WIDTH_B bound to: 106 - type: integer 
-	Parameter READ_DATA_WIDTH_B bound to: 106 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_B bound to: 106 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 105 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 105 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 105 - type: integer 
 	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 1 - type: integer 
 	Parameter WRITE_MODE_B bound to: 1 - type: integer 
 	Parameter RST_MODE_B bound to: SYNC - type: string 
 	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
-	Parameter P_MIN_WIDTH_DATA_A bound to: 106 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_B bound to: 106 - type: integer 
-	Parameter P_MIN_WIDTH_DATA bound to: 106 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_ECC bound to: 106 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 105 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 105 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 105 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 105 - type: integer 
 	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
 	Parameter P_ECC_MODE bound to: no_ecc - type: string 
 	Parameter P_MEMORY_OPT bound to: yes - type: string 
-	Parameter P_WIDTH_COL_WRITE_A bound to: 106 - type: integer 
-	Parameter P_WIDTH_COL_WRITE_B bound to: 106 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 105 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 105 - type: integer 
 	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
 	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
 	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
@@ -6507,12 +6507,12 @@ WARNING: [Synth 8-7023] instance 's00_transaction_regulator' of module 'bd_7d7d_
 	Parameter rstb_loop_iter bound to: 108 - type: integer 
 	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 106 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 105 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 WARNING: [Synth 8-7023] instance 's01_transaction_regulator' of module 'bd_7d7d_s01tr_0' has 38 connections declared, but only 37 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/synth/bd_7d7d.v:2770]
 WARNING: [Synth 8-7023] instance 's02_transaction_regulator' of module 'bd_7d7d_s02tr_0' has 46 connections declared, but only 45 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/synth/bd_7d7d.v:3239]
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
-	Parameter MEMORY_SIZE bound to: 896 - type: integer 
+	Parameter MEMORY_SIZE bound to: 864 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
@@ -6527,32 +6527,32 @@ WARNING: [Synth 8-7023] instance 's02_transaction_regulator' of module 'bd_7d7d_
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
-	Parameter WRITE_DATA_WIDTH_A bound to: 28 - type: integer 
-	Parameter READ_DATA_WIDTH_A bound to: 28 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_A bound to: 28 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 27 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 27 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 27 - type: integer 
 	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
 	Parameter READ_LATENCY_A bound to: 2 - type: integer 
 	Parameter WRITE_MODE_A bound to: 1 - type: integer 
 	Parameter RST_MODE_A bound to: SYNC - type: string 
-	Parameter WRITE_DATA_WIDTH_B bound to: 28 - type: integer 
-	Parameter READ_DATA_WIDTH_B bound to: 28 - type: integer 
-	Parameter BYTE_WRITE_WIDTH_B bound to: 28 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 27 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 27 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 27 - type: integer 
 	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 1 - type: integer 
 	Parameter WRITE_MODE_B bound to: 1 - type: integer 
 	Parameter RST_MODE_B bound to: SYNC - type: string 
 	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
-	Parameter P_MIN_WIDTH_DATA_A bound to: 28 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_B bound to: 28 - type: integer 
-	Parameter P_MIN_WIDTH_DATA bound to: 28 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_ECC bound to: 28 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 27 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 27 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 27 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 27 - type: integer 
 	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
 	Parameter P_ECC_MODE bound to: no_ecc - type: string 
 	Parameter P_MEMORY_OPT bound to: yes - type: string 
-	Parameter P_WIDTH_COL_WRITE_A bound to: 28 - type: integer 
-	Parameter P_WIDTH_COL_WRITE_B bound to: 28 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 27 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 27 - type: integer 
 	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
 	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
 	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
@@ -6574,7 +6574,72 @@ WARNING: [Synth 8-7023] instance 's02_transaction_regulator' of module 'bd_7d7d_
 	Parameter rstb_loop_iter bound to: 28 - type: integer 
 	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
-	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 28 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 27 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
+	Parameter MEMORY_TYPE bound to: 1 - type: integer 
+	Parameter MEMORY_SIZE bound to: 2816 - type: integer 
+	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
+	Parameter CLOCKING_MODE bound to: 0 - type: integer 
+	Parameter ECC_MODE bound to: 0 - type: integer 
+	Parameter MEMORY_INIT_FILE bound to: none - type: string 
+	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
+	Parameter USE_MEM_INIT bound to: 0 - type: integer 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
+	Parameter WAKEUP_TIME bound to: 0 - type: integer 
+	Parameter AUTO_SLEEP_TIME bound to: 0 - type: integer 
+	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
+	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
+	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 88 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 88 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 88 - type: integer 
+	Parameter ADDR_WIDTH_A bound to: 5 - type: integer 
+	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
+	Parameter READ_LATENCY_A bound to: 2 - type: integer 
+	Parameter WRITE_MODE_A bound to: 1 - type: integer 
+	Parameter RST_MODE_A bound to: SYNC - type: string 
+	Parameter WRITE_DATA_WIDTH_B bound to: 88 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 88 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 88 - type: integer 
+	Parameter ADDR_WIDTH_B bound to: 5 - type: integer 
+	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
+	Parameter READ_LATENCY_B bound to: 1 - type: integer 
+	Parameter WRITE_MODE_B bound to: 1 - type: integer 
+	Parameter RST_MODE_B bound to: SYNC - type: string 
+	Parameter P_MEMORY_PRIMITIVE bound to: distributed - type: string 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 88 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 88 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 88 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 88 - type: integer 
+	Parameter P_MAX_DEPTH_DATA bound to: 32 - type: integer 
+	Parameter P_ECC_MODE bound to: no_ecc - type: string 
+	Parameter P_MEMORY_OPT bound to: yes - type: string 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 88 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 88 - type: integer 
+	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
+	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_WRITE_B bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_READ_A bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_READ_B bound to: 1 - type: integer 
+	Parameter P_WIDTH_ADDR_WRITE_A bound to: 5 - type: integer 
+	Parameter P_WIDTH_ADDR_WRITE_B bound to: 5 - type: integer 
+	Parameter P_WIDTH_ADDR_READ_A bound to: 5 - type: integer 
+	Parameter P_WIDTH_ADDR_READ_B bound to: 5 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_WRITE_A bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_WRITE_B bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_READ_A bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_READ_B bound to: 0 - type: integer 
+	Parameter P_ENABLE_BYTE_WRITE_A bound to: 0 - type: integer 
+	Parameter P_ENABLE_BYTE_WRITE_B bound to: 0 - type: integer 
+	Parameter P_SDP_WRITE_MODE bound to: yes - type: string 
+	Parameter rsta_loop_iter bound to: 88 - type: integer 
+	Parameter rstb_loop_iter bound to: 88 - type: integer 
+	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
+	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 88 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 WARNING: [Synth 8-7023] instance 's03_transaction_regulator' of module 'bd_7d7d_s03tr_0' has 38 connections declared, but only 37 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/synth/bd_7d7d.v:3720]
 WARNING: [Synth 8-7023] instance 'switchboards' of module 'switchboards_imp_1NINBJX' has 127 connections declared, but only 104 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/synth/bd_7d7d.v:1260]
@@ -6642,35 +6707,38 @@ WARNING: [Synth 8-3331] design xlconcat_v2_1_3_xlconcat has unconnected port In2
 WARNING: [Synth 8-3331] design xlconcat_v2_1_3_xlconcat has unconnected port In29[0]
 WARNING: [Synth 8-3331] design xlconcat_v2_1_3_xlconcat has unconnected port In30[0]
 WARNING: [Synth 8-3331] design xlconcat_v2_1_3_xlconcat has unconnected port In31[0]
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized7 has unconnected port aclk
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized7 has unconnected port aclken
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized7 has unconnected port areset
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized8 has unconnected port aclk
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized8 has unconnected port aclken
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized8 has unconnected port areset
 WARNING: [Synth 8-3331] design sc_util_v1_0_4_onehot_to_binary__parameterized1 has unconnected port din[0]
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized12 has unconnected port aclk
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized12 has unconnected port aclken
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized12 has unconnected port areset
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized15 has unconnected port aclk
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized15 has unconnected port aclken
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized15 has unconnected port areset
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized2 has unconnected port connectivity[3]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized2 has unconnected port connectivity[2]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized2 has unconnected port connectivity[1]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized2 has unconnected port connectivity[0]
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized10 has unconnected port aclk
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized10 has unconnected port aclken
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized10 has unconnected port areset
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized11 has unconnected port aclk
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized11 has unconnected port aclken
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized11 has unconnected port areset
 WARNING: [Synth 8-3331] design sc_util_v1_0_4_onehot_to_binary__parameterized2 has unconnected port din[0]
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized13 has unconnected port aclk
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized13 has unconnected port aclken
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized13 has unconnected port areset
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized1 has unconnected port connectivity[3]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized1 has unconnected port connectivity[2]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized1 has unconnected port connectivity[1]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized1 has unconnected port connectivity[0]
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized9 has unconnected port aclk
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized9 has unconnected port aclken
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized9 has unconnected port areset
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized10 has unconnected port aclk
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized10 has unconnected port aclken
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized10 has unconnected port areset
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized0 has unconnected port connectivity[3]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized0 has unconnected port connectivity[2]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized0 has unconnected port connectivity[1]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top__parameterized0 has unconnected port connectivity[0]
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized6 has unconnected port aclk
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized6 has unconnected port aclken
-WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized6 has unconnected port areset
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized7 has unconnected port aclk
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized7 has unconnected port aclken
+WARNING: [Synth 8-3331] design sc_util_v1_0_4_pipeline__parameterized7 has unconnected port areset
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top has unconnected port connectivity[3]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top has unconnected port connectivity[2]
 WARNING: [Synth 8-3331] design sc_switchboard_v1_0_6_top has unconnected port connectivity[1]
@@ -6685,7 +6753,6 @@ WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected 
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port clkb
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port regceb
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port web[0]
-WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[105]
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[104]
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[103]
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[102]
@@ -6713,11 +6780,9 @@ WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected 
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[80]
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[79]
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[78]
-WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[77]
-WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[76]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:42 ; elapsed = 00:02:11 . Memory (MB): peak = 2561.277 ; gain = 802.277 ; free physical = 508 ; free virtual = 10605
+Finished RTL Elaboration : Time (s): cpu = 00:01:46 ; elapsed = 00:02:19 . Memory (MB): peak = 2561.617 ; gain = 803.613 ; free physical = 5606 ; free virtual = 12835
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -6730,12 +6795,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:46 ; elapsed = 00:02:16 . Memory (MB): peak = 2561.277 ; gain = 802.277 ; free physical = 499 ; free virtual = 10660
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:51 ; elapsed = 00:02:24 . Memory (MB): peak = 2561.617 ; gain = 803.613 ; free physical = 5592 ; free virtual = 12883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:46 ; elapsed = 00:02:16 . Memory (MB): peak = 2561.277 ; gain = 802.277 ; free physical = 499 ; free virtual = 10660
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:51 ; elapsed = 00:02:24 . Memory (MB): peak = 2561.617 ; gain = 803.613 ; free physical = 5592 ; free virtual = 12883
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2676.566 ; gain = 0.000 ; free physical = 158 ; free virtual = 10088
+Netlist sorting complete. Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2676.906 ; gain = 0.000 ; free physical = 5026 ; free virtual = 12344
 INFO: [Netlist 29-17] Analyzing 229 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -6837,15 +6902,15 @@ Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memo
 Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.gen_fifo_req.inst_fifo_req/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
 Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.gen_fifo_req.inst_fifo_req/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
+Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
 Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
 Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
-Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
-Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_w_node/inst/inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {PRIMITIVE_SUBGROUP==LUTRAM || PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==uram || PRIMITIVE_SUBGROUP==BRAM}'. [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl:3]
 Finished Sourcing Tcl File [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl] for cell 'pynqz2_i/smartconnect_0/inst/m00_nodes/m00_w_node/inst/inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory'
@@ -6904,23 +6969,23 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/pynqz2_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3300.957 ; gain = 0.000 ; free physical = 308 ; free virtual = 9725
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3301.297 ; gain = 0.000 ; free physical = 4584 ; free virtual = 11880
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 92 instances were transformed.
   FDR => FDRE: 60 instances
   MULT_AND => LUT2: 30 instances
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 3300.957 ; gain = 0.000 ; free physical = 314 ; free virtual = 9725
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 3301.297 ; gain = 0.000 ; free physical = 4578 ; free virtual = 11875
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:02:46 ; elapsed = 00:03:12 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 1071 ; free virtual = 10581
+Finished Constraint Validation : Time (s): cpu = 00:02:56 ; elapsed = 00:03:25 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 5337 ; free virtual = 12707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:02:46 ; elapsed = 00:03:12 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 1071 ; free virtual = 10581
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:56 ; elapsed = 00:03:25 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 5337 ; free virtual = 12707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -6978,7 +7043,6 @@ Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_node
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/\gen_normal_area.gen_fifo_req.inst_fifo_req /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_nodes/m00_b_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_nodes/m00_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_nodes/m00_w_node/inst/inst_si_handler/\gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/m00_nodes/m00_w_node/inst/inst_si_handler/\gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
@@ -6997,8 +7061,9 @@ Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s00_node
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s01_nodes/s01_r_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s03_nodes/s03_r_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_b_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:47 ; elapsed = 00:03:13 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 1093 ; free virtual = 10559
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:58 ; elapsed = 00:03:27 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 5322 ; free virtual = 12692
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'smpl_cs_reg' in module 'axi_dma_smple_sm'
 INFO: [Synth 8-5545] ROM "var_start_vector" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
@@ -7187,6 +7252,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
                 start_p2 |                              011 |                             1001
                 start_p3 |                              100 |                             1010
            retrieve_data |                              101 |                             0100
+activate_enable_data_type |                              110 |                             0101
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'control_unit'
 ---------------------------------------------------------------------------------------------------
@@ -7207,7 +7273,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_axi.gen_write.write_cs_reg' using encoding 'one-hot' in module 'sc_mmu_v1_0_8_decerr_slave'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:06 ; elapsed = 00:03:36 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 956 ; free virtual = 10528
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:16 ; elapsed = 00:03:50 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 5251 ; free virtual = 12649
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_SYNC_I/NEW_INTRO.AP_ISCALARSTART_SYNC_I' (axis_acc_adapter_cdc_sync__parameterized5) to 'pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_SYNC_I/NEW_INTRO.AP_OSCALARSTART_SYNC_I'
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7220,9 +7286,9 @@ Report RTL Partitions:
 |      |RTL Partition                          |Replication |Instances |
 +------+---------------------------------------+------------+----------+
 |1     |sc_util_v1_0_4_axi_reg_stall           |          28|      6610|
-|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|      4836|
+|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|      4832|
 |3     |sc_exit_v1_0_9_splitter__GC0           |           1|        18|
-|4     |sc_exit_v1_0_9_top__GC0                |           1|       605|
+|4     |sc_exit_v1_0_9_top__GC0                |           1|       563|
 |5     |sc_mmu_v1_0_8_top__GC0                 |           1|      2187|
 |6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|       281|
 |7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           1|      2187|
@@ -7230,8 +7296,8 @@ Report RTL Partitions:
 |9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|      2187|
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       281|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|       281|
-|12    |bd_7d7d__GC0                           |           1|     17501|
-|13    |pynqz2__GC0                            |           1|     39758|
+|12    |bd_7d7d__GC0                           |           1|     17435|
+|13    |pynqz2__GC0                            |           1|     39774|
 +------+---------------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -7410,7 +7476,7 @@ WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_EXT.ACT_LO_EXT/GE
 WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module proc_sys_reset.
 WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:33 ; elapsed = 00:05:11 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 836 ; free virtual = 10462
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:48 ; elapsed = 00:05:30 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4937 ; free virtual = 12508
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7421,10 +7487,10 @@ Report RTL Partitions:
 +------+---------------------------------------+------------+----------+
 |      |RTL Partition                          |Replication |Instances |
 +------+---------------------------------------+------------+----------+
-|1     |sc_util_v1_0_4_axi_reg_stall           |           1|       352|
-|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|       956|
+|1     |sc_util_v1_0_4_axi_reg_stall           |           1|       347|
+|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|       951|
 |3     |sc_exit_v1_0_9_splitter__GC0           |           1|        19|
-|4     |sc_exit_v1_0_9_top__GC0                |           1|       277|
+|4     |sc_exit_v1_0_9_top__GC0                |           1|       262|
 |5     |sc_mmu_v1_0_8_top__GC0                 |           1|       326|
 |6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|        63|
 |7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           2|       326|
@@ -7432,9 +7498,9 @@ Report RTL Partitions:
 |9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|       281|
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       216|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|        63|
-|12    |bd_7d7d__GC0                           |           1|      9711|
-|13    |pynqz2__GC0                            |           1|     25767|
-|14    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       387|
+|12    |bd_7d7d__GC0                           |           1|      9673|
+|13    |pynqz2__GC0                            |           1|     25852|
+|14    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       382|
 |15    |sc_util_v1_0_4_axi_reg_stall__2        |           2|       292|
 |16    |sc_util_v1_0_4_axi_reg_stall__3        |           2|       412|
 |17    |sc_util_v1_0_4_axi_reg_stall__4        |           3|       382|
@@ -7457,7 +7523,7 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:04:43 ; elapsed = 00:05:22 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 516 ; free virtual = 10173
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:04:59 ; elapsed = 00:05:43 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4546 ; free virtual = 12167
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -7467,17 +7533,17 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:04:54 ; elapsed = 00:05:34 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 450 ; free virtual = 10097
+Finished Timing Optimization : Time (s): cpu = 00:05:12 ; elapsed = 00:05:56 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4471 ; free virtual = 12085
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
 +------+---------------------------------------+------------+----------+
 |      |RTL Partition                          |Replication |Instances |
 +------+---------------------------------------+------------+----------+
-|1     |sc_util_v1_0_4_axi_reg_stall           |           1|       352|
-|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|       956|
+|1     |sc_util_v1_0_4_axi_reg_stall           |           1|       347|
+|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|       951|
 |3     |sc_exit_v1_0_9_splitter__GC0           |           1|        19|
-|4     |sc_exit_v1_0_9_top__GC0                |           1|       277|
+|4     |sc_exit_v1_0_9_top__GC0                |           1|       262|
 |5     |sc_mmu_v1_0_8_top__GC0                 |           1|       326|
 |6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|        63|
 |7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           2|       326|
@@ -7485,9 +7551,9 @@ Report RTL Partitions:
 |9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|       281|
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       216|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|        63|
-|12    |bd_7d7d__GC0                           |           1|      9711|
-|13    |pynqz2__GC0                            |           1|     25783|
-|14    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       387|
+|12    |bd_7d7d__GC0                           |           1|      9673|
+|13    |pynqz2__GC0                            |           1|     25868|
+|14    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       382|
 |15    |sc_util_v1_0_4_axi_reg_stall__2        |           2|       292|
 |16    |sc_util_v1_0_4_axi_reg_stall__3        |           2|       412|
 |17    |sc_util_v1_0_4_axi_reg_stall__4        |           3|       382|
@@ -7519,7 +7585,7 @@ INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_oneh
 INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_onehot_gen_axi.gen_write.write_cs_reg[1]) is unused and will be removed from module sc_mmu_v1_0_8_top__parameterized0.
 INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_onehot_gen_axi.gen_write.write_cs_reg[0]) is unused and will be removed from module sc_mmu_v1_0_8_top__parameterized0.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:05:13 ; elapsed = 00:05:55 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 504 ; free virtual = 10160
+Finished Technology Mapping : Time (s): cpu = 00:05:34 ; elapsed = 00:06:20 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4523 ; free virtual = 12132
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -7589,13 +7655,13 @@ WARNING: [Synth 8-3295] tying undriven pin XD_ADAPTER_CORE_I/XD_INPUT_ARGS_I/ap_
 WARNING: [Synth 8-3295] tying undriven pin XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/ap_rst_sync1_maclk_inferred:in0 to constant 0
 WARNING: [Synth 8-3295] tying undriven pin XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/ap_rst_sync_maclk_inferred:in0 to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:05:20 ; elapsed = 00:06:01 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 504 ; free virtual = 10161
+Finished IO Insertion : Time (s): cpu = 00:05:43 ; elapsed = 00:06:29 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4438 ; free virtual = 12050
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:05:20 ; elapsed = 00:06:01 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 504 ; free virtual = 10161
+Finished Renaming Generated Instances : Time (s): cpu = 00:05:43 ; elapsed = 00:06:29 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4438 ; free virtual = 12050
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -7614,25 +7680,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:22 ; elapsed = 00:06:03 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 503 ; free virtual = 10161
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:45 ; elapsed = 00:06:31 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4401 ; free virtual = 12025
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:05:22 ; elapsed = 00:06:03 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 503 ; free virtual = 10160
+Finished Renaming Generated Ports : Time (s): cpu = 00:05:46 ; elapsed = 00:06:31 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4400 ; free virtual = 12025
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:05:22 ; elapsed = 00:06:03 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 504 ; free virtual = 10161
+Finished Handling Custom Attributes : Time (s): cpu = 00:05:46 ; elapsed = 00:06:32 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4408 ; free virtual = 12024
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:05:22 ; elapsed = 00:06:04 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 504 ; free virtual = 10161
+Finished Renaming Generated Nets : Time (s): cpu = 00:05:46 ; elapsed = 00:06:32 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4406 ; free virtual = 12022
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -7651,12 +7717,12 @@ Report Cell Usage:
 |1     |BIBUF      |   130|
 |2     |CARRY4     |   169|
 |3     |DSP48E1    |     6|
-|4     |LUT1       |   544|
-|5     |LUT2       |   929|
-|6     |LUT3       |  2893|
-|7     |LUT4       |  1452|
-|8     |LUT5       |  2005|
-|9     |LUT6       |  2602|
+|4     |LUT1       |   528|
+|5     |LUT2       |   955|
+|6     |LUT3       |  2888|
+|7     |LUT4       |  1453|
+|8     |LUT5       |  1995|
+|9     |LUT6       |  2594|
 |10    |MULT_AND   |    12|
 |11    |MUXCY      |    60|
 |12    |MUXF7      |   120|
@@ -7671,31 +7737,30 @@ Report Cell Usage:
 |21    |RAMB36E1_3 |     8|
 |22    |RAMB36E1_4 |     4|
 |23    |SRL16      |     2|
-|24    |SRL16E     |   381|
+|24    |SRL16E     |   379|
 |25    |SRLC32E    |    57|
 |26    |XORCY      |    18|
 |27    |FDCE       |   725|
 |28    |FDPE       |    55|
 |29    |FDR        |    36|
-|30    |FDRE       | 12669|
+|30    |FDRE       | 12679|
 |31    |FDSE       |   361|
 |32    |IBUF       |     2|
-|33    |OBUF       |     3|
-|34    |OBUFT      |     4|
+|33    |OBUF       |     7|
 +------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:05:22 ; elapsed = 00:06:04 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 504 ; free virtual = 10161
+Finished Writing Synthesis Report : Time (s): cpu = 00:05:46 ; elapsed = 00:06:32 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4407 ; free virtual = 12023
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 7244 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:04:29 ; elapsed = 00:05:17 . Memory (MB): peak = 3300.957 ; gain = 802.277 ; free physical = 570 ; free virtual = 10227
-Synthesis Optimization Complete : Time (s): cpu = 00:05:23 ; elapsed = 00:06:04 . Memory (MB): peak = 3300.957 ; gain = 1541.957 ; free physical = 570 ; free virtual = 10227
+Synthesis Optimization Runtime : Time (s): cpu = 00:04:49 ; elapsed = 00:05:41 . Memory (MB): peak = 3301.297 ; gain = 803.613 ; free physical = 4512 ; free virtual = 12128
+Synthesis Optimization Complete : Time (s): cpu = 00:05:47 ; elapsed = 00:06:32 . Memory (MB): peak = 3301.297 ; gain = 1543.293 ; free physical = 4512 ; free virtual = 12128
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.72 ; elapsed = 00:00:00.71 . Memory (MB): peak = 3300.957 ; gain = 0.000 ; free physical = 619 ; free virtual = 10278
+Netlist sorting complete. Time (s): cpu = 00:00:00.75 ; elapsed = 00:00:00.76 . Memory (MB): peak = 3301.297 ; gain = 0.000 ; free physical = 4616 ; free virtual = 12226
 INFO: [Netlist 29-17] Analyzing 747 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3300.957 ; gain = 0.000 ; free physical = 556 ; free virtual = 10216
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3301.297 ; gain = 0.000 ; free physical = 4557 ; free virtual = 12165
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 370 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 22 instances
@@ -7709,11 +7774,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 1171 Infos, 250 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:05:39 ; elapsed = 00:06:22 . Memory (MB): peak = 3300.957 ; gain = 1618.406 ; free physical = 880 ; free virtual = 10540
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3300.957 ; gain = 0.000 ; free physical = 880 ; free virtual = 10540
+synth_design: Time (s): cpu = 00:06:04 ; elapsed = 00:06:52 . Memory (MB): peak = 3301.297 ; gain = 1626.746 ; free physical = 4883 ; free virtual = 12492
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3301.297 ; gain = 0.000 ; free physical = 4883 ; free virtual = 12491
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 3324.969 ; gain = 24.012 ; free physical = 860 ; free virtual = 10544
+write_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 3325.309 ; gain = 24.012 ; free physical = 4863 ; free virtual = 12495
 INFO: [runtcl-4] Executing : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Mar 15 20:35:25 2020...
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 19 20:22:41 2020...
