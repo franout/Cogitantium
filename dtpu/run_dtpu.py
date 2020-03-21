@@ -262,10 +262,7 @@ hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)
 
 
-### fr
-
-
-ee buffers
+### free buffers
 
 input_fifo_buffer.close()
 output_fifo_buffer.close()

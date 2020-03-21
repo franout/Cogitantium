@@ -2,7 +2,7 @@
 `include "csr_definition.vh"
 
 module control_unit 
-#(parameter DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64, DATA_WIDTH_WMEMORY=64,DATA_WIDTH_CSR=8,ADDRESS_SIZE_CSR=32,ADDRESS_SIZE_WMEMORY=32)
+#(parameter ROWS=3,COLUMNS=3, DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64, DATA_WIDTH_WMEMORY=64,DATA_WIDTH_CSR=8,ADDRESS_SIZE_CSR=32,ADDRESS_SIZE_WMEMORY=32)
 (
 clk,
 reset,
@@ -29,7 +29,6 @@ cs_ready,
 cs_start
 
 ,state_out
-,a,b,c
 );
 input clk;
 input reset;
@@ -73,11 +72,8 @@ input wire cs_continue;
 output reg cs_idle;
 
 output wire [3:0]state_out;
-output wire a;
-output wire b;
-output wire c;
-            
- /*ap_start, ap_ready, ap_done) are used to transfer the ownership of the data buffers*/
+
+ /*ap_start, ap_ready, ap_done are used to transfer the ownership of the data buffers*/
 
 
 /* the axi adapter has also a csr for its own regarding buffers  control and status */
@@ -95,14 +91,16 @@ localparam start_p2=4'h9;
 localparam start_p3=4'hA;
 
 reg [3:0]state;
+reg [$clog2(COLUMNS*3+1)-1:0]counter;
 
 
 always @(posedge clk) begin
-if(reset) begin
+if(!reset) begin
 state <= Power_up;
-
+counter<=0;
 end else begin
 ///// standard assignment
+counter<=0;
 csr_address<=0;    
 csr_ce<=0;
 csr_reset<=0;
@@ -163,50 +161,44 @@ retrieve_data: begin
                 
                 csr_ce<=1'b1;
                 csr_address<=0;
-               // if( infifo_is_empty) begin 
-                //state<=state;                
-                //end else begin
-                //state<=activate_enable_data_type;
-               // state<=state; 
-                //end 
-                
-                
-                //outfifo_write<=1'b1;
-            infifo_read<=1'b1;
-            state<=activate_enable_data_type;
-                 end
-
+                state<=activate_enable_data_type;
+               end 
 activate_enable_data_type: begin
                             // skip for now TODO it should read the csr
                             csr_ce<=1;
-                            enable_mxu<=1'b1;
-                             wm_ce<=1'b1;
-                      //       if (outfifo_is_full) begin 
-                             state<=state;
-                          //   end else begin 
-                        //    state<=compute;
-                            //end
+                            csr_address<=0;
+                            state<=compute;
                          end
 
 compute: begin
+            counter<=counter+1;
             enable_mxu<=1'b1;
              wm_ce<=1'b1;
-            outfifo_write<=1'b1;
             infifo_read<=1'b1;
             /*if(outfifo_is_full && !infifo_is_empty) begin 
             state<=flush_out_fifo;
             end else if(infifo_is_empty) begin*/ 
-             state<=flush_out_fifo;
+            // state<=flush_out_fifo;
             /*end else begin 
             state<=state;
             end*/
+            if(counter==(COLUMNS*3+1-1)) begin 
+            state<=flush_out_fifo;
+            end else begin 
+            state<=state;            
+            end 
              end
 
 stop: begin end // skip for the moment 
 flush_out_fifo: begin
-                outfifo_write<=1'b1; // force the flush
+             infifo_read<=1'b1;
+             enable_mxu<=1'b1;
+             wm_ce<=1'b1;
+             
+              outfifo_write<=1'b1;
+              //  outfifo_write<=1'b1; // force the flush
                // if(infifo_is_empty) begin 
-                state<=done;
+                state<=state;
                 //end else if (!infifo_is_empty && outfifo_is_full) begin
                 // wait for the flush of out fifo 
                /* state<=state;
@@ -233,7 +225,4 @@ end
 // debug
 assign state_out=state;
 
-assign a=outfifo_is_full;
-assign b=infifo_is_empty;
-assign c=csr_dout[0];
 endmodule

@@ -23,33 +23,27 @@
 module tb_dtpu();
         parameter clk_period= 10;
               reg clk,reset;
-              reg [(4)*(3)-1:0]input_data;
-              reg [(4)*(3)-1:0]weight;
-              reg [(4)*(4)-1:0]input_data4;
-              reg [(4)*(4)-1:0]weight4;
               reg enable;
               wire test_mode;
-              wire [4*3-1:0]y;
-              wire [4*4-1:0]y4;
               integer k;
   
                        ////////////////////////////
                        ////// CSR INTERFACE ///////
                        ////////////////////////////
-                        reg [31:0]csr_address;
+                        wire [31:0]csr_address;
                        wire csr_clk;
-                       reg [7:0]csr_din;
-                       wire [7:0]csr_dout;
+                       wire [7:0]csr_din;
+                       reg [7:0]csr_dout;
                        wire csr_ce;
                        wire csr_reset;
                        wire csr_we;
                        ////////////////////////////
                        ////// WEIGHT MEMORY ///////
                        ///////////////////////////
-                       reg wm_address;
+                       wire [31:0]wm_address;
                        wire wm_clk;
-                       reg [63:0]wm_din;
-                       wire [63:0] wm_dout;
+                       wire [63:0]wm_din;
+                       reg [63:0] wm_dout;
                         wire wm_ce;
                         wire wm_reset;
                         wire wm_we;
@@ -65,7 +59,7 @@ module tb_dtpu();
                            ////////////////////////////////////////////
                            /////////// using stream axi 
                            reg outfifo_is_full;
-                           reg outfifo_din;
+                           wire [63:0]outfifo_din;
                            wire outfifo_write;
                            
                            ////////////////////////////////////////////
@@ -77,6 +71,7 @@ module tb_dtpu();
                            wire cs_ready;
                            reg cs_start;
                            
+                           wire[3:0]state;
     
     
     /////////////////////////////////////
@@ -98,7 +93,7 @@ module tb_dtpu();
          ) uut
      (
          .clk(clk),
-         .reset(reset),
+         .areset(reset),
          .test_mode(test_mode),
          .enable(enable),
          ////////////////////////////
@@ -146,7 +141,8 @@ module tb_dtpu();
              .cs_done(cs_done),
              .cs_idle(cs_idle),
              .cs_ready(cs_ready),
-             .cs_start(cs_start)
+             .cs_start(cs_start),
+             .state(state)
              
              );
 
@@ -158,37 +154,37 @@ module tb_dtpu();
                     end
               
 
-              //TODO
+            // stimulus 
               initial begin 
-              enable=1'b0;
-              reset=1'b1;
-              #clk_period;
-              reset=1'b0;
-              input_data=12'h253;
-              weight=12'h312;
-              input_data4=16'h8253;
-              weight4=16'h7312;              
-              #clk_period;
-              enable=1'b1;
-              #clk_period;
-              // first input chaanges delay on second input of 1 cc and on third 1 of 2cc 
-              // the delay of input chian depends from the number of columns 
-               input_data=12'h353;
-               input_data4=16'h1253;
-              #clk_period;
-              input_data=12'h463;
-              input_data4=16'h3253;
-              #clk_period;
-              input_data=12'h564;
-              input_data4=16'hA253;
-              for(k=0;k<6;k=k+1) begin 
-              #clk_period;
-              end
-              weight=12'h111;
-              weight4=16'h111;
-              for(k=0;k<10;k=k+1) begin 
-                   #clk_period;
-              end                          
+              // test vector 
+                 csr_dout=1'b1;
+                    wm_dout=64'hFFFFFFFFFFFFFFFF;
+                   infifo_is_empty=1'b0;
+                   infifo_dout=64'hCAFECAFECAFECAFE;
+                    outfifo_is_full=1'b0;
+                    cs_continue=1'b0;
+                reset=1'b0;
+                #clk_period;
+                #clk_period;
+                reset=1'b1;
+                enable=1'b1; // enable the accelerator
+                $display("check the control signal");
+                #clk_period; 
+                #clk_period;
+                #clk_period;
+                #clk_period;
+                #clk_period;
+                #clk_period;
+                #clk_period;
+                $display("starting operations");
+                cs_start=1'b1;
+                #clk_period;
+                for (k=0;k<50;k=k+1) begin
+                #clk_period;
+                end
+                
+                
+                $finish;
                               
               end 
 

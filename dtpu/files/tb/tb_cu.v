@@ -76,9 +76,11 @@ module tb_cu();
         .DATA_WIDTH_WMEMORY(64),
         .DATA_WIDTH_CSR(8),
         .ADDRESS_SIZE_CSR(32),
+        .ROWS(3),
+        .COLUMNS(3),
         .ADDRESS_SIZE_WMEMORY(32)) uut 
      (
-     .glb_enable(1),
+     .glb_enable(1'b1),
      .clk(clk),
      .reset(reset),
      .enable_mxu(enable_mxu),
@@ -114,12 +116,12 @@ module tb_cu();
 
               
               initial begin 
-              reset=1'b1;
+              reset=1'b0;
               csr_dout<=8'hFE;
               cs_continue<=1;
               infifo_is_empty=1'b0;
               #clk_period;
-              reset=1'b0;
+              reset=1'b1;
               cs_start=1'b1;
               #clk_period;#clk_period;
               #clk_period;#clk_period;

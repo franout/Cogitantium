@@ -243,12 +243,9 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   # Create pins
   create_bd_pin -dir I -type clk axi_aclk
   create_bd_pin -dir I -type clk clk
-  create_bd_pin -dir O csr_0_0
   create_bd_pin -dir I enable
-  create_bd_pin -dir O ie_0
   create_bd_pin -dir O -type intr interrupt_dtpu
-  create_bd_pin -dir O ofifo_0
-  create_bd_pin -dir I -from 0 -to 0 reset_n
+  create_bd_pin -dir I -from 0 -to 0 resetn
   create_bd_pin -dir I -type rst s_axi_aresetn
   create_bd_pin -dir O -from 3 -to 0 state_0
   create_bd_pin -dir I test_mode
@@ -294,29 +291,13 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
      return 1
    }
   
-  # Create instance: util_vector_logic_1, and set properties
-  set util_vector_logic_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_1 ]
-  set_property -dict [ list \
-   CONFIG.C_OPERATION {not} \
-   CONFIG.C_SIZE {1} \
-   CONFIG.LOGO_FILE {data/sym_notgate.png} \
- ] $util_vector_logic_1
-
   # Create instance: util_vector_logic_2, and set properties
   set util_vector_logic_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_2 ]
   set_property -dict [ list \
-   CONFIG.C_OPERATION {or} \
+   CONFIG.C_OPERATION {and} \
    CONFIG.C_SIZE {1} \
-   CONFIG.LOGO_FILE {data/sym_orgate.png} \
+   CONFIG.LOGO_FILE {data/sym_andgate.png} \
  ] $util_vector_logic_2
-
-  # Create instance: util_vector_logic_3, and set properties
-  set util_vector_logic_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_3 ]
-  set_property -dict [ list \
-   CONFIG.C_OPERATION {not} \
-   CONFIG.C_SIZE {1} \
-   CONFIG.LOGO_FILE {data/sym_notgate.png} \
- ] $util_vector_logic_3
 
   # Create interface connections
   connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins M_AXIS_outfifo] [get_bd_intf_pins axis_accelerator_ada/M_AXIS_0]
@@ -331,21 +312,16 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   connect_bd_intf_net -intf_net dtpu_coro_weight_mem_interface [get_bd_intf_pins axis_accelerator_ada/AP_BRAM_IARG_1] [get_bd_intf_pins dtpu_core/weight_mem_interface]
 
   # Create port connections
+  connect_bd_net -net Op1_0_1 [get_bd_pins resetn] [get_bd_pins util_vector_logic_2/Op1]
   connect_bd_net -net aclk_0_1 [get_bd_pins axi_aclk] [get_bd_pins axis_accelerator_ada/aclk] [get_bd_pins axis_accelerator_ada/m_axis_aclk] [get_bd_pins axis_accelerator_ada/s_axi_aclk] [get_bd_pins axis_accelerator_ada/s_axis_aclk]
   connect_bd_net -net axis_accelerator_ada_0_interrupt [get_bd_pins interrupt_dtpu] [get_bd_pins axis_accelerator_ada/interrupt]
-  connect_bd_net -net axis_accelerator_ada_aresetn [get_bd_pins axis_accelerator_ada/aresetn] [get_bd_pins util_vector_logic_1/Op1]
+  connect_bd_net -net axis_accelerator_ada_aresetn [get_bd_pins axis_accelerator_ada/aresetn] [get_bd_pins util_vector_logic_2/Op2]
   connect_bd_net -net clk_0_1 [get_bd_pins clk] [get_bd_pins dtpu_core/clk]
-  connect_bd_net -net dtpu_core_csr_0 [get_bd_pins csr_0_0] [get_bd_pins dtpu_core/csr_0]
-  connect_bd_net -net dtpu_core_ie [get_bd_pins ie_0] [get_bd_pins dtpu_core/ie]
-  connect_bd_net -net dtpu_core_ofifo [get_bd_pins ofifo_0] [get_bd_pins dtpu_core/ofifo]
   connect_bd_net -net dtpu_core_state [get_bd_pins state_0] [get_bd_pins dtpu_core/state]
   connect_bd_net -net enable_0_1 [get_bd_pins enable] [get_bd_pins dtpu_core/enable]
-  connect_bd_net -net reset_n_1 [get_bd_pins reset_n] [get_bd_pins util_vector_logic_3/Op1]
   connect_bd_net -net s_axi_aresetn_0_1 [get_bd_pins s_axi_aresetn] [get_bd_pins axis_accelerator_ada/m_axis_aresetn] [get_bd_pins axis_accelerator_ada/s_axi_aresetn] [get_bd_pins axis_accelerator_ada/s_axis_aresetn]
   connect_bd_net -net test_mode_0_1 [get_bd_pins test_mode] [get_bd_pins dtpu_core/test_mode]
-  connect_bd_net -net util_vector_logic_1_Res [get_bd_pins util_vector_logic_1/Res] [get_bd_pins util_vector_logic_2/Op2]
   connect_bd_net -net util_vector_logic_2_Res [get_bd_pins dtpu_core/areset] [get_bd_pins util_vector_logic_2/Res]
-  connect_bd_net -net util_vector_logic_3_Res [get_bd_pins util_vector_logic_2/Op1] [get_bd_pins util_vector_logic_3/Res]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -391,10 +367,7 @@ proc create_root_design { parentCell } {
 
 
   # Create ports
-  set csr_0_0 [ create_bd_port -dir O csr_0_0 ]
   set enable [ create_bd_port -dir I enable ]
-  set ie_0 [ create_bd_port -dir O ie_0 ]
-  set ofifo_0 [ create_bd_port -dir O ofifo_0 ]
   set reset_n [ create_bd_port -dir I -type rst reset_n ]
   set state_0 [ create_bd_port -dir O -from 3 -to 0 state_0 ]
 
@@ -1381,14 +1354,11 @@ proc create_root_design { parentCell } {
   connect_bd_net -net axi_dma_infifo_mm2s_introut [get_bd_pins axi_dma_infifo/mm2s_introut] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net axi_dma_infifo_s2mm_introut [get_bd_pins axi_dma_infifo/s2mm_introut] [get_bd_pins xlconcat_0/In1]
   connect_bd_net -net axi_intc_irq [get_bd_pins axi_intc/irq] [get_bd_pins ps7/IRQ_F2P]
-  connect_bd_net -net dtpu_csr_0_0 [get_bd_ports csr_0_0] [get_bd_pins dtpu/csr_0_0]
-  connect_bd_net -net dtpu_ie_0 [get_bd_ports ie_0] [get_bd_pins dtpu/ie_0]
   connect_bd_net -net dtpu_interrupt_dtpu [get_bd_pins dtpu/interrupt_dtpu] [get_bd_pins xlconcat_0/In2]
-  connect_bd_net -net dtpu_ofifo_0 [get_bd_ports ofifo_0] [get_bd_pins dtpu/ofifo_0]
   connect_bd_net -net dtpu_state_0 [get_bd_ports state_0] [get_bd_pins dtpu/state_0]
   connect_bd_net -net enable_1 [get_bd_ports enable] [get_bd_pins dtpu/enable]
   connect_bd_net -net ps7_FCLK_RESET0_N [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins util_vector_logic_0/Op1]
-  connect_bd_net -net reset_n_1 [get_bd_ports reset_n] [get_bd_pins dtpu/reset_n] [get_bd_pins util_vector_logic_0/Op2]
+  connect_bd_net -net reset_n_1 [get_bd_ports reset_n] [get_bd_pins dtpu/resetn] [get_bd_pins util_vector_logic_0/Op2]
   connect_bd_net -net rst_ps7_30M_interconnect_aresetn [get_bd_pins axi_dma_csr_mem/axi_resetn] [get_bd_pins axi_dma_infifo/axi_resetn] [get_bd_pins axi_dma_weight_mem/axi_resetn] [get_bd_pins axi_intc/s_axi_aresetn] [get_bd_pins dtpu/s_axi_aresetn] [get_bd_pins ps7_axi_periph/ARESETN] [get_bd_pins ps7_axi_periph/M00_ARESETN] [get_bd_pins ps7_axi_periph/M01_ARESETN] [get_bd_pins ps7_axi_periph/M02_ARESETN] [get_bd_pins ps7_axi_periph/M03_ARESETN] [get_bd_pins ps7_axi_periph/M04_ARESETN] [get_bd_pins ps7_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_30M/interconnect_aresetn] [get_bd_pins smartconnect_0/aresetn]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins rst_ps7_30M/ext_reset_in] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins axi_intc/intr] [get_bd_pins xlconcat_0/dout]

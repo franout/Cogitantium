@@ -85,8 +85,7 @@ module dtpu_core
         cs_ready,
         cs_start,
         
-        state,
-        ofifo, ie, csr_0
+        state
         
         );
     //////////////////////////////////////////
@@ -97,7 +96,7 @@ module dtpu_core
     //////////////////////////////////////////
     input wire clk;
     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 areset RST" *)
-    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_HIGH" *)
+    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
     input wire areset;
     input wire test_mode;
     input wire enable;
@@ -176,16 +175,13 @@ module dtpu_core
             output wire cs_idle;
        
        
-       output reg[3:0]state;
-          output wire ofifo;
-        output wire ie;
-        output wire csr_0;
-          
+       output wire[3:0]state;
           
           wire [11:0]weight_from_memory;
           wire[11:0] input_data_from_fifo;
           wire [11:0] input_data_to_fifo;
        wire enable_i;     
+       wire [`LOG_ALLOWED_PRECISIONS-1:0] data_type;
      ////////////////////////////////////////////
     ////// MATRIX MULTIPLICATION UNIT //////////
     ////////////////////////////////////////////
@@ -211,6 +207,8 @@ module dtpu_core
                 .DATA_WIDTH_FIFO_OUT(DATA_WIDTH_FIFO_OUT), 
                 .DATA_WIDTH_WMEMORY(DATA_WIDTH_WMEMORY),
                 .DATA_WIDTH_CSR(DATA_WIDTH_CSR),
+                .ROWS(ROWS),
+                .COLUMNS(COLUMNS),
                 //.ADDRESS_SIZE_CSR($clog2(SIZE_CSR)),
                 //.ADDRESS_SIZE_WMEMORY($clog2(SIZE_WMEMORY)))
                 .ADDRESS_SIZE_CSR(32),
@@ -240,10 +238,7 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state_out(),
-        .a(ofifo),
-        .b(ie),
-        .c(csr_0)
+        .state_out(state)
            );
   
   /////////////////////////////////////////////
@@ -264,12 +259,6 @@ module dtpu_core
   
   
   
-  //assign state=infifo_dout[3:0];
-  
-  always @(infifo_read)
-  begin
-  state<=infifo_dout[3:0];
-  end 
   
   // same clock for bram interface
   assign csr_clk=clk;

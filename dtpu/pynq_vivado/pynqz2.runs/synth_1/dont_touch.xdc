@@ -42,9 +42,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_dma_
 # IP: bd/pynqz2/ip/pynqz2_xlconcat_0_1/pynqz2_xlconcat_0_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xlconcat_0_1 || ORIG_REF_NAME==pynqz2_xlconcat_0_1} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_util_vector_logic_1_1/pynqz2_util_vector_logic_1_1.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_util_vector_logic_1_1 || ORIG_REF_NAME==pynqz2_util_vector_logic_1_1} -quiet] -quiet
-
 # IP: bd/pynqz2/ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_dma_0_2 || ORIG_REF_NAME==pynqz2_axi_dma_0_2} -quiet] -quiet
 
@@ -56,9 +53,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_axi_dma_
 
 # IP: bd/pynqz2/ip/pynqz2_util_vector_logic_1_2/pynqz2_util_vector_logic_1_2.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_util_vector_logic_1_2 || ORIG_REF_NAME==pynqz2_util_vector_logic_1_2} -quiet] -quiet
-
-# IP: bd/pynqz2/ip/pynqz2_util_vector_logic_1_3/pynqz2_util_vector_logic_1_3.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_util_vector_logic_1_3 || ORIG_REF_NAME==pynqz2_util_vector_logic_1_3} -quiet] -quiet
 
 # IP: bd/pynqz2/ip/pynqz2_xbar_14/pynqz2_xbar_14.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xbar_14 || ORIG_REF_NAME==pynqz2_xbar_14} -quiet] -quiet

@@ -1,68 +1,87 @@
 {
    "ActiveEmotionalView":"Color Coded",
-   "Color Coded_ExpandedHierarchyInLayout":"",
+   "Color Coded_ExpandedHierarchyInLayout":"/dtpu",
    "Color Coded_Layout":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port DDR_0 -pg 1 -lvl 7 -x 2430 -y 510 -defaultsOSRD
-preplace port FIXED_IO_0 -pg 1 -lvl 7 -x 2430 -y 530 -defaultsOSRD
-preplace port reset_n -pg 1 -lvl 0 -x -20 -y 970 -defaultsOSRD
-preplace port enable -pg 1 -lvl 0 -x -20 -y 890 -defaultsOSRD
-preplace port ie_0 -pg 1 -lvl 7 -x 2430 -y 920 -defaultsOSRD
-preplace port csr_0_0 -pg 1 -lvl 7 -x 2430 -y 940 -defaultsOSRD
-preplace port ofifo_0 -pg 1 -lvl 7 -x 2430 -y 960 -defaultsOSRD
-preplace portBus state_0 -pg 1 -lvl 7 -x 2430 -y 900 -defaultsOSRD
-preplace inst ps7 -pg 1 -lvl 6 -x 2160 -y 590 -defaultsOSRD
-preplace inst rst_ps7_30M -pg 1 -lvl 2 -x 520 -y 780 -swap {0 4 1 2 3 5 6 7 9 8} -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 5 -x 1710 -y 940 -defaultsOSRD
-preplace inst util_vector_logic_0 -pg 1 -lvl 1 -x 170 -y 960 -defaultsOSRD
-preplace inst dtpu -pg 1 -lvl 6 -x 2160 -y 910 -defaultsOSRD
-preplace inst axi_dma_infifo -pg 1 -lvl 4 -x 1310 -y 320 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 3 -x 900 -y 340 -defaultsOSRD
-preplace inst axi_dma_weight_mem -pg 1 -lvl 4 -x 1310 -y 540 -defaultsOSRD
-preplace inst axi_intc -pg 1 -lvl 4 -x 1310 -y 720 -defaultsOSRD
-preplace inst axi_dma_csr_mem -pg 1 -lvl 4 -x 1310 -y 90 -defaultsOSRD
-preplace inst ps7_axi_periph -pg 1 -lvl 3 -x 900 -y 660 -defaultsOSRD
-preplace inst smartconnect_0 -pg 1 -lvl 5 -x 1710 -y 560 -defaultsOSRD
-preplace netloc util_vector_logic_0_Res 1 1 1 330 820n
-preplace netloc ps7_FCLK_RESET0_N 1 0 7 20 880 320J 900 NJ 900 NJ 900 1570J 750 NJ 750 2390
-preplace netloc reset_n_1 1 0 6 10 890 NJ 890 730J 870 NJ 870 NJ 870 1850
-preplace netloc xlconstant_0_dout 1 5 1 1880J 900n
-preplace netloc enable_1 1 0 6 0J 870 340J 880 NJ 880 NJ 880 NJ 880 1860J
-preplace netloc axi_dma_infifo_mm2s_introut 1 2 3 740 230 1120J 440 1500
-preplace netloc axi_dma_infifo_s2mm_introut 1 2 3 750 240 1110J 450 1490
-preplace netloc dtpu_interrupt_dtpu 1 2 5 740 860 NJ 860 1500J 760 NJ 760 2390
-preplace netloc axi_dma_0_mm2s_introut 1 2 3 750 440 1070J 630 1490
-preplace netloc S00_ACLK_1 1 1 6 340 680 700 450 1100 810 1530 670 1890 450 2390
-preplace netloc xlconcat_0_dout 1 3 1 1060 340n
-preplace netloc dtpu_state_0 1 6 1 NJ 900
-preplace netloc axi_dma_csr_mem_mm2s_introut 1 2 3 730 190 NJ 190 1490
-preplace netloc axi_intc_irq 1 4 2 1510J 440 1920
-preplace netloc rst_ps7_30M_interconnect_aresetn 1 2 4 710 460 1090 830 1550 860 1870J
-preplace netloc dtpu_ie_0 1 6 1 NJ 920
-preplace netloc dtpu_csr_0_0 1 6 1 NJ 940
-preplace netloc dtpu_ofifo_0 1 6 1 NJ 960
-preplace netloc S_AXIS_wm_1 1 4 2 1520 450 1880J
-preplace netloc ps7_M_AXI_GP0 1 2 5 720 180 NJ 180 NJ 180 NJ 180 2400
-preplace netloc ps7_axi_periph_M00_AXI 1 3 1 1050 60n
-preplace netloc ps7_axi_periph_M01_AXI 1 3 1 1080 270n
-preplace netloc ps7_DDR 1 6 1 NJ 510
-preplace netloc ps7_FIXED_IO 1 6 1 NJ 530
-preplace netloc ps7_axi_periph_M02_AXI 1 3 1 1120 510n
-preplace netloc ps7_axi_periph_M04_AXI 1 3 3 1050 820 NJ 820 NJ
-preplace netloc S_AXIS_infifo_1 1 4 2 1540 430 1910J
-preplace netloc S_AXIS_csr_1 1 4 2 1570 170 1930J
-preplace netloc dtpu_M_AXIS_outfifo 1 3 4 1130 200 NJ 200 NJ 200 2410
-preplace netloc ps7_axi_periph_M03_AXI 1 3 1 1050 680n
-preplace netloc axi_dma_weight_mem_M_AXI_MM2S 1 4 1 1500 510n
-preplace netloc smartconnect_0_M00_AXI 1 5 1 1900 560n
-preplace netloc axi_dma_infifo_M_AXI_MM2S 1 4 1 1550 260n
-preplace netloc axi_dma_infifo_M_AXI_S2MM 1 4 1 1530 280n
-preplace netloc axi_dma_csr_mem_M_AXI_MM2S 1 4 1 1560 60n
-levelinfo -pg 1 -20 170 520 900 1310 1710 2160 2430
-pagesize -pg 1 -db -bbox -sgen -130 0 2570 1310
+preplace port DDR_0 -pg 1 -lvl 9 -x 4210 -y 920 -defaultsOSRD
+preplace port FIXED_IO_0 -pg 1 -lvl 9 -x 4210 -y 940 -defaultsOSRD
+preplace port reset_n -pg 1 -lvl 0 -x -10 -y 850 -defaultsOSRD
+preplace port enable -pg 1 -lvl 0 -x -10 -y 210 -defaultsOSRD
+preplace portBus state_0 -pg 1 -lvl 9 -x 4210 -y 300 -defaultsOSRD
+preplace inst ps7 -pg 1 -lvl 8 -x 3950 -y 1000 -defaultsOSRD
+preplace inst rst_ps7_30M -pg 1 -lvl 2 -x 510 -y 960 -swap {0 4 1 2 3 5 6 7 9 8} -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 4 -x 1300 -y 200 -defaultsOSRD
+preplace inst util_vector_logic_0 -pg 1 -lvl 1 -x 180 -y 1000 -defaultsOSRD
+preplace inst dtpu -pg 1 -lvl 5 -x 1840 -y 150 -defaultsOSRD
+preplace inst axi_dma_infifo -pg 1 -lvl 6 -x 3210 -y 710 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 3 -x 890 -y 340 -defaultsOSRD
+preplace inst axi_dma_weight_mem -pg 1 -lvl 4 -x 1300 -y 330 -defaultsOSRD
+preplace inst axi_intc -pg 1 -lvl 4 -x 1300 -y 950 -defaultsOSRD
+preplace inst axi_dma_csr_mem -pg 1 -lvl 4 -x 1300 -y 570 -defaultsOSRD
+preplace inst ps7_axi_periph -pg 1 -lvl 3 -x 890 -y 650 -defaultsOSRD
+preplace inst smartconnect_0 -pg 1 -lvl 7 -x 3570 -y 680 -defaultsOSRD
+preplace inst dtpu|axis_accelerator_ada -pg 1 -lvl 3 -x 2690 -y 250 -defaultsOSRD
+preplace inst dtpu|util_vector_logic_2 -pg 1 -lvl 1 -x 1900 -y 450 -defaultsOSRD
+preplace inst dtpu|dtpu_core -pg 1 -lvl 2 -x 2270 -y 250 -defaultsOSRD
+preplace netloc util_vector_logic_0_Res 1 1 1 N 1000
+preplace netloc ps7_FCLK_RESET0_N 1 0 9 30 1150 NJ 1150 NJ 1150 NJ 1150 NJ 1150 NJ 1150 NJ 1150 NJ 1150 4180
+preplace netloc reset_n_1 1 0 5 20 130 NJ 130 NJ 130 NJ 130 1560
+preplace netloc xlconstant_0_dout 1 4 1 1550 200n
+preplace netloc enable_1 1 0 5 10J 90 NJ 90 NJ 90 NJ 90 1570J
+preplace netloc axi_dma_infifo_mm2s_introut 1 2 5 710 860 NJ 860 NJ 860 NJ 860 3390
+preplace netloc axi_dma_infifo_s2mm_introut 1 2 5 730 110 NJ 110 1500J 570 NJ 570 3400
+preplace netloc dtpu_interrupt_dtpu 1 2 4 740 140 NJ 140 1540J 550 3010
+preplace netloc axi_dma_0_mm2s_introut 1 2 3 720 120 NJ 120 1480
+preplace netloc S00_ACLK_1 1 1 8 330 770 700 440 1100 430 1570 670 3020 840 3420 840 3710 1140 4190
+preplace netloc xlconcat_0_dout 1 3 1 1040 340n
+preplace netloc dtpu_state_0 1 5 4 3020J 300 NJ 300 NJ 300 NJ
+preplace netloc axi_dma_csr_mem_mm2s_introut 1 2 3 730 850 NJ 850 1490
+preplace netloc axi_intc_irq 1 4 4 1540 1040 NJ 1040 NJ 1040 NJ
+preplace netloc rst_ps7_30M_interconnect_aresetn 1 2 5 690 240 1080 420 1580 680 3010 830 3430J
+preplace netloc smartconnect_0_M00_AXI 1 7 1 3720 680n
+preplace netloc ps7_M_AXI_GP0 1 2 7 740 450 NJ 450 1510J 540 NJ 540 NJ 540 NJ 540 4190
+preplace netloc ps7_axi_periph_M04_AXI 1 3 2 1060J 100 1590
+preplace netloc ps7_axi_periph_M00_AXI 1 3 1 1090 540n
+preplace netloc ps7_axi_periph_M02_AXI 1 3 1 1070 300n
+preplace netloc ps7_FIXED_IO 1 8 1 NJ 940
+preplace netloc axi_dma_weight_mem_M_AXI_MM2S 1 4 3 1490J 590 NJ 590 3420
+preplace netloc axi_dma_csr_mem_M_AXI_MM2S 1 4 3 1480J 580 NJ 580 3430
+preplace netloc ps7_axi_periph_M03_AXI 1 3 1 1050 670n
+preplace netloc S_AXIS_csr_1 1 4 1 1520 110n
+preplace netloc S_AXIS_wm_1 1 4 1 1530 150n
+preplace netloc ps7_DDR 1 8 1 NJ 920
+preplace netloc ps7_axi_periph_M01_AXI 1 3 3 1090 660 NJ 660 NJ
+preplace netloc axi_dma_infifo_M_AXI_MM2S 1 6 1 N 650
+preplace netloc S_AXIS_infifo_1 1 4 3 1590 560 NJ 560 3410
+preplace netloc axi_dma_infifo_M_AXI_S2MM 1 6 1 N 670
+preplace netloc dtpu_M_AXIS_outfifo 1 5 1 3030 220n
+preplace netloc dtpu|axis_accelerator_ada_0_interrupt 1 3 1 N 280
+preplace netloc dtpu|test_mode_0_1 1 0 2 NJ 270 NJ
+preplace netloc dtpu|enable_0_1 1 0 2 NJ 290 NJ
+preplace netloc dtpu|clk_0_1 1 0 2 1740J 230 NJ
+preplace netloc dtpu|aclk_0_1 1 0 3 NJ 360 NJ 360 2510
+preplace netloc dtpu|s_axi_aresetn_0_1 1 0 3 NJ 380 NJ 380 2500
+preplace netloc dtpu|util_vector_logic_2_Res 1 1 1 2050 250n
+preplace netloc dtpu|dtpu_core_state 1 2 2 2480J 450 NJ
+preplace netloc dtpu|axis_accelerator_ada_aresetn 1 0 4 1750 40 NJ 40 NJ 40 2850
+preplace netloc dtpu|Op1_0_1 1 0 1 N 440
+preplace netloc dtpu|dtpu_coro_csr_mem_interface 1 2 1 2490 210n
+preplace netloc dtpu|Conn5 1 0 3 NJ 150 NJ 150 N
+preplace netloc dtpu|Conn3 1 0 3 NJ 110 NJ 110 2480
+preplace netloc dtpu|Conn1 1 3 1 N 220
+preplace netloc dtpu|dtpu_coro_output_fifo 1 2 1 2500 210n
+preplace netloc dtpu|Conn2 1 0 3 NJ 90 NJ 90 2500
+preplace netloc dtpu|dtpu_coro_input_fifo 1 2 1 2470 190n
+preplace netloc dtpu|Conn4 1 0 3 NJ 130 NJ 130 2470
+preplace netloc dtpu|axis_accelerator_ada_0_AP_CTRL 1 1 3 2050 50 NJ 50 2840
+preplace netloc dtpu|dtpu_coro_weight_mem_interface 1 2 1 2480 230n
+levelinfo -pg 1 -10 180 510 890 1300 1840 3210 3570 3950 4210
+levelinfo -hier dtpu * 1900 2270 2690 *
+pagesize -pg 1 -db -bbox -sgen -120 0 4350 1160
+pagesize -hier dtpu -db -bbox -sgen 1710 30 2880 520
 ",
-   "Color Coded_ScaleFactor":"0.706444",
-   "Color Coded_TopLeft":"726,242",
+   "Color Coded_ScaleFactor":"0.254698",
+   "Color Coded_TopLeft":"-102,-385",
    "Default View_ScaleFactor":"0.710473",
    "Default View_TopLeft":"923,46",
    "Display-PortTypeClock":"true",
