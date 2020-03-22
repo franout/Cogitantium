@@ -175,7 +175,7 @@ module dtpu_core
             output wire cs_idle;
        
        
-       output wire[3:0]state;
+       output reg[3:0]state;
           
           wire [11:0]weight_from_memory;
           wire[11:0] input_data_from_fifo;
@@ -221,7 +221,7 @@ module dtpu_core
         .glb_enable(enable),
         .enable_mxu(enable_i),
        .csr_address(csr_address),               
-        .csr_dout(csr_dout),
+        .csr_dout(csr_dout),     
         .csr_ce(csr_ce),
         .csr_reset(csr_reset),
         .csr_we(csr_we),
@@ -238,7 +238,7 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state_out(state)
+        .state_out()
            );
   
   /////////////////////////////////////////////
@@ -253,11 +253,14 @@ module dtpu_core
   // dummy assignment for 3 columns and rows 
   assign input_data_from_fifo= (infifo_read ? infifo_dout[11:0]:12'b0);
   
-  assign outfifo_din[11:0]=(outfifo_write? input_data_to_fifo:12'b0);
+  assign outfifo_din[11:0]=( outfifo_write ? input_data_to_fifo[11:0]:12'b0);
   assign outfifo_din[63:12]= 0;
   assign weight_from_memory= (wm_ce ? wm_dout[11:0]:12'bZ );
   
   
+  always @(posedge(clk)) begin
+            state<=outfifo_din[3:0];  
+  end 
   
   
   // same clock for bram interface

@@ -50,8 +50,8 @@ module mxu_core
     
     
     // muxes for allowing different precision 
-    
-   
+    wire  reset_mac;
+   assign reset_mac=~reset;
    // generate the matrix's cells
    genvar i,j;
    
@@ -73,7 +73,7 @@ module mxu_core
               .A(input_data[(j+1)*max_data_width-1:j*max_data_width]),        // input wire [3 : 0] A
               .B(weight[(i+1)*(max_data_width)-1:i*max_data_width]),        // input wire [3 : 0] B
               .CE(enable),      // input wire CE
-              .SCLR(reset),  // input wire SCLR
+              .SCLR(reset_mac),  // input wire SCLR
               .P(res_mac_next[i*K+j])        // output wire [3 : 0] P
             );
                     
@@ -81,7 +81,7 @@ module mxu_core
                 // check if it is the last column
                 
                 if(i==0) begin 
-                mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset),
+                mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
@@ -89,7 +89,7 @@ module mxu_core
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                 end else begin
                 
-                mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset),
+                mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                     .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                     .res_mac_p(res_mac_next[i*K+j-1]),
@@ -104,7 +104,7 @@ module mxu_core
             
              if(i==0) begin 
             
-                         mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset),
+                         mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                            .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                           .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                           .res_mac_p(res_mac_next[i*K+j-1]),
@@ -112,7 +112,7 @@ module mxu_core
                          .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
             end else begin
             
-               mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset),
+               mxu_mac #(4) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                   .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                    .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                    .res_mac_p(res_mac_next[i*K+j-1]),

@@ -136,18 +136,18 @@ else :
 ## default 32 bit integer
 # Allocate buffers for the input and output signals ( contigous memory allocation )
 xlnk = Xlnk()
-input_fifo_buffer = xlnk.cma_array(shape=(4096,),dtype='u4',cacheable=1)
-output_fifo_buffer=xlnk.cma_array(shape=(4096,),dtype='u4',cacheable=1)
-weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u4',cacheable=1)
-csr_buffer=xlnk.cma_array(shape=(2048,),dtype='u4',cacheable=1)
+input_fifo_buffer = xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=1)
+output_fifo_buffer=xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=1)
+weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u8',cacheable=1)
+csr_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=1)
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
-    input_fifo_buffer[i]=0xcafecafe
+    input_fifo_buffer[i]=0xcafecafecafecafe
 
 ## populate weights
 for i in range(weight_buffer.size):
-    weight_buffer[i]=0xFFFFFFFF
+    weight_buffer[i]=0xFFFFFFFFFFFFFFFF
 
 ## populate csr 
 for i in range(csr_buffer.size):
@@ -221,8 +221,8 @@ accelerator.write(OARG0_TDEST,0) # only one output
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
 start_time = time.time()
-accelerator.write(CMD,0x0FF20001) #execute command 
-
+#accelerator.write(CMD,0x0FF20001) #execute command
+accelerator.write(CMD,0x00030001) # execute one step and update output argument
 
 accelerator.read(OARG0_STATUS) # check output buffer status
 #After completing the Accelerator operation, done status is updated in the Status
@@ -230,8 +230,8 @@ accelerator.read(OARG0_STATUS) # check output buffer status
 #IO_OSCALAR_DATA.
 done=0
 while (done&0x2)!=2:
-    accelerator.write(CMD,0x0FF10001)#update output
-    accelerator.write(CMD,0x0FF20001)#update output
+  #  accelerator.write(CMD,0x0FF10001)#update output
+   # accelerator.write(CMD,0x0FF20001)#update output
     #time.sleep(3)
     ## check done signal
     done=accelerator.read(STATUS)
@@ -248,7 +248,7 @@ while (done&0x2)!=2:
 #(0x0028). By writing 1 to the argument, mask moves the input buffer pointer to the next
 
 #position in multi-buffer. Writing 0 reuses the same buffer.
-accelerator.write(CMD,0x00000001)
+#accelerator.write(CMD,0x00000001)
 
 accelerator.write(STATUS,0x00000003)##clear status
 
@@ -257,6 +257,7 @@ driver_fifo.recvchannel.transfer(output_fifo_buffer)
 driver_fifo.recvchannel.wait()
 stop_time = time.time()
 
+## first value should be 2457
 print(*output_fifo_buffer[0:10])
 hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)

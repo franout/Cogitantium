@@ -67,7 +67,7 @@ module mxu_mac
     //the data driving the internal ff of vivado mac 
         register  #(.N(bit_width)) delay_reg1 (
             .clk(clk),
-        .reset(sclr),
+        .reset(~sclr),
         .test_mode(test_mode),
         .enable(ce),
         .d(data_input),
@@ -75,7 +75,7 @@ module mxu_mac
          
          register  #(.N(bit_width)) delay_reg2 (
                      .clk(clk),
-                 .reset(sclr),
+                 .reset(~sclr),
                  .test_mode(test_mode),
                  .enable(ce),
                  .d(q1),

@@ -89,18 +89,22 @@ localparam flush_out_fifo=4'h7;
 localparam start_p1=4'h8;
 localparam start_p2=4'h9;
 localparam start_p3=4'hA;
+localparam save_to_fifo=4'hB;
 
 reg [3:0]state;
-reg [$clog2(COLUMNS*3+1)-1:0]counter;
+reg [$clog2(COLUMNS*3+1)-1:0]counter_compute;
+reg [$clog2(ROWS)-1:0]counter_res;
 
 
 always @(posedge clk) begin
 if(!reset) begin
 state <= Power_up;
-counter<=0;
+counter_compute<=0;
+counter_res<=0;
 end else begin
 ///// standard assignment
-counter<=0;
+counter_compute<=0;
+counter_res<=0;
 csr_address<=0;    
 csr_ce<=0;
 csr_reset<=0;
@@ -171,18 +175,11 @@ activate_enable_data_type: begin
                          end
 
 compute: begin
-            counter<=counter+1;
+            counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
              wm_ce<=1'b1;
             infifo_read<=1'b1;
-            /*if(outfifo_is_full && !infifo_is_empty) begin 
-            state<=flush_out_fifo;
-            end else if(infifo_is_empty) begin*/ 
-            // state<=flush_out_fifo;
-            /*end else begin 
-            state<=state;
-            end*/
-            if(counter==(COLUMNS*3+1-1)) begin 
+            if(counter_compute==(COLUMNS*3+1-1)) begin 
             state<=flush_out_fifo;
             end else begin 
             state<=state;            
@@ -191,25 +188,25 @@ compute: begin
 
 stop: begin end // skip for the moment 
 flush_out_fifo: begin
-             infifo_read<=1'b1;
              enable_mxu<=1'b1;
              wm_ce<=1'b1;
-             
-              outfifo_write<=1'b1;
-              //  outfifo_write<=1'b1; // force the flush
-               // if(infifo_is_empty) begin 
-                state<=state;
-                //end else if (!infifo_is_empty && outfifo_is_full) begin
-                // wait for the flush of out fifo 
-               /* state<=state;
-                end else begin 
-                // it is not full ( outfifo ) and input fifo not empty
-                state<=compute; 
-                end 
-    */
+             counter_res<=counter_res+1;
+              // wait for the correct output
+              if(counter_res==ROWS-2) begin 
+              state<=save_to_fifo;
+              end else begin 
+              state<=state;
+              end
              end
+save_to_fifo: begin   
+        outfifo_write<=1'b1;
+        wm_ce<=1'b1;
+        state<=done;
+
+        end              
 done: begin 
-      state<=idle;
+        outfifo_write<=1'b1;
+      state<=state;
       cs_done<=1;
       end          
 default: begin 
