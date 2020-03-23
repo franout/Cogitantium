@@ -136,10 +136,10 @@ else :
 ## default 32 bit integer
 # Allocate buffers for the input and output signals ( contigous memory allocation )
 xlnk = Xlnk()
-input_fifo_buffer = xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=1)
-output_fifo_buffer=xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=1)
-weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u8',cacheable=1)
-csr_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=1)
+input_fifo_buffer = xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=True)
+output_fifo_buffer=xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=True)
+weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u8',cacheable=True)
+csr_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
@@ -164,7 +164,10 @@ accelerator.write(CTRL,0x0000000)
 ################################################
 ###### program the dma for the csr reg #########
 ################################################
-driver_csr=overlay.axi_dma_csr_mem
+if 'driver_csr' in locals():
+    driver_csr.recvchannel.start()
+else: 
+    driver_csr=overlay.axi_dma_csr_mem
 
 driver_csr.sendchannel.transfer(csr_buffer)
 driver_csr.sendchannel.wait()
@@ -173,8 +176,10 @@ driver_csr.sendchannel.wait()
 ################################################
 ###### program the dma for the weight ##########
 ################################################
-
-driver_wm=overlay.axi_dma_weight_mem
+if 'driver_wm' in locals():
+    driver_wm.sendchannel.start()
+else:
+    driver_wm=overlay.axi_dma_weight_mem
 
 driver_wm.sendchannel.transfer(weight_buffer)
 driver_wm.sendchannel.wait()
@@ -185,8 +190,11 @@ driver_wm.sendchannel.wait()
 ######################################################
 ###### program the dma for the in/out fifos ##########
 ######################################################
-
-driver_fifo=overlay.axi_dma_infifo
+if 'driver_fifo' in locals():
+    driver_fifo.sendchannel.start()
+    driver_fifo.recvchannel.start()
+else:
+    driver_fifo=overlay.axi_dma_infifo
 
 driver_fifo.sendchannel.transfer(input_fifo_buffer)
 driver_fifo.sendchannel.wait()
@@ -221,8 +229,7 @@ accelerator.write(OARG0_TDEST,0) # only one output
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
 start_time = time.time()
-#accelerator.write(CMD,0x0FF20001) #execute command
-accelerator.write(CMD,0x00030001) # execute one step and update output argument
+accelerator.write(CMD, 0x00020000) # execute one step 
 
 accelerator.read(OARG0_STATUS) # check output buffer status
 #After completing the Accelerator operation, done status is updated in the Status

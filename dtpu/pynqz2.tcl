@@ -321,7 +321,7 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   connect_bd_net -net enable_0_1 [get_bd_pins enable] [get_bd_pins dtpu_core/enable]
   connect_bd_net -net s_axi_aresetn_0_1 [get_bd_pins s_axi_aresetn] [get_bd_pins axis_accelerator_ada/m_axis_aresetn] [get_bd_pins axis_accelerator_ada/s_axi_aresetn] [get_bd_pins axis_accelerator_ada/s_axis_aresetn]
   connect_bd_net -net test_mode_0_1 [get_bd_pins test_mode] [get_bd_pins dtpu_core/test_mode]
-  connect_bd_net -net util_vector_logic_2_Res [get_bd_pins dtpu_core/areset] [get_bd_pins util_vector_logic_2/Res]
+  connect_bd_net -net util_vector_logic_2_Res [get_bd_pins dtpu_core/aresetn] [get_bd_pins util_vector_logic_2/Res]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -394,7 +394,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_m_axi_s2mm_data_width {64} \
    CONFIG.c_m_axis_mm2s_tdata_width {64} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {8} \
+   CONFIG.c_mm2s_burst_size {16} \
    CONFIG.c_s_axis_s2mm_tdata_width {64} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \

@@ -1,0 +1,30 @@
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 8 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L secureip --snapshot tb_dtpu_func_synth xil_defaultlib.tb_dtpu xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.register
+Compiling module unisims_ver.GND
+Compiling module unisims_ver.x_lut2_mux4
+Compiling module unisims_ver.LUT2
+Compiling module unisims_ver.CARRY4
+Compiling module unisims_ver.LUT4
+Compiling module unisims_ver.FDRE_default
+Compiling module xil_defaultlib.mult_gen_v12_0_16
+Compiling module xil_defaultlib.mult_gen_0
+Compiling module unisims_ver.DSP48E1(ADREG=0,CARRYINSELREG=0,...
+Compiling module xil_defaultlib.xbip_multadd_v3_0_15
+Compiling module xil_defaultlib.vivado_mac
+Compiling module xil_defaultlib.mxu_mac
+Compiling module xil_defaultlib.mxu_core_default
+Compiling module xil_defaultlib.mxu_wrapper_default
+Compiling module xil_defaultlib.control_unit
+Compiling module xil_defaultlib.dtpu_core
+Compiling module xil_defaultlib.tb_dtpu
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_dtpu_func_synth

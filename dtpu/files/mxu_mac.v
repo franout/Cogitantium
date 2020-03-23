@@ -42,7 +42,7 @@ module mxu_mac
         wire [bit_width-1:0]q;
         wire [bit_width-1:0]q1;
         wire tc;
-        
+        wire SUBTRACT;
         
  `ifdef VIVADO_MAC
             assign SUBTRACT=1'b0;

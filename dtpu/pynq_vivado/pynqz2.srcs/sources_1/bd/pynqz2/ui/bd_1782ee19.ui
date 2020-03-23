@@ -1,54 +1,48 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.08526",
-   "Default View_TopLeft":"-226,1",
+   "Default View_TopLeft":"255,274",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port M_AXIS_outfifo -pg 1 -lvl 3 -x 1230 -y 180 -defaultsOSRD
+preplace port M_AXIS_outfifo -pg 1 -lvl 3 -x 1200 -y 180 -defaultsOSRD
 preplace port S_AXI -pg 1 -lvl 0 -x -80 -y 70 -defaultsOSRD
 preplace port S_AXIS_csr -pg 1 -lvl 0 -x -80 -y 90 -defaultsOSRD
 preplace port S_AXIS_infifo -pg 1 -lvl 0 -x -80 -y 130 -defaultsOSRD
 preplace port S_AXIS_wm -pg 1 -lvl 0 -x -80 -y 110 -defaultsOSRD
-preplace port interrupt_dtpu -pg 1 -lvl 3 -x 1230 -y 240 -defaultsOSRD
+preplace port interrupt_dtpu -pg 1 -lvl 3 -x 1200 -y 240 -defaultsOSRD
 preplace port test_mode -pg 1 -lvl 0 -x -80 -y 310 -defaultsOSRD
 preplace port enable -pg 1 -lvl 0 -x -80 -y 330 -defaultsOSRD
 preplace port clk -pg 1 -lvl 0 -x -80 -y 190 -defaultsOSRD
 preplace port axi_aclk -pg 1 -lvl 0 -x -80 -y 150 -defaultsOSRD
 preplace port s_axi_aresetn -pg 1 -lvl 0 -x -80 -y 170 -defaultsOSRD
-preplace port ie_0 -pg 1 -lvl 3 -x 1230 -y 140 -defaultsOSRD
-preplace port csr_0_0 -pg 1 -lvl 3 -x 1230 -y 160 -defaultsOSRD
-preplace port ofifo_0 -pg 1 -lvl 3 -x 1230 -y 820 -defaultsOSRD
-preplace portBus state_0 -pg 1 -lvl 3 -x 1230 -y 410 -defaultsOSRD
+preplace portBus state_0 -pg 1 -lvl 3 -x 1200 -y 410 -defaultsOSRD
 preplace portBus resetn -pg 1 -lvl 0 -x -80 -y 50 -defaultsOSRD
-preplace inst axis_accelerator_ada -pg 1 -lvl 2 -x 1010 -y 620 -defaultsOSRD
+preplace inst axis_accelerator_ada -pg 1 -lvl 2 -x 990 -y 620 -defaultsOSRD
 preplace inst util_vector_logic_2 -pg 1 -lvl 1 -x 530 -y 120 -defaultsOSRD
 preplace inst dtpu_core -pg 1 -lvl 1 -x 530 -y 330 -defaultsOSRD
-preplace netloc axis_accelerator_ada_0_interrupt 1 2 1 1210J 240n
+preplace netloc axis_accelerator_ada_0_interrupt 1 2 1 1180J 240n
 preplace netloc test_mode_0_1 1 0 1 -50J 310n
 preplace netloc enable_0_1 1 0 1 -60J 330n
-preplace netloc clk_0_1 1 0 1 -20J 190n
-preplace netloc aclk_0_1 1 0 2 -30J 20 800
-preplace netloc s_axi_aresetn_0_1 1 0 2 0J 190 760
-preplace netloc util_vector_logic_2_Res 1 0 2 10 460 730
-preplace netloc dtpu_core_state 1 1 2 NJ 340 1200J
-preplace netloc dtpu_core_ie 1 1 2 790J 140 NJ
-preplace netloc dtpu_core_csr_0 1 1 2 810J 160 NJ
-preplace netloc dtpu_core_ofifo 1 1 2 NJ 360 1180J
-preplace netloc axis_accelerator_ada_aresetn 1 0 3 10 10 NJ 10 1170
-preplace netloc Op1_0_1 1 0 1 -10J 50n
-preplace netloc dtpu_coro_csr_mem_interface 1 1 1 780 260n
-preplace netloc Conn5 1 0 2 -40J 520 NJ
-preplace netloc Conn3 1 0 2 0J 50 820J
-preplace netloc Conn1 1 2 1 1190J 180n
-preplace netloc dtpu_coro_output_fifo 1 1 1 740 320n
-preplace netloc Conn2 1 0 2 -40J 40 840J
-preplace netloc dtpu_coro_input_fifo 1 1 1 770 300n
-preplace netloc Conn4 1 0 2 -20J 30 830J
-preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 10 200 NJ 200 1160
-preplace netloc dtpu_coro_weight_mem_interface 1 1 1 750 280n
-levelinfo -pg 1 -80 530 1010 1230
-pagesize -pg 1 -db -bbox -sgen -230 0 1390 1270
+preplace netloc clk_0_1 1 0 1 -30J 190n
+preplace netloc aclk_0_1 1 0 2 -40J 10 780
+preplace netloc s_axi_aresetn_0_1 1 0 2 -20J 190 750
+preplace netloc util_vector_logic_2_Res 1 0 2 -20 220 730
+preplace netloc dtpu_core_state 1 1 2 NJ 370 1170J
+preplace netloc axis_accelerator_ada_aresetn 1 0 3 -10 210 NJ 210 1150
+preplace netloc Op1_0_1 1 0 1 -20J 50n
+preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 230 NJ 230 1140
+preplace netloc Conn4 1 0 2 -30J 30 800J
+preplace netloc Conn2 1 0 2 -50J 40 810J
+preplace netloc Conn1 1 2 1 1160J 180n
+preplace netloc Conn3 1 0 2 -60J 20 820J
+preplace netloc Conn5 1 0 2 -10J 50 790J
+preplace netloc dtpu_coro_output_fifo 1 1 1 730 350n
+preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 310n
+preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 290n
+preplace netloc dtpu_coro_input_fifo 1 1 1 760 330n
+levelinfo -pg 1 -80 530 990 1200
+pagesize -pg 1 -db -bbox -sgen -230 0 1360 1270
 "
 }
 0

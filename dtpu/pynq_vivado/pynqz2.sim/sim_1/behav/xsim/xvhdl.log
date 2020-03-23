@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/vivado_mac/sim/vivado_mac.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'vivado_mac'
+INFO: [VRFC 10-163] Analyzing VHDL file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/sim/mult_gen_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mult_gen_0'

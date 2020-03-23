@@ -35,7 +35,7 @@ module dtpu_core
     )
 (
     clk,
-    areset,
+    aresetn,
     test_mode,
     enable,
     ////////////////////////////
@@ -97,7 +97,7 @@ module dtpu_core
     input wire clk;
     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 areset RST" *)
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
-    input wire areset;
+    input wire aresetn;
     input wire test_mode;
     input wire enable;
     
@@ -177,9 +177,9 @@ module dtpu_core
        
        output reg[3:0]state;
           
-          wire [11:0]weight_from_memory;
-          wire[11:0] input_data_from_fifo;
-          wire [11:0] input_data_to_fifo;
+          (* dont_touch="true" *) wire [11:0]weight_from_memory;
+         (* dont_touch="true" *)  wire[11:0] input_data_from_fifo;
+         (* dont_touch="true" *) wire [11:0] input_data_to_fifo;
        wire enable_i;     
        wire [`LOG_ALLOWED_PRECISIONS-1:0] data_type;
      ////////////////////////////////////////////
@@ -191,7 +191,7 @@ module dtpu_core
         .max_data_width(DATA_WIDTH_MAC)// it must be a divisor of 64
         ) engine  (   
             .data_type(data_type),
-            .reset(areset),
+            .reset(aresetn),
             .clk(clk),
             .enable(enable_i),
             .test_mode(test_mode),
@@ -216,7 +216,7 @@ module dtpu_core
                                 
                 cu(
         .clk(clk),
-        .reset(areset),
+        .reset(aresetn),
         .test_mode(test_mode),
         .glb_enable(enable),
         .enable_mxu(enable_i),
@@ -253,13 +253,13 @@ module dtpu_core
   // dummy assignment for 3 columns and rows 
   assign input_data_from_fifo= (infifo_read ? infifo_dout[11:0]:12'b0);
   
-  assign outfifo_din[11:0]=( outfifo_write ? input_data_to_fifo[11:0]:12'b0);
+  assign outfifo_din[11:0]=( outfifo_write ? input_data_to_fifo:12'b0);
   assign outfifo_din[63:12]= 0;
   assign weight_from_memory= (wm_ce ? wm_dout[11:0]:12'bZ );
   
   
   always @(posedge(clk)) begin
-            state<=outfifo_din[3:0];  
+            state<=input_data_to_fifo[3:0];  
   end 
   
   

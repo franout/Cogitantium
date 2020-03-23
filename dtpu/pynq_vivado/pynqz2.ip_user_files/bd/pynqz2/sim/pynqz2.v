@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Sun Mar 15 18:36:47 2020
+//Date        : Sun Mar 22 17:43:27 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2.bd
 //Design      : pynqz2
@@ -51,7 +51,7 @@ module dtpu_imp_WM72SM
     clk,
     enable,
     interrupt_dtpu,
-    reset_n,
+    resetn,
     s_axi_aresetn,
     state_0,
     test_mode);
@@ -96,7 +96,7 @@ module dtpu_imp_WM72SM
   input clk;
   input enable;
   output interrupt_dtpu;
-  input [0:0]reset_n;
+  input [0:0]resetn;
   input s_axi_aresetn;
   output [3:0]state_0;
   input test_mode;
@@ -138,6 +138,7 @@ module dtpu_imp_WM72SM
   wire Conn5_TLAST;
   wire Conn5_TREADY;
   wire Conn5_TVALID;
+  wire [0:0]Op1_0_1;
   wire aclk_0_1;
   wire axis_accelerator_ada_0_AP_CTRL_ap_continue;
   wire axis_accelerator_ada_0_AP_CTRL_ap_done;
@@ -169,12 +170,9 @@ module dtpu_imp_WM72SM
   wire dtpu_coro_weight_mem_interface_RST;
   wire dtpu_coro_weight_mem_interface_WE;
   wire enable_0_1;
-  wire [0:0]reset_n_1;
   wire s_axi_aresetn_0_1;
   wire test_mode_0_1;
-  wire [0:0]util_vector_logic_1_Res;
   wire [0:0]util_vector_logic_2_Res;
-  wire [0:0]util_vector_logic_3_Res;
 
   assign Conn1_TREADY = M_AXIS_outfifo_tready;
   assign Conn2_ARADDR = S_AXI_araddr[31:0];
@@ -202,6 +200,7 @@ module dtpu_imp_WM72SM
   assign M_AXIS_outfifo_tkeep[7:0] = Conn1_TKEEP;
   assign M_AXIS_outfifo_tlast = Conn1_TLAST;
   assign M_AXIS_outfifo_tvalid = Conn1_TVALID;
+  assign Op1_0_1 = resetn[0];
   assign S_AXIS_csr_tready = Conn3_TREADY;
   assign S_AXIS_infifo_tready = Conn4_TREADY;
   assign S_AXIS_wm_tready = Conn5_TREADY;
@@ -217,7 +216,6 @@ module dtpu_imp_WM72SM
   assign clk_0_1 = clk;
   assign enable_0_1 = enable;
   assign interrupt_dtpu = axis_accelerator_ada_0_interrupt;
-  assign reset_n_1 = reset_n[0];
   assign s_axi_aresetn_0_1 = s_axi_aresetn;
   assign state_0[3:0] = dtpu_core_state;
   assign test_mode_0_1 = test_mode;
@@ -324,16 +322,10 @@ module dtpu_imp_WM72SM
         .wm_dout(dtpu_coro_weight_mem_interface_DOUT),
         .wm_reset(dtpu_coro_weight_mem_interface_RST),
         .wm_we(dtpu_coro_weight_mem_interface_WE));
-  pynqz2_util_vector_logic_1_1 util_vector_logic_1
-       (.Op1(axis_accelerator_ada_aresetn),
-        .Res(util_vector_logic_1_Res));
   pynqz2_util_vector_logic_1_2 util_vector_logic_2
-       (.Op1(util_vector_logic_3_Res),
-        .Op2(util_vector_logic_1_Res),
+       (.Op1(Op1_0_1),
+        .Op2(axis_accelerator_ada_aresetn),
         .Res(util_vector_logic_2_Res));
-  pynqz2_util_vector_logic_1_3 util_vector_logic_3
-       (.Op1(reset_n_1),
-        .Res(util_vector_logic_3_Res));
 endmodule
 
 module m00_couplers_imp_13FRLR6
@@ -975,7 +967,7 @@ module m04_couplers_imp_OZP945
   assign m04_couplers_to_m04_couplers_WVALID = S_AXI_wvalid[0];
 endmodule
 
-(* CORE_GENERATION_INFO = "pynqz2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pynqz2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=25,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=8,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=77,da_axi4_s2mm_cnt=9,da_bram_cntlr_cnt=2,da_clkrst_cnt=82,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "pynqz2.hwdef" *) 
+(* CORE_GENERATION_INFO = "pynqz2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pynqz2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=23,numReposBlks=15,numNonXlnxBlks=0,numHierBlks=8,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=77,da_axi4_s2mm_cnt=9,da_bram_cntlr_cnt=2,da_clkrst_cnt=82,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "pynqz2.hwdef" *) 
 module pynqz2
    (DDR_0_addr,
     DDR_0_ba,
@@ -998,7 +990,6 @@ module pynqz2
     FIXED_IO_0_ps_clk,
     FIXED_IO_0_ps_porb,
     FIXED_IO_0_ps_srstb,
-    clk_pl,
     enable,
     reset_n,
     state_0);
@@ -1023,7 +1014,6 @@ module pynqz2
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_CLK" *) inout FIXED_IO_0_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_PORB" *) inout FIXED_IO_0_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_SRSTB" *) inout FIXED_IO_0_ps_srstb;
-  output clk_pl;
   input enable;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset_n;
   output [3:0]state_0;
@@ -1293,7 +1283,6 @@ module pynqz2
   wire [4:0]xlconcat_0_dout;
   wire [0:0]xlconstant_0_dout;
 
-  assign clk_pl = S00_ACLK_1;
   assign enable_1 = enable;
   assign reset_n_1 = reset_n;
   assign state_0[3:0] = dtpu_state_0;
@@ -1501,7 +1490,7 @@ module pynqz2
         .clk(S00_ACLK_1),
         .enable(enable_1),
         .interrupt_dtpu(dtpu_interrupt_dtpu),
-        .reset_n(reset_n_1),
+        .resetn(reset_n_1),
         .s_axi_aresetn(rst_ps7_30M_interconnect_aresetn),
         .state_0(dtpu_state_0),
         .test_mode(xlconstant_0_dout));

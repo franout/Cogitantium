@@ -101,7 +101,6 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_xlconcat_0_1/sim/pynqz2_xlconcat_0_1.v" \
-  "../../../bd/pynqz2/ip/pynqz2_util_vector_logic_1_1/sim/pynqz2_util_vector_logic_1_1.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_axi_dma_0_2/sim/pynqz2_axi_dma_0_2.vhd" \
@@ -118,7 +117,6 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_util_vector_logic_1_2/sim/pynqz2_util_vector_logic_1_2.v" \
-  "../../../bd/pynqz2/ip/pynqz2_util_vector_logic_1_3/sim/pynqz2_util_vector_logic_1_3.v" \
 -endlib
 -makelib xcelium_lib/generic_baseblocks_v2_1_0 \
   "../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \
@@ -134,6 +132,7 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_xbar_14/sim/pynqz2_xbar_14.v" \
+  "../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/sim/bd_7d7d.v" \
   "../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_0/sim/bd_7d7d_one_0.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
@@ -218,15 +217,14 @@
   "../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_38/sim/bd_7d7d_m00e_0.sv" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
-  "../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/sim/bd_7d7d.v" \
   "../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/sim/pynqz2_smartconnect_0_0.v" \
-  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib xcelium_lib/axi_protocol_converter_v2_1_20 \
   "../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_auto_pc_0/sim/pynqz2_auto_pc_0.v" \
+  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   glbl.v

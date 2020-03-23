@@ -93,7 +93,7 @@ module tb_dtpu();
          ) uut
      (
          .clk(clk),
-         .areset(reset),
+         .aresetn(reset),
          .test_mode(test_mode),
          .enable(enable),
          ////////////////////////////

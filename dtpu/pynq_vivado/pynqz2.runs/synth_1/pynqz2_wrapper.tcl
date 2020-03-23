@@ -18,7 +18,6 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 2
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
 
@@ -32,7 +31,7 @@ set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
-set_property ip_output_repo d:/home/fra/Desktop/ip [current_project]
+set_property ip_output_repo /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 set_property generic VIVADO_MAC=1 [current_fileset]
 read_verilog {
@@ -119,12 +118,12 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -directive FewerCarryChains -keep_equivalent_registers -resource_sharing off -no_lc
+synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -fanout_limit 400 -directive PerformanceOptimized -retiming -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef pynqz2_wrapper.dcp
+write_checkpoint -force -noxdef -incremental_synth pynqz2_wrapper.dcp
 create_report "synth_1_synth_report_utilization_0" "report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb"
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]
