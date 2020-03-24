@@ -202,6 +202,7 @@ driver_fifo.sendchannel.wait()
 
 ################################################
 ### program accelerator&start computation ######
+###             matrix 8x8 macs           ######
 ################################################
 
 
@@ -231,7 +232,7 @@ accelerator.write(OARG0_TDEST,0) # only one output
 start_time = time.time()
 #accelerator.write(CMD, 0x00010001)
 # 5 instead of 2 for continous runs
-accelerator.write(CMD, 0x00020000) # execute one step 
+accelerator.write(CMD, 0x00020001) # execute one step 
 
 accelerator.read(OARG0_STATUS) # check output buffer status
 #After completing the Accelerator operation, done status is updated in the Status

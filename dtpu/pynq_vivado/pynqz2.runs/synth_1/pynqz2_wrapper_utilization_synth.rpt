@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Tue Mar 24 19:27:19 2020
+| Date         : Tue Mar 24 20:28:27 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
 | Design       : pynqz2_wrapper
@@ -35,8 +35,8 @@ Table of Contents
 |   LUT as Memory            |  1642 |     0 |     17400 |  9.44 |
 |     LUT as Distributed RAM |  1170 |     0 |           |       |
 |     LUT as Shift Register  |   472 |     0 |           |       |
-| Slice Registers            | 14005 |     0 |    106400 | 13.16 |
-|   Register as Flip Flop    | 14005 |     0 |    106400 | 13.16 |
+| Slice Registers            | 14007 |     0 |    106400 | 13.16 |
+|   Register as Flip Flop    | 14007 |     0 |    106400 | 13.16 |
 |   Register as Latch        |     0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |   129 |     0 |     26600 |  0.48 |
 | F8 Muxes                   |     0 |     0 |     13300 |  0.00 |
@@ -59,7 +59,7 @@ Table of Contents
 | 54    |          Yes |           - |          Set |
 | 722   |          Yes |           - |        Reset |
 | 328   |          Yes |         Set |            - |
-| 12901 |          Yes |       Reset |            - |
+| 12903 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -151,12 +151,12 @@ Table of Contents
 +----------+-------+----------------------+
 | Ref Name |  Used |  Functional Category |
 +----------+-------+----------------------+
-| FDRE     | 12901 |         Flop & Latch |
+| FDRE     | 12903 |         Flop & Latch |
 | LUT3     |  2989 |                  LUT |
 | LUT6     |  2490 |                  LUT |
-| LUT5     |  1869 |                  LUT |
+| LUT5     |  1870 |                  LUT |
 | RAMD32   |  1744 |   Distributed Memory |
-| LUT4     |  1530 |                  LUT |
+| LUT4     |  1533 |                  LUT |
 | LUT2     |  1057 |                  LUT |
 | FDCE     |   722 |         Flop & Latch |
 | RAMS32   |   574 |   Distributed Memory |

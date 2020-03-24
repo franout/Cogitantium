@@ -92,8 +92,8 @@ localparam start_p2=4'h9;
 localparam start_p3=4'hA;
 
 reg [3:0]state;
-reg [$clog2(COLUMNS*3+1)-1:0]counter_compute;
-reg [$clog2(ROWS)-1:0]counter_res;
+reg [$clog2(COLUMNS*(3+1)):0]counter_compute;
+reg [$clog2(ROWS):0]counter_res;
 
 
 always @(posedge clk) begin
@@ -190,7 +190,7 @@ activate_enable_data_type: begin
 compute: begin
             counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
-            if(counter_compute==(COLUMNS*3+1-1)) begin 
+            if(counter_compute==(COLUMNS*(3+1))) begin 
             state<=flush_out_fifo;
             end else begin 
             state<=state;            
@@ -199,10 +199,10 @@ compute: begin
 
 stop: begin end // skip for the moment 
 flush_out_fifo: begin
-             enable_mxu<=1'b1;
+             enable_mxu<=1'b1;  // TODO CHANGE WITH ENABLE DESQUEUE AND ENQUEU FFS
              counter_res<=counter_res+1;
               // wait for the correct output
-              if(counter_res==ROWS-2) begin 
+              if(counter_res==(ROWS)) begin 
               state<=done;
               end else begin 
               state<=state;
