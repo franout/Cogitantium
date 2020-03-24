@@ -68,17 +68,20 @@ module tb_mxu_core();
               
               initial begin 
               enable=1'b0;
-              reset=1'b1;
+              reset=1'b0;
               #clk_period;
               
-              reset=1'b0;
-              input_data=12'h253;
-              weight=12'h312;
+              reset=1'b1;
+              input_data=12'hAFE;
+              weight=12'hFFF;
               weight4=16'h5312;
               input_data4=16'h1353;
               #clk_period;
               enable=1'b1;
               #clk_period;
+              for(k=0;k<8;k=k+1) begin 
+              #clk_period;
+              end
               // first input chaanges delay on second input of 1 cc and on third 1 of 2cc 
               // the delay of input chian depends from the number of columns 
                input_data=12'h353;

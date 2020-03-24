@@ -141,7 +141,7 @@ start_step phys_opt_design
 set ACTIVE_STEP phys_opt_design
 set rc [catch {
   create_msg_db phys_opt_design.pb
-  phys_opt_design -directive ExploreWithAggressiveHoldFix
+  phys_opt_design 
   write_checkpoint -force pynqz2_wrapper_physopt.dcp
   close_msg_db -file phys_opt_design.pb
 } RESULT]
@@ -157,7 +157,7 @@ start_step route_design
 set ACTIVE_STEP route_design
 set rc [catch {
   create_msg_db route_design.pb
-  route_design -directive AggressiveExplore
+  route_design 
   write_checkpoint -force pynqz2_wrapper_routed.dcp
   create_report "impl_1_route_report_drc_0" "report_drc -file pynqz2_wrapper_drc_routed.rpt -pb pynqz2_wrapper_drc_routed.pb -rpx pynqz2_wrapper_drc_routed.rpx"
   create_report "impl_1_route_report_methodology_0" "report_methodology -file pynqz2_wrapper_methodology_drc_routed.rpt -pb pynqz2_wrapper_methodology_drc_routed.pb -rpx pynqz2_wrapper_methodology_drc_routed.rpx"

@@ -177,9 +177,12 @@ module dtpu_core
        
        output reg[3:0]state;
           
-          (* dont_touch="true" *) wire [11:0]weight_from_memory;
-         (* dont_touch="true" *)  wire[11:0] input_data_from_fifo;
-         (* dont_touch="true" *) wire [11:0] input_data_to_fifo;
+          
+        wire [3:0]state_i;
+       wire load_in_reg;
+        reg [31:0] input_data_from_fifo;
+        wire [31:0] input_data_to_fifo;
+        reg [31:0] weight_from_memory;
        wire enable_i;     
        wire [`LOG_ALLOWED_PRECISIONS-1:0] data_type;
      ////////////////////////////////////////////
@@ -238,7 +241,8 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state_out()
+        .load_data(load_in_reg),
+        .state_out(state_i)
            );
   
   /////////////////////////////////////////////
@@ -250,16 +254,26 @@ module dtpu_core
   //filter_and_select mask_values();
   
   
-  // dummy assignment for 3 columns and rows 
-  assign input_data_from_fifo= (infifo_read ? infifo_dout[11:0]:12'b0);
   
-  assign outfifo_din[11:0]=( outfifo_write ? input_data_to_fifo:12'b0);
-  assign outfifo_din[63:12]= 0;
-  assign weight_from_memory= (wm_ce ? wm_dout[11:0]:12'bZ );
+  always @(posedge(clk)) begin 
+  if(!aresetn) begin
+  input_data_from_fifo<=0;
+  weight_from_memory<=0;
+  end else begin 
+            if (load_in_reg && infifo_read ) begin 
+            input_data_from_fifo<=infifo_dout[31:0];
+            weight_from_memory<= wm_dout[31:0];
+            end
+            
+  end 
+  end 
+  // dummy assignment for 3 columns and rows 
+  assign outfifo_din[31:0]=( outfifo_write ? input_data_to_fifo:32'b0);
+  assign outfifo_din[63:32]= 0;
   
   
   always @(posedge(clk)) begin
-            state<=input_data_to_fifo[3:0];  
+  state<= state_i; 
   end 
   
   

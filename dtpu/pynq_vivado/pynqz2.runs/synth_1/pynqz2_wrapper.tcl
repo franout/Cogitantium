@@ -118,7 +118,7 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -fanout_limit 400 -directive PerformanceOptimized -retiming -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
+synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -retiming
 
 
 # disable binary constraint mode for synth run checkpoints

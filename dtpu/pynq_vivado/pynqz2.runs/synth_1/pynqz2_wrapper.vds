@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Mon Mar 23 15:48:29 2020
-# Process ID: 11235
+# Start of session at: Tue Mar 24 19:19:33 2020
+# Process ID: 20428
 # Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1
 # Command line: vivado -log pynqz2_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynqz2_wrapper.tcl
 # Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.vds
@@ -37,16 +37,16 @@ WARNING: [IP_Flow 19-3153] Bus Interface 'clk': ASSOCIATED_BUSIF bus parameter i
 WARNING: [IP_Flow 19-3155] Bus Interface 'clk': ASSOCIATED_RESET port 'areset' does not exist.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-add_files: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1666.547 ; gain = 192.094 ; free physical = 7793 ; free virtual = 14001
-Command: synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -fanout_limit 400 -directive PerformanceOptimized -retiming -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
+add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1666.543 ; gain = 192.094 ; free physical = 2190 ; free virtual = 11240
+Command: synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -retiming
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 11396 
+INFO: Helper process launched with PID 20563 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:32 . Memory (MB): peak = 1960.719 ; gain = 201.715 ; free physical = 7264 ; free virtual = 13550
+Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:33 . Memory (MB): peak = 1961.684 ; gain = 202.684 ; free physical = 1556 ; free virtual = 10632
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:971]
@@ -187,6 +187,12 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_lite_if' [/media/fra/DATA/uni/2
 WARNING: [Synth 8-6014] Unused sequential element awaddr_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2160]
 WARNING: [Synth 8-6014] Unused sequential element wdata_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2162]
 WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.axi2ip_wrdata_i_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2315]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.awready_i_reg' into 'GEN_SYNC_WRITE.wready_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2147]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rdy1_reg' into 'GEN_SYNC_WRITE.wready_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2276]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.awready_i_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2147]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.rdy1_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2276]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.arvalid_re_d1_reg' into 'arready_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3058]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_READ.arvalid_re_d1_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3058]
 INFO: [Synth 8-256] done synthesizing module 'axi_dma_lite_if' (4#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2066]
 INFO: [Synth 8-638] synthesizing module 'axi_dma_register' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3607]
 	Parameter C_NUM_REGISTERS bound to: 12 - type: integer 
@@ -301,6 +307,12 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap' [/media/f
 	Parameter C_FAMILY bound to: zynq - type: string 
 INFO: [Synth 8-638] synthesizing module 'axi_datamover_reset' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:153]
 	Parameter C_STSCMD_IS_ASYNC bound to: 0 - type: integer 
+INFO: [Synth 8-4471] merging register 'sig_cmd_stat_rst_int_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:191]
+INFO: [Synth 8-4471] merging register 'sig_mmap_rst_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:194]
+INFO: [Synth 8-4471] merging register 'sig_stream_rst_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:197]
+WARNING: [Synth 8-6014] Unused sequential element sig_cmd_stat_rst_int_reg_n_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:191]
+WARNING: [Synth 8-6014] Unused sequential element sig_mmap_rst_reg_n_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:194]
+WARNING: [Synth 8-6014] Unused sequential element sig_stream_rst_reg_n_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:197]
 INFO: [Synth 8-256] done synthesizing module 'axi_datamover_reset' (12#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:153]
 INFO: [Synth 8-638] synthesizing module 'axi_datamover_cmd_status' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:2698]
 	Parameter C_ADDR_WIDTH bound to: 32 - type: integer 
@@ -714,6 +726,8 @@ WARNING: [Synth 8-6014] Unused sequential element gdvld.data_valid_std_reg was r
 WARNING: [Synth 8-6014] Unused sequential element gen_pntr_flags_cc.gae_cc_std.ram_aempty_i_reg was removed.  [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:953]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-4471] merging register 'gen_fwft.empty_fwft_fb_reg' into 'gen_fwft.empty_fwft_i_reg' [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1294]
+WARNING: [Synth 8-6014] Unused sequential element gen_fwft.empty_fwft_fb_reg was removed.  [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1294]
 INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_base' (29#1) [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:56]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
@@ -1264,6 +1278,8 @@ INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized8
 INFO: [Synth 8-256] done synthesizing module 'axi_datamover_s2mm_scatter' (54#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:45117]
 WARNING: [Synth 8-6014] Unused sequential element GEN_INCLUDE_DRE.lsig_pushreg_empty_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:47765]
 WARNING: [Synth 8-6014] Unused sequential element GEN_INCLUDE_DRE.lsig_pullreg_full_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:47821]
+INFO: [Synth 8-4471] merging register 'sig_sm_ld_scatter_cmd_reg' into 'sig_sm_ld_dre_cmd_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:47510]
+WARNING: [Synth 8-6014] Unused sequential element sig_sm_ld_scatter_cmd_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:47510]
 INFO: [Synth 8-256] done synthesizing module 'axi_datamover_s2mm_realign' (55#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:47011]
 INFO: [Synth 8-638] synthesizing module 'axi_datamover_indet_btt' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:28430]
 	Parameter C_SF_FIFO_DEPTH bound to: 128 - type: integer 
@@ -1508,6 +1524,8 @@ WARNING: [Synth 8-6014] Unused sequential element gdvld.data_valid_std_reg was r
 WARNING: [Synth 8-6014] Unused sequential element gen_pntr_flags_cc.gae_cc_std.ram_aempty_i_reg was removed.  [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:953]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-4471] merging register 'gen_fwft.empty_fwft_fb_reg' into 'gen_fwft.empty_fwft_i_reg' [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1294]
+WARNING: [Synth 8-6014] Unused sequential element gen_fwft.empty_fwft_fb_reg was removed.  [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1294]
 INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_base__parameterized0' (56#1) [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:56]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
@@ -1732,6 +1750,8 @@ WARNING: [Synth 8-6014] Unused sequential element gdvld.data_valid_std_reg was r
 WARNING: [Synth 8-6014] Unused sequential element gen_pntr_flags_cc.gae_cc_std.ram_aempty_i_reg was removed.  [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:953]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-4471] merging register 'gen_fwft.empty_fwft_fb_reg' into 'gen_fwft.empty_fwft_i_reg' [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1294]
+WARNING: [Synth 8-6014] Unused sequential element gen_fwft.empty_fwft_fb_reg was removed.  [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1294]
 INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_base__parameterized1' (56#1) [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:56]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
@@ -4534,32 +4554,29 @@ INFO: [Synth 8-256] done synthesizing module 'pynqz2_axis_accelerator_ada_0_0' (
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_dtpu_core_0_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_core_0_0/synth/pynqz2_dtpu_core_0_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'dtpu_core' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:25]
 	Parameter DATA_WIDTH_MAC bound to: 4 - type: integer 
-	Parameter ROWS bound to: 3 - type: integer 
-	Parameter COLUMNS bound to: 3 - type: integer 
+	Parameter ROWS bound to: 8 - type: integer 
+	Parameter COLUMNS bound to: 8 - type: integer 
 	Parameter SIZE_WMEMORY bound to: 8196 - type: integer 
 	Parameter SIZE_CSR bound to: 1024 - type: integer 
 	Parameter DATA_WIDTH_CSR bound to: 8 - type: integer 
 	Parameter DATA_WIDTH_WMEMORY bound to: 64 - type: integer 
 	Parameter DATA_WIDTH_FIFO_IN bound to: 64 - type: integer 
 	Parameter DATA_WIDTH_FIFO_OUT bound to: 64 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:180]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:181]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:182]
 INFO: [Synth 8-6157] synthesizing module 'mxu_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v:25]
-	Parameter M bound to: 3 - type: integer 
-	Parameter K bound to: 3 - type: integer 
+	Parameter M bound to: 8 - type: integer 
+	Parameter K bound to: 8 - type: integer 
 	Parameter max_data_width bound to: 4 - type: integer 
-	Parameter max_width_columns bound to: 11 - type: integer 
-	Parameter max_width_rows bound to: 11 - type: integer 
+	Parameter max_width_columns bound to: 31 - type: integer 
+	Parameter max_width_rows bound to: 31 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'register' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v:23]
 	Parameter N bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'register' (123#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v:23]
 INFO: [Synth 8-6157] synthesizing module 'mxu_core' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v:23]
-	Parameter M bound to: 3 - type: integer 
-	Parameter K bound to: 3 - type: integer 
+	Parameter M bound to: 8 - type: integer 
+	Parameter K bound to: 8 - type: integer 
 	Parameter max_data_width bound to: 4 - type: integer 
-	Parameter max_width_columns bound to: 11 - type: integer 
-	Parameter max_width_rows bound to: 11 - type: integer 
+	Parameter max_width_columns bound to: 31 - type: integer 
+	Parameter max_width_rows bound to: 31 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'mult_gen_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/synth/mult_gen_0.vhd:70]
 WARNING: [Synth 8-5640] Port 'zero_detect' is missing in component declaration [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/synth/mult_gen_0.vhd:73]
 WARNING: [Synth 8-5640] Port 'pcasc' is missing in component declaration [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/synth/mult_gen_0.vhd:73]
@@ -4571,9 +4588,9 @@ WARNING: [Synth 8-5640] Port 'pcasc' is missing in component declaration [/media
 	Parameter C_HAS_SCLR bound to: 1 - type: integer 
 	Parameter C_LATENCY bound to: 1 - type: integer 
 	Parameter C_A_WIDTH bound to: 4 - type: integer 
-	Parameter C_A_TYPE bound to: 1 - type: integer 
+	Parameter C_A_TYPE bound to: 0 - type: integer 
 	Parameter C_B_WIDTH bound to: 4 - type: integer 
-	Parameter C_B_TYPE bound to: 1 - type: integer 
+	Parameter C_B_TYPE bound to: 0 - type: integer 
 	Parameter C_OUT_HIGH bound to: 3 - type: integer 
 	Parameter C_OUT_LOW bound to: 0 - type: integer 
 	Parameter C_MULT_TYPE bound to: 0 - type: integer 
@@ -4593,9 +4610,9 @@ INFO: [Synth 8-638] synthesizing module 'vivado_mac' [/media/fra/DATA/uni/2019-2
 	Parameter C_A_WIDTH bound to: 4 - type: integer 
 	Parameter C_B_WIDTH bound to: 4 - type: integer 
 	Parameter C_C_WIDTH bound to: 4 - type: integer 
-	Parameter C_A_TYPE bound to: 1 - type: integer 
-	Parameter C_B_TYPE bound to: 1 - type: integer 
-	Parameter C_C_TYPE bound to: 1 - type: integer 
+	Parameter C_A_TYPE bound to: 0 - type: integer 
+	Parameter C_B_TYPE bound to: 0 - type: integer 
+	Parameter C_C_TYPE bound to: 0 - type: integer 
 	Parameter C_CE_OVERRIDES_SCLR bound to: 0 - type: integer 
 	Parameter C_AB_LATENCY bound to: -1 - type: integer 
 	Parameter C_C_LATENCY bound to: -1 - type: integer 
@@ -4610,8 +4627,8 @@ INFO: [Synth 8-6155] done synthesizing module 'mxu_mac' (136#1) [/media/fra/DATA
 INFO: [Synth 8-6155] done synthesizing module 'mxu_core' (137#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'mxu_wrapper' (138#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v:25]
 INFO: [Synth 8-6157] synthesizing module 'control_unit' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:4]
-	Parameter ROWS bound to: 3 - type: integer 
-	Parameter COLUMNS bound to: 3 - type: integer 
+	Parameter ROWS bound to: 8 - type: integer 
+	Parameter COLUMNS bound to: 8 - type: integer 
 	Parameter DATA_WIDTH_FIFO_IN bound to: 64 - type: integer 
 	Parameter DATA_WIDTH_FIFO_OUT bound to: 64 - type: integer 
 	Parameter DATA_WIDTH_WMEMORY bound to: 64 - type: integer 
@@ -4629,11 +4646,10 @@ INFO: [Synth 8-6157] synthesizing module 'control_unit' [/media/fra/DATA/uni/201
 	Parameter start_p1 bound to: 4'b1000 
 	Parameter start_p2 bound to: 4'b1001 
 	Parameter start_p3 bound to: 4'b1010 
-	Parameter save_to_fifo bound to: 4'b1011 
 INFO: [Synth 8-6155] done synthesizing module 'control_unit' (139#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:4]
 WARNING: [Synth 8-3848] Net csr_din in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:113]
 WARNING: [Synth 8-3848] Net wm_din in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:131]
-WARNING: [Synth 8-3848] Net data_type in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:184]
+WARNING: [Synth 8-3848] Net data_type in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:187]
 INFO: [Synth 8-6155] done synthesizing module 'dtpu_core' (140#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:25]
 INFO: [Synth 8-6155] done synthesizing module 'pynqz2_dtpu_core_0_0' (141#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_core_0_0/synth/pynqz2_dtpu_core_0_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_util_vector_logic_1_2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_util_vector_logic_1_2/synth/pynqz2_util_vector_logic_1_2.v:57]
@@ -6838,7 +6854,7 @@ WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected 
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[78]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:45 ; elapsed = 00:02:17 . Memory (MB): peak = 2564.586 ; gain = 805.582 ; free physical = 7184 ; free virtual = 13509
+Finished RTL Elaboration : Time (s): cpu = 00:01:57 ; elapsed = 00:02:32 . Memory (MB): peak = 2565.277 ; gain = 806.277 ; free physical = 1668 ; free virtual = 10790
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -6851,13 +6867,13 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:49 ; elapsed = 00:02:22 . Memory (MB): peak = 2564.586 ; gain = 805.582 ; free physical = 7176 ; free virtual = 13563
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:02 ; elapsed = 00:02:38 . Memory (MB): peak = 2565.277 ; gain = 806.277 ; free physical = 1960 ; free virtual = 11206
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:49 ; elapsed = 00:02:22 . Memory (MB): peak = 2564.586 ; gain = 805.582 ; free physical = 7176 ; free virtual = 13563
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:02:02 ; elapsed = 00:02:38 . Memory (MB): peak = 2565.277 ; gain = 806.277 ; free physical = 1960 ; free virtual = 11206
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2679.875 ; gain = 0.000 ; free physical = 6662 ; free virtual = 13058
-INFO: [Netlist 29-17] Analyzing 229 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2698.574 ; gain = 0.000 ; free physical = 1441 ; free virtual = 10688
+INFO: [Netlist 29-17] Analyzing 439 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -7025,23 +7041,23 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/pynqz2_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3303.203 ; gain = 0.000 ; free physical = 6205 ; free virtual = 12622
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3350.910 ; gain = 0.000 ; free physical = 1035 ; free virtual = 10276
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 92 instances were transformed.
+  A total of 142 instances were transformed.
   FDR => FDRE: 60 instances
-  MULT_AND => LUT2: 30 instances
+  MULT_AND => LUT2: 80 instances
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 3303.203 ; gain = 0.000 ; free physical = 6205 ; free virtual = 12621
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 3350.910 ; gain = 0.000 ; free physical = 1035 ; free virtual = 10276
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:02:44 ; elapsed = 00:03:12 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 7012 ; free virtual = 13473
+Finished Constraint Validation : Time (s): cpu = 00:03:02 ; elapsed = 00:03:33 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1865 ; free virtual = 11149
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:02:45 ; elapsed = 00:03:12 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 7012 ; free virtual = 13473
+Finished Loading Part and Timing Information : Time (s): cpu = 00:03:02 ; elapsed = 00:03:33 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1865 ; free virtual = 11149
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -7055,13 +7071,68 @@ Applied set_property DONT_TOUCH = true for pynqz2_i/axi_intc/U0. (constraint fil
 Applied set_property DONT_TOUCH = true for pynqz2_i/axi_dma_csr_mem/U0. (constraint file  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/dont_touch.xdc, line 233).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[1].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[2].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[3].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[4].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[5].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[6].mac_i_j /mac. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[7].mac_i_j /mac. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[0].columns[0].mult_i . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[1].columns[0].mult_i . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[2].columns[0].mult_i . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[3].columns[0].mult_i . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[4].columns[0].mult_i . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[5].columns[0].mult_i . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[6].columns[0].mult_i . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for pynqz2_i/dtpu/dtpu_core/inst/engine/kernel/\rows[7].columns[0].mult_i . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/ps7. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/rst_ps7_30M. (constraint file  auto generated constraint, line ).
@@ -7117,42 +7188,73 @@ Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s03_node
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_b_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:45 ; elapsed = 00:03:13 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6997 ; free virtual = 13457
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:03:03 ; elapsed = 00:03:35 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1832 ; free virtual = 11113
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rst_wvalid_re_reg' into 'GEN_SYNC_WRITE.bvalid_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2193]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.rst_rvalid_re_reg' into 'GEN_SYNC_READ.s_axi_lite_rvalid_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2965]
 INFO: [Synth 8-802] inferred FSM for state register 'smpl_cs_reg' in module 'axi_dma_smple_sm'
+INFO: [Synth 8-4471] merging register 'GEN_NO_HOLD_DATA.mm2s_cmnd_pending_reg' into 'GEN_NO_HOLD_DATA.s_axis_mm2s_cmd_tvalid_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:14021]
 INFO: [Synth 8-5545] ROM "var_start_vector" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "var_end_vector" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "var_start_vector" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "var_end_vector" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
 INFO: [Synth 8-802] inferred FSM for state register 'sig_pcc_sm_state_reg' in module 'axi_datamover_pcc'
+INFO: [Synth 8-4471] merging register 'sig_coelsc_cmd_cmplt_reg_reg' into 'sig_coelsc_reg_full_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:12425]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1058]
 INFO: [Synth 8-802] inferred FSM for state register 'gen_fwft.curr_fwft_state_reg' in module 'xpm_fifo_base'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
 ROM "s_case_i_64" will be implemented in logic because its size less than 1024
+INFO: [Synth 8-4471] merging register 'GEN_HOLD_NO_DATA.s2mm_cmnd_pending_reg' into 'GEN_HOLD_NO_DATA.s_axis_s2mm_cmd_tvalid_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:18893]
 INFO: [Synth 8-802] inferred FSM for state register 'sig_pcc_sm_state_reg' in module 'axi_datamover_pcc__parameterized0'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:18758]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:18182]
 INFO: [Synth 8-802] inferred FSM for state register 'sig_psm_state_reg' in module 'axi_datamover_ibttcc'
 INFO: [Synth 8-802] inferred FSM for state register 'sig_csm_state_reg' in module 'axi_datamover_ibttcc'
 ROM "s_case_i_64" will be implemented in logic because its size less than 1024
 INFO: [Synth 8-5546] ROM "var_ms_strb_index" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-802] inferred FSM for state register 'sig_cmdcntl_sm_state_reg' in module 'axi_datamover_s2mm_realign'
 INFO: [Synth 8-5546] ROM "lvar_num_set" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1058]
 INFO: [Synth 8-802] inferred FSM for state register 'gen_fwft.curr_fwft_state_reg' in module 'xpm_fifo_base__parameterized0'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1058]
 INFO: [Synth 8-802] inferred FSM for state register 'gen_fwft.curr_fwft_state_reg' in module 'xpm_fifo_base__parameterized1'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'slave_attachment'
+INFO: [Synth 8-4471] merging register 'wr_addr_rdy_reg' into 'wr_data_rdy_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:20008]
+INFO: [Synth 8-4471] merging register 'ap_rst_reg' into 'ap_rst_fb_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:20216]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_lite_adapter'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5025]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5025]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5025]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5025]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5025]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5025]
 INFO: [Synth 8-802] inferred FSM for state register 'SAME_WIDTH_GEN.state_reg' in module 'xd_oarg_s2s_adapter'
 INFO: [Synth 8-802] inferred FSM for state register 'SAME_WIDTH_GEN.axis_state_reg' in module 'xd_oarg_s2s_adapter'
+INFO: [Synth 8-4471] merging register 'ap_start_one_shot_reg' into 'ap_start_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:17528]
+INFO: [Synth 8-4471] merging register 'set_ap_start_r_reg' into 'ap_start_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:17684]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'xd_sync_module'
+INFO: [Synth 8-4471] merging register 'wm_address_reg[31:0]' into 'csr_address_reg[31:0]' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:112]
+INFO: [Synth 8-4471] merging register 'wm_reset_reg' into 'csr_reset_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:114]
+INFO: [Synth 8-4471] merging register 'wm_we_reg' into 'csr_we_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:115]
+INFO: [Synth 8-4471] merging register 'infifo_read_reg' into 'wm_ce_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:116]
+INFO: [Synth 8-4471] merging register 'cs_done_reg' into 'outfifo_write_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:118]
+INFO: [Synth 8-4471] merging register 'load_data_reg' into 'wm_ce_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:121]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'control_unit'
 INFO: [Synth 8-5544] ROM "enable_mxu" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "cs_ready" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "cs_idle" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "cs_done" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "outfifo_write" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "infifo_read" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "wm_ce" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "csr_reset" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "csr_ce" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_protocol_converter_v2_1_20_b2s_rd_cmd_fsm'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2870]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2870]
+INFO: [Synth 8-4471] merging register 'gen_axilite.s_axi_wready_i_reg' into 'gen_axilite.s_axi_awready_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/6b0d/hdl/axi_crossbar_v2_1_vl_rfs.v:3574]
+INFO: [Synth 8-4471] merging register 'seq_cnt_en_reg' into 'from_sys_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:377]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'gen_pipelined.state_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'gen_pipelined.state_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'gen_pipelined.state_reg' through user attribute
@@ -7172,11 +7274,11 @@ INFO: [Synth 8-5545] ROM "gen_endpoint.r_state" won't be mapped to RAM because a
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    idle |                              001 |                               00
-            execute_xfer |                              010 |                               01
-             wait_status |                              100 |                               10
+                    idle |                               00 |                               00
+            execute_xfer |                               01 |                               01
+             wait_status |                               10 |                               10
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'smpl_cs_reg' using encoding 'one-hot' in module 'axi_dma_smple_sm'
+INFO: [Synth 8-3354] encoded FSM with state register 'smpl_cs_reg' using encoding 'sequential' in module 'axi_dma_smple_sm'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -7194,12 +7296,12 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                 invalid |                             0001 |                               00
-            stage1_valid |                             0010 |                               10
-       both_stages_valid |                             0100 |                               11
-            stage2_valid |                             1000 |                               01
+                 invalid |                               00 |                               00
+            stage1_valid |                               01 |                               10
+       both_stages_valid |                               10 |                               11
+            stage2_valid |                               11 |                               01
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'one-hot' in module 'xpm_fifo_base'
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -7228,44 +7330,44 @@ INFO: [Synth 8-3354] encoded FSM with state register 'sig_csm_state_reg' using e
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                  p_init |                           000001 |                              000
-          p_wait_for_cmd |                           000010 |                              001
-          p_ld_first_cmd |                           000100 |                              010
-          p_ld_child_cmd |                           001000 |                              011
-            p_error_trap |                           010000 |                              111
-           p_ld_last_cmd |                           100000 |                              100
+                  p_init |                              000 |                              000
+          p_wait_for_cmd |                              001 |                              001
+          p_ld_first_cmd |                              010 |                              010
+          p_ld_child_cmd |                              011 |                              011
+            p_error_trap |                              100 |                              111
+           p_ld_last_cmd |                              101 |                              100
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'sig_psm_state_reg' using encoding 'one-hot' in module 'axi_datamover_ibttcc'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    init |                           000001 |                              000
-    ld_dre_scatter_first |                           000010 |                              001
-           chk_pop_first |                           000100 |                              010
-   ld_dre_scatter_second |                           001000 |                              011
-              error_trap |                           010000 |                              101
-          chk_pop_second |                           100000 |                              100
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'sig_cmdcntl_sm_state_reg' using encoding 'one-hot' in module 'axi_datamover_s2mm_realign'
+INFO: [Synth 8-3354] encoded FSM with state register 'sig_psm_state_reg' using encoding 'sequential' in module 'axi_datamover_ibttcc'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                 invalid |                             0001 |                               00
-            stage1_valid |                             0010 |                               10
-       both_stages_valid |                             0100 |                               11
-            stage2_valid |                             1000 |                               01
+                    init |                              000 |                              000
+    ld_dre_scatter_first |                              001 |                              001
+           chk_pop_first |                              010 |                              010
+   ld_dre_scatter_second |                              011 |                              011
+              error_trap |                              100 |                              101
+          chk_pop_second |                              101 |                              100
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'one-hot' in module 'xpm_fifo_base__parameterized0'
+INFO: [Synth 8-3354] encoded FSM with state register 'sig_cmdcntl_sm_state_reg' using encoding 'sequential' in module 'axi_datamover_s2mm_realign'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 invalid |                               00 |                               00
+            stage1_valid |                               01 |                               10
+       both_stages_valid |                               10 |                               11
+            stage2_valid |                               11 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base__parameterized0'
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                 invalid |                             0001 |                               00
-            stage1_valid |                             0010 |                               10
-       both_stages_valid |                             0100 |                               11
-            stage2_valid |                             1000 |                               01
+                 invalid |                               00 |                               00
+            stage1_valid |                               01 |                               10
+       both_stages_valid |                               10 |                               11
+            stage2_valid |                               11 |                               01
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'one-hot' in module 'xpm_fifo_base__parameterized1'
+INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base__parameterized1'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -7278,64 +7380,63 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    idle |                             0001 |                               00
-               read_regs |                             0010 |                               01
-              write_regs |                             0100 |                               10
-               send_resp |                             1000 |                               11
+                    idle |                               00 |                               00
+               read_regs |                               01 |                               01
+              write_regs |                               10 |                               10
+               send_resp |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi_lite_adapter'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    idle |                             0001 |                               00
-                 running |                             0010 |                               01
-                 padding |                             0100 |                               11
-              discarding |                             1000 |                               10
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'SAME_WIDTH_GEN.axis_state_reg' using encoding 'one-hot' in module 'xd_oarg_s2s_adapter'
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axi_lite_adapter'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    idle |                              001 |                               00
-                 running |                              010 |                               01
-            pending_last |                              100 |                               10
+                    idle |                               00 |                               00
+                 running |                               01 |                               01
+                 padding |                               10 |                               11
+              discarding |                               11 |                               10
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'SAME_WIDTH_GEN.state_reg' using encoding 'one-hot' in module 'xd_oarg_s2s_adapter'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    idle |                            00001 |                              000
-              wait_start |                            00010 |                              010
-               wait_done |                            00100 |                              011
-        apply_input_mask |                            01000 |                              001
-                  iSTATE |                            10000 |                              100
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'xd_sync_module'
+INFO: [Synth 8-3354] encoded FSM with state register 'SAME_WIDTH_GEN.axis_state_reg' using encoding 'sequential' in module 'xd_oarg_s2s_adapter'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                Power_up |                      00000000001 |                             0000
-                    idle |                      00000000010 |                             0001
-                start_p1 |                      00000000100 |                             1000
-                start_p2 |                      00000001000 |                             1001
-                start_p3 |                      00000010000 |                             1010
-           retrieve_data |                      00000100000 |                             0100
-activate_enable_data_type |                      00001000000 |                             0101
-                 compute |                      00010000000 |                             0010
-          flush_out_fifo |                      00100000000 |                             0111
-            save_to_fifo |                      01000000000 |                             1011
-                    done |                      10000000000 |                             0011
+                    idle |                               00 |                               00
+                 running |                               01 |                               01
+            pending_last |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'SAME_WIDTH_GEN.state_reg' using encoding 'sequential' in module 'xd_oarg_s2s_adapter'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                              000 |                              000
+              wait_start |                              001 |                              010
+               wait_done |                              010 |                              011
+        apply_input_mask |                              011 |                              001
+                  iSTATE |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'xd_sync_module'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                Power_up |                       0000000001 |                             0000
+                    idle |                       0000000010 |                             0001
+                start_p1 |                       0000000100 |                             1000
+                start_p2 |                       0000001000 |                             1001
+                start_p3 |                       0000010000 |                             1010
+           retrieve_data |                       0000100000 |                             0100
+activate_enable_data_type |                       0001000000 |                             0101
+                 compute |                       0010000000 |                             0010
+          flush_out_fifo |                       0100000000 |                             0111
+                    done |                       1000000000 |                             0011
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'control_unit'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                 SM_IDLE |                             0010 |                               00
-               SM_CMD_EN |                             1000 |                               01
-         SM_CMD_ACCEPTED |                             0100 |                               10
-                 SM_DONE |                             0001 |                               11
+                 SM_IDLE |                               01 |                               00
+               SM_CMD_EN |                               11 |                               01
+         SM_CMD_ACCEPTED |                               10 |                               10
+                 SM_DONE |                               00 |                               11
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi_protocol_converter_v2_1_20_b2s_rd_cmd_fsm'
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axi_protocol_converter_v2_1_20_b2s_rd_cmd_fsm'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -7345,7 +7446,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_axi.gen_write.write_cs_reg' using encoding 'one-hot' in module 'sc_mmu_v1_0_8_decerr_slave'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:03 ; elapsed = 00:03:35 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6901 ; free virtual = 13427
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:21 ; elapsed = 00:03:57 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1733 ; free virtual = 11082
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_SYNC_I/NEW_INTRO.AP_ISCALARSTART_SYNC_I' (axis_acc_adapter_cdc_sync__parameterized5) to 'pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_SYNC_I/NEW_INTRO.AP_OSCALARSTART_SYNC_I'
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7358,19 +7459,19 @@ Report RTL Partitions:
 |      |RTL Partition                          |Replication |Instances |
 +------+---------------------------------------+------------+----------+
 |1     |sc_util_v1_0_4_axi_reg_stall           |          28|      6610|
-|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|      4832|
+|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|      4814|
 |3     |sc_exit_v1_0_9_splitter__GC0           |           1|        18|
-|4     |sc_exit_v1_0_9_top__GC0                |           1|       563|
-|5     |sc_mmu_v1_0_8_top__GC0                 |           1|      2187|
-|6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|       263|
-|7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           1|      2187|
-|8     |s01_entry_pipeline_imp_ECS6AV__GC0     |           1|       263|
-|9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|      2187|
-|10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       263|
-|11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|       263|
-|12    |bd_7d7d__GC0                           |           1|     17435|
-|13    |pynqz2__GCB0                           |           1|     27708|
-|14    |pynqz2__GCB1                           |           1|     16865|
+|4     |sc_exit_v1_0_9_top__GC0                |           1|       573|
+|5     |sc_mmu_v1_0_8_top__GC0                 |           1|      2195|
+|6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|       268|
+|7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           1|      2195|
+|8     |s01_entry_pipeline_imp_ECS6AV__GC0     |           1|       268|
+|9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|      2195|
+|10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       268|
+|11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|       268|
+|12    |bd_7d7d__GC0                           |           1|     17926|
+|13    |pynqz2__GCB0                           |           1|     26121|
+|14    |pynqz2__GCB1                           |           1|     14243|
 +------+---------------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -7397,26 +7498,35 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[3]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[2]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[1]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[0]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+INFO: [Synth 8-4471] merging register 'sig_rd_xfer_cmplt_reg' into 'sig_last_mmap_dbeat_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
+INFO: [Synth 8-4471] merging register 'sig_stop_request_reg' into 'sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+INFO: [Synth 8-4471] merging register 'GEN_ENABLE_INDET_BTT.I_SF_DATA_CNTL_STATUS_FIFO/sig_init_reg_reg' into 'I_WRESP_STATUS_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'GEN_ENABLE_INDET_BTT.I_SF_DATA_CNTL_STATUS_FIFO/sig_init_reg2_reg' into 'I_WRESP_STATUS_FIFO/sig_init_reg2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+INFO: [Synth 8-4471] merging register 'sig_stop_request_reg' into 'sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
+INFO: [Synth 8-4471] merging register 'GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/I_MSSAI_SKID_BUF/sig_reset_reg_reg' into 'I_DRE_CNTL_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:44276]
+INFO: [Synth 8-4471] merging register 'GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/I_MSSAI_SKID_BUF/sig_stop_request_reg' into 'GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/I_MSSAI_SKID_BUF/sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:44271]
+INFO: [Synth 8-4471] merging register 'ENABLE_AXIS_SKID.I_INDET_BTT_SKID_BUF/sig_stop_request_reg' into 'ENABLE_AXIS_SKID.I_INDET_BTT_SKID_BUF/sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
 INFO: [Synth 8-5546] ROM "DIFF_WIDTH_OR_DRE.I_IBTTCC_STBS_SET/lvar_num_set" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "DIFF_WIDTH_OR_DRE_WDC.I_WDC_STBS_SET/lvar_num_set" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+INFO: [Synth 8-4471] merging register 'I_RST_MODULE/GEN_RESET_FOR_S2MM.RESET_I/soft_reset_d1_reg' into 'I_RST_MODULE/GEN_RESET_FOR_MM2S.RESET_I/soft_reset_d1_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:727]
 INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg' and it is trimmed from '153' to '75' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:12176]
 INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_S2MM_SOF_EOF_GENERATOR.I_S2MM_DMA_MNGR/GEN_S2MM_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_S2MM_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg' and it is trimmed from '153' to '75' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:12176]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/m_payload_i_reg' and it is trimmed from '60' to '56' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/72d4/hdl/axi_register_slice_v2_1_vl_rfs.v:1709]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg' and it is trimmed from '60' to '56' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/72d4/hdl/axi_register_slice_v2_1_vl_rfs.v:1709]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_sasd.crossbar_sasd_0/reg_slice_r/m_payload_i_reg' and it is trimmed from '36' to '35' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/72d4/hdl/axi_register_slice_v2_1_vl_rfs.v:1709]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[3]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[2]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[1]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[0]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+INFO: [Synth 8-4471] merging register 'sig_rd_xfer_cmplt_reg' into 'sig_last_mmap_dbeat_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
+INFO: [Synth 8-4471] merging register 'sig_stop_request_reg' into 'sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
 INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg' and it is trimmed from '153' to '75' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:12176]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[3]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[2]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[1]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_DRE_CNTL.I_DRE_CNTL_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/INFERRED_GEN.data_reg[0]' and it is trimmed from '14' to '11' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+INFO: [Synth 8-4471] merging register 'sig_rd_xfer_cmplt_reg' into 'sig_last_mmap_dbeat_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
+INFO: [Synth 8-4471] merging register 'sig_stop_request_reg' into 'sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
 INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg' and it is trimmed from '153' to '75' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:12176]
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7442,114 +7552,195 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[6] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[8] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[9] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[10] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[11] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[13] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awaddr_incr_d_reg[15] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[6] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[8] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[9] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[10] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[11] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[13] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.araddr_incr_d_reg[15] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[0] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[1] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[2] )
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[0]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[1]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[1]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[2]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[3]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[3]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[4]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[5]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[5]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[6]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[6]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[8]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[7]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[0]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[8]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[9]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[9]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[10]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[10]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[11]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[11]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[12]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[12]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[13]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[13]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[14]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[14]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[15]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awaddr_incr_d_reg[15]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[0]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[1]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[2]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[3]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[4]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[5]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[6]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[7]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[0]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[8]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[9]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[10]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[11]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[12]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[13]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[14]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.araddr_incr_d_reg[15]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[0]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[1]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[1]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[2]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[3]'
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[6] )
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[4]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[5]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[5]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[6]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[6]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_wsplitter.awsplit_len_middle_d_reg[7]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.awsplit_len_middle_d_reg[7] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[0] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[1] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[2] )
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[0]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[1]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[1]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[2]' (FDSE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[3]'
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[6] )
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[4]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[5]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[5]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[6]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[6]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/m00_exit_pipeline/m00_exit/inst/gen_axi3.splitter_insti_1/gen_rsplitter.arsplit_len_middle_d_reg[7]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.arsplit_len_middle_d_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[30] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[31] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[29] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[28] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[27] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[26] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[25] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[24] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[22] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[21] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[20] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[19] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[18] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[17] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[16] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[15] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[13] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[11] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[10] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[9] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[8] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[6] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[3] )
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[30]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[31]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[29]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[28]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[27]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[26]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[25]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[24]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[23]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[22]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[21]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[20]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[19]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[18]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[17]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[16]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[15]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[14]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[13]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[12]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[11]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[10]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[9]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[8]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[7]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[6]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[5]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[4]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[3]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.w_state_reg[2]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.w_state_reg[2] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.decerr_slave_inst/gen_axi.gen_read.s_axi_rid_i_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[30] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[31] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[29] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[28] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[27] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[26] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[25] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[24] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[22] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[21] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[20] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[19] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[18] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[17] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[16] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[15] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[13] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[11] )
-INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[30]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[31]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[31]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[29]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[29]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[28]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[28]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[27]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[27]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[26]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[26]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[25]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[25]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[24]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[24]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[23]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[23]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[22]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[22]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[21]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[21]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[20]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[20]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[19]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[19]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[18]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[18]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[17]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[17]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[16]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[16]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[15]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[15]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[14]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[14]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[13]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[13]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[12]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[12]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[11]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[11]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[10]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[10]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[9]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[8]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[8]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[7]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[7]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[6]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[6]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[5]'
+INFO: [Synth 8-3886] merging instance 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[5]' (FDRE) to 'pynqz2_i/smartconnect_0/inst/s00_entry_pipeline/s00_mmu/inst/i_0/gen_endpoint.r_state_reg[4]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s00_entry_pipeline/s00_mmu/inst /i_0/\gen_endpoint.r_state_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_mmu_v1_0_8_top__parameterized0:/i_0/\gen_endpoint.w_state_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_mmu_v1_0_8_top__parameterized0:/i_0/\gen_endpoint.decerr_slave_inst/gen_axi.gen_read.s_axi_rid_i_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_mmu_v1_0_8_top__parameterized0:/i_0/\gen_endpoint.r_state_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s02_entry_pipeline/s02_mmu/inst /i_0/\gen_endpoint.w_state_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s02_entry_pipeline/s02_mmu/inst /i_0/\gen_endpoint.decerr_slave_inst/gen_axi.gen_read.s_axi_rid_i_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/s02_entry_pipeline/s02_mmu/inst /i_0/\gen_endpoint.r_state_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\clk_map/psr_aclk/U0/EXT_LPF/ACTIVE_LOW_EXT.ACT_LO_EXT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_wr_addra/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_rd_addrb/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_ar_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[2].inst_req_counter/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_ar_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[2].inst_req_counter/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[0].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[0].inst_req_counter/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[0].inst_req_counter/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[1].inst_req_counter/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[1].inst_req_counter/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[3].inst_req_counter/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[3].inst_req_counter/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s03_nodes/s03_ar_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_b_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s03_nodes/s03_ar_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_a_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s02_nodes/s02_w_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_b_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s02_nodes/s02_w_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_a_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s02_nodes/s02_aw_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_b_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s02_nodes/s02_aw_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_a_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s01_nodes/s01_ar_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_b_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s01_nodes/s01_ar_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_a_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s00_nodes/s00_ar_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_b_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\s00_nodes/s00_ar_node/inst /\inst_mi_handler/gen_normal_area.inst_fifo_send/gen_AB_reg_slice.payld_a_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_ar_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[2].inst_req_counter/is_zero_r_reg )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[1].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_w_node/inst /\inst_si_handler/gen_si_handler.gen_request_fifos.gen_req_fifo[3].inst_req_fifo/gen_xpm_memory_fifo.inst_fifo/gen_wr.inst_wr_addra_p1/count_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_si_handler.gen_request_counters.gen_req_counter[3].inst_req_counter/is_zero_r_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\clk_map/psr_aclk/U0/EXT_LPF/EXT_LPF[1].exr_lpf_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\clk_map/psr_aclk/U0/EXT_LPF/lpf_exr_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg[27] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER /\GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/ENABLE_AXIS_SKID.I_INDET_BTT_SKID_BUF/sig_data_skid_reg_reg[71] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER /\GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/sig_max_first_increment_reg[25] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER /\I_MSTR_PCC/sig_addr_cntr_incr_ireg2_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER /\GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/ENABLE_AXIS_SKID.I_INDET_BTT_SKID_BUF/sig_sstrb_stop_mask_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER /\GEN_INCLUDE_IBTTCC.I_S2MM_MSTR_IBTTCC/sig_xfer_len_reg_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/sg_decerr_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_AXI_DMA_REG_MODULE/GEN_S2MM_REGISTERS.I_S2MM_DMA_REGISTER/dmacr_i_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_AXI_DMA_REG_MODULE/GEN_S2MM_REGISTERS.I_S2MM_DMA_REGISTER/dmacr_i_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/axi_dma_infifo/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[15] )
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__parameterized1.
-INFO: [Synth 8-3332] Sequential element (FSM_onehot_sig_csm_state_reg[3]) is unused and will be removed from module axi_datamover_ibttcc.
-INFO: [Synth 8-3332] Sequential element (FSM_onehot_sig_cmdcntl_sm_state_reg[4]) is unused and will be removed from module axi_datamover_s2mm_realign.
-INFO: [Synth 8-3332] Sequential element (XD_ADAPTER_CORE_I/XD_SYNC_I/FSM_onehot_state_reg[4]) is unused and will be removed from module axis_accelerator_adapter.
+INFO: [Synth 8-3332] Sequential element (GEN_INCLUDE_IBTTCC.I_S2MM_MSTR_IBTTCC/FSM_onehot_sig_csm_state_reg[3]) is unused and will be removed from module axi_datamover_s2mm_full_wrap.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/\dtpu/dtpu_core /\inst/cu/csr_address_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_intc/U0/\INTC_CORE_I/IPR_GEN.ipr_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_intc/U0/\AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_intc/U0/\AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bresp_i_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_weight_mem/U0/\INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg[27] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_weight_mem/U0/\I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_addr_cntr_incr_ireg2_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_weight_mem/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/sg_decerr_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_weight_mem/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_weight_mem/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[15] )
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma.
@@ -7558,12 +7749,30 @@ WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_EXT.ACT_LO_EXT/GE
 WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_EXT.ACT_LO_EXT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
 WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module proc_sys_reset.
 WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_csr_mem/U0/\INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg[27] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_csr_mem/U0/\I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_addr_cntr_incr_ireg2_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_csr_mem/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/sg_decerr_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_csr_mem/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_1/axi_dma_csr_mem/U0/\I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[15] )
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__xdcDup__1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__xdcDup__1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__xdcDup__1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__xdcDup__1.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_wsplitter.s_awuser_d_reg[511] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/\inst/m00_exit_pipeline/m00_exit/inst /\gen_axi3.splitter_insti_1 /\gen_rsplitter.s_aruser_d_reg[511] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/smartconnect_0/insti_4/\m00_nodes/m00_aw_node/inst /\inst_si_handler/gen_m_axis_arb_fifo.inst_axis_arb_fifo/gen_pipelined.mesg_reg_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\skid_buffer_reg[1024] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\skid_buffer_reg[1025] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\skid_buffer_reg[1028] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\skid_buffer_reg[1133] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\m_vector_i_reg[1024] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\m_vector_i_reg[1025] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\m_vector_i_reg[1028] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (sc_util_v1_0_4_axi_reg_stall__2:/\m_vector_i_reg[1133] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (sc_util_v1_0_4_axi_reg_stall__6:/\skid_buffer_reg[0] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:28 ; elapsed = 00:05:08 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6654 ; free virtual = 13346
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:50 ; elapsed = 00:05:34 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1509 ; free virtual = 11002
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7575,25 +7784,25 @@ Report RTL Partitions:
 |      |RTL Partition                          |Replication |Instances |
 +------+---------------------------------------+------------+----------+
 |1     |sc_util_v1_0_4_axi_reg_stall           |           1|       347|
-|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|       951|
+|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|      1115|
 |3     |sc_exit_v1_0_9_splitter__GC0           |           1|        19|
-|4     |sc_exit_v1_0_9_top__GC0                |           1|       262|
-|5     |sc_mmu_v1_0_8_top__GC0                 |           1|       326|
+|4     |sc_exit_v1_0_9_top__GC0                |           1|       261|
+|5     |sc_mmu_v1_0_8_top__GC0                 |           1|       334|
 |6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|        33|
-|7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           2|       326|
+|7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           2|       334|
 |8     |s01_entry_pipeline_imp_ECS6AV__GC0     |           1|        33|
 |9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|       281|
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       198|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|        33|
-|12    |bd_7d7d__GC0                           |           1|      9673|
-|13    |pynqz2__GCB0                           |           1|     18797|
-|14    |pynqz2__GCB1                           |           1|     10293|
+|12    |bd_7d7d__GC0                           |           1|     12455|
+|13    |pynqz2__GCB0                           |           1|     17480|
+|14    |pynqz2__GCB1                           |           1|      8838|
 |15    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       382|
 |16    |sc_util_v1_0_4_axi_reg_stall__2        |           2|       292|
 |17    |sc_util_v1_0_4_axi_reg_stall__3        |           2|       412|
 |18    |sc_util_v1_0_4_axi_reg_stall__4        |           3|       382|
 |19    |sc_util_v1_0_4_axi_reg_stall__5        |           1|        57|
-|20    |sc_util_v1_0_4_axi_reg_stall__6        |           4|       374|
+|20    |sc_util_v1_0_4_axi_reg_stall__6        |           4|       334|
 |21    |sc_util_v1_0_4_axi_reg_stall__7        |           3|        41|
 |22    |sc_util_v1_0_4_axi_reg_stall__8        |           4|       332|
 |23    |sc_util_v1_0_4_axi_reg_stall__9        |           3|        30|
@@ -7611,7 +7820,7 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:04:38 ; elapsed = 00:05:19 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6368 ; free virtual = 13060
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:05:00 ; elapsed = 00:05:45 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1223 ; free virtual = 10717
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -7621,7 +7830,7 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:04:47 ; elapsed = 00:05:29 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6288 ; free virtual = 12982
+Finished Timing Optimization : Time (s): cpu = 00:05:12 ; elapsed = 00:05:57 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1147 ; free virtual = 10636
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -7629,25 +7838,25 @@ Report RTL Partitions:
 |      |RTL Partition                          |Replication |Instances |
 +------+---------------------------------------+------------+----------+
 |1     |sc_util_v1_0_4_axi_reg_stall           |           1|       347|
-|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|       951|
+|2     |sc_exit_v1_0_9_axi3_conv__GC0          |           1|      1115|
 |3     |sc_exit_v1_0_9_splitter__GC0           |           1|        19|
-|4     |sc_exit_v1_0_9_top__GC0                |           1|       262|
-|5     |sc_mmu_v1_0_8_top__GC0                 |           1|       326|
+|4     |sc_exit_v1_0_9_top__GC0                |           1|       261|
+|5     |sc_mmu_v1_0_8_top__GC0                 |           1|       334|
 |6     |s00_entry_pipeline_imp_1AU77LF__GC0    |           1|        33|
-|7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           2|       326|
+|7     |sc_mmu_v1_0_8_top__parameterized0__GC0 |           2|       334|
 |8     |s01_entry_pipeline_imp_ECS6AV__GC0     |           1|        33|
 |9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|       281|
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       198|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|        33|
-|12    |bd_7d7d__GC0                           |           1|      9673|
-|13    |pynqz2__GCB0                           |           1|     18822|
-|14    |pynqz2__GCB1                           |           1|     10293|
+|12    |bd_7d7d__GC0                           |           1|     12455|
+|13    |pynqz2__GCB0                           |           1|     17480|
+|14    |pynqz2__GCB1                           |           1|      8838|
 |15    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       382|
 |16    |sc_util_v1_0_4_axi_reg_stall__2        |           2|       292|
 |17    |sc_util_v1_0_4_axi_reg_stall__3        |           2|       412|
 |18    |sc_util_v1_0_4_axi_reg_stall__4        |           3|       382|
 |19    |sc_util_v1_0_4_axi_reg_stall__5        |           1|        57|
-|20    |sc_util_v1_0_4_axi_reg_stall__6        |           4|       374|
+|20    |sc_util_v1_0_4_axi_reg_stall__6        |           4|       334|
 |21    |sc_util_v1_0_4_axi_reg_stall__7        |           3|        41|
 |22    |sc_util_v1_0_4_axi_reg_stall__8        |           4|       332|
 |23    |sc_util_v1_0_4_axi_reg_stall__9        |           3|        30|
@@ -8025,7 +8234,7 @@ INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_oneh
 INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_onehot_gen_axi.gen_write.write_cs_reg[1]) is unused and will be removed from module sc_mmu_v1_0_8_top__parameterized0.
 INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_onehot_gen_axi.gen_write.write_cs_reg[0]) is unused and will be removed from module sc_mmu_v1_0_8_top__parameterized0.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:05:34 ; elapsed = 00:06:17 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6337 ; free virtual = 13044
+Finished Technology Mapping : Time (s): cpu = 00:05:53 ; elapsed = 00:06:41 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1214 ; free virtual = 10704
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -8048,18 +8257,13 @@ Start Final Netlist Cleanup
 INFO: [Synth 8-6069] LOCAL FORWARD RETIMING for instance pynqz2_i/smartconnect_0/inst/clk_map/psr_aclk/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4 with forward move, found 1 loads out of which
 0 loads can have forward move, 1 loads have () and retiming cannot be done
 
-INFO: [Synth 8-3332] Sequential element (I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/sig_btt_eq_0_reg_bret__0) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-3332] Sequential element (I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/sig_btt_eq_0_reg_bret__1) is unused and will be removed from module axi_dma__parameterized1.
-INFO: [Synth 8-3332] Sequential element (I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/sig_btt_eq_0_reg_bret__3) is unused and will be removed from module axi_dma__parameterized1.
-RETIMING: backward move register pynqz2_i/axi_dma_weight_mem/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_pntr_flags_cc.wrp_eq_rdp_pf_cc.gpf_cc_sym.diff_pntr_pf_q_reg[6] from retiming_backward is deleted already 
-RETIMING: backward move register pynqz2_i/axi_dma_weight_mem/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_pntr_flags_cc.wrp_eq_rdp_pf_cc.gpf_cc_sym.diff_pntr_pf_q_reg[5] from retiming_backward is deleted already 
+INFO: [Synth 8-3332] Sequential element (I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/sig_btt_eq_0_reg_bret__2) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-6069] LOCAL FORWARD RETIMING for instance pynqz2_i/axi_dma_weight_mem/U0/I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/GEN_SYNC_READ.axi2ip_rdaddr_reg[9] with forward move, found 1 loads out of which
 1 loads can have forward move
       Retimed registers names:
             pynqz2_i/axi_dma_weight_mem/U0/I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/GEN_SYNC_READ.axi2ip_rdaddr_reg[9]_fret
 
-RETIMING: backward move register pynqz2_i/axi_dma_csr_mem/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_pntr_flags_cc.wrp_eq_rdp_pf_cc.gpf_cc_sym.diff_pntr_pf_q_reg[6] from retiming_backward is deleted already 
-RETIMING: backward move register pynqz2_i/axi_dma_csr_mem/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_pntr_flags_cc.wrp_eq_rdp_pf_cc.gpf_cc_sym.diff_pntr_pf_q_reg[5] from retiming_backward is deleted already 
 INFO: [Synth 8-6069] LOCAL FORWARD RETIMING for instance pynqz2_i/axi_dma_csr_mem/U0/I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/GEN_SYNC_READ.axi2ip_rdaddr_reg[9] with forward move, found 1 loads out of which
 1 loads can have forward move
       Retimed registers names:
@@ -8101,7 +8305,7 @@ INFO: [Synth 8-5365] Flop inst_mi_handler/gen_normal_area.gen_fifo_req.inst_fifo
 INFO: [Synth 8-5365] Flop inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_wr.full_r_reg is being inverted and renamed to inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_wr.full_r_reg_inv.
 INFO: [Synth 8-5365] Flop inst_mi_handler/gen_normal_area.gen_node_prog_full.inst_node_prog_full/gen_xpm_memory_fifo.inst_fifo/gen_wr.full_r_reg is being inverted and renamed to inst_mi_handler/gen_normal_area.gen_node_prog_full.inst_node_prog_full/gen_xpm_memory_fifo.inst_fifo/gen_wr.full_r_reg_inv.
 INFO: [Synth 8-5365] Flop inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_wr.full_r_reg is being inverted and renamed to inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_wr.full_r_reg_inv.
-INFO: [Synth 8-5777] Ignored max_fanout on net \XD_ADAPTER_CORE_I/XD_RESET_SYNC/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.s_level_out_d4_reg_n_0  because some of its loads are not in same hierarchy as its driver   
+INFO: [Synth 8-5365] Flop inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/aresetn_d_reg[1] is being inverted and renamed to inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/aresetn_d_reg[1]_inv.
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
@@ -8116,13 +8320,13 @@ WARNING: [Synth 8-3295] tying undriven pin I_AXI_DMA_REG_MODULE/strm_valid_int_c
 WARNING: [Synth 8-3295] tying undriven pin I_AXI_DMA_REG_MODULE/strm_valid_int2_inferred:in0 to constant 0
 WARNING: [Synth 8-3295] tying undriven pin I_AXI_DMA_REG_MODULE/strm_valid_int_cdc_to_inferred:in0 to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:05:55 ; elapsed = 00:06:39 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6344 ; free virtual = 13043
+Finished IO Insertion : Time (s): cpu = 00:06:05 ; elapsed = 00:06:54 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1213 ; free virtual = 10703
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:05:55 ; elapsed = 00:06:39 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6344 ; free virtual = 13043
+Finished Renaming Generated Instances : Time (s): cpu = 00:06:05 ; elapsed = 00:06:54 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1213 ; free virtual = 10703
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -8141,25 +8345,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:57 ; elapsed = 00:06:42 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6348 ; free virtual = 13044
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:06:10 ; elapsed = 00:06:58 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1214 ; free virtual = 10704
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:05:57 ; elapsed = 00:06:42 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6348 ; free virtual = 13044
+Finished Renaming Generated Ports : Time (s): cpu = 00:06:10 ; elapsed = 00:06:58 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1214 ; free virtual = 10704
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:05:58 ; elapsed = 00:06:42 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6344 ; free virtual = 13044
+Finished Handling Custom Attributes : Time (s): cpu = 00:06:11 ; elapsed = 00:06:59 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1215 ; free virtual = 10705
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:05:58 ; elapsed = 00:06:42 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6344 ; free virtual = 13045
+Finished Renaming Generated Nets : Time (s): cpu = 00:06:11 ; elapsed = 00:06:59 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1215 ; free virtual = 10705
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -8176,71 +8380,69 @@ Report Cell Usage:
 |      |Cell       |Count |
 +------+-----------+------+
 |1     |BIBUF      |   130|
-|2     |BUFG       |     1|
-|3     |CARRY4     |   197|
-|4     |DSP48E1    |     6|
-|5     |LUT1       |   507|
-|6     |LUT2       |  1032|
-|7     |LUT3       |  2930|
-|8     |LUT4       |  1467|
-|9     |LUT5       |  2018|
-|10    |LUT6       |  2854|
-|11    |MULT_AND   |    12|
-|12    |MUXCY      |    60|
-|13    |MUXF7      |   127|
-|14    |MUXF8      |     2|
-|15    |PS7        |     1|
-|16    |RAM16X1D   |     4|
-|17    |RAM32M     |   287|
-|18    |RAM32X1D   |     7|
-|19    |RAMB18E1_1 |     4|
-|20    |RAMB36E1_1 |     1|
-|21    |RAMB36E1_2 |     8|
-|22    |RAMB36E1_3 |     8|
-|23    |RAMB36E1_4 |     4|
-|24    |SRL16      |     2|
-|25    |SRL16E     |    85|
-|26    |SRLC32E    |    57|
-|27    |XORCY      |    18|
-|28    |FDCE       |   727|
-|29    |FDPE       |    59|
-|30    |FDR        |    36|
-|31    |FDRE       | 14009|
-|32    |FDSE       |   376|
-|33    |IBUF       |     2|
-|34    |OBUF       |     4|
+|2     |CARRY4     |   178|
+|3     |DSP48E1    |    56|
+|4     |LUT1       |   479|
+|5     |LUT2       |  1025|
+|6     |LUT3       |  2989|
+|7     |LUT4       |  1530|
+|8     |LUT5       |  1869|
+|9     |LUT6       |  2490|
+|10    |MULT_AND   |    32|
+|11    |MUXCY      |    80|
+|12    |MUXF7      |   129|
+|13    |PS7        |     1|
+|14    |RAM16X1D   |     4|
+|15    |RAM32M     |   287|
+|16    |RAM32X1D   |     7|
+|17    |RAMB18E1_1 |     4|
+|18    |RAMB36E1_1 |     1|
+|19    |RAMB36E1_2 |     8|
+|20    |RAMB36E1_3 |     8|
+|21    |RAMB36E1_4 |     4|
+|22    |SRL16      |     2|
+|23    |SRL16E     |   413|
+|24    |SRLC32E    |    57|
+|25    |XORCY      |    48|
+|26    |FDCE       |   722|
+|27    |FDPE       |    54|
+|28    |FDR        |    36|
+|29    |FDRE       | 12865|
+|30    |FDSE       |   328|
+|31    |IBUF       |     2|
+|32    |OBUF       |     4|
 +------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:05:58 ; elapsed = 00:06:42 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6344 ; free virtual = 13045
+Finished Writing Synthesis Report : Time (s): cpu = 00:06:11 ; elapsed = 00:07:00 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1215 ; free virtual = 10705
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 7244 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:05:09 ; elapsed = 00:06:00 . Memory (MB): peak = 3303.203 ; gain = 805.582 ; free physical = 6409 ; free virtual = 13112
-Synthesis Optimization Complete : Time (s): cpu = 00:05:58 ; elapsed = 00:06:43 . Memory (MB): peak = 3303.203 ; gain = 1544.199 ; free physical = 6409 ; free virtual = 13112
+Synthesis Optimization Runtime : Time (s): cpu = 00:05:18 ; elapsed = 00:06:13 . Memory (MB): peak = 3350.910 ; gain = 806.277 ; free physical = 1276 ; free virtual = 10766
+Synthesis Optimization Complete : Time (s): cpu = 00:06:11 ; elapsed = 00:07:00 . Memory (MB): peak = 3350.910 ; gain = 1591.910 ; free physical = 1276 ; free virtual = 10766
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.71 ; elapsed = 00:00:00.71 . Memory (MB): peak = 3303.203 ; gain = 0.000 ; free physical = 6458 ; free virtual = 13162
-INFO: [Netlist 29-17] Analyzing 783 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.81 ; elapsed = 00:00:00.83 . Memory (MB): peak = 3350.910 ; gain = 0.000 ; free physical = 1319 ; free virtual = 10814
+INFO: [Netlist 29-17] Analyzing 884 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3303.203 ; gain = 0.000 ; free physical = 6367 ; free virtual = 13107
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3350.910 ; gain = 0.000 ; free physical = 1255 ; free virtual = 10745
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 370 instances were transformed.
-  (MUXCY,XORCY) => CARRY4: 22 instances
+  A total of 400 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 32 instances
   FDR => FDRE: 36 instances
-  MULT_AND => LUT2: 12 instances
+  MULT_AND => LUT2: 32 instances
   RAM16X1D => RAM32X1D (RAMD32(x2)): 4 instances
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 287 instances
   RAM32X1D => RAM32X1D (RAMD32(x2)): 7 instances
   SRL16 => SRL16E: 2 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-1305 Infos, 254 Warnings, 0 Critical Warnings and 0 Errors encountered.
+1450 Infos, 264 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:06:17 ; elapsed = 00:07:03 . Memory (MB): peak = 3303.203 ; gain = 1636.656 ; free physical = 6708 ; free virtual = 13436
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3303.203 ; gain = 0.000 ; free physical = 6709 ; free virtual = 13436
+synth_design: Time (s): cpu = 00:06:29 ; elapsed = 00:07:20 . Memory (MB): peak = 3350.910 ; gain = 1684.367 ; free physical = 1588 ; free virtual = 11078
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3350.910 ; gain = 0.000 ; free physical = 1588 ; free virtual = 11078
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 3327.215 ; gain = 24.012 ; free physical = 6671 ; free virtual = 13434
+write_checkpoint: Time (s): cpu = 00:00:10 ; elapsed = 00:00:08 . Memory (MB): peak = 3374.922 ; gain = 24.012 ; free physical = 1566 ; free virtual = 11079
 INFO: [runtcl-4] Executing : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar 23 15:55:58 2020...
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 24 19:27:19 2020...

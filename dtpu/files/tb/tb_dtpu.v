@@ -82,8 +82,8 @@ module tb_dtpu();
       
       dtpu_core
      #(.DATA_WIDTH_MAC(4),
-         .ROWS(3) ,
-         .COLUMNS(3),
+         .ROWS(8) ,
+         .COLUMNS(8),
          .SIZE_WMEMORY(8196),
          .SIZE_CSR(1024),
          .DATA_WIDTH_CSR(8),
@@ -169,7 +169,9 @@ module tb_dtpu();
                 reset=1'b1;
                 enable=1'b1; // enable the accelerator
                 $display("check the control signal");
-                #clk_period; 
+                for (k=0;k<30;k=k+1) begin 
+                    #clk_period; 
+                end
                 #clk_period;
                 #clk_period;
                 #clk_period;
@@ -181,6 +183,9 @@ module tb_dtpu();
                 #clk_period;
                 for (k=0;k<50;k=k+1) begin
                 #clk_period;
+                if(k==5 ) begin 
+                 infifo_dout=~(64'hCAFECAFECAFECAFE);
+                end 
                 end
                 
                 

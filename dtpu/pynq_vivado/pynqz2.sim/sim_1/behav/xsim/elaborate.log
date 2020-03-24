@@ -45,10 +45,10 @@ Compiling architecture synth of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15
 Compiling architecture xilinx of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15 [\xbip_multadd_v3_0_15(c_xdevicef...]
 Compiling architecture vivado_mac_arch of entity xil_defaultlib.vivado_mac [vivado_mac_default]
 Compiling module xil_defaultlib.mxu_mac
-Compiling module xil_defaultlib.mxu_core_default
-Compiling module xil_defaultlib.mxu_wrapper_default
-Compiling module xil_defaultlib.control_unit
-Compiling module xil_defaultlib.dtpu_core
+Compiling module xil_defaultlib.mxu_core(M=8,K=8)
+Compiling module xil_defaultlib.mxu_wrapper(M=8,K=8)
+Compiling module xil_defaultlib.control_unit(ROWS=8,COLUMNS=8)
+Compiling module xil_defaultlib.dtpu_core(ROWS=8,COLUMNS=8)
 Compiling module xil_defaultlib.tb_dtpu
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot tb_dtpu_behav

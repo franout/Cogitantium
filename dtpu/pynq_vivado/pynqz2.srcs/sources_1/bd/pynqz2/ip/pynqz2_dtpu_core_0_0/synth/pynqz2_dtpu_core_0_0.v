@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "dtpu_core,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "pynqz2_dtpu_core_0_0,dtpu_core,{}" *)
-(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=4,ROWS=3,COLUMNS=3,SIZE_WMEMORY=8196,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
+(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=4,ROWS=8,COLUMNS=8,SIZE_WMEMORY=8196,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pynqz2_dtpu_core_0_0 (
@@ -152,8 +152,8 @@ output wire [3 : 0] state;
 
   dtpu_core #(
     .DATA_WIDTH_MAC(4),
-    .ROWS(3),
-    .COLUMNS(3),
+    .ROWS(8),
+    .COLUMNS(8),
     .SIZE_WMEMORY(8196),
     .SIZE_CSR(1024),
     .DATA_WIDTH_CSR(8),

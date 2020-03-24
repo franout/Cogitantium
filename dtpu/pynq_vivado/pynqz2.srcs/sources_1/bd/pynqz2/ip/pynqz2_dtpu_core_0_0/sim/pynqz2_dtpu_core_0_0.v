@@ -151,8 +151,8 @@ output wire [3 : 0] state;
 
   dtpu_core #(
     .DATA_WIDTH_MAC(4),
-    .ROWS(3),
-    .COLUMNS(3),
+    .ROWS(8),
+    .COLUMNS(8),
     .SIZE_WMEMORY(8196),
     .SIZE_CSR(1024),
     .DATA_WIDTH_CSR(8),

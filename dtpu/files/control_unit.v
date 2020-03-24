@@ -26,9 +26,9 @@ cs_done,
 cs_continue,
 cs_idle,
 cs_ready,
-cs_start
-
-,state_out
+cs_start,
+load_data,
+state_out
 );
 input clk;
 input reset;
@@ -70,6 +70,7 @@ output reg cs_ready;
 output reg cs_done;
 input wire cs_continue;
 output reg cs_idle;
+output reg load_data;
 
 output wire [3:0]state_out;
 
@@ -89,7 +90,6 @@ localparam flush_out_fifo=4'h7;
 localparam start_p1=4'h8;
 localparam start_p2=4'h9;
 localparam start_p3=4'hA;
-localparam save_to_fifo=4'hB;
 
 reg [3:0]state;
 reg [$clog2(COLUMNS*3+1)-1:0]counter_compute;
@@ -118,6 +118,7 @@ outfifo_write<=0;
 cs_done<=0;
 cs_idle<=0;
 cs_ready<=0;
+load_data<=1'b0;
 enable_mxu<=0;
 case(state) 
 Power_up: begin
@@ -159,26 +160,36 @@ start_p3:  begin
             end
             end
 retrieve_data: begin
-                // first set of fata TODO it the full implementation if should loop for all the rows and force the flush of output fifo
                 wm_address<=0;
                 wm_ce<=1'b1;
-                
-                csr_ce<=1'b1;
-                csr_address<=0;
+            infifo_read<=1'b1;
+             load_data<=1'b1;
                 state<=activate_enable_data_type;
                end 
 activate_enable_data_type: begin
+                        // load local data
+                        wm_address<=0; // just for be sure
+                            wm_ce<=1'b1;
+                        infifo_read<=1'b1;
+                        load_data<=1'b1;
+                        
                             // skip for now TODO it should read the csr
                             csr_ce<=1;
                             csr_address<=0;
                             state<=compute;
+                           
+                       /*     if(infifo_is_empty) begin 
+                            state<=compute;
+                            end else begin 
+                            state<=state;
+                            end
+                         */  
+                            
                          end
 
 compute: begin
             counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
-             wm_ce<=1'b1;
-            infifo_read<=1'b1;
             if(counter_compute==(COLUMNS*3+1-1)) begin 
             state<=flush_out_fifo;
             end else begin 
@@ -189,25 +200,26 @@ compute: begin
 stop: begin end // skip for the moment 
 flush_out_fifo: begin
              enable_mxu<=1'b1;
-             wm_ce<=1'b1;
              counter_res<=counter_res+1;
               // wait for the correct output
               if(counter_res==ROWS-2) begin 
-              state<=save_to_fifo;
+              state<=done;
               end else begin 
               state<=state;
               end
-             end
-save_to_fifo: begin   
-        outfifo_write<=1'b1;
-        wm_ce<=1'b1;
-        state<=done;
-
-        end              
+              /*
+              if(!outfifo_is_full) begin 
+              state<=done;
+              end else begin
+              state<=state;
+              end 
+              */
+              
+             end             
 done: begin 
         outfifo_write<=1'b1;
-      state<=state;
-      cs_done<=1;
+      state<=idle;
+        cs_done<=1;
       end          
 default: begin 
     state<=Power_up;

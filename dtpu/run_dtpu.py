@@ -229,6 +229,8 @@ accelerator.write(OARG0_TDEST,0) # only one output
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
 start_time = time.time()
+#accelerator.write(CMD, 0x00010001)
+# 5 instead of 2 for continous runs
 accelerator.write(CMD, 0x00020000) # execute one step 
 
 accelerator.read(OARG0_STATUS) # check output buffer status
@@ -274,11 +276,14 @@ print('Hardware DTPU execution time: ',hw_exec_time)
 
 input_fifo_buffer.close()
 output_fifo_buffer.close()
+csr_buffer.close()
+weight_buffer.close()
 
 
-#####################################################
-################## PACKAGES #########################
-#####################################################
+
+############################################################
+##################  PYNQ  PACKAGES #########################
+############################################################
 #         pynq.ps - Facilitates management of the Processing System (PS) and PS/PL interface.
 #         pynq.pl - Facilitates management of the Programmable Logic (PL).
 #         pynq.overlay - Manages the state, drivers, and and contents of overlays.

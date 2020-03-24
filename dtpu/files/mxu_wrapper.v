@@ -49,7 +49,8 @@ module mxu_wrapper
    
            // registers for pipelined inputs 
        genvar j,i,k;
-     wire [max_width_columns:0]synch_input_data[K-1:0];
+    wire [max_width_columns:0]synch_input_data[K-1:0];
+     
     // first block of data does not need to be delayed
     assign synch_input_data[0]= input_data;//[max_width_columns:max_width_columns-max_data_width];
        generate
@@ -77,9 +78,8 @@ module mxu_wrapper
        endgenerate
     assign data_input_mxu=synch_input_data[K-1];
       
-       
-       
-        wire [max_width_rows:0]synch_output_data[M-1:0];
+      
+      wire [max_width_rows:0]synch_output_data[M-1:0];
        // last block of data does not need to be delayed
        assign synch_output_data[0]= y_mxu;
      // registers for pipelined outputs

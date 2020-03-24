@@ -37,10 +37,10 @@ module register
       
       reg [N-1:0]q_i;
   
-    always @(posedge(clk) || reset==1'b0) begin
+    always @(posedge(clk)) begin
     if(!reset)begin
     q_i<=0;
-    end else if(clk==1'b1) begin 
+    end else  begin 
         if(enable)begin 
         q_i<=d;
         end   
