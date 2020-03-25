@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date             : Tue Mar 24 20:31:54 2020
+| Date             : Wed Mar 25 11:13:31 2020
 | Host             : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command          : report_power -file pynqz2_wrapper_power_routed.rpt -pb pynqz2_wrapper_power_summary_routed.pb -rpx pynqz2_wrapper_power_routed.rpx
 | Design           : pynqz2_wrapper
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 1.451        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.311        |
+| Dynamic (W)              | 1.310        |
 | Device Static (W)        | 0.140        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 68.3         |
@@ -53,21 +53,21 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.020 |        3 |       --- |             --- |
-| Slice Logic              |     0.007 |    23348 |       --- |             --- |
-|   LUT as Logic           |     0.006 |     6974 |     53200 |           13.11 |
+| Slice Logic              |     0.007 |    23356 |       --- |             --- |
+|   LUT as Logic           |     0.006 |     6973 |     53200 |           13.11 |
 |   LUT as Distributed RAM |    <0.001 |      650 |     17400 |            3.74 |
-|   Register               |    <0.001 |    11221 |    106400 |           10.55 |
+|   Register               |    <0.001 |    11229 |    106400 |           10.55 |
 |   CARRY4                 |    <0.001 |      192 |     13300 |            1.44 |
 |   LUT as Shift Register  |    <0.001 |      309 |     17400 |            1.78 |
 |   F7/F8 Muxes            |    <0.001 |       89 |     53200 |            0.17 |
 |   Others                 |     0.000 |     1183 |       --- |             --- |
-| Signals                  |     0.010 |    15801 |       --- |             --- |
+| Signals                  |     0.010 |    15820 |       --- |             --- |
 | Block RAM                |     0.002 |       16 |       140 |           11.43 |
 | DSPs                     |     0.012 |       56 |       220 |           25.45 |
 | I/O                      |    <0.001 |        6 |       125 |            4.80 |
 | PS7                      |     1.259 |        1 |       --- |             --- |
 | Static Power             |     0.140 |          |           |                 |
-| Total                    |     1.451 |          |           |                 |
+| Total                    |     1.450 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.065 |       0.051 |      0.014 |
+| Vccint    |       1.000 |     0.064 |       0.051 |      0.014 |
 | Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -153,7 +153,7 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| pynqz2_wrapper             |     1.311 |
+| pynqz2_wrapper             |     1.310 |
 |   pynqz2_i                 |     1.310 |
 |     axi_dma_csr_mem        |     0.002 |
 |       U0                   |     0.002 |

@@ -1,0 +1,16 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module control_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dtpu_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mxu_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mxu_mac
+INFO: [VRFC 10-2458] undeclared symbol test_mode, assumed default net type wire [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v:71]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mxu_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_dtpu
+WARNING: [VRFC 10-3507] macro 'VIVADO_MAC' redefined [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v:79]

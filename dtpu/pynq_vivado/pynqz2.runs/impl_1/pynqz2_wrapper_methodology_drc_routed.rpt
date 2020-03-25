@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Tue Mar 24 20:31:49 2020
+| Date         : Wed Mar 25 11:13:26 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_methodology -file pynqz2_wrapper_methodology_drc_routed.rpt -pb pynqz2_wrapper_methodology_drc_routed.pb -rpx pynqz2_wrapper_methodology_drc_routed.rpx
 | Design       : pynqz2_wrapper
@@ -46,7 +46,7 @@ Related violations: <none>
 
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/XD_SW_LENGTH_WE_SYNC/GENERATE_LEVEL_P_S_CDC.MULTI_BIT.s_level_out_bus_d4_reg[0] in site SLICE_X56Y72 is part of a synchronized register chain that is suboptimally placed as the load FDCE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/wr_stg_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/XD_SW_LENGTH_WE_SYNC/GENERATE_LEVEL_P_S_CDC.MULTI_BIT.s_level_out_bus_d4_reg[0] in site SLICE_X60Y63 is part of a synchronized register chain that is suboptimally placed as the load FDCE cell pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_OUTPUT_ARGS_I/OARGS_GEN.OUTPUT_ARGS_GEN[0].S2S_GEN.OARG_S2S_I/wr_stg_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 TIMING-18#1 Warning

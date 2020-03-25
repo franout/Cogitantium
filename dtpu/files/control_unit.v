@@ -28,7 +28,9 @@ cs_idle,
 cs_ready,
 cs_start,
 load_data,
-state_out
+state_out,
+enable_deskew_ff,
+enable_enskew_ff
 );
 input clk;
 input reset;
@@ -71,6 +73,8 @@ output reg cs_done;
 input wire cs_continue;
 output reg cs_idle;
 output reg load_data;
+output reg enable_deskew_ff;
+output reg enable_enskew_ff;
 
 output wire [3:0]state_out;
 
@@ -120,6 +124,8 @@ cs_idle<=0;
 cs_ready<=0;
 load_data<=1'b0;
 enable_mxu<=0;
+enable_deskew_ff<=0; // output ff
+enable_enskew_ff<=0; // input ff
 case(state) 
 Power_up: begin
          state<=idle;
@@ -190,6 +196,7 @@ activate_enable_data_type: begin
 compute: begin
             counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
             if(counter_compute==(COLUMNS*(3+1))) begin 
             state<=flush_out_fifo;
             end else begin 
@@ -199,7 +206,8 @@ compute: begin
 
 stop: begin end // skip for the moment 
 flush_out_fifo: begin
-             enable_mxu<=1'b1;  // TODO CHANGE WITH ENABLE DESQUEUE AND ENQUEU FFS
+             enable_deskew_ff<=1'b1;
+             enable_mxu<=1'b1;  
              counter_res<=counter_res+1;
               // wait for the correct output
               if(counter_res==(ROWS)) begin 

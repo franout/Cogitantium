@@ -200,12 +200,20 @@ driver_fifo.sendchannel.transfer(input_fifo_buffer)
 driver_fifo.sendchannel.wait()
 
 
-################################################
-### program accelerator&start computation ######
-###             matrix 8x8 macs           ######
-################################################
+###########################################################
+###         program accelerator&start computation     #####
+###                    matrix 8x8 macs                #####
+###  input and outfifo empty and full are active low  #####
+###########################################################
 
 
+### COMMAND OPCODE [19:16]CMD hex
+
+CMD_UPDATE_IN_ARDG=0x0
+CMD_UPDATE_OUT_ARG=0x1
+CMD_EXECUTE_STEP=0x2
+CMD_EXECUTE_CONTINUOS=0x4
+CMD_STOP_EXECUTE_CONTINOUS=0x5
 
  #Configure Input Argument Request Enable Register (0x0010) to define input buffer
 #selection for ap_start generation. start is generated only if the selected input
@@ -232,7 +240,15 @@ accelerator.write(OARG0_TDEST,0) # only one output
 start_time = time.time()
 #accelerator.write(CMD, 0x00010001)
 # 5 instead of 2 for continous runs
-accelerator.write(CMD, 0x00020001) # execute one step 
+accelerator.write(CMD, (0x00000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+
+
+time.sleep(1)
+accelerator.write(CMD, (0x00000000 | (CMD_UPDATE_OUT_ARG<<16)))
+accelerator.write(CMD, (0x00000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+time.sleep(1)
+accelerator.write(CMD, (0x00000000 | (CMD_UPDATE_OUT_ARG<<16)))
+
 
 accelerator.read(OARG0_STATUS) # check output buffer status
 #After completing the Accelerator operation, done status is updated in the Status
@@ -267,7 +283,6 @@ driver_fifo.recvchannel.transfer(output_fifo_buffer)
 driver_fifo.recvchannel.wait()
 stop_time = time.time()
 
-## first value should be 2457
 print(*output_fifo_buffer[0:10])
 hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)

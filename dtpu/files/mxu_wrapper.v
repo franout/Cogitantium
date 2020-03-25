@@ -31,6 +31,8 @@ module mxu_wrapper
         reset,
         clk,
         enable,
+        enable_in_ff,
+        enable_out_ff,
         test_mode,
         input_data,
         weight,
@@ -42,7 +44,9 @@ module mxu_wrapper
    input [`LOG_ALLOWED_PRECISIONS-1:0]data_type; // precision_def.vh
        input [max_width_columns:0]input_data;
        input [max_width_rows:0]weight;
-       output [max_width_rows:0]y;    
+       output [max_width_rows:0]y;
+       input enable_in_ff;
+        input enable_out_ff;
    
    wire [max_width_rows:0]y_mxu;
    wire [max_width_columns:0]data_input_mxu;
@@ -64,7 +68,7 @@ module mxu_wrapper
                   .clk(clk),
                    .reset(reset),
                   .test_mode(test_mode),
-                 .enable(enable),
+                 .enable(enable_in_ff),
                  .d(synch_input_data[k][max_width_columns-max_data_width*j:max_width_columns-max_data_width*(j+1)+1]),
                  .q(synch_input_data[k+1][max_width_columns-max_data_width*j:max_width_columns-max_data_width*(j+1)+1]));
     
@@ -94,7 +98,7 @@ module mxu_wrapper
                       .clk(clk),
                       .reset(reset),
                        .test_mode(test_mode),
-                        .enable(enable),
+                        .enable(enable_out_ff),
                  .d(synch_output_data[k][max_width_columns-max_data_width*i:max_width_columns-max_data_width*(i+1)+1]),
                  .q(synch_output_data[k+1][max_width_columns-max_data_width*i:max_width_columns-max_data_width*(i+1)+1]));
                     end

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Tue Mar 24 20:31:43 2020
+| Date         : Wed Mar 25 11:13:20 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_drc -file pynqz2_wrapper_drc_routed.rpt -pb pynqz2_wrapper_drc_routed.pb -rpx pynqz2_wrapper_drc_routed.rpx
 | Design       : pynqz2_wrapper
@@ -24,12 +24,11 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 87
+             Violations found: 86
 +-----------+----------+-------------------------------------------------------------------+------------+
 | Rule      | Severity | Description                                                       | Violations |
 +-----------+----------+-------------------------------------------------------------------+------------+
 | CHECK-3   | Warning  | Report rule limit reached                                         | 1          |
-| PDRC-61   | Warning  | SLICEM_5lutO5_C5                                                  | 1          |
 | REQP-1839 | Warning  | RAMB36 async control check                                        | 20         |
 | RTSTAT-10 | Warning  | No routable loads                                                 | 1          |
 | AVAL-4    | Advisory | enum_USE_DPORT_FALSE_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND | 56         |
@@ -42,11 +41,6 @@ Table of Contents
 CHECK-3#1 Warning
 Report rule limit reached  
 REQP-1839 rule limit reached: 20 violations have been found.
-Related violations: <none>
-
-PDRC-61#1 Warning
-SLICEM_5lutO5_C5  
-Dangling output pin O5 on site SLICE_X58Y45:C5LUT. For this programming the O5 output pin should have a signal.
 Related violations: <none>
 
 REQP-1839#1 Warning

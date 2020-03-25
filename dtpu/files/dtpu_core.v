@@ -179,7 +179,7 @@ module dtpu_core
           
           
         wire [3:0]state_i;
-       wire load_in_reg;
+       wire load_in_reg,enable_deskew_ff_i,enable_enskew_ff_i;
         reg [31:0] input_data_from_fifo;
         wire [31:0] input_data_to_fifo;
         reg [31:0] weight_from_memory;
@@ -197,6 +197,8 @@ module dtpu_core
             .reset(aresetn),
             .clk(clk),
             .enable(enable_i),
+            .enable_in_ff(enable_enskew_ff_i),
+            .enable_out_ff(enable_deskew_ff_i),
             .test_mode(test_mode),
             .input_data(input_data_from_fifo),
             .weight(weight_from_memory),
@@ -242,7 +244,9 @@ module dtpu_core
         .cs_ready(cs_ready),
         .cs_start(cs_start),
         .load_data(load_in_reg),
-        .state_out(state_i)
+        .state_out(state_i),
+        .enable_deskew_ff(enable_deskew_ff_i),
+        .enable_enskew_ff(enable_enskew_ff_i)
            );
   
   /////////////////////////////////////////////
