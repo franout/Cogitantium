@@ -78,7 +78,7 @@ output M_AXI_arvalid;
 input M_AXI_arready;
 output [7:0] M_AXI_arid;
 output [3:0] M_AXI_arlen;
-output [64 -1:0] M_AXI_araddr;
+output [32 -1:0] M_AXI_araddr;
 input M_AXI_bvalid;
 output M_AXI_bready;
 input [7:0] M_AXI_bid;

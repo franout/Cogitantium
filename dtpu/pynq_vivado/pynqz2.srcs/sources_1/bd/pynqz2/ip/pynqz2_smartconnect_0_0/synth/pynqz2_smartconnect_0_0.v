@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:ip:smartconnect:1.0
 // IP Revision: 12
 
-(* X_CORE_INFO = "bd_7d7d,Vivado 2019.2" *)
+(* X_CORE_INFO = "bd_7d7d,Vivado 2019.2.1" *)
 (* CHECK_LICENSE_TYPE = "pynqz2_smartconnect_0_0,bd_7d7d,{}" *)
-(* CORE_GENERATION_INFO = "pynqz2_smartconnect_0_0,bd_7d7d,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=smartconnect,x_ipVersion=1.0,x_ipCoreRevision=12,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "pynqz2_smartconnect_0_0,bd_7d7d,{x_ipProduct=Vivado 2019.2.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=smartconnect,x_ipVersion=1.0,x_ipCoreRevision=12,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pynqz2_smartconnect_0_0 (
   aclk,

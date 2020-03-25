@@ -20,13 +20,13 @@ preplace netloc ps7_FCLK_CLK0 1 1 5 80 80 380 140 700 500 1210 500 NJ
 preplace netloc xlconstant_0_dout 1 3 1 720 430n
 preplace netloc nv_nvdla_wrapper_0_dlaintc2ps 1 3 3 730 300 1200 330 NJ
 preplace netloc reset_n_0_1 1 0 5 NJ 60 NJ 60 NJ 60 720J 290 1230J
-preplace netloc axi_apb_bridge_0_APB_M 1 3 1 710 220n
-preplace netloc nv_nvdla_wrapper_0_M_AXI 1 2 3 400 310 NJ 310 1190
-preplace netloc axi_smc_M00_AXI 1 3 1 690 130n
-preplace netloc axi_mem_intercon_M00_AXI 1 2 1 N 200
 preplace netloc ps7_DDR 1 4 2 NJ 70 N
-preplace netloc ps7_FIXED_IO 1 4 2 NJ 90 N
+preplace netloc axi_apb_bridge_0_APB_M 1 3 1 710 220n
 preplace netloc S00_AXI_1 1 1 4 70 10 NJ 10 NJ 10 1210
+preplace netloc axi_smc_M00_AXI 1 3 1 690 130n
+preplace netloc ps7_FIXED_IO 1 4 2 NJ 90 N
+preplace netloc axi_mem_intercon_M00_AXI 1 2 1 N 200
+preplace netloc nv_nvdla_wrapper_0_M_AXI 1 2 3 400 310 NJ 310 1190
 levelinfo -pg 1 0 40 230 540 960 1410 1610
 pagesize -pg 1 -db -bbox -sgen -120 0 1740 590
 "

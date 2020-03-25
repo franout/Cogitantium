@@ -17,6 +17,8 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param chipscope.maxJobs 2
+set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -30,16 +32,18 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo /home/fra/Desktop/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
+set_property generic {DISABLE_TESTPOINTS=1 SYNTHESIS=1 RAM_INTERFACE=1 FPGA=1 FIFOGEN_MASTER_CLK_GATING_DISABLED=1 RAM_DISABLE_POWER_GATING_FPGA=1 VLIB_BYPASS_POWER_CG=1 NV_FPGA_FIFOGEN=1} [current_fileset]
 read_verilog {
-  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/MY_GLOBAL_DEFINE.vh
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/include/simulate_x_tick.vh
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/include/NV_NVDLA_MCIF_define.vh
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/include/NV_HWACC_NVDLA_tick_defines.vh
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/MY_GLOBAL_DEFINE.vh
 }
-set_property is_global_include true [get_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/MY_GLOBAL_DEFINE.vh]
 read_verilog -library xil_defaultlib {
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/vlibs/CKLNQD12.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/vlibs/MUX2D4.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/vlibs/MUX2HDD2.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/vlibs/NV_BLKBOX_SINK.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/vlibs/NV_BLKBOX_SRC0.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/vlibs/NV_CLK_gate_power.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/nvdla_configurations/nv_small_512_32_8_int8_mem64/vmod/nvdla/cacc/NV_NVDLA_CACC_CALC_int8.v
@@ -255,7 +259,7 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top pynqz2_wrapper -part xc7z020clg400-1
+synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -keep_equivalent_registers
 
 
 # disable binary constraint mode for synth run checkpoints

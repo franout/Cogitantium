@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "D:/uni/2019-2020/thesis/cogitantium/mxu/vivado/mxu_core/mxu_core.ip_user_files/ip/vivado_mac/sim/vivado_mac.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'vivado_mac'
-INFO: [VRFC 10-163] Analyzing VHDL file "D:/uni/2019-2020/thesis/cogitantium/mxu/vivado/mxu_core/mxu_core.ip_user_files/ip/mult_gen_0/sim/mult_gen_0.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'mult_gen_0'

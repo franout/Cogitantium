@@ -33,7 +33,7 @@ always @( posedge clk ) begin
     if (re)
        ra_d <= ra;
 end
-wire [15:0] dout_ram = M[ra_d];
+(*keep="true"*)wire [15:0] dout_ram = M[ra_d];
 reg [15:0] dout_r;
 always @( posedge clk ) begin
    if (ore)

@@ -201,10 +201,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.ASSOCIATED_RESET {reset_n} \
- ] [get_bd_pins /nv_nvdla_wrapper_0/clk]
-
   # Create instance: ps7, and set properties
   set ps7 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7 ]
   set_property -dict [ list \

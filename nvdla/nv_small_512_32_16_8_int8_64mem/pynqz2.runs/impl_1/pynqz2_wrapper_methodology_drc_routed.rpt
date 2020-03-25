@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Wed Mar  4 20:47:12 2020
+| Date         : Sun Mar  8 23:08:24 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_methodology -file pynqz2_wrapper_methodology_drc_routed.rpt -pb pynqz2_wrapper_methodology_drc_routed.pb -rpx pynqz2_wrapper_methodology_drc_routed.rpx
 | Design       : pynqz2_wrapper
@@ -23,17 +23,364 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 328
-+-----------+----------+-------------------------------+------------+
-| Rule      | Severity | Description                   | Violations |
-+-----------+----------+-------------------------------+------------+
-| DPIR-1    | Warning  | Asynchronous driver check     | 321        |
-| LUTAR-1   | Warning  | LUT drives async reset alert  | 5          |
-| TIMING-18 | Warning  | Missing input or output delay | 2          |
-+-----------+----------+-------------------------------+------------+
+             Violations found: 401
++-----------+------------------+-------------------------------------------------+------------+
+| Rule      | Severity         | Description                                     | Violations |
++-----------+------------------+-------------------------------------------------+------------+
+| TIMING-14 | Critical Warning | LUT on the clock tree                           | 67         |
+| CKLD-1    | Warning          | Clock Net has non-BUF driver and too many loads | 2          |
+| DPIR-1    | Warning          | Asynchronous driver check                       | 321        |
+| LUTAR-1   | Warning          | LUT drives async reset alert                    | 9          |
+| TIMING-18 | Warning          | Missing input or output delay                   | 2          |
++-----------+------------------+-------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
+TIMING-14#1 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_slcg_cell_0/nvdla_core_clk_slcg_0/p_clkgate/i_sum_pd[34]_i_4 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#2 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_slcg_op_0/nvdla_core_clk_slcg_0/p_clkgate/accu_valid_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#3 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_slcg_op_1/nvdla_core_clk_slcg_0/p_clkgate/M_reg_0_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#4 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/accu_ctrl_pd_d1[11]_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#5 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_buffer/nvdla_core_clk_slcg_0/p_clkgate/M_reg_i_1__16 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#6 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_cvt/nvdla_core_clk_slcg_0/p_clkgate/op_en_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#7 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_dc/nvdla_core_clk_slcg_0/p_clkgate/pipe_skid_mc_dma_rd_req_vld_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#8 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_dc/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#9 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_hls/nvdla_core_clk_slcg_0/p_clkgate/p1_pipe_valid_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#10 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_img/nvdla_core_clk_slcg_0/p_clkgate/FSM_sequential_cur_state[1]_i_6__1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#11 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_img/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_1__5 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#12 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_img/nvdla_core_clk_slcg_0/p_clkgate/rd_req_int_i_4 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#13 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_mux/nvdla_core_clk_slcg_0/p_clkgate/skid_flop_req_mc_in_prdy_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#14 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_wt/nvdla_core_clk_slcg_0/p_clkgate/lat_wr_adr[2]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#15 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_wt/nvdla_core_clk_slcg_0/p_clkgate/pipe_skid_mc_dma_rd_req_vld_i_3__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#16 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_slcg_wt/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_2__2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#17 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_slcg_op_0/nvdla_core_clk_slcg_0/p_clkgate/qd_i_2__12 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#18 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_slcg_op_0/nvdla_core_clk_slcg_0/p_clkgate/rd_count[2]_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#19 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_slcg_op_0/nvdla_core_clk_slcg_0/p_clkgate/rd_count[2]_i_3__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#20 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_slcg_op_1/nvdla_core_clk_slcg_0/p_clkgate/mask_d1[7]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#21 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/slice_left[13]_i_6 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#22 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_0/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#23 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_1/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#24 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#25 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_3/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#26 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_4/nvdla_core_clk_slcg_0/p_clkgate/in_rt_dat_pvld_d1_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#27 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_5/nvdla_core_clk_slcg_0/p_clkgate/dat_pre_nz[7]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#28 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_slcg_op_6/nvdla_core_clk_slcg_0/p_clkgate/out_rt_done_d1_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#29 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_0/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#30 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_1/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__4 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#31 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__5 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#32 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_3/nvdla_core_clk_slcg_0/p_clkgate/pp_pvld_d0_d1_i_2__6 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#33 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_4/nvdla_core_clk_slcg_0/p_clkgate/in_rt_dat_pvld_d1_i_1__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#34 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_5/nvdla_core_clk_slcg_0/p_clkgate/dat_pre_nz[7]_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#35 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_slcg_op_6/nvdla_core_clk_slcg_0/p_clkgate/out_rt_done_d1_i_1__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#36 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/d0_i_1__1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#37 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/gray[1]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#38 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/gray[2]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#39 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/src_d_f_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#40 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/src_d_f_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#41 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/wr_clk_rcv_gate/p_clkgate/d0_i_1__0__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#42 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/wr_clk_wr_mgate/p_clkgate/gray[2]_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#43 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/u_fifo_csb2nvdla/wr_clk_wr_mgated_snd_gate/p_clkgate/src_d_f_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#44 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/rd_clk_rd_mgate/p_clkgate/gray[1]_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#45 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/u_fifo_nvdla2csb/rd_clk_rd_mgated_snd_gate/p_clkgate/src_d_f_i_1__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#46 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo0/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#47 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo1/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#48 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo2/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#49 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_read/u_eg/lat_fifo3/nvdla_core_clk_mgate/p_clkgate/ram_ff3[63]_i_2__2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#50 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/nvdla_core_clk_mgate/p_clkgate/free_adr_mask[254]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#51 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_write/u_cq/nvdla_core_clk_rd_mgate_skid/p_clkgate/cq_rd1_credits_ne0_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#52 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_mcif/u_write/u_ig/u_arb/u_dfifo0/nvdla_core_clk_mgate/p_clkgate/dfifo_wr_busy_int_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#53 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_core/u_gate/nvdla_core_clk_slcg_0/p_clkgate/p1_pipe_valid_i_2__2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#54 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_1__3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#55 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_1__4 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#56 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/roc_rd_count_p[2]_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#57 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/roc_rd_count_p[2]_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#58 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_brdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/skid_flop_rod_wr_prdy_i_5 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#59 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/cmd2dat_dma_count[2]_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#60 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/cmd2dat_spt_count[2]_i_3 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#61 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/ra_d[3]_i_4__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#62 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_2__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#63 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_rdma/u_mrdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/rd_pushing_i_2__1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#64 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/cmd2dat_dma_count[2]_i_3__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#65 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/cmd2dat_spt_count[2]_i_3__0 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#66 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/qd_i_2__19 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#67 Critical Warning
+LUT on the clock tree  
+The LUT pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_intr/u_NV_NVDLA_SDP_WDMA_DAT_DMAIF_intr_fifo/nvdla_core_clk_mgate/p_clkgate/intr_fifo_rd_pvld_int_o_i_2 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+CKLD-1#1 Warning
+Clock Net has non-BUF driver and too many loads  
+Clock net pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/nvdla_op_gated_clk_2 is not driven by a Clock Buffer and has more than 512 loads. Driver(s): pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_slcg_op_2/nvdla_core_clk_slcg_0/p_clkgate/accu_ctrl_pd_d1[11]_i_1/O
+Related violations: <none>
+
+CKLD-1#2 Warning
+Clock Net has non-BUF driver and too many loads  
+Clock net pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/nvdla_gated_clk is not driven by a Clock Buffer and has more than 512 loads. Driver(s): pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_gate/nvdla_core_clk_slcg_0/p_clkgate/qd_i_2__19/O
+Related violations: <none>
+
 DPIR-1#1 Warning
 Asynchronous driver check  
 DSP pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_0/mul_dout0 input pin pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_cvt/u_cell_0/mul_dout0/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
@@ -1641,27 +1988,47 @@ Related violations: <none>
 
 LUTAR-1#1 Warning
 LUT drives async reset alert  
-LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_wr_addr_d2[0]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/dat_req_sub_h_3_addr_reg[13]_i_45/CLR, pynqz2_i/nv_nvdla_wrapper_0/entry_required0_i_19/CLR, pynqz2_i/nv_nvdla_wrapper_0/h_bias_1_w0_i_20/CLR, pynqz2_i/nv_nvdla_wrapper_0/req_addr_grain_base_reg[28]_i_4/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[11]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[12]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[13]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[14]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[15]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[16]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[17]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[18]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cdma/u_regfile/cdma2csb_resp_pd_reg[19]/CLR (the first 15 of 8536 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram1_wr_addr_d2[0]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d0_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d1_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/q_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_assembly_buffer/abuf_rd_en_d1_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/accu2sc_credit_vld_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/cacc_done_intr_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/cacc_done_intr_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[6]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_a/u_NV_NVDLA_cacc/u_delivery_buffer/data_left_mask_reg[7]/CLR (the first 15 of 979 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#2 Warning
 LUT drives async reset alert  
-LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_wr_addr_d2[0]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd0_en_d1_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd0_en_d2_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd1_en_d1_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd1_en_d2_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[6]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[7]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_en_d1_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_wr_addr_d2_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_wr_addr_d2_reg[1]/CLR (the first 15 of 2746 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/bank0_ram0_data_rd0_en_d1_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/dat_req_sub_h_3_addr_reg[13]_i_45/CLR, pynqz2_i/nv_nvdla_wrapper_0/dat_req_sub_h_3_addr_reg[7]_i_27/CLR, pynqz2_i/nv_nvdla_wrapper_0/dat_req_sub_h_3_addr_reg[7]_i_32/CLR, pynqz2_i/nv_nvdla_wrapper_0/h_bias_0_w0_i_15/CLR, pynqz2_i/nv_nvdla_wrapper_0/h_bias_1_w0_i_20/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_global_csc_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d0_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_global_csc_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d1_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_global_csc_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/q_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[11]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[12]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[13]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_csc/u_dl/c_bias_d1_reg[2]/CLR (the first 15 of 3201 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#3 Warning
 LUT drives async reset alert  
-LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_wr_addr_d2[0]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/processing_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[11]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[12]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[6]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[7]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[8]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/beat_count_reg[9]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_out/cmd_addr_reg[0]/CLR (the first 15 of 4252 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/in_dat_pd_d2[6]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/entry_required0_i_19/CLR, pynqz2_i/nv_nvdla_wrapper_0/req_addr_grain_base_reg[28]_i_4/CLR, pynqz2_i/nv_nvdla_wrapper_0/req_atomic_0_d3_reg[13]_i_2/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd0_en_d1_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd0_en_d2_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd1_en_d1_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_data_rd1_en_d2_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[6]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_c/u_NV_NVDLA_cbuf/bank0_ram0_rd_addr_d1_reg[7]/CLR (the first 15 of 7282 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#4 Warning
 LUT drives async reset alert  
-LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/i___143, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[11]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[12]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[13]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[14]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[15]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[16]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[17]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[18]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[19]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[20]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[21]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[22]/CLR (the first 15 of 73 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/in_dat_pd_d2[6]_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d0_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d1_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/q_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[6]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[7]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_ma/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[3]/CLR (the first 15 of 319 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#5 Warning
 LUT drives async reset alert  
-LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/wr_busy_in_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[16]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[17]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[18]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[19]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[20]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[21]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[27]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[7]/CLR (the first 15 of 896 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/cacc_req_pvld_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d0_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d1_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/q_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[3]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[4]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[5]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[6]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d1_reg[7]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[2]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_mb/u_NV_NVDLA_cmac/u_core/u_rt_in/in_rt_dat_mask_d2_reg[3]/CLR (the first 15 of 311 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#6 Warning
+LUT drives async reset alert  
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/i___159, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[11]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[12]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[13]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[14]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[15]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[16]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[17]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[18]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[19]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[20]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[21]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_csb_master/nvdla2csb_data_reg[22]/CLR (the first 15 of 73 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#7 Warning
+LUT drives async reset alert  
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/wr_busy_in_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[12]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[13]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[14]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[15]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[16]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[17]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[18]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[19]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[1]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[20]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[21]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[22]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_o/u_NV_NVDLA_cfgrom/cfgrom2csb_resp_pd_reg[23]/CLR (the first 15 of 930 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#8 Warning
+LUT drives async reset alert  
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/rd_p0_pad_mask_d1[3]_i_26, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/processing_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/ack_bot_vld_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/ack_top_id_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/ack_top_vld_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/dmaif_wr_rsp_complete_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/mc_dma_wr_rsp_complete_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/mc_pending_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/pipe_skid_mc_dma_wr_req_vld_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/skid_flop_mc_dma_wr_req_vld_reg/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/mc_dma_wr_req_rdy_f_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dmaif_wr/skid_flop_mc_dma_wr_req_rdy_f_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/beat_count_reg[0]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/beat_count_reg[10]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/beat_count_reg[11]/CLR, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_NV_NVDLA_sdp/u_wdma/u_dat/u_in/beat_count_reg[12]/CLR (the first 15 of 4315 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#9 Warning
+LUT drives async reset alert  
+LUT cell pynqz2_i/nv_nvdla_wrapper_0/rd_p0_pad_mask_d1[3]_i_26, with 2 or more inputs, drives asynchronous preset/clear pin(s) pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d0_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/d1_reg/PRE, pynqz2_i/nv_nvdla_wrapper_0/inst/nv_core/u_partition_p/u_global_clk_ovr_on_sync/sync_0/NV_GENERIC_CELL/q_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 TIMING-18#1 Warning

@@ -1,7 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../mxu_core.ip_user_files/ip/vivado_mac/sim/vivado_mac.vhd" \
-"../../../../mxu_core.ip_user_files/ip/mult_gen_0/sim/mult_gen_0.vhd" \
-
-# Do not sort compile order
-nosort

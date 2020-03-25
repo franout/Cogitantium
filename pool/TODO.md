@@ -35,7 +35,8 @@ computations.
 * increase pe utilizzaton,reduce data movemet, reduce time and energy per mac, reduce unnecessary macs
 * accelergy from mit for estimate energy consumption
 * Filter shapes vary across layers and models ( flexible hardware )
-* datasets??
+* datasets?
+?WARNING: 'aclocal-1.15' is missing on your system.
 * design metrics: accuracy, throughput, latency, energy and power, hardware cost
 * A Dataflow is required to maximally exploit data reuse with the low-cost memory hierarchy and parallelism
 * Minimizing data movement is the key to achieving high energy efficiency for DNN accelerators
@@ -53,6 +54,8 @@ computations.
 * https://vvviy.github.io/2018/09/17/nv_small-FPGA-Mapping-Workflow-II/
 * For building opendla_small.ko you have to add CFLAG_MODULE='-DDLA_SMALL_CONFIG' to the make command
 * Disabling the clock gating by setting to 1 the VLIB_BYPASS_POWER_CG 
+* https://github.com/nvdla/sw/issues/49
+
 
 ## FUTURE READINGS
 

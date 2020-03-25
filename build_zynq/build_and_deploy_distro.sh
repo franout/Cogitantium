@@ -61,6 +61,8 @@ petalinux-config -c kernel
 # build and add nvdla module and application to the rootfs and into the kernel
 petalinux-build
 
+
+petalinux-package --image 
 ## generate the boot image ( boot.bin )  
 ## fsbl generated from vitis, configuration bitstream from vivado
 petalinux-package --boot --fsbl "$core"nvdla_configurations/nv_small_512_32_8_int8/fsbl.elf --fpga "$core"nvdla_configurations/nv_small_512_32_8_int8/base_zynq_wrapper.bit --u-boot

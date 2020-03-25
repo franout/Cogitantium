@@ -1935,16 +1935,16 @@
               }
             },
             "interface_nets": {
-              "s00_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s00_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s00_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -1965,16 +1965,16 @@
           }
         },
         "interface_nets": {
-          "s00_couplers_to_axi_mem_intercon": {
-            "interface_ports": [
-              "M00_AXI",
-              "s00_couplers/M_AXI"
-            ]
-          },
           "axi_mem_intercon_to_s00_couplers": {
             "interface_ports": [
               "S00_AXI",
               "s00_couplers/S_AXI"
+            ]
+          },
+          "s00_couplers_to_axi_mem_intercon": {
+            "interface_ports": [
+              "M00_AXI",
+              "s00_couplers/M_AXI"
             ]
           }
         },
@@ -2337,9 +2337,6 @@
                 "value": "M_AXI",
                 "value_src": "constant"
               },
-              "ASSOCIATED_RESET": {
-                "value": "reset_n"
-              },
               "CLK_DOMAIN": {
                 "value": "pynqz2_ps7_0_FCLK_CLK0",
                 "value_src": "default_prop"
@@ -2395,16 +2392,16 @@
           "ps7/DDR"
         ]
       },
-      "axi_apb_bridge_0_APB_M": {
-        "interface_ports": [
-          "nv_nvdla_wrapper_0/APB_S",
-          "axi_apb_bridge_0/APB_M"
-        ]
-      },
       "S00_AXI_1": {
         "interface_ports": [
           "axi_mem_intercon/S00_AXI",
           "ps7/M_AXI_GP0"
+        ]
+      },
+      "axi_apb_bridge_0_APB_M": {
+        "interface_ports": [
+          "nv_nvdla_wrapper_0/APB_S",
+          "axi_apb_bridge_0/APB_M"
         ]
       },
       "axi_smc_M00_AXI": {
@@ -2461,8 +2458,8 @@
           "axi_mem_intercon/M00_ACLK",
           "axi_apb_bridge_0/s_axi_aclk",
           "axi_smc/aclk",
-          "nv_nvdla_wrapper_0/clk",
-          "clk_pl"
+          "clk_pl",
+          "nv_nvdla_wrapper_0/clk"
         ]
       },
       "xlconstant_0_dout": {

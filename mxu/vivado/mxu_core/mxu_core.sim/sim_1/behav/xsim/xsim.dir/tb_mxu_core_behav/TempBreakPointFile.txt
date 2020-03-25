@@ -1,2 +1,0 @@
-Breakpoint File Version 1.0
-63 true D:/uni/2019-2020/thesis/cogitantium/mxu/vivado/mxu_core/mxu_core.srcs/sources_1/new/tb_mxu_core.v

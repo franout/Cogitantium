@@ -321,7 +321,6 @@
 					"ports": {
 						"ACLK": { "actual": "clk"},
 						"ARADDR": { "actual": "M_AXI_araddr"},
-						"ARESETN": { "actual": "reset_n"},
 						"ARID": { "actual": "M_AXI_arid"},
 						"ARLEN": { "actual": "M_AXI_arlen"},
 						"ARREADY": { "actual": "M_AXI_arready"},
