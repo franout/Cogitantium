@@ -1,26 +1,20 @@
 % CREATED BY DAVID FRISK, 2016
 \chapter{Introduction}
-This chapter presents the section levels that can be used in the template. 
 
-\section{Section levels}
-The following table presents an overview of the section levels that are used in this document. The number of levels that are numbered and included in the table of contents is set in the settings file \texttt{Settings.tex}. The levels are shown in Section \ref{Section_ref}.
+Machine Learning is one of the hot technologies today as it is being used to solve complex problems that would otherwise be very hard or costly to solve with traditional methods. Speech and image recognition, as well as many other complex decision-making problems such as self-driving vehicles are successfully solved with Machine Learning and Deep-Learning. \\
+The success of Machine Learning is being driven by the current available hardware which can provide the required demands in terms of storage and compute capacity. But obviously as problems scale so do the demands and thus special hardware is being developed to address these needs. As soon as the mobile devices are well spread, the need of a custom energy efficient hardware accelerator
+for Machine Learning is needed \cite{paper:2}.\\\\
+The use of commodity hardware is not the most effective and efficient way to address this problem, so research is looking at solution that can satisfy the required demands but at lower cost and energy consumption in order to support Machine Learning also on mobile devices. 
+The constant developments in the Machine Learning  methods require the design of more flexible hardware accelerators \cite{paper:1} \cite{paper:2} .\\
+As it is very well know, the hardware accelerators are capable, if designed correctly, of delivery a lot of improvements in terms of the latency but also in terms of energy efficiency\cite{paper:29}. Thus, in order to obtain the best solution in every metrics an hardware-software codesign is needed, requiring a basic knowledge of Machine Learning algorithms.\\\\
 
-\begin{table}[H]
-\centering
-\begin{tabular}{ll} \hline\hline
-Name & Command\\ \hline
-Chapter & \textbackslash\texttt{chapter\{\emph{Chapter name}\}}\\
-Section & \textbackslash\texttt{section\{\emph{Section name}\}}\\
-Subsection & \textbackslash\texttt{subsection\{\emph{Subsection name}\}}\\
-Subsubsection & \textbackslash\texttt{subsubsection\{\emph{Subsubsection name}\}}\\
-%Paragraph & \textbackslash\texttt{paragraph\{\emph{Paragraph name}\}}\\
-%Subparagraph & \textbackslash\texttt{paragraph\{\emph{Subparagraph name}\}}\\ \hline\hline
-\end{tabular}
-\end{table}
+The use different arithmetic data type or skipping multiplication with data which are almost zero can drastically reduce the computations without reducing the final accuracy of the DNN \cite{paper:7}\cite{paper:8} . From an hardware perspective, especially the use of different arithmetic precision\cite{paper:14} can lead to benefits in terms of area, energy consumption and latency.\newline
+According to that, accuracy of operations,reliability, performance and energy efficiency are evaluated, moving through different designs with different precision and/or data gating and compared to the implementation of the same
+DNN inside a GPU, as well as custom hardware platform.
+\newpage 
+Machine Learning includes two processes, the training and the inference. Mainly, the work is focused on the inference process, exploring different optimizations in terms of hardware.\\\\
+In the last years, the number of pubblished papers regarding Machine Learning has growth exponentially, leading to a lot of efforts also from the companies which started to develop, deploy and sell their own hardware platforms, such as Tensor Processing Unit from Google, NVDLA from Nvidia and Gaudi and Goya, respectively for traning and interference, from Habana (acquired by Intel). \newline
+One of the main ideas of those works is that during the inference process, a model does not need the high precision computations \cite{paper:8} \cite{paper:15}for achieving high accuracy into its outputs.\\ 
 
-\section{Section} \label{Section_ref}
-\subsection{Subsection}
-\subsubsection{Subsubsection}
-%\paragraph{Paragraph}
-%\subparagraph{Subparagraph}
+
 
