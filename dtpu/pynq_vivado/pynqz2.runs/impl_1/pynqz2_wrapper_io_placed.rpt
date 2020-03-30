@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date                      : Wed Mar 25 11:12:23 2020
+| Date                      : Mon Mar 30 16:50:25 2020
 | Host                      : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command                   : report_io -file pynqz2_wrapper_io_placed.rpt
 | Design                    : pynqz2_wrapper
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           136 |
+|           138 |
 +---------------+
 
 
@@ -223,7 +223,7 @@ Table of Contents
 | K6         |                     | Dedicated  | VCCO_0                  | VCCO        |                   |       0 |            |      |                     |                      |   any** |            |           |          |      |                  |              |                   |              |
 | K7         |                     |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | K8         |                     |            | VCCPAUX                 | PSS VCCAUX  |                   |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| K9         |                     | Dedicated  | VP_0                    | XADC        |                   |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| K9         | vp_in_0             | Dedicated  | VP_0                    | INPUT       | LVCMOS18*         |       0 |            |      |                     |                 NONE |         | UNFIXED    |           |          |      | NONE             |              |                   |              |
 | K10        |                     | Dedicated  | VREFN_0                 | XADC        |                   |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | K11        |                     |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | K12        |                     |            | VCCINT                  | VCCINT      |                   |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
@@ -244,7 +244,7 @@ Table of Contents
 | L7         |                     |            | VCCPINT                 | PSS VCCINT  |                   |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | L8         |                     |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | L9         |                     | Dedicated  | VREFP_0                 | XADC        |                   |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| L10        |                     | Dedicated  | VN_0                    | XADC        |                   |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| L10        | vn_in_0             | Dedicated  | VN_0                    | INPUT       | LVCMOS18*         |       0 |            |      |                     |                 NONE |         | UNFIXED    |           |          |      | NONE             |              |                   |              |
 | L11        |                     |            | VCCAUX                  | VCCAUX      |                   |         |            |      |                     |                      |    1.80 |            |           |          |      |                  |              |                   |              |
 | L12        |                     |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | L13        |                     |            | VCCINT                  | VCCINT      |                   |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |

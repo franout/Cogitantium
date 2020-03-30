@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.08526",
-   "Default View_TopLeft":"255,1",
+   "Default View_TopLeft":"255,264",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
@@ -31,16 +31,16 @@ preplace netloc util_vector_logic_2_Res 1 0 2 -20 220 730
 preplace netloc dtpu_core_state 1 1 2 NJ 370 1170J
 preplace netloc axis_accelerator_ada_aresetn 1 0 3 -10 210 NJ 210 1150
 preplace netloc Op1_0_1 1 0 1 -20J 50n
+preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 290n
 preplace netloc Conn3 1 0 2 -60J 20 820J
 preplace netloc dtpu_coro_input_fifo 1 1 1 760 330n
-preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 290n
-preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 310n
-preplace netloc Conn5 1 0 2 -10J 50 790J
 preplace netloc dtpu_coro_output_fifo 1 1 1 730 350n
 preplace netloc Conn4 1 0 2 -30J 30 800J
 preplace netloc Conn2 1 0 2 -50J 40 810J
-preplace netloc Conn1 1 2 1 1160J 180n
+preplace netloc Conn5 1 0 2 -10J 50 790J
+preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 310n
 preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 230 NJ 230 1140
+preplace netloc Conn1 1 2 1 1160J 180n
 levelinfo -pg 1 -80 530 990 1200
 pagesize -pg 1 -db -bbox -sgen -230 0 1360 1270
 "

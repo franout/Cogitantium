@@ -2,12 +2,12 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="pynqz2" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1585134253"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1585134253"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1585134253"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1585134253"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1585579192"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1585579192"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1585579192"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1585579192"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
-      <File Name="ip\pynqz2_ps7_0\pynqz2_ps7_0.xci" Type="IP">
+      <File Name="ip/pynqz2_ps7_0/pynqz2_ps7_0.xci" Type="IP">
         <Instance HierarchyPath="ps7"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -15,7 +15,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_rst_ps7_30M_0\pynqz2_rst_ps7_30M_0.xci" Type="IP">
+      <File Name="ip/pynqz2_rst_ps7_30M_0/pynqz2_rst_ps7_30M_0.xci" Type="IP">
         <Instance HierarchyPath="rst_ps7_30M"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -23,7 +23,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_xlconstant_0_1\pynqz2_xlconstant_0_1.xci" Type="IP">
+      <File Name="ip/pynqz2_xlconstant_0_1/pynqz2_xlconstant_0_1.xci" Type="IP">
         <Instance HierarchyPath="xlconstant_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -31,7 +31,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_util_vector_logic_0_0\pynqz2_util_vector_logic_0_0.xci" Type="IP">
+      <File Name="ip/pynqz2_util_vector_logic_0_0/pynqz2_util_vector_logic_0_0.xci" Type="IP">
         <Instance HierarchyPath="util_vector_logic_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -39,7 +39,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_dtpu_core_0_0\pynqz2_dtpu_core_0_0.xci" Type="IP">
+      <File Name="ip/pynqz2_dtpu_core_0_0/pynqz2_dtpu_core_0_0.xci" Type="IP">
         <Instance HierarchyPath="dtpu/dtpu_core"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -47,7 +47,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_axis_accelerator_ada_0_0\pynqz2_axis_accelerator_ada_0_0.xci" Type="IP">
+      <File Name="ip/pynqz2_axis_accelerator_ada_0_0/pynqz2_axis_accelerator_ada_0_0.xci" Type="IP">
         <Instance HierarchyPath="dtpu/axis_accelerator_ada"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -55,7 +55,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_axi_dma_0_1\pynqz2_axi_dma_0_1.xci" Type="IP">
+      <File Name="ip/pynqz2_axi_dma_0_1/pynqz2_axi_dma_0_1.xci" Type="IP">
         <Instance HierarchyPath="axi_dma_infifo"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -63,7 +63,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_xlconcat_0_1\pynqz2_xlconcat_0_1.xci" Type="IP">
+      <File Name="ip/pynqz2_xlconcat_0_1/pynqz2_xlconcat_0_1.xci" Type="IP">
         <Instance HierarchyPath="xlconcat_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -71,7 +71,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_axi_dma_0_2\pynqz2_axi_dma_0_2.xci" Type="IP">
+      <File Name="ip/pynqz2_axi_dma_0_2/pynqz2_axi_dma_0_2.xci" Type="IP">
         <Instance HierarchyPath="axi_dma_weight_mem"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -79,7 +79,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_axi_intc_0_0\pynqz2_axi_intc_0_0.xci" Type="IP">
+      <File Name="ip/pynqz2_axi_intc_0_0/pynqz2_axi_intc_0_0.xci" Type="IP">
         <Instance HierarchyPath="axi_intc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -87,7 +87,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_axi_dma_0_3\pynqz2_axi_dma_0_3.xci" Type="IP">
+      <File Name="ip/pynqz2_axi_dma_0_3/pynqz2_axi_dma_0_3.xci" Type="IP">
         <Instance HierarchyPath="axi_dma_csr_mem"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -95,7 +95,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_util_vector_logic_1_2\pynqz2_util_vector_logic_1_2.xci" Type="IP">
+      <File Name="ip/pynqz2_util_vector_logic_1_2/pynqz2_util_vector_logic_1_2.xci" Type="IP">
         <Instance HierarchyPath="dtpu/util_vector_logic_2"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -103,7 +103,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_xbar_14\pynqz2_xbar_14.xci" Type="IP">
+      <File Name="ip/pynqz2_xbar_14/pynqz2_xbar_14.xci" Type="IP">
         <Instance HierarchyPath="ps7_axi_periph/xbar"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -111,7 +111,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_ps7_axi_periph_5\pynqz2_ps7_axi_periph_5.xci" Type="IP">
+      <File Name="ip/pynqz2_ps7_axi_periph_5/pynqz2_ps7_axi_periph_5.xci" Type="IP">
         <Instance HierarchyPath="ps7_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -119,7 +119,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_smartconnect_0_0\pynqz2_smartconnect_0_0.xci" Type="IP">
+      <File Name="ip/pynqz2_smartconnect_0_0/pynqz2_smartconnect_0_0.xci" Type="IP">
         <Instance HierarchyPath="smartconnect_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -127,7 +127,18 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\pynqz2_auto_pc_0\pynqz2_auto_pc_0.xci" Type="IP">
+      <File Name="synth/pynqz2.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim/pynqz2.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0.xci" Type="IP">
         <Instance HierarchyPath="ps7_axi_periph/s00_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -135,15 +146,12 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="synth\pynqz2.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+      <File Name="ip/pynqz2_xadc_wiz_0_0/pynqz2_xadc_wiz_0_0.xci" Type="IP">
+        <Instance HierarchyPath="monitor"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
-      </File>
-      <File Name="sim\pynqz2.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="pynqz2_ooc.xdc" Type="XDC">
@@ -153,22 +161,22 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="OUT_OF_CONTEXT"/>
       </File>
-      <File Name="hw_handoff\pynqz2.hwh" Type="HwHandoff">
+      <File Name="hw_handoff/pynqz2.hwh" Type="HwHandoff">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="hw_handoff\pynqz2_bd.tcl">
+      <File Name="hw_handoff/pynqz2_bd.tcl">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="synth\pynqz2.hwdef">
+      <File Name="synth/pynqz2.hwdef">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="HW_HANDOFF"/>
       </File>
-      <File Name="sim\pynqz2.protoinst">
+      <File Name="sim/pynqz2.protoinst">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>

@@ -1,21 +1,21 @@
 -makelib xcelium_lib/xilinx_vip -sv \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/axi4stream_vip_axi4streampc.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_axi4pc.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/xil_common_vip_pkg.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/axi4stream_vip_pkg.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_pkg.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/axi4stream_vip_if.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_if.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/clk_vip_if.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/xilinx_vip/hdl/rst_vip_if.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi4stream_vip_axi4streampc.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_axi4pc.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/xil_common_vip_pkg.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi4stream_vip_pkg.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_pkg.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi4stream_vip_if.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_if.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/clk_vip_if.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/rst_vip_if.sv" \
 -endlib
 -makelib xcelium_lib/xpm -sv \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv" \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv" \
+  "/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
 -endlib
 -makelib xcelium_lib/xpm \
-  "D:/programmi/Xilinx/Vivado/2019.2/data/ip/xpm/xpm_VCOMP.vhd" \
+  "/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_VCOMP.vhd" \
 -endlib
 -makelib xcelium_lib/axi_infrastructure_v1_1_0 \
   "../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v" \
@@ -218,13 +218,31 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_smartconnect_0_0/sim/pynqz2_smartconnect_0_0.v" \
+  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib xcelium_lib/axi_protocol_converter_v2_1_20 \
   "../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_auto_pc_0/sim/pynqz2_auto_pc_0.v" \
-  "../../../bd/pynqz2/sim/pynqz2.v" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_conv_funs_pkg.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_proc_common_pkg.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_ipif_pkg.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_family_support.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_family.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_soft_reset.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_pselect_f.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_address_decoder.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_slave_attachment.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_interrupt_control.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_xadc_wiz_0_0_axi_lite_ipif.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/pynqz2_xadc_wiz_0_0_xadc_core_drp.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/pynqz2_xadc_wiz_0_0_axi_xadc.vhd" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
+  "../../../bd/pynqz2/ip/pynqz2_xadc_wiz_0_0/pynqz2_xadc_wiz_0_0.v" \
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   glbl.v

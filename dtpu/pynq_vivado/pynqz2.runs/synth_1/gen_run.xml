@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1585130551" LaunchWriteIncrSynthDcp="true">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1585579226" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp" LaunchWriteIncrSynthDcp="true">
+  <File Type="VDS-TIMINGSUMMARY" Name="pynqz2_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="pynqz2_wrapper.dcp"/>
   <File Type="RDS-UTIL-PB" Name="pynqz2_wrapper_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="pynqz2_wrapper_utilization_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="pynqz2_wrapper_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="pynqz2_wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="pynqz2_wrapper_timing_summary_synth.pb"/>
   <File Type="PA-TCL" Name="pynqz2_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
@@ -126,6 +129,16 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PRUNDIR/synth_1/pynqz2_wrapper.dcp"/>
+        <Attr Name="ImportTime" Val="1585577612"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>

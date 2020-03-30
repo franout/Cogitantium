@@ -2,7 +2,6 @@ vlib work
 vlib activehdl
 
 vlib activehdl/xilinx_vip
-vlib activehdl/xpm
 vlib activehdl/xbip_utils_v3_0_10
 vlib activehdl/xbip_pipe_v3_0_6
 vlib activehdl/xbip_bram18k_v3_0_6
@@ -14,7 +13,6 @@ vlib activehdl/xbip_multadd_v3_0_15
 vlib activehdl/xil_defaultlib
 
 vmap xilinx_vip activehdl/xilinx_vip
-vmap xpm activehdl/xpm
 vmap xbip_utils_v3_0_10 activehdl/xbip_utils_v3_0_10
 vmap xbip_pipe_v3_0_6 activehdl/xbip_pipe_v3_0_6
 vmap xbip_bram18k_v3_0_6 activehdl/xbip_bram18k_v3_0_6
@@ -35,14 +33,6 @@ vlog -work xilinx_vip  -sv2k12 "+incdir+/home/fra/Desktop/Vivado/2019.2/data/xil
 "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/axi_vip_if.sv" \
 "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/clk_vip_if.sv" \
 "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/hdl/rst_vip_if.sv" \
-
-vlog -work xpm  -sv2k12 "+incdir+/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/include" \
-"/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
-"/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv" \
-"/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
-
-vcom -work xpm -93 \
-"/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_VCOMP.vhd" \
 
 vcom -work xbip_utils_v3_0_10 -93 \
 "../../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \

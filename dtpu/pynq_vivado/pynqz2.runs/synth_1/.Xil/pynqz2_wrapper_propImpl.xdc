@@ -39,7 +39,7 @@ set_property SRC_FILE_INFO {cfile:/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xp
 set_property SRC_FILE_INFO {cfile:/home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl rfile:../../../../../../../../../../../../home/fra/Desktop/Vivado/2019.2/data/ip/xpm/xpm_memory/tcl/xpm_memory_xdc.tcl id:39 order:LATE scoped_inst:{pynqz2_i/smartconnect_0/inst/s02_nodes/s02_b_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory} unmanaged:yes} [current_design]
 current_instance pynqz2_i/ps7/inst
 set_property src_info {type:SCOPED_XDC file:1 line:21 export:INPUT save:INPUT read:READ} [current_design]
-set_input_jitter clk_fpga_0 0.6
+set_input_jitter clk_fpga_0 0.3
 set_property src_info {type:SCOPED_XDC file:1 line:31 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN "C11" [get_ports "MIO[53]"]
 set_property src_info {type:SCOPED_XDC file:1 line:38 export:INPUT save:INPUT read:READ} [current_design]
@@ -330,17 +330,23 @@ set_property src_info {type:SCOPED_XDC file:5 line:61 export:INPUT save:INPUT re
 create_waiver -internal -scope -type CDC -id {CDC-1} -user "axi_dma" -tags "9601" -desc "The CDC-1 warning is waived as it is safe in the context of AXI DMA. In multi channel mode, it is safe to ignore this." -from [get_pins -hier -quiet -filter {NAME =~*MM2S_SPLIT.I_COMMAND_MM2S_SPLITTER/vsize_data_int_reg[*]/C}]
 current_instance
 set_property src_info {type:XDC file:6 line:13 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN M20   IOSTANDARD LVCMOS33 } [get_ports { reset_n }]; #IO_L7N_T1_AD2N_35 Sch=sw[0]
+set_property -dict {PACKAGE_PIN M20 IOSTANDARD LVCMOS33} [get_ports reset_n]
 set_property src_info {type:XDC file:6 line:14 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN M19   IOSTANDARD LVCMOS33 } [get_ports { enable }]; #IO_L7P_T1_AD2P_35 Sch=sw[1]
+set_property -dict {PACKAGE_PIN M19 IOSTANDARD LVCMOS33} [get_ports enable]
 set_property src_info {type:XDC file:6 line:26 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN R14   IOSTANDARD LVCMOS33 } [get_ports { state_0[0] }]; #IO_L6N_T0_VREF_34 Sch=led[0]
+set_property -dict {PACKAGE_PIN R14 IOSTANDARD LVCMOS33} [get_ports {state_0[0]}]
 set_property src_info {type:XDC file:6 line:27 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN P14   IOSTANDARD LVCMOS33 } [get_ports { state_0[1] }]; #IO_L6P_T0_34 Sch=led[1]
+set_property -dict {PACKAGE_PIN P14 IOSTANDARD LVCMOS33} [get_ports {state_0[1]}]
 set_property src_info {type:XDC file:6 line:28 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN N16   IOSTANDARD LVCMOS33 } [get_ports { state_0[2] }]; #IO_L21N_T3_DQS_AD14N_35 Sch=led[2]
+set_property -dict {PACKAGE_PIN N16 IOSTANDARD LVCMOS33} [get_ports {state_0[2]}]
 set_property src_info {type:XDC file:6 line:29 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN M14   IOSTANDARD LVCMOS33 } [get_ports {  state_0[3] }]; #IO_L23P_T3_35 Sch=led[3]
+set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {state_0[3]}]
+set_property src_info {type:XDC file:6 line:78 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN E17   IOSTANDARD LVCMOS33 } [get_ports { vp_in_0 }]; #IO_L3P_T0_DQS_AD1P_35 Sch=ar_an0_p
+set_property src_info {type:XDC file:6 line:79 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { vn_in_0 }]; #IO_L3P_T0_DQS_AD1P_35 Sch=ar_an0_n
+set_property src_info {type:XDC file:6 line:198 export:INPUT save:INPUT read:READ} [current_design]
+set_operating_conditions -heatsink medium
 current_instance pynqz2_i/dtpu/axis_accelerator_ada/U0
 set_property src_info {type:SCOPED_XDC file:7 line:57 export:INPUT save:INPUT read:READ} [current_design]
 set_disable_timing -from CLK -to O [filter [all_fanout -from [get_ports *aclk] -flat -endpoints_only -only_cells] {PRIMITIVE_SUBGROUP==dram || PRIMITIVE_SUBGROUP==LUTRAM}]
