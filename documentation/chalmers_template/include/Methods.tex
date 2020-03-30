@@ -2,21 +2,19 @@
 \chapter{System Devolopment}
 \textit{In the following chapter a Top Down approach of the System development is described, with particular emphasis on the hardware development part.}
 \section{Overview}
-The entire work is implemented on a PYNQ Z2 board from TUL, based on a Zynq-7000 SoC \cite{paper:31}. 
+The entire work is implemented on a PYNQ Z2 board from TUL, based on a Zynq-7000 SoC \cite{paper:31}.
 
-\begin{figure}[!htbp] 
+\begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-  \includegraphics[scale=0.35]{./figure/zynq.PNG}
+\includegraphics[scale=0.35]{./figure/zynq.PNG}
 \caption{Zynq 7000 SoC}
-  \label{fig:zynq}
-\end{figure} 
+\label{fig:zynq}
+\end{figure}
 
-The latter is composed of a programmable logic and a processing system, the Programmable logic hosts the accelerator and the relative AXI interconnections while the processing system is in charge of running the software for programming and  scheduling correctly the operation on the accelerator.\newline In order to speed-up the development process and use built-in library for the AXI protocol and the DMA transfers, the software is carried out through the PYNQ enviroment of the board \cite{WEBSITE:2} which is based on Python. \\
-The usage of Python as basic software allows to easily integrate it with high level Machine Learnign API, such as TensorFlow in this case, an end-to-end open source Machine Learning platform \cite{WEBSITE:4}. It has the feature of quantize a post-trained model for different arithmetic precisions.\\
+The latter is composed of a programmable logic and a processing system, the Programmable logic hosts the accelerator and the relative AXI interconnections while the processing system is in charge of running the software for programming and scheduling correctly the operation on the accelerator.\newline In order to speed-up the development process and use built-in library for the AXI protocol and the DMA transfers, the software is carried out through the PYNQ enviroment of the board \cite{WEBSITE:2} which is based on Python. \\
+The usage of Python as basic software allows to easily integrate it with high level Machine Learning API, such as TensorFlow in this case, an end-to-end open source Machine Learning platform \cite{WEBSITE:4}. It has the feature of quantize a post-trained model for different arithmetic precision.\\
 Since the aim of the work is focused on the inference process, pre-trained models are needed and TensorFlow Hub \cite{WEBSITE:5} comes in handy for this purpose. It provides already pre-trained Machine Learning models for different domains.
-
-
 
 \section{Software}
 \todo[inline]{todo -> driver for accelerator and model from tensorflow (also offline quantization) }
@@ -27,10 +25,10 @@ As it can be seen from \ref{fig:zynq} , it is divided in two big block:
 \item Processing System:
 The processing system in Figure \ref{fig:sys} referred as \textit{ps7} is in charge of running the OS and the Machine Learning application, as consequence it also runs the necessary software for programming the accelerator registers and the data movement to/from main memory from/to the accelerator.
 \item Programmable Logic:
-The programmagle logic (PL) hosts the entire design, fro m the accelerator itself to the DMAs and the AXI interconnections.\\ Several single channel DMA have been used instead of using a single DMA with multiple channels, the reason is that the in the PYNQ enviroment only the drivers for the single channel DMA are provided. Furthermore, the Programmable Logic can be divided into:
+The programmable logic (PL) hosts the entire design, from the accelerator itself to the DMAs and the AXI interconnections.\\ Several single channel DMA have been used instead of using a single DMA with multiple channels, the reason is that the in the PYNQ enviroment only the drivers for the single channel DMA are provided. Furthermore, the Programmable Logic can be divided into:
 \begin{itemize}
 \item AXI interconnections: IP cores from Xilinx\cite{paper:34}\cite{paper:35} in order to connect and correctly address entities in the Programmable Logic.
-\item AXI DMA: IP core from Xilinx \cite{paper:33} which allows data movement between main memory and accelerator memories. 
+\item AXI DMA: IP core from Xilinx \cite{paper:33} which allows data movement between main memory and accelerator memories.
 \item DTPU: the actual hardware accelerator.
 \item XADC: IP core from Xilinx \cite{paper:32} which allows to measure the temperature of the SoC, the voltages and the currents at runtime.
 
@@ -40,24 +38,20 @@ The programmagle logic (PL) hosts the entire design, fro m the accelerator itsel
 
 \newpage
 In the following figure, the schematic of the overall design is presented.
-\begin{figure}[!htbp] 
+\begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-  \includegraphics[scale=0.97,angle=90]{./figure/system_schematic.pdf}
+\includegraphics[scale=0.97,angle=90]{./figure/system_schematic.pdf}
 \caption{System}
-  \label{fig:sys}
-\end{figure} 
-
+\label{fig:sys}
+\end{figure}
 
 \section{DTPU the hardware accelerator}
-
-
 
 \subsection{Overview}
 \todo[inline]{schematic}
 
 \subsection{Real Implementation}
-\todo[inline]{schematic from vivado } 
- \subsubsection{Axi accelerator adapter}
- \subsubsection{DTPU core} 
-
+\todo[inline]{schematic from vivado }
+\subsubsection{Axi accelerator adapter}
+\subsubsection{DTPU core}
