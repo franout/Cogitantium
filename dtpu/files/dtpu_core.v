@@ -180,9 +180,9 @@ module dtpu_core
           
         wire [3:0]state_i;
        wire load_in_reg,enable_deskew_ff_i,enable_enskew_ff_i;
-        reg [31:0] input_data_from_fifo;
-        wire [31:0] input_data_to_fifo;
-        reg [31:0] weight_from_memory;
+        reg [63:0] input_data_from_fifo;
+        wire [63:0] input_data_to_fifo;
+        reg [63:0] weight_from_memory;
        wire enable_i;     
        wire [`LOG_ALLOWED_PRECISIONS-1:0] data_type;
      ////////////////////////////////////////////
@@ -265,17 +265,15 @@ module dtpu_core
   weight_from_memory<=0;
   end else begin 
             if (load_in_reg && infifo_read ) begin 
-            input_data_from_fifo<=infifo_dout[31:0];
-            weight_from_memory<= wm_dout[31:0];
+            input_data_from_fifo<=infifo_dout;
+            weight_from_memory<= wm_dout;
             end
             
   end 
   end 
   // dummy assignment for 3 columns and rows 
-  assign outfifo_din[31:0]=( outfifo_write ? input_data_to_fifo:32'b0);
-  assign outfifo_din[63:32]= 0;
-  
-  
+  assign outfifo_din=( outfifo_write ? input_data_to_fifo:64'b0);
+
   always @(posedge(clk)) begin
   state<= state_i; 
   end 
