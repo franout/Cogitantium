@@ -228,6 +228,7 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
     set_property -dict [ list \
    CONFIG.COLUMNS {8} \
    CONFIG.DATA_WIDTH_CSR {8} \
+   CONFIG.DATA_WIDTH_MAC {8} \
    CONFIG.ROWS {8} \
  ] $dtpu_core
 
@@ -310,8 +311,6 @@ proc create_root_design { parentCell } {
   set enable [ create_bd_port -dir I enable ]
   set reset_n [ create_bd_port -dir I -type rst reset_n ]
   set state_0 [ create_bd_port -dir O -from 3 -to 0 state_0 ]
-  set vn_in_0 [ create_bd_port -dir I vn_in_0 ]
-  set vp_in_0 [ create_bd_port -dir I vp_in_0 ]
 
   # Create instance: axi_dma_csr_mem, and set properties
   set axi_dma_csr_mem [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_csr_mem ]
@@ -373,16 +372,31 @@ proc create_root_design { parentCell } {
   set monitor [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 monitor ]
   set_property -dict [ list \
    CONFIG.AVERAGE_ENABLE_TEMPERATURE {true} \
-   CONFIG.AVERAGE_ENABLE_VP_VN {true} \
+   CONFIG.AVERAGE_ENABLE_VBRAM {true} \
+   CONFIG.AVERAGE_ENABLE_VCCAUX {true} \
+   CONFIG.AVERAGE_ENABLE_VCCDDRO {true} \
+   CONFIG.AVERAGE_ENABLE_VCCINT {true} \
+   CONFIG.AVERAGE_ENABLE_VCCPAUX {true} \
+   CONFIG.AVERAGE_ENABLE_VCCPINT {true} \
+   CONFIG.AVERAGE_ENABLE_VP_VN {false} \
    CONFIG.CHANNEL_AVERAGING {16} \
    CONFIG.CHANNEL_ENABLE_CALIBRATION {true} \
    CONFIG.CHANNEL_ENABLE_TEMPERATURE {true} \
-   CONFIG.CHANNEL_ENABLE_VP_VN {true} \
+   CONFIG.CHANNEL_ENABLE_VBRAM {true} \
+   CONFIG.CHANNEL_ENABLE_VCCAUX {true} \
+   CONFIG.CHANNEL_ENABLE_VCCDDRO {true} \
+   CONFIG.CHANNEL_ENABLE_VCCINT {true} \
+   CONFIG.CHANNEL_ENABLE_VCCPAUX {true} \
+   CONFIG.CHANNEL_ENABLE_VCCPINT {true} \
+   CONFIG.CHANNEL_ENABLE_VP_VN {false} \
+   CONFIG.CHANNEL_ENABLE_VREFN {false} \
+   CONFIG.CHANNEL_ENABLE_VREFP {false} \
    CONFIG.ENABLE_VCCDDRO_ALARM {false} \
    CONFIG.ENABLE_VCCPAUX_ALARM {false} \
    CONFIG.ENABLE_VCCPINT_ALARM {false} \
    CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
    CONFIG.OT_ALARM {false} \
+   CONFIG.POWER_DOWN_ADCB {true} \
    CONFIG.SEQUENCER_MODE {Continuous} \
    CONFIG.SINGLE_CHANNEL_SELECTION {TEMPERATURE} \
    CONFIG.USER_TEMP_ALARM {false} \
@@ -1291,6 +1305,16 @@ proc create_root_design { parentCell } {
 
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+ ] $xlconstant_0
+
+  # Create instance: xlconstant_1, and set properties
+  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+   CONFIG.CONST_WIDTH {1} \
+ ] $xlconstant_1
 
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXIS_csr_1 [get_bd_intf_pins axi_dma_csr_mem/M_AXIS_MM2S] [get_bd_intf_pins dtpu/S_AXIS_csr]
@@ -1327,10 +1351,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net rst_ps7_30M_interconnect_aresetn [get_bd_pins axi_dma_csr_mem/axi_resetn] [get_bd_pins axi_dma_infifo/axi_resetn] [get_bd_pins axi_dma_weight_mem/axi_resetn] [get_bd_pins axi_intc/s_axi_aresetn] [get_bd_pins dtpu/s_axi_aresetn] [get_bd_pins ps7_axi_periph/ARESETN] [get_bd_pins ps7_axi_periph/M00_ARESETN] [get_bd_pins ps7_axi_periph/M01_ARESETN] [get_bd_pins ps7_axi_periph/M02_ARESETN] [get_bd_pins ps7_axi_periph/M03_ARESETN] [get_bd_pins ps7_axi_periph/M04_ARESETN] [get_bd_pins ps7_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_30M/interconnect_aresetn] [get_bd_pins smartconnect_0/aresetn]
   connect_bd_net -net rst_ps7_30M_peripheral_aresetn [get_bd_pins monitor/s_axi_aresetn] [get_bd_pins ps7_axi_periph/M05_ARESETN] [get_bd_pins rst_ps7_30M/peripheral_aresetn]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins rst_ps7_30M/ext_reset_in] [get_bd_pins util_vector_logic_0/Res]
-  connect_bd_net -net vn_in_0_1 [get_bd_ports vn_in_0] [get_bd_pins monitor/vn_in]
-  connect_bd_net -net vp_in_0_1 [get_bd_ports vp_in_0] [get_bd_pins monitor/vp_in]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins axi_intc/intr] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins dtpu/test_mode] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins monitor/vn_in] [get_bd_pins monitor/vp_in] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces axi_dma_csr_mem/Data_MM2S] [get_bd_addr_segs ps7/S_AXI_HP0/HP0_DDR_LOWOCM] -force

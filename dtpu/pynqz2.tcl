@@ -133,6 +133,7 @@ if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
 xilinx.com:ip:axi_dma:7.1\
 xilinx.com:ip:axi_intc:4.1\
+xilinx.com:ip:xadc_wiz:3.3\
 xilinx.com:ip:processing_system7:5.5\
 xilinx.com:ip:proc_sys_reset:5.0\
 xilinx.com:ip:smartconnect:1.0\
@@ -292,6 +293,8 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
    }
     set_property -dict [ list \
    CONFIG.COLUMNS {8} \
+   CONFIG.DATA_WIDTH_CSR {8} \
+   CONFIG.DATA_WIDTH_MAC {8} \
    CONFIG.ROWS {8} \
  ] $dtpu_core
 
@@ -431,38 +434,75 @@ proc create_root_design { parentCell } {
   # Create instance: dtpu
   create_hier_cell_dtpu [current_bd_instance .] dtpu
 
+  # Create instance: monitor, and set properties
+  set monitor [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 monitor ]
+  set_property -dict [ list \
+   CONFIG.AVERAGE_ENABLE_TEMPERATURE {true} \
+   CONFIG.AVERAGE_ENABLE_VBRAM {true} \
+   CONFIG.AVERAGE_ENABLE_VCCAUX {true} \
+   CONFIG.AVERAGE_ENABLE_VCCDDRO {true} \
+   CONFIG.AVERAGE_ENABLE_VCCINT {true} \
+   CONFIG.AVERAGE_ENABLE_VCCPAUX {true} \
+   CONFIG.AVERAGE_ENABLE_VCCPINT {true} \
+   CONFIG.AVERAGE_ENABLE_VP_VN {false} \
+   CONFIG.CHANNEL_AVERAGING {16} \
+   CONFIG.CHANNEL_ENABLE_CALIBRATION {true} \
+   CONFIG.CHANNEL_ENABLE_TEMPERATURE {true} \
+   CONFIG.CHANNEL_ENABLE_VBRAM {true} \
+   CONFIG.CHANNEL_ENABLE_VCCAUX {true} \
+   CONFIG.CHANNEL_ENABLE_VCCDDRO {true} \
+   CONFIG.CHANNEL_ENABLE_VCCINT {true} \
+   CONFIG.CHANNEL_ENABLE_VCCPAUX {true} \
+   CONFIG.CHANNEL_ENABLE_VCCPINT {true} \
+   CONFIG.CHANNEL_ENABLE_VP_VN {false} \
+   CONFIG.CHANNEL_ENABLE_VREFN {false} \
+   CONFIG.CHANNEL_ENABLE_VREFP {false} \
+   CONFIG.ENABLE_VCCDDRO_ALARM {false} \
+   CONFIG.ENABLE_VCCPAUX_ALARM {false} \
+   CONFIG.ENABLE_VCCPINT_ALARM {false} \
+   CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
+   CONFIG.OT_ALARM {false} \
+   CONFIG.POWER_DOWN_ADCB {true} \
+   CONFIG.SEQUENCER_MODE {Continuous} \
+   CONFIG.SINGLE_CHANNEL_SELECTION {TEMPERATURE} \
+   CONFIG.USER_TEMP_ALARM {false} \
+   CONFIG.VCCAUX_ALARM {false} \
+   CONFIG.VCCINT_ALARM {false} \
+   CONFIG.XADC_STARUP_SELECTION {channel_sequencer} \
+ ] $monitor
+
   # Create instance: ps7, and set properties
   set ps7 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7 ]
   set_property -dict [ list \
-   CONFIG.PCW_ACT_APU_PERIPHERAL_FREQMHZ {650} \
+   CONFIG.PCW_ACT_APU_PERIPHERAL_FREQMHZ {650.000000} \
    CONFIG.PCW_ACT_CAN0_PERIPHERAL_FREQMHZ {23.8095} \
    CONFIG.PCW_ACT_CAN1_PERIPHERAL_FREQMHZ {23.8095} \
-   CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_DCI_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125} \
-   CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {50} \
-   CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10} \
+   CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ {10.000000} \
+   CONFIG.PCW_ACT_DCI_PERIPHERAL_FREQMHZ {10.096154} \
+   CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125.000000} \
+   CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
+   CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
+   CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {10.000000} \
+   CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10.000000} \
+   CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_I2C_PERIPHERAL_FREQMHZ {50} \
-   CONFIG.PCW_ACT_PCAP_PERIPHERAL_FREQMHZ {200} \
-   CONFIG.PCW_ACT_QSPI_PERIPHERAL_FREQMHZ {200} \
-   CONFIG.PCW_ACT_SDIO_PERIPHERAL_FREQMHZ {50} \
-   CONFIG.PCW_ACT_SMC_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_SPI_PERIPHERAL_FREQMHZ {10} \
-   CONFIG.PCW_ACT_TPIU_PERIPHERAL_FREQMHZ {200} \
-   CONFIG.PCW_ACT_TTC0_CLK0_PERIPHERAL_FREQMHZ {108} \
-   CONFIG.PCW_ACT_TTC0_CLK1_PERIPHERAL_FREQMHZ {108} \
-   CONFIG.PCW_ACT_TTC0_CLK2_PERIPHERAL_FREQMHZ {108} \
-   CONFIG.PCW_ACT_TTC1_CLK0_PERIPHERAL_FREQMHZ {108} \
-   CONFIG.PCW_ACT_TTC1_CLK1_PERIPHERAL_FREQMHZ {108} \
-   CONFIG.PCW_ACT_TTC1_CLK2_PERIPHERAL_FREQMHZ {108} \
+   CONFIG.PCW_ACT_PCAP_PERIPHERAL_FREQMHZ {200.000000} \
+   CONFIG.PCW_ACT_QSPI_PERIPHERAL_FREQMHZ {200.000000} \
+   CONFIG.PCW_ACT_SDIO_PERIPHERAL_FREQMHZ {50.000000} \
+   CONFIG.PCW_ACT_SMC_PERIPHERAL_FREQMHZ {10.000000} \
+   CONFIG.PCW_ACT_SPI_PERIPHERAL_FREQMHZ {10.000000} \
+   CONFIG.PCW_ACT_TPIU_PERIPHERAL_FREQMHZ {200.000000} \
+   CONFIG.PCW_ACT_TTC0_CLK0_PERIPHERAL_FREQMHZ {108.333336} \
+   CONFIG.PCW_ACT_TTC0_CLK1_PERIPHERAL_FREQMHZ {108.333336} \
+   CONFIG.PCW_ACT_TTC0_CLK2_PERIPHERAL_FREQMHZ {108.333336} \
+   CONFIG.PCW_ACT_TTC1_CLK0_PERIPHERAL_FREQMHZ {108.333336} \
+   CONFIG.PCW_ACT_TTC1_CLK1_PERIPHERAL_FREQMHZ {108.333336} \
+   CONFIG.PCW_ACT_TTC1_CLK2_PERIPHERAL_FREQMHZ {108.333336} \
    CONFIG.PCW_ACT_TTC_PERIPHERAL_FREQMHZ {50} \
-   CONFIG.PCW_ACT_UART_PERIPHERAL_FREQMHZ {100} \
+   CONFIG.PCW_ACT_UART_PERIPHERAL_FREQMHZ {100.000000} \
    CONFIG.PCW_ACT_USB0_PERIPHERAL_FREQMHZ {60} \
    CONFIG.PCW_ACT_USB1_PERIPHERAL_FREQMHZ {60} \
-   CONFIG.PCW_ACT_WDT_PERIPHERAL_FREQMHZ {108} \
+   CONFIG.PCW_ACT_WDT_PERIPHERAL_FREQMHZ {108.333336} \
    CONFIG.PCW_APU_CLK_RATIO_ENABLE {6:2:1} \
    CONFIG.PCW_APU_PERIPHERAL_FREQMHZ {650} \
    CONFIG.PCW_ARMPLL_CTRL_FBDIV {26} \
@@ -487,7 +527,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ {100} \
    CONFIG.PCW_CAN_PERIPHERAL_VALID {0} \
-   CONFIG.PCW_CLK0_FREQ {50000000} \
+   CONFIG.PCW_CLK0_FREQ {100000000} \
    CONFIG.PCW_CLK1_FREQ {10000000} \
    CONFIG.PCW_CLK2_FREQ {10000000} \
    CONFIG.PCW_CLK3_FREQ {10000000} \
@@ -501,8 +541,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_CPU_PERIPHERAL_DIVISOR0 {2} \
    CONFIG.PCW_CRYSTAL_PERIPHERAL_FREQMHZ {50} \
    CONFIG.PCW_DCI_PERIPHERAL_CLKSRC {DDR PLL} \
-   CONFIG.PCW_DCI_PERIPHERAL_DIVISOR0 {15} \
-   CONFIG.PCW_DCI_PERIPHERAL_DIVISOR1 {7} \
+   CONFIG.PCW_DCI_PERIPHERAL_DIVISOR0 {52} \
+   CONFIG.PCW_DCI_PERIPHERAL_DIVISOR1 {2} \
    CONFIG.PCW_DCI_PERIPHERAL_FREQMHZ {10.159} \
    CONFIG.PCW_DDRPLL_CTRL_FBDIV {21} \
    CONFIG.PCW_DDR_DDR_PLL_FREQMHZ {1050.000} \
@@ -623,7 +663,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_EN_WDT {0} \
    CONFIG.PCW_FCLK0_PERIPHERAL_CLKSRC {IO PLL} \
    CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {5} \
-   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {4} \
+   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {2} \
    CONFIG.PCW_FCLK1_PERIPHERAL_CLKSRC {IO PLL} \
    CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR1 {1} \
@@ -637,7 +677,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_FCLK_CLK1_BUF {FALSE} \
    CONFIG.PCW_FCLK_CLK2_BUF {FALSE} \
    CONFIG.PCW_FCLK_CLK3_BUF {FALSE} \
-   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {50} \
+   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
    CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {10} \
    CONFIG.PCW_FPGA2_PERIPHERAL_FREQMHZ {200} \
    CONFIG.PCW_FPGA3_PERIPHERAL_FREQMHZ {166.67} \
@@ -1002,14 +1042,14 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_P2F_UART1_INTR {0} \
    CONFIG.PCW_P2F_USB0_INTR {0} \
    CONFIG.PCW_P2F_USB1_INTR {0} \
-   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY0 {0} \
-   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY1 {0} \
-   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY2 {0} \
-   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY3 {0} \
-   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_0 {0} \
-   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_1 {0} \
-   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_2 {-0} \
-   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_3 {-0} \
+   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY0 {0.223} \
+   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY1 {0.212} \
+   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY2 {0.085} \
+   CONFIG.PCW_PACKAGE_DDR_BOARD_DELAY3 {0.092} \
+   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_0 {0.040} \
+   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_1 {0.058} \
+   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_2 {-0.009} \
+   CONFIG.PCW_PACKAGE_DDR_DQS_TO_CLK_DELAY_3 {-0.033} \
    CONFIG.PCW_PACKAGE_NAME {clg400} \
    CONFIG.PCW_PCAP_PERIPHERAL_CLKSRC {IO PLL} \
    CONFIG.PCW_PCAP_PERIPHERAL_DIVISOR0 {5} \
@@ -1172,7 +1212,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_UART_PERIPHERAL_DIVISOR0 {10} \
    CONFIG.PCW_UART_PERIPHERAL_FREQMHZ {100} \
    CONFIG.PCW_UART_PERIPHERAL_VALID {1} \
-   CONFIG.PCW_UIPARAM_ACT_DDR_FREQ_MHZ {525} \
+   CONFIG.PCW_UIPARAM_ACT_DDR_FREQ_MHZ {525.000000} \
    CONFIG.PCW_UIPARAM_DDR_ADV_ENABLE {0} \
    CONFIG.PCW_UIPARAM_DDR_AL {0} \
    CONFIG.PCW_UIPARAM_DDR_BANK_ADDR_COUNT {3} \
@@ -1303,7 +1343,7 @@ proc create_root_design { parentCell } {
   # Create instance: ps7_axi_periph, and set properties
   set ps7_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_axi_periph ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {5} \
+   CONFIG.NUM_MI {6} \
  ] $ps7_axi_periph
 
   # Create instance: rst_ps7_30M, and set properties
@@ -1331,6 +1371,16 @@ proc create_root_design { parentCell } {
 
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+ ] $xlconstant_0
+
+  # Create instance: xlconstant_1, and set properties
+  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+   CONFIG.CONST_WIDTH {1} \
+ ] $xlconstant_1
 
   # Create interface connections
   connect_bd_intf_net -intf_net S_AXIS_csr_1 [get_bd_intf_pins axi_dma_csr_mem/M_AXIS_MM2S] [get_bd_intf_pins dtpu/S_AXIS_csr]
@@ -1349,10 +1399,11 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps7_axi_periph_M02_AXI [get_bd_intf_pins axi_dma_weight_mem/S_AXI_LITE] [get_bd_intf_pins ps7_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net ps7_axi_periph_M03_AXI [get_bd_intf_pins axi_intc/s_axi] [get_bd_intf_pins ps7_axi_periph/M03_AXI]
   connect_bd_intf_net -intf_net ps7_axi_periph_M04_AXI [get_bd_intf_pins dtpu/S_AXI] [get_bd_intf_pins ps7_axi_periph/M04_AXI]
+  connect_bd_intf_net -intf_net ps7_axi_periph_M05_AXI [get_bd_intf_pins monitor/s_axi_lite] [get_bd_intf_pins ps7_axi_periph/M05_AXI]
   connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_pins ps7/S_AXI_HP0] [get_bd_intf_pins smartconnect_0/M00_AXI]
 
   # Create port connections
-  connect_bd_net -net S00_ACLK_1 [get_bd_pins axi_dma_csr_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_csr_mem/s_axi_lite_aclk] [get_bd_pins axi_dma_infifo/m_axi_mm2s_aclk] [get_bd_pins axi_dma_infifo/m_axi_s2mm_aclk] [get_bd_pins axi_dma_infifo/s_axi_lite_aclk] [get_bd_pins axi_dma_weight_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_weight_mem/s_axi_lite_aclk] [get_bd_pins axi_intc/s_axi_aclk] [get_bd_pins dtpu/axi_aclk] [get_bd_pins dtpu/clk] [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] [get_bd_pins ps7_axi_periph/ACLK] [get_bd_pins ps7_axi_periph/M00_ACLK] [get_bd_pins ps7_axi_periph/M01_ACLK] [get_bd_pins ps7_axi_periph/M02_ACLK] [get_bd_pins ps7_axi_periph/M03_ACLK] [get_bd_pins ps7_axi_periph/M04_ACLK] [get_bd_pins ps7_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_30M/slowest_sync_clk] [get_bd_pins smartconnect_0/aclk]
+  connect_bd_net -net S00_ACLK_1 [get_bd_pins axi_dma_csr_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_csr_mem/s_axi_lite_aclk] [get_bd_pins axi_dma_infifo/m_axi_mm2s_aclk] [get_bd_pins axi_dma_infifo/m_axi_s2mm_aclk] [get_bd_pins axi_dma_infifo/s_axi_lite_aclk] [get_bd_pins axi_dma_weight_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_weight_mem/s_axi_lite_aclk] [get_bd_pins axi_intc/s_axi_aclk] [get_bd_pins dtpu/axi_aclk] [get_bd_pins dtpu/clk] [get_bd_pins monitor/s_axi_aclk] [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] [get_bd_pins ps7_axi_periph/ACLK] [get_bd_pins ps7_axi_periph/M00_ACLK] [get_bd_pins ps7_axi_periph/M01_ACLK] [get_bd_pins ps7_axi_periph/M02_ACLK] [get_bd_pins ps7_axi_periph/M03_ACLK] [get_bd_pins ps7_axi_periph/M04_ACLK] [get_bd_pins ps7_axi_periph/M05_ACLK] [get_bd_pins ps7_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_30M/slowest_sync_clk] [get_bd_pins smartconnect_0/aclk]
   connect_bd_net -net axi_dma_0_mm2s_introut [get_bd_pins axi_dma_weight_mem/mm2s_introut] [get_bd_pins xlconcat_0/In3]
   connect_bd_net -net axi_dma_csr_mem_mm2s_introut [get_bd_pins axi_dma_csr_mem/mm2s_introut] [get_bd_pins xlconcat_0/In4]
   connect_bd_net -net axi_dma_infifo_mm2s_introut [get_bd_pins axi_dma_infifo/mm2s_introut] [get_bd_pins xlconcat_0/In0]
@@ -1364,9 +1415,11 @@ proc create_root_design { parentCell } {
   connect_bd_net -net ps7_FCLK_RESET0_N [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net reset_n_1 [get_bd_ports reset_n] [get_bd_pins dtpu/resetn] [get_bd_pins util_vector_logic_0/Op2]
   connect_bd_net -net rst_ps7_30M_interconnect_aresetn [get_bd_pins axi_dma_csr_mem/axi_resetn] [get_bd_pins axi_dma_infifo/axi_resetn] [get_bd_pins axi_dma_weight_mem/axi_resetn] [get_bd_pins axi_intc/s_axi_aresetn] [get_bd_pins dtpu/s_axi_aresetn] [get_bd_pins ps7_axi_periph/ARESETN] [get_bd_pins ps7_axi_periph/M00_ARESETN] [get_bd_pins ps7_axi_periph/M01_ARESETN] [get_bd_pins ps7_axi_periph/M02_ARESETN] [get_bd_pins ps7_axi_periph/M03_ARESETN] [get_bd_pins ps7_axi_periph/M04_ARESETN] [get_bd_pins ps7_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_30M/interconnect_aresetn] [get_bd_pins smartconnect_0/aresetn]
+  connect_bd_net -net rst_ps7_30M_peripheral_aresetn [get_bd_pins monitor/s_axi_aresetn] [get_bd_pins ps7_axi_periph/M05_ARESETN] [get_bd_pins rst_ps7_30M/peripheral_aresetn]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins rst_ps7_30M/ext_reset_in] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins axi_intc/intr] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins dtpu/test_mode] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins monitor/vn_in] [get_bd_pins monitor/vp_in] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces axi_dma_csr_mem/Data_MM2S] [get_bd_addr_segs ps7/S_AXI_HP0/HP0_DDR_LOWOCM] -force
@@ -1378,6 +1431,7 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0x40410000 -range 0x00010000 -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs axi_dma_weight_mem/S_AXI_LITE/Reg] -force
   assign_bd_address -offset 0x41800000 -range 0x00010000 -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs axi_intc/S_AXI/Reg] -force
   assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs dtpu/axis_accelerator_ada/S_AXI/Reg] -force
+  assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs monitor/s_axi_lite/Reg] -force
 
 
   # Restore current instance

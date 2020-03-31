@@ -341,10 +341,6 @@ set_property src_info {type:XDC file:6 line:28 export:INPUT save:INPUT read:READ
 set_property -dict {PACKAGE_PIN N16 IOSTANDARD LVCMOS33} [get_ports {state_0[2]}]
 set_property src_info {type:XDC file:6 line:29 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {state_0[3]}]
-set_property src_info {type:XDC file:6 line:78 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN E17   IOSTANDARD LVCMOS33 } [get_ports { vp_in_0 }]; #IO_L3P_T0_DQS_AD1P_35 Sch=ar_an0_p
-set_property src_info {type:XDC file:6 line:79 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { vn_in_0 }]; #IO_L3P_T0_DQS_AD1P_35 Sch=ar_an0_n
 set_property src_info {type:XDC file:6 line:198 export:INPUT save:INPUT read:READ} [current_design]
 set_operating_conditions -heatsink medium
 current_instance pynqz2_i/dtpu/axis_accelerator_ada/U0

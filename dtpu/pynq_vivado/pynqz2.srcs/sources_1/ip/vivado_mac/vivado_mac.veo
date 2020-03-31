@@ -58,11 +58,11 @@ vivado_mac your_instance_name (
   .CLK(CLK),            // input wire CLK
   .CE(CE),              // input wire CE
   .SCLR(SCLR),          // input wire SCLR
-  .A(A),                // input wire [3 : 0] A
-  .B(B),                // input wire [3 : 0] B
-  .C(C),                // input wire [3 : 0] C
+  .A(A),                // input wire [7 : 0] A
+  .B(B),                // input wire [7 : 0] B
+  .C(C),                // input wire [7 : 0] C
   .SUBTRACT(SUBTRACT),  // input wire SUBTRACT
-  .P(P),                // output wire [3 : 0] P
+  .P(P),                // output wire [7 : 0] P
   .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------

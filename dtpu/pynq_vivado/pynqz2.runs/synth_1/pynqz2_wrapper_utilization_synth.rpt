@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Mon Mar 30 16:48:04 2020
+| Date         : Tue Mar 31 18:40:44 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
 | Design       : pynqz2_wrapper
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 10262 |     0 |     53200 | 19.29 |
-|   LUT as Logic             |  8620 |     0 |     53200 | 16.20 |
-|   LUT as Memory            |  1642 |     0 |     17400 |  9.44 |
+| Slice LUTs*                | 10518 |     0 |     53200 | 19.77 |
+|   LUT as Logic             |  8844 |     0 |     53200 | 16.62 |
+|   LUT as Memory            |  1674 |     0 |     17400 |  9.62 |
 |     LUT as Distributed RAM |  1170 |     0 |           |       |
-|     LUT as Shift Register  |   472 |     0 |           |       |
-| Slice Registers            | 14249 |     0 |    106400 | 13.39 |
-|   Register as Flip Flop    | 14249 |     0 |    106400 | 13.39 |
+|     LUT as Shift Register  |   504 |     0 |           |       |
+| Slice Registers            | 14849 |     0 |    106400 | 13.96 |
+|   Register as Flip Flop    | 14849 |     0 |    106400 | 13.96 |
 |   Register as Latch        |     0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |   129 |     0 |     26600 |  0.48 |
 | F8 Muxes                   |     0 |     0 |     13300 |  0.00 |
@@ -59,7 +59,7 @@ Table of Contents
 | 54    |          Yes |           - |          Set |
 | 722   |          Yes |           - |        Reset |
 | 359   |          Yes |         Set |            - |
-| 13114 |          Yes |       Reset |            - |
+| 13714 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -96,7 +96,7 @@ Table of Contents
 |          Site Type          | Used | Fixed | Available |  Util% |
 +-----------------------------+------+-------+-----------+--------+
 | Bonded IOB                  |    6 |     0 |       125 |   4.80 |
-| Bonded IPADs                |    2 |     0 |         2 | 100.00 |
+| Bonded IPADs                |    0 |     0 |         2 |   0.00 |
 | Bonded IOPADs               |  130 |     0 |       130 | 100.00 |
 | PHY_CONTROL                 |    0 |     0 |         4 |   0.00 |
 | PHASER_REF                  |    0 |     0 |         4 |   0.00 |
@@ -151,19 +151,19 @@ Table of Contents
 +----------+-------+----------------------+
 | Ref Name |  Used |  Functional Category |
 +----------+-------+----------------------+
-| FDRE     | 13114 |         Flop & Latch |
+| FDRE     | 13714 |         Flop & Latch |
 | LUT3     |  3020 |                  LUT |
 | LUT6     |  2492 |                  LUT |
 | LUT5     |  1998 |                  LUT |
 | RAMD32   |  1744 |   Distributed Memory |
-| LUT4     |  1551 |                  LUT |
-| LUT2     |  1107 |                  LUT |
+| LUT4     |  1647 |                  LUT |
+| LUT2     |  1363 |                  LUT |
 | FDCE     |   722 |         Flop & Latch |
 | RAMS32   |   574 |   Distributed Memory |
 | LUT1     |   483 |                  LUT |
-| SRL16E   |   415 |   Distributed Memory |
+| SRL16E   |   447 |   Distributed Memory |
 | FDSE     |   359 |         Flop & Latch |
-| CARRY4   |   210 |           CarryLogic |
+| CARRY4   |   266 |           CarryLogic |
 | BIBUF    |   130 |                   IO |
 | MUXF7    |   129 |                MuxFx |
 | SRLC32E  |    57 |   Distributed Memory |
@@ -172,7 +172,7 @@ Table of Contents
 | RAMB36E1 |    21 |         Block Memory |
 | RAMB18E1 |     4 |         Block Memory |
 | OBUF     |     4 |                   IO |
-| IBUF     |     4 |                   IO |
+| IBUF     |     2 |                   IO |
 | XADC     |     1 |               Others |
 | PS7      |     1 | Specialized Resource |
 +----------+-------+----------------------+

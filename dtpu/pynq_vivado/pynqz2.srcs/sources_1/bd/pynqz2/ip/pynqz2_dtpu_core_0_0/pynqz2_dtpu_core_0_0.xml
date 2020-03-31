@@ -426,7 +426,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:023ed3ce</spirit:value>
+            <spirit:value>9:8259c06c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -437,7 +437,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:023ed3ce</spirit:value>
+            <spirit:value>9:8259c06c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -453,11 +453,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 30 14:14:04 UTC 2020</spirit:value>
+            <spirit:value>Tue Mar 31 16:11:53 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:023ed3ce</spirit:value>
+            <spirit:value>9:8259c06c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -469,7 +469,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b76f1f27</spirit:value>
+            <spirit:value>9:378b7456</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -485,11 +485,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Mar 30 14:14:04 UTC 2020</spirit:value>
+            <spirit:value>Tue Mar 31 16:11:53 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b76f1f27</spirit:value>
+            <spirit:value>9:378b7456</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -947,7 +947,7 @@
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
         <spirit:name>DATA_WIDTH_MAC</spirit:name>
         <spirit:displayName>Data Width Mac</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DATA_WIDTH_MAC">4</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DATA_WIDTH_MAC">8</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>ROWS</spirit:name>
@@ -1014,7 +1014,7 @@
     <spirit:parameter>
       <spirit:name>DATA_WIDTH_MAC</spirit:name>
       <spirit:displayName>Data Width Mac</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.DATA_WIDTH_MAC">4</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.DATA_WIDTH_MAC">8</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>ROWS</spirit:name>
@@ -1087,6 +1087,7 @@
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.WEIGHT_MEM_INTERFACE.READ_WRITE_MODE" xilinx:valuePermission="bd_and_user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.COLUMNS" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.DATA_WIDTH_CSR" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.DATA_WIDTH_MAC" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.ROWS" xilinx:valueSource="user"/>
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>

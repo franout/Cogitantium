@@ -26,12 +26,12 @@ Compiling package xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_viv_comp
 Compiling package xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_pkg
 Compiling package xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_viv_co...
 Compiling package xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_pkg
-Compiling module xil_defaultlib.register
+Compiling module xil_defaultlib.register(N=8)
 Compiling architecture lut2_v of entity unisim.LUT2 [\LUT2(init="1000")(0,3)\]
 Compiling architecture mult_and_v of entity unisim.MULT_AND [mult_and_default]
 Compiling architecture muxcy_v of entity unisim.MUXCY [muxcy_default]
 Compiling architecture xorcy_v of entity unisim.XORCY [xorcy_default]
-Compiling architecture xilinx of entity mult_gen_v12_0_16.op_resize [\op_resize(ai_width=4,bi_width=4...]
+Compiling architecture xilinx of entity mult_gen_v12_0_16.op_resize [\op_resize(ai_width=8,bi_width=8...]
 Compiling architecture xilinx of entity mult_gen_v12_0_16.luts [\luts(c_xdevicefamily="zynq",c_a...]
 Compiling architecture xilinx of entity mult_gen_v12_0_16.mult_gen_v12_0_16_viv [\mult_gen_v12_0_16_viv(c_verbosi...]
 Compiling architecture xilinx of entity mult_gen_v12_0_16.mult_gen_v12_0_16 [\mult_gen_v12_0_16(c_xdevicefami...]
@@ -44,11 +44,11 @@ Compiling architecture xilinx of entity xbip_multadd_v3_0_15.multadd_dsp [\multa
 Compiling architecture synth of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_viv [\xbip_multadd_v3_0_15_viv(c_xdev...]
 Compiling architecture xilinx of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15 [\xbip_multadd_v3_0_15(c_xdevicef...]
 Compiling architecture vivado_mac_arch of entity xil_defaultlib.vivado_mac [vivado_mac_default]
-Compiling module xil_defaultlib.mxu_mac
-Compiling module xil_defaultlib.mxu_core(M=8,K=8)
-Compiling module xil_defaultlib.mxu_wrapper(M=8,K=8)
+Compiling module xil_defaultlib.mxu_mac(bit_width=8)
+Compiling module xil_defaultlib.mxu_core(M=8,K=8,max_data_width=...
+Compiling module xil_defaultlib.mxu_wrapper(M=8,K=8,max_data_wid...
 Compiling module xil_defaultlib.control_unit(ROWS=8,COLUMNS=8)
-Compiling module xil_defaultlib.dtpu_core(ROWS=8,COLUMNS=8)
+Compiling module xil_defaultlib.dtpu_core(DATA_WIDTH_MAC=8,ROWS=...
 Compiling module xil_defaultlib.tb_dtpu
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot tb_dtpu_behav

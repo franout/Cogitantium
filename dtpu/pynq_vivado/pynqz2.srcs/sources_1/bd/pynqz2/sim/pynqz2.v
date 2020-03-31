@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Mon Mar 30 16:39:43 2020
+//Date        : Tue Mar 31 18:32:37 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2.bd
 //Design      : pynqz2
@@ -1099,7 +1099,7 @@ module m05_couplers_imp_1VU1F5G
   assign m05_couplers_to_m05_couplers_WVALID = S_AXI_wvalid;
 endmodule
 
-(* CORE_GENERATION_INFO = "pynqz2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pynqz2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=25,numReposBlks=16,numNonXlnxBlks=0,numHierBlks=9,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=82,da_axi4_s2mm_cnt=9,da_bram_cntlr_cnt=2,da_clkrst_cnt=82,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "pynqz2.hwdef" *) 
+(* CORE_GENERATION_INFO = "pynqz2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pynqz2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=26,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=9,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=82,da_axi4_s2mm_cnt=9,da_bram_cntlr_cnt=2,da_clkrst_cnt=82,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "pynqz2.hwdef" *) 
 module pynqz2
    (DDR_0_addr,
     DDR_0_ba,
@@ -1124,9 +1124,7 @@ module pynqz2
     FIXED_IO_0_ps_srstb,
     enable,
     reset_n,
-    state_0,
-    vn_in_0,
-    vp_in_0);
+    state_0);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR_0 ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR_0, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_0_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR_0 BA" *) inout [2:0]DDR_0_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR_0 CAS_N" *) inout DDR_0_cas_n;
@@ -1151,8 +1149,6 @@ module pynqz2
   input enable;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset_n;
   output [3:0]state_0;
-  input vn_in_0;
-  input vp_in_0;
 
   wire S00_ACLK_1;
   wire [63:0]S_AXIS_csr_1_TDATA;
@@ -1434,16 +1430,13 @@ module pynqz2
   wire [7:0]smartconnect_0_M00_AXI_WSTRB;
   wire smartconnect_0_M00_AXI_WVALID;
   wire [0:0]util_vector_logic_0_Res;
-  wire vn_in_0_1;
-  wire vp_in_0_1;
   wire [4:0]xlconcat_0_dout;
   wire [0:0]xlconstant_0_dout;
+  wire [0:0]xlconstant_1_dout;
 
   assign enable_1 = enable;
   assign reset_n_1 = reset_n;
   assign state_0[3:0] = dtpu_state_0;
-  assign vn_in_0_1 = vn_in_0;
-  assign vp_in_0_1 = vp_in_0;
   pynqz2_axi_dma_0_3 axi_dma_csr_mem
        (.axi_resetn(rst_ps7_30M_interconnect_aresetn),
         .m_axi_mm2s_aclk(S00_ACLK_1),
@@ -1652,7 +1645,7 @@ module pynqz2
         .s_axi_aresetn(rst_ps7_30M_interconnect_aresetn),
         .state_0(dtpu_state_0),
         .test_mode(xlconstant_0_dout));
-  pynqz2_xadc_wiz_0_0 monitor
+  pynqz2_monitor_0 monitor
        (.s_axi_aclk(S00_ACLK_1),
         .s_axi_araddr(ps7_axi_periph_M05_AXI_ARADDR[10:0]),
         .s_axi_aresetn(rst_ps7_30M_peripheral_aresetn),
@@ -1672,8 +1665,8 @@ module pynqz2
         .s_axi_wready(ps7_axi_periph_M05_AXI_WREADY),
         .s_axi_wstrb(ps7_axi_periph_M05_AXI_WSTRB),
         .s_axi_wvalid(ps7_axi_periph_M05_AXI_WVALID),
-        .vn_in(vn_in_0_1),
-        .vp_in(vp_in_0_1));
+        .vn_in(xlconstant_1_dout),
+        .vp_in(xlconstant_1_dout));
   pynqz2_ps7_0 ps7
        (.DDR_Addr(DDR_0_addr[14:0]),
         .DDR_BankAddr(DDR_0_ba[2:0]),
@@ -2052,6 +2045,8 @@ module pynqz2
         .dout(xlconcat_0_dout));
   pynqz2_xlconstant_0_1 xlconstant_0
        (.dout(xlconstant_0_dout));
+  pynqz2_xlconstant_1_0 xlconstant_1
+       (.dout(xlconstant_1_dout));
 endmodule
 
 module pynqz2_ps7_axi_periph_5

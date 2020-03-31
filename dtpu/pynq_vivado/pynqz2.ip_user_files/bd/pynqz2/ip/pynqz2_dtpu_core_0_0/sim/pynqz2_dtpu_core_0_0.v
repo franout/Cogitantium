@@ -150,7 +150,7 @@ input wire cs_start;
 output wire [3 : 0] state;
 
   dtpu_core #(
-    .DATA_WIDTH_MAC(4),
+    .DATA_WIDTH_MAC(8),
     .ROWS(8),
     .COLUMNS(8),
     .SIZE_WMEMORY(8196),
