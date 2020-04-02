@@ -18,7 +18,7 @@ The core of the GPU is the Streaming Multiprocessor from the Nvidia Volta GPU.
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.9]{./figure/volta_sm_arch.PNG}
-\caption{Streaming Multiprocessor Architecture}
+\caption{Streaming Multiprocessor Architecture \cite{paper:41}}
 \label{fig:voltasmarch}
 \end{figure}
 
@@ -30,7 +30,7 @@ Matrix-Matrix multiplication operations are at the core of neural network traini
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.7]{./figure/tensor_core.PNG}
-\caption{Matrix Multiplication in Tensor Core}
+\caption{Matrix Multiplication in Tensor Core\cite{paper:41}}
 \label{fig:tensorcorevolta}
 \end{figure}
 
@@ -40,7 +40,7 @@ According to Figure \ref{fig:mixprec} the Tensor Core Units are able to compute 
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.8]{./figure/mix_prec.PNG}
-\caption{Mixed Precision Schema of a FMA unit in Tensor Core Unit}
+\caption{Mixed Precision Schema of a FMA unit in Tensor Core Unit\cite{paper:41}}
 \label{fig:mixprec}
 \end{figure}
 
@@ -51,13 +51,13 @@ The deep learning frameworks and the CUDA Toolkit include libraries that have be
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.6]{./figure/sw_stack_tesla.PNG}
-\caption{Software stack}
+\caption{Software stack\cite{paper:41}}
 \label{fig:swtesla}
 \end{figure}
 
 Combining powerful hardware with software tailored to deep learning, it provides to developers and researchers solutions for high-performance GPU-accelerated deep learning application development, testing, and network training.
 \newpage
-\section{Hardware Platform}
+\section{Domain Specific Hardware Platform}
 Instead of developing GPUs also suitable for Machine Learning applications, the companies have designed and deployed special purpose hardware accelerators.
 \subsection{NVDLA}
 The Nvidia Deep Learning accelerator is a free open source hardware platform from Nvidia, highly customizable and modular, which allows to design and deploy deep learning inference hardware.
@@ -68,7 +68,7 @@ The architecture comes in two configurations:
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.4]{./figure/nvdla_system.PNG}
-\caption{Comparsion of two possible NVDLA system}
+\caption{Comparsion of two possible NVDLA system\cite{WEBSITE:8}}
 \label{fig:nvdlasystem}
 \end{figure}
 As already mentioned, the aim of the work is to develop a hardware accelerator for Machine Learning suitable for mobile devices, therefore from now on the NVDLA small system will be considered and analyzed.\\
@@ -77,7 +77,7 @@ The internal architecture of the NVDLA small system is:
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.5]{./figure/nvdla_internal.PNG}
-\centering\caption{Internal architecture of NVDLA small system, Secondary DBB not considered}
+\centering\caption{Internal architecture of NVDLA small system, Secondary DBB not considered\cite{WEBSITE:8}}
 \label{fig:nvdlaarch}
 \end{figure}
 
@@ -103,7 +103,7 @@ It is also worth to mention that the accelerator comes already with a basic soft
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.8]{./figure/nvdla_software.PNG}
-\caption{NVDLA Software stack}
+\caption{NVDLA Software stack\cite{WEBSITE:7}}
 \label{fig:nvdlasw}
 \end{figure}
 
@@ -125,7 +125,7 @@ In Figure \ref{fig:tpuarch} a general view of TPU architecture is presented.
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.8]{./figure/tpu_arch.PNG}
-\caption{Google TPU architecture}
+\caption{Google TPU architecture\cite{paper:40}}
 \label{fig:tpuarch}
 \end{figure}
 
@@ -137,7 +137,7 @@ As far as concern the software stack, the TPU can be programmed for a wide varie
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.4]{./figure/tpu_sw_stack.PNG}
-\caption{Google TPU Software Stack}
+\caption{Google TPU Software Stack\cite{WEBSITE:9}}
 \label{fig:gtpuswstack}
 \end{figure}
 
@@ -151,7 +151,7 @@ In the Figure \ref{fig:goyaarch} a high level view of the Goya architecture can 
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.7]{./figure/goya_arch.PNG}
-\caption{High level view of Goya architecture}
+\caption{High level view of Goya architecture\cite{paper:38}}
 \label{fig:goyaarch}
 \end{figure}
 
@@ -163,7 +163,7 @@ Regarding the software stack, it can be interfaced with all deep learning framew
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.5]{./figure/goya_sw_stack.PNG}
-\caption{Habana Goya Software Stack}
+\caption{Habana Goya Software Stack\cite{paper:38}}
 \label{fig:goyaswstack}
 \end{figure}
 It also supports quantization of models trained in floating-point format with near-zero accuracy loss.

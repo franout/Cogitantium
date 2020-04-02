@@ -8,12 +8,12 @@
 In the past decade many companies have started to advertise the use of AI, even if they are using a subfield of the AI, in their products and software applications. Nevertheless, the exponential growth of the last decade,
 the AI is not youth.\\ it takes one of its roots from a theoretical paper of \textit{Alan Turing} published by journal \textit{Mind} in the 1950 \cite{paper:36}.\\
 
-The general definition of Artificial Intelligence (AI) is intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.\\ Colloquially, the term "artificial intelligence" is often used to describe machines that mimic "cognitive" functions that humans associate with the human mind, such as "learning" and "problem solving" \cite{book:1}.\\
-Given the definition, it is evident that the AI is to vast to be studied and simulated. Thus, it has been divided into subfields, characterized by different traits, such as Knowledge Representation, Planning, Learning, Natural Language processing, Perception, Motion and manipulation, Social intelligence, General Intelligence.\\\\
+The general definition of Artificial Intelligence (AI) is intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.\\ Colloquially, the term "artificial intelligence" is often used to describe machines that mimic "cognitive" functions that humans associate with the human mind, such as "learning" and "problem solving" .\\
+Given the definition, it is evident that the AI is too vast to be studied and simulated. Thus, it has been divided into subfields, characterized by different traits, such as Knowledge Representation, Planning, Learning, Natural Language processing, Perception, Motion and manipulation, Social intelligence, General Intelligence.\\\\
 
 Artificial Intelligence, like electricity or the fuel engine, is a general purpose technology. There is no consensus on which tasks AI tends to excel and how to characterize them.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.5]{./figure/ai_division.PNG}
@@ -24,17 +24,70 @@ Artificial Intelligence, like electricity or the fuel engine, is a general purpo
 \section{Machine Learning}
 A particular interesting subcategory of AI in Computer Science is the Machine Learning. It is the study of algorithms used to perform a specific task without explicit programming the machine, relying on patterns and inference, in order to make decisions. This approach is used where it is tricky, or unfeasible, to develop a conventional algorithm for solving the task.\\
 
-A peculiarity of Machine Learning model is that it is composed of two processes, training and inference.
-\todo[inline] {describe two processes}
+A peculiarity of Machine Learning model is that it is composed of two processes, training and inference.\\
+The inference process is the process in which a conclusion is given at the end of the evaluation process, i.e. the input stimulus are applied to the model and the output is observed.\\
+The training process has to be done before the model is put on the field, before the inference process, otherwise the latter can give wrong results. As the name suggest, in this process the model learns how to behave, adjusting the weight accordingly to the applied inputs and expected outputs. Besides this type of training and according to \cite{book:1}, other exists, characterized by approach, type of data and tasks:
+\begin{itemize}
+\item Supervised Learning, it builds a mathematical model of a set of data that contains both the inputs and the desired outputs.
+\item Unsupervised Learning, it takes a set of data that contains only inputs and find structure in the data.
+\item Semi-supervised Learning, it falls between unsupervised learning and supervised learning.
+\item Reinforcement Learning, is an area of machine learning concerned with how software agents should take actions in an environment in order to maximize some notion of cumulative reward.
+\item Self Learning, It is a learning with no external rewards and no external teacher advices.
+\item Feature Learning, also called representation learning algorithms, often attempt to preserve the information in their input but also transform it in a way that makes it useful, often as a preprocessing step before performing classification or predictions.
+\item Sparse Dictionary Learning, it is a feature learning method where a training example is represented as a linear combination of basis functions, and is assumed to be a sparse matrix.
+\item Anomaly Detection, also known as outlier detection, it is the identification of rare items, events or observations which raise suspicions by differing significantly from the majority of the data.
+\item Association Rules, it is a rule-based method for discovering relationships between variables in large databases.
+\end{itemize}
 
-As it can be seen in Figure \ref{fig:aidiv} Machine Learning is also divided in subcategories.
+Machine Learning space is also divided into other type of models such as Decision tree, Support vector machines, regression analysis, Bayesian networks and genetic algorithms.
+As it can be seen in Figure \ref{fig:aidiv} Brain Inspired Machine Learning is also divided in subcategories.
 \subsection{Brain Inspired}
-It is based on algorithms which take its basic functionalities from our understanding of how the brain operates.
+It is based on algorithms which take its basic functionalities from our understanding of how the brain operates, trying to mimic the functionalities.
+
+\begin{figure}[H]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.15]{./figure/human_neuron.PNG}\\
+
+\includegraphics[scale=0.15]{./figure/nn_neuron.PNG}
+
+\caption{A parallelism between a human-brain neuron and a neuron in a Brain Inspired Network}
+\label{fig:neuron}
+\end{figure}
+In the human brain, the basic computational unit is the neuron.\\ Neurons receive input signal from dendrites and produce output signal along the axon which interacts with other neurons via synaptic weights.\\ The synaptic weights are obtained after a learning process, which can strengthen them or not.
 
 \subsubsection{Neural Networks}
 
-\subsubsection{Spiking}
+Neural Networks (or Artificial Neural Networks) are graphs in which every node is interconnected to others using edges, which have a weight properly tuned during the training process.\\
+As mentioned before, each and every node of the Neural Networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} b the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\
+The information exchanged between a neuron and another is a real number, a result of a non-linear function of the sum of all its input.
 
+In the Figure \ref{fig:nn} an implementation of a Neural Network can be appreciated.
+\begin{figure}[H]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.4]{./figure/neural_network.PNG}
+\caption{Example of a Neural Network}
+\label{fig:nn}
+\end{figure}
+As it can be seen in Figure \ref{fig:nn}, it is always divided in layers in which only the output and input layers are visible from the external world, as consequence the internal layers are called hidden layers. When an input vector is applied, it will propagate from the left side of the network to its right side through the layers and the neurons which compose each layer. It is worth to mention that layers may perform different kind of computation on their inputs. Moreover, the Deep Neural Networks are named after the huge amount of hidden layers.\\\\
+
+In the early stages of ANNs the goal was to solve problems as the human brain would do. However, over time, the aim moved to perform specific tasks, leading to a different architecture of the biological brain and brain-inspired networks (Spiking Neural Networks).\\\\
+Depending on how the edges are connected and the topology, a Neural Network can be classified in several sub-types:
+\begin{itemize}
+\item Feedforward, the data move only from input layer to output layer without cycles in the graph.
+\item Regulatory feedback, it provides feedback connections back to the same inputs that active them, reducing requirements during learning. It also allows learning and updating much easier.
+\item Recurrent neural network, it propagates data backward and forward, from later processing stages to earlier stages.
+\item Modular, several small networks cooperate or compete to solve problems.
+\item Physical, it is based on electrically adjustable resistance material to simulate artificial synapses.
+\end{itemize}
+
+\subsubsection{Spiking Neural Networks}
+Spiking neural networks (SNNs) are artificial neural networks that more closely mimic natural neural networks\cite{article:1}. \\In addition to neuronal and synaptic state, SNNs incorporate the concept of time into their operating model. The idea is that neurons in the SNN do not activate at each propagation cycle but rather activate only when specific value is reached.\\
+The current activation level is modeled as a differential equation and it is normally considered as neuron's state.
+
+In principle, SNNs can be applied to the same application of Artificial Neural Networks. Moreover, SNNs can model brain of biological organisms without prior knowledge of the environment. Thus, SNNs have been useful in neuroscience for evaluating the reliability of the hypothesis on biological neural circuits but not in engineering.\\\\
+SSNs are still lagging ANNs in terms of accuracy, but the gap is decreasing and has vanished on some task\cite{article:2}.
 \section{Applications}
 In principle the AI can be applied to any intellectual tasks. Focusing on Machine Learning applications, they can spread through a variety of different domains:
 \begin{itemize}

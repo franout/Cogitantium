@@ -8,11 +8,11 @@ The entire work is implemented on a PYNQ Z2 board from TUL, based on a Zynq-7000
 \centering
 \captionsetup{justification=centering}
 \includegraphics[scale=0.35]{./figure/zynq.PNG}
-\caption{Zynq 7000 SoC}
+\caption{Zynq 7000 SoC\cite{paper:42}}
 \label{fig:zynq}
 \end{figure}
 
-The latter is composed of a programmable logic and a processing system, the Programmable logic hosts the accelerator and the relative AXI interconnections while the processing system is in charge of running the software for programming and scheduling correctly the operation on the accelerator.\newline In order to speed-up the development process and use built-in library for the AXI protocol and the DMA transfers, the software is carried out through the PYNQ enviroment of the board \cite{WEBSITE:2} which is based on Python. \\
+The latter is composed of a programmable logic and a processing system, the Programmable logic hosts the accelerator and the relative AXI interconnections while the processing system is in charge of running the software for programming and scheduling correctly the operation on the accelerator.\newline In order to speed-up the development process and use built-in library for the AXI protocol and the DMA transfers, the software is carried out through the PYNQ enviroment of the board \cite{WEBSITE:2} which is based on Python, another reason is that Python has becoma a de facto standard \cite{paper:37}. \\
 The usage of Python as basic software allows to easily integrate it with high level Machine Learning API, such as TensorFlow in this case, an end-to-end open source Machine Learning platform \cite{WEBSITE:4}. It has the feature of quantize a post-trained model for different arithmetic precision.\\
 Since the aim of the work is focused on the inference process, pre-trained models are needed and TensorFlow Hub \cite{WEBSITE:5} comes in handy for this purpose. It provides already pre-trained Machine Learning models for different domains.
 
@@ -46,12 +46,28 @@ In the following figure, the schematic of the overall design is presented.
 \label{fig:sys}
 \end{figure}
 
-\section{DTPU the hardware accelerator}
+\section{DTPU, the hardware accelerator}
+The hardware accelerator, named \textit{ Dumb Tensor Processing Unit}, is in charge of carring out the computation of the neural network model, exploiting a data-flow architecture on the input data applyng a Fused Multiply Add approach between each unit of the Matrix Multiplication Unit (MXU).
 
-\subsection{Overview}
-\todo[inline]{schematic}
+In Figure \ref{fig:logaccel} is presented the Logical block diagram of the accelerator.
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+%\includegraphics[scale=0.97,angle=90]{./figure/system_schematic.pdf}
+\caption{Logical view of the accelerator}
+\label{fig:logaccel}
+\end{figure}
 
 \subsection{Real Implementation}
-\todo[inline]{schematic from vivado }
+The work is not focused on developing embedded memories and AXI interfaces, therefore a Xilinx's IP core, which includes all the necessary subcomponents, has been used\cite{paper:43} leading to the actual block diagram which can be observed in the Figure \ref{fig:rtlaccel}.
+\begin{figure}[H]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=1,angle=90]{./figure/accelerator_schematic.pdf}
+\caption{Real RTL view of the accelerator}
+\label{fig:rtlaccel}
+\end{figure} 
+The latter has allowed to completely focus the work on the DTPU core.
+\newpage
 \subsubsection{Axi accelerator adapter}
 \subsubsection{DTPU core}
