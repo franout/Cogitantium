@@ -147,35 +147,37 @@ print("Current temperature:",round(tmp,3),"°C")
 ##### Nominal values of resistances and Vcc ######
 ##################################################
 # from vivado report power
+# [V]
 vcc_pl_int_nom=1.00
 vcc_pl_aux_nom=1.80
 vcc_pl_bram_nom= 1.00
-vcc_ps_nom=1.80
-vcc_ps_aux=1.80
+vcc_ps_int_nom=1.80
+vcc_ps_aux_nom=1.80
 vcc_ddr_nom=1.50
-
-r_pl_int=
-r_pl_aux
-r_pl_bram=
-r_ps=
-r_ps_aux=
-r_ddr=
+# equivalent series resitstances of capacitor -> worst case
+# [omh]
+r_pl_int=225
+r_pl_aux=400
+r_pl_bram=225
+r_ps_int=225
+r_ps_aux=400
+r_ddr= 0.005
 
 
 vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
-vcc_pl_int= (vcc_pl_int* 3) / 4096
+vcc_pl_int= (vcc_pl_int* vcc_ps_aux_nom) / 4096
 
 vcc_pl_aux=( xadc_mon.read(VCC_AUX) & 0x0000FFF0) >> 4
-vcc_pl_aux= (vcc_pl_aux* 3) / 4096
+vcc_pl_aux= (vcc_pl_aux* vcc_ps_aux_nom) / 4096
 
 vcc_pl_bram= ( xadc_mon.read(VCC_BRAM) & 0x0000FFF0) >> 4
-vcc_pl_bram= (vcc_pl_bram* 3) / 4096
+vcc_pl_bram= (vcc_pl_bram* vcc_ps_aux_nom) / 4096
 
-vcc_ps= ( xadc_mon.read(DEV_CORE_SUPPLY) & 0x0000FFF0) >> 4
-vcc_ps= (vcc_ps* 3) / 4096
+vcc_ps_int= ( xadc_mon.read(DEV_CORE_SUPPLY) & 0x0000FFF0) >> 4
+vcc_ps_int= (vcc_ps_int* vcc_ps_aux_nom) / 4096
 
 vcc_ps_aux=( xadc_mon.read(DEV_AUX_CORE_SUPPLY) & 0x0000FFF0) >> 4
-vcc_ps_aux= (vcc_ps_aux* 3) / 4096
+vcc_ps_aux= (vcc_ps_aux* vcc_ps_aux_nom) / 4096
 
 
 vcc_ddr= ( xadc_mon.read(DEV_CORE_MEM_SUPPLY) & 0x0000FFF0) >> 4
@@ -184,11 +186,11 @@ vcc_ddr= (vcc_ddr* 3) / 4096
 
 ps_power=((vcc_ps_int_nom-vcc_ps_int)/r_ps_int)*vcc_ps_int_nom + ((vcc_ps_aux_nom-vcc_ps_aux)/r_ps_aux)*vcc_ps_aux_nom 
 pl_power= ((vcc_pl_int_nom-vcc_pl_int)/r_pl_int)*vcc_pl_int_nom + ((vcc_pl_aux_nom-vcc_pl_aux)/r_pl_aux)*vcc_pl_aux_nom + ((vcc_pl_bram_nom-vcc_pl_bram)/r_pl_bram)*vcc_pl_bram_nom 
-mem_power=((vcc_ddr_nom-vcc_ddr)/r_ddr)*vcc_ddr_nom
+mem_power=((vcc_ddr-vcc_ddr_nom)/r_ddr)*vcc_ddr
 
 tot_power=ps_power+pl_power+mem_power
 # printing power consumption
-print("Current power consumption=", round(tot_power,3)," Watt")
-print("---> Processing System:",round(ps_power,3)," Watt")
-print("---> Programmable Logic:",round(pl_power,3)," Watt")
-print("---> Memory:",round(mem_power,3)," Watt")
+print("Current power consumption=", tot_power*1000," mWatt")
+print("---> Processing System:",ps_power*1000," mWatt")
+print("---> Programmable Logic:",pl_power*1000," mWatt")
+print("---> Memory:",mem_power*1000," mWatt")
