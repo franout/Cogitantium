@@ -55,7 +55,8 @@ computations.
 * For building opendla_small.ko you have to add CFLAG_MODULE='-DDLA_SMALL_CONFIG' to the make command
 * Disabling the clock gating by setting to 1 the VLIB_BYPASS_POWER_CG 
 * https://github.com/nvdla/sw/issues/49
-
+* https://www.tensorflow.org/lite/performance/post_training_quantization tensor flow quantization 
+* https://tfhub.dev/ pretrained model in tensow flow
 
 ## FUTURE READINGS
 
@@ -82,7 +83,7 @@ computations.
 * Computing Machinery and Intelligence, Wikipedia
 * TRAINING WITH MIXED PRECISION, User Guide, NVIDIA
 * Timeloop: A Systematic Approach to DNN Accelerator Evaluation, Angshuman Parashar, Priyanka Raina, Yakun Sophia Shao, Yu-Hsin Chen, Victor A. Ying, Anurag Mukkara, Rangharajan Venkatesan, Brucek Khailany ,Stephen W. Keckler, Joel Emer
-* The Deep Learning Revolution and Its for Comput er Architecture and Chip Design, Jeffrey Dean , Google Research
+* , Jeffrey Dean , Google Research
 * Harnessing Numerical Flexibility for Deep Learning on FPGAs, Andrew C. Ling , Mohamed S. Abdelfattah, Andrew Bitar,David Han, Roberto Dicecco, Suchit Subhaschandra, Chris N Johnson, Dmitry Denisenko, Josh Fender, Gordon R. Chiu
 *  <a href="  https://www.european-processor-initiative.eu/project/epi/" target="_blank">`European Processor Initiative`</a>
 * MIXED PRECISION TRAINING OF DEEP NEURAL NETWORKS ,Carl Case, NVIDIA

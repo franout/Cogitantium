@@ -240,31 +240,32 @@ accelerator.write(OARG0_TDEST,0) # only one output
 start_time = time.time()
 #accelerator.write(CMD, 0x00010001)
 # 5 instead of 2 for continous runs
-accelerator.write(CMD, (0x00000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+accelerator.write(CMD, (0x00000004 |(CMD_EXECUTE_STEP<<16))) # execute one step 
 
 
-time.sleep(1)
+ # single step execution 
 accelerator.write(CMD, (0x00000000 | (CMD_UPDATE_OUT_ARG<<16)))
 accelerator.write(CMD, (0x00000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-time.sleep(1)
-accelerator.write(CMD, (0x00000000 | (CMD_UPDATE_OUT_ARG<<16)))
 
+#continous run 
+accelerator.write(CMD, (0x00000004 | ((CMD_STOP_EXECUTE_CONTINOUS )<<16)))
 
-accelerator.read(OARG0_STATUS) # check output buffer status
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
 done=0
-while (done&0x2)!=2:
-  #  accelerator.write(CMD,0x0FF10001)#update output
-   # accelerator.write(CMD,0x0FF20001)#update output
-    #time.sleep(3)
-    ## check done signal
+while :
+ 	 #  accelerator.write(CMD,0x0FF10001)#update output
+   	# accelerator.write(CMD,0x0FF20001)#update output
+    	#time.sleep(3)
+    	## check done signal
     done=accelerator.read(STATUS)
     if (done&0x2)== 2:
         print ("accelerator is done")
+		break
     elif (done&0x4)== 4:
         print("accelerator is idle")
+		break
     elif (done&0x8) == 8:
         print("accelerator is ready")
     else:
@@ -314,7 +315,6 @@ weight_buffer.close()
 #         pynq.buffer - Implements a buffer class for DMA engines and accelerators
 
 # Additional modules:
-
 #         pynq. - Implements PYNQ asyncio
 #         pynq.pmbus - PYNQ class for reading power measurements from PMBus
 #         pynq.uio - Interacts directly with a UIO device

@@ -2,6 +2,8 @@
 
 ## start from a tensor flow model pre trained
 
+https://www.tensorflow.org/lite/guide/get_started
+
 
 # convert the model
 
@@ -37,22 +39,6 @@ print(output_data)
 
 
 
-Quantization
-
-By reducing the precision of values and operations within a model, quantization can reduce both the size of model and the time required for inference. For many models, there is only a minimal loss of accuracy.
-
-The TensorFlow Lite converter makes it easy to quantize TensorFlow models. The following Python code quantizes a SavedModel and saves it to disk:
-
-import tensorflow as tf
-
-converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
-converter.optimizations = [tf.lite.Optimize.DEFAULT]
-tflite_quant_model = converter.convert()
-open("converted_model.tflite", "wb").write(tflite_quantized_model)
-
-TensorFlow Lite supports reducing precision of values from full floating point to half-precision floats (float16) or 8-bit integers. There are trade-offs in model size and accuracy for each choice, and some operations have optimized implementations for these reduced precision types.
-
-To learn more about quantization, see Post-training quantization.
 
 
 # run inference tensorflow lite interpreter is needed

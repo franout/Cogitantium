@@ -5,7 +5,7 @@
     <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1585672366"/>
     <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1585672366"/>
     <Generation Name="SIMULATION" State="GENERATED" Timestamp="1585672366"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1585672366"/>
+    <Generation Name="HW_HANDOFF" State="STALE" Timestamp="1585844480"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/pynqz2_ps7_0/pynqz2_ps7_0.xci" Type="IP">
         <Instance HierarchyPath="ps7"/>
