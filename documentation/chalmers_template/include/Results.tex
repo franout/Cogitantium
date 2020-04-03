@@ -1,15 +1,68 @@
 % CREATED BY DAVID FRISK, 2016
 \chapter{Results}
-\textit{In this chapter, area results on the FPGA of different designs are presented. Following that, on different hardware designs Neural Network TensorFlow Lite models are executed and perfomances measured. }
+\textit{In this chapter, area results on the FPGA of different designs are presented. Following that, on different hardware designs Neural Network TensorFlow Lite models are executed and perfomances measured. }\\\\
 
+\epigraph{ \textit{If you can not measure something, you can not improve it.}}{--- \textup{William Thomson Kelvin}}
 
+\section{Evaluation metrics}
+Generally speaking in Computer Science, every domain and application could have different evaluation metrics, for example the energy efficient of a CPU is a heavy metrics in embedded systems while in a high performant CPU latency and throughput are dominant metrics. As said that, evaluation metrics strongly depend on the end-users, therefore the designers have to make assumption on the end-user intentions and applications.\\
+In this work the assumptions are that the accelerator will be deployed into an embedded system and at the same time it should give to the user a certain degree of flexibility for running Neural Network models. Thus, as it is suggested \cite{paper:1} the following metrics are used:
+\begin{itemize}
+\item Accuracy, quality of the final result of inference process.
+\item Throughput, for measuring real time performance. It depends on the number of internal computation cores.
+\item Latency, for interactive applications.
+\item Energy and Power, for a mobile device in which there is a limited battery capacity meanwhile for data centers stringent power ceilings due to cooling costs.
+\item Hardware cost (Utilization Factor in case of an FPGA) of chip area and process technology.
+\end{itemize}
+\newpage
 \section{Utilization Factor}
-	\todo[inline]{utilization factor for different size of mxu core}
-	report power and timing 
-\todo[inline]{we can still compare the utilization of dtpu with the nvdla}	
-	\section{Evaluation metrics}
-\todo[inline]{evaluation metrics suggested from the paper}
+An important aspect of an embedded system is the on-die utilization area. Those kinds of system are usually deployed on tightly area constrained chips for hiding their presence to the user.
+Therefore, it is important to measure and understand the behavior on the Utilization of the FPGA (used as area measurement in this case) of the design as the size of Matrix Multiplication Unit increases and in parallel the throughput.\\
+The Utilization Factor, composed of Look-up-Table, Flip Flops and Digital Signal Processor usage, is expected to increase as the size of Multiplication Matrix increase and the bit width of Computation Unit.
+\begin{center}
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}| }
+\hline
+\multicolumn{4}{|c|}{Post Synthesis FPGA Utilization Computation on 4 bit integer } \\
+\hline
+Size of Matrix Multiplication Unit& LUT &FF&DSP\\
+\hline
+3x3& & & \\
+4x4& & & \\
+5x5& & & \\
+6x6& & & \\
+7x7& & & \\
+8x8& & & \\
+10x10& & & \\
+12x12& & & \\
+15x15& & & \\
+16x16& & & \\
+20x20& & & \\
+\hline
+\end{tabular}
+\label{table:int4ut}
+\end{center}
 
-\section{Neural Networks Models}
-\todo[inline] {same NN for different precision and different rows columsn?}
-\todo[inline]{Common NN models from MIT tutorial: LeNet (1998) ,AlexNet (2012) ,OverFeat (2013), VGGNet (2014), GoogleNet (2014), ResNet (2015)}
+\begin{center}
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}| }
+\hline
+\multicolumn{4}{|c|}{Post Synthesis FPGA Utilization Computation on 8 bit integer } \\
+\hline
+Size of Matrix Multiplication Unit& LUT &FF&DSP\\
+\hline
+3x3& & & \\
+4x4& & & \\
+5x5& & & \\
+6x6& & & \\
+7x7& & & \\
+8x8& & & \\
+10x10& & & \\
+12x12& & & \\
+15x15& & & \\
+16x16& & & \\
+20x20& & & \\
+\hline
+\end{tabular}
+\label{table:int8ut}
+\end{center}
+
+%\section{Neural Networks Models}
