@@ -131,6 +131,30 @@ else :
 	print("overlay is not loaded")
 	exit(-1)
 
+############################################
+########## CSR DEFINITIONS #################
+########## MEMORY MAP      #################
+########## bitwidth 8      #################
+############################################
+ARITHMETIC_PRECISION=0
+FP_MODE=1
+BATCH_SIZE=2 # aka active rows
+TRANSPARENT_DELAY_REGISTER=3
+DEBUG=4
+
+
+INT8=0x00
+INT16=0x01
+INT32=0x02
+INT64=0x03
+FP16=0x04
+BFP16=0x05
+FP64=0x06
+ACTIVE_FP=1<<0
+ACTIVE_BFP=1<<1
+ROUNDING=0x00
+NO_FP=0x00
+
 
 ### allocate buffers for input and outpuf fifo in main memory 
 ## default 32 bit integer
@@ -139,7 +163,7 @@ xlnk = Xlnk()
 input_fifo_buffer = xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=True)
 output_fifo_buffer=xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=True)
 weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u8',cacheable=True)
-csr_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
+csr_buffer=xlnk.cma_array(shape=(64,),dtype='u8',cacheable=True)
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
@@ -150,8 +174,11 @@ for i in range(weight_buffer.size):
     weight_buffer[i]=0xFFFFFFFFFFFFFFFF
 
 ## populate csr 
-for i in range(csr_buffer.size):
-    csr_buffer[i]=1   
+csr_buffer[ARITHMETIC_PRECISION]=INT8
+csr_buffer[FP_MODE]=NO_FP
+csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
+csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
+csr_buffer[DEBUG]=0
 
 
 ## accelerator 
@@ -240,15 +267,9 @@ accelerator.write(OARG0_TDEST,0) # only one output
 start_time = time.time()
 #accelerator.write(CMD, 0x00010001)
 # 5 instead of 2 for continous runs
-accelerator.write(CMD, (0x00000004 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
 
 
- # single step execution 
-accelerator.write(CMD, (0x00000000 | (CMD_UPDATE_OUT_ARG<<16)))
-accelerator.write(CMD, (0x00000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-
-#continous run 
-accelerator.write(CMD, (0x00000004 | ((CMD_STOP_EXECUTE_CONTINOUS )<<16)))
 
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
@@ -284,7 +305,19 @@ driver_fifo.recvchannel.transfer(output_fifo_buffer)
 driver_fifo.recvchannel.wait()
 stop_time = time.time()
 
-print(*output_fifo_buffer[0:10])
+
+flag=True
+for i in range(output_fifo_buffer.size-1):
+    if(output_fifo_buffer[i]!=output_fifo_buffer[i+1]):
+        flag=False
+        break
+
+if not(flag):
+    print("accelerator did not do all the work")
+    print(*output_fifo_buffer[0:10])
+else:
+    print("accelerator did all the jobs")
+    print(*output_fifo_buffer[0:10])
 hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)
 
