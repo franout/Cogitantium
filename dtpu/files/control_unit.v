@@ -94,6 +94,7 @@ localparam flush_out_fifo=4'h7;
 localparam start_p1=4'h8;
 localparam start_p2=4'h9;
 localparam start_p3=4'hA;
+localparam save_to_fifo=4'hB;
 
 reg [3:0]state;
 reg [$clog2(COLUMNS*(3+1)):0]counter_compute;
@@ -211,23 +212,24 @@ flush_out_fifo: begin
              counter_res<=counter_res+1;
               // wait for the correct output
               if(counter_res==(ROWS)) begin 
-              state<=done;
+              state<=save_to_fifo;
               end else begin 
               state<=state;
               end
-              /*
-              if(!outfifo_is_full) begin 
-              state<=done;
-              end else begin
-              state<=state;
-              end 
-              */
+             
               
-             end             
+             end
+save_to_fifo: begin
+                outfifo_write<=1'b1;      
+                state<=done;
+            end              
 done: begin 
-        outfifo_write<=1'b1;
+        if(!outfifo_is_full && !infifo_is_empty) begin
       state<=idle;
         cs_done<=1;
+        end else begin
+        state<=retrieve_data;
+        end
       end          
 default: begin 
     state<=Power_up;

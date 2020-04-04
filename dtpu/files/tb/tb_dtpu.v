@@ -159,9 +159,9 @@ module tb_dtpu();
               // test vector 
                  csr_dout=1'b1;
                     wm_dout=64'hFFFFFFFFFFFFFFFF;
-                   infifo_is_empty=1'b0;
+                   infifo_is_empty=1'b1;
                    infifo_dout=64'hCAFECAFECAFECAFE;
-                    outfifo_is_full=1'b0;
+                    outfifo_is_full=1'b1;
                     cs_continue=1'b0;
                 reset=1'b0;
                 #clk_period;
@@ -181,11 +181,22 @@ module tb_dtpu();
                 $display("starting operations");
                 cs_start=1'b1;
                 #clk_period;
-                for (k=0;k<50;k=k+1) begin
+                #clk_period;
+                #clk_period;
+                #clk_period;
+                cs_start=1'b0;
+                
+                for (k=0;k<100;k=k+1) begin
                 #clk_period;
                 if(k==5 ) begin 
                  infifo_dout=~(64'hCAFECAFECAFECAFE);
                 end 
+                
+                if(k==46) begin
+                outfifo_is_full=1'b0;
+                infifo_is_empty=1'b0;
+                end 
+                
                 end
                 
                 

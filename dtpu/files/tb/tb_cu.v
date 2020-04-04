@@ -76,8 +76,8 @@ module tb_cu();
         .DATA_WIDTH_WMEMORY(64),
         .DATA_WIDTH_CSR(8),
         .ADDRESS_SIZE_CSR(32),
-        .ROWS(3),
-        .COLUMNS(3),
+        .ROWS(8),
+        .COLUMNS(8),
         .ADDRESS_SIZE_WMEMORY(32)) uut 
      (
      .glb_enable(1'b1),
@@ -148,6 +148,11 @@ module tb_cu();
                  #clk_period;
                   #clk_period;
                   // it should be in idle
+                  for(k=0;k<20;k=k+1) begin 
+                  #clk_period;
+                  end 
+                  infifo_is_empty=1'b0;
+                  outfifo_is_full=1'b0;
               end 
 
         
