@@ -4,7 +4,7 @@ import tensorflow_hub as hub
 import os
 
 PREFIX_PATH="./"
-MODEL_NAME="try"
+MODEL_NAME="mnist"
 OUTPUT_FOLDER=PREFIX_PATH+"model_cache/output"
 
 ###########################
@@ -68,11 +68,36 @@ tflite_models_dir.mkdir(exist_ok=True, parents=True)
 tflite_model_file = tflite_models_dir/"mnist_model.tflite"
 tflite_model_file.write_bytes(tflite_model)
 
+
 #To quantize the model on export, set the optimizations flag to optimize for size:
 converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
+
+
+mnist_train, _ = tf.keras.datasets.mnist.load_data()
+images = tf.cast(mnist_train[0], tf.float32) / 255.0
+mnist_ds = tf.data.Dataset.from_tensor_slices((images)).batch(1)
+def representative_data_gen():
+  for input_value in mnist_ds.take(100):
+    yield [input_value]
+
+converter.representative_dataset = representative_data_gen
+
+
 tflite_quant_model = converter.convert()
+
+
 tflite_model_quant_file = tflite_models_dir/"mnist_model_quant.tflite"
 tflite_model_quant_file.write_bytes(tflite_quant_model)
+
+
+## quantize input and output fp32 on int 8
+converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+converter.inference_input_type = tf.uint8
+converter.inference_output_type = tf.uint8
+
+tflite_model_quant_uint8 = converter.convert()
+tflite_model_quant_file_uint8 = tflite_models_dir/"mnist_model_quant_uint8.tflite"
+tflite_model_quant_file_uint8.write_bytes(tflite_model_quant_uint8)
 
 
 

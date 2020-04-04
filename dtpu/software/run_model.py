@@ -27,30 +27,28 @@ import os
 #########################################################
 #########################################################
 ##### DELEGATE METHOD FOR RUNNING INFERENCE ON DTPU #####
+##### A TensorFlow Lite delegate is a way 			#####
+##### to delegate part or all of graph execution  	#####
+#####  to another executor. 						#####
 #########################################################
 
 
+#### If a delegate was provided for specific operations, 
+#### then TensorFlow Lite will split the graph into multiple 
+#### subgraphs where each subgraph will be handled by a delegate
+#### Each subgraph that is handled by a delegate will be replaced with a node that evaluates the subgraph on its invoked call.
+#### Depending on the model, the final graph can end up with one node, 
+#### which means that all of the graphs were delegated or multiple nodes 
+#### handled the subgraphs. In general, you don't want to have multiple 
+#### subgraphs handled by the delegate, since each time you switch from 
+#### delegate to the main graph, there is an overhead for passing the 
+#### results from the subgraph to the main graph. It's not always safe 
+#### to share memory.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 1)Define a kernel node that is responsible for evaluating the delegate subgraph
+# 2)Create an instance of TfLiteDelegate, which is responsible for registering
+#	 the kernel node and claiming the nodes that the delegate can execute
 
 
 ########################################
