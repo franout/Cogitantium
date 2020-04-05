@@ -43,7 +43,8 @@ module mxu_mac
         wire [bit_width-1:0]q1;
         wire tc;
         wire SUBTRACT;
-        
+ 
+ `ifndef USE_SMAC       
  `ifdef VIVADO_MAC
             assign SUBTRACT=1'b0;
         wire [47:0]PCOUT ;
@@ -85,8 +86,19 @@ module mxu_mac
        /*counter  #(.MAX_CNT(3)) count_enable_next_max (.clk(clk),.enable(ce),.reset(sclr),.tc(tc));
  
 assign enable_next_mac=tc;*/
+     `endif
+
     `else
-    // my mac
+    ///////////////////
+    // USE SMAC //////
+    //////////////////
+    
+    
+    
+    
+    
+    
+    
     
     
     `endif

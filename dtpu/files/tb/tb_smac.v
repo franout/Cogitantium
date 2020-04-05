@@ -25,6 +25,9 @@ module tb_smac(    );
 
 
 parameter clk_period= 10;
+
+reg 3:0]select_precision;
+
 reg clk,ce,sclr;
 reg [3:0]data_input;
 reg [3:0]res_mac_p;
@@ -54,21 +57,26 @@ mxu_mac #(.bit_width(4)) uut ( .clk(clk),
       end
 integer k;
 
-initial begin 
-ce=1'b0;
-sclr=1'b1;
-#clk_period;
-sclr=1'b0;
-#clk_period;
-ce=1'b1;
-
-data_input=4'h3;
-weight=4'h2;
-res_mac_p=4'h1;
-#2;
-for(k=0;k<3;k=k+1) begin 
-#clk_period;
-end
+        initial begin
+        $display("global reset");
+        
+        select_precision<=4'h0;
+        $display("precision 8bit");    
+        // apply input
+        
+        // wait for 3 cc
+        
+        
+        // check output
+        
+             
+        select_precision<=4'h1;
+        $display("precision 16bit");
+        $display("precision 32bit");
+        
+        $display("precision 64bit");
+     
+        end
 
 end 
 endmodule
