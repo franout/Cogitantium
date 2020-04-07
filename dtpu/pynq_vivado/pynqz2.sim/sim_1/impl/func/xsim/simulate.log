@@ -2,36 +2,4 @@ Vivado Simulator 2019.2
 Time resolution is 1 ps
 check the control signal
 starting operations
-$finish called at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" Line 187
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" Line 150
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" Line 151
-Stopped at time : 600 ns : File "/wrk/2019.2/continuous/2019_11_06_2708876/data/verilog/src/unisims/DSP48E1.v" Line 400
-Stopped at time : 600 ns : File "/wrk/2019.2/continuous/2019_11_06_2708876/data/verilog/src/unisims/DSP48E1.v" Line 400
-Stopped at time : 600 ns : File "/wrk/2019.2/continuous/2019_11_06_2708876/data/verilog/src/unisims/DSP48E1.v" Line 400
-Stopped at time : 600 ns : File "/wrk/2019.2/continuous/2019_11_06_2708876/data/verilog/src/unisims/DSP48E1.v" Line 400
-Stopped at time : 600 ns : File "/wrk/2019.2/continuous/2019_11_06_2708876/data/verilog/src/unisims/DSP48E1.v" Line 400
-Stopped at time : 600 ns : File "/wrk/2019.2/continuous/2019_11_06_2708876/data/verilog/src/unisims/DSP48E1.v" Line 400
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v" Line 270
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v" Line 271
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 41
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 43
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 44
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 40
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 41
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 43
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 44
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 40
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 41
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 43
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 44
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 40
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 41
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 43
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 44
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 40
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 41
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 43
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 44
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 40
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 41
-Stopped at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" Line 43
+$finish called at time : 1420 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" Line 203

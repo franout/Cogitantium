@@ -186,7 +186,7 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_smartcon
 # IP: bd/pynqz2/ip/pynqz2_xlconstant_1_0/pynqz2_xlconstant_1_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_xlconstant_1_0 || ORIG_REF_NAME==pynqz2_xlconstant_1_0} -quiet] -quiet
 
-# IP: bd/pynqz2/ip/pynqz2_monitor_0/pynqz2_monitor_0.xci
+# IP: bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_monitor_0 || ORIG_REF_NAME==pynqz2_monitor_0} -quiet] -quiet
 
 # IP: bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0.xci
@@ -291,9 +291,9 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 
 # XDC: bd/pynqz2/ip/pynqz2_smartconnect_0_0/ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_monitor_0/pynqz2_monitor_0_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0_ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_monitor_0/pynqz2_monitor_0.xdc
+# XDC: bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_monitor_0 || ORIG_REF_NAME==pynqz2_monitor_0} -quiet] {/inst } ]/inst ] -quiet] -quiet
 
 # XDC: bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc

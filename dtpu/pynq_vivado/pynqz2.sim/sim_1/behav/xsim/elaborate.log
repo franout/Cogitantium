@@ -1,9 +1,11 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 8 -L xbip_utils_v3_0_10 -L xbip_pipe_v3_0_6 -L xbip_bram18k_v3_0_6 -L mult_gen_v12_0_16 -L xbip_dsp48_wrapper_v3_0_4 -L xbip_dsp48_addsub_v3_0_6 -L xbip_dsp48_multadd_v3_0_6 -L xbip_multadd_v3_0_15 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_dtpu_behav xil_defaultlib.tb_dtpu xil_defaultlib.glbl -log elaborate.log 
+Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 8 -L xbip_utils_v3_0_10 -L xbip_pipe_v3_0_6 -L xbip_bram18k_v3_0_6 -L mult_gen_v12_0_16 -L xbip_dsp48_wrapper_v3_0_4 -L xbip_dsp48_addsub_v3_0_6 -L xbip_dsp48_multadd_v3_0_6 -L xbip_multadd_v3_0_15 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_mxu_core_behav xil_defaultlib.tb_mxu_core xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 5 differs from formal bit length 4 for port 'data_type' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mxu_core.v:39]
+WARNING: [VRFC 10-3091] actual bit length 5 differs from formal bit length 4 for port 'data_type' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mxu_core.v:49]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -26,7 +28,6 @@ Compiling package xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_viv_comp
 Compiling package xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_pkg
 Compiling package xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_viv_co...
 Compiling package xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_pkg
-Compiling module xil_defaultlib.register(N=8)
 Compiling architecture lut2_v of entity unisim.LUT2 [\LUT2(init="1000")(0,3)\]
 Compiling architecture mult_and_v of entity unisim.MULT_AND [mult_and_default]
 Compiling architecture muxcy_v of entity unisim.MUXCY [muxcy_default]
@@ -44,11 +45,10 @@ Compiling architecture xilinx of entity xbip_multadd_v3_0_15.multadd_dsp [\multa
 Compiling architecture synth of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_viv [\xbip_multadd_v3_0_15_viv(c_xdev...]
 Compiling architecture xilinx of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15 [\xbip_multadd_v3_0_15(c_xdevicef...]
 Compiling architecture vivado_mac_arch of entity xil_defaultlib.vivado_mac [vivado_mac_default]
+Compiling module xil_defaultlib.register(N=8)
 Compiling module xil_defaultlib.mxu_mac(bit_width=8)
-Compiling module xil_defaultlib.mxu_core(M=8,K=8,max_data_width=...
-Compiling module xil_defaultlib.mxu_wrapper(M=8,K=8,max_data_wid...
-Compiling module xil_defaultlib.control_unit(ROWS=8,COLUMNS=8)
-Compiling module xil_defaultlib.dtpu_core(DATA_WIDTH_MAC=8,ROWS=...
-Compiling module xil_defaultlib.tb_dtpu
+Compiling module xil_defaultlib.mxu_core(max_data_width=8)
+Compiling module xil_defaultlib.mxu_core(M=4,K=4,max_data_width=...
+Compiling module xil_defaultlib.tb_mxu_core
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_dtpu_behav
+Built simulation snapshot tb_mxu_core_behav

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Tue Mar 31 18:40:44 2020
+| Date         : Mon Apr  6 18:34:38 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
 | Design       : pynqz2_wrapper
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 10518 |     0 |     53200 | 19.77 |
-|   LUT as Logic             |  8844 |     0 |     53200 | 16.62 |
+| Slice LUTs*                | 10524 |     0 |     53200 | 19.78 |
+|   LUT as Logic             |  8850 |     0 |     53200 | 16.64 |
 |   LUT as Memory            |  1674 |     0 |     17400 |  9.62 |
 |     LUT as Distributed RAM |  1170 |     0 |           |       |
 |     LUT as Shift Register  |   504 |     0 |           |       |
-| Slice Registers            | 14849 |     0 |    106400 | 13.96 |
-|   Register as Flip Flop    | 14849 |     0 |    106400 | 13.96 |
+| Slice Registers            | 14851 |     0 |    106400 | 13.96 |
+|   Register as Flip Flop    | 14851 |     0 |    106400 | 13.96 |
 |   Register as Latch        |     0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |   129 |     0 |     26600 |  0.48 |
 | F8 Muxes                   |     0 |     0 |     13300 |  0.00 |
@@ -59,7 +59,7 @@ Table of Contents
 | 54    |          Yes |           - |          Set |
 | 722   |          Yes |           - |        Reset |
 | 359   |          Yes |         Set |            - |
-| 13714 |          Yes |       Reset |            - |
+| 13716 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -151,13 +151,13 @@ Table of Contents
 +----------+-------+----------------------+
 | Ref Name |  Used |  Functional Category |
 +----------+-------+----------------------+
-| FDRE     | 13714 |         Flop & Latch |
-| LUT3     |  3020 |                  LUT |
-| LUT6     |  2492 |                  LUT |
-| LUT5     |  1998 |                  LUT |
+| FDRE     | 13716 |         Flop & Latch |
+| LUT3     |  3021 |                  LUT |
+| LUT6     |  2494 |                  LUT |
+| LUT5     |  2001 |                  LUT |
 | RAMD32   |  1744 |   Distributed Memory |
-| LUT4     |  1647 |                  LUT |
-| LUT2     |  1363 |                  LUT |
+| LUT4     |  1646 |                  LUT |
+| LUT2     |  1362 |                  LUT |
 | FDCE     |   722 |         Flop & Latch |
 | RAMS32   |   574 |   Distributed Memory |
 | LUT1     |   483 |                  LUT |

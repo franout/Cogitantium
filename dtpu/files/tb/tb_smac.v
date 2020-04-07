@@ -28,6 +28,12 @@ parameter clk_period= 10;
 
 reg 3:0]select_precision;
 
+
+
+
+
+
+
 reg clk,ce,sclr;
 reg [3:0]data_input;
 reg [3:0]res_mac_p;

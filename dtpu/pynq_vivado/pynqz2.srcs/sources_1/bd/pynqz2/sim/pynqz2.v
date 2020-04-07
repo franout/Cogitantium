@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Tue Mar 31 18:32:37 2020
+//Date        : Mon Apr  6 18:27:22 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2.bd
 //Design      : pynqz2

@@ -92,8 +92,8 @@ set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/20
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_36/bd_7d7d_m00wn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_37/bd_7d7d_m00bn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0/pynqz2_monitor_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0/pynqz2_monitor_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1585672400" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp" LaunchWriteIncrSynthDcp="true">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1586190457" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp" LaunchWriteIncrSynthDcp="true">
   <File Type="VDS-TIMINGSUMMARY" Name="pynqz2_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="pynqz2_wrapper.dcp"/>
   <File Type="RDS-UTIL-PB" Name="pynqz2_wrapper_utilization_synth.pb"/>
@@ -109,6 +109,59 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../files/smac.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_8.xcix">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_8/dsp_smac_8.xci">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_16.xcix">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_16/dsp_smac_16.xci">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_32.xcix">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_32/dsp_smac_32.xci">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="pynqz2_wrapper"/>
@@ -132,7 +185,7 @@
     <File Path="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PRUNDIR/synth_1/pynqz2_wrapper.dcp"/>
-        <Attr Name="ImportTime" Val="1585671159"/>
+        <Attr Name="ImportTime" Val="1586190143"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedInSteps" Val="synth_1"/>
@@ -142,7 +195,7 @@
     <File Path="$PSRCDIR/utils_1/imports/impl_1/pynqz2_wrapper_routed.dcp">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PRUNDIR/impl_1/pynqz2_wrapper_routed.dcp"/>
-        <Attr Name="ImportTime" Val="1585671159"/>
+        <Attr Name="ImportTime" Val="1586190143"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedInSteps" Val="impl_1"/>

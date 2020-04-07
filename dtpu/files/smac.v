@@ -40,15 +40,17 @@ module smac
         input wire active_chain      
     );
     
-        wire [bit_width*bit_width-1:0]q;
-        wire [bit_width*bit_width-1:0]q1;
-        wire tc;
+        
         wire SUBTRACT;
     
      
         assign SUBTRACT=1'b0;
         wire [47:0]PCOUT[0:bit_width-1];
+        wire [47:0]PCIN[0:bit_width-1];
         wire enable[0:bit_width-1];
+        
+        assign PCIN[0]=0;
+        
     // generate the dsp chain 
     genvar i;
     generate
@@ -73,19 +75,33 @@ module smac
                 .A(data_input[(i+1)*bit_width-1:i*bit_width]),                // input wire [7 : 0] A
                 .B(weight[(i+1)*bit_width-1:i*bit_width]),                // input wire [7 : 0] B
                 .C(res_mac_p[(i+1)*bit_width-1:i*bit_width]),                // input wire [47 : 0] C
-                .PCIN(PCIN),          // input wire [47 : 0] PCIN
+                .PCIN(PCIN[i]),          // input wire [47 : 0] PCIN
                 .SUBTRACT(SUBTRACT),  // input wire SUBTRACT
                 .P(res_mac_n[(i+1)*bit_width-1:i*bit_width]),                // output wire [8 : 0] P
-                .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
+                .PCOUT(PCOUT[i])        // output wire [47 : 0] PCOUT
             );
-       
-        
-   
+    end
+    endgenerate
+    
+    // generate carry propagate networ
+    generate
+    for(i=0;i<bit_width;i=i+1) begin 
+    if(i==0) begin 
+        assign enable[i]= ce & select_precision[0]; 
+        end else if(i==1) begin
+        assign enable[i]= ce & select_precision[1];
+        end else if(i<=4) begin
+        assign enable[i%bit_width]= ce & select_precision[2];
+        end else if(i<=bit_width) begin
+        assign enable[i]= ce & select_precision[3];
+        end    
     end
     endgenerate
     
     
-    
+    wire [bit_width*bit_width-1:0]q;
+        wire [bit_width*bit_width-1:0]q1;
+        wire tc;
     // generate the ff delay register to next row
     
     

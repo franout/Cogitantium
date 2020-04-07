@@ -192,7 +192,7 @@ accelerator.write(CTRL,0x0000000)
 ###### program the dma for the csr reg #########
 ################################################
 if 'driver_csr' in locals():
-    driver_csr.recvchannel.start()
+    driver_csr.sendchannel.start()
 else: 
     driver_csr=overlay.axi_dma_csr_mem
 
@@ -225,7 +225,7 @@ else:
 
 driver_fifo.sendchannel.transfer(input_fifo_buffer)
 driver_fifo.sendchannel.wait()
-
+driver_fifo.recvchannel.transfer(output_fifo_buffer)
 
 ###########################################################
 ###         program accelerator&start computation     #####
@@ -266,16 +266,23 @@ accelerator.write(OARG0_TDEST,0) # only one output
 #operation.
 start_time = time.time()
 #accelerator.write(CMD, 0x00010001)
-# 5 instead of 2 for continous runs
+
+
+#################################################################
+#### this has to be copied into the delegate of tensorflow ######
+#################################################################
+
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+while driver_fifo.recvchannel.running:
+    pass
 
-
-
+#driver_fifo.recvchannel.wait()
+end_time=time.time()
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
 done=0
-while :
+while True:
  	 #  accelerator.write(CMD,0x0FF10001)#update output
    	# accelerator.write(CMD,0x0FF20001)#update output
     	#time.sleep(3)
@@ -283,10 +290,10 @@ while :
     done=accelerator.read(STATUS)
     if (done&0x2)== 2:
         print ("accelerator is done")
-		break
+        break
     elif (done&0x4)== 4:
         print("accelerator is idle")
-		break
+        break
     elif (done&0x8) == 8:
         print("accelerator is ready")
     else:
@@ -297,13 +304,13 @@ while :
 
 #position in multi-buffer. Writing 0 reuses the same buffer.
 #accelerator.write(CMD,0x00000001)
-
-accelerator.write(STATUS,0x00000003)##clear status
-
-driver_fifo.recvchannel.transfer(output_fifo_buffer)
-## retrieve the results and print 
-driver_fifo.recvchannel.wait()
 stop_time = time.time()
+accelerator.write(STATUS,0x00000003)##clear status
+driver_fifo.recvchannel.wait()
+
+
+## retrieve the results and print 
+
 
 
 flag=True
@@ -318,6 +325,7 @@ if not(flag):
 else:
     print("accelerator did all the jobs")
     print(*output_fifo_buffer[0:10])
+
 hw_exec_time = stop_time-start_time
 print('Hardware DTPU execution time: ',hw_exec_time)
 

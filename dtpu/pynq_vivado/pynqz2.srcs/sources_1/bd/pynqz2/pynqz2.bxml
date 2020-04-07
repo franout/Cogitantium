@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="pynqz2" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1585672366"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1585672366"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1585672366"/>
-    <Generation Name="HW_HANDOFF" State="STALE" Timestamp="1585844480"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1586190454"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1586190454"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1586190454"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1586190454"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/pynqz2_ps7_0/pynqz2_ps7_0.xci" Type="IP">
         <Instance HierarchyPath="ps7"/>
@@ -112,7 +112,6 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/pynqz2_ps7_axi_periph_5/pynqz2_ps7_axi_periph_5.xci" Type="IP">
-        <Instance HierarchyPath="ps7_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -121,6 +120,14 @@
       </File>
       <File Name="ip/pynqz2_smartconnect_0_0/pynqz2_smartconnect_0_0.xci" Type="IP">
         <Instance HierarchyPath="smartconnect_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/pynqz2_xlconstant_1_0/pynqz2_xlconstant_1_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_1"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -138,15 +145,7 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynqz2_xlconstant_1_0/pynqz2_xlconstant_1_0.xci" Type="IP">
-        <Instance HierarchyPath="xlconstant_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/pynqz2_monitor_0/pynqz2_monitor_0.xci" Type="IP">
+      <File Name="ip/pynqz2_monitor_0_3/pynqz2_monitor_0.xci" Type="IP">
         <Instance HierarchyPath="monitor"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
