@@ -16,10 +16,10 @@ import logging
 logging.getLogger("tensorflow").setLevel(logging.DEBUG)
 
 try:
-  # %tensorflow_version only exists in Colab.
-  import tensorflow.compat.v2 as tf
+	# %tensorflow_version only exists in Colab.
+	import tensorflow.compat.v2 as tf
 except Exception:
-  pass
+	pass
 tf.enable_v2_behavior()
 
 from tensorflow import keras
@@ -37,23 +37,23 @@ test_images = test_images / 255.0
 
 # Define the model architecture
 model = keras.Sequential([
-  keras.layers.InputLayer(input_shape=(28, 28)),
-  keras.layers.Reshape(target_shape=(28, 28, 1)),
-  keras.layers.Conv2D(filters=12, kernel_size=(3, 3), activation=tf.nn.relu),
-  keras.layers.MaxPooling2D(pool_size=(2, 2)),
-  keras.layers.Flatten(),
-  keras.layers.Dense(10, activation=tf.nn.softmax)
+	keras.layers.InputLayer(input_shape=(28, 28)),
+	keras.layers.Reshape(target_shape=(28, 28, 1)),
+	keras.layers.Conv2D(filters=12, kernel_size=(3, 3), activation=tf.nn.relu),
+	keras.layers.MaxPooling2D(pool_size=(2, 2)),
+	keras.layers.Flatten(),
+	keras.layers.Dense(10, activation=tf.nn.softmax)
 ])
 
 # Train the digit classification model
 model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
+							loss='sparse_categorical_crossentropy',
+							metrics=['accuracy'])
 model.fit(
-  train_images,
-  train_labels,
-  epochs=1,
-  validation_data=(test_images, test_labels)
+	train_images,
+	train_labels,
+	epochs=1,
+	validation_data=(test_images, test_labels)
 )
 
 
@@ -77,8 +77,8 @@ mnist_train, _ = tf.keras.datasets.mnist.load_data()
 images = tf.cast(mnist_train[0], tf.float32) / 255.0
 mnist_ds = tf.data.Dataset.from_tensor_slices((images)).batch(1)
 def representative_data_gen():
-  for input_value in mnist_ds.take(100):
-    yield [input_value]
+	for input_value in mnist_ds.take(100):
+		yield [input_value]
 
 converter.representative_dataset = representative_data_gen
 
@@ -97,6 +97,7 @@ converter.inference_output_type = tf.uint8
 
 tflite_model_quant_uint8 = converter.convert()
 tflite_model_quant_file_uint8 = tflite_models_dir/"mnist_model_quant_uint8.tflite"
+
 tflite_model_quant_file_uint8.write_bytes(tflite_model_quant_uint8)
 
 
@@ -126,53 +127,55 @@ import matplotlib.pylab as plt
 plt.imshow(test_images[0])
 template = "True:{true}, predicted:{predict}"
 _ = plt.title(template.format(true= str(test_labels[0]),
-                              predict=str(np.argmax(predictions[0]))))
+															predict=str(np.argmax(predictions[0]))))
 plt.grid(False)
 
 
 
 ## evaluate model 
+
 # A helper function to evaluate the TF Lite model using "test" dataset.
 def evaluate_model(interpreter):
-	input_index = interpreter.get_input_details()[0]["index"]
-	output_index = interpreter.get_output_details()[0]["index"]
+  input_index = interpreter.get_input_details()[0]["index"]
+  output_index = interpreter.get_output_details()[0]["index"]
 
-	# Run predictions on every image in the "test" dataset.
-	prediction_digits = []
-	for test_image in test_images:
-  		# Pre-processing: add batch dimension and convert to float32 to match with
-    	# the model's input data format.
-    	test_image = np.expand_dims(test_image, axis=0).astype(np.float32)
-    	interpreter.set_tensor(input_index, test_image)
-	# Run inference.
-	interpreter.invoke()
-	# Post-processing: remove batch dimension and find the digit with highest
-	# probability.
-	output = interpreter.tensor(output_index)
-	digit = np.argmax(output()[0])
-	prediction_digits.append(digit)
-	# Compare prediction results with ground truth labels to calculate accuracy.	
-	accurate_count = 0
-	for index in range(len(prediction_digits)):
-		if prediction_digits[index] == test_labels[index]:
-			accurate_count += 1
-	accuracy = accurate_count * 1.0 / len(prediction_digits)
-	return accuracy
+  # Run predictions on every image in the "test" dataset.
+  prediction_digits = []
+  for test_image in test_images:
+    # Pre-processing: add batch dimension and convert to float32 to match with
+    # the model's input data format.
+    test_image = np.expand_dims(test_image, axis=0).astype(np.float32)
+    interpreter.set_tensor(input_index, test_image)
 
+    # Run inference.
+    interpreter.invoke()
+
+    # Post-processing: remove batch dimension and find the digit with highest
+    # probability.
+    output = interpreter.tensor(output_index)
+    digit = np.argmax(output()[0])
+    prediction_digits.append(digit)
+
+  # Compare prediction results with ground truth labels to calculate accuracy.
+  accurate_count = 0
+  for index in range(len(prediction_digits)):
+    if prediction_digits[index] == test_labels[index]:
+      accurate_count += 1
+  accuracy = accurate_count * 1.0 / len(prediction_digits)
+
+  return accuracy
 
 print(evaluate_model(interpreter))
 
 print(evaluate_model(interpreter_quant))
 
 
-
-
 ### optimize resnet for vision application 
 import tensorflow_hub as hub
 
 resnet_v2_101 = tf.keras.Sequential([
-  keras.layers.InputLayer(input_shape=(224, 224, 3)),
-  hub.KerasLayer("https://tfhub.dev/google/imagenet/resnet_v2_101/classification/4")
+	keras.layers.InputLayer(input_shape=(224, 224, 3)),
+	hub.KerasLayer("https://tfhub.dev/google/imagenet/resnet_v2_101/classification/4")
 ])
 
 converter = tf.lite.TFLiteConverter.from_keras_model(resnet_v2_101)
@@ -199,3 +202,4 @@ resnet_quantized_tflite_file.write_bytes(converter.convert())
 
 ### quantization guide
 # https://www.tensorflow.org/lite/performance/model_optimization
+

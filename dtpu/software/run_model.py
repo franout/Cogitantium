@@ -59,6 +59,7 @@ model_name="mnist_model_quant_uint8"
 tflite_model_file="./"+model_name+".tflite"
 
 # Load TFLite model and allocate tensors.
+#experimental_delegate=
 interpreter = tflite.Interpreter(model_path=tflite_model_file)
 interpreter.allocate_tensors()
 
@@ -71,9 +72,23 @@ input_shape = input_details[0]['shape']
 input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
 interpreter.set_tensor(input_details[0]['index'], input_data)
 
+#### TODO
 interpreter.invoke()
 
 # The function `get_tensor()` returns a copy of the tensor data.
 # Use `tensor()` in order to get a pointer to the tensor.
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print(output_data)
+
+
+
+
+
+test_image = np.expand_dims(test_images[0], axis=0).astype(np.float32)
+
+input_index = interpreter.get_input_details()[0]["index"]
+output_index = interpreter.get_output_details()[0]["index"]
+
+interpreter.set_tensor(input_index, test_image)
+interpreter.invoke()
+predictions = interpreter.get_tensor(output_index)
