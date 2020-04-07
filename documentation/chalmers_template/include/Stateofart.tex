@@ -22,7 +22,7 @@ The core of the GPU is the Streaming Multiprocessor from the Nvidia Volta GPU.
 \label{fig:voltasmarch}
 \end{figure}
 
-Composed of integer, FP32, FP64 units and the Tensor Core Units designed specifically for deep learning. With independent parallel integer and floating-point data paths, the Volta SM is also much more efficient on workloads with a mix of computation and addressing calculations. \\\\
+Composed of integer, FP32, FP64 units and the Tensor Core Units designed specifically for deep learning. The Volta SM can achieve such efficient workload on mixed computation and addressing calculations thanks to an independent parallel integer and floating-point data paths. \\\\
 
 Matrix-Matrix multiplication operations are at the core of neural network training and inference, and are used to multiply large matrices of input data and weights in the connected layers of the network. The idea is represented into the Figure \ref{fig:tensorcorevolta}.
 
@@ -93,6 +93,8 @@ The internal architecture of NVDLA is composed by various engines, each one of t
 \item Reshape(Data memory and reshape operations): it transforms data mapping format without any data calculation.
 \item Bridge DMA: it is in charge of copying data from the Main Memory to the SRAM of the accelerator, only available into the large configuration of the system.
 \end{itemize}
+
+
 Another possible configuration which is worth to mention is the possibility to let the engines work separately on independent task or in a fused fashion where all of them are pipelined, working as a single entity.\\
 
 According to developers the configurability of the cores ranges from arithmetic precision to the theoretical throughput that a single unit can achieve (increasing the number of internal Processing Elements). Moreover, since the engine units are independent from each other, according to the application and the model used they can be safely removed from the design.
@@ -112,7 +114,7 @@ Regarding the runtime environment, it has been designed for a system in which is
 Both the KMD and the UMD are wrapped into portability layers which are, respectively, hardware dependent and OS dependent. In principle, for migrating the software to another OS or hw plaftorm it is enough to modify only the portability layers.
 \newpage
 \subsection{Google TPU}
-A tensor processing unit is an AI accelerator application-specific integrated circuit developed by Google specifically for neural network machine learning, particularly using Google's own TensorFlow software.
+Google developed its own application-specific integragrated circuit for neural networks, which is tightly integrated with TensorFlow Software.
 It includes:
 \begin{itemize}
 \item Matrix Multiplier Unit (MXU): 65,536 8-bit multiply-and-add units for matrix operations
