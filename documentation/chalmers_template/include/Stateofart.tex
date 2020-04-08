@@ -2,16 +2,16 @@
 \textit{In this chapter various solutions available on the market are presented for running the inference process of Machine Learning models.}
 
 \section{Overview}
-The role of Machine Learning has continuously growth in the past few years and a lot of efforts has been done for developing good software APIs in order to address different needs and domains. \newline In principle, all the Machine Learning algorithms can be run on the CPU, which already runs the OS and other Application Softwares, this leads to a lot of overheads, especially in terms memory accesses which are expensive in terms of energy and latency. \\\\
-Analyzing Machine Learning algorithms it comes evident that they massively do the same operations and access to data with some kind of patterns. Thus, with the outcome of the new paradigm for the GPU, the General Purpose GPU programming it comes in handy that implementing those algorithms on a GPU, which matches the Machine Learning algorithms requirements regarding the massive operations and the reuse of data, has given a lot of advantages in terms of latency and energy efficiency. However, the capability of GPU of running Machine Learning algorithms has been pushed almost at the maximum with the increase of computation demands in modern neural networks, therefore other solutions have been explored, such as the development of specific hardware platform.
+The role of Machine Learning has continuously growth in the past few years and a lot of efforts has been done for developing good software APIs in order to address different needs and domains. \newline In principle, all the machine learning algorithms can be run on the CPU, which already runs the OS and other Application Softwares, this leads to a lot of overheads, especially in terms memory accesses which are expensive in terms of energy and latency. \\\\
+Analyzing machine learning algorithms it comes evident that they massively do the same operations and access to data with some kind of patterns. Thus, with the outcome of the new paradigm for the GPU, the General Purpose GPU programming it comes in handy that implementing those algorithms on a GPU, which matches the Machine Learning algorithms requirements regarding the massive operations and the reuse of data, has given a lot of advantages in terms of latency and energy efficiency. However, the capability of GPU of running machine learning algorithms has been pushed almost at the maximum with the increase of computation demands in modern neural networks, therefore other solutions have been explored, such as the development of specific hardware platform.
 
 \section{GPU}
 The Moore's law is reaching the end from the point of view of CPUs. However, it seems that the GPUs can still carry on the Moore's law \cite{5496638}.\newline
 For this reason, a lot of improvements especially from the companies have been made for developing more and more GPUs with a lower performance per watts.\\
-As already mentioned, with the income of general purpose GPU programming paradigm, more and more Machine Learning algorithms have been designed for being run on the GPU, gathering the best fruits given by that type of architecture.\\\\
-As consequences, companies such as Nvidia have started to develop GPU for boosting Machine Learning applications performance.
+As already mentioned, with the income of general purpose GPU programming paradigm, more and more machine learning algorithms have been designed for being run on the GPU, gathering the best fruits given by that type of architecture.\\\\
+As consequences, companies such as Nvidia have started to develop GPU for boosting machine learning applications performance.
 \subsection{Nvidia Tesla V100}
-The Nvidia Tesla V100 is one of the most performant GPU at the moment on the market. The newly added Tensor Core Unit allows massive increases in throughput and efficiency.\\It is able to deliver up to 125 TFPLOPS\footnote{floating point operations per second} for training and inference Machine Learning applications. \\\\
+The Nvidia Tesla V100 is one of the most performant GPU at the moment on the market. The newly added Tensor Core Unit allows massive increases in throughput and efficiency.\\It is able to deliver up to 125 TFPLOPS\footnote{floating point operations per second} for training and inference machine learning applications. \\\\
 
 The core of the GPU is the Streaming Multiprocessor from the Nvidia Volta GPU.
 \begin{figure}[!htbp]
@@ -60,7 +60,7 @@ Combining powerful hardware with software tailored to deep learning, it provides
 \section{Domain Specific Hardware Platform}
 Instead of developing GPUs also suitable for Machine Learning applications, the companies have designed and deployed special purpose hardware accelerators.
 \subsection{NVDLA}
-The Nvidia Deep Learning accelerator is a free open source hardware platform from Nvidia, highly customizable and modular, which allows to design and deploy deep learning inference hardware.
+The Nvidia Deep Learning Accelerator is a free open source hardware platform from Nvidia, highly customizable and modular, which allows to design and deploy deep learning inference hardware.
 
 The architecture comes in two configurations:
 
@@ -71,7 +71,7 @@ The architecture comes in two configurations:
 \caption{Comparsion of two possible NVDLA system\cite{WEBSITE:8}}
 \label{fig:nvdlasystem}
 \end{figure}
-As already mentioned, the aim of the work is to develop a hardware accelerator for Machine Learning suitable for mobile devices, therefore from now on the NVDLA small system will be considered and analyzed.\\
+As already mentioned, the aim of the work is to develop a hardware accelerator for machine learning suitable for mobile devices, therefore from now on the NVDLA small system will be considered and analyzed.\\
 The internal architecture of the NVDLA small system is:
 \begin{figure}[!htbp]
 \centering

@@ -9,7 +9,7 @@ In the past decade many companies have started to advertise the use of AI, even 
 the AI is not youth.\\ It takes one of its roots from a theoretical paper of \textit{Alan Turing} published by journal \textit{Mind} in the 1950 \cite{paper:36}.\\
 
 The general definition of Artificial Intelligence (AI) is intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\
-According to the definition, AI is too vast to be studied and simulated. Therefore, it has been divided into subfields, characterized by different traits, such as Knowledge Representation, Planning, Learning, Natural Language processing, Perception, Motion and manipulation, Social intelligence, General Intelligence.\\\\
+According to the definition, AI is too vast to be studied and simulated. Therefore, it has been divided into subfields, characterized by different traits, such as knowledge representation, planning, learning, natural language processing, perception, motion and manipulation, social intelligence, general intelligence.\\\\
 
 Artificial Intelligence can be seen as a general purpose technology. It does not exist a general task on which it excels neither how to characterize them.
 
@@ -22,9 +22,9 @@ Artificial Intelligence can be seen as a general purpose technology. It does not
 \end{figure}
 
 \section{Machine Learning}
-A particular interesting subcategory of AI in Computer Science is the Machine Learning. It is the study of algorithms used to perform a specific task without explicit programming the machine, relying on patterns and inference, in order to make decisions. This approach is used where it is tricky, or unfeasible, to develop a conventional algorithm for solving the task.\\
+A particular interesting subcategory of AI in Computer Science is the machine learning. It is the study of algorithms used to perform a specific task without explicit programming the machine, relying on patterns and inference, in order to make decisions. This approach is used where it is tricky, or unfeasible, to develop a conventional algorithm for solving the task.\\
 
-A peculiarity of Machine Learning model is that it is composed of two processes, training and inference.\\
+A peculiarity of machine learning model is that it is composed of two processes, training and inference.\\
 The inference process is the process in which a conclusion is given at the end of the evaluation process, i.e. the input stimulus are applied to the model and the output is observed.\\
 The training process has to be done before the model is put on the field, before the inference process, otherwise the latter can give wrong results. As the name suggest, in this process the model learns how to behave, adjusting the weight accordingly to the applied inputs and expected outputs. Besides this type of training and according to \cite{book:1}, other exists, characterized by approach, type of data and tasks:
 \begin{itemize}
@@ -40,8 +40,8 @@ the aim is to identify rare items, events or observarions which are significantl
 \item Association Rules, it is a rule-based method for discovering relationships between variables in large databases.
 \end{itemize}
 
-Machine Learning space is also divided into other type of models such as Decision tree, Support vector machines, regression analysis, Bayesian networks and genetic algorithms.
-As it can be seen in Figure \ref{fig:aidiv} Brain Inspired Machine Learning is also divided in subcategories.
+Machine learning space is also divided into other type of models such as decision tree, support vector machines, regression analysis, bayesian networks and genetic algorithms.
+As it can be seen in Figure \ref{fig:aidiv} Brain Inspired machine learning is also divided in subcategories.
 \subsection{Brain Inspired}
 It is based on algorithms which take its basic functionalities from our understanding of how the brain operates, trying to mimic the functionalities.
 
@@ -60,7 +60,7 @@ In the human brain, the basic computational unit is the neuron.\\ Neurons receiv
 \subsubsection{Neural Networks}
 
 Neural Networks (or Artificial Neural Networks) are graphs in which every node is interconnected to others using edges, which have a weight properly tuned during the training process.\\
-As mentioned before, each and every node of the Neural Networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} b the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\
+As mentioned before, each and every node of the neural networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} b the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\
 The information exchanged between a neuron and another is a real number, a result of a non-linear function of the sum of all its input.
 
 In the Figure \ref{fig:nn} an implementation of a Neural Network can be appreciated.
@@ -71,7 +71,7 @@ In the Figure \ref{fig:nn} an implementation of a Neural Network can be apprecia
 \caption{Example of a Neural Network\cite{WEBSITE:10}}
 \label{fig:nn}
 \end{figure}
-As it can be seen in Figure \ref{fig:nn}, it is always divided in layers in which only the output and input layers are visible from the external world, as consequence the internal layers are called hidden layers. When an input vector is applied, it will propagate from the left side of the network to its right side through the layers and the neurons which compose each layer. It is worth to mention that layers may perform different kind of computation on their inputs. Moreover, the Deep Neural Networks are named after the huge amount of hidden layers.\\\\
+As it can be seen in Figure \ref{fig:nn}, it is always divided in layers in which only the output and input layers are visible from the external world, as consequence the internal layers are called hidden layers. When an input vector is applied, it will propagate from the left side of the network to its right side through the layers and the neurons which compose each layer. It is worth to mention that layers may perform different kind of computation on their inputs. Moreover, the deep neural networks are named after the huge amount of hidden layers.\\\\
 
 In the early stages of ANNs the goal was to solve problems as the human brain would do. However, over time, the aim moved to perform specific tasks, leading to a different architecture of the biological brain and brain-inspired networks (Spiking Neural Networks).
 \newpage
@@ -92,7 +92,7 @@ In principle, SNNs can be applied to the same application of Artificial Neural N
 SSNs are still lagging ANNs in terms of accuracy, but the gap is decreasing and has vanished on some task\cite{article:2}.
 \newpage
 \section{Machine Learning Quantization}
-The reduction of computation demand and the increase of power efficiency of Machine Learning algorithms can be achievied through the quantization.\\\\
+The reduction of computation demand and the increase of power efficiency of machine learning algorithms can be achievied through the quantization.\\\\
 
 Quantization is basically a set of techniques which convert, and map, input values from a large set to output values in a smaller set.\\The idea of Quantization is not recent, it has been introduced since the birth of digital electronics. Imagine to take a picture with the phone's camera, the real world is analog and the camera is capturing the analog world and converting it into a digital format.  Nevertheless the high quality of nowadas pictures, quantization is not lossless.\\\\
 \begin{figure}[H]
@@ -102,12 +102,12 @@ Quantization is basically a set of techniques which convert, and map, input valu
 \caption{Approximation of analog signal to digital signal\cite{WEBSITE:12}}
 \label{fig:quant}
 \end{figure}
-Going back to Machine Learning, it has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}. On the other hand, this quantization has lead to a relief of hardware computation, as it is very well-known floating point operation are much more expensive than integer operation from a lot of perspectives, and as consequence a reduction into the power consumptiom of the algorithm. It is also important to mention that the data traffic between the memory and the hardware is reduced due to the compaction of data.\\\\
+Going back to machine learning, it has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}. On the other hand, this quantization has lead to a relief of hardware computation, as it is very well-known floating point operation are much more expensive than integer operation from a lot of perspectives, and as consequence a reduction into the power consumptiom of the algorithm. It is also important to mention that the data traffic between the memory and the hardware is reduced due to the compaction of data.\\\\
 
-Nowadays, edge devices take advantage of lower precision and quantized operations, including GPUs. Thus, Quantization of Machine Learning algorithms is a defacto standard for edge inference.
+Nowadays, edge devices take advantage of lower precision and quantized operations, including GPUs. Thus, Quantization of machine learning algorithms is a defacto standard for edge inference.
 
 \section{Applications}
-In principle the AI can be applied to any intellectual tasks. Focusing on Machine Learning applications, they can spread through a variety of different domains:
+In principle the AI can be applied to any intellectual tasks. Focusing on machine learning applications, they can spread through a variety of different domains:
 \begin{itemize}
 \item Healthcare, mainly used for classification purposes.
 \item Automotive, used in self-driving cars.
