@@ -19,41 +19,45 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module tb_smac(    );
+module tb_smac();
 
 
 
 
 parameter clk_period= 10;
-
-reg 3:0]select_precision;
-
-
-
-
-
-
-
-reg clk,ce,sclr;
-reg [3:0]data_input;
-reg [3:0]res_mac_p;
-reg [3:0]weight;
-
-wire [3:0]res_mac_n;
-wire [3:0]data_input_next_row;
-wire enable_next_mac;
-
-
-mxu_mac #(.bit_width(4)) uut ( .clk(clk),
-    .ce(ce),
-    .sclr(sclr),
+reg clk;
+reg enable,reset,active_chain;
+reg [63:0] data_input;
+reg [63:0] weight;
+reg [63:0] res_mac_p;
+wire [63:0] res_mac_n;
+reg [3:0] select_precision;
+ smac #(8) uut (
+    .clk(clk),
+    .ce(enable),
+    .sclr(reset),
     .data_input(data_input),
     .weight(weight),
-    .res_mac_p(res_mac_p), 
+    .res_mac_p(res_mac_p),
     .res_mac_n(res_mac_n),
-    .data_input_next_row(data_input_next_row),
-    .enable_next_mac(enable_next_mac)
+    .select_precision(select_precision),
+    .active_chain(active_chain)
     );
+
+wire [7:0] P;
+wire [47:0]CARRYCASCOUT;
+dsp_smac_8 uutsmac (
+      .CLK(clk),                    // input wire CLK
+      .CE(1'b1),                      // input wire CE
+      .SCLR(reset),                  // input wire SCLR
+      .PCIN(48'b0),            // input wire CARRYIN
+      .A(data_input[7:0]),                        // input wire [7 : 0] A
+      .B(weight[7:0]),                        // input wire [7 : 0] B
+      .C(8'h01),                        // input wire [7 : 0] C
+      .PCOUT(CARRYCASCOUT),  // output wire CARRYCASCOUT
+      .P(P)                        // output wire [7 : 0] P
+    );
+
 
       always begin
          clk = 1'b1;
@@ -61,28 +65,87 @@ mxu_mac #(.bit_width(4)) uut ( .clk(clk),
          clk = 1'b0;
          #(clk_period/2);
       end
-integer k;
-
+      
         initial begin
+        /////////////////////////////////
+        /// NOTE reset is active high ///
+        /////////////////////////////////
+        reset=1'b1;
+        enable=1'b0;
+        active_chain=1'b1;
         $display("global reset");
-        
-        select_precision<=4'h0;
-        $display("precision 8bit");    
-        // apply input
-        
-        // wait for 3 cc
-        
-        
-        // check output
-        
-             
+        #clk_period;
+        reset=1'b0;
+        enable=1'b1;
+        data_input={4{16'hCAFE}};
+        weight={4{16'hFFFF}};
+        res_mac_p={4{16'h0000}};
+        $display("chain active");
+        // stimulus
         select_precision<=4'h1;
-        $display("precision 16bit");
-        $display("precision 32bit");
-        
-        $display("precision 64bit");
-     
-        end
+        $display("precision 8bit");    
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
 
-end 
+        enable=1'b1;
+        select_precision<=4'h3;
+        $display("precision 16bit");
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        enable=1'b1;
+        select_precision<=4'h7;
+        $display("precision 32bit");
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        enable=1'b1;
+        select_precision<=4'hF;
+        $display("precision 64bit");
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        enable=1'b1;
+        $display("chain not active");
+        active_chain=1'b0;
+        select_precision<=4'h1;
+        $display("precision 8bit");    
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        enable=1'b1;
+        select_precision<=4'h3;
+        $display("precision 16bit");
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        enable=1'b1;
+        select_precision<=4'h7;
+        $display("precision 32bit");
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        enable=1'b1;
+        select_precision<=4'hF;
+        $display("precision 64bit");
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        #clk_period;
+        $finish();
+        end
 endmodule

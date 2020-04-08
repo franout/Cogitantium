@@ -250,12 +250,17 @@ module dtpu_core
            );
   
   /////////////////////////////////////////////
-  ///////// MUXES FOR DATA SELECTIONS /////////
+  ///////// LOAD AND STORE ARRAY     /////////
   /////////////////////////////////////////////
   
-    // DATA_WIDTH_FIFO/ DATA_WIDTH ?? 
-  // TODO 
-  //filter_and_select mask_values();
+  ls_array  #(
+          .ROWS(ROWS), // matrix row -> weights
+          .COLUMNS(COLUMNS), // matrix columsn -> input data
+          .max_data_width(DATA_WIDTH_MAC),// it must be a divisor of 64
+          .data_in_width(DATA_WIDTH_FIFO_IN)
+        ) array_load_store
+        (.clk(clk),
+          .reset_n(aresetn));
   
   
   

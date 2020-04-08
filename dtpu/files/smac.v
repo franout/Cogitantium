@@ -32,7 +32,6 @@ module smac
         input [bit_width*bit_width-1:0]weight,
         input [bit_width*bit_width-1:0]res_mac_p, 
         output wire [bit_width*bit_width-1:0]res_mac_n,
-        output  wire [bit_width*bit_width-1:0]data_input_next_row,
         /////////////////////////////////////////
         ///// CONTROL SIGNALS FOR DSP CHAIN /////
         /////////////////////////////////////////
@@ -40,91 +39,97 @@ module smac
         input wire active_chain      
     );
     
-        
-        wire SUBTRACT;
-    
+   wire [47:0]carry_in;
+   wire enable_i[0:3];
+   wire [47:0]carrycascout[0:5];
+   assign carry_in=1'b0;
+   wire subtract;
+   wire [47:0]PCOUT;
+   assign subtract=1'b0;
+   /////////////////////////
+   ///// enable network //// 
+   /////////////////////////
+   genvar i;
+   generate 
+   for(i=0;i<4;i=i+1) begin 
+   assign enable_i[i]= ce & select_precision[i];
+   end
+   endgenerate
      
-        assign SUBTRACT=1'b0;
-        wire [47:0]PCOUT[0:bit_width-1];
-        wire [47:0]PCIN[0:bit_width-1];
-        wire enable[0:bit_width-1];
+   assign carry_in={48{1'b0}};
+     dsp_smac_8 smac_8_0 (
+          .CLK(clk),                    // input wire CLK
+          .CE(enable_i[0]),                      // input wire CE
+          .SCLR(sclr),                  // input wire SCLR
+          .PCIN(carry_in),            // input wire CARRYIN
+          .A(data_input[7:0]),                        // input wire [7 : 0] A
+          .B(weight[7:0]),                        // input wire [7 : 0] B
+          .C({{40{1'b0}},res_mac_p[7:0]}),                        // input wire [7 : 0] C
+           .SUBTRACT(subtract),  // input wire SUBTRACT
+          .PCOUT(carrycascout[0]),  // output wire CARRYCASCOUT
+          .P(res_mac_n[7:0])                        // output wire [7 : 0] P
+        );
         
-        assign PCIN[0]=0;
         
-    // generate the dsp chain 
-    genvar i;
-    generate
-    for (i=0;i<64/bit_width;i=i+1) begin 
+      generate 
+      for(i=0;i<48;i=i+1) begin
+        assign carrycascout[1][i]= carrycascout[0][i] & active_chain;  
+      end 
+      endgenerate 
     
-        if(i==0) begin 
-        assign enable[i]= ce & select_precision[0]; 
-        end else if(i==1) begin
-        assign enable[i]= ce & select_precision[1];
-        end else if(i<=4) begin
-        assign enable[i%bit_width]= ce & select_precision[2];
-        end else if(i<=bit_width) begin
-        assign enable[i]= ce & select_precision[3];
-        end 
-        
        
        
-       chain_mac your_instance_name (
-                .CLK(clk),            // input wire CLK
-                .CE(enable[i]),              // input wire CE
-                .SCLR(sclr),          // input wire SCLR
-                .A(data_input[(i+1)*bit_width-1:i*bit_width]),                // input wire [7 : 0] A
-                .B(weight[(i+1)*bit_width-1:i*bit_width]),                // input wire [7 : 0] B
-                .C(res_mac_p[(i+1)*bit_width-1:i*bit_width]),                // input wire [47 : 0] C
-                .PCIN(PCIN[i]),          // input wire [47 : 0] PCIN
-                .SUBTRACT(SUBTRACT),  // input wire SUBTRACT
-                .P(res_mac_n[(i+1)*bit_width-1:i*bit_width]),                // output wire [8 : 0] P
-                .PCOUT(PCOUT[i])        // output wire [47 : 0] PCOUT
-            );
-    end
-    endgenerate
-    
-    // generate carry propagate networ
-    generate
-    for(i=0;i<bit_width;i=i+1) begin 
-    if(i==0) begin 
-        assign enable[i]= ce & select_precision[0]; 
-        end else if(i==1) begin
-        assign enable[i]= ce & select_precision[1];
-        end else if(i<=4) begin
-        assign enable[i%bit_width]= ce & select_precision[2];
-        end else if(i<=bit_width) begin
-        assign enable[i]= ce & select_precision[3];
-        end    
-    end
-    endgenerate
-    
-    
-    wire [bit_width*bit_width-1:0]q;
-        wire [bit_width*bit_width-1:0]q1;
-        wire tc;
-    // generate the ff delay register to next row
-    
-    
-    
-    // two delay registers because the input is retrieved from 
-    //the data driving the internal ff of vivado mac 
-        register  #(.N(bit_width)) delay_reg1 (
-            .clk(clk),
-        .reset(~sclr),
-        .test_mode(test_mode),
-        .enable(ce),
-        .d(data_input),
-         .q(q1));
-         
-         register  #(.N(bit_width)) delay_reg2 (
-                     .clk(clk),
-                 .reset(~sclr),
-                 .test_mode(test_mode),
-                 .enable(ce),
-                 .d(q1),
-                  .q(q));   
-        assign data_input_next_row=q;
-     
-    
-    
+       dsp_smac_8 smac_8_1 (
+                  .CLK(clk),                    // input wire CLK
+                  .CE(enable_i[1]),                      // input wire CE
+                  .SCLR(sclr),                  // input wire SCLR
+                  .PCIN(carrycascout[1]),            // input wire CARRYIN
+                  .A(data_input[15:8]),                        // input wire [7 : 0] A
+                  .B(weight[15:8]),                        // input wire [7 : 0] B
+                  .C({{40{1'b0}},res_mac_p[15:8]}),                        // input wire [7 : 0] C
+                  .SUBTRACT(subtract),  // input wire SUBTRACT
+                  .PCOUT(carrycascout[2]),  // output wire CARRYCASCOUT
+                  .P(res_mac_n[15:8])                        // output wire [7 : 0] P
+                );
+                
+        generate 
+      for(i=0;i<48;i=i+1) begin
+        assign carrycascout[3][i]= carrycascout[2][i] & active_chain;  
+      end 
+      endgenerate   
+      
+       dsp_smac_16 smac_16 (
+          .CLK(clk),                    // input wire CLK
+          .CE(enable_i[2]),                      // input wire CE
+          .SCLR(sclr),                  // input wire SCLR
+          .PCIN(carrycascout[3]),            // input wire CARRYIN
+          .A(data_input[31:16]),                        // input wire [15 : 0] A
+          .B(weight[31:16]),                        // input wire [15 : 0] B
+          .C({{32{1'b0}},res_mac_p[31:16]}),                        // input wire [15 : 0] C
+          .PCOUT(carrycascout[4]),  // output wire CARRYCASCOUT
+          .P(res_mac_n[31:16]),                        // output wire [15 : 0] P
+          .SUBTRACT(subtract)  // input wire SUBTRACT
+
+        );
+        
+        
+        generate 
+      for(i=0;i<48;i=i+1) begin
+        assign carrycascout[5][i]= carrycascout[4][i] & active_chain;  
+      end 
+      endgenerate   
+      
+        dsp_smac_32 smac_32 (
+          .CLK(clk),            // input wire CLK
+          .CE(enable_i[3]),              // input wire CE
+          .SCLR(sclr),          // input wire SCLR
+          .A(data_input[63:32]),                // input wire [31 : 0] A
+          .B(weight[63:32]),                // input wire [31 : 0] B
+          .C( { {16{1'b0}} ,res_mac_p[63:32]}),                // input wire [47 : 0] C
+          .PCIN(carrycascout[5]),          // input wire [47 : 0] PCIN
+          .SUBTRACT(subtract),  // input wire SUBTRACT
+          .P(res_mac_n[63:32]),                // output wire [32 : 0] P
+          .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
+        );
+   
 endmodule
