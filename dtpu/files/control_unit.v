@@ -184,14 +184,7 @@ activate_enable_data_type: begin
                             csr_ce<=1;
                             csr_address<=0;
                             state<=compute;
-                           
-                       /*     if(infifo_is_empty) begin 
-                            state<=compute;
-                            end else begin 
-                            state<=state;
-                            end
-                         */  
-                            
+                       
                          end
 
 compute: begin

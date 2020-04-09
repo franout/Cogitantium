@@ -64,8 +64,8 @@ interpreter = tflite.Interpreter(model_path=tflite_model_file)
 interpreter.allocate_tensors()
 
 # Get input and output tensors.
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
+input_details = interpreter.get_input_details()[0]["index"]
+output_details = interpreter.get_output_details()[0]["index"]
 
 # Test model on random input data.
 input_shape = input_details[0]['shape']

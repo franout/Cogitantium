@@ -21,7 +21,7 @@
 
 
 `include "precision_def.vh"
-
+//`define DUMMY 
 module dtpu_core
 #(parameter DATA_WIDTH_MAC=4,
     ROWS=3 ,
@@ -252,7 +252,7 @@ module dtpu_core
   /////////////////////////////////////////////
   ///////// LOAD AND STORE ARRAY     /////////
   /////////////////////////////////////////////
-  
+  `ifndef DUMMY
   ls_array  #(
           .ROWS(ROWS), // matrix row -> weights
           .COLUMNS(COLUMNS), // matrix columsn -> input data
@@ -262,8 +262,9 @@ module dtpu_core
         (.clk(clk),
           .reset_n(aresetn));
   
+  `endif
   
-  
+  `ifdef DUMMY
   always @(posedge(clk)) begin 
   if(!aresetn) begin
   input_data_from_fifo<=0;
@@ -282,7 +283,7 @@ module dtpu_core
   always @(posedge(clk)) begin
   state<= state_i; 
   end 
-  
+  `endif
   
   // same clock for bram interface
   assign csr_clk=clk;

@@ -1,0 +1,4 @@
+vhdl xil_defaultlib  \
+"../../../ip/smul_8_c/sim/smul_8_c.vhd" \
+
+nosort

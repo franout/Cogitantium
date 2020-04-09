@@ -56,7 +56,7 @@ module tb_mul(
                               .weight(weight64),        // input wire [3 : 0] B
                               .ce(enable),      // input wire CE
                               .sclr(sclr),  // input wire SCLR
-                              .res_mac_n(res_mac_n64)        // output wire [3 : 0] P
+                              .res_mac_n(res_mac_n64),        // output wire [3 : 0] P
                               .active_chain(active_chain),
                               .select_precision(select_precision)
 
@@ -108,11 +108,10 @@ module tb_mul(
                 active_chain=1'b1;
                 $display("global reset");
                 #clk_period;
-                reset=1'b0;
+                sclr=1'b0;
                 enable=1'b1;
                 data_input64={4{16'hCAFE}};
                 weight64={4{16'hFFFF}};
-                res_mac_n64={4{16'h0000}};
                 $display("chain active");
                 // stimulus
                 select_precision<=4'h1;

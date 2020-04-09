@@ -63,7 +63,7 @@ dsp_smac_32 your_instance_name (
   .C(C),                // input wire [47 : 0] C
   .PCIN(PCIN),          // input wire [47 : 0] PCIN
   .SUBTRACT(SUBTRACT),  // input wire SUBTRACT
-  .P(P),                // output wire [32 : 0] P
+  .P(P),                // output wire [31 : 0] P
   .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------

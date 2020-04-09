@@ -1,11 +1,4 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module mxu_core
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module mxu_mac
-INFO: [VRFC 10-2458] undeclared symbol test_mode, assumed default net type wire [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v:72]
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module register
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mxu_core.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_mxu_core
-WARNING: [VRFC 10-3507] macro 'VIVADO_MAC' redefined [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mxu_core.v:37]
-WARNING: [VRFC 10-986] literal value truncated to fit in 24 bits [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_mxu_core.v:98]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module filter_and_select
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_filter_select.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_filter_select

@@ -1,2 +1,21 @@
 Vivado Simulator 2019.2
 Time resolution is 1 ps
+precison set to 8
+precison set to 16
+precison set to 32
+precison set to 64
+chain is deactivated
+precison set to 8
+precison set to 16
+precison set to 32
+precison set to 64
+precison set to 8
+precison set to 16
+precison set to 32
+precison set to 64
+chain is deactivated
+precison set to 8
+precison set to 16
+precison set to 32
+precison set to 64
+$finish called at time : 320 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_filter_select.v" Line 165
