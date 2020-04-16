@@ -1,19 +1,17 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 8 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_filter_select_behav xil_defaultlib.tb_filter_select xil_defaultlib.glbl -log elaborate.log 
-Using 8 slave threads.
+Running: D:/programmi/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 2 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_ls_array_behav xil_defaultlib.tb_ls_array xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
-WARNING: [XSIM 43-4099] "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" Line 3. Module filter_and_select(K=3) doesn't have a timescale but at least one module in design has a timescale.
-WARNING: [XSIM 43-4099] "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" Line 3. Module filter_and_select(K=8) doesn't have a timescale but at least one module in design has a timescale.
-WARNING: [XSIM 43-4099] "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" Line 3. Module filter_and_select(K=16) doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.filter_and_select(K=3)
+Compiling module xil_defaultlib.ls_unit
 Compiling module xil_defaultlib.filter_and_select(K=8)
-Compiling module xil_defaultlib.filter_and_select(K=16)
-Compiling module xil_defaultlib.tb_filter_select
+Compiling module xil_defaultlib.compact_and_select(K=8)
+Compiling module xil_defaultlib.ls_array(ROWS=8,COLUMNS=8)
+Compiling module xil_defaultlib.tb_ls_array
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_filter_select_behav
+Built simulation snapshot tb_ls_array_behav

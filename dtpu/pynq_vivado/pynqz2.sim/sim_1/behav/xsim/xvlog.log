@@ -1,4 +1,10 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/compact_and_select.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module compact_and_select
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module filter_and_select
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_filter_select.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_filter_select
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ls_array
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ls_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_ls_array.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ls_array

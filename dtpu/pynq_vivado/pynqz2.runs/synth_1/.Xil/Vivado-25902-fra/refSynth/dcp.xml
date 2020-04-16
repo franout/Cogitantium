@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<Checkpoint Version="13" Minor="0">
+	<BUILD_NUMBER Name="2708876"/>
+	<FULL_BUILD Name="SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019"/>
+	<PRODUCT Name="Vivado v2019.2 (64-bit)"/>
+	<Part Name="xc7z020clg400-1"/>
+	<BoardPart Name="tul.com.tw:pynq-z2:part0:1.0"/>
+	<Top Name="pynqz2_wrapper"/>
+	<DisableAutoIOBuffers Name="0"/>
+	<OutOfContext Name="0"/>
+	<RunGenerated Name="1"/>
+	<HDPlatform Name="0"/>
+	<XPMLIBRARY Name="XPM_CDC"/>
+	<XPMLIBRARY Name="XPM_FIFO"/>
+	<XPMLIBRARY Name="XPM_MEMORY"/>
+	<File Type="VERILOG_STUB" Name="pynqz2_wrapper_stub.v" ModTime="1587059678"/>
+	<File Type="VHDL_STUB" Name="pynqz2_wrapper_stub.vhdl" ModTime="1587059678"/>
+	<File Type="SHAPE" Name="pynqz2_wrapper.shape" ModTime="1587059678"/>
+	<File Type="EDIF" Name="pynqz2_wrapper.edf" ModTime="1587059678"/>
+	<File Type="XN" Name="pynqz2_wrapper.xn" ModTime="1587059678"/>
+	<File Type="INCR" Name="pynqz2_wrapper.incr" ModTime="1587059678"/>
+	<File Type="RDA" Name="pynqz2_wrapper.rda" ModTime="1587059678"/>
+	<File Type="WDF" Name="pynqz2_wrapper.wdf" ModTime="1587059678"/>
+	<File Type="SYNTH" Name="pynqz2_wrapper.synth" ModTime="1587059678"/>
+	<File Type="HWDEF" Name="pynqz2_wrapper.hwdef" ModTime="1587059678"/>
+	<File Type="HWDEF" Name="pynqz2_wrapper.hwdef" ModTime="1587059678"/>
+</Checkpoint>
+

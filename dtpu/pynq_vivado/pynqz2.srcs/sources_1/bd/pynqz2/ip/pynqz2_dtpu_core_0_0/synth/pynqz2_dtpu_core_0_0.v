@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "dtpu_core,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "pynqz2_dtpu_core_0_0,dtpu_core,{}" *)
-(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=8,ROWS=8,COLUMNS=8,SIZE_WMEMORY=8196,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
+(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=64,ROWS=8,COLUMNS=8,SIZE_WMEMORY=2048,ADDRESS_SIZE_WMEMORY=32,ADDRESS_SIZE_CSR=32,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pynqz2_dtpu_core_0_0 (
@@ -60,31 +60,31 @@ module pynqz2_dtpu_core_0_0 (
   aresetn,
   test_mode,
   enable,
+  csr_ce,
+  csr_dout,
+  csr_din,
+  csr_we,
   csr_address,
   csr_clk,
-  csr_din,
-  csr_dout,
-  csr_ce,
   csr_reset,
-  csr_we,
+  wm_ce,
+  wm_dout,
+  wm_din,
+  wm_we,
   wm_address,
   wm_clk,
-  wm_din,
-  wm_dout,
-  wm_ce,
   wm_reset,
-  wm_we,
-  infifo_is_empty,
   infifo_dout,
   infifo_read,
-  outfifo_is_full,
+  infifo_is_empty,
   outfifo_din,
   outfifo_write,
-  cs_continue,
-  cs_done,
-  cs_idle,
-  cs_ready,
+  outfifo_is_full,
   cs_start,
+  cs_ready,
+  cs_done,
+  cs_continue,
+  cs_idle,
   state
 );
 
@@ -96,65 +96,67 @@ input wire clk;
 input wire aresetn;
 input wire test_mode;
 input wire enable;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface EN" *)
+output wire csr_ce;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface DOUT" *)
+input wire [7 : 0] csr_dout;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface DIN" *)
+output wire [7 : 0] csr_din;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface WE" *)
+output wire csr_we;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface ADDR" *)
 output wire [31 : 0] csr_address;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface CLK" *)
 output wire csr_clk;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface DIN" *)
-output wire [7 : 0] csr_din;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface DOUT" *)
-input wire [7 : 0] csr_dout;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface EN" *)
-output wire csr_ce;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME csr_mem_interface, MASTER_TYPE BRAM_CTRL, MEM_ECC no, MEM_WIDTH 8, MEM_SIZE 1024, READ_LATENCY 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface RST" *)
 output wire csr_reset;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME csr_mem_interface, MASTER_TYPE BRAM_CTRL, MEM_ECC no, MEM_WIDTH 8, MEM_SIZE 1024, READ_LATENCY 1" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface WE" *)
-output wire csr_we;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface EN" *)
+output wire wm_ce;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface DOUT" *)
+input wire [63 : 0] wm_dout;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface DIN" *)
+output wire [63 : 0] wm_din;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface WE" *)
+output wire wm_we;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface ADDR" *)
 output wire [31 : 0] wm_address;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface CLK" *)
 output wire wm_clk;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface DIN" *)
-output wire [63 : 0] wm_din;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface DOUT" *)
-input wire [63 : 0] wm_dout;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface EN" *)
-output wire wm_ce;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME weight_mem_interface, MASTER_TYPE BRAM_CTRL, MEM_ECC no, MEM_WIDTH 64, MEM_SIZE 8192, READ_LATENCY 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface RST" *)
 output wire wm_reset;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME weight_mem_interface, MASTER_TYPE BRAM_CTRL, MEM_ECC no, MEM_WIDTH 64, MEM_SIZE 8192, READ_LATENCY 1" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface WE" *)
-output wire wm_we;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
-input wire infifo_is_empty;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)
 input wire [63 : 0] infifo_dout;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_EN" *)
 output wire infifo_read;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
-input wire outfifo_is_full;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
+input wire infifo_is_empty;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_DATA" *)
 output wire [63 : 0] outfifo_din;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_EN" *)
 output wire outfifo_write;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_continue" *)
-input wire cs_continue;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_done" *)
-output wire cs_done;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_idle" *)
-output wire cs_idle;
-(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_ready" *)
-output wire cs_ready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
+input wire outfifo_is_full;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_start" *)
 input wire cs_start;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_ready" *)
+output wire cs_ready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_done" *)
+output wire cs_done;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_continue" *)
+input wire cs_continue;
+(* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_idle" *)
+output wire cs_idle;
 output wire [3 : 0] state;
 
   dtpu_core #(
-    .DATA_WIDTH_MAC(8),
+    .DATA_WIDTH_MAC(64),
     .ROWS(8),
     .COLUMNS(8),
-    .SIZE_WMEMORY(8196),
+    .SIZE_WMEMORY(2048),
+    .ADDRESS_SIZE_WMEMORY(32),
+    .ADDRESS_SIZE_CSR(32),
     .SIZE_CSR(1024),
     .DATA_WIDTH_CSR(8),
     .DATA_WIDTH_WMEMORY(64),
@@ -165,31 +167,31 @@ output wire [3 : 0] state;
     .aresetn(aresetn),
     .test_mode(test_mode),
     .enable(enable),
+    .csr_ce(csr_ce),
+    .csr_dout(csr_dout),
+    .csr_din(csr_din),
+    .csr_we(csr_we),
     .csr_address(csr_address),
     .csr_clk(csr_clk),
-    .csr_din(csr_din),
-    .csr_dout(csr_dout),
-    .csr_ce(csr_ce),
     .csr_reset(csr_reset),
-    .csr_we(csr_we),
+    .wm_ce(wm_ce),
+    .wm_dout(wm_dout),
+    .wm_din(wm_din),
+    .wm_we(wm_we),
     .wm_address(wm_address),
     .wm_clk(wm_clk),
-    .wm_din(wm_din),
-    .wm_dout(wm_dout),
-    .wm_ce(wm_ce),
     .wm_reset(wm_reset),
-    .wm_we(wm_we),
-    .infifo_is_empty(infifo_is_empty),
     .infifo_dout(infifo_dout),
     .infifo_read(infifo_read),
-    .outfifo_is_full(outfifo_is_full),
+    .infifo_is_empty(infifo_is_empty),
     .outfifo_din(outfifo_din),
     .outfifo_write(outfifo_write),
-    .cs_continue(cs_continue),
-    .cs_done(cs_done),
-    .cs_idle(cs_idle),
-    .cs_ready(cs_ready),
+    .outfifo_is_full(outfifo_is_full),
     .cs_start(cs_start),
+    .cs_ready(cs_ready),
+    .cs_done(cs_done),
+    .cs_continue(cs_continue),
+    .cs_idle(cs_idle),
     .state(state)
   );
 endmodule

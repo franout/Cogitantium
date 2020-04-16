@@ -31,6 +31,7 @@ module mxu_core
     clk,
     reset,
     enable,
+    enable_chain,
     test_mode,
     input_data,
     weight,
@@ -47,7 +48,7 @@ module mxu_core
     input [max_width_columns:0]input_data;
     input [max_width_rows:0]weight;
     output [max_width_rows:0]y;    
-    
+    input enable_chain;
     
     // muxes for allowing different precision 
     wire  reset_mac;

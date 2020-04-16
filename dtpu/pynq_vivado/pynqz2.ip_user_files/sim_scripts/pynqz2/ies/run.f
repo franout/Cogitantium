@@ -221,29 +221,29 @@
   "../../../bd/pynqz2/ip/pynqz2_xlconstant_1_0/sim/pynqz2_xlconstant_1_0.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_conv_funs_pkg.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_proc_common_pkg.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_ipif_pkg.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_family_support.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_family.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_address_decoder.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_axi_lite_ipif.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0_xadc_core_drp.vhd" \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0_axi_xadc.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_conv_funs_pkg.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_proc_common_pkg.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_ipif_pkg.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_family_support.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_family.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_address_decoder.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_axi_lite_ipif.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0_xadc_core_drp.vhd" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0_axi_xadc.vhd" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
-  "../../../bd/pynqz2/ip/pynqz2_monitor_0_3/pynqz2_monitor_0.v" \
+  "../../../bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0.v" \
+  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib ies_lib/axi_protocol_converter_v2_1_20 \
   "../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_auto_pc_0/sim/pynqz2_auto_pc_0.v" \
-  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
   glbl.v

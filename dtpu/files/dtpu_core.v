@@ -37,59 +37,90 @@ module dtpu_core
     DATA_WIDTH_FIFO_OUT=64
     )
 (
-    clk,
-    aresetn,
-    test_mode,
-    enable,
+    input wire clk,
+    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 areset RST" *)
+    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
+    input wire aresetn,
+    input wire test_mode,
+    input wire enable,
+    
     ////////////////////////////
     ////// CSR INTERFACE ///////
     ////////////////////////////
-    csr_address,
-    csr_clk,
-    csr_din,
-    csr_dout,
-    csr_ce,
-    csr_reset,
-    csr_we,
-    ////////////////////////////
-    ////// WEIGHT MEMORY ///////
-    ///////////////////////////
-    wm_address,
-      wm_clk,
-        wm_din,
-        wm_dout,
-        wm_ce,
-        wm_reset,
-        wm_we,
-        ////////////////////////////////////////////
-        /////////// INPUT DATA FIFO ////////////////
-        ////////////////////////////////////////////
-        /////////// using stream axi 
-        infifo_is_empty,
-        infifo_dout,
-        infifo_read,
-        
-        ////////////////////////////////////////////
-        /////////// OUTPUT DATA FIFO ///////////////
-        ////////////////////////////////////////////
-        /////////// using stream axi 
-        outfifo_is_full,
-        outfifo_din,
-        outfifo_write,
-        
-        
-        
-        ////////////////////////////////////////////
-        /////////// CONTROL FROM/TO PS ////////////////
-        ////////////////////////////////////////////
-        cs_continue,
-        cs_done,
-        cs_idle,
-        cs_ready,
-        cs_start,
-        
-        state
-        
+    (* X_INTERFACE_PARAMETER = "MASTER_TYPE BRAM_CTRL,MEM_ECC no,MEM_WIDTH 8,MEM_SIZE 1024 " *)
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface EN" *)
+    output wire         csr_ce,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface DOUT" *)
+    input wire [7:0]    csr_dout,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface DIN" *)
+    output wire [7:0]   csr_din,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface WE" *)
+    output wire         csr_we,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface ADDR" *)
+    output wire [31:0]    csr_address,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface CLK" *)
+    output wire           csr_clk,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface RST" *)
+    output wire         csr_reset,
+    
+      ////////////////////////////
+      ////// WEIGHT MEMORY ///////
+      ///////////////////////////
+      (* X_INTERFACE_PARAMETER = "MASTER_TYPE BRAM_CTRL,MEM_ECC no,MEM_WIDTH 64,MEM_SIZE 8192 " *)
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface EN" *)
+      output wire  wm_ce,
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface DOUT" *)
+      input wire [63:0]       wm_dout,
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface DIN" *)
+      output wire [63:0]       wm_din,
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface WE" *)
+      output wire              wm_we,
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface ADDR" *)
+      output wire [31:0]  wm_address,
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface CLK" *)
+      output wire    wm_clk,
+      (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface RST" *)
+      output wire           wm_reset,
+      
+      ////////////////////////////////////////////
+      /////////// INPUT DATA FIFO ////////
+      ////////////////////////////////////////////
+      /////////// using stream axi 
+      (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)
+      input wire [63:0] infifo_dout,
+        (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_EN" *)
+      output wire infifo_read,
+        (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
+      input wire infifo_is_empty,
+            
+              
+      ////////////////////////////////////////////
+      /////////// OUTPUT DATA FIFO ///////////////
+      ////////////////////////////////////////////
+      /////////// using stream axi 
+      (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_DATA" *)
+      output wire [63:0] outfifo_din,
+        (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_EN" *)
+      output wire outfifo_write,
+        (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
+      input wire outfifo_is_full,
+            
+      ////////////////////////////////////////////
+      /////////// CONTROL FROM/TO PS /////////////
+      //////////////////////////////////////////// 
+       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_start" *)
+      input wire cs_start,
+       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_ready" *)
+      output wire cs_ready,
+       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_done" *)
+      output wire cs_done,
+       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_continue" *)
+      input wire cs_continue,
+       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_idle" *)
+      output wire cs_idle,
+       
+       // debug state
+      output reg[3:0]state
         );
     //////////////////////////////////////////
     ///************************************///
@@ -97,91 +128,9 @@ module dtpu_core
     ///// the dumb tensor processing unit ////
     ///************************************///
     //////////////////////////////////////////
-    input wire clk;
-    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 areset RST" *)
-    (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
-    input wire aresetn;
-    input wire test_mode;
-    input wire enable;
-    
-    ////////////////////////////
-    ////// CSR INTERFACE ///////
-    ////////////////////////////
-      (* X_INTERFACE_PARAMETER = "MASTER_TYPE BRAM_CTRL,MEM_ECC no,MEM_WIDTH 8,MEM_SIZE 1024 " *)
-    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface EN" *)
-        output wire         csr_ce;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface DOUT" *)
-        input wire [7:0]    csr_dout;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface DIN" *)
-        output wire [7:0]   csr_din;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface WE" *)
-        output wire         csr_we;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface ADDR" *)
-        output wire [31:0]    csr_address;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface CLK" *)
-        output wire           csr_clk;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface RST" *)
-        output wire         csr_reset;
-        ////////////////////////////
-        ////// WEIGHT MEMORY ///////
-        ///////////////////////////
-      (* X_INTERFACE_PARAMETER = "MASTER_TYPE BRAM_CTRL,MEM_ECC no,MEM_WIDTH 64,MEM_SIZE 8192 " *)
-    (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface EN" *)
-       output wire  wm_ce;
-          (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface DOUT" *)
-         input wire [63:0]       wm_dout;
-          (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface DIN" *)
-        output wire [63:0]       wm_din;
-          (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface WE" *)
-                 output wire              wm_we;
-          (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface ADDR" *)
-        output wire [31:0]  wm_address;
-          (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface CLK" *)
-      output wire    wm_clk;
-          (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface RST" *)
-          output wire           wm_reset;
-            ////////////////////////////////////////////
-            /////////// INPUT DATA FIFO ////////
-            ////////////////////////////////////////////
-            /////////// using stream axi 
-            (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)
-            input wire [63:0] infifo_dout;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_EN" *)
-            output wire infifo_read; 
-              (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
-            input wire infifo_is_empty;
             
-              
-            ////////////////////////////////////////////
-            /////////// OUTPUT DATA FIFO ///////////////
-            ////////////////////////////////////////////
-            /////////// using stream axi 
-            (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_DATA" *)
-            output wire [63:0] outfifo_din;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_EN" *)
-            output wire outfifo_write;
-              (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
-            input wire outfifo_is_full;
-            
-            ////////////////////////////////////////////
-            /////////// CONTROL FROM/TO PS /////////////
-            //////////////////////////////////////////// 
-             (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_start" *)
-            input wire cs_start;
-             (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_ready" *)
-            output wire cs_ready;
-             (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_done" *)
-            output wire cs_done;
-             (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_continue" *)
-            input wire cs_continue;
-             (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake_rtl:1.0 control_interface ap_idle" *)
-            output wire cs_idle;
-       
-       // debug state
-      output reg[3:0]state;          
       wire [3:0]state_i;
 
-       
       wire [ROWS*DATA_WIDTH_FIFO_OUT-1:0]weight_to_mxu;
       wire [COLUMNS*DATA_WIDTH_FIFO_IN-1:0] input_data_to_mxu;
       wire [ROWS*DATA_WIDTH_FIFO_OUT-1:0] output_data_from_mxu;
@@ -198,6 +147,7 @@ module dtpu_core
       wire ld_max_down_cnt;
       wire enable_cnt_weight;
       wire ld_max_cnt_weight;
+      wire enable_chain;
       
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
       wire [$clog2(ROWS):0]max_down_cnt_from_cu;
@@ -216,6 +166,8 @@ module dtpu_core
             .reset(aresetn),
             .clk(clk),
             .enable(enable_i),
+            .enable_chain(enable_chain),
+            
             .enable_in_ff(enable_enskew_ff_i),
             .enable_out_ff(enable_deskew_ff_i),
             .test_mode(test_mode),
@@ -259,12 +211,11 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .load_data(load_in_reg),
         .state_out(state_i),
         .enable_deskew_ff(enable_deskew_ff_i),
         .enable_enskew_ff(enable_enskew_ff_i),
 
-
+        .enable_chain(enable_chain),
         .enable_load_array(enable_load_array),
         .data_precision(data_precision),
         .read_weight_memory(read_weight_memory),

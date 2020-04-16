@@ -57,6 +57,7 @@ computations.
 * https://github.com/nvdla/sw/issues/49
 * https://www.tensorflow.org/lite/performance/post_training_quantization tensor flow quantization 
 * https://tfhub.dev/ pretrained model in tensow flow
+* https://www.codeproject.com/Articles/820116/Embedding-Python-program-in-a-C-Cplusplus-code
 
 ## FUTURE READINGS
 

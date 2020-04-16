@@ -32,21 +32,23 @@ module mxu_wrapper
         clk,
         enable,
         enable_in_ff,
+        enable_chain,
         enable_out_ff,
         test_mode,
         input_data,
         weight,
         y
     );
-   localparam integer max_width_columns=(max_data_width)*(K)-1;
-   localparam integer max_width_rows=(max_data_width)*(M)-1;
-   input clk,reset,enable,test_mode;
-   input [`LOG_ALLOWED_PRECISIONS-1:0]data_type; // precision_def.vh
-       input [max_width_columns:0]input_data;
-       input [max_width_rows:0]weight;
-       output [max_width_rows:0]y;
-       input enable_in_ff;
-        input enable_out_ff;
+  localparam integer max_width_columns=(max_data_width)*(K)-1;
+  localparam integer max_width_rows=(max_data_width)*(M)-1;
+  input clk,reset,enable,test_mode;
+  input [`LOG_ALLOWED_PRECISIONS-1:0]data_type; // precision_def.vh
+  input [max_width_columns:0]input_data;
+  input [max_width_rows:0]weight;
+  output [max_width_rows:0]y;
+  input enable_in_ff;
+  input enable_out_ff;
+  input enable_chain;
    
    wire [max_width_rows:0]y_mxu;
    wire [max_width_columns:0]data_input_mxu;
@@ -116,6 +118,7 @@ module mxu_wrapper
         .data_type(data_type), 
         .clk(clk),
         .enable(enable),
+        .enable_chain(enable_chain),
         .reset(reset),
         .test_mode(test_mode),
         .input_data(data_input_mxu),

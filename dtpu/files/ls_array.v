@@ -310,7 +310,6 @@ case (counter_out)
 
 endcase
 end 
-
 end 
 
 //////////////////////////////
@@ -318,7 +317,8 @@ end
 //////////////////////////////
  genvar j;
  generate
- for (j=0;j<COLUMNS ;j=j+1) begin: ls_unit_activation_data 
+ for (j=0;j<COLUMNS ;j=j+1)
+  begin: ls_unit_activation_data 
   ls_unit #( .data_width(data_in_width)) ls_unit (
             .clk(clk),
             .resetn(reset_n),

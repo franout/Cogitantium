@@ -1,21 +1,31 @@
 Vivado Simulator 2019.2
 Time resolution is 1 ps
-precison set to 8
-precison set to 16
-precison set to 32
-precison set to 64
-chain is deactivated
-precison set to 8
-precison set to 16
-precison set to 32
-precison set to 64
-precison set to 8
-precison set to 16
-precison set to 32
-precison set to 64
-chain is deactivated
-precison set to 8
-precison set to 16
-precison set to 32
-precison set to 64
-$finish called at time : 320 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_filter_select.v" Line 165
+global reset
+CHECK of load store units of activation data
+Check of load store unit + filter select and compacter for activation data and output data
+global reset
+precision 8bit
+enable and load max value for coutners
+read from fifo and store in the internal register of ls units
+wait for some time for the mxu, check the correct generation of weight address (incremental)
+check the page increment
+outfifo read
+precision 16bit
+enable and load max value for coutners
+read from fifo and store in the internal register of ls units
+wait for some time for the mxu, check the correct generation of weight address (incremental)
+check the page increment
+outfifo read
+precision 32bit
+enable and load max value for coutners
+read from fifo and store in the internal register of ls units
+wait for some time for the mxu, check the correct generation of weight address (incremental)
+check the page increment
+outfifo read
+precision 64bit
+enable and load max value for coutners
+read from fifo and store in the internal register of ls units
+wait for some time for the mxu, check the correct generation of weight address (incremental)
+check the page increment
+outfifo read
+$finish called at time : 890 ns : File "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_ls_array.v" Line 566

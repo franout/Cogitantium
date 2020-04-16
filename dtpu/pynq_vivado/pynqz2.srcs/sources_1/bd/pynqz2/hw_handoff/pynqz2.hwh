@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr  8 17:33:36 2020" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Apr 16 19:55:37 2020" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="pynqz2" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -6543,10 +6543,12 @@
     <MODULE COREREVISION="1" FULLNAME="/dtpu/dtpu_core" HWVERSION="1.0" INSTANCE="dtpu_dtpu_core" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="dtpu_core" VLNV="xilinx.com:module_ref:dtpu_core:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="DATA_WIDTH_MAC" VALUE="8"/>
+        <PARAMETER NAME="DATA_WIDTH_MAC" VALUE="64"/>
         <PARAMETER NAME="ROWS" VALUE="8"/>
         <PARAMETER NAME="COLUMNS" VALUE="8"/>
-        <PARAMETER NAME="SIZE_WMEMORY" VALUE="8196"/>
+        <PARAMETER NAME="SIZE_WMEMORY" VALUE="2048"/>
+        <PARAMETER NAME="ADDRESS_SIZE_WMEMORY" VALUE="32"/>
+        <PARAMETER NAME="ADDRESS_SIZE_CSR" VALUE="32"/>
         <PARAMETER NAME="SIZE_CSR" VALUE="1024"/>
         <PARAMETER NAME="DATA_WIDTH_CSR" VALUE="8"/>
         <PARAMETER NAME="DATA_WIDTH_WMEMORY" VALUE="64"/>
@@ -6576,6 +6578,26 @@
             <CONNECTION INSTANCE="External_Ports" PORT="enable"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="csr_ce" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_ce">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_ce"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="csr_dout" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="csr_din" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_din">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_din"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="csr_we" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_we">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_we"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="31" NAME="csr_address" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_addr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_addr"/>
@@ -6586,29 +6608,29 @@
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_clk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="csr_din" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_din">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_din"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="7" NAME="csr_dout" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="csr_ce" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_ce">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_ce"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="csr_reset" SIGIS="rst" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_rst">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_rst"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="csr_we" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_0_we">
+        <PORT DIR="O" NAME="wm_ce" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_ce">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_0_we"/>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_ce"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="63" NAME="wm_dout" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="wm_din" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_din">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_din"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="wm_we" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_we">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_we"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="wm_address" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_addr">
@@ -6621,34 +6643,9 @@
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_clk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="63" NAME="wm_din" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_din">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_din"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="63" NAME="wm_dout" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="wm_ce" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_ce">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_ce"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="wm_reset" SIGIS="rst" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_rst">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_rst"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="wm_we" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_iarg_1_we">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_iarg_1_we"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="infifo_is_empty" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_fifo_iarg_2_empty_n">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_fifo_iarg_2_empty_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="63" NAME="infifo_dout" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_fifo_iarg_2_dout">
@@ -6661,9 +6658,9 @@
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_fifo_iarg_2_read"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="outfifo_is_full" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_fifo_oarg_0_full_n">
+        <PORT DIR="I" NAME="infifo_is_empty" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_fifo_iarg_2_empty_n">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_fifo_oarg_0_full_n"/>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_fifo_iarg_2_empty_n"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="63" NAME="outfifo_din" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_fifo_oarg_0_din">
@@ -6676,19 +6673,14 @@
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_fifo_oarg_0_write"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="cs_continue" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_continue">
+        <PORT DIR="I" NAME="outfifo_is_full" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_fifo_oarg_0_full_n">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_continue"/>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_fifo_oarg_0_full_n"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="cs_done" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_done">
+        <PORT DIR="I" NAME="cs_start" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_start">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_done"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="cs_idle" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_idle">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_idle"/>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_start"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="cs_ready" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_ready">
@@ -6696,9 +6688,19 @@
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_ready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="cs_start" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_start">
+        <PORT DIR="O" NAME="cs_done" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_done">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_start"/>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_done"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="cs_continue" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_continue">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_continue"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="cs_idle" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_ap_idle">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="ap_idle"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="state" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_dtpu_core_state">
@@ -7410,36 +7412,36 @@
         <PARAMETER NAME="PCW_FPGA1_PERIPHERAL_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_FPGA2_PERIPHERAL_FREQMHZ" VALUE="200"/>
         <PARAMETER NAME="PCW_FPGA3_PERIPHERAL_FREQMHZ" VALUE="166.67"/>
-        <PARAMETER NAME="PCW_ACT_APU_PERIPHERAL_FREQMHZ" VALUE="650"/>
-        <PARAMETER NAME="PCW_UIPARAM_ACT_DDR_FREQ_MHZ" VALUE="525"/>
-        <PARAMETER NAME="PCW_ACT_DCI_PERIPHERAL_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_ACT_QSPI_PERIPHERAL_FREQMHZ" VALUE="200"/>
-        <PARAMETER NAME="PCW_ACT_SMC_PERIPHERAL_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_ACT_ENET0_PERIPHERAL_FREQMHZ" VALUE="125"/>
-        <PARAMETER NAME="PCW_ACT_ENET1_PERIPHERAL_FREQMHZ" VALUE="10"/>
+        <PARAMETER NAME="PCW_ACT_APU_PERIPHERAL_FREQMHZ" VALUE="650.000000"/>
+        <PARAMETER NAME="PCW_UIPARAM_ACT_DDR_FREQ_MHZ" VALUE="525.000000"/>
+        <PARAMETER NAME="PCW_ACT_DCI_PERIPHERAL_FREQMHZ" VALUE="10.096154"/>
+        <PARAMETER NAME="PCW_ACT_QSPI_PERIPHERAL_FREQMHZ" VALUE="200.000000"/>
+        <PARAMETER NAME="PCW_ACT_SMC_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
+        <PARAMETER NAME="PCW_ACT_ENET0_PERIPHERAL_FREQMHZ" VALUE="125.000000"/>
+        <PARAMETER NAME="PCW_ACT_ENET1_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
         <PARAMETER NAME="PCW_ACT_USB0_PERIPHERAL_FREQMHZ" VALUE="60"/>
         <PARAMETER NAME="PCW_ACT_USB1_PERIPHERAL_FREQMHZ" VALUE="60"/>
-        <PARAMETER NAME="PCW_ACT_SDIO_PERIPHERAL_FREQMHZ" VALUE="50"/>
-        <PARAMETER NAME="PCW_ACT_UART_PERIPHERAL_FREQMHZ" VALUE="100"/>
-        <PARAMETER NAME="PCW_ACT_SPI_PERIPHERAL_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_ACT_CAN_PERIPHERAL_FREQMHZ" VALUE="10"/>
+        <PARAMETER NAME="PCW_ACT_SDIO_PERIPHERAL_FREQMHZ" VALUE="50.000000"/>
+        <PARAMETER NAME="PCW_ACT_UART_PERIPHERAL_FREQMHZ" VALUE="100.000000"/>
+        <PARAMETER NAME="PCW_ACT_SPI_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
+        <PARAMETER NAME="PCW_ACT_CAN_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
         <PARAMETER NAME="PCW_ACT_CAN0_PERIPHERAL_FREQMHZ" VALUE="23.8095"/>
         <PARAMETER NAME="PCW_ACT_CAN1_PERIPHERAL_FREQMHZ" VALUE="23.8095"/>
         <PARAMETER NAME="PCW_ACT_I2C_PERIPHERAL_FREQMHZ" VALUE="50"/>
-        <PARAMETER NAME="PCW_ACT_WDT_PERIPHERAL_FREQMHZ" VALUE="108"/>
+        <PARAMETER NAME="PCW_ACT_WDT_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
         <PARAMETER NAME="PCW_ACT_TTC_PERIPHERAL_FREQMHZ" VALUE="50"/>
-        <PARAMETER NAME="PCW_ACT_PCAP_PERIPHERAL_FREQMHZ" VALUE="200"/>
-        <PARAMETER NAME="PCW_ACT_TPIU_PERIPHERAL_FREQMHZ" VALUE="200"/>
-        <PARAMETER NAME="PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ" VALUE="111"/>
-        <PARAMETER NAME="PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_ACT_TTC0_CLK0_PERIPHERAL_FREQMHZ" VALUE="108"/>
-        <PARAMETER NAME="PCW_ACT_TTC0_CLK1_PERIPHERAL_FREQMHZ" VALUE="108"/>
-        <PARAMETER NAME="PCW_ACT_TTC0_CLK2_PERIPHERAL_FREQMHZ" VALUE="108"/>
-        <PARAMETER NAME="PCW_ACT_TTC1_CLK0_PERIPHERAL_FREQMHZ" VALUE="108"/>
-        <PARAMETER NAME="PCW_ACT_TTC1_CLK1_PERIPHERAL_FREQMHZ" VALUE="108"/>
-        <PARAMETER NAME="PCW_ACT_TTC1_CLK2_PERIPHERAL_FREQMHZ" VALUE="108"/>
+        <PARAMETER NAME="PCW_ACT_PCAP_PERIPHERAL_FREQMHZ" VALUE="200.000000"/>
+        <PARAMETER NAME="PCW_ACT_TPIU_PERIPHERAL_FREQMHZ" VALUE="200.000000"/>
+        <PARAMETER NAME="PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ" VALUE="111.111115"/>
+        <PARAMETER NAME="PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
+        <PARAMETER NAME="PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
+        <PARAMETER NAME="PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ" VALUE="10.000000"/>
+        <PARAMETER NAME="PCW_ACT_TTC0_CLK0_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
+        <PARAMETER NAME="PCW_ACT_TTC0_CLK1_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
+        <PARAMETER NAME="PCW_ACT_TTC0_CLK2_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
+        <PARAMETER NAME="PCW_ACT_TTC1_CLK0_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
+        <PARAMETER NAME="PCW_ACT_TTC1_CLK1_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
+        <PARAMETER NAME="PCW_ACT_TTC1_CLK2_PERIPHERAL_FREQMHZ" VALUE="108.333336"/>
         <PARAMETER NAME="PCW_CLK0_FREQ" VALUE="111111115"/>
         <PARAMETER NAME="PCW_CLK1_FREQ" VALUE="10000000"/>
         <PARAMETER NAME="PCW_CLK2_FREQ" VALUE="10000000"/>
@@ -9317,93 +9319,6 @@
             <CONNECTION INSTANCE="rst_ps7_30M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M04_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M04_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M04_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M04_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M04_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M04_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M04_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M04_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M04_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="31" NAME="M03_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_intc_s_axi_awaddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_intc" PORT="s_axi_awaddr"/>
@@ -9489,93 +9404,6 @@
         <PORT DIR="O" LEFT="0" NAME="M03_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_intc_s_axi_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_intc" PORT="s_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M05_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M05_AXI_awvalid" SIGIS="undef" SIGNAME="monitor_s_axi_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_awready" SIGIS="undef" SIGNAME="monitor_s_axi_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M05_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M05_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_wvalid" SIGIS="undef" SIGNAME="monitor_s_axi_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_wready" SIGIS="undef" SIGNAME="monitor_s_axi_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M05_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_bvalid" SIGIS="undef" SIGNAME="monitor_s_axi_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_bready" SIGIS="undef" SIGNAME="monitor_s_axi_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M05_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M05_AXI_arvalid" SIGIS="undef" SIGNAME="monitor_s_axi_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_arready" SIGIS="undef" SIGNAME="monitor_s_axi_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M05_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M05_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_rvalid" SIGIS="undef" SIGNAME="monitor_s_axi_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_rready" SIGIS="undef" SIGNAME="monitor_s_axi_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M02_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awaddr">
@@ -10015,6 +9843,180 @@
         <PORT DIR="I" NAME="S00_AXI_rready" SIGIS="undef" SIGNAME="ps7_M_AXI_GP0_RREADY">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ps7" PORT="M_AXI_GP0_RREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M05_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M05_AXI_awvalid" SIGIS="undef" SIGNAME="monitor_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_awready" SIGIS="undef" SIGNAME="monitor_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M05_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M05_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_wvalid" SIGIS="undef" SIGNAME="monitor_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_wready" SIGIS="undef" SIGNAME="monitor_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M05_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_bvalid" SIGIS="undef" SIGNAME="monitor_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_bready" SIGIS="undef" SIGNAME="monitor_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M05_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M05_AXI_arvalid" SIGIS="undef" SIGNAME="monitor_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_arready" SIGIS="undef" SIGNAME="monitor_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M05_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M05_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_rvalid" SIGIS="undef" SIGNAME="monitor_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_rready" SIGIS="undef" SIGNAME="monitor_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M04_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M04_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M04_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M04_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M04_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M04_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M04_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M04_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M04_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M04_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M04_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M04_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M04_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M04_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M04_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M04_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M04_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M04_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M04_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rready"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
