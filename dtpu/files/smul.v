@@ -43,7 +43,7 @@ module smul (
           .CE(enable_i[0]),                      // input wire CE
           .SCLR(sclr),                  // input wire SCLR
           .CARRYIN(carry_in),            // input wire CARRYIN
-          .A(data_input[7:0]),                        // input wire [7 : 0] A
+          .A(input_data[7:0]),                        // input wire [7 : 0] A
           .B(weight[7:0]),                        // input wire [7 : 0] B
           .C(res_mac_p[7:0]),                        // input wire [7 : 0] C
           .CARRYCASCOUT(carrycascout[0]),  // output wire CARRYCASCOUT
@@ -56,7 +56,7 @@ module smul (
                   .CE(enable_i[1]),                      // input wire CE
                   .SCLR(sclr),                  // input wire SCLR
                   .CARRYIN(carrycascout[1]),            // input wire CARRYIN
-                  .A(data_input[15:8]),                        // input wire [7 : 0] A
+                  .A(input_data[15:8]),                        // input wire [7 : 0] A
                   .B(weight[15:8]),                        // input wire [7 : 0] B
                   .C(res_mac_p[15:8]),                        // input wire [7 : 0] C
                   .CARRYCASCOUT(carrycascout[2]),  // output wire CARRYCASCOUT

@@ -1,46 +1,47 @@
-
+`timescale 1ns/1ps
 module ls_unit
-#(parameter  max_data_width=8,
-    data_in_width=64 )
+#(parameter data_width=64 )
  (
-input [data_in_width-1:0]data_from_fifo,
-output reg [data_in_width-1:0]data_to_mxu,
-output reg [data_in_width-1:0]data_to_fifo,
-input read_fifo,
-input write_fifo,
-input [3:0]data_precision
+ input clk,
+ input resetn,
+ input enable,
+ input load_enable,
+ input store_enable,
+ input [data_width-1:0]data_load_input,
+ output reg [data_width-1:0]data_load_output,
+ input [data_width-1:0]data_store_input,
+ output reg [data_width-1:0] data_store_output
 );
 
-
-
+reg [data_width-1:0]data_load_i;
+reg [data_width-1:0]data_store_i;
 
 /// load process
-always @(read_fifo,data_from_fifo)begin 
-    
-    if(read_fifo) begin 
-    case (data_precision)
-    4'b0001: data_to_mxu = { 56'd0 ,data_from_fifo[7:0] }; 
-    4'b0011: data_to_mxu = { 48'd0 ,data_from_fifo[15:0] };
-    4'b0111: data_to_mxu = { 32'd0 ,data_from_fifo[31:0] };
-    4'b1111: data_to_mxu = data_from_fifo;
-    default: data_to_mxu = 64'd0;
-    endcase
+always @(posedge(clk)) begin 
+if(!resetn) begin 
+data_load_i<=0;
+end else begin 
+    if(enable && load_enable) begin 
+      data_load_i<=data_load_input;
+    end else begin 
+    data_load_i<=data_load_i;
     end 
+end
+  data_load_output=data_load_i; 
 end 
 
 /// store process
-always @(write_fifo,data_to_fifo)begin 
-    
-    if(read_fifo) begin 
-    case (data_precision)
-    4'b0001: data_to_mxu = { 56'd0 ,data_from_fifo[7:0] }; 
-    4'b0011: data_to_mxu = { 48'd0 ,data_from_fifo[15:0] };
-    4'b0111: data_to_mxu = { 32'd0 ,data_from_fifo[31:0] };
-    4'b1111: data_to_mxu = data_from_fifo;
-    default: data_to_mxu = 64'd0;
-    endcase
+always @(posedge(clk)) begin 
+if(!resetn) begin 
+data_store_i<=0;
+end else begin 
+    if(enable && store_enable) begin 
+    data_store_i<=data_store_input;
+    end else begin 
+    data_store_i<=data_store_i;
     end 
 end 
-
+    data_store_output=data_store_i;
+end 
 
 endmodule

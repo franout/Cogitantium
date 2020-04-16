@@ -68,6 +68,7 @@ module mxu_core
             begin: columns 
             if (j==0) begin 
             // instantiate only the multipliers 
+            `ifdef  VIVADO_MAC
             mult_gen_0 mult_i (
               .CLK(clk),    // input wire CLK
               .A(input_data[(j+1)*max_data_width-1:j*max_data_width]),        // input wire [3 : 0] A
@@ -76,7 +77,7 @@ module mxu_core
               .SCLR(reset_mac),  // input wire SCLR
               .P(res_mac_next[i*K+j])        // output wire [3 : 0] P
             );
-                    
+            `endif
              end else if ( j==K-1) begin 
                 // check if it is the last column
                 

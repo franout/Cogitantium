@@ -38,6 +38,9 @@ module tb_filter_select(
        wire [64*8-1:0]data_out;
        wire [64*16-1:0]data_out16;
        wire [3*64-1:0]data_out3;
+       wire [3*64-1:0]data_out3_compact;
+       wire [8*64-1:0] data_out8_compact;
+       wire [16*64-1:0]data_out16_compact;
                 integer k;
       
                 filter_and_select 
@@ -48,7 +51,14 @@ module tb_filter_select(
                 .data_out(data_out3),
                 .data_select(data_select)
                 );
-                
+  /*              compact_and_select  #(.K(3), .bit_width_so(8) 
+                                  ) uut3_compacter
+                               (
+                   .data_in(data_out3),
+                    .data_out(data_out3_compact),
+                    .data_select(data_select)
+                );
+*/
                 filter_and_select 
                 #(.K(8), .bit_width_so(8) 
                    ) uut
@@ -57,8 +67,15 @@ module tb_filter_select(
                 .data_out(data_out),
                 .data_select(data_select)
                 );
-                
-                filter_and_select 
+                compact_and_select  #(.K(8), .bit_width_so(8) 
+                                                  ) uut8_compacter
+                                               (
+                                   .data_in(data_out),
+                                    .data_out(data_out8_compact),
+                                    .data_select(data_select)
+                                );
+                    
+                    filter_and_select 
                                 #(.K(16), .bit_width_so(8) 
                                    ) uut16
                                 (
@@ -66,10 +83,19 @@ module tb_filter_select(
                                 .data_out(data_out16),
                                 .data_select(data_select)
                                 );
-                      always begin
-                         clk = 1'b1;
-                         #(clk_period/2) 
-                         clk = 1'b0;
+                                
+                            compact_and_select  #(.K(16), .bit_width_so(8) 
+                                              ) uut16_compacter
+                                           (
+                               .data_in(data_out16),
+                                .data_out(data_out16_compact),
+                                .data_select(data_select)
+                            );
+
+      always begin
+             clk = 1'b1;
+                 #(clk_period/2) 
+                     clk = 1'b0;
                          #(clk_period/2);
                       end
                       
@@ -162,6 +188,20 @@ module tb_filter_select(
                        #clk_period;
                        #clk_period;
                        #clk_period;
-                       $finish;
-                       end 
+                       $display("check with two input data");
+                       $display("8 bit precision ");
+                       data_precision=4'h1;
+                       data_in={{6{64'd0}},{2{64'hCAFECAFECAFECAFE}}};
+                       #clk_period;
+                       $display("16 bit precision ");
+                       data_precision=4'h3;
+                       #clk_period;
+                       $display("32 bit precision ");
+                      data_precision=4'h7;
+                      #clk_period;
+                      $display("64 bit precision ");
+                     data_precision=4'hf;
+                     #clk_period;
+                    $finish;
+   end 
 endmodule

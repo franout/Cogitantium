@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 `include "csr_definition.vh"
-
+`include "precision_def.vh"
 module control_unit 
 #(parameter ROWS=3,COLUMNS=3, DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64, DATA_WIDTH_WMEMORY=64,DATA_WIDTH_CSR=8,ADDRESS_SIZE_CSR=32,ADDRESS_SIZE_WMEMORY=32)
 (
