@@ -10,7 +10,8 @@ module control_unit
     DATA_WIDTH_WMEMORY=64,
     DATA_WIDTH_CSR=8,
     ADDRESS_SIZE_CSR=32,
-    ADDRESS_SIZE_WMEMORY=32)
+    ADDRESS_SIZE_WMEMORY=32,
+    SIZE_WM_MEMORY=4096)
 (
 input clk,
 input reset,
@@ -30,7 +31,6 @@ output reg         csr_reset,
 ///////////////////////////
 output reg  wm_ce,
 output reg              wm_we,
-output reg [ADDRESS_SIZE_WMEMORY-1:0]  wm_address,
 output reg           wm_reset,
 ////////////////////////////////////////////
 /////////// INPUT DATA FIFO ////////////////
@@ -59,6 +59,7 @@ output reg cs_idle,
 output reg enable_deskew_ff,
 output reg enable_enskew_ff,
 output reg enable_chain,
+output reg [1:0]enable_fp_unit,
 output reg [`LOG_ALLOWED_PRECISIONS-1:0] data_precision,
 
 
@@ -93,9 +94,6 @@ localparam idle = 4'h1;
 localparam compute = 4'h2;
 localparam done = 4'h3;
 localparam retrieve_data=4'h4;
-localparam activate_enable_data_type=4'h5;
-localparam stop=4'h6;
-localparam flush_out_fifo=4'h7;
 localparam start_p1=4'h8;
 localparam start_p2=4'h9;
 localparam start_p3=4'hA;
@@ -111,32 +109,31 @@ if(!reset) begin
 state <= Power_up;
 counter_compute<=0;
 counter_res<=0;
+// for mxu 
+data_precision<=`NO_COMPUTATION;
+enable_chain<=`NO_CHAIN;
+enable_fp_unit<=0;
 end else begin
-
-// dummy assignment
- enable_chain<=0;
- data_precision<=0;
- enable_load_array<=0;
- read_weight_memory<=0;
- enable_load_activation_data<=0;
- enable_store_activation_data<=0;
- enable_cnt<=0;
- ld_max_cnt<=0;
- enable_down_cnt<=0;
- ld_max_down_cnt<=0;
- enable_cnt_weight<=0;
- ld_max_cnt_weight<=0;
-  max_cnt_from_cu<=0;
- max_down_cnt_from_cu<=0;
- max_cnt_weight_from_cu<=0;
 ///// standard assignment
+enable_load_array<=0;
+read_weight_memory<=0;
+enable_load_activation_data<=0;
+enable_store_activation_data<=0;
+enable_cnt<=0;
+enable_cnt_weight<=0;
+enable_down_cnt<=0;
+
+ld_max_cnt<=0;
+ld_max_down_cnt<=0;
+ld_max_cnt_weight<=0;
+
+
 counter_compute<=0;
 counter_res<=0;
 csr_address<=0;    
 csr_ce<=0;
 csr_reset<=0;
 csr_we<=0;
-wm_address<=0;
 wm_ce<=0;
 wm_reset<=0;
 wm_we<=0;
@@ -163,9 +160,11 @@ idle: begin
         state<=state;
         end 
      end
-     
+     // for speeding up the csr can be checked in the below states! TODO
      // transfering the ownership of data
 start_p1: begin 
+            csr_address<=`A_ARITHMETIC_PRECISION;
+            csr_ce<=1'b1;
                  if(cs_start) begin 
                 state<=start_p2; 
                 end else begin
@@ -173,6 +172,10 @@ start_p1: begin
                 end
                 end  
 start_p2:  begin
+            data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
+            enable_chain<=csr_dout[DATA_WIDTH_CSR-1];
+            csr_address<=`A_FP_MODE;
+            csr_ce<=1'b1;
             if(cs_start) begin 
             state<=start_p3; 
             end else begin 
@@ -180,7 +183,8 @@ start_p2:  begin
             end
             end
 start_p3:  begin 
-           cs_ready<=1;
+            cs_ready<=1;
+            enable_fp_unit<=csr_dout[1:0]; // fp and bpfp bits
             if(cs_start) begin 
             state<=retrieve_data; 
             end else begin 
@@ -188,58 +192,60 @@ start_p3:  begin
             end
             end
 retrieve_data: begin
-                wm_address<=0;
-                wm_ce<=1'b1;
+            // retrieve data from input fifo and weight memory one cc before computation starts
+            //  wm_address<=0;
+            wm_ce<=1'b1;
             infifo_read<=1'b1;
-             //load_data<=1'b1;
-                state<=activate_enable_data_type;
-               end 
-activate_enable_data_type: begin
-                        // load local data
-                        wm_address<=0; // just for be sure
-                            wm_ce<=1'b1;
-                        infifo_read<=1'b1;
-                        //load_data<=1'b1;
-                        
-                            // skip for now TODO it should read the csr
-                            csr_ce<=1;
-                            csr_address<=0;
-                            state<=compute;
-                       
-                         end
+            enable_load_array<=1'b1;
+            read_weight_memory<=1'b1;
+            enable_load_activation_data<=1'b1;
+            enable_store_activation_data<=0;
+            enable_cnt<=0;
+            enable_cnt_weight<=0;
+            enable_down_cnt<=0;
+
+            // load counter of ls array 
+            ld_max_cnt<=1'b1;
+            ld_max_down_cnt<=1'b1;
+            ld_max_cnt_weight<=1'b1;
+            
+            state<=compute;
+            end 
 
 compute: begin
+
+            wm_ce<=1'b1;
+            infifo_read<=1'b1;
+            enable_load_array<=1'b1;
+            read_weight_memory<=1'b1;
+            enable_load_activation_data<=1'b1;
+            enable_store_activation_data<=0;
+            enable_cnt<=1'b1;
+            enable_cnt_weight<=1'b1;
+            enable_down_cnt<=1'b1;
+
+
             counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
-            if(counter_compute==(COLUMNS*(3+1))) begin 
-            state<=flush_out_fifo;
+            enable_deskew_ff<=1'b1; // output ff 
+            if(counter_compute==(COLUMNS+1)*3) begin 
+            state<=save_to_fifo;
             end else begin 
             state<=state;            
             end 
-             end
+            end
 
-stop: begin end // skip for the moment 
-flush_out_fifo: begin
-             enable_deskew_ff<=1'b1;
-             enable_mxu<=1'b1;  
-             counter_res<=counter_res+1;
-              // wait for the correct output
-              if(counter_res==(ROWS)) begin 
-              state<=save_to_fifo;
-              end else begin 
-              state<=state;
-              end
-             
-              
-             end
 save_to_fifo: begin
+                enable_down_cnt<=1'b1;
+                enable_load_array<=1'b1;
+                enable_store_activation_data<=1'b1; // maybe wrong 1cc od delay??
                 outfifo_write<=1'b1;      
                 state<=done;
             end              
 done: begin 
         if(!outfifo_is_full && !infifo_is_empty) begin
-      state<=idle;
+        state<=idle;
         cs_done<=1;
         end else begin
         state<=retrieve_data;
@@ -255,6 +261,36 @@ end
 
 end 
 
+always @(data_precision) begin 
+ // precision dependent
+            case(data_precision)
+                `INT8: begin 
+                    max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/8);
+                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/8);
+                    max_cnt_weight_from_cu= ROWS;
+                    end 
+                `INT16: begin 
+                    max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/16);
+                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/16);
+                    max_cnt_weight_from_cu= ROWS;
+                    end
+                `INT32: begin 
+                    max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/32);
+                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/32);
+                    max_cnt_weight_from_cu= ROWS;
+                    end
+                `INT64:begin 
+                    max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/64);
+                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/64);
+                    max_cnt_weight_from_cu= ROWS;
+                    end
+                default: begin 
+            max_cnt_from_cu=0;
+            max_down_cnt_from_cu=0;
+            max_cnt_weight_from_cu=0;
+            end
+            endcase // data_precision
+  end 
 // debug
 assign state_out=state;
 

@@ -37,6 +37,7 @@ module mxu_wrapper
         test_mode,
         input_data,
         weight,
+        enable_fp_unit,
         y
     );
   localparam integer max_width_columns=(max_data_width)*(K)-1;
@@ -49,6 +50,7 @@ module mxu_wrapper
   input enable_in_ff;
   input enable_out_ff;
   input enable_chain;
+  input [1:0] enable_fp_unit;
    
    wire [max_width_rows:0]y_mxu;
    wire [max_width_columns:0]data_input_mxu;
@@ -121,6 +123,7 @@ module mxu_wrapper
         .enable_chain(enable_chain),
         .reset(reset),
         .test_mode(test_mode),
+        .enable_fp_unit(enable_fp_unit),
         .input_data(data_input_mxu),
         .weight(weight),
         .y(y_mxu)

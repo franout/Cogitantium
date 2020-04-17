@@ -46,7 +46,7 @@ module mxu_mac
  
  `ifndef USE_SMAC       
  `ifdef VIVADO_MAC
-            assign SUBTRACT=1'b0;
+      /*      assign SUBTRACT=1'b0;
         wire [47:0]PCOUT ;
     // ip mac from vivado library
 
@@ -62,7 +62,16 @@ module mxu_mac
       .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
     );
     
-    
+    */
+    xbip_dsp48_macro_0 your_instance_name (
+  .CLK(clk),    // input wire CLK
+  .CE(ce),      // input wire CE
+  .SCLR(sclr),  // input wire SCLR
+  .A(data_input),        // input wire [7 : 0] A
+  .B(weight),        // input wire [7 : 0] B
+  .C(res_mac_p),        // input wire [7 : 0] C
+  .P(res_mac_n)        // output wire [7 : 0] P
+);
     
     // two delay registers because the input is retrieved from 
     //the data driving the internal ff of vivado mac 

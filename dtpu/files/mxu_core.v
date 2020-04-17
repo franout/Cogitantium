@@ -33,6 +33,7 @@ module mxu_core
     enable,
     enable_chain,
     test_mode,
+    enable_fp_unit,
     input_data,
     weight,
     y
@@ -49,7 +50,7 @@ module mxu_core
     input [max_width_rows:0]weight;
     output [max_width_rows:0]y;    
     input enable_chain;
-    
+    input [1:0] enable_fp_unit;
     // muxes for allowing different precision 
     wire  reset_mac;
    assign reset_mac=~reset;
@@ -60,7 +61,7 @@ module mxu_core
    wire [max_data_width-1:0]data_in_next_row[0:(M)*(K)];
    
         
-
+// (* use_dsp = "yes" *) in the module 
    
    generate
       for(i = 0; i < M; i = i+1)
@@ -83,7 +84,7 @@ module mxu_core
                 // check if it is the last column
                 
                 if(i==0) begin 
-                mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                 mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),

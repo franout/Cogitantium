@@ -8,6 +8,7 @@
 // if fp is activet the integer means fp precison (fp16,32,etc)
 // integer
 `define NO_COMPUTATION 4'h0
+`define NO_CHAIN 1'b0
 `define INT8 4'h1
 `define INT16 4'h3
 `define INT32 4'h7

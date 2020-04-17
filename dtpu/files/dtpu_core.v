@@ -148,6 +148,7 @@ module dtpu_core
       wire enable_cnt_weight;
       wire ld_max_cnt_weight;
       wire enable_chain;
+      wire [1:0]enable_fp_unit;
       
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
       wire [$clog2(ROWS):0]max_down_cnt_from_cu;
@@ -167,7 +168,7 @@ module dtpu_core
             .clk(clk),
             .enable(enable_i),
             .enable_chain(enable_chain),
-            
+            .enable_fp_unit(enable_fp_unit),
             .enable_in_ff(enable_enskew_ff_i),
             .enable_out_ff(enable_deskew_ff_i),
             .test_mode(test_mode),
@@ -198,7 +199,6 @@ module dtpu_core
         .csr_ce(csr_ce),
         .csr_reset(csr_reset),
         .csr_we(csr_we),
-        .wm_address(),
         .wm_ce(wm_ce),
         .wm_reset(wm_reset),
         .wm_we(wm_we),
@@ -214,7 +214,7 @@ module dtpu_core
         .state_out(state_i),
         .enable_deskew_ff(enable_deskew_ff_i),
         .enable_enskew_ff(enable_enskew_ff_i),
-
+        .enable_fp_unit(enable_fp_unit),
         .enable_chain(enable_chain),
         .enable_load_array(enable_load_array),
         .data_precision(data_precision),
