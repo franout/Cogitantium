@@ -99,7 +99,7 @@ localparam start_p1=4'h6;
 localparam start_p2=4'h7;
 localparam start_p3=4'h8;
 
-localparam [$clog2(1+3*(COLUMNS+1)+ROWS):0]MAX_COUNTER= 1+3*(COLUMNS+1)+ROWS-1;
+localparam [$clog2(1+3*(COLUMNS+1)+ROWS):0]MAX_COUNTER= 3*(COLUMNS+1)+ROWS*2;
 reg [3:0]state;
 reg [$clog2(1+3*(COLUMNS+1)+ROWS):0]counter_compute;
 reg [$clog2(ROWS):0]counter_res;
@@ -230,16 +230,15 @@ compute: begin
             enable_deskew_ff<=1'b1; // output ff 
             if(counter_compute==(MAX_COUNTER)) begin 
             state<=save_to_fifo;
+            enable_store_activation_data<=1'b1;
             end else begin 
             state<=state;            
             end 
              end
 
 save_to_fifo: begin
-
-            enable_load_array<=1'b1;            
-            enable_store_activation_data<=1'b1;
-            
+            enable_load_array<=1'b1;   
+            enable_store_activation_data<=1'b1;           
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b1;
             enable_down_cnt<=1'b1;

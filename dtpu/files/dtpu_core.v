@@ -1,3 +1,4 @@
+
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -120,7 +121,7 @@ module dtpu_core
       output wire cs_idle,
        
        // debug state
-      output reg[3:0]state
+      output wire[3:0]state
         );
     //////////////////////////////////////////
     ///************************************///
@@ -129,8 +130,6 @@ module dtpu_core
     ///************************************///
     //////////////////////////////////////////
             
-      wire [3:0]state_i;
-
       wire [ROWS*DATA_WIDTH_FIFO_OUT-1:0]weight_to_mxu;
       wire [COLUMNS*DATA_WIDTH_FIFO_IN-1:0] input_data_to_mxu;
       wire [ROWS*DATA_WIDTH_FIFO_OUT-1:0] output_data_from_mxu;
@@ -211,7 +210,7 @@ module dtpu_core
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state_out(state_i),
+        .state_out(state),
         .enable_deskew_ff(enable_deskew_ff_i),
         .enable_enskew_ff(enable_enskew_ff_i),
         .enable_fp_unit(enable_fp_unit),
@@ -291,10 +290,6 @@ module dtpu_core
 
   
   `endif
-  // state debug
-  always @(posedge(clk)) begin
-  state<= state_i; 
-  end 
 
   // same clock for bram interface
   assign csr_clk=clk;

@@ -8,9 +8,9 @@ module ls_unit
  input load_enable,
  input store_enable,
  input [data_width-1:0]data_load_input,
- output reg [data_width-1:0]data_load_output,
+ output wire [data_width-1:0]data_load_output,
  input [data_width-1:0]data_store_input,
- output reg [data_width-1:0] data_store_output
+ output wire [data_width-1:0] data_store_output
 );
 
 reg [data_width-1:0]data_load_i;
@@ -27,9 +27,9 @@ end else begin
     data_load_i<=data_load_i;
     end 
 end
-  data_load_output=data_load_i; 
+  
 end 
-
+assign data_load_output=data_load_i;
 /// store process
 always @(posedge(clk)) begin 
 if(!resetn) begin 
@@ -41,7 +41,6 @@ end else begin
     data_store_i<=data_store_i;
     end 
 end 
-    data_store_output=data_store_i;
 end 
-
+assign     data_store_output=data_store_i;
 endmodule

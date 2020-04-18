@@ -19,7 +19,7 @@ input outfifo_write,
 input read_weight_memory,
 
 input [data_in_width-1:0] input_data_from_fifo,
-output reg [data_in_width-1:0]data_to_fifo_out,
+output wire [data_in_width-1:0]data_to_fifo_out,
 
 input enable_load_activation_data,
 input enable_store_activation_data,
@@ -57,9 +57,9 @@ wire [data_in_width*COLUMNS-1:0]data_to_select_to_mxu;
 wire  [data_in_width*ROWS-1:0]data_to_save_from_compacter;
 wire [data_in_width*ROWS-1:0]data_weigth_to_select_to_mxu;
 
-reg [data_in_width-1:0]activation_data[0:31] ;
-reg [data_in_width-1:0]weight_data[0:31] ;
-wire [data_in_width-1:0]data_to_save[0:31];
+reg [data_in_width-1:0]activation_data[0:COLUMNS-1] ;
+reg [data_in_width-1:0]weight_data[0:ROWS-1] ;
+wire [data_in_width-1:0]data_to_save[0:COLUMNS-1];
 
 reg [address_leng_wm-1:0]address_out;
 reg [$clog2(ROWS)-1:0]counter_weight;
@@ -220,11 +220,11 @@ end
 end
 end 
 
-/// MODIFY FOR MORE THAN 32 COLUMNS
+///// CHANGE FOR MORE THAN 31 COLUMNS 
 /////////////////////////////////////////////
 ///////// INV - MUX for activation data /////
 ///////////////////////////////////////////// 
-always @(*) begin 
+always @(infifo_read,counter) begin 
 if(infifo_read) begin 
        case (counter)  
         0:activation_data[0]=input_data_from_fifo;
@@ -266,14 +266,14 @@ if(infifo_read) begin
        endcase
      
 end
-end 
-
+end
 ///////////////////////////////////////
 //////// MUX FOR OUT DATA /////////////
 ///////////////////////////////////////
-always @(*) begin 
+/*
+always @(outfifo_write,counter) begin 
 if(outfifo_write) begin 
-case (counter_out) 
+case (counter) 
 	 	0:  data_to_fifo_out=data_to_save[0];
        1:  data_to_fifo_out=data_to_save[1];
        2:  data_to_fifo_out=data_to_save[2];
@@ -310,7 +310,8 @@ case (counter_out)
 
 endcase
 end 
-end 
+end */
+assign data_to_fifo_out= outfifo_write ?  data_to_save[counter] : 64'd0;
 
 //////////////////////////////
 //////// COLUMNS /////////////
@@ -396,7 +397,8 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
  /////////////////////////////////////////////
  ///////// INV - MUX for weight data /////
  ///////////////////////////////////////////// 
- always @(*) begin 
+
+ always @(read_weight_memory,counter) begin 
  if(read_weight_memory) begin
         case (counter)  
         0:weight_data[0]=data_from_weight_memory;
@@ -439,7 +441,6 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
       
  end
  end 
- 
  
 
 

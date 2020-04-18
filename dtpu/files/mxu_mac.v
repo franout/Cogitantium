@@ -40,7 +40,7 @@ module mxu_mac
  
  `ifndef USE_SMAC       
  `ifdef VIVADO_MAC
-      /*      assign SUBTRACT=1'b0;
+            assign SUBTRACT=1'b0;
         wire [47:0]PCOUT ;
     // ip mac from vivado library
 
@@ -48,26 +48,26 @@ module mxu_mac
       .CLK(clk),            // input wire CLK
           .CE(ce),              // input wire CE
           .SCLR(sclr),          // input wire SCLR
-          .A(data_input),                // input wire [3 : 0] A
-          .B(weight),                // input wire [3 : 0] B
-          .C(res_mac_p),                // input wire [3 : 0] C
+          .A(data_input[7:0]),                // input wire [3 : 0] A
+          .B(weight[7:0]),                // input wire [3 : 0] B
+          .C(res_mac_p[7:0]),                // input wire [3 : 0] C
       .SUBTRACT(SUBTRACT),  // input wire SUBTRACT
-      .P(res_mac_n),                // output wire [3 : 0] P
+      .P(res_mac_n[7:0]),                // output wire [3 : 0] P
       .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
     );
     
-    */
+    
     // (* use_dsp48 = "yes" *) in the module 
-
+/*
     xbip_dsp48_macro_0 vivado_mac (
   .CLK(clk),    // input wire CLK
   .CE(ce),      // input wire CE
   .SCLR(sclr),  // input wire SCLR
-  .A(data_input),        // input wire [7 : 0] A
-  .B(weight),        // input wire [7 : 0] B
-  .C(res_mac_p),        // input wire [7 : 0] C
-  .P(res_mac_n)        // output wire [7 : 0] P
-);
+  .A(data_input[7:0]),        // input wire [7 : 0] A
+  .B(weight[7:0]),        // input wire [7 : 0] B
+  .C(res_mac_p[7:0]),        // input wire [7 : 0] C
+  .P(res_mac_n[7:0])        // output wire [7 : 0] P
+);*/
     
     // two delay registers because the input is retrieved from 
     //the data driving the internal ff of vivado mac 
@@ -76,7 +76,7 @@ module mxu_mac
         .reset(~sclr),
         .test_mode(test_mode),
         .enable(ce),
-        .d(data_input),
+        .d({56'd0,data_input[7:0]}),
          .q(q1));
          
          register  #(.N(bit_width)) delay_reg2 (
@@ -86,7 +86,7 @@ module mxu_mac
                  .enable(ce),
                  .d(q1),
                   .q(q));   
- assign data_input_next_row=q;
+ assign data_input_next_row={ 56'd0, q[7:0]};
     // data to next mac are available after 3 cc
        /*counter  #(.MAX_CNT(3)) count_enable_next_max (.clk(clk),.enable(ce),.reset(sclr),.tc(tc));
  

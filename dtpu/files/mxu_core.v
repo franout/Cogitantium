@@ -72,11 +72,13 @@ module mxu_core
             `ifdef  VIVADO_MAC
             mult_gen_0 mult_i (
               .CLK(clk),    // input wire CLK
-              .A(input_data[(j+1)*max_data_width-1:j*max_data_width]),        // input wire [3 : 0] A
-              .B(weight[(i+1)*(max_data_width)-1:i*max_data_width]),        // input wire [3 : 0] B
+              .A(input_data[(j+1)*max_data_width-56-1:j*max_data_width]),        // input wire [3 : 0] A
+              //.A(input_data[(j+1)*max_data_width-1:j*max_data_width]),        // input wire [3 : 0] A
+              .B(weight[(i+1)*(max_data_width)-1-56:i*max_data_width]),        // input wire [3 : 0] B
+              //.B(weight[(i+1)*(max_data_width)-1:i*max_data_width]),        // input wire [3 : 0] B
               .CE(enable),      // input wire CE
               .SCLR(reset_mac),  // input wire SCLR
-              .P(res_mac_next[i*K+j])        // output wire [3 : 0] P
+              .P(res_mac_next[i*K+j][7:0])        // output wire [3 : 0] P
             );
             `endif
               `ifndef  VIVADO_MAC
@@ -87,7 +89,7 @@ module mxu_core
                 // check if it is the last column
                 
                 if(i==0) begin 
-                 (*use_dsp48="yes"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                 mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
@@ -96,7 +98,7 @@ module mxu_core
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                 end else begin
                 
-                (*use_dsp48="yes"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                     .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                     .res_mac_p(res_mac_next[i*K+j-1]),
@@ -112,7 +114,7 @@ module mxu_core
             
              if(i==0) begin 
             
-                         (*use_dsp48="no"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                         mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                            .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                           .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                           .res_mac_p(res_mac_next[i*K+j-1]),
@@ -121,9 +123,11 @@ module mxu_core
                          .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
             end else begin
             
-               (*use_dsp48="yes"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+               mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                   .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                   .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                   .weight(weight[(i+1)*(max_data_width
+
+                    )-1:i*max_data_width]),
                    .enable_fp_unit(enable_fp_unit),
                    .res_mac_p(res_mac_next[i*K+j-1]),
                    .res_mac_n(res_mac_next[i*K+j]),
