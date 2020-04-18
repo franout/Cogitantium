@@ -94,13 +94,14 @@ localparam idle = 4'h1;
 localparam compute = 4'h2;
 localparam done = 4'h3;
 localparam retrieve_data=4'h4;
-localparam start_p1=4'h8;
-localparam start_p2=4'h9;
-localparam start_p3=4'hA;
-localparam save_to_fifo=4'hB;
+localparam save_to_fifo=4'h5;
+localparam start_p1=4'h6;
+localparam start_p2=4'h7;
+localparam start_p3=4'h8;
 
+localparam [$clog2(1+3*(COLUMNS+1)+ROWS):0]MAX_COUNTER= 1+3*(COLUMNS+1)+ROWS-1;
 reg [3:0]state;
-reg [$clog2(COLUMNS*(3+1)):0]counter_compute;
+reg [$clog2(1+3*(COLUMNS+1)+ROWS):0]counter_compute;
 reg [$clog2(ROWS):0]counter_res;
 
 
@@ -193,13 +194,12 @@ start_p3:  begin
             end
 retrieve_data: begin
             // retrieve data from input fifo and weight memory one cc before computation starts
-            //  wm_address<=0;
             wm_ce<=1'b1;
             infifo_read<=1'b1;
             enable_load_array<=1'b1;
             read_weight_memory<=1'b1;
             enable_load_activation_data<=1'b1;
-            enable_store_activation_data<=0;
+            enable_store_activation_data<=1'b0;
             enable_cnt<=0;
             enable_cnt_weight<=0;
             enable_down_cnt<=0;
@@ -224,31 +224,38 @@ compute: begin
             enable_cnt_weight<=1'b1;
             enable_down_cnt<=1'b1;
 
-
             counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
             enable_deskew_ff<=1'b1; // output ff 
-            if(counter_compute==(COLUMNS+1)*3) begin 
+            if(counter_compute==(MAX_COUNTER)) begin 
             state<=save_to_fifo;
             end else begin 
             state<=state;            
             end 
-            end
+             end
 
 save_to_fifo: begin
-                enable_down_cnt<=1'b1;
-                enable_load_array<=1'b1;
-                enable_store_activation_data<=1'b1; // maybe wrong 1cc od delay??
-                outfifo_write<=1'b1;      
-                state<=done;
+
+            enable_load_array<=1'b1;            
+            enable_store_activation_data<=1'b1;
+            
+            enable_cnt<=1'b1;
+            enable_cnt_weight<=1'b1;
+            enable_down_cnt<=1'b1;
+
+            enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff 
+            outfifo_write<=1'b1;      
+            state<=done;
             end              
 done: begin 
         if(!outfifo_is_full && !infifo_is_empty) begin
         state<=idle;
         cs_done<=1;
         end else begin
-        state<=retrieve_data;
+        state<=compute;
         end
       end          
 default: begin 

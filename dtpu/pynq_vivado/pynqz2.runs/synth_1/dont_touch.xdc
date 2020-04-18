@@ -3,8 +3,8 @@
 
 # XDC: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
 
-# IP: ip/vivado_mac/vivado_mac.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==vivado_mac || ORIG_REF_NAME==vivado_mac} -quiet] -quiet
+# IP: ip/xbip_dsp48_macro_0_2/xbip_dsp48_macro_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==xbip_dsp48_macro_0 || ORIG_REF_NAME==xbip_dsp48_macro_0} -quiet] -quiet
 
 # IP: ip/mult_gen_0/mult_gen_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==mult_gen_0 || ORIG_REF_NAME==mult_gen_0} -quiet] -quiet
@@ -27,8 +27,8 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_util_vec
 # IP: bd/pynqz2/ip/pynqz2_dtpu_core_0_0/pynqz2_dtpu_core_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_dtpu_core_0_0 || ORIG_REF_NAME==pynqz2_dtpu_core_0_0} -quiet] -quiet
 
-# IP: ip/vivado_mac/vivado_mac.xci
-#dup# set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==vivado_mac || ORIG_REF_NAME==vivado_mac} -quiet] -quiet
+# IP: ip/xbip_dsp48_macro_0_2/xbip_dsp48_macro_0.xci
+#dup# set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==xbip_dsp48_macro_0 || ORIG_REF_NAME==xbip_dsp48_macro_0} -quiet] -quiet
 
 # IP: ip/mult_gen_0/mult_gen_0.xci
 #dup# set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==mult_gen_0 || ORIG_REF_NAME==mult_gen_0} -quiet] -quiet
@@ -195,6 +195,9 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_monitor_
 # IP: bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0.xci
 #dup# set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_monitor_0 || ORIG_REF_NAME==pynqz2_monitor_0} -quiet] -quiet
 
+# IP: bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0.xci
+#dup# set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_monitor_0 || ORIG_REF_NAME==pynqz2_monitor_0} -quiet] -quiet
+
 # IP: bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==pynqz2_auto_pc_0 || ORIG_REF_NAME==pynqz2_auto_pc_0} -quiet] -quiet
 
@@ -297,9 +300,9 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 
 # XDC: bd/pynqz2/ip/pynqz2_smartconnect_0_0/ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0_ooc.xdc
+# XDC: bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0_ooc.xdc
 
-# XDC: bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0.xdc
+# XDC: bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==pynqz2_monitor_0 || ORIG_REF_NAME==pynqz2_monitor_0} -quiet] {/inst } ]/inst ] -quiet] -quiet
 
 # XDC: bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc

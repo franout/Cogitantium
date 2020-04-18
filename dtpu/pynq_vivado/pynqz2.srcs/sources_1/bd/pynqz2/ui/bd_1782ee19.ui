@@ -31,16 +31,16 @@ preplace netloc util_vector_logic_2_Res 1 0 2 -20 210 730
 preplace netloc dtpu_core_state 1 1 2 NJ 370 1170J
 preplace netloc axis_accelerator_ada_aresetn 1 0 3 -10 10 NJ 10 1150
 preplace netloc Op1_0_1 1 0 1 -20J 10n
-preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 230 NJ 230 1140
-preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 310n
 preplace netloc dtpu_coro_output_fifo 1 1 1 730 350n
+preplace netloc dtpu_coro_input_fifo 1 1 1 760 330n
+preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 230 NJ 230 1140
+preplace netloc Conn5 1 0 2 -30J 50 790J
+preplace netloc Conn3 1 0 2 -40J 40 800J
+preplace netloc Conn4 1 0 2 -50J 20 810J
 preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 290n
 preplace netloc Conn1 1 2 1 1160J 180n
-preplace netloc Conn5 1 0 2 -30J 50 790J
 preplace netloc Conn2 1 0 2 -60J 30 820J
-preplace netloc Conn4 1 0 2 -50J 20 810J
-preplace netloc Conn3 1 0 2 -40J 40 800J
-preplace netloc dtpu_coro_input_fifo 1 1 1 760 330n
+preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 310n
 levelinfo -pg 1 -80 530 990 1200
 pagesize -pg 1 -db -bbox -sgen -230 -10 1360 1270
 "

@@ -145,12 +145,10 @@ localparam idle = 4'h1;
 localparam compute = 4'h2;
 localparam done = 4'h3;
 localparam retrieve_data=4'h4;
-localparam stop=4'h6;
-localparam flush_out_fifo=4'h7;
-localparam start_p1=4'h8;
-localparam start_p2=4'h9;
-localparam start_p3=4'hA;
-localparam save_to_fifo=4'hB;
+localparam save_to_fifo=4'h5;
+localparam start_p1=4'h6;
+localparam start_p2=4'h7;
+localparam start_p3=4'h8;
 
 reg [3:0]data_precision_tb;
 reg [3:0]data_precision_fp_tb;
@@ -261,9 +259,11 @@ reg [3:0]data_precision_fp_tb;
 
               outfifo_is_full=1'b0;
               infifo_is_empty=1'b0;
-
-
-              #clk_period;
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
               if(state_out!=save_to_fifo) begin 
                 $display("not saving to fifo correccly",);
                 OK=0;$finish();
@@ -277,13 +277,450 @@ reg [3:0]data_precision_fp_tb;
                 $finish();
               end
 
+                #clk_period;
+                if(state_out!=idle) begin 
+                $display("after execution cu not in idle");
+                OK=0; $finish();
+                end 
               $display("Integer 16 bit computation");
+              
+              data_precision_tb=4'h3;
+              cs_start=1'b1;
+              glb_enable=1'b1;
+              #clk_period;
+              if(state_out!=start_p1)begin
+                $display("core not started no phase 1");
+                OK=0; $finish();
+              end 
+
+              $display("check the address of csr");
+              if(csr_address!=`A_ARITHMETIC_PRECISION)begin 
+                $display("not retrieving data from csr -> data precision ");
+              end 
+
+              cs_start=1'b1;
+              #clk_period;
+              if(state_out!=start_p2)begin
+                $display("core not started no phase 2");
+                OK=0; $finish();
+              end 
+              #clk_period;
+              if(data_precision!=`INT16) begin 
+                $display("not the correct precision of int 16");
+                OK=0; $finish();
+              end 
+              if(csr_address!=`A_FP_MODE) begin 
+                $display("Control unit is not checking the fp csr ");
+                OK=0;$finish();
+              end
+               
+              cs_start=1'b1;
+              if(state_out!=start_p3 && cs_ready!=0)begin
+                $display("core not started no phase 3");
+                OK=0; $finish();
+              end 
+                
+              $display("getting the first data from weight memory");
+              #clk_period;
+              if(state_out!=retrieve_data) begin 
+                $display("not retrieving first chunk of data");
+                OK=0;$finish();
+              end 
+
+
+              $display("computing mxu");
+              #clk_period;
+              if(state_out!=compute)begin
+                $display("mxu is not computing");
+                OK=0;
+                $finish();
+              end 
+
+
+              outfifo_is_full=1'b0;
+              infifo_is_empty=1'b0;
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
+              if(state_out!=save_to_fifo) begin 
+                $display("not saving to fifo correccly",);
+                OK=0;$finish();
+              end
+
+              #clk_period;
+              $display("done phase");
+              if(state_out!=done && cs_done!=1'b1) begin 
+                $display("error in asserting done signal");
+                OK=0;
+                $finish();
+              end
+
               $display("Integer 32 bit computation");
+                #clk_period;
+                if(state_out!=idle) begin 
+                $display("after execution cu not in idle");
+                OK=0; $finish();
+                end 
+            
+              
+              data_precision_tb=4'h7;
+              cs_start=1'b1;
+              glb_enable=1'b1;
+              #clk_period;
+              if(state_out!=start_p1)begin
+                $display("core not started no phase 1");
+                OK=0; $finish();
+              end 
+
+              $display("check the address of csr");
+              if(csr_address!=`A_ARITHMETIC_PRECISION)begin 
+                $display("not retrieving data from csr -> data precision ");
+              end 
+
+              cs_start=1'b1;
+              #clk_period;
+              if(state_out!=start_p2)begin
+                $display("core not started no phase 2");
+                OK=0; $finish();
+              end 
+              #clk_period;
+              if(data_precision!=`INT32) begin 
+                $display("not the correct precision of int 32");
+                OK=0; $finish();
+              end 
+              if(csr_address!=`A_FP_MODE) begin 
+                $display("Control unit is not checking the fp csr ");
+                OK=0;$finish();
+              end
+               
+              cs_start=1'b1;
+              if(state_out!=start_p3 && cs_ready!=0)begin
+                $display("core not started no phase 3");
+                OK=0; $finish();
+              end 
+                
+              $display("getting the first data from weight memory");
+              #clk_period;
+              if(state_out!=retrieve_data) begin 
+                $display("not retrieving first chunk of data");
+                OK=0;$finish();
+              end 
+
+
+              $display("computing mxu");
+              #clk_period;
+              if(state_out!=compute)begin
+                $display("mxu is not computing");
+                OK=0;
+                $finish();
+              end 
+
+
+              outfifo_is_full=1'b0;
+              infifo_is_empty=1'b0;
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
+              if(state_out!=save_to_fifo) begin 
+                $display("not saving to fifo correccly",);
+                OK=0;$finish();
+              end
+
+              #clk_period;
+              $display("done phase");
+              if(state_out!=done && cs_done!=1'b1) begin 
+                $display("error in asserting done signal");
+                OK=0;
+                $finish();
+              end
+
               $display("Integer 64 bit computation");
+                #clk_period;
+                if(state_out!=idle) begin 
+                $display("after execution cu not in idle");
+                OK=0; $finish();
+                end 
+            
+              
+              data_precision_tb=4'hf;
+              cs_start=1'b1;
+              glb_enable=1'b1;
+              #clk_period;
+              if(state_out!=start_p1)begin
+                $display("core not started no phase 1");
+                OK=0; $finish();
+              end 
+
+              $display("check the address of csr");
+              if(csr_address!=`A_ARITHMETIC_PRECISION)begin 
+                $display("not retrieving data from csr -> data precision ");
+              end 
+
+              cs_start=1'b1;
+              #clk_period;
+              if(state_out!=start_p2)begin
+                $display("core not started no phase 2");
+                OK=0; $finish();
+              end 
+              #clk_period;
+              if(data_precision!=`INT64) begin 
+                $display("not the correct precision of int 64");
+                OK=0; $finish();
+              end 
+              if(csr_address!=`A_FP_MODE) begin 
+                $display("Control unit is not checking the fp csr ");
+                OK=0;$finish();
+              end
+               
+              cs_start=1'b1;
+              if(state_out!=start_p3 && cs_ready!=0)begin
+                $display("core not started no phase 3");
+                OK=0; $finish();
+              end 
+                
+              $display("getting the first data from weight memory");
+              #clk_period;
+              if(state_out!=retrieve_data) begin 
+                $display("not retrieving first chunk of data");
+                OK=0;$finish();
+              end 
+
+
+              $display("computing mxu");
+              #clk_period;
+              if(state_out!=compute)begin
+                $display("mxu is not computing");
+                OK=0;
+                $finish();
+              end 
+
+
+              outfifo_is_full=1'b0;
+              infifo_is_empty=1'b0;
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
+              if(state_out!=save_to_fifo) begin 
+                $display("not saving to fifo correccly",);
+                OK=0;$finish();
+              end
+
+              #clk_period;
+              $display("done phase");
+              if(state_out!=done && cs_done!=1'b1) begin 
+                $display("error in asserting done signal");
+                OK=0;
+                $finish();
+              end
 
               $display("Floating poitn computation");
+               #clk_period;
+                if(state_out!=idle) begin 
+                $display("after execution cu not in idle");
+                OK=0; $finish();
+                end 
+            
+              
+            data_precision_fp_tb=4'h3;
+              data_precision_tb=4'h7;
+              cs_start=1'b1;
+              glb_enable=1'b1;
+              #clk_period;
+              if(state_out!=start_p1)begin
+                $display("core not started no phase 1");
+                OK=0; $finish();
+              end 
+
+              $display("check the address of csr");
+              if(csr_address!=`A_ARITHMETIC_PRECISION)begin 
+                $display("not retrieving data from csr -> data precision ");
+              end 
+
+              cs_start=1'b1;
+              #clk_period;
+              if(state_out!=start_p2)begin
+                $display("core not started no phase 2");
+                OK=0; $finish();
+              end 
+              #clk_period;
+              if(data_precision!=`FP32) begin 
+                $display("not the correct precision of int 8");
+                OK=0; $finish();
+              end 
+              if(csr_address!=`A_FP_MODE) begin 
+                $display("Control unit is not checking the fp csr ");
+                OK=0;$finish();
+              end
+               
+              cs_start=1'b1;
+              if(state_out!=start_p3 && cs_ready!=0)begin
+                $display("core not started no phase 3");
+                OK=0; $finish();
+              end 
+                
+              $display("getting the first data from weight memory");
+              #clk_period;
+              if(state_out!=retrieve_data) begin 
+                $display("not retrieving first chunk of data");
+                OK=0;$finish();
+              end 
 
 
+              $display("computing mxu");
+              #clk_period;
+              if(state_out!=compute)begin
+                $display("mxu is not computing");
+                OK=0;
+                $finish();
+              end 
+
+
+              outfifo_is_full=1'b0;
+              infifo_is_empty=1'b0;
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
+              if(state_out!=save_to_fifo) begin 
+                $display("not saving to fifo correccly",);
+                OK=0;$finish();
+              end
+
+              #clk_period;
+              $display("done phase");
+              if(state_out!=done && cs_done!=1'b1) begin 
+                $display("error in asserting done signal");
+                OK=0;
+                $finish();
+              end
+
+              
+              
+              $display("TEST CONTINOUS RUN ON 8 BIT");
+              
+              
+              #clk_period;
+                if(state_out!=idle) begin 
+                $display("after execution cu not in idle");
+                OK=0; $finish();
+                end 
+            
+              
+              outfifo_is_full=1'b1;
+              infifo_is_empty=1'b1;   
+            data_precision_fp_tb=4'h0;
+              data_precision_tb=4'h1;
+              cs_start=1'b1;
+              glb_enable=1'b1;
+              #clk_period;
+              if(state_out!=start_p1)begin
+                $display("core not started no phase 1");
+                OK=0; $finish();
+              end 
+
+              $display("check the address of csr");
+              if(csr_address!=`A_ARITHMETIC_PRECISION)begin 
+                $display("not retrieving data from csr -> data precision ");
+              end 
+
+              cs_start=1'b1;
+              #clk_period;
+              if(state_out!=start_p2)begin
+                $display("core not started no phase 2");
+                OK=0; $finish();
+              end 
+              #clk_period;
+              if(data_precision!=`INT8) begin 
+                $display("not the correct precision of int 8");
+                OK=0; $finish();
+              end 
+              if(csr_address!=`A_FP_MODE) begin 
+                $display("Control unit is not checking the fp csr ");
+                OK=0;$finish();
+              end
+               
+              cs_start=1'b1;
+              if(state_out!=start_p3 && cs_ready!=0)begin
+                $display("core not started no phase 3");
+                OK=0; $finish();
+              end 
+                
+              $display("getting the first data from weight memory");
+              #clk_period;
+              if(state_out!=retrieve_data) begin 
+                $display("not retrieving first chunk of data");
+                OK=0;$finish();
+              end 
+
+
+              $display("computing mxu");
+              #clk_period;
+              if(state_out!=compute)begin
+                $display("mxu is not computing");
+                OK=0;
+                $finish();
+              end 
+
+
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
+              if(state_out!=save_to_fifo) begin 
+                $display("not saving to fifo correccly",);
+                OK=0;$finish();
+              end
+                
+              #clk_period;
+              
+              $display("done phase");
+              if(state_out!=done && cs_done!=1'b0) begin 
+                $display("error in going back done state");
+                OK=0;
+                $finish();
+              end
+                
+            
+
+                $display("computing mxu second iteration");
+              #clk_period;
+              if(state_out!=compute)begin
+                $display("mxu is not computing second iteration ");
+                OK=0;
+                $finish();
+              end 
+
+
+              outfifo_is_full=1'b0;
+              infifo_is_empty=1'b0;            
+                
+                // DELAY 
+               for(k=0;k< 3*9+8 +1;k=k+1) begin 
+               #clk_period;
+               end 
+               
+              if(state_out!=save_to_fifo) begin 
+                $display("not saving to fifo correccly for second iteration ",);
+                OK=0;$finish();
+              end
+                
+              #clk_period;
+              
+              $display("done phase");
+              if(state_out!=done && cs_done!=1'b1) begin 
+                $display("error done signal not asserted in second iteration");
+                OK=0;
+                $finish();
+              end
+            
               if(OK!=1)begin
                 $display("control unit does not pass the testbench");
                 

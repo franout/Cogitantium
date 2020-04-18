@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param chipscope.maxJobs 2
 set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
 
@@ -33,7 +32,6 @@ set_property target_language Verilog [current_project]
 set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
 set_property ip_output_repo /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-set_property generic VIVADO_MAC=1 [current_fileset]
 read_verilog {
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/csr_definition.vh
@@ -51,7 +49,7 @@ read_verilog -library xil_defaultlib {
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v
 }
-read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/vivado_mac/vivado_mac.xci
+read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/xbip_dsp48_macro_0_2/xbip_dsp48_macro_0.xci
 
 read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
 
@@ -98,8 +96,8 @@ set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/20
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_36/bd_7d7d_m00wn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_37/bd_7d7d_m00bn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
 

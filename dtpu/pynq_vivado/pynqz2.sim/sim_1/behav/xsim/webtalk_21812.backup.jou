@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Thu Apr 16 16:09:55 2020
+# Process ID: 21812
+# Current directory: D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.sim/sim_1/behav/xsim/xsim.dir/tb_ls_array_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source D:/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.sim/sim_1/behav/xsim/xsim.dir/tb_ls_array_behav/webtalk/xsim_webtalk.tcl -notrace

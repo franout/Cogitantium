@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Thu Apr 16 19:55:46 2020
-# Process ID: 25902
+# Start of session at: Sat Apr 18 13:08:42 2020
+# Process ID: 24457
 # Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1
 # Command line: vivado -log pynqz2_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynqz2_wrapper.tcl
 # Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.vds
@@ -16,6 +16,14 @@ CRITICAL WARNING: [IP_Flow 19-183] Failed to load IP instance 'pynqz2_monitor_0'
 CRITICAL WARNING: [IP_Flow 19-1835] Failed to recreate IP instance 'pynqz2_monitor_0'. Error reading project file(s).
 WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:order' : Invalid value format for this type
 CRITICAL WARNING: [IP_Flow 19-182] Failed to load BOM file '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_4/pynqz2_monitor_0.xml'.
+CRITICAL WARNING: [IP_Flow 19-183] Failed to load IP instance 'pynqz2_monitor_0'.
+CRITICAL WARNING: [IP_Flow 19-1835] Failed to recreate IP instance 'pynqz2_monitor_0'. Error reading project file(s).
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:order' : Invalid value format for this type
+CRITICAL WARNING: [IP_Flow 19-182] Failed to load BOM file '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_5/pynqz2_monitor_0.xml'.
+CRITICAL WARNING: [IP_Flow 19-183] Failed to load IP instance 'pynqz2_monitor_0'.
+CRITICAL WARNING: [IP_Flow 19-1835] Failed to recreate IP instance 'pynqz2_monitor_0'. Error reading project file(s).
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:order' : Invalid value format for this type
+CRITICAL WARNING: [IP_Flow 19-182] Failed to load BOM file '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0.xml'.
 CRITICAL WARNING: [IP_Flow 19-183] Failed to load IP instance 'pynqz2_monitor_0'.
 CRITICAL WARNING: [IP_Flow 19-1835] Failed to recreate IP instance 'pynqz2_monitor_0'. Error reading project file(s).
 INFO: [IP_Flow 19-5107] Inferred bus interface 'areset' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
@@ -45,18 +53,8 @@ WARNING: [IP_Flow 19-3153] Bus Interface 'clk': ASSOCIATED_BUSIF bus parameter i
 WARNING: [IP_Flow 19-3155] Bus Interface 'clk': ASSOCIATED_RESET port 'areset' does not exist.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1674.551 ; gain = 200.098 ; free physical = 6719 ; free virtual = 13362
-Command: read_checkpoint -auto_incremental -incremental /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/utils_1/imports/synth_1/pynqz2_wrapper.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/utils_1/imports/synth_1/pynqz2_wrapper.dcp for incremental synthesis
-INFO: [Vivado 12-7989] Please ensure there are no constraint changes
-Command: synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -retiming
-Starting synth_design
-Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
-INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
-INFO: [Device 21-403] Loading part xc7z020clg400-1
-WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis
-INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 26039 
----------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:28 . Memory (MB): peak = 1965.656 ; gain = 204.715 ; free physical = 6141 ; free virtual = 12790
----------------------------------------------------------------------------------
+add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1682.555 ; gain = 208.102 ; free physical = 3259 ; free virtual = 11779
+WARNING: [Vivado 12-818] No files matched '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0_ooc.xdc'
+ERROR: [Common 17-55] 'set_property' expects at least one object.
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+INFO: [Common 17-206] Exiting Vivado at Sat Apr 18 13:08:59 2020...

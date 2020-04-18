@@ -1,31 +1,39 @@
 Vivado Simulator 2019.2
 Time resolution is 1 ps
 global reset
-CHECK of load store units of activation data
-Check of load store unit + filter select and compacter for activation data and output data
-global reset
-precision 8bit
-enable and load max value for coutners
-read from fifo and store in the internal register of ls units
-wait for some time for the mxu, check the correct generation of weight address (incremental)
-check the page increment
-outfifo read
-precision 16bit
-enable and load max value for coutners
-read from fifo and store in the internal register of ls units
-wait for some time for the mxu, check the correct generation of weight address (incremental)
-check the page increment
-outfifo read
-precision 32bit
-enable and load max value for coutners
-read from fifo and store in the internal register of ls units
-wait for some time for the mxu, check the correct generation of weight address (incremental)
-check the page increment
-outfifo read
-precision 64bit
-enable and load max value for coutners
-read from fifo and store in the internal register of ls units
-wait for some time for the mxu, check the correct generation of weight address (incremental)
-check the page increment
-outfifo read
-$finish called at time : 890 ns : File "D:/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_ls_array.v" Line 566
+stimulus are starting -> start from the accelerator
+Integer 8 bit computation
+check the address of csr
+getting the first data from weight memory
+computing mxu
+done phase
+Stopped at time : 450 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v" Line 254
+Integer 16 bit computation
+check the address of csr
+getting the first data from weight memory
+computing mxu
+done phase
+Integer 32 bit computation
+check the address of csr
+getting the first data from weight memory
+computing mxu
+done phase
+Integer 64 bit computation
+check the address of csr
+getting the first data from weight memory
+computing mxu
+done phase
+Floating poitn computation
+check the address of csr
+getting the first data from weight memory
+computing mxu
+done phase
+TEST CONTINOUS RUN ON 8 BIT
+check the address of csr
+getting the first data from weight memory
+computing mxu
+done phase
+computing mxu second iteration
+done phase
+test is passed
+$finish called at time : 2980 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_cu.v" Line 730

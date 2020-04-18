@@ -61,7 +61,6 @@ module mxu_core
    wire [max_data_width-1:0]data_in_next_row[0:(M)*(K)];
    
         
-// (* use_dsp = "yes" *) in the module 
    
    generate
       for(i = 0; i < M; i = i+1)
@@ -80,22 +79,28 @@ module mxu_core
               .P(res_mac_next[i*K+j])        // output wire [3 : 0] P
             );
             `endif
+              `ifndef  VIVADO_MAC
+              // smul cascade of dsp
+              `endif
+
              end else if ( j==K-1) begin 
                 // check if it is the last column
                 
                 if(i==0) begin 
-                 mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                 (*use_dsp48="yes"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
+                                     .enable_fp_unit(enable_fp_unit),
                                      .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                 end else begin
                 
-                mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                (*use_dsp48="yes"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                     .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                     .res_mac_p(res_mac_next[i*K+j-1]),
+                    .enable_fp_unit(enable_fp_unit),
                     .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
                     .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                 
@@ -107,17 +112,19 @@ module mxu_core
             
              if(i==0) begin 
             
-                         mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                         (*use_dsp48="no"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                            .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                           .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                           .res_mac_p(res_mac_next[i*K+j-1]),
+                          .enable_fp_unit(enable_fp_unit),
                           .res_mac_n(res_mac_next[i*K+j]),
                          .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
             end else begin
             
-               mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+               (*use_dsp48="yes"*)mxu_mac #(.bit_width(max_data_width)) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                   .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                    .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                   .enable_fp_unit(enable_fp_unit),
                    .res_mac_p(res_mac_next[i*K+j-1]),
                    .res_mac_n(res_mac_next[i*K+j]),
                     .data_input_next_row(data_in_next_row[i*K+j]));

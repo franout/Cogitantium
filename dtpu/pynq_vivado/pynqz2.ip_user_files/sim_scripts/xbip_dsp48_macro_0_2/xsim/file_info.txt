@@ -1,0 +1,2 @@
+xbip_dsp48_macro_0.vhd,vhdl,xil_defaultlib,../../../ip/xbip_dsp48_macro_0_2/sim/xbip_dsp48_macro_0.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

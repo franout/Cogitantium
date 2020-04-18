@@ -21,24 +21,18 @@
 `include "precision_def.vh"
 module mxu_mac
 #(parameter bit_width=4)(
-     clk,
-    ce,
-    sclr,
-    data_input,
-    weight,
-    res_mac_p, 
-    res_mac_n,
-    data_input_next_row
+     
+    input clk,
+    input ce,
+    input sclr,
+    input [1:0] enable_fp_unit,
+    input [bit_width-1:0]data_input,
+    input [bit_width-1:0]weight,
+    input [bit_width-1:0]res_mac_p,
+    output wire [bit_width-1:0]res_mac_n,
+    output  wire [bit_width-1:0]data_input_next_row
     );
  
-    input clk;
-    input     ce;
-        input sclr;
-        input [bit_width-1:0]data_input;
-        input [bit_width-1:0]weight;
-        input [bit_width-1:0]res_mac_p; 
-        output wire [bit_width-1:0]res_mac_n;
-        output  wire [bit_width-1:0]data_input_next_row;
         wire [bit_width-1:0]q;
         wire [bit_width-1:0]q1;
         wire tc;
@@ -63,7 +57,9 @@ module mxu_mac
     );
     
     */
-    xbip_dsp48_macro_0 your_instance_name (
+    // (* use_dsp48 = "yes" *) in the module 
+
+    xbip_dsp48_macro_0 vivado_mac (
   .CLK(clk),    // input wire CLK
   .CE(ce),      // input wire CE
   .SCLR(sclr),  // input wire SCLR

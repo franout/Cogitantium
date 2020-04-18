@@ -15,6 +15,11 @@
 `define INT64 4'hf
  
 //FLOATING POINT
+`define FP8 `INT8
+`define FP16 `INT16
+`define FP32 `INT32
+`define FP64 `INT64
+
 `define FP 4'h01
 `define BFPP16 4'h03
 // on the same 8 bit of fp in csr there is also a possible custom rounding error 

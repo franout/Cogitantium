@@ -226,10 +226,10 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
      return 1
    }
     set_property -dict [ list \
-   CONFIG.COLUMNS {8} \
+   CONFIG.COLUMNS {16} \
    CONFIG.DATA_WIDTH_CSR {8} \
    CONFIG.DATA_WIDTH_MAC {64} \
-   CONFIG.ROWS {8} \
+   CONFIG.ROWS {16} \
    CONFIG.SIZE_WMEMORY {2048} \
  ] $dtpu_core
 
