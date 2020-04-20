@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Sat Apr 18 13:08:30 2020
+//Date        : Mon Apr 20 19:20:06 2020
 //Host        : fra running 64-bit Ubuntu 18.04.4 LTS
 //Command     : generate_target pynqz2.bd
 //Design      : pynqz2
@@ -49,6 +49,7 @@ module dtpu_imp_WM72SM
     S_AXI_wvalid,
     axi_aclk,
     clk,
+    d_out_0,
     enable,
     interrupt_dtpu,
     resetn,
@@ -94,6 +95,7 @@ module dtpu_imp_WM72SM
   input [0:0]S_AXI_wvalid;
   input axi_aclk;
   input clk;
+  output [3:0]d_out_0;
   input enable;
   output interrupt_dtpu;
   input [0:0]resetn;
@@ -148,6 +150,7 @@ module dtpu_imp_WM72SM
   wire axis_accelerator_ada_0_interrupt;
   wire axis_accelerator_ada_aresetn;
   wire clk_0_1;
+  wire [3:0]dtpu_core_d_out;
   wire [3:0]dtpu_core_state;
   wire [31:0]dtpu_coro_csr_mem_interface_ADDR;
   wire dtpu_coro_csr_mem_interface_CLK;
@@ -214,6 +217,7 @@ module dtpu_imp_WM72SM
   assign S_AXI_wready[0] = Conn2_WREADY;
   assign aclk_0_1 = axi_aclk;
   assign clk_0_1 = clk;
+  assign d_out_0[3:0] = dtpu_core_d_out;
   assign enable_0_1 = enable;
   assign interrupt_dtpu = axis_accelerator_ada_0_interrupt;
   assign s_axi_aresetn_0_1 = s_axi_aresetn;
@@ -306,6 +310,7 @@ module dtpu_imp_WM72SM
         .csr_dout(dtpu_coro_csr_mem_interface_DOUT),
         .csr_reset(dtpu_coro_csr_mem_interface_RST),
         .csr_we(dtpu_coro_csr_mem_interface_WE),
+        .d_out(dtpu_core_d_out),
         .enable(enable_0_1),
         .infifo_dout(dtpu_coro_input_fifo_RD_DATA),
         .infifo_is_empty(dtpu_coro_input_fifo_EMPTY_N),
@@ -1099,7 +1104,7 @@ module m05_couplers_imp_1VU1F5G
   assign m05_couplers_to_m05_couplers_WVALID = S_AXI_wvalid;
 endmodule
 
-(* CORE_GENERATION_INFO = "pynqz2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pynqz2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=26,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=9,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=83,da_axi4_s2mm_cnt=9,da_bram_cntlr_cnt=2,da_clkrst_cnt=82,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "pynqz2.hwdef" *) 
+(* CORE_GENERATION_INFO = "pynqz2,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=pynqz2,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=26,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=9,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=84,da_axi4_s2mm_cnt=9,da_bram_cntlr_cnt=2,da_clkrst_cnt=83,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "pynqz2.hwdef" *) 
 module pynqz2
    (DDR_0_addr,
     DDR_0_ba,
@@ -1123,6 +1128,7 @@ module pynqz2
     FIXED_IO_0_ps_porb,
     FIXED_IO_0_ps_srstb,
     enable,
+    precision,
     reset_n,
     state_0);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR_0 ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR_0, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_0_addr;
@@ -1147,6 +1153,7 @@ module pynqz2
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_PORB" *) inout FIXED_IO_0_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO_0 PS_SRSTB" *) inout FIXED_IO_0_ps_srstb;
   input enable;
+  output [3:0]precision;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET_N RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET_N, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset_n;
   output [3:0]state_0;
 
@@ -1231,6 +1238,7 @@ module pynqz2
   wire dtpu_M_AXIS_outfifo_TLAST;
   wire dtpu_M_AXIS_outfifo_TREADY;
   wire dtpu_M_AXIS_outfifo_TVALID;
+  wire [3:0]dtpu_d_out_0;
   wire dtpu_interrupt_dtpu;
   wire [3:0]dtpu_state_0;
   wire enable_1;
@@ -1435,6 +1443,7 @@ module pynqz2
   wire [0:0]xlconstant_1_dout;
 
   assign enable_1 = enable;
+  assign precision[3:0] = dtpu_d_out_0;
   assign reset_n_1 = reset_n;
   assign state_0[3:0] = dtpu_state_0;
   pynqz2_axi_dma_0_3 axi_dma_csr_mem
@@ -1639,6 +1648,7 @@ module pynqz2
         .S_AXI_wvalid(ps7_axi_periph_M04_AXI_WVALID),
         .axi_aclk(S00_ACLK_1),
         .clk(S00_ACLK_1),
+        .d_out_0(dtpu_d_out_0),
         .enable(enable_1),
         .interrupt_dtpu(dtpu_interrupt_dtpu),
         .resetn(reset_n_1),

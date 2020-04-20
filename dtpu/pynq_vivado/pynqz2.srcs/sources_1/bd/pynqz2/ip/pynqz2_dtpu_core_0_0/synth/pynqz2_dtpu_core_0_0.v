@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "dtpu_core,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "pynqz2_dtpu_core_0_0,dtpu_core,{}" *)
-(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=64,ROWS=16,COLUMNS=16,SIZE_WMEMORY=2048,ADDRESS_SIZE_WMEMORY=32,ADDRESS_SIZE_CSR=32,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
+(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=64,ROWS=8,COLUMNS=8,SIZE_WMEMORY=2048,ADDRESS_SIZE_WMEMORY=32,ADDRESS_SIZE_CSR=32,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pynqz2_dtpu_core_0_0 (
@@ -85,10 +85,11 @@ module pynqz2_dtpu_core_0_0 (
   cs_done,
   cs_continue,
   cs_idle,
-  state
+  state,
+  d_out
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET areset, FREQ_HZ 111111115, PHASE 0.000, CLK_DOMAIN pynqz2_ps7_0_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET areset, FREQ_HZ 30303030, PHASE 0.000, CLK_DOMAIN pynqz2_ps7_0_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME areset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -149,11 +150,12 @@ input wire cs_continue;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_idle" *)
 output wire cs_idle;
 output wire [3 : 0] state;
+output wire [3 : 0] d_out;
 
   dtpu_core #(
     .DATA_WIDTH_MAC(64),
-    .ROWS(16),
-    .COLUMNS(16),
+    .ROWS(8),
+    .COLUMNS(8),
     .SIZE_WMEMORY(2048),
     .ADDRESS_SIZE_WMEMORY(32),
     .ADDRESS_SIZE_CSR(32),
@@ -192,6 +194,7 @@ output wire [3 : 0] state;
     .cs_done(cs_done),
     .cs_continue(cs_continue),
     .cs_idle(cs_idle),
-    .state(state)
+    .state(state),
+    .d_out(d_out)
   );
 endmodule

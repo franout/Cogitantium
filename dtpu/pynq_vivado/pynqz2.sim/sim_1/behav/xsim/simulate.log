@@ -1,0 +1,10 @@
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+global reset
+stimulus
+check the control signal
+accelerator for integer 16
+accelerator for integer 32
+accelerator for integer 64
+accelerator for fp32
+$finish called at time : 1510 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" Line 342

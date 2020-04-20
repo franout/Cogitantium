@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.02621",
-   "Default View_TopLeft":"431,134",
+   "Default View_ScaleFactor":"0.631706",
+   "Default View_TopLeft":"-404,-9",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
@@ -18,6 +18,7 @@ preplace port axi_aclk -pg 1 -lvl 0 -x -80 -y 160 -defaultsOSRD
 preplace port s_axi_aresetn -pg 1 -lvl 0 -x -80 -y 190 -defaultsOSRD
 preplace portBus state_0 -pg 1 -lvl 3 -x 1200 -y 410 -defaultsOSRD
 preplace portBus resetn -pg 1 -lvl 0 -x -80 -y 10 -defaultsOSRD
+preplace portBus d_out_0 -pg 1 -lvl 3 -x 1200 -y 380 -defaultsOSRD
 preplace inst axis_accelerator_ada -pg 1 -lvl 2 -x 990 -y 760 -defaultsOSRD
 preplace inst util_vector_logic_2 -pg 1 -lvl 1 -x 530 -y 120 -defaultsOSRD
 preplace inst dtpu_core -pg 1 -lvl 1 -x 530 -y 330 -defaultsOSRD
@@ -28,19 +29,20 @@ preplace netloc clk_0_1 1 0 1 -30J 220n
 preplace netloc aclk_0_1 1 0 2 -40J 200 750
 preplace netloc s_axi_aresetn_0_1 1 0 2 NJ 190 780
 preplace netloc util_vector_logic_2_Res 1 0 2 -20 210 730
-preplace netloc dtpu_core_state 1 1 2 NJ 370 1170J
+preplace netloc dtpu_core_state 1 1 2 NJ 360 1170J
 preplace netloc axis_accelerator_ada_aresetn 1 0 3 -10 10 NJ 10 1150
 preplace netloc Op1_0_1 1 0 1 -20J 10n
-preplace netloc dtpu_coro_output_fifo 1 1 1 730 350n
-preplace netloc dtpu_coro_input_fifo 1 1 1 760 330n
-preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 230 NJ 230 1140
+preplace netloc dtpu_core_d_out 1 1 2 NJ 380 NJ
+preplace netloc Conn1 1 2 1 1160J 180n
+preplace netloc dtpu_coro_output_fifo 1 1 1 730 340n
+preplace netloc dtpu_coro_input_fifo 1 1 1 760 320n
 preplace netloc Conn5 1 0 2 -30J 50 790J
+preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 220 NJ 220 1140
+preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 300n
 preplace netloc Conn3 1 0 2 -40J 40 800J
 preplace netloc Conn4 1 0 2 -50J 20 810J
-preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 290n
-preplace netloc Conn1 1 2 1 1160J 180n
+preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 280n
 preplace netloc Conn2 1 0 2 -60J 30 820J
-preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 310n
 levelinfo -pg 1 -80 530 990 1200
 pagesize -pg 1 -db -bbox -sgen -230 -10 1360 1270
 "

@@ -131,26 +131,27 @@ else :
 	print("overlay is not loaded")
 	exit(-1)
 
-############################################
-########## CSR DEFINITIONS #################
-########## MEMORY MAP      #################
-########## bitwidth 8      #################
-############################################
+#####################################################
+##########       CSR DEFINITIONS           ##########
+##########          MEMORY MAP             ##########
+##########          bitwidth 8             ##########
+##########          see csr_definition.vh  ##########
+#####################################################
 ARITHMETIC_PRECISION=0
 FP_MODE=1
 BATCH_SIZE=2 # aka active rows
 TRANSPARENT_DELAY_REGISTER=3
 DEBUG=4
+TEST_OPTIONS=5
 
-
-INT8=0x1
-INT16=0X3
-INT32=0x7
-INT64=0xF
+INT8=0xF1
+INT16=0X03
+INT32=0x07
+INT64=0x0F
 # precision of fp computation is tuned using the 
 # integer precision 
 ACTIVE_FP=1<<0
-ACTIVE_BFP=3
+ACTIVE_BFP=0x03
 ROUNDING=0x00
 NO_FP=0x00
 
@@ -159,32 +160,50 @@ NO_FP=0x00
 ## default 32 bit integer
 # Allocate buffers for the input and output signals ( contigous memory allocation )
 xlnk = Xlnk()
-input_fifo_buffer = xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=True)
-output_fifo_buffer=xlnk.cma_array(shape=(1024,),dtype='u8',cacheable=True)
-weight_buffer=xlnk.cma_array(shape=(4096,),dtype='u8',cacheable=True)
-csr_buffer=xlnk.cma_array(shape=(64,),dtype='u8',cacheable=True)
+#input_fifo_buffer = xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
+#output_fifo_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
+#weight_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
+#csr_buffer=xlnk.cma_array(shape=(1024,),dtype='u1')#,cacheable=True)
+input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
+output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
+weight_buffer=allocate(shape=(2048,),dtype='u8')
+csr_buffer=allocate(shape=(1024,),dtype='u1')
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
     input_fifo_buffer[i]=0xcafecafecafecafe
 
+
+weight_buffer[0]=0x1111111111111111
+weight_buffer[1]=0x2222222222222222
+weight_buffer[2]=0x3333333333333333
+weight_buffer[3]=0x0000000000000000
+weight_buffer[4]=0x5555555555555555
 ## populate weights
 for i in range(weight_buffer.size):
     weight_buffer[i]=0xFFFFFFFFFFFFFFFF
 
 ## populate csr 
-csr_buffer[ARITHMETIC_PRECISION]=INT8
-csr_buffer[FP_MODE]=NO_FP
-csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
-csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
-csr_buffer[DEBUG]=0
+for i in range(csr_buffer.size):
+    csr_buffer[i]=  0x03
 
+#csr_buffer[ARITHMETIC_PRECISION]=INT8
+#csr_buffer[FP_MODE]=NO_FP
+#csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
+#csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
+#csr_buffer[DEBUG]=0
+#csr_buffer[TEST_OPTIONS]=0
 
+#csr_buffer[0]= (NO_FP<<8)  | INT8  
 ## accelerator 
 accelerator=overlay.dtpu.axis_accelerator_ada
 # soft reset 
-accelerator.write(CTRL ,0x0000001)
+accelerator.write(CTRL,0x0000001)
 accelerator.write(CTRL,0x0000000)
+
+csr_buffer.flush()
+weight_buffer.flush()
+input_fifo_buffer.flush()
 
 
 ################################################
@@ -225,6 +244,7 @@ else:
 driver_fifo.sendchannel.transfer(input_fifo_buffer)
 driver_fifo.sendchannel.wait()
 driver_fifo.recvchannel.transfer(output_fifo_buffer)
+
 
 ###########################################################
 ###         program accelerator&start computation     #####
@@ -269,6 +289,7 @@ start_time = time.time()
 
 #################################################################
 #### this has to be copied into the delegate of tensorflow ######
+
 #################################################################
 
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
@@ -276,7 +297,7 @@ while driver_fifo.recvchannel.running:
     pass
 
 #driver_fifo.recvchannel.wait()
-end_time=time.time()
+stop_time = time.time()
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
 #IO_OSCALAR_DATA.
@@ -303,9 +324,8 @@ while True:
 
 #position in multi-buffer. Writing 0 reuses the same buffer.
 #accelerator.write(CMD,0x00000001)
-stop_time = time.time()
 accelerator.write(STATUS,0x00000003)##clear status
-driver_fifo.recvchannel.wait()
+#driver_fifo.recvchannel.wait()
 
 
 ## retrieve the results and print 
@@ -331,10 +351,10 @@ print('Hardware DTPU execution time: ',hw_exec_time)
 
 ### free buffers
 
-input_fifo_buffer.close()
-output_fifo_buffer.close()
-csr_buffer.close()
-weight_buffer.close()
+input_fifo_buffer.freebuffer()
+output_fifo_buffer.freebuffer()
+csr_buffer.freebuffer()
+weight_buffer.freebuffer()
 
 
 

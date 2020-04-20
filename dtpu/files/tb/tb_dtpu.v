@@ -75,7 +75,7 @@ module tb_dtpu();
               wire cs_ready;
               reg cs_start;
               wire[3:0]state;
-    
+               wire [3:0] precision;
     
 
 reg [3:0]data_precision_tb;
@@ -86,7 +86,7 @@ reg [3:0]data_precision_fp_tb;
      #(.DATA_WIDTH_MAC(64),
          .ROWS(8) ,
          .COLUMNS(8),
-         .SIZE_WMEMORY(8196),
+         .SIZE_WMEMORY(2048),
          .SIZE_CSR(1024),
          .DATA_WIDTH_CSR(8),
          .DATA_WIDTH_WMEMORY(64),
@@ -140,7 +140,9 @@ reg [3:0]data_precision_fp_tb;
         .cs_idle(cs_idle),
         .cs_ready(cs_ready),
         .cs_start(cs_start),
-        .state(state)
+        .state(state),
+        .d_out(precision)
+        
         
         );
 
@@ -169,14 +171,14 @@ end
 always @(wm_ce,wm_address) begin 
   if(wm_ce) begin
     case (wm_address)
-        /*0: wm_dout= {8{8'h11}};
+        0: wm_dout= {8{8'h11}};
         1: wm_dout= {8{8'h22}};
         2:wm_dout= {8{8'h33}};
         3:wm_dout= {8{8'h44}};
         4:wm_dout= {8{8'h55}};
         5:wm_dout= {8{8'h66}};
         6:wm_dout= {8{8'h77}};
-        7:wm_dout= {8{8'h88}};*/
+        7:wm_dout= {8{8'h88}};
       default : 
         wm_dout={8{8'hFF}};
     endcase
@@ -265,20 +267,50 @@ localparam start_p3=4'h8;
                 $display("accelerator not in continous run ");
                 $stop();
               end
-              if(outfifo_din!={8{8'hE0}})begin
+              if(outfifo_din!={8{8'h20}})begin
                   $display("computation not correct!!!!");
                   $stop();
               end
 
               #clk_period;
+                if(state!=retrieve_data && !(wm_address==32'd1)) begin 
+                $display("generated wrong address and not in retrieve data state");
+                $stop();
+                end
+             infifo_dout=64'h11111111111111111;
+              #clk_period;
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
               end   
-              outfifo_is_full=1'b0;
-              infifo_is_empty=1'b0;
               for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
               #clk_period;               
               end 
+              if(state!=save_to_fifo) begin
+                $display("not saving to fifo ",);
+                $stop();
+              end
+              #clk_period;
+
+              if(state!=done && cs_done!=1'b0) begin 
+                $display("accelerator not in continous run ");
+                $stop();
+              end
+              #clk_period;
+                if(state!=retrieve_data && !(wm_address==32'd2)) begin 
+                $display("generated wrong address and not in retrieve data state");
+                $stop();
+                end
+
+              #clk_period;
+              if(state!=compute) begin
+                $display("accelerator is not computing anything",);
+              end   
+              for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
+              #clk_period;               
+              end 
+
+              outfifo_is_full=1'b0;
+              infifo_is_empty=1'b0;
               if(state!=save_to_fifo) begin
                 $display("not saving to fifo ",);
                 $stop();
@@ -288,11 +320,18 @@ localparam start_p3=4'h8;
                 $display("not in done state and done signal is not asserted",);
                 $stop();
               end
-              if(outfifo_din!={8{8'hE0}})begin
+              if(outfifo_din!={8{8'h18}})begin
                   $display("computation not correct!!!!");
                   $stop();
               end
               #clk_period;
+              if(state!=idle) begin
+                $display("problem fsm does not go back in idle state");
+                $stop();
+              end
+              #clk_period;  #clk_period;  #clk_period;
+
+
               $display("accelerator for integer 16");
               $display("accelerator for integer 32");
               $display("accelerator for integer 64");

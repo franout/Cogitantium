@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param chipscope.maxJobs 2
 set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg400-1
 
@@ -36,11 +37,12 @@ read_verilog {
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/csr_definition.vh
 }
+read_verilog -library xil_defaultlib -sv /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.sv
 read_verilog -library xil_defaultlib {
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/compact_and_select.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v
-  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v
+  /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array_wrapper.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v
@@ -49,7 +51,7 @@ read_verilog -library xil_defaultlib {
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v
   /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v
 }
-read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/xbip_dsp48_macro_0_2/xbip_dsp48_macro_0.xci
+read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/vivado_mac/vivado_mac.xci
 
 read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
 
@@ -96,8 +98,8 @@ set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/20
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_36/bd_7d7d_m00wn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/bd_0/ip/ip_37/bd_7d7d_m00bn_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_smartconnect_0_0/ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_6/pynqz2_monitor_0.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_18/pynqz2_monitor_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_18/pynqz2_monitor_0.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_auto_pc_0/pynqz2_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2_ooc.xdc]
 
@@ -119,7 +121,7 @@ set_param ips.enableIPCacheLiteLoad 1
 read_checkpoint -auto_incremental -incremental /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/utils_1/imports/synth_1/pynqz2_wrapper.dcp
 close [open __synthesis_is_running__ w]
 
-synth_design -top pynqz2_wrapper -part xc7z020clg400-1 -retiming
+synth_design -top pynqz2_wrapper -part xc7z020clg400-1
 
 
 # disable binary constraint mode for synth run checkpoints

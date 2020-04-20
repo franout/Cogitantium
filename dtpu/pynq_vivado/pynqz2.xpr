@@ -30,20 +30,20 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="pynq-z2"/>
-    <Option Name="WTXSimLaunchSim" Val="1108"/>
+    <Option Name="WTXSimLaunchSim" Val="1231"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="1"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="100"/>
-    <Option Name="WTModelSimExportSim" Val="100"/>
-    <Option Name="WTQuestaExportSim" Val="100"/>
-    <Option Name="WTIesExportSim" Val="100"/>
-    <Option Name="WTVcsExportSim" Val="100"/>
-    <Option Name="WTRivieraExportSim" Val="100"/>
-    <Option Name="WTActivehdlExportSim" Val="100"/>
+    <Option Name="WTXSimExportSim" Val="108"/>
+    <Option Name="WTModelSimExportSim" Val="108"/>
+    <Option Name="WTQuestaExportSim" Val="108"/>
+    <Option Name="WTIesExportSim" Val="108"/>
+    <Option Name="WTVcsExportSim" Val="108"/>
+    <Option Name="WTRivieraExportSim" Val="108"/>
+    <Option Name="WTActivehdlExportSim" Val="108"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -106,7 +106,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../files/ls_array.v">
+      <File Path="$PPRDIR/../files/ls_array_wrapper.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -142,6 +142,13 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../files/register.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../files/ls_array.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -384,7 +391,7 @@
       <File Path="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PRUNDIR/synth_1/pynqz2_wrapper.dcp"/>
-          <Attr Name="ImportTime" Val="1587207454"/>
+          <Attr Name="ImportTime" Val="1587403203"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedInSteps" Val="synth_1"/>
@@ -394,11 +401,18 @@
       <File Path="$PSRCDIR/utils_1/imports/impl_1/pynqz2_wrapper_routed.dcp">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PRUNDIR/impl_1/pynqz2_wrapper_routed.dcp"/>
-          <Attr Name="ImportTime" Val="1587130172"/>
+          <Attr Name="ImportTime" Val="1587403203"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedInSteps" Val="impl_1"/>
           <Attr Name="AutoDcp" Val="1"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/save_output.tcl">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <Config>
@@ -434,9 +448,7 @@
     <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp" WriteIncrSynthDcp="true" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
-        <Step Id="synth_design">
-          <Option Id="ReTiming">1</Option>
-        </Step>
+        <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
@@ -445,15 +457,15 @@
     </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/impl_1/pynqz2_wrapper_routed.dcp" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="random_strategy" Flow="Vivado Implementation 2019"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
-        <Step Id="power_opt_design" EnableStepBool="1"/>
+        <Step Id="power_opt_design"/>
         <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design" EnableStepBool="1"/>
+        <Step Id="post_place_power_opt_design"/>
         <Step Id="phys_opt_design" EnableStepBool="1"/>
         <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design" EnableStepBool="1"/>
+        <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>

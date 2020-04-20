@@ -121,7 +121,8 @@ module dtpu_core
       output wire cs_idle,
        
        // debug state
-      output wire[3:0]state
+      output wire[3:0]state,
+      output reg[3:0]d_out
         );
     //////////////////////////////////////////
     ///************************************///
@@ -148,12 +149,16 @@ module dtpu_core
       wire ld_max_cnt_weight;
       wire enable_chain;
       wire [1:0]enable_fp_unit;
-      
+      wire [63:0]infifo_dout_o;
+
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
       wire [$clog2(ROWS):0]max_down_cnt_from_cu;
       wire [$clog2(ROWS):0]max_cnt_weight_from_cu;
 
-
+      always @(posedge(clk)) begin : proc_
+      d_out=data_precision;
+      end
+       
      ////////////////////////////////////////////
     ////// MATRIX MULTIPLICATION UNIT //////////
     ////////////////////////////////////////////
@@ -237,12 +242,14 @@ module dtpu_core
   /////////////////////////////////////////////
   `ifndef DUMMY
   
-  ls_array 
+  
+  ls_array_wrapper
   #(  .ROWS(ROWS),
       .COLUMNS(COLUMNS),
       .data_in_width(DATA_WIDTH_FIFO_IN),
       .data_in_mem(DATA_WIDTH_WMEMORY),
-      .address_leng_wm(ADDRESS_SIZE_WMEMORY)) ls_array
+      .address_leng_wm(ADDRESS_SIZE_WMEMORY),
+      .size_wmemory(SIZE_WMEMORY)) ls_array
   ( 
   .clk(clk),
   .reset_n(aresetn),
@@ -251,7 +258,7 @@ module dtpu_core
   .read_weight_memory(read_weight_memory),
   .infifo_read(infifo_read),
   .outfifo_write(outfifo_write),
-  .input_data_from_fifo(infifo_dout), //[data_in_width-1:0]
+  .input_data_from_fifo(infifo_dout_o), //[data_in_width-1:0]
   .data_to_fifo_out(outfifo_din), //[data_in_width-1:0]
   .data_from_weight_memory(wm_dout), //[data_in_mem-1:0]
   .data_from_mxu(output_data_from_mxu), //[data_in_width*ROWS-1:0] 
@@ -270,7 +277,12 @@ module dtpu_core
   .max_down_cnt_from_cu(max_down_cnt_from_cu), //[$clog2(ROWS):0]
   .max_cnt_weight_from_cu(max_cnt_weight_from_cu) //[$clog2(ROWS):0]
   );
+
+
+  assign outfifo_din= outfifo_write ? infifo_dout_o : 0;
   `endif
+  
+
   
   `ifdef DUMMY
   always @(posedge(clk)) begin 
@@ -294,7 +306,5 @@ module dtpu_core
   // same clock for bram interface
   assign csr_clk=clk;
   assign wm_clk=clk;
-      
-      
   
 endmodule

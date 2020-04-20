@@ -4,54 +4,6 @@ Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3705] select index 8 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:238]
-WARNING: [VRFC 10-3705] select index 9 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:239]
-WARNING: [VRFC 10-3705] select index 10 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:240]
-WARNING: [VRFC 10-3705] select index 11 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:241]
-WARNING: [VRFC 10-3705] select index 12 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:242]
-WARNING: [VRFC 10-3705] select index 13 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:243]
-WARNING: [VRFC 10-3705] select index 14 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:244]
-WARNING: [VRFC 10-3705] select index 15 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:245]
-WARNING: [VRFC 10-3705] select index 16 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:246]
-WARNING: [VRFC 10-3705] select index 17 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:247]
-WARNING: [VRFC 10-3705] select index 18 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:248]
-WARNING: [VRFC 10-3705] select index 19 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:249]
-WARNING: [VRFC 10-3705] select index 20 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:250]
-WARNING: [VRFC 10-3705] select index 21 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:251]
-WARNING: [VRFC 10-3705] select index 22 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:252]
-WARNING: [VRFC 10-3705] select index 23 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:253]
-WARNING: [VRFC 10-3705] select index 24 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:254]
-WARNING: [VRFC 10-3705] select index 25 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:255]
-WARNING: [VRFC 10-3705] select index 26 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:256]
-WARNING: [VRFC 10-3705] select index 27 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:257]
-WARNING: [VRFC 10-3705] select index 28 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:258]
-WARNING: [VRFC 10-3705] select index 29 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:259]
-WARNING: [VRFC 10-3705] select index 30 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:260]
-WARNING: [VRFC 10-3705] select index 31 into 'activation_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:261]
-WARNING: [VRFC 10-3705] select index 8 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:412]
-WARNING: [VRFC 10-3705] select index 9 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:413]
-WARNING: [VRFC 10-3705] select index 10 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:414]
-WARNING: [VRFC 10-3705] select index 11 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:415]
-WARNING: [VRFC 10-3705] select index 12 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:416]
-WARNING: [VRFC 10-3705] select index 13 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:417]
-WARNING: [VRFC 10-3705] select index 14 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:418]
-WARNING: [VRFC 10-3705] select index 15 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:419]
-WARNING: [VRFC 10-3705] select index 16 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:420]
-WARNING: [VRFC 10-3705] select index 17 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:421]
-WARNING: [VRFC 10-3705] select index 18 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:422]
-WARNING: [VRFC 10-3705] select index 19 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:423]
-WARNING: [VRFC 10-3705] select index 20 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:424]
-WARNING: [VRFC 10-3705] select index 21 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:425]
-WARNING: [VRFC 10-3705] select index 22 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:426]
-WARNING: [VRFC 10-3705] select index 23 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:427]
-WARNING: [VRFC 10-3705] select index 24 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:428]
-WARNING: [VRFC 10-3705] select index 25 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:429]
-WARNING: [VRFC 10-3705] select index 26 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:430]
-WARNING: [VRFC 10-3705] select index 27 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:431]
-WARNING: [VRFC 10-3705] select index 28 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:432]
-WARNING: [VRFC 10-3705] select index 29 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:433]
-WARNING: [VRFC 10-3705] select index 30 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:434]
-WARNING: [VRFC 10-3705] select index 31 into 'weight_data' is out of bounds [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v:435]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -100,7 +52,8 @@ Compiling module xil_defaultlib.ls_unit
 Compiling module xil_defaultlib.filter_and_select(K=8)
 Compiling module xil_defaultlib.compact_and_select(K=8)
 Compiling module xil_defaultlib.ls_array(ROWS=8,COLUMNS=8)
-Compiling module xil_defaultlib.dtpu_core(ROWS=8,COLUMNS=8)
+Compiling module xil_defaultlib.ls_array_wrapper(ROWS=8,COLUMNS=...
+Compiling module xil_defaultlib.dtpu_core(ROWS=8,COLUMNS=8,SIZE_...
 Compiling module xil_defaultlib.tb_dtpu
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot tb_dtpu_behav

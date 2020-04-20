@@ -2,7 +2,7 @@
 // This is where the execution of the operations or whole graph happens.
 // The class below has an empty implementation just as a guideline
 // on the structure.
-class MyDelegate {
+class DTPU_delegate {
  public:
   // Returns true if my delegate can handle this type of op.
   static bool SupportedOp(const TfLiteRegistration* registration) {
@@ -66,7 +66,7 @@ TfLiteRegistration GetMyDelegateNodeRegistration() {
 }
 
 // TfLiteDelegate methods
-
+// interface to tensorflow runtime
 TfLiteStatus DelegatePrepare(TfLiteContext* context, TfLiteDelegate* delegate) {
   // Claim all nodes that can be evaluated by the delegate and ask the
   // framework to update the graph with delegate kernel instead.
@@ -147,3 +147,7 @@ if (interpreter->ModifyGraphWithDelegate(my_delegate) !=
 ...
 // Don't forget to delete your delegate
 delete my_delegate;
+
+
+ interpreter = tflite.Interpreter(model_path,
+  experimental_delegates=[tflite.load_delegate('libedgetpu.so.1')])

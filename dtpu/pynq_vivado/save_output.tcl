@@ -1,0 +1,2 @@
+write_bd_tcl -force /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynqz2.tcl  
+file copy -force /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/impl_1/pynqz2_wrapper.bit /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynqz2.bit  

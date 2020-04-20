@@ -1,8 +1,12 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  --include "../../../../../../files" --include "../../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec67/hdl" --include "../../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2d50/hdl" --include "../../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1ddd/hdl/verilog" --include "../../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/b2d0/hdl/verilog" --include "/home/fra/Desktop/Vivado/2019.2/data/xilinx_vip/include" \
 "tb_dtpu_time_impl.v" \
+"../../../../../../files/compact_and_select.v" \
 "../../../../../../files/control_unit.v" \
 "../../../../../../files/dtpu_core.v" \
+"../../../../../../files/filter_and_selectc.v" \
+"../../../../../../files/ls_array.v" \
+"../../../../../../files/ls_unit.v" \
 "../../../../../../files/mxu_core.v" \
 "../../../../../../files/mxu_mac.v" \
 "../../../../../../files/mxu_wrapper.v" \

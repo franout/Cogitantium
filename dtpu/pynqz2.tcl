@@ -244,6 +244,7 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   # Create pins
   create_bd_pin -dir I -type clk axi_aclk
   create_bd_pin -dir I -type clk clk
+  create_bd_pin -dir O -from 3 -to 0 d_out_0
   create_bd_pin -dir I enable
   create_bd_pin -dir O -type intr interrupt_dtpu
   create_bd_pin -dir I -from 0 -to 0 resetn
@@ -255,10 +256,10 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   set axis_accelerator_ada [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_accelerator_adapter:2.1 axis_accelerator_ada ]
   set_property -dict [ list \
    CONFIG.C_AP_IARG_0_DWIDTH {8} \
-   CONFIG.C_AP_IARG_0_MB_DEPTH {2} \
+   CONFIG.C_AP_IARG_0_MB_DEPTH {1} \
    CONFIG.C_AP_IARG_1_DIM_1 {2048} \
    CONFIG.C_AP_IARG_1_DWIDTH {64} \
-   CONFIG.C_AP_IARG_1_MB_DEPTH {2} \
+   CONFIG.C_AP_IARG_1_MB_DEPTH {1} \
    CONFIG.C_AP_IARG_2_DIM_1 {2048} \
    CONFIG.C_AP_IARG_2_DWIDTH {64} \
    CONFIG.C_AP_IARG_2_TYPE {1} \
@@ -294,8 +295,9 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
     set_property -dict [ list \
    CONFIG.COLUMNS {8} \
    CONFIG.DATA_WIDTH_CSR {8} \
-   CONFIG.DATA_WIDTH_MAC {8} \
+   CONFIG.DATA_WIDTH_MAC {64} \
    CONFIG.ROWS {8} \
+   CONFIG.SIZE_WMEMORY {2048} \
  ] $dtpu_core
 
   # Create instance: util_vector_logic_2, and set properties
@@ -324,6 +326,7 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   connect_bd_net -net axis_accelerator_ada_0_interrupt [get_bd_pins interrupt_dtpu] [get_bd_pins axis_accelerator_ada/interrupt]
   connect_bd_net -net axis_accelerator_ada_aresetn [get_bd_pins axis_accelerator_ada/aresetn] [get_bd_pins util_vector_logic_2/Op2]
   connect_bd_net -net clk_0_1 [get_bd_pins clk] [get_bd_pins dtpu_core/clk]
+  connect_bd_net -net dtpu_core_d_out [get_bd_pins d_out_0] [get_bd_pins dtpu_core/d_out]
   connect_bd_net -net dtpu_core_state [get_bd_pins state_0] [get_bd_pins dtpu_core/state]
   connect_bd_net -net enable_0_1 [get_bd_pins enable] [get_bd_pins dtpu_core/enable]
   connect_bd_net -net s_axi_aresetn_0_1 [get_bd_pins s_axi_aresetn] [get_bd_pins axis_accelerator_ada/m_axis_aresetn] [get_bd_pins axis_accelerator_ada/s_axi_aresetn] [get_bd_pins axis_accelerator_ada/s_axis_aresetn]
@@ -375,13 +378,14 @@ proc create_root_design { parentCell } {
 
   # Create ports
   set enable [ create_bd_port -dir I enable ]
+  set precision [ create_bd_port -dir O -from 3 -to 0 precision ]
   set reset_n [ create_bd_port -dir I -type rst reset_n ]
   set state_0 [ create_bd_port -dir O -from 3 -to 0 state_0 ]
 
   # Create instance: axi_dma_csr_mem, and set properties
   set axi_dma_csr_mem [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_csr_mem ]
   set_property -dict [ list \
-   CONFIG.c_include_mm2s_dre {1} \
+   CONFIG.c_include_mm2s_dre {0} \
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_m_axi_mm2s_data_width {64} \
@@ -457,10 +461,12 @@ proc create_root_design { parentCell } {
    CONFIG.CHANNEL_ENABLE_VP_VN {false} \
    CONFIG.CHANNEL_ENABLE_VREFN {false} \
    CONFIG.CHANNEL_ENABLE_VREFP {false} \
+   CONFIG.ENABLE_RESET {false} \
    CONFIG.ENABLE_VCCDDRO_ALARM {false} \
    CONFIG.ENABLE_VCCPAUX_ALARM {false} \
    CONFIG.ENABLE_VCCPINT_ALARM {false} \
    CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
+   CONFIG.INTERFACE_SELECTION {Enable_AXI} \
    CONFIG.OT_ALARM {false} \
    CONFIG.POWER_DOWN_ADCB {true} \
    CONFIG.SEQUENCER_MODE {Continuous} \
@@ -481,7 +487,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ACT_DCI_PERIPHERAL_FREQMHZ {10.096154} \
    CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125.000000} \
    CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
-   CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
+   CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {30.303030} \
    CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
@@ -527,7 +533,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ {100} \
    CONFIG.PCW_CAN_PERIPHERAL_VALID {0} \
-   CONFIG.PCW_CLK0_FREQ {100000000} \
+   CONFIG.PCW_CLK0_FREQ {30303030} \
    CONFIG.PCW_CLK1_FREQ {10000000} \
    CONFIG.PCW_CLK2_FREQ {10000000} \
    CONFIG.PCW_CLK3_FREQ {10000000} \
@@ -662,8 +668,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_EN_USB1 {0} \
    CONFIG.PCW_EN_WDT {0} \
    CONFIG.PCW_FCLK0_PERIPHERAL_CLKSRC {IO PLL} \
-   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {5} \
-   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {2} \
+   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {33} \
+   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_FCLK1_PERIPHERAL_CLKSRC {IO PLL} \
    CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR1 {1} \
@@ -677,7 +683,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_FCLK_CLK1_BUF {FALSE} \
    CONFIG.PCW_FCLK_CLK2_BUF {FALSE} \
    CONFIG.PCW_FCLK_CLK3_BUF {FALSE} \
-   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
+   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {30} \
    CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {10} \
    CONFIG.PCW_FPGA2_PERIPHERAL_FREQMHZ {200} \
    CONFIG.PCW_FPGA3_PERIPHERAL_FREQMHZ {166.67} \
@@ -1409,6 +1415,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net axi_dma_infifo_mm2s_introut [get_bd_pins axi_dma_infifo/mm2s_introut] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net axi_dma_infifo_s2mm_introut [get_bd_pins axi_dma_infifo/s2mm_introut] [get_bd_pins xlconcat_0/In1]
   connect_bd_net -net axi_intc_irq [get_bd_pins axi_intc/irq] [get_bd_pins ps7/IRQ_F2P]
+  connect_bd_net -net dtpu_d_out_0 [get_bd_ports precision] [get_bd_pins dtpu/d_out_0]
   connect_bd_net -net dtpu_interrupt_dtpu [get_bd_pins dtpu/interrupt_dtpu] [get_bd_pins xlconcat_0/In2]
   connect_bd_net -net dtpu_state_0 [get_bd_ports state_0] [get_bd_pins dtpu/state_0]
   connect_bd_net -net enable_1 [get_bd_ports enable] [get_bd_pins dtpu/enable]

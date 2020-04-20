@@ -56,9 +56,9 @@ module mxu_mac
       .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
     );
     
-    
-    // (* use_dsp48 = "yes" *) in the module 
-/*
+    assign res_mac_n[bit_width-1:8]=0;
+  
+/*  // (* use_dsp48 = "yes" *) in the module 
     xbip_dsp48_macro_0 vivado_mac (
   .CLK(clk),    // input wire CLK
   .CE(ce),      // input wire CE

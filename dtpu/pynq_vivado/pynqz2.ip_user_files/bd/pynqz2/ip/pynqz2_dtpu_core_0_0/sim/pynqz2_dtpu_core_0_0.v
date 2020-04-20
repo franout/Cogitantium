@@ -84,10 +84,11 @@ module pynqz2_dtpu_core_0_0 (
   cs_done,
   cs_continue,
   cs_idle,
-  state
+  state,
+  d_out
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET areset, FREQ_HZ 111111115, PHASE 0.000, CLK_DOMAIN pynqz2_ps7_0_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET areset, FREQ_HZ 30303030, PHASE 0.000, CLK_DOMAIN pynqz2_ps7_0_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME areset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -148,6 +149,7 @@ input wire cs_continue;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_handshake:1.0 control_interface ap_idle" *)
 output wire cs_idle;
 output wire [3 : 0] state;
+output wire [3 : 0] d_out;
 
   dtpu_core #(
     .DATA_WIDTH_MAC(64),
@@ -191,6 +193,7 @@ output wire [3 : 0] state;
     .cs_done(cs_done),
     .cs_continue(cs_continue),
     .cs_idle(cs_idle),
-    .state(state)
+    .state(state),
+    .d_out(d_out)
   );
 endmodule

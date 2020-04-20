@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1587208119" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp" LaunchWriteIncrSynthDcp="true">
-  <File Type="PA-TCL" Name="pynqz2_wrapper.tcl"/>
-  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
-  <File Type="RDS-RDS" Name="pynqz2_wrapper.vds"/>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1587403218" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp" LaunchWriteIncrSynthDcp="true">
+  <File Type="VDS-TIMINGSUMMARY" Name="pynqz2_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="pynqz2_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="pynqz2_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="pynqz2_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="pynqz2_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="pynqz2_wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="pynqz2_wrapper_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="pynqz2_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/ip/xbip_dsp48_macro_0_2/xbip_dsp48_macro_0.xci">
+    <File Path="$PSRCDIR/sources_1/ip/vivado_mac/vivado_mac.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -53,7 +58,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../files/ls_array.v">
+    <File Path="$PPRDIR/../files/ls_array_wrapper.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -95,6 +100,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../files/ls_array.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../files/dtpu_core.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -106,14 +118,12 @@
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/ip/xbip_dsp48_macro_0_2.xcix">
@@ -123,7 +133,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/ip/vivado_mac/vivado_mac.xci">
+    <File Path="$PSRCDIR/sources_1/ip/xbip_dsp48_macro_0_2/xbip_dsp48_macro_0.xci">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -253,7 +263,7 @@
     <File Path="$PSRCDIR/utils_1/imports/synth_1/pynqz2_wrapper.dcp">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PRUNDIR/synth_1/pynqz2_wrapper.dcp"/>
-        <Attr Name="ImportTime" Val="1587207454"/>
+        <Attr Name="ImportTime" Val="1587403203"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedInSteps" Val="synth_1"/>
@@ -263,7 +273,7 @@
     <File Path="$PSRCDIR/utils_1/imports/impl_1/pynqz2_wrapper_routed.dcp">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PRUNDIR/impl_1/pynqz2_wrapper_routed.dcp"/>
-        <Attr Name="ImportTime" Val="1587130172"/>
+        <Attr Name="ImportTime" Val="1587403203"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedInSteps" Val="impl_1"/>
@@ -276,8 +286,6 @@
   </FileSet>
   <Strategy Version="1" Minor="2">
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
-    <Step Id="synth_design">
-      <Option Id="ReTiming">1</Option>
-    </Step>
+    <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

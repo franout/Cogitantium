@@ -10,8 +10,7 @@ module control_unit
     DATA_WIDTH_WMEMORY=64,
     DATA_WIDTH_CSR=8,
     ADDRESS_SIZE_CSR=32,
-    ADDRESS_SIZE_WMEMORY=32,
-    SIZE_WM_MEMORY=4096)
+    ADDRESS_SIZE_WMEMORY=32)
 (
 input clk,
 input reset,
@@ -21,64 +20,64 @@ output reg enable_mxu,
 ////////////////////////////
 ////// CSR INTERFACE ///////
 ////////////////////////////
-output reg         csr_ce,
+   (* keep="true" *) output reg         csr_ce,
 input wire [DATA_WIDTH_CSR-1:0]    csr_dout,
-output reg         csr_we,
-output reg [ADDRESS_SIZE_CSR-1:0]    csr_address,
-output reg         csr_reset,
+(* keep="true" *)output reg         csr_we,
+(* keep="true" *)output reg [ADDRESS_SIZE_CSR-1:0]    csr_address,
+(* keep="true" *)output reg         csr_reset,
 ////////////////////////////
 ////// WEIGHT MEMORY ///////
 ///////////////////////////
-output reg  wm_ce,
-output reg              wm_we,
-output reg           wm_reset,
+(* keep="true" *)output reg  wm_ce,
+(* keep="true" *)output reg              wm_we,
+(* keep="true" *)output reg           wm_reset,
 ////////////////////////////////////////////
 /////////// INPUT DATA FIFO ////////////////
 ////////////////////////////////////////////
 /////////// using stream axi 
-output reg infifo_read,
+(* keep="true" *)output reg infifo_read,
 input wire infifo_is_empty,
 ////////////////////////////////////////////
 /////////// OUTPUT DATA FIFO ///////////////
 ////////////////////////////////////////////
 /////////// using stream axi 
-output reg outfifo_write,
+(* keep="true" *)output reg outfifo_write,
 input wire outfifo_is_full,
 ////////////////////////////////////////////
 /////////// CONTROL FROM/TO PS /////////////
 ////////////////////////////////////////////             
 input wire cs_start,
-output reg cs_ready,
-output reg cs_done,
+(* keep="true" *)output reg cs_ready,
+(* keep="true" *)output reg cs_done,
 input wire cs_continue,
-output reg cs_idle,
+(* keep="true" *)output reg cs_idle,
 
 ////////////////////////////////////////////
 ////// CONTROL FLOW OF MXU /////////////////
 ////////////////////////////////////////////
-output reg enable_deskew_ff,
-output reg enable_enskew_ff,
-output reg enable_chain,
-output reg [1:0]enable_fp_unit,
-output reg [`LOG_ALLOWED_PRECISIONS-1:0] data_precision,
+(* keep="true" *)output reg enable_deskew_ff,
+(* keep="true" *)output reg enable_enskew_ff,
+(* keep="true" *)output reg enable_chain,
+(* keep="true" *)output reg [1:0]enable_fp_unit,
+(* keep="true" *)output reg [`LOG_ALLOWED_PRECISIONS-1:0] data_precision,
 
 
 ////////////////////////////////////////////
 /////// CONTROL OF LS ARRAY ////////////////
 ///////////////////////////////////////////
-output reg enable_load_array,
-output reg read_weight_memory,
-output reg enable_load_activation_data,
-output reg enable_store_activation_data,
-output reg enable_cnt,
-output reg ld_max_cnt,
-output reg enable_down_cnt,
-output reg ld_max_down_cnt,
-output reg enable_cnt_weight,
-output reg ld_max_cnt_weight,
-output reg [$clog2(COLUMNS):0] max_cnt_from_cu,
-output reg [$clog2(ROWS):0]max_down_cnt_from_cu,
-output reg [$clog2(ROWS):0]max_cnt_weight_from_cu,
+(* keep="true" *)output reg enable_load_array,
+(* keep="true" *)output reg read_weight_memory,
+(* keep="true" *)output reg enable_load_activation_data,
+(* keep="true" *)output reg enable_store_activation_data,
+(* keep="true" *)output reg enable_cnt,
+(* keep="true" *)output reg ld_max_cnt,
+(* keep="true" *)output reg enable_down_cnt,
+(* keep="true" *)output reg ld_max_down_cnt,
+(* keep="true" *)output reg enable_cnt_weight,
+(* keep="true" *)output reg ld_max_cnt_weight,
+(* keep="true" *)output reg [$clog2(COLUMNS):0] max_cnt_from_cu,
+(* keep="true" *)output reg [$clog2(ROWS):0]max_down_cnt_from_cu,
+(* keep="true" *)output reg [$clog2(ROWS):0]max_cnt_weight_from_cu,
 
 // debug 
 output wire [3:0]state_out
@@ -159,13 +158,16 @@ idle: begin
         state<=start_p1;        
         end else begin 
         state<=state;
+
         end 
      end
      // for speeding up the csr can be checked in the below states! TODO
      // transfering the ownership of data
 start_p1: begin 
-            csr_address<=`A_ARITHMETIC_PRECISION;
             csr_ce<=1'b1;
+            csr_address<=`A_ARITHMETIC_PRECISION;
+            enable_chain<=csr_dout[DATA_WIDTH_CSR-1];
+            data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
                  if(cs_start) begin 
                 state<=start_p2; 
                 end else begin
@@ -173,10 +175,9 @@ start_p1: begin
                 end
                 end  
 start_p2:  begin
-            data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
-            enable_chain<=csr_dout[DATA_WIDTH_CSR-1];
-            csr_address<=`A_FP_MODE;
             csr_ce<=1'b1;
+            enable_fp_unit<=csr_dout[1:0]; // fp and bpfp bits
+            csr_address<=`A_FP_MODE;
             if(cs_start) begin 
             state<=start_p3; 
             end else begin 
@@ -185,7 +186,6 @@ start_p2:  begin
             end
 start_p3:  begin 
             cs_ready<=1;
-            enable_fp_unit<=csr_dout[1:0]; // fp and bpfp bits
             if(cs_start) begin 
             state<=retrieve_data; 
             end else begin 
@@ -201,7 +201,7 @@ retrieve_data: begin
             enable_load_activation_data<=1'b1;
             enable_store_activation_data<=1'b0;
             enable_cnt<=0;
-            enable_cnt_weight<=0;
+            enable_cnt_weight<=1'b1;
             enable_down_cnt<=0;
 
             // load counter of ls array 
@@ -214,14 +214,14 @@ retrieve_data: begin
 
 compute: begin
 
-            wm_ce<=1'b1;
-            infifo_read<=1'b1;
+            //wm_ce<=1'b1;
+            //infifo_read<=1'b1;
             enable_load_array<=1'b1;
-            read_weight_memory<=1'b1;
-            enable_load_activation_data<=1'b1;
+            read_weight_memory<=1'b0;
+            enable_load_activation_data<=0;
             enable_store_activation_data<=0;
             enable_cnt<=1'b1;
-            enable_cnt_weight<=1'b1;
+            enable_cnt_weight<=1'b0;
             enable_down_cnt<=1'b1;
 
             counter_compute<=counter_compute+1;
@@ -231,6 +231,7 @@ compute: begin
             if(counter_compute==(MAX_COUNTER)) begin 
             state<=save_to_fifo;
             enable_store_activation_data<=1'b1;
+
             end else begin 
             state<=state;            
             end 
@@ -240,13 +241,14 @@ save_to_fifo: begin
             enable_load_array<=1'b1;   
             enable_store_activation_data<=1'b1;           
             enable_cnt<=1'b1;
-            enable_cnt_weight<=1'b1;
+            enable_cnt_weight<=1'b0;
             enable_down_cnt<=1'b1;
 
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
             enable_deskew_ff<=1'b1; // output ff 
             outfifo_write<=1'b1;      
+            //state<=save_to_fifo;
             state<=done;
             end              
 done: begin 
@@ -254,7 +256,7 @@ done: begin
         state<=idle;
         cs_done<=1;
         end else begin
-        state<=compute;
+        state<=retrieve_data;
         end
       end          
 default: begin 
@@ -267,7 +269,7 @@ end
 
 end 
 
-always @(data_precision) begin 
+always @(csr_ce,data_precision) begin 
  // precision dependent
             case(data_precision)
                 `INT8: begin 
