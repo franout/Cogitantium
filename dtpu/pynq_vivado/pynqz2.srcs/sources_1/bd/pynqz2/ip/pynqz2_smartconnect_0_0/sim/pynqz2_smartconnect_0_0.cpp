@@ -165,7 +165,7 @@ void pynqz2_smartconnect_0_0::before_end_of_elaboration()
     S01_AXI_transactor_param_props.addLong("SUPPORTS_NARROW_BURST", "0");
     S01_AXI_transactor_param_props.addLong("NUM_READ_OUTSTANDING", "16");
     S01_AXI_transactor_param_props.addLong("NUM_WRITE_OUTSTANDING", "2");
-    S01_AXI_transactor_param_props.addLong("MAX_BURST_LENGTH", "16");
+    S01_AXI_transactor_param_props.addLong("MAX_BURST_LENGTH", "8");
     S01_AXI_transactor_param_props.addLong("NUM_READ_THREADS", "1");
     S01_AXI_transactor_param_props.addLong("NUM_WRITE_THREADS", "1");
     S01_AXI_transactor_param_props.addLong("RUSER_BITS_PER_BYTE", "0");
@@ -225,7 +225,7 @@ void pynqz2_smartconnect_0_0::before_end_of_elaboration()
     S02_AXI_transactor_param_props.addLong("SUPPORTS_NARROW_BURST", "0");
     S02_AXI_transactor_param_props.addLong("NUM_READ_OUTSTANDING", "8");
     S02_AXI_transactor_param_props.addLong("NUM_WRITE_OUTSTANDING", "16");
-    S02_AXI_transactor_param_props.addLong("MAX_BURST_LENGTH", "16");
+    S02_AXI_transactor_param_props.addLong("MAX_BURST_LENGTH", "128");
     S02_AXI_transactor_param_props.addLong("NUM_READ_THREADS", "1");
     S02_AXI_transactor_param_props.addLong("NUM_WRITE_THREADS", "1");
     S02_AXI_transactor_param_props.addLong("RUSER_BITS_PER_BYTE", "0");

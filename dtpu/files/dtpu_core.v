@@ -52,13 +52,13 @@ module dtpu_core
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface EN" *)
     output wire         csr_ce,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface DOUT" *)
-    input wire [7:0]    csr_dout,
+    input wire [DATA_WIDTH_CSR-1:0]    csr_dout,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface DIN" *)
-    output wire [7:0]   csr_din,
+    output wire [DATA_WIDTH_CSR-1:0]   csr_din,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface WE" *)
     output wire         csr_we,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface ADDR" *)
-    output wire [31:0]    csr_address,
+    output wire [ADDRESS_SIZE_CSR-1:0]    csr_address,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface CLK" *)
     output wire           csr_clk,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 csr_mem_interface RST" *)
@@ -71,13 +71,13 @@ module dtpu_core
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface EN" *)
       output wire  wm_ce,
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface DOUT" *)
-      input wire [63:0]       wm_dout,
+      input wire [DATA_WIDTH_WMEMORY-1:0]       wm_dout,
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface DIN" *)
-      output wire [63:0]       wm_din,
+      output wire [DATA_WIDTH_WMEMORY-1:0]       wm_din,
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface WE" *)
       output wire              wm_we,
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface ADDR" *)
-      output wire [31:0]  wm_address,
+      output wire [ADDRESS_SIZE_WMEMORY-1:0]  wm_address,
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface CLK" *)
       output wire    wm_clk,
       (* X_INTERFACE_INFO = "xilinx.com:interface:bram_rtl:1.0 weight_mem_interface RST" *)
@@ -88,7 +88,7 @@ module dtpu_core
       ////////////////////////////////////////////
       /////////// using stream axi 
       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)
-      input wire [63:0] infifo_dout,
+      input wire [DATA_WIDTH_FIFO_IN:0] infifo_dout,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_EN" *)
       output wire infifo_read,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
@@ -100,7 +100,7 @@ module dtpu_core
       ////////////////////////////////////////////
       /////////// using stream axi 
       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_DATA" *)
-      output wire [63:0] outfifo_din,
+      output wire [DATA_WIDTH_FIFO_OUT:0] outfifo_din,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_EN" *)
       output wire outfifo_write,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
@@ -122,7 +122,7 @@ module dtpu_core
        
        // debug state
       output wire[3:0]state,
-      output reg[3:0]d_out
+      output wire[3:0]d_out
         );
     //////////////////////////////////////////
     ///************************************///
@@ -149,15 +149,14 @@ module dtpu_core
       wire ld_max_cnt_weight;
       wire enable_chain;
       wire [1:0]enable_fp_unit;
-      wire [63:0]infifo_dout_o;
 
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
       wire [$clog2(ROWS):0]max_down_cnt_from_cu;
       wire [$clog2(ROWS):0]max_cnt_weight_from_cu;
 
-      always @(posedge(clk)) begin : proc_
-      d_out=data_precision;
-      end
+      
+      assign d_out=data_precision;
+      
        
      ////////////////////////////////////////////
     ////// MATRIX MULTIPLICATION UNIT //////////
@@ -258,7 +257,7 @@ module dtpu_core
   .read_weight_memory(read_weight_memory),
   .infifo_read(infifo_read),
   .outfifo_write(outfifo_write),
-  .input_data_from_fifo(infifo_dout_o), //[data_in_width-1:0]
+  .input_data_from_fifo(infifo_dout), //[data_in_width-1:0]
   .data_to_fifo_out(outfifo_din), //[data_in_width-1:0]
   .data_from_weight_memory(wm_dout), //[data_in_mem-1:0]
   .data_from_mxu(output_data_from_mxu), //[data_in_width*ROWS-1:0] 
@@ -279,7 +278,6 @@ module dtpu_core
   );
 
 
-  assign outfifo_din= outfifo_write ? infifo_dout_o : 0;
   `endif
   
 

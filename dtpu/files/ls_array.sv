@@ -1,3 +1,4 @@
+
 `timescale 1ns /1ps
 
 `include "precision_def.vh"
@@ -13,7 +14,7 @@ module ls_array
 input clk,
 input reset_n,
 input enable_load_array,
-input [`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
+input reg[`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
 
 input infifo_read,
 input outfifo_write,

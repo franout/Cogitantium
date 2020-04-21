@@ -153,9 +153,13 @@ always begin
    #(clk_period/2);
 end
 
+initial begin 
+wm_dout=0;
+csr_dout=0;
+end 
 
         // fake csr memory process
-always @(csr_address,csr_ce)begin 
+always @(posedge(clk) )begin 
 if(csr_ce) begin 
   case(csr_address)
     `A_ARITHMETIC_PRECISION:
@@ -165,10 +169,12 @@ if(csr_ce) begin
     default:
       csr_dout=0;
   endcase
+  end else begin 
+  csr_dout=8'bZ;
   end 
 end
 // fake memory weight
-always @(wm_ce,wm_address) begin 
+always @(posedge(clk)) begin 
   if(wm_ce) begin
     case (wm_address)
         0: wm_dout= {8{8'h11}};
@@ -267,7 +273,7 @@ localparam start_p3=4'h8;
                 $display("accelerator not in continous run ");
                 $stop();
               end
-              if(outfifo_din!={8{8'h20}})begin
+              if(!(outfifo_din=={8{8'h20}}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end
@@ -320,7 +326,7 @@ localparam start_p3=4'h8;
                 $display("not in done state and done signal is not asserted",);
                 $stop();
               end
-              if(outfifo_din!={8{8'h18}})begin
+              if(!(outfifo_din=={8{8'h18}}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end

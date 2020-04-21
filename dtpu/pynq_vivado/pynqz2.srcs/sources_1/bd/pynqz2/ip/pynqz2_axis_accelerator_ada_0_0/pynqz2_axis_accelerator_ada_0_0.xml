@@ -8665,7 +8665,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:da570494</spirit:value>
+            <spirit:value>9:89170e2e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -8676,7 +8676,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:da570494</spirit:value>
+            <spirit:value>9:89170e2e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -8692,11 +8692,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 20 17:20:07 UTC 2020</spirit:value>
+            <spirit:value>Tue Apr 21 18:14:23 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:da570494</spirit:value>
+            <spirit:value>9:89170e2e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -8718,7 +8718,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:25f9f850</spirit:value>
+            <spirit:value>9:5c394e0d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -8734,11 +8734,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Apr 20 17:20:07 UTC 2020</spirit:value>
+            <spirit:value>Tue Apr 21 18:14:23 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:25f9f850</spirit:value>
+            <spirit:value>9:5c394e0d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -11358,7 +11358,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) div 8) - 1)">0</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) div 8) - 1)">7</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -11385,7 +11385,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) - 1)">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) - 1)">63</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -11412,7 +11412,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) - 1)">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) - 1)">63</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -12654,7 +12654,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) - 1)">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH&apos;)) - 1)">63</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -19579,7 +19579,7 @@
       <spirit:modelParameter spirit:dataType="std_logic_vector">
         <spirit:name>C_AP_IARG_WIDTH</spirit:name>
         <spirit:displayName>C Ap Iarg Width</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AP_IARG_WIDTH" spirit:bitStringLength="256">0x0000002000000020000000200000002000000020000000400000004000000008</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AP_IARG_WIDTH" spirit:bitStringLength="256">0x0000002000000020000000200000002000000020000000400000004000000040</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="std_logic_vector">
         <spirit:name>C_AP_IARG_N_DIM</spirit:name>
@@ -19589,7 +19589,7 @@
       <spirit:modelParameter spirit:dataType="std_logic_vector">
         <spirit:name>C_AP_IARG_DIM_1</spirit:name>
         <spirit:displayName>C Ap Iarg Dim 1</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AP_IARG_DIM_1" spirit:bitStringLength="256">0x0000040000000400000004000000040000000400000008000000080000000400</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AP_IARG_DIM_1" spirit:bitStringLength="256">0x0000040000000400000004000000040000000400000008000000080000000010</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="std_logic_vector">
         <spirit:name>C_AP_IARG_DIM_2</spirit:name>
@@ -19614,7 +19614,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_AP_IARG_0_DWIDTH</spirit:name>
         <spirit:displayName>C Ap Iarg 0 Dwidth</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH">8</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AP_IARG_0_DWIDTH">64</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_AP_IARG_1_DWIDTH</spirit:name>
@@ -20399,7 +20399,7 @@
     <spirit:parameter>
       <spirit:name>C_AP_IARG_0_DWIDTH</spirit:name>
       <spirit:displayName>Input Argument-0 Width</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AP_IARG_0_DWIDTH" spirit:choiceRef="choice_list_a11b979f" spirit:order="18000" spirit:configGroups="1 UnGrouped">8</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AP_IARG_0_DWIDTH" spirit:choiceRef="choice_list_a11b979f" spirit:order="18000" spirit:configGroups="1 UnGrouped">64</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -20540,7 +20540,7 @@
     <spirit:parameter>
       <spirit:name>C_AP_IARG_0_DIM_1</spirit:name>
       <spirit:displayName>Dimension-1 Depth</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AP_IARG_0_DIM_1" spirit:order="16800" spirit:configGroups="1 UnGrouped" spirit:minimum="2" spirit:maximum="16384" spirit:rangeType="long">1024</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AP_IARG_0_DIM_1" spirit:order="16800" spirit:configGroups="1 UnGrouped" spirit:minimum="2" spirit:maximum="16384" spirit:rangeType="long">16</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -23305,6 +23305,7 @@
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_ACLK.PHASE" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_ARESETN.POLARITY" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_AP_ADAPTER_ID" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_AP_IARG_0_DIM_1" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_AP_IARG_0_DWIDTH" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_AP_IARG_0_MB_DEPTH" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_AP_IARG_1_DIM_1" xilinx:valueSource="user"/>

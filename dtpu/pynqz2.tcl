@@ -255,6 +255,7 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   # Create instance: axis_accelerator_ada, and set properties
   set axis_accelerator_ada [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_accelerator_adapter:2.1 axis_accelerator_ada ]
   set_property -dict [ list \
+   CONFIG.C_AP_ADAPTER_ID {0} \
    CONFIG.C_AP_IARG_0_DWIDTH {8} \
    CONFIG.C_AP_IARG_0_MB_DEPTH {1} \
    CONFIG.C_AP_IARG_1_DIM_1 {2048} \
@@ -405,7 +406,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_m_axi_s2mm_data_width {64} \
    CONFIG.c_m_axis_mm2s_tdata_width {64} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {16} \
+   CONFIG.c_mm2s_burst_size {8} \
    CONFIG.c_s_axis_s2mm_tdata_width {64} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
@@ -434,6 +435,12 @@ proc create_root_design { parentCell } {
    CONFIG.C_NUM_SW_INTR {0} \
    CONFIG.C_PROCESSOR_CLK_FREQ_MHZ {650} \
  ] $axi_intc
+
+  # Create instance: axis_interconnect_0, and set properties
+  set axis_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_interconnect:2.1 axis_interconnect_0 ]
+  set_property -dict [ list \
+   CONFIG.NUM_MI {1} \
+ ] $axis_interconnect_0
 
   # Create instance: dtpu
   create_hier_cell_dtpu [current_bd_instance .] dtpu
@@ -1396,7 +1403,8 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_dma_infifo_M_AXI_MM2S [get_bd_intf_pins axi_dma_infifo/M_AXI_MM2S] [get_bd_intf_pins smartconnect_0/S01_AXI]
   connect_bd_intf_net -intf_net axi_dma_infifo_M_AXI_S2MM [get_bd_intf_pins axi_dma_infifo/M_AXI_S2MM] [get_bd_intf_pins smartconnect_0/S02_AXI]
   connect_bd_intf_net -intf_net axi_dma_weight_mem_M_AXI_MM2S [get_bd_intf_pins axi_dma_weight_mem/M_AXI_MM2S] [get_bd_intf_pins smartconnect_0/S03_AXI]
-  connect_bd_intf_net -intf_net dtpu_M_AXIS_outfifo [get_bd_intf_pins axi_dma_infifo/S_AXIS_S2MM] [get_bd_intf_pins dtpu/M_AXIS_outfifo]
+  connect_bd_intf_net -intf_net axis_interconnect_0_M00_AXIS [get_bd_intf_pins axi_dma_infifo/S_AXIS_S2MM] [get_bd_intf_pins axis_interconnect_0/M00_AXIS]
+  connect_bd_intf_net -intf_net dtpu_M_AXIS_outfifo [get_bd_intf_pins axis_interconnect_0/S00_AXIS] [get_bd_intf_pins dtpu/M_AXIS_outfifo]
   connect_bd_intf_net -intf_net ps7_DDR [get_bd_intf_ports DDR_0] [get_bd_intf_pins ps7/DDR]
   connect_bd_intf_net -intf_net ps7_FIXED_IO [get_bd_intf_ports FIXED_IO_0] [get_bd_intf_pins ps7/FIXED_IO]
   connect_bd_intf_net -intf_net ps7_M_AXI_GP0 [get_bd_intf_pins ps7/M_AXI_GP0] [get_bd_intf_pins ps7_axi_periph/S00_AXI]
@@ -1409,7 +1417,7 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_pins ps7/S_AXI_HP0] [get_bd_intf_pins smartconnect_0/M00_AXI]
 
   # Create port connections
-  connect_bd_net -net S00_ACLK_1 [get_bd_pins axi_dma_csr_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_csr_mem/s_axi_lite_aclk] [get_bd_pins axi_dma_infifo/m_axi_mm2s_aclk] [get_bd_pins axi_dma_infifo/m_axi_s2mm_aclk] [get_bd_pins axi_dma_infifo/s_axi_lite_aclk] [get_bd_pins axi_dma_weight_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_weight_mem/s_axi_lite_aclk] [get_bd_pins axi_intc/s_axi_aclk] [get_bd_pins dtpu/axi_aclk] [get_bd_pins dtpu/clk] [get_bd_pins monitor/s_axi_aclk] [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] [get_bd_pins ps7_axi_periph/ACLK] [get_bd_pins ps7_axi_periph/M00_ACLK] [get_bd_pins ps7_axi_periph/M01_ACLK] [get_bd_pins ps7_axi_periph/M02_ACLK] [get_bd_pins ps7_axi_periph/M03_ACLK] [get_bd_pins ps7_axi_periph/M04_ACLK] [get_bd_pins ps7_axi_periph/M05_ACLK] [get_bd_pins ps7_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_30M/slowest_sync_clk] [get_bd_pins smartconnect_0/aclk]
+  connect_bd_net -net S00_ACLK_1 [get_bd_pins axi_dma_csr_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_csr_mem/s_axi_lite_aclk] [get_bd_pins axi_dma_infifo/m_axi_mm2s_aclk] [get_bd_pins axi_dma_infifo/m_axi_s2mm_aclk] [get_bd_pins axi_dma_infifo/s_axi_lite_aclk] [get_bd_pins axi_dma_weight_mem/m_axi_mm2s_aclk] [get_bd_pins axi_dma_weight_mem/s_axi_lite_aclk] [get_bd_pins axi_intc/s_axi_aclk] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins dtpu/axi_aclk] [get_bd_pins dtpu/clk] [get_bd_pins monitor/s_axi_aclk] [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] [get_bd_pins ps7_axi_periph/ACLK] [get_bd_pins ps7_axi_periph/M00_ACLK] [get_bd_pins ps7_axi_periph/M01_ACLK] [get_bd_pins ps7_axi_periph/M02_ACLK] [get_bd_pins ps7_axi_periph/M03_ACLK] [get_bd_pins ps7_axi_periph/M04_ACLK] [get_bd_pins ps7_axi_periph/M05_ACLK] [get_bd_pins ps7_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_30M/slowest_sync_clk] [get_bd_pins smartconnect_0/aclk]
   connect_bd_net -net axi_dma_0_mm2s_introut [get_bd_pins axi_dma_weight_mem/mm2s_introut] [get_bd_pins xlconcat_0/In3]
   connect_bd_net -net axi_dma_csr_mem_mm2s_introut [get_bd_pins axi_dma_csr_mem/mm2s_introut] [get_bd_pins xlconcat_0/In4]
   connect_bd_net -net axi_dma_infifo_mm2s_introut [get_bd_pins axi_dma_infifo/mm2s_introut] [get_bd_pins xlconcat_0/In0]
@@ -1422,7 +1430,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net ps7_FCLK_RESET0_N [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net reset_n_1 [get_bd_ports reset_n] [get_bd_pins dtpu/resetn] [get_bd_pins util_vector_logic_0/Op2]
   connect_bd_net -net rst_ps7_30M_interconnect_aresetn [get_bd_pins axi_dma_csr_mem/axi_resetn] [get_bd_pins axi_dma_infifo/axi_resetn] [get_bd_pins axi_dma_weight_mem/axi_resetn] [get_bd_pins axi_intc/s_axi_aresetn] [get_bd_pins dtpu/s_axi_aresetn] [get_bd_pins ps7_axi_periph/ARESETN] [get_bd_pins ps7_axi_periph/M00_ARESETN] [get_bd_pins ps7_axi_periph/M01_ARESETN] [get_bd_pins ps7_axi_periph/M02_ARESETN] [get_bd_pins ps7_axi_periph/M03_ARESETN] [get_bd_pins ps7_axi_periph/M04_ARESETN] [get_bd_pins ps7_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_30M/interconnect_aresetn] [get_bd_pins smartconnect_0/aresetn]
-  connect_bd_net -net rst_ps7_30M_peripheral_aresetn [get_bd_pins monitor/s_axi_aresetn] [get_bd_pins ps7_axi_periph/M05_ARESETN] [get_bd_pins rst_ps7_30M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_30M_peripheral_aresetn [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins monitor/s_axi_aresetn] [get_bd_pins ps7_axi_periph/M05_ARESETN] [get_bd_pins rst_ps7_30M/peripheral_aresetn]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins rst_ps7_30M/ext_reset_in] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins axi_intc/intr] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins dtpu/test_mode] [get_bd_pins xlconstant_0/dout]

@@ -1,50 +1,50 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.631706",
-   "Default View_TopLeft":"-404,-9",
+   "Default View_ScaleFactor":"0.822301",
+   "Default View_TopLeft":"-41,225",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port M_AXIS_outfifo -pg 1 -lvl 3 -x 1200 -y 180 -defaultsOSRD
+preplace port M_AXIS_outfifo -pg 1 -lvl 3 -x 1180 -y 180 -defaultsOSRD
 preplace port S_AXI -pg 1 -lvl 0 -x -80 -y 40 -defaultsOSRD
 preplace port S_AXIS_csr -pg 1 -lvl 0 -x -80 -y 70 -defaultsOSRD
 preplace port S_AXIS_infifo -pg 1 -lvl 0 -x -80 -y 130 -defaultsOSRD
 preplace port S_AXIS_wm -pg 1 -lvl 0 -x -80 -y 100 -defaultsOSRD
-preplace port interrupt_dtpu -pg 1 -lvl 3 -x 1200 -y 240 -defaultsOSRD
+preplace port interrupt_dtpu -pg 1 -lvl 3 -x 1180 -y 240 -defaultsOSRD
 preplace port test_mode -pg 1 -lvl 0 -x -80 -y 300 -defaultsOSRD
 preplace port enable -pg 1 -lvl 0 -x -80 -y 330 -defaultsOSRD
 preplace port clk -pg 1 -lvl 0 -x -80 -y 220 -defaultsOSRD
 preplace port axi_aclk -pg 1 -lvl 0 -x -80 -y 160 -defaultsOSRD
 preplace port s_axi_aresetn -pg 1 -lvl 0 -x -80 -y 190 -defaultsOSRD
-preplace portBus state_0 -pg 1 -lvl 3 -x 1200 -y 410 -defaultsOSRD
+preplace portBus state_0 -pg 1 -lvl 3 -x 1180 -y 410 -defaultsOSRD
 preplace portBus resetn -pg 1 -lvl 0 -x -80 -y 10 -defaultsOSRD
-preplace portBus d_out_0 -pg 1 -lvl 3 -x 1200 -y 380 -defaultsOSRD
-preplace inst axis_accelerator_ada -pg 1 -lvl 2 -x 990 -y 760 -defaultsOSRD
-preplace inst util_vector_logic_2 -pg 1 -lvl 1 -x 530 -y 120 -defaultsOSRD
-preplace inst dtpu_core -pg 1 -lvl 1 -x 530 -y 330 -defaultsOSRD
-preplace netloc axis_accelerator_ada_0_interrupt 1 2 1 1180J 240n
+preplace portBus d_out_0 -pg 1 -lvl 3 -x 1180 -y 380 -defaultsOSRD
+preplace inst axis_accelerator_ada -pg 1 -lvl 2 -x 970 -y 760 -defaultsOSRD
+preplace inst util_vector_logic_2 -pg 1 -lvl 1 -x 510 -y 120 -defaultsOSRD
+preplace inst dtpu_core -pg 1 -lvl 1 -x 510 -y 330 -defaultsOSRD
+preplace netloc axis_accelerator_ada_0_interrupt 1 2 1 1160J 240n
 preplace netloc test_mode_0_1 1 0 1 -50J 300n
 preplace netloc enable_0_1 1 0 1 -60J 330n
 preplace netloc clk_0_1 1 0 1 -30J 220n
-preplace netloc aclk_0_1 1 0 2 -40J 200 750
-preplace netloc s_axi_aresetn_0_1 1 0 2 NJ 190 780
-preplace netloc util_vector_logic_2_Res 1 0 2 -20 210 730
-preplace netloc dtpu_core_state 1 1 2 NJ 360 1170J
-preplace netloc axis_accelerator_ada_aresetn 1 0 3 -10 10 NJ 10 1150
+preplace netloc aclk_0_1 1 0 2 -40J 200 730
+preplace netloc s_axi_aresetn_0_1 1 0 2 NJ 190 760
+preplace netloc util_vector_logic_2_Res 1 0 2 -20 210 710
+preplace netloc dtpu_core_state 1 1 2 NJ 360 1150J
+preplace netloc axis_accelerator_ada_aresetn 1 0 3 -10 10 NJ 10 1130
 preplace netloc Op1_0_1 1 0 1 -20J 10n
 preplace netloc dtpu_core_d_out 1 1 2 NJ 380 NJ
-preplace netloc Conn1 1 2 1 1160J 180n
-preplace netloc dtpu_coro_output_fifo 1 1 1 730 340n
-preplace netloc dtpu_coro_input_fifo 1 1 1 760 320n
-preplace netloc Conn5 1 0 2 -30J 50 790J
-preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 220 NJ 220 1140
-preplace netloc dtpu_coro_weight_mem_interface 1 1 1 740 300n
-preplace netloc Conn3 1 0 2 -40J 40 800J
-preplace netloc Conn4 1 0 2 -50J 20 810J
-preplace netloc dtpu_coro_csr_mem_interface 1 1 1 770 280n
-preplace netloc Conn2 1 0 2 -60J 30 820J
-levelinfo -pg 1 -80 530 990 1200
-pagesize -pg 1 -db -bbox -sgen -230 -10 1360 1270
+preplace netloc Conn5 1 0 2 -30J 50 770J
+preplace netloc dtpu_coro_weight_mem_interface 1 1 1 720 300n
+preplace netloc dtpu_coro_input_fifo 1 1 1 740 320n
+preplace netloc Conn3 1 0 2 -40J 40 780J
+preplace netloc Conn1 1 2 1 1140J 180n
+preplace netloc Conn4 1 0 2 -50J 20 790J
+preplace netloc dtpu_coro_output_fifo 1 1 1 710 340n
+preplace netloc dtpu_coro_csr_mem_interface 1 1 1 750 280n
+preplace netloc Conn2 1 0 2 -60J 30 800J
+preplace netloc axis_accelerator_ada_0_AP_CTRL 1 0 3 -10 220 NJ 220 1120
+levelinfo -pg 1 -80 510 970 1180
+pagesize -pg 1 -db -bbox -sgen -230 -10 1340 1270
 "
 }
 0

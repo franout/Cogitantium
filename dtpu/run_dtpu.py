@@ -144,7 +144,9 @@ TRANSPARENT_DELAY_REGISTER=3
 DEBUG=4
 TEST_OPTIONS=5
 
-INT8=0xF1
+
+ACTIVATE_CHAIN=0x1
+INT8=0x1
 INT16=0X03
 INT32=0x07
 INT64=0x0F
@@ -167,7 +169,7 @@ xlnk = Xlnk()
 input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
 output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
 weight_buffer=allocate(shape=(2048,),dtype='u8')
-csr_buffer=allocate(shape=(1024,),dtype='u1')
+csr_buffer=allocate(shape=(16,),dtype='u8')
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
@@ -175,24 +177,30 @@ for i in range(input_fifo_buffer.size):
 
 
 weight_buffer[0]=0x1111111111111111
+
 weight_buffer[1]=0x2222222222222222
 weight_buffer[2]=0x3333333333333333
-weight_buffer[3]=0x0000000000000000
+weight_buffer[3]=0x1111111111111111
 weight_buffer[4]=0x5555555555555555
 ## populate weights
-for i in range(weight_buffer.size):
-    weight_buffer[i]=0xFFFFFFFFFFFFFFFF
+for i in range(weight_buffer.size-5):
+    weight_buffer[i+5]=0xFFFFFFFFFFFFFFFF
 
 ## populate csr 
 for i in range(csr_buffer.size):
-    csr_buffer[i]=  0x03
+    if i!=1:
+        csr_buffer[i]=  0xFFFFFFFFFFFFFFFF
+    else:
+        csr_buffer[i]=0x00
 
-#csr_buffer[ARITHMETIC_PRECISION]=INT8
-#csr_buffer[FP_MODE]=NO_FP
-#csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
-#csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
-#csr_buffer[DEBUG]=0
-#csr_buffer[TEST_OPTIONS]=0
+
+
+csr_buffer[ARITHMETIC_PRECISION]= (ACTIVATE_CHAIN <<4)| INT8
+csr_buffer[FP_MODE]=NO_FP
+csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
+csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
+csr_buffer[DEBUG]=0
+csr_buffer[TEST_OPTIONS]=0
 
 #csr_buffer[0]= (NO_FP<<8)  | INT8  
 ## accelerator 
@@ -210,6 +218,7 @@ input_fifo_buffer.flush()
 ###### program the dma for the csr reg #########
 ################################################
 if 'driver_csr' in locals():
+    driver_csr.sendchannel.stop()
     driver_csr.sendchannel.start()
 else: 
     driver_csr=overlay.axi_dma_csr_mem
@@ -222,6 +231,7 @@ driver_csr.sendchannel.wait()
 ###### program the dma for the weight ##########
 ################################################
 if 'driver_wm' in locals():
+    driver_wm.sendchannel.stop()
     driver_wm.sendchannel.start()
 else:
     driver_wm=overlay.axi_dma_weight_mem
@@ -235,15 +245,20 @@ driver_wm.sendchannel.wait()
 ######################################################
 ###### program the dma for the in/out fifos ##########
 ######################################################
-if 'driver_fifo' in locals():
-    driver_fifo.sendchannel.start()
-    driver_fifo.recvchannel.start()
+if 'driver_fifo_in' in locals():
+    driver_fifo_in.sendchannel.stop()
+    driver_fifo_in.sendchannel.start()
 else:
-    driver_fifo=overlay.axi_dma_infifo
+    driver_fifo_in=overlay.axi_dma_infifo
+    driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
 
-driver_fifo.sendchannel.transfer(input_fifo_buffer)
-driver_fifo.sendchannel.wait()
-driver_fifo.recvchannel.transfer(output_fifo_buffer)
+if 'driver_fifo_out' in locals():
+    driver_fifo_out.recvchannel.stop()    
+    driver_fifo_out.recvchannel.start()
+else:
+    driver_fifo_out=overlay.axi_dma_outfifo
+    driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+    driver_fifo_in.sendchannel.wait()
 
 
 ###########################################################
@@ -273,7 +288,8 @@ accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights an
 #considered for start generation.
 accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
 accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
-
+#accelerator.write(OARG_LENGTH_MODE,0x00000001) # software mode
+#accelerator.write(OARG0_LENGTH,2048) # size outfifo / data_width output fifo
 # optional configure input scalar request enable  and update them 
 accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
 accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
@@ -293,7 +309,7 @@ start_time = time.time()
 #################################################################
 
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-while driver_fifo.recvchannel.running:
+while driver_fifo_out.recvchannel.running:
     pass
 
 #driver_fifo.recvchannel.wait()
@@ -325,7 +341,7 @@ while True:
 #position in multi-buffer. Writing 0 reuses the same buffer.
 #accelerator.write(CMD,0x00000001)
 accelerator.write(STATUS,0x00000003)##clear status
-#driver_fifo.recvchannel.wait()
+#driver_fifo_out.recvchannel.wait()
 
 
 ## retrieve the results and print 

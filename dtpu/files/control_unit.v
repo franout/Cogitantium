@@ -22,15 +22,15 @@ output reg enable_mxu,
 ////////////////////////////
    (* keep="true" *) output reg         csr_ce,
 input wire [DATA_WIDTH_CSR-1:0]    csr_dout,
-(* keep="true" *)output reg         csr_we,
+(* keep="true" *)output reg       csr_we,
 (* keep="true" *)output reg [ADDRESS_SIZE_CSR-1:0]    csr_address,
-(* keep="true" *)output reg         csr_reset,
+(* keep="true" *)output reg     csr_reset,
 ////////////////////////////
 ////// WEIGHT MEMORY ///////
 ///////////////////////////
 (* keep="true" *)output reg  wm_ce,
-(* keep="true" *)output reg              wm_we,
-(* keep="true" *)output reg           wm_reset,
+(* keep="true" *)output reg  wm_we,
+(* keep="true" *)output reg  wm_reset,
 ////////////////////////////////////////////
 /////////// INPUT DATA FIFO ////////////////
 ////////////////////////////////////////////
@@ -154,6 +154,7 @@ Power_up: begin
         end
 idle: begin
         cs_idle<=1;
+        data_precision<=`INT8;
         if(cs_start && glb_enable)begin  
         state<=start_p1;        
         end else begin 
@@ -166,8 +167,6 @@ idle: begin
 start_p1: begin 
             csr_ce<=1'b1;
             csr_address<=`A_ARITHMETIC_PRECISION;
-            enable_chain<=csr_dout[DATA_WIDTH_CSR-1];
-            data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
                  if(cs_start) begin 
                 state<=start_p2; 
                 end else begin
@@ -176,7 +175,8 @@ start_p1: begin
                 end  
 start_p2:  begin
             csr_ce<=1'b1;
-            enable_fp_unit<=csr_dout[1:0]; // fp and bpfp bits
+             enable_chain<=csr_dout[`LOG_ALLOWED_PRECISIONS];
+            //data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
             csr_address<=`A_FP_MODE;
             if(cs_start) begin 
             state<=start_p3; 
@@ -186,6 +186,7 @@ start_p2:  begin
             end
 start_p3:  begin 
             cs_ready<=1;
+            enable_fp_unit<=csr_dout[1:0]; // fp and bpfp bits
             if(cs_start) begin 
             state<=retrieve_data; 
             end else begin 
@@ -214,8 +215,8 @@ retrieve_data: begin
 
 compute: begin
 
-            //wm_ce<=1'b1;
-            //infifo_read<=1'b1;
+            wm_ce<=1'b1;
+            infifo_read<=1'b1;
             enable_load_array<=1'b1;
             read_weight_memory<=1'b0;
             enable_load_activation_data<=0;

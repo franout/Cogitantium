@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "dtpu_core,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "pynqz2_dtpu_core_0_0,dtpu_core,{}" *)
-(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=64,ROWS=8,COLUMNS=8,SIZE_WMEMORY=2048,ADDRESS_SIZE_WMEMORY=32,ADDRESS_SIZE_CSR=32,SIZE_CSR=1024,DATA_WIDTH_CSR=8,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
+(* CORE_GENERATION_INFO = "pynqz2_dtpu_core_0_0,dtpu_core,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dtpu_core,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATA_WIDTH_MAC=64,ROWS=8,COLUMNS=8,SIZE_WMEMORY=2048,ADDRESS_SIZE_WMEMORY=32,ADDRESS_SIZE_CSR=32,SIZE_CSR=16,DATA_WIDTH_CSR=64,DATA_WIDTH_WMEMORY=64,DATA_WIDTH_FIFO_IN=64,DATA_WIDTH_FIFO_OUT=64}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module pynqz2_dtpu_core_0_0 (
@@ -100,9 +100,9 @@ input wire enable;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface EN" *)
 output wire csr_ce;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface DOUT" *)
-input wire [7 : 0] csr_dout;
+input wire [63 : 0] csr_dout;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface DIN" *)
-output wire [7 : 0] csr_din;
+output wire [63 : 0] csr_din;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface WE" *)
 output wire csr_we;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 csr_mem_interface ADDR" *)
@@ -128,13 +128,13 @@ output wire wm_clk;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 weight_mem_interface RST" *)
 output wire wm_reset;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)
-input wire [63 : 0] infifo_dout;
+input wire [64 : 0] infifo_dout;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_EN" *)
 output wire infifo_read;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
 input wire infifo_is_empty;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_DATA" *)
-output wire [63 : 0] outfifo_din;
+output wire [64 : 0] outfifo_din;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_EN" *)
 output wire outfifo_write;
 (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
@@ -159,8 +159,8 @@ output wire [3 : 0] d_out;
     .SIZE_WMEMORY(2048),
     .ADDRESS_SIZE_WMEMORY(32),
     .ADDRESS_SIZE_CSR(32),
-    .SIZE_CSR(1024),
-    .DATA_WIDTH_CSR(8),
+    .SIZE_CSR(16),
+    .DATA_WIDTH_CSR(64),
     .DATA_WIDTH_WMEMORY(64),
     .DATA_WIDTH_FIFO_IN(64),
     .DATA_WIDTH_FIFO_OUT(64)
