@@ -1,23 +1,17 @@
+//==================================================================================================
+//  Filename      : smac.v
+//  Created On    : 2020-04-22 17:05:43
+//  Last Modified : 2020-04-22 17:05:43
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04/05/2020 04:58:02 PM
-// Design Name: 
-// Module Name: smac
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 `include "precision_def.vh"
 module smac
@@ -36,6 +30,7 @@ module smac
         ///// CONTROL SIGNALS FOR DSP CHAIN /////
         /////////////////////////////////////////
         input wire [3:0]select_precision,
+        input wire [1:0]enable_fp_unit,
         input wire active_chain      
     );
     

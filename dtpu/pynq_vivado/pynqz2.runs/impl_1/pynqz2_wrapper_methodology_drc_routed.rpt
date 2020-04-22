@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Tue Apr 21 20:27:45 2020
+| Date         : Wed Apr 22 17:55:03 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_methodology -file pynqz2_wrapper_methodology_drc_routed.rpt -pb pynqz2_wrapper_methodology_drc_routed.pb -rpx pynqz2_wrapper_methodology_drc_routed.rpx
 | Design       : pynqz2_wrapper

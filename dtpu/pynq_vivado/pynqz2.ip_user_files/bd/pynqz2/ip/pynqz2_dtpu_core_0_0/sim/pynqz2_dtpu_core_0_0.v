@@ -158,7 +158,7 @@ output wire [3 : 0] d_out;
     .SIZE_WMEMORY(2048),
     .ADDRESS_SIZE_WMEMORY(32),
     .ADDRESS_SIZE_CSR(32),
-    .SIZE_CSR(16),
+    .SIZE_CSR(1024),
     .DATA_WIDTH_CSR(64),
     .DATA_WIDTH_WMEMORY(64),
     .DATA_WIDTH_FIFO_IN(64),

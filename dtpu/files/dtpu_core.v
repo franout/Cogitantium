@@ -1,25 +1,18 @@
+//==================================================================================================
+//  Filename      : dtpu_core.v
+//  Created On    : 2020-04-22 17:05:56
+//  Last Modified : 2020-04-22 17:06:26
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com
+//
+//  Description   : Cogitantium, the dumb tensor processor unit,top level enity of the accelerator
+//
+//
+//==================================================================================================
 
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 05.03.2020 17:21:18
-// Design Name: 
-// Module Name: dtpu
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 `include "precision_def.vh"
 //`define DUMMY 

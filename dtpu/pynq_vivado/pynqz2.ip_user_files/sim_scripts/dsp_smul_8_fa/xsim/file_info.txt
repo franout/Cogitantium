@@ -1,0 +1,2 @@
+dsp_smul_8_fa.vhd,vhdl,xil_defaultlib,../../../ip/dsp_smul_8_fa/sim/dsp_smul_8_fa.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

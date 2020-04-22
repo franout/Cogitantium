@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Tue Apr 21 20:17:25 2020
-# Process ID: 9750
+# Start of session at: Wed Apr 22 17:43:48 2020
+# Process ID: 10298
 # Current directory: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1
 # Command line: vivado -log pynqz2_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynqz2_wrapper.tcl
 # Log file: /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.vds
@@ -37,7 +37,7 @@ WARNING: [IP_Flow 19-3153] Bus Interface 'clk': ASSOCIATED_BUSIF bus parameter i
 WARNING: [IP_Flow 19-3155] Bus Interface 'clk': ASSOCIATED_RESET port 'areset' does not exist.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-add_files: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1682.555 ; gain = 208.102 ; free physical = 4854 ; free virtual = 13904
+add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1659.477 ; gain = 184.090 ; free physical = 1892 ; free virtual = 12656
 Command: read_checkpoint -auto_incremental -incremental /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/utils_1/imports/synth_1/pynqz2_wrapper.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/utils_1/imports/synth_1/pynqz2_wrapper.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -48,9 +48,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 9879 
+INFO: Helper process launched with PID 10461 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:26 . Memory (MB): peak = 1965.688 ; gain = 202.715 ; free physical = 4285 ; free virtual = 13341
+Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:28 . Memory (MB): peak = 1965.590 ; gain = 202.684 ; free physical = 1327 ; free virtual = 12092
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:1233]
@@ -65,7 +65,7 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_axi_dma_0_3' [/media/fra/DATA/un
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
 	Parameter C_SG_INCLUDE_STSCNTRL_STRM bound to: 0 - type: integer 
 	Parameter C_SG_USE_STSAPP_LENGTH bound to: 0 - type: integer 
-	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_SG_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_MM2S_CNTRL_TDATA_WIDTH bound to: 32 - type: integer 
@@ -96,7 +96,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma' [/media/fra/DATA/uni/2019-2020
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
 	Parameter C_SG_INCLUDE_STSCNTRL_STRM bound to: 0 - type: integer 
 	Parameter C_SG_USE_STSAPP_LENGTH bound to: 0 - type: integer 
-	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_SG_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_MM2S_CNTRL_TDATA_WIDTH bound to: 32 - type: integer 
@@ -171,7 +171,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module' [/media/fra/DATA/un
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
-	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_AXI_LITE_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
@@ -201,7 +201,7 @@ INFO: [Synth 8-256] done synthesizing module 'axi_dma_lite_if' (4#1) [/media/fra
 INFO: [Synth 8-638] synthesizing module 'axi_dma_register' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3607]
 	Parameter C_NUM_REGISTERS bound to: 12 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
-	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
@@ -217,7 +217,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_mngr' [/media/fra/DATA/uni
 	Parameter C_EXTRA bound to: 1 - type: integer 
 	Parameter C_SG_INCLUDE_STSCNTRL_STRM bound to: 0 - type: integer 
 	Parameter C_SG_INCLUDE_DESC_QUEUE bound to: 1 - type: integer 
-	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_SG_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_S_AXIS_UPDPTR_TDATA_WIDTH bound to: 32 - type: integer 
@@ -230,7 +230,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_mngr' [/media/fra/DATA/uni
 	Parameter C_FAMILY bound to: zynq - type: string 
 INFO: [Synth 8-638] synthesizing module 'axi_dma_smple_sm' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:11972]
 	Parameter C_M_AXI_ADDR_WIDTH bound to: 32 - type: integer 
-	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_EXTRA bound to: 1 - type: integer 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'axi_dma_smple_sm' (7#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:11972]
@@ -260,7 +260,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover' [/media/fra/DATA/uni/201
 	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
 	Parameter C_MM2S_BURST_SIZE bound to: 8 - type: integer 
-	Parameter C_MM2S_BTT_USED bound to: 26 - type: integer 
+	Parameter C_MM2S_BTT_USED bound to: 14 - type: integer 
 	Parameter C_MM2S_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
 	Parameter C_MM2S_INCLUDE_SF bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
@@ -274,7 +274,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover' [/media/fra/DATA/uni/201
 	Parameter C_S2MM_STSCMD_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
 	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
-	Parameter C_S2MM_BTT_USED bound to: 26 - type: integer 
+	Parameter C_S2MM_BTT_USED bound to: 14 - type: integer 
 	Parameter C_S2MM_SUPPORT_INDET_BTT bound to: 1 - type: integer 
 	Parameter C_S2MM_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
 	Parameter C_S2MM_INCLUDE_SF bound to: 1 - type: integer 
@@ -300,7 +300,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap' [/media/f
 	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
 	Parameter C_MM2S_BURST_SIZE bound to: 8 - type: integer 
-	Parameter C_MM2S_BTT_USED bound to: 26 - type: integer 
+	Parameter C_MM2S_BTT_USED bound to: 14 - type: integer 
 	Parameter C_MM2S_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
 	Parameter C_INCLUDE_MM2S_GP_SF bound to: 1 - type: integer 
@@ -357,7 +357,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_pcc' [/media/fra/DATA/uni
 	Parameter C_MAX_BURST_LEN bound to: 8 - type: integer 
 	Parameter C_CMD_WIDTH bound to: 71 - type: integer 
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
-	Parameter C_BTT_USED bound to: 26 - type: integer 
+	Parameter C_BTT_USED bound to: 14 - type: integer 
 	Parameter C_SUPPORT_INDET_BTT bound to: 0 - type: integer 
 	Parameter C_NATIVE_XFER_WIDTH bound to: 64 - type: integer 
 	Parameter C_STRT_SF_OFFSET_WIDTH bound to: 1 - type: integer 
@@ -887,6 +887,58 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma__parameterized1' [/media/fra/DA
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
 	Parameter C_INCREASE_THROUGHPUT bound to: 0 - type: integer 
 	Parameter C_INSTANCE bound to: axi_dma - type: string 
+INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:8436]
+	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
+	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
+	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_AXI_LITE_IS_ASYNC bound to: 0 - type: integer 
+	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_S2MM_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_NUM_S2MM_CHANNELS bound to: 1 - type: integer 
+	Parameter C_MICRO_DMA bound to: 0 - type: integer 
+	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axi_dma_register__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3607]
+	Parameter C_NUM_REGISTERS bound to: 12 - type: integer 
+	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_MICRO_DMA bound to: 0 - type: integer 
+	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element sg_ftch_error_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3995]
+WARNING: [Synth 8-6014] Unused sequential element sg_updt_error_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3996]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_register__parameterized0' (43#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:3607]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_reg_module__parameterized0' (43#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:8436]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_mngr__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:15178]
+	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
+	Parameter C_PRMY_CMDFIFO_DEPTH bound to: 4 - type: integer 
+	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
+	Parameter C_EXTRA bound to: 1 - type: integer 
+	Parameter C_SG_INCLUDE_STSCNTRL_STRM bound to: 0 - type: integer 
+	Parameter C_SG_INCLUDE_DESC_QUEUE bound to: 1 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXIS_SG_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXIS_UPDPTR_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXIS_UPDSTS_TDATA_WIDTH bound to: 33 - type: integer 
+	Parameter C_M_AXIS_MM2S_CNTRL_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
+	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
+	Parameter C_MICRO_DMA bound to: 0 - type: integer 
+	Parameter C_FAMILY bound to: zynq - type: string 
+INFO: [Synth 8-638] synthesizing module 'axi_dma_smple_sm__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:11972]
+	Parameter C_M_AXI_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_EXTRA bound to: 1 - type: integer 
+	Parameter C_MICRO_DMA bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_smple_sm__parameterized0' (43#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:11972]
+WARNING: [Synth 8-3848] Net mm2s_desc_flush in module/entity axi_dma_mm2s_mngr__parameterized0 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:15095]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_mngr__parameterized0' (43#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:15178]
 INFO: [Synth 8-638] synthesizing module 'axi_datamover__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:55436]
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_M_AXI_MM2S_ARID bound to: 0 - type: integer 
@@ -927,6 +979,48 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover__parameterized0' [/media/
 	Parameter C_CMD_WIDTH bound to: 72 - type: integer 
 	Parameter C_MCDMA bound to: 1 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:53572]
+	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
+	Parameter C_MM2S_ARID bound to: 0 - type: integer 
+	Parameter C_MM2S_ID_WIDTH bound to: 4 - type: integer 
+	Parameter C_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_MM2S_MDATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_MM2S_SDATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_INCLUDE_MM2S_STSFIFO bound to: 1 - type: integer 
+	Parameter C_MM2S_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
+	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
+	Parameter C_MM2S_BURST_SIZE bound to: 8 - type: integer 
+	Parameter C_MM2S_BTT_USED bound to: 26 - type: integer 
+	Parameter C_MM2S_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
+	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
+	Parameter C_INCLUDE_MM2S_GP_SF bound to: 1 - type: integer 
+	Parameter C_ENABLE_CACHE_USER bound to: 0 - type: integer 
+	Parameter C_ENABLE_MM2S_TKEEP bound to: 1 - type: integer 
+	Parameter C_ENABLE_SKID_BUF bound to: 11111 - type: string 
+	Parameter C_MCDMA bound to: 1 - type: integer 
+	Parameter C_FAMILY bound to: zynq - type: string 
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_pcc__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:7416]
+	Parameter C_IS_MM2S bound to: 1 - type: integer 
+	Parameter C_DRE_ALIGN_WIDTH bound to: 3 - type: integer 
+	Parameter C_SEL_ADDR_WIDTH bound to: 3 - type: integer 
+	Parameter C_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_STREAM_DWIDTH bound to: 64 - type: integer 
+	Parameter C_MAX_BURST_LEN bound to: 8 - type: integer 
+	Parameter C_CMD_WIDTH bound to: 71 - type: integer 
+	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
+	Parameter C_BTT_USED bound to: 26 - type: integer 
+	Parameter C_SUPPORT_INDET_BTT bound to: 0 - type: integer 
+	Parameter C_NATIVE_XFER_WIDTH bound to: 64 - type: integer 
+	Parameter C_STRT_SF_OFFSET_WIDTH bound to: 1 - type: integer 
+	Parameter C_MCDMA bound to: 1 - type: integer 
+INFO: [Synth 8-226] default block is never used [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:9490]
+WARNING: [Synth 8-6014] Unused sequential element sig_input_reg_full_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:8048]
+WARNING: [Synth 8-6014] Unused sequential element sig_xfer_reg_full_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:8359]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_pcc__parameterized0' (43#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:7416]
+INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_mm2s_full_wrap__parameterized0' (43#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:53572]
 INFO: [Synth 8-638] synthesizing module 'axi_datamover_s2mm_omit_wrap__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:49604]
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_S2MM_AWID bound to: 1 - type: integer 
@@ -1042,7 +1136,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_rst_module__parameterized0' [/m
 	Parameter C_M_AXI_S2MM_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
 	Parameter C_M_AXI_SG_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'axi_dma_rst_module__parameterized0' (44#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:1595]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:8436]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module__parameterized1' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:8436]
 	Parameter C_INCLUDE_MM2S bound to: 0 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 1 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
@@ -1068,7 +1162,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_register_s2mm' [/media/fra/DATA
 WARNING: [Synth 8-6014] Unused sequential element sg_ftch_error_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:5644]
 WARNING: [Synth 8-6014] Unused sequential element sg_updt_error_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:5645]
 INFO: [Synth 8-256] done synthesizing module 'axi_dma_register_s2mm' (45#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:4853]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_reg_module__parameterized0' (45#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:8436]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_reg_module__parameterized1' (45#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:8436]
 INFO: [Synth 8-638] synthesizing module 'axi_dma_s2mm_mngr' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:20564]
 	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRMY_CMDFIFO_DEPTH bound to: 4 - type: integer 
@@ -2005,6 +2099,94 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_axi_dma_0_2' [/media/fra/DATA/un
 	Parameter C_INCREASE_THROUGHPUT bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
 INFO: [Synth 8-3491] module 'axi_dma' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:21833' bound to instance 'U0' of component 'axi_dma' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/synth/pynqz2_axi_dma_0_2.vhd:320]
+INFO: [Synth 8-638] synthesizing module 'axi_dma__parameterized5' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22178]
+	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_DLYTMR_RESOLUTION bound to: 125 - type: integer 
+	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
+	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
+	Parameter C_SG_INCLUDE_STSCNTRL_STRM bound to: 0 - type: integer 
+	Parameter C_SG_USE_STSAPP_LENGTH bound to: 0 - type: integer 
+	Parameter C_SG_LENGTH_WIDTH bound to: 26 - type: integer 
+	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_SG_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXIS_MM2S_CNTRL_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXIS_S2MM_STS_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
+	Parameter C_INCLUDE_MM2S_SF bound to: 1 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
+	Parameter C_MM2S_BURST_SIZE bound to: 8 - type: integer 
+	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
+	Parameter C_INCLUDE_S2MM_SF bound to: 1 - type: integer 
+	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
+	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
+	Parameter C_M_AXI_S2MM_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_S2MM_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXIS_S2MM_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
+	Parameter C_NUM_S2MM_CHANNELS bound to: 1 - type: integer 
+	Parameter C_NUM_MM2S_CHANNELS bound to: 1 - type: integer 
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_MICRO_DMA bound to: 0 - type: integer 
+	Parameter C_INCREASE_THROUGHPUT bound to: 0 - type: integer 
+	Parameter C_INSTANCE bound to: axi_dma - type: string 
+INFO: [Synth 8-638] synthesizing module 'axi_datamover__parameterized2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:55436]
+	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
+	Parameter C_M_AXI_MM2S_ARID bound to: 0 - type: integer 
+	Parameter C_M_AXI_MM2S_ID_WIDTH bound to: 4 - type: integer 
+	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_INCLUDE_MM2S_STSFIFO bound to: 1 - type: integer 
+	Parameter C_MM2S_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
+	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
+	Parameter C_INCLUDE_MM2S_DRE bound to: 1 - type: integer 
+	Parameter C_MM2S_BURST_SIZE bound to: 8 - type: integer 
+	Parameter C_MM2S_BTT_USED bound to: 26 - type: integer 
+	Parameter C_MM2S_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
+	Parameter C_MM2S_INCLUDE_SF bound to: 1 - type: integer 
+	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
+	Parameter C_M_AXI_S2MM_AWID bound to: 1 - type: integer 
+	Parameter C_M_AXI_S2MM_ID_WIDTH bound to: 4 - type: integer 
+	Parameter C_M_AXI_S2MM_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXI_S2MM_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXIS_S2MM_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_INCLUDE_S2MM_STSFIFO bound to: 1 - type: integer 
+	Parameter C_S2MM_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
+	Parameter C_S2MM_STSCMD_IS_ASYNC bound to: 0 - type: integer 
+	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
+	Parameter C_S2MM_BURST_SIZE bound to: 16 - type: integer 
+	Parameter C_S2MM_BTT_USED bound to: 26 - type: integer 
+	Parameter C_S2MM_SUPPORT_INDET_BTT bound to: 1 - type: integer 
+	Parameter C_S2MM_ADDR_PIPE_DEPTH bound to: 4 - type: integer 
+	Parameter C_S2MM_INCLUDE_SF bound to: 1 - type: integer 
+	Parameter C_ENABLE_CACHE_USER bound to: 0 - type: integer 
+	Parameter C_ENABLE_SKID_BUF bound to: 11111 - type: string 
+	Parameter C_ENABLE_MM2S_TKEEP bound to: 1 - type: integer 
+	Parameter C_ENABLE_S2MM_TKEEP bound to: 1 - type: integer 
+	Parameter C_ENABLE_S2MM_ADV_SIG bound to: 0 - type: integer 
+	Parameter C_ENABLE_MM2S_ADV_SIG bound to: 0 - type: integer 
+	Parameter C_MICRO_DMA bound to: 0 - type: integer 
+	Parameter C_CMD_WIDTH bound to: 72 - type: integer 
+	Parameter C_MCDMA bound to: 1 - type: integer 
+	Parameter C_FAMILY bound to: zynq - type: string 
+INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover__parameterized2' (63#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:55436]
+INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
+WARNING: [Synth 8-3848] Net m_axi_sg_awuser in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22023]
+WARNING: [Synth 8-3848] Net m_axi_sg_aruser in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22049]
+WARNING: [Synth 8-3848] Net s_axis_s2mm_sts_tready in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22158]
+WARNING: [Synth 8-3848] Net tdest_out_int in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22706]
+WARNING: [Synth 8-3848] Net same_tdest in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22707]
+WARNING: [Synth 8-3848] Net strm_valid in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22739]
+WARNING: [Synth 8-3848] Net bd_eq in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22732]
+WARNING: [Synth 8-3848] Net m_axis_ftch1_desc_available in module/entity axi_dma__parameterized5 does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22641]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma__parameterized5' (63#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:22178]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-256] done synthesizing module 'pynqz2_axi_dma_0_2' (64#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_2/synth/pynqz2_axi_dma_0_2.vhd:104]
@@ -2265,7 +2447,7 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_axis_accelerator_ada_0_0' [/medi
 	Parameter C_AP_IARG_MB_DEPTH bound to: 256'b0000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_WIDTH bound to: 256'b0000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000 
 	Parameter C_AP_IARG_N_DIM bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000000000010000 
+	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000010000000000 
 	Parameter C_AP_IARG_DIM_2 bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_FORMAT_TYPE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_AP_IARG_FORMAT_FACTOR bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
@@ -2370,7 +2552,7 @@ INFO: [Synth 8-638] synthesizing module 'axis_accelerator_adapter' [/media/fra/D
 	Parameter C_AP_IARG_MB_DEPTH bound to: 256'b0000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_WIDTH bound to: 256'b0000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000 
 	Parameter C_AP_IARG_N_DIM bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000000000010000 
+	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000010000000000 
 	Parameter C_AP_IARG_DIM_2 bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_FORMAT_TYPE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_AP_IARG_FORMAT_FACTOR bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
@@ -2479,7 +2661,7 @@ INFO: [Synth 8-638] synthesizing module 'axis_accelerator_adapter_core' [/media/
 	Parameter C_AP_IARG_MB_DEPTH bound to: 256'b0000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_WIDTH bound to: 256'b0000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000 
 	Parameter C_AP_IARG_N_DIM bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000000000010000 
+	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000010000000000 
 	Parameter C_AP_IARG_DIM_2 bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_FORMAT_TYPE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_AP_IARG_FORMAT_FACTOR bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
@@ -2579,7 +2761,7 @@ INFO: [Synth 8-638] synthesizing module 'xd_input_args_module' [/media/fra/DATA/
 	Parameter C_AP_IARG_MB_DEPTH bound to: 256'b0000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_WIDTH bound to: 256'b0000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000 
 	Parameter C_AP_IARG_N_DIM bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000000000010000 
+	Parameter C_AP_IARG_DIM_1 bound to: 256'b0000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000010000000000 
 	Parameter C_AP_IARG_DIM_2 bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_AP_IARG_FORMAT_TYPE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_AP_IARG_FORMAT_FACTOR bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
@@ -2599,11 +2781,11 @@ INFO: [Synth 8-638] synthesizing module 'xd_s2m_adapter' [/media/fra/DATA/uni/20
 	Parameter C_S_AXIS_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_S_AXIS_TDEST_WIDTH bound to: 1 - type: integer 
 	Parameter C_AP_ARG_DATA_WIDTH bound to: 64 - type: integer 
-	Parameter C_AP_ARG_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_AP_ARG_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_MULTIBUFFER_DEPTH bound to: 1 - type: integer 
 	Parameter C_AP_ARG_WIDTH bound to: 64 - type: integer 
 	Parameter C_AP_ARG_N_DIM bound to: 1 - type: integer 
-	Parameter C_AP_ARG_DIM_1 bound to: 16 - type: integer 
+	Parameter C_AP_ARG_DIM_1 bound to: 1024 - type: integer 
 	Parameter C_AP_ARG_DIM_2 bound to: 1 - type: integer 
 	Parameter C_AP_ARG_FORMAT_TYPE bound to: 0 - type: integer 
 	Parameter C_AP_ARG_FORMAT_FACTOR bound to: 1 - type: integer 
@@ -2614,7 +2796,7 @@ INFO: [Synth 8-5534] Detected attribute (* async_reg = "true" *) [/media/fra/DAT
 INFO: [Synth 8-638] synthesizing module 'xd_s2m_converter' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:6460]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter AXI_DATA_WIDTH bound to: 64 - type: integer 
-	Parameter AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter AXI_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_EXTRA_SYNCS bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'xd_s2m_converter' (74#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:6460]
 INFO: [Synth 8-638] synthesizing module 'xd_s2m_memory_dc' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5632]
@@ -2623,16 +2805,16 @@ INFO: [Synth 8-638] synthesizing module 'xd_s2m_memory_dc' [/media/fra/DATA/uni/
 	Parameter C_BRAM_TYPE bound to: 7_SERIES - type: string 
 	Parameter C_SELECT_XPM bound to: 0 - type: integer 
 	Parameter CONV_DATA_WIDTH bound to: 64 - type: integer 
-	Parameter CONV_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter CONV_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_AP_ARG_WIDTH bound to: 64 - type: integer 
 	Parameter C_AP_ARG_N_DIM bound to: 1 - type: integer 
-	Parameter C_AP_ARG_DIM_1 bound to: 16 - type: integer 
+	Parameter C_AP_ARG_DIM_1 bound to: 1024 - type: integer 
 	Parameter C_AP_ARG_DIM_2 bound to: 1 - type: integer 
 	Parameter C_AP_ARG_FORMAT_TYPE bound to: 0 - type: integer 
 	Parameter C_AP_ARG_FORMAT_FACTOR bound to: 1 - type: integer 
 	Parameter C_AP_ARG_FORMAT_DIM bound to: 1 - type: integer 
 	Parameter C_AP_ARG_DATA_WIDTH bound to: 64 - type: integer 
-	Parameter C_AP_ARG_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_AP_ARG_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_MULTIBUFFER_DEPTH bound to: 1 - type: integer 
 	Parameter C_NONE bound to: 2 - type: integer 
 	Parameter C_EXTRA_SYNCS bound to: 1 - type: integer 
@@ -2652,10 +2834,10 @@ INFO: [Synth 8-638] synthesizing module 'arg_mem_bank' [/media/fra/DATA/uni/2019
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_BRAM_TYPE bound to: 7_SERIES - type: string 
 	Parameter C_IS_UNIDIR bound to: 1 - type: integer 
-	Parameter C_OPORT_AWIDTH bound to: 4 - type: integer 
+	Parameter C_OPORT_AWIDTH bound to: 10 - type: integer 
 	Parameter C_SELECT_XPM bound to: 0 - type: integer 
 	Parameter C_OPORT_DWIDTH bound to: 64 - type: integer 
-	Parameter C_IPORT_AWIDTH bound to: 4 - type: integer 
+	Parameter C_IPORT_AWIDTH bound to: 10 - type: integer 
 	Parameter C_IPORT_DWIDTH bound to: 64 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'arg_mem_bank_v6' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4558]
 	Parameter C_FAMILY bound to: zynq - type: string 
@@ -2663,15 +2845,15 @@ INFO: [Synth 8-638] synthesizing module 'arg_mem_bank_v6' [/media/fra/DATA/uni/2
 	Parameter C_PRINT_INFO bound to: 0 - type: bool 
 	Parameter C_IS_UNIDIR bound to: 1 - type: integer 
 	Parameter C_SELECT_XPM bound to: 0 - type: integer 
-	Parameter C_OPORT_AWIDTH bound to: 4 - type: integer 
+	Parameter C_OPORT_AWIDTH bound to: 10 - type: integer 
 	Parameter C_OPORT_DWIDTH bound to: 64 - type: integer 
-	Parameter C_IPORT_AWIDTH bound to: 4 - type: integer 
+	Parameter C_IPORT_AWIDTH bound to: 10 - type: integer 
 	Parameter C_IPORT_DWIDTH bound to: 64 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'symmetric_dp_bank_v6' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:1934]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_BRAM_TYPE bound to: 7_SERIES - type: string 
 	Parameter C_SELECT_XPM bound to: 0 - type: integer 
-	Parameter C_BANK_AWIDTH bound to: 4 - type: integer 
+	Parameter C_BANK_AWIDTH bound to: 10 - type: integer 
 	Parameter C_BANK_DWIDTH bound to: 64 - type: integer 
 	Parameter DOA_REG bound to: 0 - type: integer 
 	Parameter DOB_REG bound to: 0 - type: integer 
@@ -3031,7 +3213,25 @@ INFO: [Synth 8-256] done synthesizing module 'arg_mem_bank' (79#1) [/media/fra/D
 INFO: [Synth 8-256] done synthesizing module 'xd_s2m_memory_dc' (80#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:5632]
 INFO: [Synth 8-638] synthesizing module 'srl_fifo_32_wt' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4975]
 	Parameter C_FAMILY bound to: zynq - type: string 
-	Parameter WIDTH bound to: 5 - type: integer 
+	Parameter WIDTH bound to: 11 - type: integer 
+	Parameter INIT bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
+	Parameter INIT bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
+	Parameter INIT bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
+	Parameter INIT bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
+	Parameter INIT bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
+	Parameter INIT bound to: 32'b00000000000000000000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
 	Parameter INIT bound to: 32'b00000000000000000000000000000000 
 	Parameter IS_CLK_INVERTED bound to: 1'b0 
 INFO: [Synth 8-113] binding component instance 'SRL_I' to cell 'SRLC32E' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:4994]
@@ -4107,14 +4307,14 @@ INFO: [Synth 8-256] done synthesizing module 'axis_accelerator_adapter_core' (12
 INFO: [Synth 8-256] done synthesizing module 'axis_accelerator_adapter' (121#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2317/hdl/axis_accelerator_adapter_v2_1_rfs.vhd:23379]
 INFO: [Synth 8-256] done synthesizing module 'pynqz2_axis_accelerator_ada_0_0' (122#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axis_accelerator_ada_0_0/synth/pynqz2_axis_accelerator_ada_0_0.vhd:135]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_dtpu_core_0_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_core_0_0/synth/pynqz2_dtpu_core_0_0.v:58]
-INFO: [Synth 8-6157] synthesizing module 'dtpu_core' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:27]
+INFO: [Synth 8-6157] synthesizing module 'dtpu_core' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:20]
 	Parameter DATA_WIDTH_MAC bound to: 64 - type: integer 
 	Parameter ROWS bound to: 8 - type: integer 
 	Parameter COLUMNS bound to: 8 - type: integer 
 	Parameter SIZE_WMEMORY bound to: 2048 - type: integer 
 	Parameter ADDRESS_SIZE_WMEMORY bound to: 32 - type: integer 
 	Parameter ADDRESS_SIZE_CSR bound to: 32 - type: integer 
-	Parameter SIZE_CSR bound to: 16 - type: integer 
+	Parameter SIZE_CSR bound to: 1024 - type: integer 
 	Parameter DATA_WIDTH_CSR bound to: 64 - type: integer 
 	Parameter DATA_WIDTH_WMEMORY bound to: 64 - type: integer 
 	Parameter DATA_WIDTH_FIFO_IN bound to: 64 - type: integer 
@@ -4183,7 +4383,7 @@ WARNING: [Synth 8-3848] Net test_mode in module/entity mxu_mac does not have dri
 INFO: [Synth 8-6155] done synthesizing module 'mxu_mac' (136#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v:22]
 INFO: [Synth 8-6155] done synthesizing module 'mxu_core' (137#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'mxu_wrapper' (138#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v:25]
-INFO: [Synth 8-6157] synthesizing module 'control_unit' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:5]
+INFO: [Synth 8-6157] synthesizing module 'control_unit' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:18]
 	Parameter ROWS bound to: 8 - type: integer 
 	Parameter COLUMNS bound to: 8 - type: integer 
 	Parameter DATA_WIDTH_FIFO_IN bound to: 64 - type: integer 
@@ -4202,38 +4402,38 @@ INFO: [Synth 8-6157] synthesizing module 'control_unit' [/media/fra/DATA/uni/201
 	Parameter start_p2 bound to: 4'b0111 
 	Parameter start_p3 bound to: 4'b1000 
 	Parameter MAX_COUNTER bound to: 7'b0101011 
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:23]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:25]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:26]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:27]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:31]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:32]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:33]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:36]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:38]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:39]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:40]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:44]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:50]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:45]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:46]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:51]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:53]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:58]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:59]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:60]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:61]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:62]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:68]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:69]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:70]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:57]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:63]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:64]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:66]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:71]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:72]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:73]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:74]
 INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:75]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:76]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:77]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:78]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:79]
-INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:80]
-WARNING: [Synth 8-6014] Unused sequential element counter_res_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:111]
-INFO: [Synth 8-6155] done synthesizing module 'control_unit' (139#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:5]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:81]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:82]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:83]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:84]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:85]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:86]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:87]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:88]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:89]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:90]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:91]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:92]
+INFO: [Synth 8-5534] Detected attribute (* keep = "true" *) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:93]
+WARNING: [Synth 8-6014] Unused sequential element counter_res_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:124]
+INFO: [Synth 8-6155] done synthesizing module 'control_unit' (139#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v:18]
 INFO: [Synth 8-6157] synthesizing module 'ls_array_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array_wrapper.v:5]
 	Parameter ROWS bound to: 8 - type: integer 
 	Parameter COLUMNS bound to: 8 - type: integer 
@@ -4248,9 +4448,9 @@ INFO: [Synth 8-6157] synthesizing module 'ls_array' [/media/fra/DATA/uni/2019-20
 	Parameter data_in_mem bound to: 64 - type: integer 
 	Parameter address_leng_wm bound to: 32 - type: integer 
 	Parameter size_wmemory bound to: 2048 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'ls_unit' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v:2]
+INFO: [Synth 8-6157] synthesizing module 'ls_unit' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v:14]
 	Parameter data_width bound to: 64 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'ls_unit' (140#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'ls_unit' (140#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v:14]
 INFO: [Synth 8-6157] synthesizing module 'filter_and_select' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v:6]
 	Parameter K bound to: 8 - type: integer 
 	Parameter data_width bound to: 64 - type: integer 
@@ -4265,11 +4465,11 @@ WARNING: [Synth 8-6014] Unused sequential element tc_counter_weight_reg was remo
 WARNING: [Synth 8-6014] Unused sequential element address_out_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.sv:596]
 INFO: [Synth 8-6155] done synthesizing module 'ls_array' (143#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.sv:6]
 INFO: [Synth 8-6155] done synthesizing module 'ls_array_wrapper' (144#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array_wrapper.v:5]
-WARNING: [Synth 8-689] width (65) of port connection 'input_data_from_fifo' does not match port width (64) of module 'ls_array_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:260]
-WARNING: [Synth 8-689] width (65) of port connection 'data_to_fifo_out' does not match port width (64) of module 'ls_array_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:261]
-WARNING: [Synth 8-3848] Net csr_din in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:57]
-WARNING: [Synth 8-3848] Net wm_din in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:76]
-INFO: [Synth 8-6155] done synthesizing module 'dtpu_core' (145#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:27]
+WARNING: [Synth 8-689] width (65) of port connection 'input_data_from_fifo' does not match port width (64) of module 'ls_array_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:253]
+WARNING: [Synth 8-689] width (65) of port connection 'data_to_fifo_out' does not match port width (64) of module 'ls_array_wrapper' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:254]
+WARNING: [Synth 8-3848] Net csr_din in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:50]
+WARNING: [Synth 8-3848] Net wm_din in module/entity dtpu_core does not have driver. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'dtpu_core' (145#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:20]
 INFO: [Synth 8-6155] done synthesizing module 'pynqz2_dtpu_core_0_0' (146#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_dtpu_core_0_0/synth/pynqz2_dtpu_core_0_0.v:58]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_util_vector_logic_1_2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_util_vector_logic_1_2/synth/pynqz2_util_vector_logic_1_2.v:57]
 INFO: [Synth 8-6157] synthesizing module 'util_vector_logic_v2_0_1_util_vector_logic' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2137/hdl/util_vector_logic_v2_0_vl_rfs.v:45]
@@ -4278,15 +4478,15 @@ INFO: [Synth 8-6157] synthesizing module 'util_vector_logic_v2_0_1_util_vector_l
 INFO: [Synth 8-6155] done synthesizing module 'util_vector_logic_v2_0_1_util_vector_logic' (147#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/2137/hdl/util_vector_logic_v2_0_vl_rfs.v:45]
 INFO: [Synth 8-6155] done synthesizing module 'pynqz2_util_vector_logic_1_2' (148#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_util_vector_logic_1_2/synth/pynqz2_util_vector_logic_1_2.v:57]
 INFO: [Synth 8-6155] done synthesizing module 'dtpu_imp_WM72SM' (149#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:12]
-INFO: [Synth 8-6157] synthesizing module 'pynqz2_monitor_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0.v:53]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_axi_xadc' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_axi_xadc.vhd:234]
+INFO: [Synth 8-6157] synthesizing module 'pynqz2_monitor_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0.v:53]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_axi_xadc' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_axi_xadc.vhd:234]
 	Parameter C_INSTANCE bound to: pynqz2_monitor_0_axi_xadc - type: string 
 	Parameter C_FAMILY bound to: virtex7 - type: string 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 11 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_INCLUDE_INTR bound to: 1 - type: integer 
 	Parameter C_SIM_MONITOR_FILE bound to: design.txt - type: string 
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_axi_lite_ipif' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_axi_lite_ipif.vhd:241]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_axi_lite_ipif' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_axi_lite_ipif.vhd:241]
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 11 - type: integer 
 	Parameter C_S_AXI_MIN_SIZE bound to: 32'b00000000000000000000001111111111 
@@ -4295,7 +4495,7 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_axi_lite_ipif' [/media
 	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 384'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111110000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000111111100000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001111111111 
 	Parameter C_ARD_NUM_CE_ARRAY bound to: 96'b000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000000001 
 	Parameter C_FAMILY bound to: virtex7 - type: string 
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_slave_attachment' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd:227]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_slave_attachment' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd:227]
 	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 384'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111110000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000111111100000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001111111111 
 	Parameter C_ARD_NUM_CE_ARRAY bound to: 96'b000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000000001 
 	Parameter C_IPIF_ABUS_WIDTH bound to: 11 - type: integer 
@@ -4304,178 +4504,178 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_slave_attachment' [/me
 	Parameter C_USE_WSTRB bound to: 1 - type: integer 
 	Parameter C_DPHASE_TIMEOUT bound to: 64 - type: integer 
 	Parameter C_FAMILY bound to: virtex7 - type: string 
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_address_decoder' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_address_decoder.vhd:176]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_address_decoder' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_address_decoder.vhd:176]
 	Parameter C_BUS_AWIDTH bound to: 10 - type: integer 
 	Parameter C_S_AXI_MIN_SIZE bound to: 1023 - type: integer 
 	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 384'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111110000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000111111100000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001111111111 
 	Parameter C_ARD_NUM_CE_ARRAY bound to: 96'b000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000000001 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 5 - type: integer 
 	Parameter C_AW bound to: 10 - type: integer 
 	Parameter C_BAR bound to: 10'b0000000000 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b000 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized0' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized1' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized0' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized1' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b001 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized1' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized1' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized2' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b010 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized2' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized3' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized2' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized3' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b011 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized3' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized4' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized3' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized4' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b100 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized4' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized5' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized4' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized5' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b101 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized5' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized6' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized5' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized6' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b110 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized6' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized7' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized6' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized7' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 3 - type: integer 
 	Parameter C_AW bound to: 3 - type: integer 
 	Parameter C_BAR bound to: 3'b111 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized7' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized8' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized7' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized8' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 10 - type: integer 
 	Parameter C_BAR bound to: 10'b0001000000 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized8' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized9' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized8' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized9' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0000 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized9' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized10' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized9' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized10' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0001 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized10' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized11' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized10' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized11' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0010 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized11' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized12' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized11' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized12' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0011 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized12' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized13' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized12' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized13' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0100 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized13' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized14' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized13' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized14' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0101 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized14' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized15' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized14' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized15' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0110 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized15' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized16' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized15' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized16' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b0111 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized16' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized17' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized16' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized17' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1000 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized17' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized18' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized17' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized18' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1001 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized18' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized19' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized18' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized19' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1010 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized19' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized20' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized19' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized20' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1011 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized20' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized21' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized20' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized21' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1100 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized21' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized22' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized21' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized22' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1101 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized22' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized23' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized22' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized23' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1110 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized23' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized24' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized23' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized24' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 4 - type: integer 
 	Parameter C_AW bound to: 4 - type: integer 
 	Parameter C_BAR bound to: 4'b1111 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized24' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized25' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized24' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized25' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
 	Parameter C_AB bound to: 1 - type: integer 
 	Parameter C_AW bound to: 10 - type: integer 
 	Parameter C_BAR bound to: 10'b1000000000 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized25' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_address_decoder' (151#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_address_decoder.vhd:176]
-INFO: [Synth 8-226] default block is never used [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd:381]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_slave_attachment' (152#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd:227]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_axi_lite_ipif' (153#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_axi_lite_ipif.vhd:241]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_pselect_f__parameterized25' (150#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_pselect_f.vhd:167]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_address_decoder' (151#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_address_decoder.vhd:176]
+INFO: [Synth 8-226] default block is never used [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd:381]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_slave_attachment' (152#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_slave_attachment.vhd:227]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_axi_lite_ipif' (153#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/axi_lite_ipif_v1_01_a/hdl/src/vhdl/pynqz2_monitor_0_axi_lite_ipif.vhd:241]
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 11 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_FAMILY bound to: virtex7 - type: string 
@@ -4483,8 +4683,8 @@ INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_axi_lite_ipif' (1
 	Parameter IP_INTR_NUM bound to: 17 - type: integer 
 	Parameter C_SIM_MONITOR_FILE bound to: design.txt - type: string 
 	Parameter MUX_ADDR_NO bound to: 5 - type: integer 
-INFO: [Synth 8-3491] module 'pynqz2_monitor_0_xadc_core_drp' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_xadc_core_drp.vhd:141' bound to instance 'AXI_XADC_CORE_I' of component 'pynqz2_monitor_0_xadc_core_drp' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_axi_xadc.vhd:687]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_xadc_core_drp' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_xadc_core_drp.vhd:185]
+INFO: [Synth 8-3491] module 'pynqz2_monitor_0_xadc_core_drp' declared at '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_xadc_core_drp.vhd:141' bound to instance 'AXI_XADC_CORE_I' of component 'pynqz2_monitor_0_xadc_core_drp' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_axi_xadc.vhd:687]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_xadc_core_drp' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_xadc_core_drp.vhd:185]
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 11 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_FAMILY bound to: virtex7 - type: string 
@@ -4528,10 +4728,10 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_xadc_core_drp' [/media
 	Parameter IS_DCLK_INVERTED bound to: 1'b0 
 	Parameter SIM_DEVICE bound to: ZYNQ - type: string 
 	Parameter SIM_MONITOR_FILE bound to: design.txt - type: string 
-INFO: [Synth 8-113] binding component instance 'XADC_INST' to cell 'XADC' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_xadc_core_drp.vhd:966]
-WARNING: [Synth 8-6014] Unused sequential element convst_reg_input_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_xadc_core_drp.vhd:497]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_xadc_core_drp' (154#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_xadc_core_drp.vhd:185]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_soft_reset' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:142]
+INFO: [Synth 8-113] binding component instance 'XADC_INST' to cell 'XADC' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_xadc_core_drp.vhd:966]
+WARNING: [Synth 8-6014] Unused sequential element convst_reg_input_reg was removed.  [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_xadc_core_drp.vhd:497]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_xadc_core_drp' (154#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_xadc_core_drp.vhd:185]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_soft_reset' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:142]
 	Parameter C_SIPIF_DWIDTH bound to: 32 - type: integer 
 	Parameter C_RESET_WIDTH bound to: 16 - type: integer 
 	Parameter INIT bound to: 1'b0 
@@ -4540,130 +4740,130 @@ INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_soft_reset' [/media/fr
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
+INFO: [Synth 8-113] binding component instance 'RST_FLOPS' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:273]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_CE_INVERTED bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 	Parameter IS_S_INVERTED bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'FF_WRACK' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:296]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_soft_reset' (155#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:142]
-INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_interrupt_control' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:240]
+INFO: [Synth 8-113] binding component instance 'FF_WRACK' to cell 'FDRSE' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:296]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_soft_reset' (155#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/proc_common_v3_30_a/hdl/src/vhdl/pynqz2_monitor_0_soft_reset.vhd:142]
+INFO: [Synth 8-638] synthesizing module 'pynqz2_monitor_0_interrupt_control' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:240]
 	Parameter C_NUM_CE bound to: 16 - type: integer 
 	Parameter C_NUM_IPIF_IRPT_SRC bound to: 1 - type: integer 
 	Parameter C_IP_INTR_MODE_ARRAY bound to: 544'b0000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000101 
 	Parameter C_INCLUDE_DEV_PENCODER bound to: 0 - type: bool 
 	Parameter C_INCLUDE_DEV_ISC bound to: 0 - type: bool 
 	Parameter C_IPIF_DWIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_interrupt_control' (156#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:240]
-INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_axi_xadc' (157#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_axi_xadc.vhd:234]
-INFO: [Synth 8-6155] done synthesizing module 'pynqz2_monitor_0' (158#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0.v:53]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_interrupt_control' (156#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:240]
+INFO: [Synth 8-256] done synthesizing module 'pynqz2_monitor_0_axi_xadc' (157#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_axi_xadc.vhd:234]
+INFO: [Synth 8-6155] done synthesizing module 'pynqz2_monitor_0' (158#1) [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0.v:53]
 WARNING: [Synth 8-7023] instance 'monitor' of module 'pynqz2_monitor_0' has 27 connections declared, but only 21 given [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/synth/pynqz2.v:1818]
 INFO: [Synth 8-6157] synthesizing module 'pynqz2_ps7_0' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/synth/pynqz2_ps7_0.v:60]
 INFO: [Synth 8-6157] synthesizing module 'processing_system7_v5_5_processing_system7' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_ps7_0/hdl/verilog/processing_system7_v5_5_processing_system7.v:161]
@@ -6058,12 +6258,6 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-5772] Detected attribute (* ram_optimization = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Common 17-14] Message 'Synth 8-5772' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 	Parameter MEMORY_TYPE bound to: 1 - type: integer 
 	Parameter MEMORY_SIZE bound to: 672 - type: integer 
@@ -6858,7 +7052,7 @@ WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected 
 WARNING: [Synth 8-3331] design xpm_memory_base__parameterized11 has unconnected port dinb[78]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:32 ; elapsed = 00:01:59 . Memory (MB): peak = 2592.789 ; gain = 829.816 ; free physical = 3914 ; free virtual = 13059
+Finished RTL Elaboration : Time (s): cpu = 00:01:40 ; elapsed = 00:02:10 . Memory (MB): peak = 2599.691 ; gain = 836.785 ; free physical = 986 ; free virtual = 11811
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -6871,12 +7065,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:36 ; elapsed = 00:02:03 . Memory (MB): peak = 2592.789 ; gain = 829.816 ; free physical = 3908 ; free virtual = 13118
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:44 ; elapsed = 00:02:14 . Memory (MB): peak = 2599.691 ; gain = 836.785 ; free physical = 1015 ; free virtual = 11868
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:36 ; elapsed = 00:02:03 . Memory (MB): peak = 2592.789 ; gain = 829.816 ; free physical = 3908 ; free virtual = 13118
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:44 ; elapsed = 00:02:14 . Memory (MB): peak = 2599.691 ; gain = 836.785 ; free physical = 1015 ; free virtual = 11868
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2740.203 ; gain = 0.000 ; free physical = 3354 ; free virtual = 12565
+Netlist sorting complete. Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2745.129 ; gain = 0.000 ; free physical = 464 ; free virtual = 11317
 INFO: [Netlist 29-17] Analyzing 1106 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -6917,8 +7111,8 @@ Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_viv
 Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_4/pynqz2_axi_dma_0_4.xdc] for cell 'pynqz2_i/axi_dma_outfifo/U0'
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_axi_dma_0_4/pynqz2_axi_dma_0_4.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pynqz2_wrapper_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/pynqz2_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0.xdc] for cell 'pynqz2_i/monitor/inst'
-Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0.xdc] for cell 'pynqz2_i/monitor/inst'
+Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0.xdc] for cell 'pynqz2_i/monitor/inst'
+Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0.xdc] for cell 'pynqz2_i/monitor/inst'
 Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc]
 Finished Parsing XDC File [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pynqz2_wrapper_propImpl.xdc].
@@ -7053,7 +7247,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/pynqz2_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3420.742 ; gain = 0.000 ; free physical = 2885 ; free virtual = 12097
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3425.668 ; gain = 0.000 ; free physical = 319 ; free virtual = 10849
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 379 instances were transformed.
   FDR => FDRE: 72 instances
@@ -7061,17 +7255,17 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   MULT_AND => LUT2: 288 instances
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 3420.742 ; gain = 0.000 ; free physical = 2881 ; free virtual = 12092
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 3425.668 ; gain = 0.000 ; free physical = 318 ; free virtual = 10848
 WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:02:30 ; elapsed = 00:02:54 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3753 ; free virtual = 13031
+Finished Constraint Validation : Time (s): cpu = 00:02:44 ; elapsed = 00:03:09 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 1177 ; free virtual = 11775
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:02:30 ; elapsed = 00:02:54 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3753 ; free virtual = 13031
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:44 ; elapsed = 00:03:09 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 1177 ; free virtual = 11775
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -7207,7 +7401,7 @@ Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s03_node
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_b_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for pynqz2_i/smartconnect_0/inst/s02_nodes/s02_w_node/inst/inst_mi_handler/\gen_normal_area.inst_fifo_node_payld /\gen_xpm_memory_fifo.inst_fifo /\gen_mem_rep[0].inst_xpm_memory . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:31 ; elapsed = 00:02:55 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3713 ; free virtual = 12991
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:45 ; elapsed = 00:03:10 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 1144 ; free virtual = 11742
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rst_wvalid_re_reg' into 'GEN_SYNC_WRITE.bvalid_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2193]
 INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.rst_rvalid_re_reg' into 'GEN_SYNC_READ.s_axi_lite_rvalid_i_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:2965]
@@ -7223,6 +7417,8 @@ INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To p
 INFO: [Synth 8-802] inferred FSM for state register 'gen_fwft.curr_fwft_state_reg' in module 'xpm_fifo_base'
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
 ROM "s_case_i_64" will be implemented in logic because its size less than 1024
+INFO: [Synth 8-802] inferred FSM for state register 'smpl_cs_reg' in module 'axi_dma_smple_sm__parameterized0'
+INFO: [Synth 8-802] inferred FSM for state register 'sig_pcc_sm_state_reg' in module 'axi_datamover_pcc__parameterized0'
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
 INFO: [Synth 8-4471] merging register 'GEN_HOLD_NO_DATA.s2mm_cmnd_pending_reg' into 'GEN_HOLD_NO_DATA.s_axis_s2mm_cmd_tvalid_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:18893]
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:18758]
@@ -7256,15 +7452,13 @@ INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'contr
 INFO: [Synth 8-5544] ROM "max_cnt_from_cu" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "max_cnt_weight_from_cu" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "data_precision" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "enable_chain" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "enable_fp_unit" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "enable_load_array" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "read_weight_memory" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "enable_cnt" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "enable_cnt_weight" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "csr_ce" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "csr_reset" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "wm_ce" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "outfifo_write" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "cs_idle" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "enable_mxu" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'pynqz2_monitor_0_slave_attachment'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_protocol_converter_v2_1_20_b2s_rd_cmd_fsm'
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2870]
@@ -7318,6 +7512,27 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
             stage2_valid |                               11 |                               01
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                               00 |                               00
+            execute_xfer |                               01 |                               01
+             wait_status |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'smpl_cs_reg' using encoding 'sequential' in module 'axi_dma_smple_sm__parameterized0'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    init |                         00000001 |                              000
+            wait_for_cmd |                         00000010 |                              001
+                  calc_1 |                         00000100 |                              010
+                  calc_2 |                         00001000 |                              011
+                  calc_3 |                         00010000 |                              100
+       wait_on_xfer_push |                         00100000 |                              101
+             chk_if_done |                         01000000 |                              110
+              error_trap |                         10000000 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'sig_pcc_sm_state_reg' using encoding 'one-hot' in module 'axi_datamover_pcc__parameterized0'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -7457,7 +7672,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_axi.gen_write.write_cs_reg' using encoding 'one-hot' in module 'sc_mmu_v1_0_8_decerr_slave'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:49 ; elapsed = 00:03:17 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3571 ; free virtual = 12969
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:06 ; elapsed = 00:03:36 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 1056 ; free virtual = 11749
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_SYNC_I/NEW_INTRO.AP_ISCALARSTART_SYNC_I' (axis_acc_adapter_cdc_sync__parameterized5) to 'pynqz2_i/dtpu/axis_accelerator_ada/U0/XD_ADAPTER_CORE_I/XD_SYNC_I/NEW_INTRO.AP_OSCALARSTART_SYNC_I'
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7481,10 +7696,10 @@ Report RTL Partitions:
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       268|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|       268|
 |12    |bd_7d7d__GC0                           |           1|     17926|
-|13    |pynqz2__GCB0                           |           1|     38793|
+|13    |pynqz2__GCB0                           |           1|     38847|
 |14    |pynqz2__GCB1                           |           1|      4744|
 |15    |pynqz2__GCB2                           |           1|     12579|
-|16    |pynqz2__GCB3                           |           1|     15833|
+|16    |pynqz2__GCB3                           |           1|     15648|
 +------+---------------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -7514,11 +7729,11 @@ Warning: Parallel synthesis criteria is not met
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/m_payload_i_reg' and it is trimmed from '60' to '56' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/72d4/hdl/axi_register_slice_v2_1_vl_rfs.v:1709]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg' and it is trimmed from '60' to '56' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/72d4/hdl/axi_register_slice_v2_1_vl_rfs.v:1709]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_sasd.crossbar_sasd_0/reg_slice_r/m_payload_i_reg' and it is trimmed from '36' to '35' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/72d4/hdl/axi_register_slice_v2_1_vl_rfs.v:1709]
-INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[15].GEN_POS_EDGE_DETECT.irpt_dly1_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly1_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:638]
-INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[15].GEN_POS_EDGE_DETECT.irpt_dly2_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:639]
-INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[16].GEN_POS_EDGE_DETECT.irpt_dly1_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly1_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:638]
-INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[16].GEN_POS_EDGE_DETECT.irpt_dly2_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:639]
-INFO: [Synth 8-4471] merging register 'bus2ip_reset_active_high_reg' into 'AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_27/pynqz2_monitor_0_axi_xadc.vhd:635]
+INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[15].GEN_POS_EDGE_DETECT.irpt_dly1_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly1_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:638]
+INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[15].GEN_POS_EDGE_DETECT.irpt_dly2_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:639]
+INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[16].GEN_POS_EDGE_DETECT.irpt_dly1_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly1_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:638]
+INFO: [Synth 8-4471] merging register 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[16].GEN_POS_EDGE_DETECT.irpt_dly2_reg' into 'INTR_CTRLR_GEN_I.INTERRUPT_CONTROL_I/DO_IRPT_INPUT[14].GEN_POS_EDGE_DETECT.irpt_dly2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/interrupt_control_v2_01_a/hdl/src/vhdl/pynqz2_monitor_0_interrupt_control.vhd:639]
+INFO: [Synth 8-4471] merging register 'bus2ip_reset_active_high_reg' into 'AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0_axi_xadc.vhd:635]
 INFO: [Synth 8-4471] merging register 'sig_rd_xfer_cmplt_reg' into 'sig_last_mmap_dbeat_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
 INFO: [Synth 8-4471] merging register 'sig_stop_request_reg' into 'sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
 INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
@@ -7544,7 +7759,7 @@ INFO: [Synth 8-4471] merging register 'sig_rd_xfer_cmplt_reg' into 'sig_last_mma
 INFO: [Synth 8-4471] merging register 'sig_stop_request_reg' into 'sig_sready_stop_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:19578]
 INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
 INFO: [Synth 8-4471] merging register 'I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_EQL_23.cmnd_data_reg' and it is trimmed from '153' to '75' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:12176]
+INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_LESS_23.cmnd_data_reg' and it is trimmed from '153' to '75' bits. [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/ipshared/ec2a/hdl/axi_dma_v7_1_vh_rfs.vhd:12136]
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7772,10 +7987,10 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/\dtpu/dtpu_core /\inst/engine/pipeline_reg_delayer_output[0].incrementa_step_output[0].del_output_register_i/q_i_reg[51] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (pynqz2_i/i_0/\dtpu/dtpu_core /\inst/engine/pipeline_reg_delayer_output[0].incrementa_step_output[0].del_output_register_i/q_i_reg[52] )
 INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized5.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__parameterized5.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized5.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__parameterized5.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__parameterized1.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized1.
@@ -7789,12 +8004,12 @@ INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__parameterized3.
 INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__parameterized3.
 INFO: [Synth 8-3332] Sequential element (I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_IBTTCC.I_S2MM_MSTR_IBTTCC/FSM_onehot_sig_csm_state_reg[3]) is unused and will be removed from module axi_dma__parameterized3.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__xdcDup__1.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__xdcDup__1.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma__xdcDup__1.
-INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma__xdcDup__1.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_dma.
+INFO: [Synth 8-3332] Sequential element (I_RST_MODULE/REG_HRD_RST_OUT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_dma.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:15 ; elapsed = 00:04:50 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3286 ; free virtual = 12889
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:41 ; elapsed = 00:05:19 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 756 ; free virtual = 11623
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -7817,10 +8032,10 @@ Report RTL Partitions:
 |10    |s02_entry_pipeline_imp_J8PXWA__GC0     |           1|       198|
 |11    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|        33|
 |12    |bd_7d7d__GC0                           |           1|     12455|
-|13    |pynqz2__GCB0                           |           1|      8750|
+|13    |pynqz2__GCB0                           |           1|      8770|
 |14    |pynqz2__GCB1                           |           1|      3699|
 |15    |pynqz2__GCB2                           |           1|      8220|
-|16    |pynqz2__GCB3                           |           1|      9705|
+|16    |pynqz2__GCB3                           |           1|      9560|
 |17    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       382|
 |18    |sc_util_v1_0_4_axi_reg_stall__2        |           2|       292|
 |19    |sc_util_v1_0_4_axi_reg_stall__3        |           2|       412|
@@ -7844,7 +8059,7 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:04:23 ; elapsed = 00:05:01 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3005 ; free virtual = 12608
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:04:51 ; elapsed = 00:05:31 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 471 ; free virtual = 11338
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -7854,7 +8069,7 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:04:42 ; elapsed = 00:05:20 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2937 ; free virtual = 12542
+Finished Timing Optimization : Time (s): cpu = 00:05:12 ; elapsed = 00:05:53 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 392 ; free virtual = 11261
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -7871,7 +8086,7 @@ Report RTL Partitions:
 |8     |s01_entry_pipeline_imp_ECS6AV__GC0     |           1|        33|
 |9     |sc_mmu_v1_0_8_top__parameterized1__GC0 |           1|       281|
 |10    |s03_entry_pipeline_imp_1PN57NY__GC0    |           1|        33|
-|11    |pynqz2__GCB0                           |           1|      8750|
+|11    |pynqz2__GCB0                           |           1|      8770|
 |12    |sc_util_v1_0_4_axi_reg_stall__1        |           1|       382|
 |13    |sc_util_v1_0_4_axi_reg_stall__2        |           2|       292|
 |14    |sc_util_v1_0_4_axi_reg_stall__3        |           2|       412|
@@ -7891,7 +8106,7 @@ Report RTL Partitions:
 |28    |sc_util_v1_0_4_axi_reg_stall__17       |           1|        57|
 |29    |sc_util_v1_0_4_axi_reg_stall__18       |           1|        28|
 |30    |pynqz2_smartconnect_0_0_GT0            |           1|     12663|
-|31    |pynqz2_GT0                             |           1|     21986|
+|31    |pynqz2_GT0                             |           1|     21841|
 +------+---------------------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
@@ -7906,7 +8121,7 @@ INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_oneh
 INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_onehot_gen_axi.gen_write.write_cs_reg[1]) is unused and will be removed from module sc_mmu_v1_0_8_top__parameterized0.
 INFO: [Synth 8-3332] Sequential element (gen_endpoint.decerr_slave_inst/FSM_onehot_gen_axi.gen_write.write_cs_reg[0]) is unused and will be removed from module sc_mmu_v1_0_8_top__parameterized0.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:05:01 ; elapsed = 00:05:41 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2979 ; free virtual = 12584
+Finished Technology Mapping : Time (s): cpu = 00:05:37 ; elapsed = 00:06:20 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 437 ; free virtual = 11312
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -7979,13 +8194,13 @@ WARNING: [Synth 8-3295] tying undriven pin I_AXI_DMA_REG_MODULE/strm_valid_int_c
 WARNING: [Synth 8-3295] tying undriven pin I_AXI_DMA_REG_MODULE/strm_valid_int2_inferred:in0 to constant 0
 WARNING: [Synth 8-3295] tying undriven pin I_AXI_DMA_REG_MODULE/strm_valid_int_cdc_to_inferred:in0 to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:05:07 ; elapsed = 00:05:46 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2978 ; free virtual = 12583
+Finished IO Insertion : Time (s): cpu = 00:05:44 ; elapsed = 00:06:27 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 375 ; free virtual = 11250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:05:07 ; elapsed = 00:05:46 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2978 ; free virtual = 12583
+Finished Renaming Generated Instances : Time (s): cpu = 00:05:44 ; elapsed = 00:06:27 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 375 ; free virtual = 11251
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -8004,25 +8219,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:11 ; elapsed = 00:05:51 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2978 ; free virtual = 12583
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:50 ; elapsed = 00:06:33 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 346 ; free virtual = 11220
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:05:12 ; elapsed = 00:05:52 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2978 ; free virtual = 12583
+Finished Renaming Generated Ports : Time (s): cpu = 00:05:50 ; elapsed = 00:06:33 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 346 ; free virtual = 11222
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:05:12 ; elapsed = 00:05:52 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2979 ; free virtual = 12584
+Finished Handling Custom Attributes : Time (s): cpu = 00:05:51 ; elapsed = 00:06:34 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 349 ; free virtual = 11224
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:05:13 ; elapsed = 00:05:53 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2979 ; free virtual = 12584
+Finished Renaming Generated Nets : Time (s): cpu = 00:05:51 ; elapsed = 00:06:34 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 349 ; free virtual = 11224
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -8039,14 +8254,14 @@ Report Cell Usage:
 |      |Cell       |Count |
 +------+-----------+------+
 |1     |BIBUF      |   130|
-|2     |CARRY4     |   234|
+|2     |CARRY4     |   231|
 |3     |DSP48E1    |    56|
 |4     |LUT1       |   479|
-|5     |LUT2       |  1232|
-|6     |LUT3       |  3034|
+|5     |LUT2       |  1216|
+|6     |LUT3       |  2969|
 |7     |LUT4       |  1763|
-|8     |LUT5       |  2103|
-|9     |LUT6       |  2821|
+|8     |LUT5       |  2134|
+|9     |LUT6       |  2838|
 |10    |MULT_AND   |   128|
 |11    |MUXCY      |   176|
 |12    |MUXF7      |   100|
@@ -8069,24 +8284,24 @@ Report Cell Usage:
 |29    |FDCE       |   662|
 |30    |FDPE       |    52|
 |31    |FDR        |    44|
-|32    |FDRE       | 13973|
-|33    |FDSE       |   365|
+|32    |FDRE       | 13930|
+|33    |FDSE       |   366|
 |34    |IBUF       |     2|
 |35    |OBUF       |     8|
 +------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:05:13 ; elapsed = 00:05:53 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 2979 ; free virtual = 12584
+Finished Writing Synthesis Report : Time (s): cpu = 00:05:51 ; elapsed = 00:06:34 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 349 ; free virtual = 11224
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 7246 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:04:24 ; elapsed = 00:05:10 . Memory (MB): peak = 3420.742 ; gain = 829.816 ; free physical = 3038 ; free virtual = 12643
-Synthesis Optimization Complete : Time (s): cpu = 00:05:13 ; elapsed = 00:05:53 . Memory (MB): peak = 3420.742 ; gain = 1657.770 ; free physical = 3038 ; free virtual = 12643
+Synthesis Optimization Runtime : Time (s): cpu = 00:04:58 ; elapsed = 00:05:48 . Memory (MB): peak = 3425.668 ; gain = 836.785 ; free physical = 405 ; free virtual = 11280
+Synthesis Optimization Complete : Time (s): cpu = 00:05:51 ; elapsed = 00:06:34 . Memory (MB): peak = 3425.668 ; gain = 1662.762 ; free physical = 405 ; free virtual = 11280
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.73 ; elapsed = 00:00:00.73 . Memory (MB): peak = 3420.742 ; gain = 0.000 ; free physical = 3087 ; free virtual = 12692
-INFO: [Netlist 29-17] Analyzing 1223 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.80 ; elapsed = 00:00:00.79 . Memory (MB): peak = 3425.668 ; gain = 0.000 ; free physical = 453 ; free virtual = 11329
+INFO: [Netlist 29-17] Analyzing 1220 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3420.742 ; gain = 0.000 ; free physical = 3017 ; free virtual = 12622
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3425.668 ; gain = 0.000 ; free physical = 386 ; free virtual = 11262
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 537 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 64 instances
@@ -8098,13 +8313,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   SRL16 => SRL16E: 2 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-1456 Infos, 280 Warnings, 0 Critical Warnings and 0 Errors encountered.
+1481 Infos, 293 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:05:30 ; elapsed = 00:06:11 . Memory (MB): peak = 3420.742 ; gain = 1738.188 ; free physical = 3358 ; free virtual = 12963
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3420.742 ; gain = 0.000 ; free physical = 3358 ; free virtual = 12963
+synth_design: Time (s): cpu = 00:06:09 ; elapsed = 00:06:54 . Memory (MB): peak = 3425.668 ; gain = 1766.191 ; free physical = 724 ; free virtual = 11600
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3425.668 ; gain = 0.000 ; free physical = 724 ; free virtual = 11600
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.runs/synth_1/pynqz2_wrapper.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 3444.754 ; gain = 24.012 ; free physical = 3326 ; free virtual = 12961
+write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 3449.680 ; gain = 24.012 ; free physical = 696 ; free virtual = 11598
 INFO: [runtcl-4] Executing : report_utilization -file pynqz2_wrapper_utilization_synth.rpt -pb pynqz2_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 21 20:24:00 2020...
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 22 17:51:11 2020...

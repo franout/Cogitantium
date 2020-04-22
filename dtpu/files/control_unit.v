@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : control_unit.v
+//  Created On    : 2020-04-22 17:06:46
+//  Last Modified : 2020-04-22 17:42:57
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 `timescale 1ns / 1ps
 `include "csr_definition.vh"
 `include "precision_def.vh"
@@ -154,7 +167,7 @@ Power_up: begin
         end
 idle: begin
         cs_idle<=1;
-        data_precision<=`INT8;
+        //data_precision<=`INT32;
         if(cs_start && glb_enable)begin  
         state<=start_p1;        
         end else begin 
@@ -175,9 +188,7 @@ start_p1: begin
                 end  
 start_p2:  begin
             csr_ce<=1'b1;
-             enable_chain<=csr_dout[`LOG_ALLOWED_PRECISIONS];
-            //data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
-            csr_address<=`A_FP_MODE;
+            //csr_address<=`A_FP_MODE;
             if(cs_start) begin 
             state<=start_p3; 
             end else begin 
@@ -186,9 +197,18 @@ start_p2:  begin
             end
 start_p3:  begin 
             cs_ready<=1;
-            enable_fp_unit<=csr_dout[1:0]; // fp and bpfp bits
+            csr_ce<=1'b1;
+            enable_fp_unit<=csr_dout[`LOG_ALLOWED_PRECISIONS+2:`LOG_ALLOWED_PRECISIONS+1]; // fp and bpfp bits
+            enable_chain<=csr_dout[`LOG_ALLOWED_PRECISIONS];
+            data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
             if(cs_start) begin 
             state<=retrieve_data; 
+            wm_ce<=1'b1;
+            infifo_read<=1'b1;
+            enable_load_array<=1'b1;
+            read_weight_memory<=1'b1;
+            enable_load_activation_data<=1'b1;
+
             end else begin 
             state<=idle;
             end
@@ -207,16 +227,19 @@ retrieve_data: begin
 
             // load counter of ls array 
             ld_max_cnt<=1'b1;
+
             ld_max_down_cnt<=1'b1;
+            
             ld_max_cnt_weight<=1'b1;
             
+            enable_mxu<=1'b1;
             state<=compute;
             end 
 
 compute: begin
 
-            wm_ce<=1'b1;
-            infifo_read<=1'b1;
+            //wm_ce<=1'b1;
+            //infifo_read<=1'b1;
             enable_load_array<=1'b1;
             read_weight_memory<=1'b0;
             enable_load_activation_data<=0;
@@ -232,7 +255,6 @@ compute: begin
             if(counter_compute==(MAX_COUNTER)) begin 
             state<=save_to_fifo;
             enable_store_activation_data<=1'b1;
-
             end else begin 
             state<=state;            
             end 

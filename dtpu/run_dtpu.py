@@ -157,11 +157,10 @@ ACTIVE_BFP=0x03
 ROUNDING=0x00
 NO_FP=0x00
 
-
 ### allocate buffers for input and outpuf fifo in main memory 
 ## default 32 bit integer
 # Allocate buffers for the input and output signals ( contigous memory allocation )
-xlnk = Xlnk()
+#xlnk = Xlnk()
 #input_fifo_buffer = xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
 #output_fifo_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
 #weight_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
@@ -169,38 +168,33 @@ xlnk = Xlnk()
 input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
 output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
 weight_buffer=allocate(shape=(2048,),dtype='u8')
-csr_buffer=allocate(shape=(16,),dtype='u8')
+csr_buffer=allocate(shape=(1024,),dtype='u8')
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
     input_fifo_buffer[i]=0xcafecafecafecafe
 
 
-weight_buffer[0]=0x1111111111111111
-
-weight_buffer[1]=0x2222222222222222
-weight_buffer[2]=0x3333333333333333
-weight_buffer[3]=0x1111111111111111
-weight_buffer[4]=0x5555555555555555
 ## populate weights
-for i in range(weight_buffer.size-5):
-    weight_buffer[i+5]=0xFFFFFFFFFFFFFFFF
+for i in range(weight_buffer.size):
+    #weight_buffer[i]=  ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) 
+    weight_buffer[i]=0xFFFFFFFFFFFFFFFF
+    #weight_buffer[i]=0
 
 ## populate csr 
-for i in range(csr_buffer.size):
-    if i!=1:
-        csr_buffer[i]=  0xFFFFFFFFFFFFFFFF
-    else:
-        csr_buffer[i]=0x00
+#for i in range(csr_buffer.size):
+#    csr_buffer[i]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
+    
 
 
-
-csr_buffer[ARITHMETIC_PRECISION]= (ACTIVATE_CHAIN <<4)| INT8
-csr_buffer[FP_MODE]=NO_FP
-csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
-csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
-csr_buffer[DEBUG]=0
-csr_buffer[TEST_OPTIONS]=0
+csr_buffer[ARITHMETIC_PRECISION]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
+for i in range(csr_buffer.size-1):
+    csr_buffer[i+1]=0
+#csr_buffer[FP_MODE]=NO_FP
+#csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
+#csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
+#csr_buffer[DEBUG]=0
+#csr_buffer[TEST_OPTIONS]=0
 
 #csr_buffer[0]= (NO_FP<<8)  | INT8  
 ## accelerator 
@@ -245,21 +239,16 @@ driver_wm.sendchannel.wait()
 ######################################################
 ###### program the dma for the in/out fifos ##########
 ######################################################
-if 'driver_fifo_in' in locals():
-    driver_fifo_in.sendchannel.stop()
-    driver_fifo_in.sendchannel.start()
-else:
+if not('driver_fifo_in' in locals()):
     driver_fifo_in=overlay.axi_dma_infifo
-    driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
 
-if 'driver_fifo_out' in locals():
-    driver_fifo_out.recvchannel.stop()    
-    driver_fifo_out.recvchannel.start()
-else:
+driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
+driver_fifo_in.sendchannel.wait()
+
+if not('driver_fifo_out' in locals()):
     driver_fifo_out=overlay.axi_dma_outfifo
-    driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-    driver_fifo_in.sendchannel.wait()
 
+driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
 
 ###########################################################
 ###         program accelerator&start computation     #####

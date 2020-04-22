@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Tue Apr 21 20:27:52 2020
+| Date         : Wed Apr 22 17:55:10 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_incremental_reuse -file pynqz2_wrapper_incremental_reuse_routed.rpt
 | Design       : pynqz2_wrapper
@@ -24,11 +24,12 @@ Table of Contents
 +-------+----------------------+--------------------+--------------------+--------+
 |  Type | Matched % (of Total) | Reuse % (of Total) | Fixed % (of Total) |  Total |
 +-------+----------------------+--------------------+--------------------+--------+
-| Cells |                98.17 |              97.39 |               0.57 |  24453 |
-| Nets  |                98.26 |              91.95 |               0.00 |  17698 |
-| Pins  |                    - |              89.53 |                  - | 103210 |
+| Cells |                99.92 |              99.96 |               0.55 |  25498 |
+| Nets  |                99.99 |              99.86 |               0.00 |  18388 |
+| Pins  |                    - |              98.32 |                  - | 108593 |
 | Ports |               100.00 |             100.00 |             100.00 |    140 |
 +-------+----------------------+--------------------+--------------------+--------+
+* Reused % can exceed matched % when unmatched cells take their placement directly from other cells that have been matched
 
 
 2. Reference Checkpoint Information
@@ -44,8 +45,8 @@ Table of Contents
 +--------------------------------+----------------------------+
 | Vivado Version                 |                     2019.2 |
 | DCP State                      |                 POST_ROUTE |
-| Recorded WNS                   |                     19.330 |
-| Recorded WHS                   |                      0.037 |
+| Recorded WNS                   |                     16.957 |
+| Recorded WHS                   |                      0.030 |
 | Reference Speed File Version   | PRODUCTION 1.11 2014-09-11 |
 | Incremental Speed File Version | PRODUCTION 1.11 2014-09-11 |
 +--------------------------------+----------------------------+
@@ -63,9 +64,9 @@ Table of Contents
 | synth_design    |             |             |       00:06 |       00:06 |       00:06 |       00:06 |
 | opt_design      |             |             |     < 1 min |     < 1 min |     < 1 min |     < 1 min |
 | read_checkpoint |             |             |     < 1 min |     < 1 min |     < 1 min |     < 1 min |
-| place_design    |      21.874 |      19.331 |     < 1 min |     < 1 min |       00:01 |       00:01 |
+| place_design    |      16.956 |      16.956 |     < 1 min |     < 1 min |       00:01 |       00:01 |
 | phys_opt_design |             |             |             |             |             |             |
-| route_design    |      19.330 |      19.330 |       00:01 |       00:01 |       00:01 |       00:01 |
+| route_design    |      16.957 |             |       00:01 |     < 1 min |       00:01 |       00:01 |
 +-----------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 
@@ -75,12 +76,11 @@ Table of Contents
 +------------------------------------------------------+------+
 |                         Type                         |   %  |
 +------------------------------------------------------+------+
-| Non-Reused Cells                                     | 2.60 |
-|   New                                                | 1.41 |
-|   Discarded illegal placement due to netlist changes | 0.33 |
-|   Discarded to improve timing                        | 0.85 |
-| Partially reused nets                                | 0.00 |
-| Non-Reused nets                                      | 8.04 |
+| Non-Reused Cells                                     | 0.03 |
+|   New                                                | 0.03 |
+|   Discarded illegal placement due to netlist changes | 0.01 |
+| Partially reused nets                                | 0.07 |
+| Non-Reused nets                                      | 0.05 |
 | Non-Reused Ports                                     | 0.00 |
 +------------------------------------------------------+------+
 

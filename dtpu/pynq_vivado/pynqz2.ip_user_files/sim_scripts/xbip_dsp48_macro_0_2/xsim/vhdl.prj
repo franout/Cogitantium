@@ -1,4 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../ip/xbip_dsp48_macro_0_2/sim/xbip_dsp48_macro_0.vhd" \
-
-nosort

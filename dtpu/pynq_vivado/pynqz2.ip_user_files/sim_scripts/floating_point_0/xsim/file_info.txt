@@ -1,0 +1,2 @@
+floating_point_0.vhd,vhdl,xil_defaultlib,../../../ip/floating_point_0/sim/floating_point_0.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

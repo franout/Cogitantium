@@ -146,6 +146,10 @@ reg [3:0]data_precision_fp_tb;
         
         );
 
+
+reg [63:0]data[0:31];
+integer i;
+
 always begin
    clk = 1'b1;
    #(clk_period/2) 
@@ -156,7 +160,25 @@ end
 initial begin 
 wm_dout=0;
 csr_dout=0;
+
+for(i=0;i<32;i=i+1)begin
+data[i]= ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) ;
+end
+i=0;
 end 
+
+
+
+// fake in fifo
+always @(*) begin 
+if (infifo_read) begin
+   infifo_dout<=data[i%16];
+   i=i+1;
+end else begin
+infifo_dout<=0;
+end
+end
+
 
         // fake csr memory process
 always @(posedge(clk) )begin 
@@ -170,7 +192,7 @@ if(csr_ce) begin
       csr_dout=0;
   endcase
   end else begin 
-  csr_dout=8'bZ;
+  csr_dout=8'b0;
   end 
 end
 // fake memory weight
@@ -227,7 +249,7 @@ localparam start_p3=4'h8;
               data_precision_tb=4'h1; // 8 bit integer
               data_precision_fp_tb=4'h0; // no fp
               infifo_is_empty=1'b1;
-              infifo_dout=64'hCAFECAFECAFECAFE;
+              //infifo_dout=64'hCAFECAFECAFECAFE;
               outfifo_is_full=1'b1;
               cs_continue=1'b0;
               cs_start=1'b1;
@@ -243,8 +265,8 @@ localparam start_p3=4'h8;
                 $stop();
               end 
               #clk_period; 
-              if(state!=start_p3 && cs_ready!=1'b1) begin
-                $display("not phase 3");
+              if(state!=start_p3 && cs_ready!=1'b1 && precision!=`INT8) begin
+                $display("not phase 3 , check precisions");
                 $stop();
               end 
               #clk_period;
@@ -273,7 +295,7 @@ localparam start_p3=4'h8;
                 $display("accelerator not in continous run ");
                 $stop();
               end
-              if(!(outfifo_din=={8{8'h20}}))begin
+              if(!(outfifo_din=={8{8'h00}}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end
@@ -283,7 +305,7 @@ localparam start_p3=4'h8;
                 $display("generated wrong address and not in retrieve data state");
                 $stop();
                 end
-             infifo_dout=64'h11111111111111111;
+            // infifo_dout=64'h11111111111111111;
               #clk_period;
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
@@ -326,7 +348,7 @@ localparam start_p3=4'h8;
                 $display("not in done state and done signal is not asserted",);
                 $stop();
               end
-              if(!(outfifo_din=={8{8'h18}}))begin
+              if((outfifo_din=={8{8'h00}}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end
