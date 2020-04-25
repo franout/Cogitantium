@@ -161,8 +161,8 @@ initial begin
 wm_dout=0;
 csr_dout=0;
 
-for(i=0;i<32;i=i+1)begin
-data[i]= ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) ;
+for(i=1;i<32;i=i+1)begin
+data[i-1]= ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) ;
 end
 i=0;
 end 
@@ -170,7 +170,7 @@ end
 
 
 // fake in fifo
-always @(*) begin 
+always @(posedge(clk)) begin 
 if (infifo_read) begin
    infifo_dout<=data[i%16];
    i=i+1;
@@ -295,7 +295,7 @@ localparam start_p3=4'h8;
                 $display("accelerator not in continous run ");
                 $stop();
               end
-              if(!(outfifo_din=={8{8'h00}}))begin
+              if(!(outfifo_din=={8{8'h88}}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end

@@ -25,7 +25,8 @@
 module mxu_wrapper
 #(parameter M=3, // matrix row -> weights
     K=3, // matrix columsn -> input data
-    max_data_width=4 // it must be a divisor of 64
+    max_data_width=4 ,// it must be a divisor of 64
+    MAX_BOARD_DSP=220
     )
 (      data_type,
         reset,
@@ -116,7 +117,7 @@ module mxu_wrapper
                 endgenerate
     assign y=synch_output_data[M-1];
     // mac matrix
-   mxu_core #(.M(M), .K(K), .max_data_width(max_data_width) ) kernel(   
+   mxu_core #(.M(M), .K(K), .max_data_width(max_data_width) ,.MAX_BOARD_DSP(MAX_BOARD_DSP)) kernel(   
         .data_type(data_type), 
         .clk(clk),
         .enable(enable),

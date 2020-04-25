@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-04-22 17:06:46
-//  Last Modified : 2020-04-22 17:42:57
+//  Last Modified : 2020-04-23 10:41:16
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -203,12 +203,6 @@ start_p3:  begin
             data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
             if(cs_start) begin 
             state<=retrieve_data; 
-            wm_ce<=1'b1;
-            infifo_read<=1'b1;
-            enable_load_array<=1'b1;
-            read_weight_memory<=1'b1;
-            enable_load_activation_data<=1'b1;
-
             end else begin 
             state<=idle;
             end
@@ -232,10 +226,15 @@ retrieve_data: begin
             
             ld_max_cnt_weight<=1'b1;
             
+            state<=compute;
+            end 
+/*get_weight: begin
+
+
             enable_mxu<=1'b1;
             state<=compute;
             end 
-
+*/
 compute: begin
 
             //wm_ce<=1'b1;

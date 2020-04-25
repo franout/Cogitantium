@@ -16,6 +16,10 @@
 `define A_TEST_MODE 32'd2
 
 
+// definition of starting addresso for weight memory
+`define A_WINDOW_WM 32'd0
+`define A_WINDOW_WM_MSB 64
+`define A_WINDOW_WM_LSB 32
 /////////////////////////////////////////////////
 ////// NOTE -> no check on validity 	  ///////
 //////   		of generated address	 ////////

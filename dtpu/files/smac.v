@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-22 17:05:43
+//  Last Modified : 2020-04-25 12:55:54
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -15,7 +15,7 @@
 
 `include "precision_def.vh"
 module smac
-#(parameter bit_width=8)(
+#(parameter USE_FABRIC="NO")(
     input clk,
     input  ce,
     input sclr,

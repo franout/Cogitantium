@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-04-22 17:06:26
+//  Last Modified : 2020-04-25 12:08:35
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -28,7 +28,8 @@ module dtpu_core
     DATA_WIDTH_CSR=8,
     DATA_WIDTH_WMEMORY=64,
     DATA_WIDTH_FIFO_IN=64,
-    DATA_WIDTH_FIFO_OUT=64
+    DATA_WIDTH_FIFO_OUT=64,
+    MAX_BOARD_DSP=220
     )
 (
     input wire clk,
@@ -157,7 +158,8 @@ module dtpu_core
    mxu_wrapper
     #(.M(ROWS), // matrix row -> weights
         .K(COLUMNS), // matrix columsn -> input data
-        .max_data_width(DATA_WIDTH_MAC)// it must be a divisor of 64
+        .max_data_width(DATA_WIDTH_MAC),// it must be a divisor of 64
+        .MAX_BOARD_DSP(MAX_BOARD_DSP)
         ) engine  (   
             .data_type(data_precision),
             .reset(aresetn),

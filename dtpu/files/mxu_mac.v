@@ -1,26 +1,22 @@
+//==================================================================================================
+//  Filename      : mxu_mac.v
+//  Created On    : 2020-04-25 12:25:20
+//  Last Modified : 2020-04-25 15:27:06
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com
+//
+//  Description   : 
+//
+//
+//==================================================================================================
+
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03.03.2020 18:31:33
-// Design Name: 
-// Module Name: mxu_mac
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 `include "precision_def.vh"
 module mxu_mac
-#(parameter bit_width=4)(
+#(parameter bit_width=4,
+  USE_FABRIC="NO")(
      
     input clk,
     input ce,
@@ -38,7 +34,6 @@ module mxu_mac
         wire tc;
         wire SUBTRACT;
  
- `ifndef USE_SMAC       
  `ifdef VIVADO_MAC
             assign SUBTRACT=1'b0;
         wire [47:0]PCOUT ;
@@ -93,17 +88,41 @@ module mxu_mac
 assign enable_next_mac=tc;*/
      `endif
 
-    `else
+    `ifndef VIVADO_MAC
     ///////////////////
     // USE SMAC //////
-    //////////////////
+    //////////////////   
+    smac #(.USE_FABRIC(USE_FABRIC)) smac_i (
+        .clk(clk),
+        .ce              (ce),
+        .sclr           (sclr),
+        .data_input(data_input),
+        .weight          (weight),
+        .res_mac_p       (res_mac_p),
+        .res_mac_n       (res_mac_n),
+        .select_precision(select_precision),
+        .enable_fp_unit  (enable_fp_unit),
+        .active_chain    (active_chain)
+
+      );
     
-    
-    
-    
-    
-    
-    
+    // delay registers 
+    register  #(.N(bit_width)) delay_reg1 (
+         .clk(clk),
+        .reset(~sclr),
+        .test_mode(test_mode),
+        .enable(ce),
+        .d(data_input),
+        .q(q1));
+         
+         register  #(.N(bit_width)) delay_reg2 (
+                 .clk(clk),
+                .reset(~sclr),
+                .test_mode(test_mode),
+                .enable(ce),
+                .d(q1),
+                .q(q));   
+ assign data_input_next_row=q;
     
     
     `endif

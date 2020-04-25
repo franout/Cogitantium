@@ -1,3 +1,4 @@
+
 `ifndef __PRECISION_DEF_VH
 `define __PRECISION_DEF_VH
 
@@ -24,7 +25,12 @@
 `define BFPP16 4'h03
 // on the same 8 bit of fp in csr there is also a possible custom rounding error 
 
-`define VIVADO_MAC 1
-
+`define VIVADO_MAC 1 // mutually exclusive with below definitions
+// used for different generation of design 
+`define USE_ALL 0 // it can be all or the int8/16/32/64 
+`define USEO_INT8 1
+`define USEO_INT16 0
+`define USEO_INT32 0
+`define USEO_INT64 0
 
 `endif
