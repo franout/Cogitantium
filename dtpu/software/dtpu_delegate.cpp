@@ -8,7 +8,7 @@ class DTPU_delegate {
   static bool SupportedOp(const TfLiteRegistration* registration) {
     switch (registration->builtin_code) {
       case kTfLiteBuiltinConv2d:
-      case kTfLiteBuiltinMean:
+      //case kTfLiteBuiltinMean:
         return true;
       default:
         return false;
@@ -36,7 +36,7 @@ TfLiteRegistration GetMyDelegateNodeRegistration() {
   // Free for any cleaning needed by the delegate.
   TfLiteRegistration kernel_registration;
   kernel_registration.builtin_code = kTfLiteBuiltinDelegate;
-  kernel_registration.custom_name = "MyDelegate";
+  kernel_registration.custom_name = "DTPU_delegate";
   kernel_registration.free = [](TfLiteContext* context, void* buffer) -> void {
     delete reinterpret_cast<MyDelegate*>(buffer);
   };
@@ -136,7 +136,7 @@ TfLiteDelegate* CreateMyDelegate() {
 
 
 // To add the delegate you need to call
-
+/*
 auto* my_delegate = CreateMyDelegate();
 if (interpreter->ModifyGraphWithDelegate(my_delegate) !=
         kTfLiteOk) {
@@ -150,4 +150,4 @@ delete my_delegate;
 
 
  interpreter = tflite.Interpreter(model_path,
-  experimental_delegates=[tflite.load_delegate('libedgetpu.so.1')])
+  experimental_delegates=[tflite.load_delegate('libedgetpu.so.1')])*/

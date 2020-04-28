@@ -33,6 +33,9 @@ import os
 #########################################################
 
 
+
+
+
 #### If a delegate was provided for specific operations, 
 #### then TensorFlow Lite will split the graph into multiple 
 #### subgraphs where each subgraph will be handled by a delegate
@@ -51,6 +54,29 @@ import os
 #	 the kernel node and claiming the nodes that the delegate can execute
 
 
+###############################
+######## LOAD DESIGN ##########
+###############################
+overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
+
+overlay.download() # Explicitly download bitstream to PL
+
+if overlay.is_loaded():
+ # Checks if a bitstream is loaded
+ print("overlay is loaded")
+else :
+	print("overlay is not loaded")
+	exit(-1)
+
+DTPU_lib=tflite.load_delegate("./DTPU_delegate.so")
+
+WMEM_SIZE=2048
+INFIFO_SIZE=2048
+OUTFIFO_SIZE=2048
+DATAWIDTH=64
+
+DTPU=DTPU_lib.DTPU_delegate(WMEM_SIZE,INFIFO_SIZE,OUTFIFO_SIZE,DATAWIDTH,overlay.dtpu.axis_accelerator_ada)
+
 ########################################
 ##### RUN TENSORFLOW LITE MODELS #######
 ########################################
@@ -64,12 +90,12 @@ interpreter = tflite.Interpreter(model_path=tflite_model_file)
 interpreter.allocate_tensors()
 
 # Get input and output tensors.
-input_details = interpreter.get_input_details()[0]["index"]
-output_details = interpreter.get_output_details()[0]["index"]
+input_details = interpreter.get_input_details() #[0]["index"]
+output_details = interpreter.get_output_details()# [0]["index"]
 
 # Test model on random input data.
 input_shape = input_details[0]['shape']
-input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
+input_data = np.array(np.random.random_sample(input_shape), dtype=np.uint8)
 interpreter.set_tensor(input_details[0]['index'], input_data)
 
 #start a thread which sample temperature and voltages from xadc
