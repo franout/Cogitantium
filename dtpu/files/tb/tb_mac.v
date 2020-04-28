@@ -32,17 +32,6 @@ reg [63:0] weight;
 reg [63:0] res_mac_p;
 wire [63:0] res_mac_n;
 reg [3:0] select_precision;
- smac #(8) uut (
-    .clk(clk),
-    .ce(enable),
-    .sclr(reset),
-    .data_input(data_input),
-    .weight(weight),
-    .res_mac_p(res_mac_p),
-    .res_mac_n(res_mac_n),
-    .select_precision(select_precision),
-    .active_chain(active_chain)
-    );
 
 wire [7:0] P;
 wire [47:0]CARRYCASCOUT;

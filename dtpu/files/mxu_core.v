@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-04-25 15:20:29
+//  Last Modified : 2020-04-28 14:31:54
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -77,10 +77,9 @@ module mxu_core
               .SCLR(reset_mac),  // input wire SCLR
               .P(res_mac_next[i*K+j][7:0])        // output wire [3 : 0] P
             );
-            `endif
-              `ifndef  VIVADO_MAC
+            `else
               // smul cascade of dsp always on fabric
-                        smul #(.USE_FABRIC("NO"),) smul_i (
+                        smul #(.USE_FABRIC("YES")) smul_i (
                             .clk             (clk),
                             .ce              (ce),
                             .sclr            (reset_mac),

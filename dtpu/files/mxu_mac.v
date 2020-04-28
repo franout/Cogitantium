@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-04-25 15:27:06
+//  Last Modified : 2020-04-28 13:20:08
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -16,8 +16,8 @@
 `include "precision_def.vh"
 module mxu_mac
 #(parameter bit_width=4,
-  USE_FABRIC="NO")(
-     
+  USE_FABRIC="NO")
+(
     input clk,
     input ce,
     input sclr,
@@ -86,9 +86,7 @@ module mxu_mac
        /*counter  #(.MAX_CNT(3)) count_enable_next_max (.clk(clk),.enable(ce),.reset(sclr),.tc(tc));
  
 assign enable_next_mac=tc;*/
-     `endif
-
-    `ifndef VIVADO_MAC
+     `else
     ///////////////////
     // USE SMAC //////
     //////////////////   
@@ -103,7 +101,6 @@ assign enable_next_mac=tc;*/
         .select_precision(select_precision),
         .enable_fp_unit  (enable_fp_unit),
         .active_chain    (active_chain)
-
       );
     
     // delay registers 

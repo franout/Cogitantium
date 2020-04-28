@@ -1,10 +1,21 @@
+//==================================================================================================
+//  Filename      : mxu_mac.v
+//  Created On    : 2020-04-25 12:25:20
+//  Last Modified : 2020-04-28 14:55:32
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 
 `timescale 1ns/1ps
+`include "precision_def.vh"
+module tb_smul ();
 
-module tb_smul (); /* this is automatically generated */
-
-	logic rstb;
-	logic srst;
 	logic clk;
 
 	// clock
@@ -13,19 +24,6 @@ module tb_smul (); /* this is automatically generated */
 		forever #(0.5) clk = ~clk;
 	end
 
-	// reset
-	initial begin
-		rstb <= '0;
-		srst <= '0;
-		#20
-		rstb <= '1;
-		repeat (5) @(posedge clk);
-		srst <= '1;
-		repeat (1) @(posedge clk);
-		srst <= '0;
-	end
-
-	// (*NOTE*) replace reset, clock, others
 
 	parameter USE_FABRIC = "NO";
 
@@ -54,17 +52,51 @@ module tb_smul (); /* this is automatically generated */
 
 	initial begin
 		// do something
-        
-		repeat(10)@(posedge clk);
-		$finish;
+		$display("global reset",);	
+		sclr='1;
+		repeat (5) @(posedge clk);
+		sclr='0; 
+		repeat(1) @ (posedge clk);
+		ce=1'b1;
+		active_chain=1'b0;
+
+		`ifdef USE_ALL 
+		$display("integer 64 computation");
+		select_precision=`INT64;
+
+		`elsif  USEO_INT8 
+		$display("integer 8 computation");
+		select_precision=`INT8;
+		`elsif  USEO_INT16
+		$display("integer 16 computation");
+		select_precision=`INT16;
+		`elsif USEO_INT32
+		$display("integer 32 computation");
+		select_precision=`INT32;
+
+		`endif		
+		enable_fp_unit=2'b0;
+		//sclr=1'b0;	
+		weight=64'hFFFFFFFFFFFFFFFFF;
+		input_data=64'hcafecafecafecafe;
+		repeat(2)@(posedge clk); // output after two cc
+		if(res_mac_next!=0)begin 
+			$display("error not zero intialization");
+			$stop();
+		end
+
+		repeat(1)@(posedge clk);
+
+
+		$finish();
 	end
 
 	// dump wave
-	initial begin
+/*	initial begin
 		if ( $test$plusargs("fsdb") ) begin
 			$fsdbDumpfile("tb_smul.fsdb");
 			$fsdbDumpvars(0, "tb_smul", "+mda", "+functions");
 		end
 	end
-
+*/
 endmodule

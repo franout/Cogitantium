@@ -50,17 +50,6 @@ module tb_mul(
                               .SCLR(sclr),  // input wire SCLR
                               .P(res_mac_n)        // output wire [3 : 0] P
                             );
-                smul uut (
-                              .clk(clk),    // input wire CLK
-                              .data_input(data_input64),        // input wire [3 : 0] A
-                              .weight(weight64),        // input wire [3 : 0] B
-                              .ce(enable),      // input wire CE
-                              .sclr(sclr),  // input wire SCLR
-                              .res_mac_n(res_mac_n64),        // output wire [3 : 0] P
-                              .active_chain(active_chain),
-                              .select_precision(select_precision)
-
-                            );
                                             
                 
                       always begin
