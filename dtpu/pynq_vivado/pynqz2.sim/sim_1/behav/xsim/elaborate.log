@@ -4,7 +4,10 @@ Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3715] size mismatch in mixed language port association, vhdl port 'pcin' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v:248]
+WARNING: [VRFC 10-3715] size mismatch in mixed language port association, vhdl port 'pcin' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v:277]
+WARNING: [VRFC 10-3715] size mismatch in mixed language port association, vhdl port 'pcin' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v:288]
+WARNING: [VRFC 10-3715] size mismatch in mixed language port association, vhdl port 'pcin' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v:160]
+WARNING: [VRFC 10-3715] size mismatch in mixed language port association, vhdl port 'pcin' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v:171]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -32,8 +35,20 @@ Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\x
 Compiling architecture synth of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_synth [\xbip_dsp48_macro_synth(c_xdevic...]
 Compiling architecture synth of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17_viv [\xbip_dsp48_macro_v3_0_17_viv(c_...]
 Compiling architecture xilinx of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17 [\xbip_dsp48_macro_v3_0_17(c_xdev...]
-Compiling architecture dsp_smul_8_arch of entity xil_defaultlib.dsp_smul_8 [dsp_smul_8_default]
+Compiling architecture dsp_smul_16_arch of entity xil_defaultlib.dsp_smul_16 [dsp_smul_16_default]
 Compiling module xil_defaultlib.smul_default
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_latency=...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_latency=...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_latency=...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_latency=...]
+Compiling architecture synth of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_rtl [\xbip_dsp48_macro_rtl(c_model_ty...]
+Compiling architecture synth of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17_viv [\xbip_dsp48_macro_v3_0_17_viv(c_...]
+Compiling architecture xilinx of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17 [\xbip_dsp48_macro_v3_0_17(c_mode...]
+Compiling architecture dsp_smul_16_fa_arch of entity xil_defaultlib.dsp_smul_16_fa [dsp_smul_16_fa_default]
+Compiling module xil_defaultlib.smul(USE_FABRIC="YES")
 Compiling module xil_defaultlib.tb_smul
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot tb_smul_behav

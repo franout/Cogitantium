@@ -1,9 +1,9 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
-"../../../../pynqz2.ip_user_files/ip/dsp_smul_16_fa_1/sim/dsp_smul_16_fa.vhd" \
-"../../../../pynqz2.ip_user_files/ip/dsp_smul_8_fa_1/sim/dsp_smul_8_fa.vhd" \
 "../../../../pynqz2.ip_user_files/ip/dsp_smul_16_1/sim/dsp_smul_16.vhd" \
 "../../../../pynqz2.ip_user_files/ip/dsp_smul_8_1/sim/dsp_smul_8.vhd" \
+"../../../../pynqz2.ip_user_files/ip/dsp_smul_16_fa_1/sim/dsp_smul_16_fa.vhd" \
+"../../../../pynqz2.ip_user_files/ip/dsp_smul_8_fa_1/sim/dsp_smul_8_fa.vhd" \
 
 # Do not sort compile order
 nosort

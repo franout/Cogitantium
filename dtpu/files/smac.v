@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-28 11:43:31
+//  Last Modified : 2020-04-28 22:20:12
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -22,10 +22,10 @@ module smac
         ///////////////////////////////////////////
         ///// DATA SIGNALS OF SubMAC unit /////////
         ///////////////////////////////////////////
-        input [bit_width*bit_width-1:0]data_input,
-        input [bit_width*bit_width-1:0]weight,
-        input [bit_width*bit_width-1:0]res_mac_p, 
-        output wire [bit_width*bit_width-1:0]res_mac_n,
+        input [64-1:0]data_input,
+        input [64-1:0]weight,
+        input [64-1:0]res_mac_p, 
+        output wire [64-1:0]res_mac_n,
         /////////////////////////////////////////
         ///// CONTROL SIGNALS FOR DSP CHAIN /////
         /////////////////////////////////////////
@@ -34,105 +34,7 @@ module smac
         input wire active_chain      
     );
     
-   wire [47:0]carry_in;
-   wire enable_i[0:3];
-   wire [47:0]carrycascout[0:5];
-   assign carry_in=1'b0;
-   wire subtract;
-   wire [47:0]PCOUT;
-   assign subtract=1'b0;
-   /////////////////////////
-   ///// enable network //// 
-   /////////////////////////
-   genvar i;
-   generate 
-   for(i=0;i<4;i=i+1) begin 
-   assign enable_i[i]= ce & select_precision[i];
-   end
-   endgenerate
-     
-   assign carry_in={48{1'b0}};
-     dsp_smac_8 smac_8_0 (
-          .CLK(clk),                    // input wire CLK
-          .CE(enable_i[0]),                      // input wire CE
-          .SCLR(sclr),                  // input wire SCLR
-          .PCIN(carry_in),            // input wire CARRYIN
-          .A(data_input[7:0]),                        // input wire [7 : 0] A
-          .B(weight[7:0]),                        // input wire [7 : 0] B
-          .C({{40{1'b0}},res_mac_p[7:0]}),                        // input wire [7 : 0] C
-           .SUBTRACT(subtract),  // input wire SUBTRACT
-          .PCOUT(carrycascout[0]),  // output wire CARRYCASCOUT
-          .P(res_mac_n[7:0])                        // output wire [7 : 0] P
-        );
-        
-        
-      generate 
-      for(i=0;i<48;i=i+1) begin
-        assign carrycascout[1][i]= carrycascout[0][i] & active_chain;  
-      end 
-      endgenerate 
-    
-       
-       
-       dsp_smac_8 smac_8_1 (
-                  .CLK(clk),                    // input wire CLK
-                  .CE(enable_i[1]),                      // input wire CE
-                  .SCLR(sclr),                  // input wire SCLR
-                  .PCIN(carrycascout[1]),            // input wire CARRYIN
-                  .A(data_input[15:8]),                        // input wire [7 : 0] A
-                  .B(weight[15:8]),                        // input wire [7 : 0] B
-                  .C({{40{1'b0}},res_mac_p[15:8]}),                        // input wire [7 : 0] C
-                  .SUBTRACT(subtract),  // input wire SUBTRACT
-                  .PCOUT(carrycascout[2]),  // output wire CARRYCASCOUT
-                  .P(res_mac_n[15:8])                        // output wire [7 : 0] P
-                );
-                
-        generate 
-      for(i=0;i<48;i=i+1) begin
-        assign carrycascout[3][i]= carrycascout[2][i] & active_chain;  
-      end 
-      endgenerate   
-      
-       dsp_smac_16 smac_16 (
-          .CLK(clk),                    // input wire CLK
-          .CE(enable_i[2]),                      // input wire CE
-          .SCLR(sclr),                  // input wire SCLR
-          .PCIN(carrycascout[3]),            // input wire CARRYIN
-          .A(data_input[31:16]),                        // input wire [15 : 0] A
-          .B(weight[31:16]),                        // input wire [15 : 0] B
-          .C({{32{1'b0}},res_mac_p[31:16]}),                        // input wire [15 : 0] C
-          .PCOUT(carrycascout[4]),  // output wire CARRYCASCOUT
-          .P(res_mac_n[31:16]),                        // output wire [15 : 0] P
-          .SUBTRACT(subtract)  // input wire SUBTRACT
 
-        );
-        
-        
-        generate 
-      for(i=0;i<48;i=i+1) begin
-        assign carrycascout[5][i]= carrycascout[4][i] & active_chain;  
-      end 
-      endgenerate   
-      
-        dsp_smac_32 smac_32 (
-          .CLK(clk),            // input wire CLK
-          .CE(enable_i[3]),              // input wire CE
-          .SCLR(sclr),          // input wire SCLR
-          .A(data_input[63:32]),                // input wire [31 : 0] A
-          .B(weight[63:32]),                // input wire [31 : 0] B
-          .C( { {16{1'b0}} ,res_mac_p[63:32]}),                // input wire [47 : 0] C
-          .PCIN(carrycascout[5]),          // input wire [47 : 0] PCIN
-          .SUBTRACT(subtract),  // input wire SUBTRACT
-          .P(res_mac_n[63:32]),                // output wire [32 : 0] P
-          .PCOUT(PCOUT)        // output wire [47 : 0] PCOUT
-        );
-   
-
-
-
-
-
-        //////// TODO SAME IDEA OF SMUL
 
    wire [3:0]enable_i;
    wire [47:0]pcout[0:7];
@@ -151,230 +53,267 @@ module smac
 ///////////////////////////////////
 ///// propagate chain network ///// 
 ///////////////////////////////////
-
+`ifdef USE_ALL
 generate
   for(i=1;i<8;i=i+1)  begin
     assign pcout[i]= active_chain ? pcout[i-1] : 0;
   end
 endgenerate
-//TODO MISSING SHIFT OF PROPAGATE VALUE
+`endif
+
 /////////////////////////////////////////
 /////// integer unit  chain /////////////
 /////////////////////////////////////////
    generate
      if(USE_FABRIC=="YES") begin 
       // generate fabric implementation of multipliers
-        `ifdef `USE_ALL
-        dsp_smul_8_fa smul_8_0_fa (
+        `ifdef USE_ALL
+        dsp_smac_8_fa smac_8_0_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[0]),        // input wire CE
+                    .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
+                    .C(res_mac_p[7:0]),
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[7:0])          // output wire [7 : 0] P
+                    .P(res_mac_n[7:0])          // output wire [7 : 0] P
                       );
 
-        dsp_smul_8_fa smul_8_1_fa (
+        dsp_smac_8_fa smac_8_1_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(selecst_precision[1]),        // input wire CE
+                    .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .PCIN(pcout[1]),    // input wire [47 : 0] PCIN
+                    .PCIN(pcout[1]<<8),    // input wire [47 : 0] PCIN
                     .A(input_data[15:8]),          // input wire [7 : 0] A
                     .B(weight[15:8]),          // input wire [7 : 0] B
+                    .C(res_mac_p[15:8]),
                     .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[15:8])          // output wire [7 : 0] P
+                    .P(res_mac_n[15:8])          // output wire [7 : 0] P
                     );
-        dsp_smul_16_fa smul_16_0_fa (
+        dsp_smac_16_fa smac_16_0_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[2]),        // input wire CE
+                    .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[3]),    // input wire [47 : 0] PCIN
                     .A(input_data[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
+                    .C(res_mac_p[31:16]),
                     .PCOUT(pcout[4]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[31:16])          // output wire [47 : 0] P
+                    .P(res_mac_n[31:16])          // output wire [47 : 0] P
                       );
 
         // 32 bit dsp logically 
-        dsp_smul_16_fa smul_32_0_fa (
+        dsp_smac_16_fa smac_32_0_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[3]),        // input wire CE
+                    .CE(enable_i[3]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[4]),    // input wire [47 : 0] PCIN
                     .A(input_data[47:32]),          // input wire [15 : 0] A
                     .B(weight[47:32]),          // input wire [15 : 0] B
+                    .C(res_mac_p[47:32]),
                     .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[47:32])          // output wire [47 : 0] P
+                    .P(res_mac_n[47:32])          // output wire [47 : 0] P
                       );
-        dsp_smul_16_fa smul_32_1_fa (
+        dsp_smac_16_fa smac_32_1_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[3]),        // input wire CE
+                    .CE(enable_i[3]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[6]),    // input wire [47 : 0] PCIN
                     .A(input_data[63:48]),          // input wire [15 : 0] A
                     .B(weight[63:48]),          // input wire [15 : 0] B
                     .PCOUT(pcout[7]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[63:48])          // output wire [47 : 0] P
+                    .C(res_mac_p[63:48]),
+                    .P(res_mac_n[63:48])          // output wire [47 : 0] P
                       );
-        `elif USEO_INT8
-                  dsp_smul_8_fa smul_8_0s_fa (
+         `elsif  USEO_INT8
+                  dsp_smac_8_fa smac_8_0s_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[0]),        // input wire CE
+                    .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
+                    .C(res_mac_p[7:0]),
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[7:0])          // output wire [7 : 0] P
+                    .P(res_mac_n[7:0])          // output wire [7 : 0] P
                       );
-        `elif USEO_INT16
-              dsp_smul_16_fa smul_16s_0_fa (
+        assign res_mac_n[63:8]=0;
+        `elsif USEO_INT16
+              dsp_smac_16_fa smac_16s_0_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[0]),        // input wire CE
+                    .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .SEL(1'b1),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
+                    .C(res_mac_p[15:0]),
                     .A(input_data[15:0]),          // input wire [7 : 0] A
                     .B(weight[15:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[15:0])          // output wire [7 : 0] P
+                    .P(res_mac_n[15:0])          // output wire [7 : 0] P
                       );
-        `elif USEO_INT32
+        assign res_mac_n[63:16]=0;
+         `elsif USEO_INT32
 
         // 32 bit dsp logically 
-        dsp_smul_16_fa smul_32_0s_fa (
+        dsp_smac_16_fa smac_32_0s_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[3]),        // input wire CE
+                    .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .PCIN(pcout[4]),    // input wire [47 : 0] PCIN
+                    .SEL(1'b1),      // input wire [0 : 0] SEL
+                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .C(res_mac_p[15:0]),
                     .A(input_data[15:0]),          // input wire [15 : 0] A
                     .B(weight[15:0]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[15:0])          // output wire [47 : 0] P
+                    .PCOUT(),  // output wire [47 : 0] PCOUT
+                    .P(res_mac_n[15:0])          // output wire [47 : 0] P
                       );
-        dsp_smul_16_fa smul_32_1s_fa (
+        dsp_smac_16_fa smac_32_1s_fa (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[3]),        // input wire CE
+                    .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .PCIN(pcout[5]),    // input wire [47 : 0] PCIN
+                    .PCIN({42'b0 , res_mac_n[15:0]}),    // input wire [47 : 0] PCIN
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .C(res_mac_p[31:16]),
                     .A(input_data[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
                     .PCOUT(pcout[6]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[31:16])          // output wire [47 : 0] P
+                    .P(res_mac_n[31:16])          // output wire [47 : 0] P
                       );
+        assign res_mac_n[63:32]=0;
         `endif
      end else begin 
       // generate dsp implementation of multipliers
-      `ifdef `USE_ALL
-          dsp_smul_8 smul_8_0 (
+      `ifdef USE_ALL
+          dsp_smac_8 smac_8_0 (
                       .CLK(clk),      // input wire CLK
-                      .CE(select_precision[0]),        // input wire CE
+                      .CE(enable_i[0]),        // input wire CE
                       .SCLR(sclr),    // input wire SCLR
                       .SEL(1'b0),      // input wire [0 : 0] SEL
                       .PCIN(0),    // input wire [47 : 0] PCIN
+                      .C(res_mac_p[7:0]),
                       .A(input_data[7:0]),          // input wire [7 : 0] A
                       .B(weight[7:0]),          // input wire [7 : 0] B
                       .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                      .P(res_mac_next[7:0])          // output wire [7 : 0] P
+                      .P(res_mac_n[7:0])          // output wire [7 : 0] P
                     );
-          dsp_smul_8 smul_8_1 (
+          dsp_smac_8 smac_8_1 (
                       .CLK(clk),      // input wire CLK
-                      .CE(select_precision[1]),        // input wire CE
+                      .CE(enable_i[1]),        // input wire CE
                       .SCLR(sclr),    // input wire SCLR
                       .SEL(1'b1),      // input wire [0 : 0] SEL
-                      .PCIN(pcout[1]),    // input wire [47 : 0] PCIN
+                      .C(res_mac_p[15:8]),
+                      .PCIN(pcout[1]<<8),    // input wire [47 : 0] PCIN
                       .A(input_data[15:8]),          // input wire [7 : 0] A
                       .B(weight[15:8]),          // input wire [7 : 0] B
                       .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
-                      .P(res_mac_next[15:8])          // output wire [7 : 0] P
+                      .P(res_mac_n[15:8])          // output wire [7 : 0] P
                     );
 
-          dsp_smul_16 smul_16_0 (
+          dsp_smac_16 smac_16_0 (
               .CLK(clk),      // input wire CLK
-              .CE(select_precision[2]),        // input wire CE
+              .CE(enable_i[2]),        // input wire CE
               .SCLR(sclr),    // input wire SCLR
               .PCIN(pcout[3]),    // input wire [47 : 0] PCIN
               .A(input_data[31:16]),          // input wire [15 : 0] A
+              .C(res_mac_p[31:16]),
+              .SEL(1'b0),      // input wire [0 : 0] SEL
               .B(weight[31:16]),          // input wire [15 : 0] B
               .PCOUT(pcout[4]),  // output wire [47 : 0] PCOUT
-              .P(res_mac_next[31:16])          // output wire [15 : 0] P
+              .P(res_mac_n[31:16])          // output wire [15 : 0] P
                   );
 
           // 32 bit dsp logically 
 
-          dsp_smul_16 smul_32_0 (
+          dsp_smac_16 smac_32_0 (
               .CLK(clk),      // input wire CLK
-              .CE(select_precision[3]),        // input wire CE
+              .CE(enable_i[3]),        // input wire CE
               .SCLR(sclr),    // input wire SCLR
               .PCIN(pcout[5]),    // input wire [47 : 0] PCIN
+              .C(res_mac_p[48:32]),
               .A(input_data[47:32]),          // input wire [15 : 0] A
+              .SEL(1'b0),      // input wire [0 : 0] SEL
               .B(weight[47:32]),          // input wire [15 : 0] B
               .PCOUT(pcout[6]), // output wire [47 : 0] PCOUT
               .P(res_mac_n[47:32])          // output wire [15 : 0] P
                   );
 
-        dsp_smul_16 smul_32_1 (
+
+
+        dsp_smac_16 smac_32_1 (
               .CLK(clk),      // input wire CLK
-              .CE(select_precision[3]),        // input wire CE
+              .CE(enable_i[3]),        // input wire CE
               .SCLR(sclr),    // input wire SCLR
-              .PCIN(pcout[6]),    // input wire [47 : 0] PCIN
+              .SEL(1'b0),      // input wire [0 : 0] SE
+              .PCIN((pcout[6])),    // input wire [47 : 0] PCIN
               .A(input_data[63:48]),          // input wire [15 : 0] A
+              .C(res_mac_p[63:48]),
               .B(weight[63:48]),          // input wire [15 : 0]          
               .PCOUT(pcout[7]),  // output wire [47 : 0] PCOUT
-              .P(res_mac_next[63:48])          // output wire [15 : 0]              
+              .P(res_mac_n[63:48])          // output wire [15 : 0]              
                );
-        `elif USEO_INT8
-                  dsp_smul_8 smul_8_0s (
+         `elsif USEO_INT8
+                  dsp_smac_8 smac_8_0s (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[0]),        // input wire CE
+                    .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
+                    .C(res_mac_p[7:0]),
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[7:0])          // output wire [7 : 0] P
+                    .P(res_mac_n[7:0])          // output wire [7 : 0] P
                       );
-        `elif USEO_INT16
-              dsp_smul_16 smul_16s_0 (
+                  assign res_mac_n[63:8]=0;
+        `elsif USEO_INT16
+              dsp_smac_16 smac_16s_0 (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[0]),        // input wire CE
+                    .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .SEL(1'b1),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
+                    .C(res_mac_p[15:0]),
                     .A(input_data[15:0]),          // input wire [7 : 0] A
                     .B(weight[15:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[15:0])          // output wire [7 : 0] P
+                    .P(res_mac_n[15:0])          // output wire [7 : 0] P
                       );
-        `elif USEO_INT32
-
+              assign res_mac_n[63:16]=0;
+        `elsif USEO_INT32
         // 32 bit dsp logically 
-        dsp_smul_16 smul_32_0s (
+        dsp_smac_16 smac_32_0s (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[3]),        // input wire CE
+                    .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .PCIN(pcout[4]),    // input wire [47 : 0] PCIN
+                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .C(res_mac_p[15:0]),
                     .A(input_data[15:0]),          // input wire [15 : 0] A
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
                     .B(weight[15:0]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[15:0])          // output wire [47 : 0] P
+                    .PCOUT(),  // output wire [47 : 0] PCOUT
+                    .P(res_mac_n[15:0])          // output wire [47 : 0] P
                       );
-        dsp_smul_16 smul_32_1s (
+        dsp_smac_16 smac_32_1s (
                     .CLK(clk),      // input wire CLK
-                    .CE(select_precision[3]),        // input wire CE
+                    .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .PCIN(pcout[5]),    // input wire [47 : 0] PCIN
+                    .SEL(1'b1),      // input wire [0 : 0] SEL
+                    .C(res_mac_p[31:16]),
+                    .PCIN({ 42'b0, res_mac_n[15:0]}),    // input wire [47 : 0] PCIN
                     .A(input_data[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
                     .PCOUT(pcout[6]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[31:16])          // output wire [47 : 0] P
+                    .P(res_mac_n[31:16])          // output wire [47 : 0] P
                       );
+              //assign res_mac_n[31:0] = enable_i[2]  && !sclr ? input_data[31:0]*weight[31:0] : 32'd0 ;
+        assign res_mac_n[63:32]=0;
         `endif
      end
    endgenerate
@@ -389,7 +328,6 @@ generate
       
  end
 endgenerate
-
 
 
 

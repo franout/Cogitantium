@@ -63,7 +63,7 @@ dsp_smul_8 your_instance_name (
   .A(A),          // input wire [7 : 0] A
   .B(B),          // input wire [7 : 0] B
   .PCOUT(PCOUT),  // output wire [47 : 0] PCOUT
-  .P(P)          // output wire [15 : 0] P
+  .P(P)          // output wire [47 : 0] P
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

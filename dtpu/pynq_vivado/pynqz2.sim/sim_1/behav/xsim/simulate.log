@@ -1,5 +1,0 @@
-Vivado Simulator 2019.2
-Time resolution is 1 ps
-global reset 
-integer 8 computation
-$finish called at time : 8500 ps : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_smul.sv" Line 91

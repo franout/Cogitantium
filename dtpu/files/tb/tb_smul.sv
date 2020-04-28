@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-04-28 14:55:32
+//  Last Modified : 2020-04-28 20:37:09
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -32,6 +32,7 @@ module tb_smul ();
 	logic [63:0] input_data;
 	logic [63:0] weight;
 	logic [63:0] res_mac_next;
+	logic [63:0] res_mac_next_fa;
 	logic  [3:0] select_precision;
 	logic  [1:0] enable_fp_unit;
 	logic        active_chain;
@@ -49,9 +50,24 @@ module tb_smul ();
 			.enable_fp_unit   (enable_fp_unit),
 			.active_chain     (active_chain)
 		);
+	smul #(
+			.USE_FABRIC("YES")
+		) inst_smul_fa (
+			.clk              (clk),
+			.ce               (ce),
+			.sclr             (sclr),
+			.input_data       (input_data),
+			.weight           (weight),
+			.res_mac_next     (res_mac_next_fa),
+			.select_precision (select_precision),
+			.enable_fp_unit   (enable_fp_unit),
+			.active_chain     (active_chain)
+		);
+
 
 	initial begin
 		// do something
+		ce='0;
 		$display("global reset",);	
 		sclr='1;
 		repeat (5) @(posedge clk);
@@ -80,13 +96,13 @@ module tb_smul ();
 		weight=64'hFFFFFFFFFFFFFFFFF;
 		input_data=64'hcafecafecafecafe;
 		repeat(2)@(posedge clk); // output after two cc
-		if(res_mac_next!=0)begin 
-			$display("error not zero intialization");
+		if(res_mac_next!=res_mac_next_fa)begin 
+			$display("error");
 			$stop();
 		end
 
-		repeat(1)@(posedge clk);
-
+		repeat(3)@(posedge clk);
+        
 
 		$finish();
 	end
