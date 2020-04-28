@@ -190,10 +190,10 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
   set axis_accelerator_ada [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_accelerator_adapter:2.1 axis_accelerator_ada ]
   set_property -dict [ list \
    CONFIG.C_AP_ADAPTER_ID {0} \
-   CONFIG.C_AP_IARG_0_DIM_1 {1024} \
+   CONFIG.C_AP_IARG_0_DIM_1 {64} \
    CONFIG.C_AP_IARG_0_DWIDTH {64} \
    CONFIG.C_AP_IARG_0_MB_DEPTH {1} \
-   CONFIG.C_AP_IARG_1_DIM_1 {2048} \
+   CONFIG.C_AP_IARG_1_DIM_1 {16384} \
    CONFIG.C_AP_IARG_1_DWIDTH {64} \
    CONFIG.C_AP_IARG_1_MB_DEPTH {1} \
    CONFIG.C_AP_IARG_2_DIM_1 {2048} \
@@ -229,12 +229,12 @@ proc create_hier_cell_dtpu { parentCell nameHier } {
      return 1
    }
     set_property -dict [ list \
-   CONFIG.COLUMNS {8} \
+   CONFIG.COLUMNS {15} \
    CONFIG.DATA_WIDTH_CSR {64} \
    CONFIG.DATA_WIDTH_MAC {64} \
-   CONFIG.ROWS {8} \
-   CONFIG.SIZE_CSR {1024} \
-   CONFIG.SIZE_WMEMORY {2048} \
+   CONFIG.ROWS {15} \
+   CONFIG.SIZE_CSR {64} \
+   CONFIG.SIZE_WMEMORY {16384} \
  ] $dtpu_core
 
   # Create instance: util_vector_logic_2, and set properties

@@ -165,10 +165,11 @@ NO_FP=0x00
 #output_fifo_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
 #weight_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
 #csr_buffer=xlnk.cma_array(shape=(1024,),dtype='u1')#,cacheable=True)
+# shape is the size!
 input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
 output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
-weight_buffer=allocate(shape=(2048,),dtype='u8')
-csr_buffer=allocate(shape=(1024,),dtype='u8')
+weight_buffer=allocate(shape=(16384,),dtype='u8')
+csr_buffer=allocate(shape=(64,),dtype='u8')
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
@@ -177,8 +178,8 @@ for i in range(input_fifo_buffer.size):
 
 ## populate weights
 for i in range(weight_buffer.size):
-    #weight_buffer[i]=  ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) 
-    weight_buffer[i]=0xFFFFFFFFFFFFFFFF
+    weight_buffer[i]=  ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) 
+    #weight_buffer[i]=0xFFFFFFFFFFFFFFFF
     #weight_buffer[i]=0
 
 ## populate csr 
@@ -247,8 +248,7 @@ driver_fifo_in.sendchannel.wait()
 
 if not('driver_fifo_out' in locals()):
     driver_fifo_out=overlay.axi_dma_outfifo
-
-driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+    driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
 
 ###########################################################
 ###         program accelerator&start computation     #####

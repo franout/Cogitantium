@@ -81,6 +81,7 @@ class DTPU_delegate {
   static bool SupportedOp(const TfLiteRegistration* registration) {
     switch (registration->builtin_code) {
       case kTfLiteBuiltinConv2d:
+        printf("i can make the conv2d\n");
       //case kTfLiteBuiltinMean:
         return true;
       default:
@@ -90,6 +91,7 @@ class DTPU_delegate {
 
   // Any initialization code needed
   bool Init(TfLiteContext* context,const TfLiteDelegateParams* delegate_params) {
+
     return true;
   }
   // Any preparation work needed (e.g. allocate buffers)
@@ -118,6 +120,7 @@ TfLiteRegistration GetMyDelegateNodeRegistration() {
   // Invoke will run the delegate graph.
   // Prepare for preparing the delegate.
   // Free for any cleaning needed by the delegate.
+
   TfLiteRegistration kernel_registration;
   kernel_registration.builtin_code = kTfLiteBuiltinDelegate;
   kernel_registration.custom_name = "DTPU_delegate";

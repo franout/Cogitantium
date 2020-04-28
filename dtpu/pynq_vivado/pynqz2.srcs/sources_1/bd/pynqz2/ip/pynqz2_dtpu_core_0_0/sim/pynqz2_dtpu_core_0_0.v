@@ -153,16 +153,17 @@ output wire [3 : 0] d_out;
 
   dtpu_core #(
     .DATA_WIDTH_MAC(64),
-    .ROWS(8),
-    .COLUMNS(8),
-    .SIZE_WMEMORY(2048),
+    .ROWS(15),
+    .COLUMNS(15),
+    .SIZE_WMEMORY(16384),
     .ADDRESS_SIZE_WMEMORY(32),
     .ADDRESS_SIZE_CSR(32),
-    .SIZE_CSR(1024),
+    .SIZE_CSR(64),
     .DATA_WIDTH_CSR(64),
     .DATA_WIDTH_WMEMORY(64),
     .DATA_WIDTH_FIFO_IN(64),
-    .DATA_WIDTH_FIFO_OUT(64)
+    .DATA_WIDTH_FIFO_OUT(64),
+    .MAX_BOARD_DSP(220)
   ) inst (
     .clk(clk),
     .aresetn(aresetn),

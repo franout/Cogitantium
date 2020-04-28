@@ -1,13 +1,10 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 8 -L xbip_utils_v3_0_10 -L xbip_pipe_v3_0_6 -L xbip_bram18k_v3_0_6 -L mult_gen_v12_0_16 -L xbip_dsp48_wrapper_v3_0_4 -L xbip_dsp48_addsub_v3_0_6 -L xbip_dsp48_multadd_v3_0_6 -L xbip_multadd_v3_0_15 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_dtpu_behav xil_defaultlib.tb_dtpu xil_defaultlib.glbl -log elaborate.log 
+Running: /home/fra/Desktop/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 7dcef6e93976439f944b9c25831eb96b --incr --debug all --rangecheck --relax --mt 8 -L xbip_dsp48_wrapper_v3_0_4 -L xbip_utils_v3_0_10 -L xbip_pipe_v3_0_6 -L xbip_dsp48_macro_v3_0_17 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_smul_behav xil_defaultlib.tb_smul xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 64 differs from formal bit length 65 for port 'infifo_dout' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v:126]
-WARNING: [VRFC 10-3091] actual bit length 64 differs from formal bit length 65 for port 'outfifo_din' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v:133]
-WARNING: [VRFC 10-3091] actual bit length 65 differs from formal bit length 64 for port 'input_data_from_fifo' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:253]
-WARNING: [VRFC 10-3091] actual bit length 65 differs from formal bit length 64 for port 'data_to_fifo_out' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v:254]
+WARNING: [VRFC 10-3715] size mismatch in mixed language port association, vhdl port 'pcin' [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v:248]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -16,48 +13,27 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling package mult_gen_v12_0_16.mult_gen_v12_0_16_viv_comp
 Compiling package xbip_utils_v3_0_10.xbip_utils_v3_0_10_pkg
-Compiling package mult_gen_v12_0_16.mult_gen_v12_0_16_pkg
+Compiling package xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17_viv_com...
+Compiling package xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17_pkg
+Compiling package unisim.vcomponents
 Compiling package ieee.std_logic_arith
 Compiling package ieee.std_logic_signed
-Compiling package unisim.vcomponents
-Compiling package ieee.std_logic_unsigned
 Compiling package ieee.vital_timing
 Compiling package ieee.vital_primitives
 Compiling package unisim.vpkg
-Compiling package xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_viv_comp
-Compiling package xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_pkg
-Compiling package xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_viv_co...
-Compiling package xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_pkg
-Compiling module xil_defaultlib.register(N=64)
-Compiling architecture lut2_v of entity unisim.LUT2 [\LUT2(init="1000")(0,3)\]
-Compiling architecture mult_and_v of entity unisim.MULT_AND [mult_and_default]
-Compiling architecture muxcy_v of entity unisim.MUXCY [muxcy_default]
-Compiling architecture xorcy_v of entity unisim.XORCY [xorcy_default]
-Compiling architecture xilinx of entity mult_gen_v12_0_16.op_resize [\op_resize(ai_width=8,bi_width=8...]
-Compiling architecture xilinx of entity mult_gen_v12_0_16.luts [\luts(c_xdevicefamily="zynq",c_a...]
-Compiling architecture xilinx of entity mult_gen_v12_0_16.mult_gen_v12_0_16_viv [\mult_gen_v12_0_16_viv(c_verbosi...]
-Compiling architecture xilinx of entity mult_gen_v12_0_16.mult_gen_v12_0_16 [\mult_gen_v12_0_16(c_xdevicefami...]
-Compiling architecture mult_gen_0_arch of entity xil_defaultlib.mult_gen_0 [mult_gen_0_default]
-Compiling architecture dsp48e1_v of entity unisim.DSP48E1 [\DSP48E1(adreg=0,carryinselreg=0...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture dsp48e1_v of entity unisim.DSP48E1 [\DSP48E1(adreg=0,alumodereg=0,ca...]
 Compiling architecture synth of entity xbip_dsp48_wrapper_v3_0_4.xbip_dsp48e1_wrapper_v3_0 [\xbip_dsp48e1_wrapper_v3_0(areg=...]
-Compiling architecture synth of entity xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_synth [\xbip_dsp48_multadd_synth(c_xdev...]
-Compiling architecture synth of entity xbip_dsp48_multadd_v3_0_6.xbip_dsp48_multadd_v3_0_6_viv [\xbip_dsp48_multadd_v3_0_6_viv(c...]
-Compiling architecture xilinx of entity xbip_multadd_v3_0_15.multadd_dsp [\multadd_dsp(c_xdevicefamily="zy...]
-Compiling architecture synth of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15_viv [\xbip_multadd_v3_0_15_viv(c_xdev...]
-Compiling architecture xilinx of entity xbip_multadd_v3_0_15.xbip_multadd_v3_0_15 [\xbip_multadd_v3_0_15(c_xdevicef...]
-Compiling architecture vivado_mac_arch of entity xil_defaultlib.vivado_mac [vivado_mac_default]
-Compiling module xil_defaultlib.mxu_mac(bit_width=64)
-Compiling module xil_defaultlib.mxu_core(M=8,K=8,max_data_width=...
-Compiling module xil_defaultlib.mxu_wrapper(M=8,K=8,max_data_wid...
-Compiling module xil_defaultlib.control_unit(ROWS=8,COLUMNS=8)
-Compiling module xil_defaultlib.ls_unit
-Compiling module xil_defaultlib.filter_and_select(K=8)
-Compiling module xil_defaultlib.compact_and_select(K=8)
-Compiling module xil_defaultlib.ls_array(ROWS=8,COLUMNS=8)
-Compiling module xil_defaultlib.ls_array_wrapper(ROWS=8,COLUMNS=...
-Compiling module xil_defaultlib.dtpu_core(ROWS=8,COLUMNS=8,SIZE_...
-Compiling module xil_defaultlib.tb_dtpu
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_pipe_v3_0_6.xbip_pipe_v3_0_6_viv [\xbip_pipe_v3_0_6_viv(c_has_ce=1...]
+Compiling architecture synth of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_synth [\xbip_dsp48_macro_synth(c_xdevic...]
+Compiling architecture synth of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17_viv [\xbip_dsp48_macro_v3_0_17_viv(c_...]
+Compiling architecture xilinx of entity xbip_dsp48_macro_v3_0_17.xbip_dsp48_macro_v3_0_17 [\xbip_dsp48_macro_v3_0_17(c_xdev...]
+Compiling architecture dsp_smul_8_arch of entity xil_defaultlib.dsp_smul_8 [dsp_smul_8_default]
+Compiling module xil_defaultlib.smul_default
+Compiling module xil_defaultlib.tb_smul
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_dtpu_behav
+Built simulation snapshot tb_smul_behav

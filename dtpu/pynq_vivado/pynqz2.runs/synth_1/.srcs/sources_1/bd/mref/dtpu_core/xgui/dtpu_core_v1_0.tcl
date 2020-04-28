@@ -11,6 +11,7 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "DATA_WIDTH_FIFO_OUT" -parent ${Page_0}
   ipgui::add_param $IPINST -name "DATA_WIDTH_MAC" -parent ${Page_0}
   ipgui::add_param $IPINST -name "DATA_WIDTH_WMEMORY" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "MAX_BOARD_DSP" -parent ${Page_0}
   ipgui::add_param $IPINST -name "ROWS" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SIZE_CSR" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SIZE_WMEMORY" -parent ${Page_0}
@@ -87,6 +88,15 @@ proc update_PARAM_VALUE.DATA_WIDTH_WMEMORY { PARAM_VALUE.DATA_WIDTH_WMEMORY } {
 
 proc validate_PARAM_VALUE.DATA_WIDTH_WMEMORY { PARAM_VALUE.DATA_WIDTH_WMEMORY } {
 	# Procedure called to validate DATA_WIDTH_WMEMORY
+	return true
+}
+
+proc update_PARAM_VALUE.MAX_BOARD_DSP { PARAM_VALUE.MAX_BOARD_DSP } {
+	# Procedure called to update MAX_BOARD_DSP when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.MAX_BOARD_DSP { PARAM_VALUE.MAX_BOARD_DSP } {
+	# Procedure called to validate MAX_BOARD_DSP
 	return true
 }
 
@@ -171,5 +181,10 @@ proc update_MODELPARAM_VALUE.DATA_WIDTH_FIFO_IN { MODELPARAM_VALUE.DATA_WIDTH_FI
 proc update_MODELPARAM_VALUE.DATA_WIDTH_FIFO_OUT { MODELPARAM_VALUE.DATA_WIDTH_FIFO_OUT PARAM_VALUE.DATA_WIDTH_FIFO_OUT } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.DATA_WIDTH_FIFO_OUT}] ${MODELPARAM_VALUE.DATA_WIDTH_FIFO_OUT}
+}
+
+proc update_MODELPARAM_VALUE.MAX_BOARD_DSP { MODELPARAM_VALUE.MAX_BOARD_DSP PARAM_VALUE.MAX_BOARD_DSP } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.MAX_BOARD_DSP}] ${MODELPARAM_VALUE.MAX_BOARD_DSP}
 }
 

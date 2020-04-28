@@ -60,7 +60,6 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
@@ -80,7 +79,7 @@ set rc [catch {
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
   read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/vivado_mac/vivado_mac.xci
-  read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0/mult_gen_0.xci
+  read_ip -quiet /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/ip/mult_gen_0_1/mult_gen_0.xci
   add_files /media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/pynq_vivado/pynqz2.srcs/sources_1/bd/pynqz2/pynqz2.bd
   set_param project.isImplRun false
   read_xdc /media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc
@@ -177,25 +176,6 @@ if {$rc} {
   return -code error $RESULT
 } else {
   end_step route_design
-  unset ACTIVE_STEP 
-}
-
-start_step write_bitstream
-set ACTIVE_STEP write_bitstream
-set rc [catch {
-  create_msg_db write_bitstream.pb
-  set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  catch { write_mem_info -force pynqz2_wrapper.mmi }
-  write_bitstream -force pynqz2_wrapper.bit 
-  catch {write_debug_probes -quiet -force pynqz2_wrapper}
-  catch {file copy -force pynqz2_wrapper.ltx debug_nets.ltx}
-  close_msg_db -file write_bitstream.pb
-} RESULT]
-if {$rc} {
-  step_failed write_bitstream
-  return -code error $RESULT
-} else {
-  end_step write_bitstream
   unset ACTIVE_STEP 
 }
 

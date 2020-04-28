@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr 22 17:01:38 2020" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Apr 28 19:21:47 2020" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="pynqz2" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -6747,7 +6747,7 @@
         <PARAMETER NAME="C_AP_IARG_MB_DEPTH" VALUE="0x0000000400000004000000040000000400000004000000040000000100000001"/>
         <PARAMETER NAME="C_AP_IARG_WIDTH" VALUE="0x0000002000000020000000200000002000000020000000400000004000000040"/>
         <PARAMETER NAME="C_AP_IARG_N_DIM" VALUE="0x0000000100000001000000010000000100000001000000010000000100000001"/>
-        <PARAMETER NAME="C_AP_IARG_DIM_1" VALUE="0x0000040000000400000004000000040000000400000008000000080000000400"/>
+        <PARAMETER NAME="C_AP_IARG_DIM_1" VALUE="0x0000040000000400000004000000040000000400000008000000400000000040"/>
         <PARAMETER NAME="C_AP_IARG_DIM_2" VALUE="0x0000000100000001000000010000000100000001000000010000000100000001"/>
         <PARAMETER NAME="C_AP_IARG_FORMAT_TYPE" VALUE="0x0000000000000000000000000000000000000000000000000000000000000000"/>
         <PARAMETER NAME="C_AP_IARG_FORMAT_FACTOR" VALUE="0x0000000100000001000000010000000100000001000000010000000100000001"/>
@@ -6836,7 +6836,7 @@
         <PARAMETER NAME="C_AP_IARG_0_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_AP_IARG_0_MB_DEPTH" VALUE="1"/>
         <PARAMETER NAME="C_AP_IARG_0_N_DIM" VALUE="1"/>
-        <PARAMETER NAME="C_AP_IARG_0_DIM_1" VALUE="1024"/>
+        <PARAMETER NAME="C_AP_IARG_0_DIM_1" VALUE="64"/>
         <PARAMETER NAME="C_AP_IARG_0_DIM_2" VALUE="1"/>
         <PARAMETER NAME="C_AP_IARG_0_FORMAT_TYPE" VALUE="NONE"/>
         <PARAMETER NAME="C_AP_IARG_0_FORMAT_FACTOR" VALUE="1"/>
@@ -6869,7 +6869,7 @@
         <PARAMETER NAME="C_AP_IARG_5_N_DIM" VALUE="1"/>
         <PARAMETER NAME="C_AP_IARG_6_N_DIM" VALUE="1"/>
         <PARAMETER NAME="C_AP_IARG_7_N_DIM" VALUE="1"/>
-        <PARAMETER NAME="C_AP_IARG_1_DIM_1" VALUE="2048"/>
+        <PARAMETER NAME="C_AP_IARG_1_DIM_1" VALUE="16384"/>
         <PARAMETER NAME="C_AP_IARG_2_DIM_1" VALUE="2048"/>
         <PARAMETER NAME="C_AP_IARG_3_DIM_1" VALUE="1024"/>
         <PARAMETER NAME="C_AP_IARG_4_DIM_1" VALUE="1024"/>
@@ -7583,16 +7583,17 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="DATA_WIDTH_MAC" VALUE="64"/>
-        <PARAMETER NAME="ROWS" VALUE="8"/>
-        <PARAMETER NAME="COLUMNS" VALUE="8"/>
-        <PARAMETER NAME="SIZE_WMEMORY" VALUE="2048"/>
+        <PARAMETER NAME="ROWS" VALUE="15"/>
+        <PARAMETER NAME="COLUMNS" VALUE="15"/>
+        <PARAMETER NAME="SIZE_WMEMORY" VALUE="16384"/>
         <PARAMETER NAME="ADDRESS_SIZE_WMEMORY" VALUE="32"/>
         <PARAMETER NAME="ADDRESS_SIZE_CSR" VALUE="32"/>
-        <PARAMETER NAME="SIZE_CSR" VALUE="1024"/>
+        <PARAMETER NAME="SIZE_CSR" VALUE="64"/>
         <PARAMETER NAME="DATA_WIDTH_CSR" VALUE="64"/>
         <PARAMETER NAME="DATA_WIDTH_WMEMORY" VALUE="64"/>
         <PARAMETER NAME="DATA_WIDTH_FIFO_IN" VALUE="64"/>
         <PARAMETER NAME="DATA_WIDTH_FIFO_OUT" VALUE="64"/>
+        <PARAMETER NAME="MAX_BOARD_DSP" VALUE="220"/>
         <PARAMETER NAME="Component_Name" VALUE="pynqz2_dtpu_core_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -10567,87 +10568,87 @@
             <CONNECTION INSTANCE="ps7" PORT="M_AXI_GP0_RREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M02_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awaddr">
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_awaddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_awaddr"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_awaddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M02_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M02_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awvalid">
+        <PORT DIR="O" NAME="M00_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_awvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_awvalid"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M02_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awready">
+        <PORT DIR="I" LEFT="0" NAME="M00_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_awready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_awready"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_awready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M02_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_wdata">
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_wdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_wdata"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M02_AXI_wstrb" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M02_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_wvalid">
+        <PORT DIR="O" NAME="M00_AXI_wstrb" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_wvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_wvalid"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M02_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_wready">
+        <PORT DIR="I" LEFT="0" NAME="M00_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_wready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_wready"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_wready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M02_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_bresp">
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_bresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_bresp"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M02_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_bvalid">
+        <PORT DIR="I" LEFT="0" NAME="M00_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_bvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_bvalid"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M02_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_bready">
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_bready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_bready"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_bready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M02_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_araddr">
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_araddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_araddr"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_araddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M02_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M02_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_arvalid">
+        <PORT DIR="O" NAME="M00_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_arvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_arvalid"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M02_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_arready">
+        <PORT DIR="I" LEFT="0" NAME="M00_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_arready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_arready"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_arready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M02_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rdata">
+        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rdata"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M02_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rresp">
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rresp"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M02_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rvalid">
+        <PORT DIR="I" LEFT="0" NAME="M00_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rvalid"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M02_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rready">
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rready"/>
+            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_infifo_s_axi_lite_awaddr">
@@ -10733,174 +10734,87 @@
             <CONNECTION INSTANCE="axi_dma_infifo" PORT="s_axi_lite_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_awaddr">
+        <PORT DIR="O" LEFT="31" NAME="M02_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awaddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_awaddr"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_awaddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_awvalid">
+        <PORT DIR="O" NAME="M02_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_awvalid"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M00_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_awready">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_awready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_awready"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_awready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_wdata">
+        <PORT DIR="O" LEFT="31" NAME="M02_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_wdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_wdata"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_wstrb" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_wvalid">
+        <PORT DIR="O" NAME="M02_AXI_wstrb" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_wvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_wvalid"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M00_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_wready">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_wready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_wready"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_wready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_bresp">
+        <PORT DIR="I" LEFT="1" NAME="M02_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_bresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_bresp"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M00_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_bvalid">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_bvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_bvalid"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_bready">
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_bready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_bready"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_bready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_araddr">
+        <PORT DIR="O" LEFT="31" NAME="M02_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_araddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_araddr"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_araddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_arvalid">
+        <PORT DIR="O" NAME="M02_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_arvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_arvalid"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M00_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_arready">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_arready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_arready"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_arready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rdata">
+        <PORT DIR="I" LEFT="31" NAME="M02_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rdata"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rresp">
+        <PORT DIR="I" LEFT="1" NAME="M02_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rresp"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M00_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rvalid">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rvalid"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_csr_mem_s_axi_lite_rready">
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_weight_mem_s_axi_lite_rready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_csr_mem" PORT="s_axi_lite_rready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M05_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M05_AXI_awvalid" SIGIS="undef" SIGNAME="monitor_s_axi_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_awready" SIGIS="undef" SIGNAME="monitor_s_axi_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M05_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M05_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_wvalid" SIGIS="undef" SIGNAME="monitor_s_axi_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_wready" SIGIS="undef" SIGNAME="monitor_s_axi_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M05_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_bvalid" SIGIS="undef" SIGNAME="monitor_s_axi_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_bready" SIGIS="undef" SIGNAME="monitor_s_axi_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M05_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M05_AXI_arvalid" SIGIS="undef" SIGNAME="monitor_s_axi_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_arready" SIGIS="undef" SIGNAME="monitor_s_axi_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M05_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M05_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M05_AXI_rvalid" SIGIS="undef" SIGNAME="monitor_s_axi_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M05_AXI_rready" SIGIS="undef" SIGNAME="monitor_s_axi_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="monitor" PORT="s_axi_rready"/>
+            <CONNECTION INSTANCE="axi_dma_weight_mem" PORT="s_axi_lite_rready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M03_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_intc_s_axi_awaddr">
@@ -11075,6 +10989,93 @@
         <PORT DIR="O" LEFT="0" NAME="M04_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="dtpu_axis_accelerator_ada_s_axi_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dtpu_axis_accelerator_ada" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M05_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M05_AXI_awvalid" SIGIS="undef" SIGNAME="monitor_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_awready" SIGIS="undef" SIGNAME="monitor_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M05_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M05_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_wvalid" SIGIS="undef" SIGNAME="monitor_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_wready" SIGIS="undef" SIGNAME="monitor_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M05_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_bvalid" SIGIS="undef" SIGNAME="monitor_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_bready" SIGIS="undef" SIGNAME="monitor_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M05_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M05_AXI_arvalid" SIGIS="undef" SIGNAME="monitor_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_arready" SIGIS="undef" SIGNAME="monitor_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M05_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M05_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="monitor_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M05_AXI_rvalid" SIGIS="undef" SIGNAME="monitor_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M05_AXI_rready" SIGIS="undef" SIGNAME="monitor_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="monitor" PORT="s_axi_rready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M06_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_outfifo_s_axi_lite_awaddr">

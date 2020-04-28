@@ -238,13 +238,13 @@
 -endlib
 -makelib ies_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_monitor_0_30/pynqz2_monitor_0.v" \
+  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib ies_lib/axi_protocol_converter_v2_1_20 \
   "../../../../pynqz2.srcs/sources_1/bd/pynqz2/ipshared/c4a6/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
   "../../../bd/pynqz2/ip/pynqz2_auto_pc_0/sim/pynqz2_auto_pc_0.v" \
-  "../../../bd/pynqz2/sim/pynqz2.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
   glbl.v

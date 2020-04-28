@@ -75,8 +75,8 @@ INFIFO_SIZE=2048
 OUTFIFO_SIZE=2048
 DATAWIDTH=64
 
-DTPU=DTPU_lib.DTPU_delegate(WMEM_SIZE,INFIFO_SIZE,OUTFIFO_SIZE,DATAWIDTH,overlay.dtpu.axis_accelerator_ada)
-
+#DTPU=DTPU_lib.DTPU_delegate(WMEM_SIZE,INFIFO_SIZE,OUTFIFO_SIZE,DATAWIDTH,overlay.dtpu.axis_accelerator_ada)
+tflite.load_delegate("./DTPU_delegate.so")
 ########################################
 ##### RUN TENSORFLOW LITE MODELS #######
 ########################################
@@ -86,7 +86,7 @@ tflite_model_file="./"+model_name+".tflite"
 
 # Load TFLite model and allocate tensors.
 #experimental_delegate=
-interpreter = tflite.Interpreter(model_path=tflite_model_file)
+interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
 interpreter.allocate_tensors()
 
 # Get input and output tensors.
@@ -95,7 +95,7 @@ output_details = interpreter.get_output_details()# [0]["index"]
 
 # Test model on random input data.
 input_shape = input_details[0]['shape']
-input_data = np.array(np.random.random_sample(input_shape), dtype=np.uint8)
+input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
 interpreter.set_tensor(input_details[0]['index'], input_data)
 
 #start a thread which sample temperature and voltages from xadc
@@ -103,7 +103,26 @@ interpreter.set_tensor(input_details[0]['index'], input_data)
 start_time=time.time()
 
 #### TODO
-interpreter.invoke()
+try:
+	interpreter.invoke()
+except OverflowError as overror:
+	print(overror)
+except ReferenceError as referror:
+	print(referror)
+except RuntimeError as runerror:
+	print(runerror)
+except OSError as oserror:
+	print(oserror)
+except NotImplementedError as notexisterror:
+	print(notexisterror)
+except NameError as namerror:
+	print(namerror)
+except MemoryError as memerror:
+	print(memerror)
+except KeyError as keyerror:
+	print(keyerror)
+except AttributeError as atterror:
+	print(atterror)
 
 
 end_time=time.time()

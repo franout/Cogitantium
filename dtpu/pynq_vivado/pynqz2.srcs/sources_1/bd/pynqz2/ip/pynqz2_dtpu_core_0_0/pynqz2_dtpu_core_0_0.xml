@@ -426,7 +426,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0095a172</spirit:value>
+            <spirit:value>9:9a468ce1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -437,7 +437,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0095a172</spirit:value>
+            <spirit:value>9:9a468ce1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -453,11 +453,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Apr 22 14:21:43 UTC 2020</spirit:value>
+            <spirit:value>Tue Apr 28 17:21:38 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0095a172</spirit:value>
+            <spirit:value>9:9a468ce1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -469,7 +469,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e280dabd</spirit:value>
+            <spirit:value>9:06bd756d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -485,11 +485,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Apr 22 14:21:43 UTC 2020</spirit:value>
+            <spirit:value>Tue Apr 28 17:21:38 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e280dabd</spirit:value>
+            <spirit:value>9:06bd756d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -969,17 +969,17 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>ROWS</spirit:name>
         <spirit:displayName>Rows</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROWS">8</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROWS">15</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>COLUMNS</spirit:name>
         <spirit:displayName>Columns</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.COLUMNS">8</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.COLUMNS">15</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>SIZE_WMEMORY</spirit:name>
         <spirit:displayName>Size Wmemory</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_WMEMORY">2048</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_WMEMORY">16384</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>ADDRESS_SIZE_WMEMORY</spirit:name>
@@ -994,7 +994,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>SIZE_CSR</spirit:name>
         <spirit:displayName>Size Csr</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_CSR">1024</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SIZE_CSR">64</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>DATA_WIDTH_CSR</spirit:name>
@@ -1015,6 +1015,11 @@
         <spirit:name>DATA_WIDTH_FIFO_OUT</spirit:name>
         <spirit:displayName>Data Width Fifo Out</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DATA_WIDTH_FIFO_OUT">64</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>MAX_BOARD_DSP</spirit:name>
+        <spirit:displayName>Max Board Dsp</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.MAX_BOARD_DSP">220</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -1046,17 +1051,17 @@
     <spirit:parameter>
       <spirit:name>ROWS</spirit:name>
       <spirit:displayName>Rows</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROWS">8</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROWS">15</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>COLUMNS</spirit:name>
       <spirit:displayName>Columns</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.COLUMNS">8</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.COLUMNS">15</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>SIZE_WMEMORY</spirit:name>
       <spirit:displayName>Size Wmemory</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_WMEMORY">2048</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_WMEMORY">16384</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>ADDRESS_SIZE_WMEMORY</spirit:name>
@@ -1071,7 +1076,7 @@
     <spirit:parameter>
       <spirit:name>SIZE_CSR</spirit:name>
       <spirit:displayName>Size Csr</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_CSR">1024</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.SIZE_CSR">64</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>DATA_WIDTH_CSR</spirit:name>
@@ -1092,6 +1097,11 @@
       <spirit:name>DATA_WIDTH_FIFO_OUT</spirit:name>
       <spirit:displayName>Data Width Fifo Out</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.DATA_WIDTH_FIFO_OUT">64</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>MAX_BOARD_DSP</spirit:name>
+      <spirit:displayName>Max Board Dsp</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.MAX_BOARD_DSP">220</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>

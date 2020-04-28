@@ -1,4 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../ip/floating_point_0/sim/floating_point_0.vhd" \
-
-nosort

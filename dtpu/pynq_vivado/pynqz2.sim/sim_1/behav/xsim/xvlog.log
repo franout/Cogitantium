@@ -1,23 +1,5 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/compact_and_select.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module compact_and_select
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module control_unit
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module dtpu_core
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module filter_and_select
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array_wrapper.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ls_array_wrapper
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ls_unit
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module mxu_core
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module mxu_mac
-INFO: [VRFC 10-2458] undeclared symbol test_mode, assumed default net type wire [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v:77]
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module mxu_wrapper
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module register
-INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_dtpu
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module smul
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_smul.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_smul
+WARNING: [VRFC 10-986] literal value truncated to fit in 64 bits [/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_smul.sv:80]
