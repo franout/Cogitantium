@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-04-29 12:58:05
+//  Last Modified : 2020-04-29 17:47:09
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -105,7 +105,7 @@ module mxu_core
                                      .enable_chain(enable_chain),
                                      .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
-                           end else begin 
+                          end else begin 
                                             
                  mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
@@ -118,8 +118,8 @@ module mxu_core
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
               
                            end //dsp_generation;                                     
-             
-
+                            
+    
                 end else begin
 
 
@@ -147,11 +147,10 @@ module mxu_core
                     end // dsp_generation_2
                 end 
 
-
             end else begin 
                  if(i==0) begin 
 
-                          if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_3
+                         if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_3
                             mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                               .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
@@ -184,7 +183,6 @@ module mxu_core
                        .res_mac_p(res_mac_next[i*K+j-1]),
                        .res_mac_n(res_mac_next[i*K+j]),
                         .data_input_next_row(data_in_next_row[i*K+j]));
-
                      end else begin 
                      mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                       .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),

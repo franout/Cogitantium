@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-29 15:57:47
+//  Last Modified : 2020-04-29 18:32:56
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -144,10 +144,10 @@ endgenerate
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .C(res_mac_p[7:0]),
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P()          // output wire [7 : 0] P
+                    .P(pcout[1])          // output wire [7 : 0] P
                       );
-                assign res_mac_n=  {56'd0, pcout[0][7:0]};
-        `elsif USEO_INT16
+                assign res_mac_n=  {56'd0, pcout[1][7:0]};
+       `elsif USEO_INT16
               dsp_smac_16_fa smac_16s_0_fa (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[1]),        // input wire CE
@@ -272,9 +272,9 @@ endgenerate
                     .A(data_input[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P()          // output wire [7 : 0] P
+                    .P(pcout[1])          // output wire [7 : 0] P
                       );
-                assign res_mac_n=  {56'd0, pcout[0][7:0]};
+                assign res_mac_n=  {56'd0, pcout[1][7:0]};
     `elsif USEO_INT16
               dsp_smac_16 smac_16s_0 (
                     .CLK(clk),      // input wire CLK
@@ -323,7 +323,7 @@ endgenerate
 
 
 //floating point unit 
-generate
+/*generate
   if(USE_FABRIC=="YES") begin
 
   end else begin 
@@ -331,7 +331,7 @@ generate
       
  end
 endgenerate
-
+*/
 
 
 endmodule

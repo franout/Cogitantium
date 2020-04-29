@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-04-29 17:04:10
+//  Last Modified : 2020-04-29 18:34:23
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -138,9 +138,9 @@ endgenerate
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P()          // output wire [7 : 0] P
+                    .P(pcout[1])          // output wire [7 : 0] P
                       );
-        assign res_mac_next=  {56'd0, pcout[0][7:0]};
+        assign res_mac_next=  {56'd0, pcout[1][7:0]};
         `elsif USEO_INT16
               dsp_smul_16_fa smul_16s_0_fa (
                     .CLK(clk),      // input wire CLK
@@ -183,7 +183,7 @@ endgenerate
         `endif
      end else begin 
       // generate dsp implementation of multipliers
-      `ifdef USE_ALL
+     `ifdef USE_ALL
           dsp_smul_8 smul_8_0 (
                       .CLK(clk),      // input wire CLK
                       .CE(enable_i[0]),        // input wire CE
@@ -256,10 +256,10 @@ endgenerate
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P()          // output wire [7 : 0] P
+                    .P(pcout[1])          // output wire [7 : 0] P
                       );
-        assign res_mac_next=  {56'd0, pcout[0][7:0]};
-        `elsif USEO_INT16
+        assign res_mac_next=  {56'd0, pcout[1][7:0]};
+       `elsif USEO_INT16
               dsp_smul_16 smul_16s_0 (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[1]),        // input wire CE
@@ -304,7 +304,7 @@ endgenerate
 
 
 //floating point unit 
-generate
+/*generate
   if(USE_FABRIC=="YES") begin
 
   end else begin 
@@ -312,7 +312,7 @@ generate
       
  end
 endgenerate
-
+*/
 
 
 endmodule
