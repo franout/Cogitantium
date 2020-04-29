@@ -858,6 +858,7 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
                     weight_data[i]=0;
                   end
                 end 
+          end
           19: begin 
               for(i=0;i<ROWS;i=i+1) begin 
                   if(i==19) begin 
