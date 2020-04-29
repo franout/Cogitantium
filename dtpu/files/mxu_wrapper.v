@@ -1,23 +1,17 @@
+//==================================================================================================
+//  Filename      : mxu_wrapper.v
+//  Created On    : 2020-04-29 11:08:44
+//  Last Modified : 2020-04-29 11:08:46
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com - angione@student.chalmers.se - s262620@studenti.polito.it
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03.03.2020 18:49:36
-// Design Name: 
-// Module Name: mxu_wrapper
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 `include "precision_def.vh"
 
 

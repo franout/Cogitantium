@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-04-28 13:20:08
+//  Last Modified : 2020-04-29 13:10:17
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -22,6 +22,8 @@ module mxu_mac
     input ce,
     input sclr,
     input [1:0] enable_fp_unit,
+    input [`LOG_ALLOWED_PRECISIONS-1:0]data_type,
+    input enable_chain,
     input [bit_width-1:0]data_input,
     input [bit_width-1:0]weight,
     input [bit_width-1:0]res_mac_p,
@@ -53,7 +55,7 @@ module mxu_mac
     
     assign res_mac_n[bit_width-1:8]=0;
   
-/*  // (* use_dsp48 = "yes" *) in the module 
+/* in the module 
     xbip_dsp48_macro_0 vivado_mac (
   .CLK(clk),    // input wire CLK
   .CE(ce),      // input wire CE
@@ -98,9 +100,9 @@ assign enable_next_mac=tc;*/
         .weight          (weight),
         .res_mac_p       (res_mac_p),
         .res_mac_n       (res_mac_n),
-        .select_precision(select_precision),
+        .select_precision(data_type),
         .enable_fp_unit  (enable_fp_unit),
-        .active_chain    (active_chain)
+        .active_chain    (enable_chain)
       );
     
     // delay registers 

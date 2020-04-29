@@ -36,8 +36,8 @@ module tb_dtpu();
               ////////////////////////////
                wire [31:0]csr_address;
               wire csr_clk;
-              wire [7:0]csr_din;
-              reg [7:0]csr_dout;
+              wire [63:0]csr_din;
+              reg [63:0]csr_dout;
               wire csr_ce;
               wire csr_reset;
               wire csr_we;
@@ -82,16 +82,20 @@ reg [3:0]data_precision_tb;
 reg [3:0]data_precision_fp_tb;
      
       
+
       dtpu_core
      #(.DATA_WIDTH_MAC(64),
          .ROWS(8) ,
          .COLUMNS(8),
          .SIZE_WMEMORY(2048),
          .SIZE_CSR(1024),
-         .DATA_WIDTH_CSR(8),
+         .DATA_WIDTH_CSR(64),
          .DATA_WIDTH_WMEMORY(64),
          .DATA_WIDTH_FIFO_IN(64),
-         .DATA_WIDTH_FIFO_OUT(64)
+         .DATA_WIDTH_FIFO_OUT(64),
+         .ADDRESS_SIZE_CSR(32),
+         .ADDRESS_SIZE_WMEMORY(32),
+         .MAX_BOARD_DSP(220)
          ) uut
      (
         .clk(clk),
@@ -170,7 +174,7 @@ end
 
 
 // fake in fifo
-always @(posedge(clk)) begin 
+always @(infifo_read) begin 
 if (infifo_read) begin
    infifo_dout<=data[i%16];
    i=i+1;
@@ -185,14 +189,14 @@ always @(posedge(clk) )begin
 if(csr_ce) begin 
   case(csr_address)
     `A_ARITHMETIC_PRECISION:
-        csr_dout={4'b0,data_precision_tb};
+        csr_dout={56'b0,data_precision_tb};
     `A_FP_MODE:
-        csr_dout={4'b0,data_precision_fp_tb};
+        csr_dout={56'b0,data_precision_fp_tb};
     default:
-      csr_dout=0;
+      csr_dout=56'd0;
   endcase
   end else begin 
-  csr_dout=8'b0;
+  csr_dout=56'b0;
   end 
 end
 // fake memory weight
@@ -219,11 +223,12 @@ localparam Power_up = 4'h0;
 localparam idle = 4'h1;
 localparam compute = 4'h2;
 localparam done = 4'h3;
-localparam retrieve_data=4'h4;
+localparam request_data=4'h4;
 localparam save_to_fifo=4'h5;
 localparam start_p1=4'h6;
 localparam start_p2=4'h7;
 localparam start_p3=4'h8;
+localparam get_data=4'h9;
 
 
           
@@ -270,11 +275,16 @@ localparam start_p3=4'h8;
                 $stop();
               end 
               #clk_period;
-              if(state!=retrieve_data) begin 
+              if(state!=request_data) begin 
                 $display("accelerator is not retrieving the first chunk of data",);
                 $stop();
               end
               cs_start=1'b0;
+              #clk_period;
+              if(state!=get_data)begin
+                $display("accelerator not getting data");
+                $stop();
+              end
               #clk_period;
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
@@ -301,14 +311,20 @@ localparam start_p3=4'h8;
               end
 
               #clk_period;
-                if(state!=retrieve_data && !(wm_address==32'd1)) begin 
+                if(state!=request_data && !(wm_address==32'd1)) begin 
                 $display("generated wrong address and not in retrieve data state");
                 $stop();
                 end
             // infifo_dout=64'h11111111111111111;
               #clk_period;
+              if(state!=get_data)begin
+                $display("accelerator not in get data");
+                $stop();
+              end
+              #clk_period;
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
+                $stop();
               end   
               for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
               #clk_period;               
@@ -324,11 +340,15 @@ localparam start_p3=4'h8;
                 $stop();
               end
               #clk_period;
-                if(state!=retrieve_data && !(wm_address==32'd2)) begin 
+                if(state!=request_data && !(wm_address==32'd2)) begin 
                 $display("generated wrong address and not in retrieve data state");
                 $stop();
                 end
-
+                #clk_period;
+                if(state!=get_data) begin
+                  $display("accelerator not in get data");
+                  $stop();
+                end
               #clk_period;
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
@@ -370,3 +390,4 @@ localparam start_p3=4'h8;
                 $finish();
                 end     
 endmodule
+

@@ -38,6 +38,8 @@ input enable_cnt,
 input ld_max_cnt,
 input enable_down_cnt,
 input ld_max_down_cnt,
+input ld_weight_page_cnt,
+input [address_leng_wm-1:0]start_value_wm,
 input [$clog2(COLUMNS):0]max_cnt_from_cu, // it depends on the current bitwidth
 input [$clog2(ROWS):0]max_down_cnt_from_cu,
 input enable_cnt_weight,
@@ -77,6 +79,8 @@ ls_array #(  .ROWS(ROWS),
   .ld_max_down_cnt(ld_max_down_cnt),
   .enable_cnt_weight(enable_cnt_weight),
   .ld_max_cnt_weight(ld_max_cnt_weight),
+  .ld_weight_page_cnt(ld_weight_page_cnt),
+  .start_value_wm(start_value_wm),
   .max_cnt_from_cu(max_cnt_from_cu), // it depends on the current bitwidt [$clog2(COLUMNS):0]
   .max_down_cnt_from_cu(max_down_cnt_from_cu), //[$clog2(ROWS):0]
   .max_cnt_weight_from_cu(max_cnt_weight_from_cu) //[$clog2(ROWS):0]

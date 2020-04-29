@@ -39,6 +39,9 @@ input enable_cnt,
 input ld_max_cnt,
 input enable_down_cnt,
 input ld_max_down_cnt,
+input ld_weight_page_cnt,
+input [address_leng_wm-1:0]start_value_wm,
+
 input [$clog2(COLUMNS):0]max_cnt_from_cu, // it depends on the current bitwidth
 input [$clog2(ROWS):0]max_down_cnt_from_cu,
 input enable_cnt_weight,
@@ -236,7 +239,7 @@ end
 ///////// INV - MUX for activation data /////
 ///////////////////////////////////////////// 
 //always_comb activation_data[counter]= infifo_read ? input_data_from_fifo : 0;
-always @(infifo_read or counter or input_data_from_fifo) begin 
+always @(infifo_read ,counter, input_data_from_fifo) begin 
 if(infifo_read) begin 
        case (counter)  
         0: begin 
@@ -464,7 +467,7 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
  ///////////////////////////////////////////// 
 
  //always_comb weight_data[counter]= read_weight_memory ? data_from_weight_memory : 0;
- always @(read_weight_memory or counter or data_from_weight_memory) begin
+ always @(read_weight_memory ,counter, data_from_weight_memory) begin
  if(read_weight_memory) begin
         case (counter)  
           0: begin 
@@ -618,6 +621,10 @@ end else begin
     if (ld_max_cnt_weight) begin 
     max_cnt_weight<=max_cnt_weight_from_cu;
     end
+
+    if(ld_weight_page_cnt) begin
+      counter_weight_page<=start_value_wm[address_leng_wm-1:$clog2(ROWS)];
+    end 
 end 
 /* else begin 
                 counter_weight<=0;
@@ -626,8 +633,6 @@ end
 
 end 
 end
-
-
 
 
 //// compose address request to memory 

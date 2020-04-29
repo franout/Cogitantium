@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-04-28 22:08:34
+//  Last Modified : 2020-04-29 17:04:10
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -134,13 +134,13 @@ endgenerate
                     .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .PCIN(47'd0),    // input wire [47 : 0] PCIN
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[7:0])          // output wire [7 : 0] P
+                    .P()          // output wire [7 : 0] P
                       );
-        assign res_mac_next[63:8]=0;
+        assign res_mac_next=  {56'd0, pcout[0][7:0]};
         `elsif USEO_INT16
               dsp_smul_16_fa smul_16s_0_fa (
                     .CLK(clk),      // input wire CLK
@@ -252,13 +252,13 @@ endgenerate
                     .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .PCIN(47'd0),    // input wire [47 : 0] PCIN
                     .A(input_data[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_next[7:0])          // output wire [7 : 0] P
+                    .P()          // output wire [7 : 0] P
                       );
-                  assign res_mac_next[63:8]=0;
+        assign res_mac_next=  {56'd0, pcout[0][7:0]};
         `elsif USEO_INT16
               dsp_smul_16 smul_16s_0 (
                     .CLK(clk),      // input wire CLK

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-04-28 14:31:54
+//  Last Modified : 2020-04-29 12:58:05
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -59,7 +59,6 @@ module mxu_core
         
    
    generate
-  
       for(i = 0; i < M; i = i+1)
         begin: rows
           for(j=0;j<K;j=j+1)
@@ -81,12 +80,12 @@ module mxu_core
               // smul cascade of dsp always on fabric
                         smul #(.USE_FABRIC("YES")) smul_i (
                             .clk             (clk),
-                            .ce              (ce),
+                            .ce              (enable),
                             .sclr            (reset_mac),
                             .input_data      (input_data[(j+1)*max_data_width-1:j*max_data_width]),
                             .weight          (weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                             .res_mac_next(res_mac_next[i*K+j]),
-                            .select_precision(select_precision),
+                            .select_precision(data_type),
                             .enable_fp_unit  (enable_fp_unit),
                             .active_chain(enable_chain)
                           );
@@ -94,98 +93,114 @@ module mxu_core
 
              end else if ( j==K-1) begin 
                 // check if it is the last column
-                if(i+j<MAX_BOARD_DSP-1) begin: dsp_generation
                 if(i==0) begin 
-                  
+                        if(i*(M-1)+ (j-1)<MAX_BOARD_DSP) begin: dsp_generation
+
                  mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
                                      .enable_fp_unit(enable_fp_unit),
+                                     .data_type(data_type),
+                                     .enable_chain(enable_chain),
                                      .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
-
-                end else begin
-                mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                    .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                    .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
-                    .res_mac_p(res_mac_next[i*K+j-1]),
-                    .enable_fp_unit(enable_fp_unit),
-                    .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
-                    .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
-              
-                end 
-              end else begin 
-                  if(i==0) begin 
-                  
+                           end else begin 
+                                            
                  mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                                     .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
+                                     .data_type(data_type),
+                                     .enable_chain(enable_chain),
                                      .enable_fp_unit(enable_fp_unit),
                                      .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
+              
+                           end //dsp_generation;                                     
+             
 
                 end else begin
-                mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                    .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                    .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
-                    .res_mac_p(res_mac_next[i*K+j-1]),
-                    .enable_fp_unit(enable_fp_unit),
-                    .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
-                    .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
-              
+
+
+                  if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_2
+                            mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                                .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
+                                .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                .res_mac_p(res_mac_next[i*K+j-1]),
+                                .data_type(data_type),
+                                .enable_chain(enable_chain),
+                                .enable_fp_unit(enable_fp_unit),
+                                .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
+                    end else begin 
+
+                            mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                                                            .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
+                                                            .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                                            .res_mac_p(res_mac_next[i*K+j-1]),
+                                                            .data_type(data_type),
+                                                            .enable_chain(enable_chain),
+                                                            .enable_fp_unit(enable_fp_unit),
+                                                            .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                                            .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
+                    end // dsp_generation_2
                 end 
 
-              end //dsp_generation;                                     
-             
+
             end else begin 
-          if(i+j<MAX_BOARD_DSP-1) begin: dsp_generation_2
-             if(i==0) begin 
-                         mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                           .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                          .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
-                          .res_mac_p(res_mac_next[i*K+j-1]),
-                          .enable_fp_unit(enable_fp_unit),
-                          .res_mac_n(res_mac_next[i*K+j]),
-                         .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
-              
-            end else begin
-             
-               mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                  .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                   .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
-                   .enable_fp_unit(enable_fp_unit),
-                   .res_mac_p(res_mac_next[i*K+j-1]),
-                   .res_mac_n(res_mac_next[i*K+j]),
-                    .data_input_next_row(data_in_next_row[i*K+j]));
-                        end 
-              end else begin 
-                  if(i==0) begin 
-                         mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                           .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                          .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
-                          .res_mac_p(res_mac_next[i*K+j-1]),
-                          .enable_fp_unit(enable_fp_unit),
-                          .res_mac_n(res_mac_next[i*K+j]),
-                         .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
-              
-            end else begin
-             
-               mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                  .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                   .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
-                   .enable_fp_unit(enable_fp_unit),
-                   .res_mac_p(res_mac_next[i*K+j-1]),
-                   .res_mac_n(res_mac_next[i*K+j]),
-                    .data_input_next_row(data_in_next_row[i*K+j]));
-                        end 
+                 if(i==0) begin 
+
+                          if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_3
+                            mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                               .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
+                              .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                              .res_mac_p(res_mac_next[i*K+j-1]),
+                              .enable_fp_unit(enable_fp_unit),
+                              .data_type(data_type),
+                              .enable_chain(enable_chain),
+                              .res_mac_n(res_mac_next[i*K+j]),
+                             .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
+                  
+                           end else begin 
+                              mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                               .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
+                              .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                              .res_mac_p(res_mac_next[i*K+j-1]),
+                              .enable_fp_unit(enable_fp_unit),
+                              .data_type(data_type),
+                              .enable_chain(enable_chain),
+                              .res_mac_n(res_mac_next[i*K+j]),
+                             .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
+                          end
+                          end else begin
+                     if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_4
+                     mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                      .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
+                       .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                       .enable_fp_unit(enable_fp_unit),
+                       .data_type(data_type),
+                        .enable_chain(enable_chain),
+                       .res_mac_p(res_mac_next[i*K+j-1]),
+                       .res_mac_n(res_mac_next[i*K+j]),
+                        .data_input_next_row(data_in_next_row[i*K+j]));
+
+                     end else begin 
+                     mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
+                      .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
+                       .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                       .enable_fp_unit(enable_fp_unit),
+                       .data_type(data_type),
+                        .enable_chain(enable_chain),
+                       .res_mac_p(res_mac_next[i*K+j-1]),
+                       .res_mac_n(res_mac_next[i*K+j]),
+                        .data_input_next_row(data_in_next_row[i*K+j]));
 
 
-              end //dsp_generation_2;
-
-
-            end
+                     end // dsp_generation4
+                   
+                  end 
+              end
            end
        end
        endgenerate

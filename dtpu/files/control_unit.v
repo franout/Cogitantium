@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-04-22 17:06:46
-//  Last Modified : 2020-04-23 10:41:16
+//  Last Modified : 2020-04-29 17:02:12
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -88,6 +88,8 @@ input wire cs_continue,
 (* keep="true" *)output reg ld_max_down_cnt,
 (* keep="true" *)output reg enable_cnt_weight,
 (* keep="true" *)output reg ld_max_cnt_weight,
+(* keep="true" *)output reg ld_weight_page_cnt,
+(* keep="true" *)output reg [ADDRESS_SIZE_CSR-1:0]start_value_wm,
 (* keep="true" *)output reg [$clog2(COLUMNS):0] max_cnt_from_cu,
 (* keep="true" *)output reg [$clog2(ROWS):0]max_down_cnt_from_cu,
 (* keep="true" *)output reg [$clog2(ROWS):0]max_cnt_weight_from_cu,
@@ -105,11 +107,12 @@ localparam Power_up = 4'h0;
 localparam idle = 4'h1;
 localparam compute = 4'h2;
 localparam done = 4'h3;
-localparam retrieve_data=4'h4;
+localparam request_data=4'h4;
 localparam save_to_fifo=4'h5;
 localparam start_p1=4'h6;
 localparam start_p2=4'h7;
 localparam start_p3=4'h8;
+localparam get_data=4'h9;
 
 localparam [$clog2(1+3*(COLUMNS+1)+ROWS):0]MAX_COUNTER= 3*(COLUMNS+1)+ROWS*2;
 reg [3:0]state;
@@ -140,6 +143,8 @@ ld_max_cnt<=0;
 ld_max_down_cnt<=0;
 ld_max_cnt_weight<=0;
 
+ld_weight_page_cnt<=0;
+start_value_wm<=0;
 
 counter_compute<=0;
 counter_res<=0;
@@ -201,16 +206,30 @@ start_p3:  begin
             enable_fp_unit<=csr_dout[`LOG_ALLOWED_PRECISIONS+2:`LOG_ALLOWED_PRECISIONS+1]; // fp and bpfp bits
             enable_chain<=csr_dout[`LOG_ALLOWED_PRECISIONS];
             data_precision<=csr_dout[`LOG_ALLOWED_PRECISIONS-1:0];
+
+            //loading the weight page counter 
+            ld_weight_page_cnt<=1'b1;
+            start_value_wm<=csr_dout[`A_WINDOW_WM_MSB-1:`A_WINDOW_WM_LSB];
             if(cs_start) begin 
-            state<=retrieve_data; 
+            state<=request_data; 
             end else begin 
             state<=idle;
             end
             end
-retrieve_data: begin
-            // retrieve data from input fifo and weight memory one cc before computation starts
+    //TODO pipeline it
+    /*
+            pipeline
+
+                -> request_data
+                    -> get_data
+                        -> compute
+                            -> save
+    */
+request_data: begin
+            
             wm_ce<=1'b1;
             infifo_read<=1'b1;
+
             enable_load_array<=1'b1;
             read_weight_memory<=1'b1;
             enable_load_activation_data<=1'b1;
@@ -226,22 +245,23 @@ retrieve_data: begin
             
             ld_max_cnt_weight<=1'b1;
             
+            state<=get_data;
+            end 
+get_data: begin 
+            enable_load_array<=1'b1;
+            read_weight_memory<=1'b1;
+            enable_load_activation_data<=1'b0;
+            enable_store_activation_data<=1'b0;
+            
             state<=compute;
             end 
-/*get_weight: begin
-
-
-            enable_mxu<=1'b1;
-            state<=compute;
-            end 
-*/
 compute: begin
 
             //wm_ce<=1'b1;
             //infifo_read<=1'b1;
             enable_load_array<=1'b1;
             read_weight_memory<=1'b0;
-            enable_load_activation_data<=0;
+            enable_load_activation_data<=1'b0;
             enable_store_activation_data<=0;
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b0;
@@ -278,7 +298,7 @@ done: begin
         state<=idle;
         cs_done<=1;
         end else begin
-        state<=retrieve_data;
+        state<=request_data;
         end
       end          
 default: begin 

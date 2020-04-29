@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-25 12:55:54
+//  Last Modified : 2020-04-29 12:09:51
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -12,11 +12,9 @@
 //
 //==================================================================================================
 `timescale 1ns/1ps
-
+`include "precision_def.vh"
 module tb_smac (); /* this is automatically generated */
 
-	logic rstb;
-	logic srst;
 	logic clk;
 
 	// clock
@@ -25,28 +23,16 @@ module tb_smac (); /* this is automatically generated */
 		forever #(0.5) clk = ~clk;
 	end
 
-	// reset
-	initial begin
-		rstb <= '0;
-		srst <= '0;
-		#20
-		rstb <= '1;
-		repeat (5) @(posedge clk);
-		srst <= '1;
-		repeat (1) @(posedge clk);
-		srst <= '0;
-	end
-
-	// (*NOTE*) replace reset, clock, others
 
 	parameter USE_FABRIC = "NO";
 
 	logic                           ce;
 	logic                           sclr;
-	logic [bit_width*bit_width-1:0] data_input;
-	logic [bit_width*bit_width-1:0] weight;
-	logic [bit_width*bit_width-1:0] res_mac_p;
-	logic [bit_width*bit_width-1:0] res_mac_n;
+	logic [64-1:0] data_input;
+	logic [64-1:0] weight;
+	logic [64-1:0] res_mac_p;
+	logic [64-1:0] res_mac_n;
+	logic [63:0]					res_mac_n_fa;
 	logic                     [3:0] select_precision;
 	logic                     [1:0] enable_fp_unit;
 	logic                           active_chain;
@@ -65,20 +51,75 @@ module tb_smac (); /* this is automatically generated */
 			.enable_fp_unit   (enable_fp_unit),
 			.active_chain     (active_chain)
 		);
-
+		smac #(
+			.USE_FABRIC("YES")
+		) inst_smac_fa (
+			.clk              (clk),
+			.ce               (ce),
+			.sclr             (sclr),
+			.data_input       (data_input),
+			.weight           (weight),
+			.res_mac_p        (res_mac_p),
+			.res_mac_n        (res_mac_n_fa),
+			.select_precision (select_precision),
+			.enable_fp_unit   (enable_fp_unit),
+			.active_chain     (active_chain)
+		);
 	initial begin
 		// do something
+		ce='0;
+		sclr='0;
+		enable_fp_unit='0;
+		active_chain=1'b0;
+		repeat(1) @ (posedge clk);
+		sclr='1;
+		repeat(1) @ (posedge clk);
+		sclr='0;
+		ce='1;
+		repeat(1) @ (posedge clk);
+		active_chain='0;
+
+		`ifdef USE_ALL 
+		$display("integer 64 computation");
+		select_precision=`INT64;
+
+		`elsif  USEO_INT8 
+		$display("integer 8 computation");
+		select_precision=`INT8;
+		`elsif  USEO_INT16
+		$display("integer 16 computation");
+		select_precision=`INT16;
+		`elsif USEO_INT32
+		$display("integer 32 computation");
+		select_precision=`INT32;
+		`endif		
+
+		res_mac_p=64'd0;
+		weight=64'hFFFFFFFFFFFFFFFFF;
+		data_input=64'hcafecafecafecafe;
+		repeat(5)@(posedge clk); // output after two cc
+		if(res_mac_n!=res_mac_n_fa)begin 
+			$display("error");
+			$stop();
+		end
+		res_mac_p=64'd1;
+		repeat(6)@(posedge clk);
+        
+
+		$finish();
+
+
 
 		repeat(10)@(posedge clk);
 		$finish;
 	end
 
 	// dump wave
-	initial begin
+/*	initial begin
 		if ( $test$plusargs("fsdb") ) begin
 			$fsdbDumpfile("tb_smac.fsdb");
 			$fsdbDumpvars(0, "tb_smac", "+mda", "+functions");
 		end
-	end
+	end*/
 
 endmodule

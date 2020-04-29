@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-04-25 12:08:35
+//  Last Modified : 2020-04-29 16:13:17
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -82,7 +82,7 @@ module dtpu_core
       ////////////////////////////////////////////
       /////////// using stream axi 
       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)
-      input wire [DATA_WIDTH_FIFO_IN:0] infifo_dout,
+      input wire [DATA_WIDTH_FIFO_IN-1:0] infifo_dout,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_EN" *)
       output wire infifo_read,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo EMPTY_N" *)
@@ -94,7 +94,7 @@ module dtpu_core
       ////////////////////////////////////////////
       /////////// using stream axi 
       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_DATA" *)
-      output wire [DATA_WIDTH_FIFO_OUT:0] outfifo_din,
+      output wire [DATA_WIDTH_FIFO_OUT-1:0] outfifo_din,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo WR_EN" *)
       output wire outfifo_write,
         (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_write:1.0 output_fifo FULL_N" *)
@@ -142,8 +142,10 @@ module dtpu_core
       wire enable_cnt_weight;
       wire ld_max_cnt_weight;
       wire enable_chain;
+      wire ld_weight_page_cnt;
       wire [1:0]enable_fp_unit;
 
+      wire [ADDRESS_SIZE_WMEMORY-1:0]start_value_wm;
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
       wire [$clog2(ROWS):0]max_down_cnt_from_cu;
       wire [$clog2(ROWS):0]max_cnt_weight_from_cu;
@@ -225,6 +227,8 @@ module dtpu_core
         .ld_max_down_cnt(ld_max_down_cnt),
         .enable_cnt_weight(enable_cnt_weight),
         .ld_max_cnt_weight(ld_max_cnt_weight),
+        .ld_weight_page_cnt(ld_weight_page_cnt),
+        .start_value_wm(start_value_wm),
         .max_cnt_from_cu(max_cnt_from_cu), // it depends on the current bitwidt [$clog2(COLUMNS):0]
         .max_down_cnt_from_cu(max_down_cnt_from_cu), //[$clog2(ROWS):0]
         .max_cnt_weight_from_cu(max_cnt_weight_from_cu) //[$clog2(ROWS):0]
@@ -267,6 +271,8 @@ module dtpu_core
   .ld_max_down_cnt(ld_max_down_cnt),
   .enable_cnt_weight(enable_cnt_weight),
   .ld_max_cnt_weight(ld_max_cnt_weight),
+  .ld_weight_page_cnt(ld_weight_page_cnt),
+  .start_value_wm(start_value_wm),
   .max_cnt_from_cu(max_cnt_from_cu), // it depends on the current bitwidt [$clog2(COLUMNS):0]
   .max_down_cnt_from_cu(max_down_cnt_from_cu), //[$clog2(ROWS):0]
   .max_cnt_weight_from_cu(max_cnt_weight_from_cu) //[$clog2(ROWS):0]

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-28 22:20:12
+//  Last Modified : 2020-04-29 15:57:47
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -39,6 +39,7 @@ module smac
    wire [3:0]enable_i;
    wire [47:0]pcout[0:7];
    
+   
    /////////////////////////
    ///// enable network //// 
    /////////////////////////
@@ -74,7 +75,7 @@ endgenerate
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
-                    .A(input_data[7:0]),          // input wire [7 : 0] A
+                    .A(data_input[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .C(res_mac_p[7:0]),
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
@@ -87,7 +88,7 @@ endgenerate
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b1),      // input wire [0 : 0] SEL
                     .PCIN(pcout[1]<<8),    // input wire [47 : 0] PCIN
-                    .A(input_data[15:8]),          // input wire [7 : 0] A
+                    .A(data_input[15:8]),          // input wire [7 : 0] A
                     .B(weight[15:8]),          // input wire [7 : 0] B
                     .C(res_mac_p[15:8]),
                     .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
@@ -99,7 +100,7 @@ endgenerate
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[3]),    // input wire [47 : 0] PCIN
-                    .A(input_data[31:16]),          // input wire [15 : 0] A
+                    .A(data_input[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
                     .C(res_mac_p[31:16]),
                     .PCOUT(pcout[4]),  // output wire [47 : 0] PCOUT
@@ -113,7 +114,7 @@ endgenerate
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[4]),    // input wire [47 : 0] PCIN
-                    .A(input_data[47:32]),          // input wire [15 : 0] A
+                    .A(data_input[47:32]),          // input wire [15 : 0] A
                     .B(weight[47:32]),          // input wire [15 : 0] B
                     .C(res_mac_p[47:32]),
                     .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
@@ -125,7 +126,7 @@ endgenerate
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[6]),    // input wire [47 : 0] PCIN
-                    .A(input_data[63:48]),          // input wire [15 : 0] A
+                    .A(data_input[63:48]),          // input wire [15 : 0] A
                     .B(weight[63:48]),          // input wire [15 : 0] B
                     .PCOUT(pcout[7]),  // output wire [47 : 0] PCOUT
                     .C(res_mac_p[63:48]),
@@ -137,14 +138,15 @@ endgenerate
                     .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
-                    .A(input_data[7:0]),          // input wire [7 : 0] A
+                    .CARRYIN(0),
+                   // .PCIN(0),    // input wire [47 : 0] PCIN
+                    .A(data_input[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .C(res_mac_p[7:0]),
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_n[7:0])          // output wire [7 : 0] P
+                    .P()          // output wire [7 : 0] P
                       );
-        assign res_mac_n[63:8]=0;
+                assign res_mac_n=  {56'd0, pcout[0][7:0]};
         `elsif USEO_INT16
               dsp_smac_16_fa smac_16s_0_fa (
                     .CLK(clk),      // input wire CLK
@@ -153,7 +155,7 @@ endgenerate
                     .SEL(1'b1),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
                     .C(res_mac_p[15:0]),
-                    .A(input_data[15:0]),          // input wire [7 : 0] A
+                    .A(data_input[15:0]),          // input wire [7 : 0] A
                     .B(weight[15:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
                     .P(res_mac_n[15:0])          // output wire [7 : 0] P
@@ -167,9 +169,9 @@ endgenerate
                     .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .PCIN(1'b0),    // input wire [47 : 0] PCIN
                     .C(res_mac_p[15:0]),
-                    .A(input_data[15:0]),          // input wire [15 : 0] A
+                    .A(data_input[15:0]),          // input wire [15 : 0] A
                     .B(weight[15:0]),          // input wire [15 : 0] B
                     .PCOUT(),  // output wire [47 : 0] PCOUT
                     .P(res_mac_n[15:0])          // output wire [47 : 0] P
@@ -181,7 +183,7 @@ endgenerate
                     .PCIN({42'b0 , res_mac_n[15:0]}),    // input wire [47 : 0] PCIN
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .C(res_mac_p[31:16]),
-                    .A(input_data[31:16]),          // input wire [15 : 0] A
+                    .A(data_input[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
                     .PCOUT(pcout[6]),  // output wire [47 : 0] PCOUT
                     .P(res_mac_n[31:16])          // output wire [47 : 0] P
@@ -198,7 +200,7 @@ endgenerate
                       .SEL(1'b0),      // input wire [0 : 0] SEL
                       .PCIN(0),    // input wire [47 : 0] PCIN
                       .C(res_mac_p[7:0]),
-                      .A(input_data[7:0]),          // input wire [7 : 0] A
+                      .A(data_input[7:0]),          // input wire [7 : 0] A
                       .B(weight[7:0]),          // input wire [7 : 0] B
                       .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
                       .P(res_mac_n[7:0])          // output wire [7 : 0] P
@@ -210,7 +212,7 @@ endgenerate
                       .SEL(1'b1),      // input wire [0 : 0] SEL
                       .C(res_mac_p[15:8]),
                       .PCIN(pcout[1]<<8),    // input wire [47 : 0] PCIN
-                      .A(input_data[15:8]),          // input wire [7 : 0] A
+                      .A(data_input[15:8]),          // input wire [7 : 0] A
                       .B(weight[15:8]),          // input wire [7 : 0] B
                       .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
                       .P(res_mac_n[15:8])          // output wire [7 : 0] P
@@ -221,7 +223,7 @@ endgenerate
               .CE(enable_i[2]),        // input wire CE
               .SCLR(sclr),    // input wire SCLR
               .PCIN(pcout[3]),    // input wire [47 : 0] PCIN
-              .A(input_data[31:16]),          // input wire [15 : 0] A
+              .A(data_input[31:16]),          // input wire [15 : 0] A
               .C(res_mac_p[31:16]),
               .SEL(1'b0),      // input wire [0 : 0] SEL
               .B(weight[31:16]),          // input wire [15 : 0] B
@@ -237,7 +239,7 @@ endgenerate
               .SCLR(sclr),    // input wire SCLR
               .PCIN(pcout[5]),    // input wire [47 : 0] PCIN
               .C(res_mac_p[48:32]),
-              .A(input_data[47:32]),          // input wire [15 : 0] A
+              .A(data_input[47:32]),          // input wire [15 : 0] A
               .SEL(1'b0),      // input wire [0 : 0] SEL
               .B(weight[47:32]),          // input wire [15 : 0] B
               .PCOUT(pcout[6]), // output wire [47 : 0] PCOUT
@@ -252,7 +254,7 @@ endgenerate
               .SCLR(sclr),    // input wire SCLR
               .SEL(1'b0),      // input wire [0 : 0] SE
               .PCIN((pcout[6])),    // input wire [47 : 0] PCIN
-              .A(input_data[63:48]),          // input wire [15 : 0] A
+              .A(data_input[63:48]),          // input wire [15 : 0] A
               .C(res_mac_p[63:48]),
               .B(weight[63:48]),          // input wire [15 : 0]          
               .PCOUT(pcout[7]),  // output wire [47 : 0] PCOUT
@@ -264,15 +266,16 @@ endgenerate
                     .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
+                  //  .PCIN(0),    // input wire [47 : 0] PCIN
+                  .CARRYIN(1'b0),
                     .C(res_mac_p[7:0]),
-                    .A(input_data[7:0]),          // input wire [7 : 0] A
+                    .A(data_input[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(res_mac_n[7:0])          // output wire [7 : 0] P
+                    .P()          // output wire [7 : 0] P
                       );
-                  assign res_mac_n[63:8]=0;
-        `elsif USEO_INT16
+                assign res_mac_n=  {56'd0, pcout[0][7:0]};
+    `elsif USEO_INT16
               dsp_smac_16 smac_16s_0 (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[1]),        // input wire CE
@@ -280,7 +283,7 @@ endgenerate
                     .SEL(1'b1),      // input wire [0 : 0] SEL
                     .PCIN(0),    // input wire [47 : 0] PCIN
                     .C(res_mac_p[15:0]),
-                    .A(input_data[15:0]),          // input wire [7 : 0] A
+                    .A(data_input[15:0]),          // input wire [7 : 0] A
                     .B(weight[15:0]),          // input wire [7 : 0] B
                     .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
                     .P(res_mac_n[15:0])          // output wire [7 : 0] P
@@ -294,7 +297,7 @@ endgenerate
                     .SCLR(sclr),    // input wire SCLR
                     .PCIN(0),    // input wire [47 : 0] PCIN
                     .C(res_mac_p[15:0]),
-                    .A(input_data[15:0]),          // input wire [15 : 0] A
+                    .A(data_input[15:0]),          // input wire [15 : 0] A
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .B(weight[15:0]),          // input wire [15 : 0] B
                     .PCOUT(),  // output wire [47 : 0] PCOUT
@@ -307,12 +310,12 @@ endgenerate
                     .SEL(1'b1),      // input wire [0 : 0] SEL
                     .C(res_mac_p[31:16]),
                     .PCIN({ 42'b0, res_mac_n[15:0]}),    // input wire [47 : 0] PCIN
-                    .A(input_data[31:16]),          // input wire [15 : 0] A
+                    .A(data_input[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
                     .PCOUT(pcout[6]),  // output wire [47 : 0] PCOUT
                     .P(res_mac_n[31:16])          // output wire [47 : 0] P
                       );
-              //assign res_mac_n[31:0] = enable_i[2]  && !sclr ? input_data[31:0]*weight[31:0] : 32'd0 ;
+              //assign res_mac_n[31:0] = enable_i[2]  && !sclr ? data_input[31:0]*weight[31:0] : 32'd0 ;
         assign res_mac_n[63:32]=0;
         `endif
      end
