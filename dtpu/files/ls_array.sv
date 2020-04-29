@@ -323,6 +323,214 @@ if(infifo_read) begin
                  end
                end
             end
+      9: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==9)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      10: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==10)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      11: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==11)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      12: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==12)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      13: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==13)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      14: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==14)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      15: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==15)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      16: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==16)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      17: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==17)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      18: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==18)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      19: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==19)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      20: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==20)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      21: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==21)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      22: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==22)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      23: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==23)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      24: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==24)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      25: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==25)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      26: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==26)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      27: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==27)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      28: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==28)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      29: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==29)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      30: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==30)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      31: begin 
+          for(i=0;i<COLUMNS;i=i+1) begin 
+                if(i==31)begin 
+                      activation_data[i]=input_data_from_fifo;
+                end else begin 
+                    activation_data[i]=0;
+                 end
+               end
+            end
+      
        default: 
        for(i=0;i<COLUMNS;i=i+1) begin 
                activation_data[i]=0;
@@ -567,10 +775,215 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
                   end else begin 
                     weight_data[i]=0;
                   end
+                end
+          end 
+          10: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==10) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          11: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==11) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          12: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==12) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
                 end 
 
+          end
+          13: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==13) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          14: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==14) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          15: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==15) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          16: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==16) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          17: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==17) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          18: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==18) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          19: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==19) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          20: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==20) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          21: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==21) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end
           end 
-
+          22: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==22) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          23: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==23) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          24: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==24) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end
+          25: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==25) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+        24: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==24) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+         26: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==26) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+          27: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==27) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+          28: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==28) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+          29: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==29) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+          30: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==30) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
+          31: begin 
+              for(i=0;i<ROWS;i=i+1) begin 
+                  if(i==31) begin 
+                      weight_data[i]=data_from_weight_memory;
+                  end else begin 
+                    weight_data[i]=0;
+                  end
+                end 
+          end 
         default: 
         for(i=0;i<ROWS;i=i+1) begin 
                 weight_data[i]=0;
