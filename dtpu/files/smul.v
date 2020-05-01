@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-04-30 12:05:00
+//  Last Modified : 2020-05-01 21:53:57
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -71,6 +71,7 @@ wire [47:0]out_dsp[0:4];
      if(USE_FABRIC=="YES") begin 
       // generate fabric implementation of multipliers
         `ifdef USE_ALL
+
         dsp_smul_8_fa smul_8_0_fa (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[0]),        // input wire CE
@@ -160,7 +161,7 @@ wire [47:0]out_dsp[0:4];
          `elsif USEO_INT32
 
         // 32 bit dsp logically 
-        dsp_smul_16_fa smul_32_0s_fa (
+        /*dsp_smul_16_fa smul_32_0s_fa (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
@@ -182,7 +183,19 @@ wire [47:0]out_dsp[0:4];
                     .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
                     .P(pcout[2])          // output wire [47 : 0] P
                       );
-            assign res_mac_next={  32'd0, pcout[2][15:0], pcout[1][15:0]};
+            assign res_mac_next={  32'd0, pcout[2][15:0], pcout[1][15:0]};*/
+           (*use_dsp="no"*) dsp_smul_32 smul_32s_fa (
+                    .CLK(clk),      // input wire CLK
+                    .CE(enable_i[2]),        // input wire CE
+                    .SCLR(sclr),    // input wire SCLR
+                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .A(input_data[31:0]),          // input wire [15 : 0] A
+                    .B(weight[31:0]),          // input wire [15 : 0] B
+                    .P(pcout[2])          // output wire [32 : 0] P
+                      );
+            assign res_mac_next={  32'd0, pcout[2][31:0]};
+
         `endif
      end else begin 
       // generate dsp implementation of multipliers
@@ -303,6 +316,19 @@ wire [47:0]out_dsp[0:4];
                       );
               //assign res_mac_next[31:0] = enable_i[2]  && !sclr ? input_data[31:0]*weight[31:0] : 32'd0 ;
         assign res_mac_next={  32'd0, pcout[2][15:0], pcout[1][15:0]};
+/*
+        (*use_dsp="yes"*) dsp_smul_32 smul_32s (
+                    .CLK(clk),      // input wire CLK
+                    .CE(enable_i[2]),        // input wire CE
+                    .SCLR(sclr),    // input wire SCLR
+                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .A(input_data[31:0]),          // input wire [15 : 0] A
+                    .B(weight[31:0]),          // input wire [15 : 0] B
+                    .P(pcout[2])          // output wire [32 : 0] P
+                      );
+*/                    assign res_mac_next={  32'd0, pcout[2][31:0]};
+
         `endif
      end
    endgenerate

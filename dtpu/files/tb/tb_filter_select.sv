@@ -2,7 +2,7 @@
 //==================================================================================================
 //  Filename      : tb_filter_select.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-01 18:21:38
+//  Last Modified : 2020-05-01 22:24:30
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -200,26 +200,26 @@ module tb_filter_select(
                        $display("precison set to 8");
                        #clk_period;
                        // sanity check
-                       if({{56*3-1{0}},data_in3[8*3-1:0]}!=data_out3_compact) begin 
+                       if({{56*3-1{0}},data_in3[8*3-1:0]}!=data_out3_compact  && !$isunknown(data_out3_compact) && !$isunknown(data_out3)) begin 
                         $display("compacter 3x3 error");
                         $stop();
                        end 
 
-                      if({{56*4-1{0}},data_in4[8*4-1:0]}!=data_out4_compact) begin 
+                      if({{56*4-1{0}},data_in4[8*4-1:0]}!=data_out4_compact && !$isunknown(data_out4_compact) && !$isunknown(data_out4)) begin 
                         $display("compacter 4x4 error");
                         $stop();
                        end
 
-                       if({{56*6-1{0}},data_in6[8*6-1:0]}!=data_out6_compact) begin 
+                       if({{56*6-1{0}},data_in6[8*6-1:0]}!=data_out6_compact && !$isunknown(data_out6_compact) && !$isunknown(data_out6)) begin 
                         $display("compacter 6x6 error");
                         $stop();
                        end
-                        if({{56*8-1{0}},data_in[8*8-1:0]}!=data_out8_compact) begin 
+                        if({{56*8-1{0}},data_in[8*8-1:0]}!=data_out8_compact  && !$isunknown(data_out8_compact) && !$isunknown(data_out)) begin 
                         $display("compacter 8x8 error");
                         $display("%h",data_out8_compact[8*8-1:0]);
                         $stop();
                        end
-                       if({data_in16[8*16-1:0]}!=data_out16_compact) begin 
+                       if({data_in16[8*16-1:0]}!=data_out16_compact && !$isunknown(data_out16_compact) && !$isunknown(data_out16)) begin 
                         $display("compacter 16x16 error");
                         $display("%h",data_out16_compact[10*16-1:0]);
                             $stop();
@@ -232,42 +232,43 @@ module tb_filter_select(
                        end
                       */
                         
-                      if({{56*20-1{0}},data_in20[8*20-1:0]}!=data_out20_compact) begin 
+                      if({{56*20-1{0}},data_in20[8*20-1:0]}!=data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
                       $display("compacter 20x2x error");
                         $display("%h",data_out20_compact[17*16-1:0]);
                         $stop();
                        end
+                       $display("%h",data_out20_compact[17*16-1:0]);
 
 
                        data_precision=`INT16;
                        $display("precison set to 16");
                        #clk_period;
                        /*check output*/
-                       if(data_in3[16*3-1:0]!=data_out3_compact) begin 
+                       if(data_in3[16*3-1:0]!=data_out3_compact  && !$isunknown(data_out3_compact) && !$isunknown(data_out3)) begin 
                         $display("compacter 3x3 error int16");
                         $stop();
                        end 
 
-                      if(data_in4[16*4-1:0]!=data_out4_compact) begin 
+                      if(data_in4[16*4-1:0]!=data_out4_compact && !$isunknown(data_out4_compact) && !$isunknown(data_out4)) begin 
                         $display("compacter 4x4 error int16");
                         $stop();
                        end
 
-                       if(data_in6[16*6-1:0]!=data_out6_compact) begin 
+                       if(data_in6[16*6-1:0]!=data_out6_compact && !$isunknown(data_out6_compact) && !$isunknown(data_out6)) begin 
                         $display("compacter 6x6 error int16");
                         $stop();
                        end
-                        if(data_in[16*8-1:0]!=data_out8_compact) begin 
+                        if(data_in[16*8-1:0]!=data_out8_compact && !$isunknown(data_out8_compact) && !$isunknown(data_out)) begin 
                         $display("compacter 8x8 error int16");
                         $display("%h",data_out8_compact[10*16-1:0]);
                         $stop();
                        end
-                       if(data_in16[16*16-1:0]!=data_out16_compact) begin 
+                       if(data_in16[16*16-1:0]!=data_out16_compact && !$isunknown(data_out16_compact) && !$isunknown(data_out16)) begin 
                         $display("compacter 16x16 error int16");
                         $display("%h",data_out16_compact[18*16-1:0]);
                             $stop();
                        end
-                       if(data_in20[16*20-1:0]!=data_out20_compact) begin 
+                       if(data_in20[16*20-1:0]!=data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
                       $display("compacter 20x2x error int16");
                         $display("%h",data_out20_compact[10*16-1:0]);
                         $display("%h",data_out20_compact[22*16-1:10*16]);
@@ -278,31 +279,31 @@ module tb_filter_select(
                        $display("precison set to 32");
                        #clk_period;
                        /*check output*/
-                       if(data_in3[32*3-1:0]!=data_out3_compact) begin 
+                       if(data_in3[32*3-1:0]!=data_out3_compact  && !$isunknown(data_out3_compact) && !$isunknown(data_out3)) begin 
                         $display("compacter 3x3 error  int32");
                         $stop();
                        end 
 
-                      if(data_in4[32*4-1:0]!=data_out4_compact) begin 
+                      if(data_in4[32*4-1:0]!=data_out4_compact && !$isunknown(data_out4_compact) && !$isunknown(data_out4)) begin 
                         $display("compacter 4x4 error  int32");
                         $stop();
                        end
 
-                       if(data_in6[32*6-1:0]!=data_out6_compact) begin 
+                       if(data_in6[32*6-1:0]!=data_out6_compact && !$isunknown(data_out6_compact) && !$isunknown(data_out6)) begin 
                         $display("compacter 6x6 error  int32");
                         $stop();
                        end
-                        if(data_in[32*8-1:0]!=data_out8_compact) begin 
+                        if(data_in[32*8-1:0]!=data_out8_compact && !$isunknown(data_out8_compact) && !$isunknown(data_out)) begin 
                         $display("compacter 8x8 error  int32");
                         $display("%h",data_out8_compact[8*8-1:0]);
                         $stop();
                        end
-                       if(data_in16[32*16-1:0]!=data_out16_compact) begin 
+                       if(data_in16[32*16-1:0]!=data_out16_compact && !$isunknown(data_out16_compact) && !$isunknown(data_out16)) begin 
                         $display("compacter 16x16 error  int32");
                         $display("%h",data_out16_compact[10*16-1:0]);
                             $stop();
                        end
-                       if(data_in20[32*20-1:0]!=data_out20_compact) begin 
+                       if(data_in20[32*20-1:0]!=data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
                       $display("compacter 20x2x error  int32");
                         $display("%h",data_out20_compact[17*16-1:0]);
                         $stop();
@@ -312,31 +313,31 @@ module tb_filter_select(
                        $display("precison set to 64");
                        #clk_period;
                        /*check output*/
-                       if(data_in3[64*3-1:0]!=data_out3_compact) begin 
+                       if(data_in3[64*3-1:0]!=data_out3_compact  && !$isunknown(data_out3_compact) && !$isunknown(data_out3)) begin 
                         $display("compacter 3x3 error  int64");
                         $stop();
                        end 
 
-                      if(data_in4[64*4-1:0]!=data_out4_compact) begin 
+                      if(data_in4[64*4-1:0]!=data_out4_compact  && !$isunknown(data_out4_compact) && !$isunknown(data_out4)) begin 
                         $display("compacter 4x4 error int64");
                         $stop();
                        end
 
-                       if(data_in6[64*6-1:0]!=data_out6_compact) begin 
+                       if(data_in6[64*6-1:0]!=data_out6_compact && !$isunknown(data_out6_compact) && !$isunknown(data_out6)) begin 
                         $display("compacter 6x6 error");
                         $stop();
                        end
-                        if(data_in[64*8-1:0]!=data_out8_compact) begin 
+                        if(data_in[64*8-1:0]!=data_out8_compact && !$isunknown(data_out8_compact) && !$isunknown(data_out)) begin 
                         $display("compacter 8x8 error int64");
                         $display("%h",data_out8_compact[8*8-1:0]);
                         $stop();
                        end
-                       if(data_in16[64*16-1:0]!=data_out16_compact) begin 
+                       if(data_in16[64*16-1:0]!=data_out16_compact && !$isunknown(data_out16_compact) && !$isunknown(data_out16)) begin 
                         $display("compacter 16x16 error int64");
                         $display("%h",data_out16_compact[10*16-1:0]);
                             $stop();
                        end
-                       if(data_in20[64*20-1:0]!=data_out20_compact) begin 
+                       if(data_in20[64*20-1:0]!=data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
                       $display("compacter 20x2x error int64");
                         $display("%h",data_out20_compact[17*16-1:0]);
                         $stop();
