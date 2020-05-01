@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : filter_and_selectc.v
+//  Created On    : 2020-04-30 15:37:24
+//  Last Modified : 2020-04-30 15:37:25
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com - angione@student.chalmers.se - s262620@studenti.polito.it
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 `timescale 1ns/1ps
 
 `include "precision_def.vh"
@@ -35,7 +48,7 @@ endcase
 end 
       // 32 bit computation 
       generate
-      for (i=0;i<K/(data_width/32);i=i+1) begin
+      for (i=0;i<K-K/(data_width/32);i=i+1) begin
       
                assign data_in_32[data_width+(i+i)*data_width-1:data_width*(i+i)]= data_select==`INT32 ?
                                           { 32'd0 ,data_in[32+(i)*data_width-1:data_width*(i)] } : 
@@ -48,9 +61,10 @@ endgenerate
 
 
 
+
 /// 16 bit computation 
  generate
-for (i=0;i<K/(data_width/16);i=i+1) begin
+for (i=0;i<K-K/(data_width/16);i=i+1) begin
 
 assign data_in_16[data_width+((data_width/16)*i)*data_width-1:data_width*((data_width/16)*i)]=data_select==`INT16?
                                               { 48'd0 ,data_in[16+(i)*data_width-1:data_width*(i)] } : 
@@ -72,7 +86,7 @@ endgenerate
 
 // 8 bit computation
  generate
-for (i=0;i<K/(data_width/8);i=i+1) begin 
+for (i=0;i<K-K/(data_width/8);i=i+1) begin 
 assign data_in_8[data_width+((data_width/8)*i)*data_width-1:data_width*((data_width/8)*i)]=data_select==`INT8 ?
                                               { 56'd0 ,data_in[8+(i)*data_width-1:0+data_width*(i)] } :
                                                64'd0;
@@ -99,11 +113,6 @@ assign data_in_8[data_width+((data_width/8)*i+7)*data_width-1:data_width*((data_
                                                64'd0;                                               
 end
 endgenerate
-                                             
-              //////////////////////////////////////////////////////////////////////////////////////   
-              //////////////// WARNING NOT PERFECT FOR MATRIX LESS THAN 8*8 CAUSE A LOOP ///////////
-              //////////////SHOULD BE INSERTED HERE FOR CORRECTLY HANDLING THE CONNCECTIONS //////// 
-              //////////////////////////////////////////////////////////////////////////////////////
           
 
 endmodule

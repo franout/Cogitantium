@@ -1,101 +1,105 @@
+//==================================================================================================
+//  Filename      : tb_dtpu.sv
+//  Created On    : 2020-04-22 17:05:25
+//  Last Modified : 2020-04-30 11:53:06
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com
+//
+//  Description   : 
+//
+//
+//==================================================================================================
+
+
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04.03.2020 16:57:45
-// Design Name: 
-// Module Name: tb_mxu_core
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 `include "precision_def.vh"
-
 `include "csr_definition.vh"
 
 
 module tb_dtpu();
         parameter clk_period= 10;
-              reg clk,reset;
-              reg enable;
-              wire test_mode;
+              logic clk,reset, enable,test_mode;
               integer k;
               ////////////////////////////
               ////// CSR INTERFACE ///////
               ////////////////////////////
-               wire [31:0]csr_address;
-              wire csr_clk;
-              wire [63:0]csr_din;
-              reg [63:0]csr_dout;
-              wire csr_ce;
-              wire csr_reset;
-              wire csr_we;
+              logic [31:0]csr_address;
+              logic csr_clk;
+              logic [63:0]csr_din;
+              logic [63:0]csr_dout;
+              logic csr_ce;
+              logic csr_reset;
+              logic csr_we;
               ////////////////////////////
               ////// WEIGHT MEMORY ///////
               ///////////////////////////
-              wire [31:0]wm_address;
-              wire wm_clk;
-              wire [63:0]wm_din;
-              reg [63:0] wm_dout;
-              wire wm_ce;
-              wire wm_reset;
-              wire wm_we;
+              logic [31:0]wm_address;
+              logic wm_clk;
+              logic [63:0]wm_din;
+              logic [63:0] wm_dout;
+              logic wm_ce;
+              logic wm_reset;
+              logic wm_we;
               ////////////////////////////////////////////
               /////////// INPUT DATA FIFO ////////////////
               ////////////////////////////////////////////
               /////////// using stream axi 
-              reg infifo_is_empty;
-              reg [63:0]infifo_dout;
-              wire infifo_read;
+              logic infifo_is_empty;
+              logic [63:0]infifo_dout;
+              logic infifo_read;
               ////////////////////////////////////////////
               /////////// OUTPUT DATA FIFO ///////////////
               ////////////////////////////////////////////
               /////////// using stream axi 
-              reg outfifo_is_full;
-              wire [63:0]outfifo_din;
-              wire outfifo_write;
+              logic outfifo_is_full;
+              logic [63:0]outfifo_din;
+              logic outfifo_write;
                   
               ////////////////////////////////////////////
               /////////// CONTROL FROM/TO PS ////////////////
               ////////////////////////////////////////////
-              reg cs_continue;
-              wire cs_done;
-              wire cs_idle;
-              wire cs_ready;
-              reg cs_start;
-              wire[3:0]state;
-               wire [3:0] precision;
-    
-
-reg [3:0]data_precision_tb;
-reg [3:0]data_precision_fp_tb;
-     
+              logic cs_continue;
+              logic cs_done;
+              logic cs_idle;
+              logic cs_ready;
+              logic cs_start;
+              logic[3:0]state;
+              logic [3:0] precision;
+logic [3:0]data_precision_tb;
+logic [3:0]data_precision_fp_tb;
+logic [3:0] state;
+logic [3:0] d_out;
       
+   
 
+  parameter DATA_WIDTH_MAC       = 64;
+  parameter ROWS                 = 8;
+  parameter COLUMNS              = 8;
+  parameter SIZE_WMEMORY         = 2048;
+  parameter ADDRESS_SIZE_WMEMORY = 32;
+  parameter ADDRESS_SIZE_CSR     = 32;
+  parameter SIZE_CSR             = 1024;
+  parameter DATA_WIDTH_CSR       = 64;
+  parameter DATA_WIDTH_WMEMORY   = 64;
+  parameter DATA_WIDTH_FIFO_IN   = 64;
+  parameter DATA_WIDTH_FIFO_OUT  = 64;
+  parameter MAX_BOARD_DSP        = 220; 
+  
       dtpu_core
-     #(.DATA_WIDTH_MAC(64),
-         .ROWS(8) ,
-         .COLUMNS(8),
-         .SIZE_WMEMORY(2048),
-         .SIZE_CSR(1024),
-         .DATA_WIDTH_CSR(64),
-         .DATA_WIDTH_WMEMORY(64),
-         .DATA_WIDTH_FIFO_IN(64),
-         .DATA_WIDTH_FIFO_OUT(64),
-         .ADDRESS_SIZE_CSR(32),
-         .ADDRESS_SIZE_WMEMORY(32),
-         .MAX_BOARD_DSP(220)
+     #(.DATA_WIDTH_MAC(DATA_WIDTH_MAC),
+         .ROWS(ROWS) ,
+         .COLUMNS(COLUMNS),
+         .SIZE_WMEMORY(SIZE_WMEMORY),
+         .SIZE_CSR(SIZE_CSR),
+         .DATA_WIDTH_CSR(DATA_WIDTH_CSR),
+         .DATA_WIDTH_WMEMORY(DATA_WIDTH_WMEMORY),
+         .DATA_WIDTH_FIFO_IN(DATA_WIDTH_FIFO_IN),
+         .DATA_WIDTH_FIFO_OUT(DATA_WIDTH_FIFO_OUT),
+         .ADDRESS_SIZE_CSR(ADDRESS_SIZE_CSR),
+         .ADDRESS_SIZE_WMEMORY(ADDRESS_SIZE_WMEMORY),
+         .MAX_BOARD_DSP(MAX_BOARD_DSP)
          ) uut
      (
         .clk(clk),
@@ -151,15 +155,15 @@ reg [3:0]data_precision_fp_tb;
         );
 
 
-reg [63:0]data[0:31];
+logic [63:0]data[0:31];
 integer i;
 
-always begin
-   clk = 1'b1;
-   #(clk_period/2) 
-   clk = 1'b0;
-   #(clk_period/2);
-end
+
+  initial begin: clk_process
+    clk = '0;
+    forever #(clk_period/2) clk = ~clk;
+  end // clk_process
+
 
 initial begin 
 wm_dout=0;
@@ -390,4 +394,6 @@ localparam get_data=4'h9;
                 $finish();
                 end     
 endmodule
+
+
 

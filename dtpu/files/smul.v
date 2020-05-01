@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-04-29 22:11:33
+//  Last Modified : 2020-04-30 12:05:00
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -88,7 +88,7 @@ wire [47:0]out_dsp[0:4];
                     .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
                     .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .PCIN(pcout[1]<<8),    // input wire [47 : 0] PCIN
+                    .PCIN({ pcout[1][38:0], 9'b0 } ),  // SHIFT BY 9  // input wire [47 : 0] PCIN 
                     .A(input_data[15:8]),          // input wire [7 : 0] A
                     .B(weight[15:8]),          // input wire [7 : 0] B
                     .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
@@ -203,7 +203,7 @@ wire [47:0]out_dsp[0:4];
                       .CE(enable_i[1]),        // input wire CE
                       .SCLR(sclr),    // input wire SCLR
                       .SEL(1'b1),      // input wire [0 : 0] SEL
-                      .PCIN(pcout[1]<<8),    // input wire [47 : 0] PCIN
+                     .PCIN({ pcout[1][38:0], 9'b0 } ),  // SHIFT BY 9  // input wire [47 : 0] PCIN 
                       .A(input_data[15:8]),          // input wire [7 : 0] A
                       .B(weight[15:8]),          // input wire [7 : 0] B
                       .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
