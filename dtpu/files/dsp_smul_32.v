@@ -1,59 +1,62 @@
 //==================================================================================================
-//  Filename      : dsp_smul_32.v
+//  Filename      : lib_dsp.v
 //  Created On    : 2020-05-01 19:05:16
-//  Last Modified : 2020-05-01 22:57:25
+//  Last Modified : 2020-05-02 12:35:00
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
 //  Email         : francescoangione8@gmail.com - angione@student.chalmers.se - s262620@studenti.polito.it
 //
-//  Description   : 
+//  Description   : library for 32 bit multiplier and mac 32 --> integer signed
 //
 //
 //=================================================================================================
 `timescale 1ns/1ps
+(*use_dsp="yes"*)
 module  dsp_smul_32 (
 
-input CLK,
-input CE,
-input SCLR,
-input [47:0]PCIN,
-input SEL,
-input [31:0]A,
-input [31:0]B,
-output reg signed [31:0]P
+input   CLK,
+input   CE,
+input   SCLR,
+/*input   [47:0]PCIN,
+input   SEL,*/
+input   [31:0]A,
+input   [31:0]B,
+(*keep="false"*)output reg  [63:0]P
 	);
 
-reg signed [31:0] a_i;
-reg signed [31:0] b_i;
-reg signed [31:0] mult_res;
+(*keep="false"*)reg  [31:0] a_i;
+(*keep="false"*)reg  [31:0] b_i;
+wire  [31:0] p_i_lsb;
+wire [31:0]p_i_msb;
 
-always @(posedge clk) begin : proc_
+assign p_i_lsb= a_i[15:0]*b_i[15:0] ;
+assign p_i_msb= a_i[31:16]*b_i[31:16] + (p_i_msb<<17) ;
+
+always @(posedge CLK) begin 
 	if(SCLR) begin
-		a_i <= 0;b_i <= 0;mul_temp <= 0;P<=0;
+		a_i <= 0;b_i <= 0;P<=0;
 	end else begin
-		 if(CE) begin 
-		 	if(!SEL) begin
-		 		// no chain 
+		/// if(CE) begin 
 		 		a_i<=A;
 		 		b_i<=B;
-		 		mult_res<=a_i*b_i;
-		 		P<=mult_res;
-		 	end else begin 
-		 		// chain 
-				a_i<=A;
-		 		b_i<=B;
-		 		mult_res<=a_i*b_i;
-		 		P<=mult_res+PCIN[31:0]; // shifted outside
-		 	end 
-
-		 end else begin 
-		 	a_i <= 0;b_i <= 0;mul_temp <= 0;P<=0;
-		 end 
+		 		P<={p_i_msb,p_i_lsb};
+		 		
+		 /*/end else begin 
+		 	a_i <= 0;b_i <= 0;P<=0;
+		 end*/ 
 	end
+	
 end
 
 endmodule : dsp_smul_32
+
+
+module dsp_smac_32 (
+	
+);
+
+endmodule: dsp_smac_32
 
 
 /*

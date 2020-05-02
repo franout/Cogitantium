@@ -2,7 +2,7 @@
 //==================================================================================================
 //  Filename      : tb_filter_select.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-01 22:24:30
+//  Last Modified : 2020-05-02 12:45:30
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -200,26 +200,26 @@ module tb_filter_select(
                        $display("precison set to 8");
                        #clk_period;
                        // sanity check
-                       if({{56*3-1{0}},data_in3[8*3-1:0]}!=data_out3_compact  && !$isunknown(data_out3_compact) && !$isunknown(data_out3)) begin 
+                       if({{56*3-1{0}},data_in3[8*3-1:0]}!==data_out3_compact  && !$isunknown(data_out3_compact) && !$isunknown(data_out3)) begin 
                         $display("compacter 3x3 error");
                         $stop();
                        end 
 
-                      if({{56*4-1{0}},data_in4[8*4-1:0]}!=data_out4_compact && !$isunknown(data_out4_compact) && !$isunknown(data_out4)) begin 
+                      if({{56*4-1{0}},data_in4[8*4-1:0]}!==data_out4_compact && !$isunknown(data_out4_compact) && !$isunknown(data_out4)) begin 
                         $display("compacter 4x4 error");
                         $stop();
                        end
 
-                       if({{56*6-1{0}},data_in6[8*6-1:0]}!=data_out6_compact && !$isunknown(data_out6_compact) && !$isunknown(data_out6)) begin 
+                       if({{56*6-1{0}},data_in6[8*6-1:0]}!==data_out6_compact && !$isunknown(data_out6_compact) && !$isunknown(data_out6)) begin 
                         $display("compacter 6x6 error");
                         $stop();
                        end
-                        if({{56*8-1{0}},data_in[8*8-1:0]}!=data_out8_compact  && !$isunknown(data_out8_compact) && !$isunknown(data_out)) begin 
+                        if({{56*8-1{0}},data_in[8*8-1:0]}!==data_out8_compact  && !$isunknown(data_out8_compact) && !$isunknown(data_out)) begin 
                         $display("compacter 8x8 error");
                         $display("%h",data_out8_compact[8*8-1:0]);
                         $stop();
                        end
-                       if({data_in16[8*16-1:0]}!=data_out16_compact && !$isunknown(data_out16_compact) && !$isunknown(data_out16)) begin 
+                       if({data_in16[8*16-1:0]}!==data_out16_compact && !$isunknown(data_out16_compact) && !$isunknown(data_out16)) begin 
                         $display("compacter 16x16 error");
                         $display("%h",data_out16_compact[10*16-1:0]);
                             $stop();
@@ -232,7 +232,7 @@ module tb_filter_select(
                        end
                       */
                         
-                      if({{56*20-1{0}},data_in20[8*20-1:0]}!=data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
+                      if({{56*20-1{0}},data_in20[8*20-1:0]}!==data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
                       $display("compacter 20x2x error");
                         $display("%h",data_out20_compact[17*16-1:0]);
                         $stop();
