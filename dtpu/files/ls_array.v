@@ -14,7 +14,7 @@ module ls_array
 input clk,
 input reset,
 input enable_load_array,
-input reg[`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
+input [`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
 
 input infifo_read,
 input outfifo_write,

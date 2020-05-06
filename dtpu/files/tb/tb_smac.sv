@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-06 11:20:58
+//  Last Modified : 2020-05-06 18:47:45
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -92,14 +92,26 @@ module tb_smac (); /* this is automatically generated */
 		`elsif USEO_INT32
 		$display("integer 32 computation");
 		select_precision=`INT32;
-		`endif		
+		`elsif  USE0_FP32 
+		$display("fp 32 computation");
+		select_precision=`INT32;
+		enable_fp_unit='1;
+		`elsif  USE0_FP16 
+		$display("fp 16 computation");
+		select_precision=`INT16;
+		enable_fp_unit='1;
+		`elsif  USE0_BFP16
+		$display("bfp 16 computation");
+		select_precision=`INT16;
+		enable_fp_unit=2'd3; 
+		`endif	
 
 		res_mac_p=64'd0;
 		weight=64'hFFFFFFFFFFFFFFFFF;
 		data_input=64'hcafecafecafecafe;
 		repeat(5)@(posedge clk); // output after two cc
-		if(res_mac_n!=res_mac_n_fa)begin 
-			$display("error");
+		if(res_mac_n!==res_mac_n_fa)begin 
+			$display("error in the computation");
 			$stop();
 		end
 		res_mac_p=64'd1;

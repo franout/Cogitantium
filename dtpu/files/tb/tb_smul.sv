@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-04-28 20:37:09
+//  Last Modified : 2020-05-06 18:47:16
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -75,7 +75,7 @@ module tb_smul ();
 		repeat(1) @ (posedge clk);
 		ce=1'b1;
 		active_chain=1'b0;
-
+		enable_fp_unit=2'b0;
 		`ifdef USE_ALL 
 		$display("integer 64 computation");
 		select_precision=`INT64;
@@ -89,15 +89,25 @@ module tb_smul ();
 		`elsif USEO_INT32
 		$display("integer 32 computation");
 		select_precision=`INT32;
-
+		`elsif  USE0_FP32 
+		$display("fp 32 computation");
+		select_precision=`INT32;
+		enable_fp_unit='1;
+		`elsif  USE0_FP16 
+		$display("fp 16 computation");
+		select_precision=`INT16;
+		enable_fp_unit='1;
+		`elsif  USE0_BFP16
+		$display("bfp 16 computation");
+		select_precision=`INT16;
+		enable_fp_unit=2'd3; 
 		`endif		
-		enable_fp_unit=2'b0;
-		//sclr=1'b0;	
+		
 		weight=64'hFFFFFFFFFFFFFFFFF;
 		input_data=64'hcafecafecafecafe;
 		repeat(2)@(posedge clk); // output after two cc
-		if(res_mac_next!=res_mac_next_fa)begin 
-			$display("error");
+		if(res_mac_next!==res_mac_next_fa)begin 
+			$display("error in the computation");
 			$stop();
 		end
 

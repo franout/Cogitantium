@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-06 11:24:35
+//  Last Modified : 2020-05-06 20:10:23
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -11,12 +11,10 @@
 //
 //
 //==================================================================================================
+`timescale 1ns/1ps
 
-
-`timescale 1ns / 1ps
 `include "precision_def.vh"
 `include "csr_definition.vh"
-
 
 module tb_dtpu();
         parameter clk_period= 10;
@@ -32,6 +30,11 @@ module tb_dtpu();
               logic csr_ce;
               logic csr_reset;
               logic csr_we;
+              logic [31:0]csr_address_16x16;
+              logic csr_clk__16x16;
+              logic csr_ce_16x16;
+              logic csr_reset_16x16;
+              logic csr_we_16x16;
               ////////////////////////////
               ////// WEIGHT MEMORY ///////
               ///////////////////////////
@@ -42,6 +45,10 @@ module tb_dtpu();
               logic wm_ce;
               logic wm_reset;
               logic wm_we;
+              logic [31:0]wm_address_16x16;
+              logic wm_clk_16x16;
+              logic wm_ce_16x16;
+              logic wm_we_16x16;
               ////////////////////////////////////////////
               /////////// INPUT DATA FIFO ////////////////
               ////////////////////////////////////////////
@@ -49,6 +56,7 @@ module tb_dtpu();
               logic infifo_is_empty;
               logic [63:0]infifo_dout;
               logic infifo_read;
+              logic infifo_read_16x16;
               ////////////////////////////////////////////
               /////////// OUTPUT DATA FIFO ///////////////
               ////////////////////////////////////////////
@@ -56,7 +64,8 @@ module tb_dtpu();
               logic outfifo_is_full;
               logic [63:0]outfifo_din;
               logic outfifo_write;
-                  
+              logic [63:0]outfifo_din_16x16;
+              logic outfifo_write;
               ////////////////////////////////////////////
               /////////// CONTROL FROM/TO PS ////////////////
               ////////////////////////////////////////////
@@ -67,13 +76,19 @@ module tb_dtpu();
               logic cs_start;
               logic[3:0]state;
               logic [3:0] precision;
+
+              logic cs_idle_16x16;
+              logic cs_done_16x16;
+              logic cs_ready_16x16;
+              logic [`LOG_ALLOWED_PRECISIONS-1:0]precision_16x16;
+              logic [3:0]state;
+
 logic [3:0]data_precision_tb;
 logic [3:0]data_precision_fp_tb;
-logic [3:0] state;
-logic [3:0] d_out;
 logic [63:0]data[0:31];
 integer i;
-      
+/// for 16x16 dtpu 
+logic enable_16x16;
    
 
   parameter DATA_WIDTH_MAC       = 64;
@@ -178,30 +193,30 @@ integer i;
         ////////////////////////////
         ////// CSR INTERFACE ///////
         ////////////////////////////
-        .csr_address(csr_address),
-        .csr_clk(csr_clk),
+        .csr_address(csr_address_16x16),
+        .csr_clk(csr_clk_16x16),
         .csr_din(csr_din),
         .csr_dout(csr_dout),
-        .csr_ce(csr_ce),
-        .csr_reset(csr_reset),
-        .csr_we(csr_we),
+        .csr_ce(csr_ce_16x16),
+        .csr_reset(csr_reset_16x16),
+        .csr_we(csr_we_16x16),
         ////////////////////////////
         ////// WEIGHT MEMORY ///////
         ///////////////////////////
-        .wm_address(wm_address),
-        .wm_clk(wm_clk),
+        .wm_address(wm_address_16x16),
+        .wm_clk(wm_clk_16x16),
         .wm_din(wm_din),
         .wm_dout(wm_dout),
-        .wm_ce(wm_ce),
-        .wm_reset(wm_reset),
-        .wm_we(wm_we),
+        .wm_ce(wm_ce_16x16),
+        .wm_reset(wm_reset_16x16),
+        .wm_we(wm_we_16x16),
         ////////////////////////////////////////////
         /////////// INPUT DATA FIFO ////////////////
         ////////////////////////////////////////////
         /////////// using stream axi 
         .infifo_is_empty(infifo_is_empty),
         .infifo_dout(infifo_dout),
-        .infifo_read(infifo_read),
+        .infifo_read(infifo_read_16x16),
         ////////////////////////////////////////////
         /////////// OUTPUT DATA FIFO ///////////////
         ////////////////////////////////////////////
@@ -213,9 +228,9 @@ integer i;
         /////////// CONTROL FROM/TO PS ////////////////
         ////////////////////////////////////////////
         .cs_continue(cs_continue),
-        .cs_done(cs_done),
-        .cs_idle(cs_idle),
-        .cs_ready(cs_ready),
+        .cs_done(cs_done_16x16),
+        .cs_idle(cs_idle_16x16),
+        .cs_ready(cs_ready_16x16),
         .cs_start(cs_start),
         .state(state_16x16),
         .d_out(precision_16x16)
@@ -223,11 +238,7 @@ integer i;
         
         );
 
-logic [3:0]precision_16x16;
-logic [3:0] state_16x16;
-logic outfifo_write_16x16;
-logic [63:0] outfifo_write_16x16;
-logic enable_16x16;
+
   initial begin: clk_process
     clk = '0;
     forever #(clk_period/2) clk = ~clk;
@@ -249,8 +260,8 @@ end
 
 
 // fake in fifo
-always @(infifo_read) begin 
-if (infifo_read) begin
+always @(infifo_read,infifo_read_16x16) begin 
+if (infifo_read || infifo_read_16x16) begin
    infifo_dout<=data[i%16];
    i=i+1;
 end else begin
@@ -259,10 +270,10 @@ end
 end
 
 
-        // fake csr memory process
-always @(posedge(clk) )begin 
-if(csr_ce) begin 
-  case(csr_address)
+// fake csr memory process
+always @(posedge(csr_clk) or posedge(csr_clk_16x16) )begin 
+if(csr_ce || csr_ce_16x16) begin 
+  case(csr_address || csr_address_16x16)
     `A_ARITHMETIC_PRECISION:
         csr_dout={56'b0,data_precision_tb};
     `A_FP_MODE:
@@ -275,9 +286,9 @@ if(csr_ce) begin
   end 
 end
 // fake memory weight
-always @(posedge(clk)) begin 
-  if(wm_ce) begin
-    case (wm_address)
+always @(posedge(wm_clk) or posedge(wm_clk_16x16)) begin 
+  if(wm_ce || wm_ce_16x16) begin
+    case (wm_address || wm_address_16x16)
         0: wm_dout= {8{8'h11}};
         1: wm_dout= {8{8'h22}};
         2:wm_dout= {8{8'h33}};
@@ -312,6 +323,7 @@ localparam get_data=4'h9;
 
               $display("global reset");
                 reset=1'b0;
+                test_mode='0;
                 enable_16x16='0;
                 #clk_period;
                 `ifdef USEO_INT8
@@ -649,7 +661,7 @@ localparam get_data=4'h9;
                 $display("accelerator is not computing anything");
               end   
 
-              `ifndef 
+              `ifndef PIPELINE
               for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
               #clk_period;               
               end 
@@ -1006,7 +1018,7 @@ localparam get_data=4'h9;
                 $display("accelerator is not computing anything");
               end   
 
-              `ifndef 
+              `ifndef PIPELINE
               for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
               #clk_period;               
               end 

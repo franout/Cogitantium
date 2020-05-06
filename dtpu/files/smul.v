@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-06 16:43:37
+//  Last Modified : 2020-05-06 19:24:30
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -334,16 +334,16 @@ wire [47:0]out_dsp[0:4];
    endgenerate
 
 
-//floating point unit 
-/*generate
-  if(USE_FABRIC=="YES") begin
 
-  end else begin 
-    // use dsp
-      
- end 
-endgenerate
-*/
+//////////////////////////
+//floating point unit ////
+//////////////////////////
+
+
+// 32 bit -> 1 sign , 8 exp , 23 mantissa
+// 16 bit -> 1 sign , 5 exp , 10 mantissa
+// bf16 bit -> 1 sign , 8 exp , 7 mantissa
+
 `ifdef USE0_FP32
 reg[31:0]z_sc;
 wire [31:0] fp_out;
@@ -370,6 +370,34 @@ FPmul_sc fp_mul_32(
   .clk(clk));
 
 assign  res_mac_next= {32'd0, z_sc} ;
+`elsif  USE0_FP16 
+`elsif  USE0_BFP16 
+
+reg[31:0]z_sc;
+wire [31:0] fp_out;
+reg [31:0]a;
+reg [31:0]b;
+
+
+always @(posedge clk ) begin
+  if(sclr) begin
+    a <= 0;b<=0;z_sc<=0;
+  end else begin
+      if(ce && enable_fp_unit[0])begin 
+        a<={input_data[15:0],16'd0};
+        b<={weight[15:0],16'd0};
+        z_sc<=fp_out;
+      end 
+  end
+end
+
+FPmul_sc fp_mul_b16(
+  .FP_A(a),
+  .FP_B(b),
+  .FP_Z(fp_out),
+  .clk(clk));
+
+assign  res_mac_next= {32'd0, z_sc[31:16],16'd0} ;
 `endif
 
 

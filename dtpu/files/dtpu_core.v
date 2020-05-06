@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-05-06 11:32:27
+//  Last Modified : 2020-05-06 19:48:20
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -13,8 +13,8 @@
 //==================================================================================================
 
 `timescale 1ns / 1ps
-
 `include "precision_def.vh"
+
 //`define DUMMY 
 
 module dtpu_core
@@ -78,7 +78,7 @@ module dtpu_core
       output wire           wm_reset,
       
       ////////////////////////////////////////////
-      /////////// INPUT DATA FIFO ////////
+      /////////// INPUT DATA FIFO ////////////////
       ////////////////////////////////////////////
       /////////// using stream axi 
       (* X_INTERFACE_INFO = "xilinx.com:interface:acc_fifo_read:1.0 input_fifo RD_DATA" *)

@@ -1,8 +1,7 @@
-
 //==================================================================================================
 //  Filename      : tb_fp_units.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-06 16:48:56
+//  Last Modified : 2020-05-06 19:24:50
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -17,6 +16,8 @@
 `include "precision_def.vh"
 module tb_fp_units();
 parameter clk_period= 10;
+
+
 /* -----vhdl declaration -------------
 pipelined
 ENTITY FPmul IS
@@ -157,17 +158,25 @@ real res_mac_n_smac;
     // wait for results
     repeat(10)@ (posedge clk);
 
-    if(z!=z_sc) begin 
+    if(z!==z_sc) begin 
     	$display("results are differents for multiplication ",);
     	$stop();
     end 
-    if(z_add!=z_add_sc)begin 
+    if(z_add!==z_add_sc)begin 
 
     	$display("results are different for addition",);
     	$stop();
     end 
     repeat(1)@(posedge clk);
-    $display("not test the fp units integrated into the smac and smul subunits");
+    $display("test the fp units integrated into the smac and smul subunits");
+    `ifdef  USE0_FP32
+    $display("testing floating point 32",);
+    `elsif  USE0_FP16
+    $display("testing floating point 16",);
+    `elsif  USE0_BFP16  
+    $display("testing brain floating point 16 using 32 bit hardware",);
+    `endif
+
     reset='1;
     enable='0;
     enable_fp_unit='1;
@@ -183,14 +192,14 @@ real res_mac_n_smac;
     repeat(10)@(posedge clk);
 
     $display("check result");
-    //todo clever way to check the simulation results this is not working 
-    if(res_mac_next-(input_data*weight)<=0.000001)begin
+    //todo clever check
+    if((res_mac_next-$bitstoreal(input_data*weight))<=0.000001)begin
       $display("result of smuls is incorrect",);
       //$stop();
     end 
-    if(res_mac_n_smac-((input_data*weight)+res_mac_p)<=0.000001)begin
+    if((res_mac_n_smac-$bitstoreal((input_data*weight)+res_mac_p))<=0.000001)begin
       $display("result of smac is incorrect");
-      //$stop();
+    //  $stop();
     end
     
 

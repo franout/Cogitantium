@@ -2,7 +2,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-04-22 17:06:46
-//  Last Modified : 2020-05-06 11:21:41
+//  Last Modified : 2020-05-06 19:12:23
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -217,6 +217,10 @@ start_p3:  begin
             state<=idle;
             end
             end
+`ifdef PIPELINE
+
+
+`endif
     //TODO pipeline it
     /*
             pipeline
@@ -226,6 +230,10 @@ start_p3:  begin
                         -> compute
                             -> save
     */
+
+
+
+`ifndef PIPELINE    
 request_data: begin
             
             wm_ce<=1'b1;
@@ -293,7 +301,8 @@ save_to_fifo: begin
             outfifo_write<=1'b1;      
             //state<=save_to_fifo;
             state<=done;
-            end              
+            end       
+`endif       
 done: begin 
         if(!outfifo_is_full && !infifo_is_empty) begin
         state<=idle;

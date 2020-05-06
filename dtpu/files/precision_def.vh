@@ -31,6 +31,8 @@
 //`define USEO_INT16 1
 //`define USEO_INT32 1
 //`define USE0_FP32 1
+//`define USE0_FP16 1
+//`define USE0_BFP16 1
 
 //`define PIPELINE
 
