@@ -73,9 +73,9 @@ module tb_kernel_mxu();
               
               initial begin 
               enable=1'b0;
-              reset=1'b0;
-              #clk_period;
               reset=1'b1;
+              #clk_period;
+              reset=1'b0;
               input_data=12'hafe;
               weight=12'hfff;
               input_data4=16'h8253;

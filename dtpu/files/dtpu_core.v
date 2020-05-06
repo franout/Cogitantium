@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-04-29 16:13:17
+//  Last Modified : 2020-05-06 11:32:27
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -149,11 +149,11 @@ module dtpu_core
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
       wire [$clog2(ROWS):0]max_down_cnt_from_cu;
       wire [$clog2(ROWS):0]max_cnt_weight_from_cu;
-
+      wire reset_i;
       
       assign d_out=data_precision;
       
-       
+      assign reset_i=~aresetn;
      ////////////////////////////////////////////
     ////// MATRIX MULTIPLICATION UNIT //////////
     ////////////////////////////////////////////
@@ -164,7 +164,7 @@ module dtpu_core
         .MAX_BOARD_DSP(MAX_BOARD_DSP)
         ) engine  (   
             .data_type(data_precision),
-            .reset(aresetn),
+            .reset(reset_i),
             .clk(clk),
             .enable(enable_i),
             .enable_chain(enable_chain),
@@ -190,7 +190,7 @@ module dtpu_core
                 .ADDRESS_SIZE_WMEMORY(ADDRESS_SIZE_WMEMORY))
     cu(
         .clk(clk),
-        .reset(aresetn),
+        .reset(reset_i),
         .test_mode(test_mode),
         .glb_enable(enable),
         .enable_mxu(enable_i),
@@ -241,16 +241,16 @@ module dtpu_core
   `ifndef DUMMY
   
   
-  ls_array_wrapper
+  ls_array
   #(  .ROWS(ROWS),
       .COLUMNS(COLUMNS),
       .data_in_width(DATA_WIDTH_FIFO_IN),
       .data_in_mem(DATA_WIDTH_WMEMORY),
       .address_leng_wm(ADDRESS_SIZE_WMEMORY),
-      .size_wmemory(SIZE_WMEMORY)) ls_array
+      .size_wmemory(SIZE_WMEMORY)) ls_array_inst
   ( 
   .clk(clk),
-  .reset_n(aresetn),
+  .reset(reset_i),
   .enable_load_array(enable_load_array),
   .data_precision(data_precision),
   .read_weight_memory(read_weight_memory),
@@ -285,7 +285,7 @@ module dtpu_core
   
   `ifdef DUMMY
   always @(posedge(clk)) begin 
-  if(!aresetn) begin
+  if(reset_i) begin
   input_data_from_fifo<=0;
   weight_from_memory<=0;
   end else begin 

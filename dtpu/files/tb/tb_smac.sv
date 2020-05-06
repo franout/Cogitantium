@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-29 12:09:51
+//  Last Modified : 2020-05-06 11:20:58
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -68,11 +68,11 @@ module tb_smac (); /* this is automatically generated */
 	initial begin
 		// do something
 		ce='0;
-		sclr='0;
+		sclr='1;
 		enable_fp_unit='0;
 		active_chain=1'b0;
 		repeat(1) @ (posedge clk);
-		sclr='1;
+		sclr='0;
 		repeat(1) @ (posedge clk);
 		sclr='0;
 		ce='1;

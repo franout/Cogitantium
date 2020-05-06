@@ -127,13 +127,13 @@ ls_array
         enable_load=1'b0;
         enable_store=1'b0;
         $display("global reset");
-        resetn=1'b0;
+        resetn=1'b1;
         enable=1'b0;
         #clk_period;
         if(!(data_store_output==64'd0 && data_load_output==64'd0))begin 
           OK=0;
         end
-        resetn=1'b1;
+        resetn=1'b0;
         data_load_input=64'hAAAAAAAAAAAAAAAA;
         #clk_period;  
         if(!(data_store_output==64'd0 && data_load_output==64'd0))begin 
@@ -209,9 +209,9 @@ ls_array
         $display("Check of load store unit + filter select and compacter for activation data and output data");
         $display("global reset");
         enable=1'b0;
-        resetn=1'b0;
-        #clk_period;
         resetn=1'b1;
+        #clk_period;
+        resetn=1'b0;
         #clk_period;
         if( data_to_mxu!=64'd0 || weight_to_mxu!=64'd0 || data_to_fifo_out!=64'd0 || wm_address!=64'd0) begin 
             $display("WRONG INIT");

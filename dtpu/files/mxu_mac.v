@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-04-29 13:10:17
+//  Last Modified : 2020-05-06 11:29:02
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -70,7 +70,7 @@ module mxu_mac
     //the data driving the internal ff of vivado mac 
         register  #(.N(bit_width)) delay_reg1 (
             .clk(clk),
-        .reset(~sclr),
+        .reset(sclr),
         .test_mode(test_mode),
         .enable(ce),
         .d({56'd0,data_input[7:0]}),
@@ -78,7 +78,7 @@ module mxu_mac
          
          register  #(.N(bit_width)) delay_reg2 (
                      .clk(clk),
-                 .reset(~sclr),
+                 .reset(sclr),
                  .test_mode(test_mode),
                  .enable(ce),
                  .d(q1),
@@ -108,7 +108,7 @@ assign enable_next_mac=tc;*/
     // delay registers 
     register  #(.N(bit_width)) delay_reg1 (
          .clk(clk),
-        .reset(~sclr),
+        .reset(sclr),
         .test_mode(test_mode),
         .enable(ce),
         .d(data_input),
@@ -116,7 +116,7 @@ assign enable_next_mac=tc;*/
          
          register  #(.N(bit_width)) delay_reg2 (
                  .clk(clk),
-                .reset(~sclr),
+                .reset(sclr),
                 .test_mode(test_mode),
                 .enable(ce),
                 .d(q1),

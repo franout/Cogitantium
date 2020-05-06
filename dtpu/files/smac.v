@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-04-29 22:39:59
+//  Last Modified : 2020-05-06 11:16:07
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -331,6 +331,13 @@ endgenerate
       
  end
 endgenerate
+
+
+
+`ifdef USE0_FP32
+
+
+`endif
 */
 
 

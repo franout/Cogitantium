@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : lib_dsp.v
 //  Created On    : 2020-05-01 19:05:16
-//  Last Modified : 2020-05-02 12:35:00
+//  Last Modified : 2020-05-03 11:01:11
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -27,11 +27,10 @@ input   [31:0]B,
 
 (*keep="false"*)reg  [31:0] a_i;
 (*keep="false"*)reg  [31:0] b_i;
-wire  [31:0] p_i_lsb;
-wire [31:0]p_i_msb;
+wire  [63:0] p_i;
 
-assign p_i_lsb= a_i[15:0]*b_i[15:0] ;
-assign p_i_msb= a_i[31:16]*b_i[31:16] + (p_i_msb<<17) ;
+
+assign p_i= a_i*b_i; // + (p_i_msb<<17) ;
 
 always @(posedge CLK) begin 
 	if(SCLR) begin
@@ -40,7 +39,7 @@ always @(posedge CLK) begin
 		/// if(CE) begin 
 		 		a_i<=A;
 		 		b_i<=B;
-		 		P<={p_i_msb,p_i_lsb};
+		 		P<=p_i[31:0];
 		 		
 		 /*/end else begin 
 		 	a_i <= 0;b_i <= 0;P<=0;

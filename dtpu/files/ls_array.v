@@ -12,7 +12,7 @@ module ls_array
     size_wmemory=2048)
 ( 
 input clk,
-input reset_n,
+input reset,
 input enable_load_array,
 input reg[`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
 
@@ -195,7 +195,7 @@ end
 ///// inv - mux ////////////
 ///////////////////////////
 always @(posedge(clk)) begin 
-if(!reset_n) begin 
+if(reset) begin 
 counter<=0;
 counter_out<=0;
 end else begin 
@@ -598,7 +598,7 @@ assign data_to_fifo_out= outfifo_write ?  data_to_save[counter] : 64'd0;
   begin: ls_unit_activation_data 
   ls_unit #( .data_width(data_in_width)) ls_unit (
             .clk(clk),
-            .resetn(reset_n),
+            .reset(reset),
             .enable(enable_load_array &  internal_enable_ls_unit_activation_data[j]),
             .load_enable(enable_load_activation_data),
             .store_enable(enable_store_activation_data),
@@ -655,7 +655,7 @@ compact_and_select #( .K(ROWS),
   begin: ls_unit_weights
 ls_unit #( .data_width(data_in_width)) ls_unit_weights (
             .clk(clk),
-            .resetn(reset_n),
+            .reset(reset),
             .enable(enable_load_array & internal_enable_ls_unit_weight[j]),
             .load_enable(read_weight_memory),
             .store_enable(),
@@ -1006,7 +1006,7 @@ for(i=0;i<ROWS;i=i+1) begin
 // lower part of the address, it is also the
 // switching counter of the ls internal array 
 always @(posedge(clk)) begin
-if(!reset_n) begin
+if(reset) begin
 counter_weight<=0;
 counter_weight_page<=0;
 tc_counter_weight<=1'b0;

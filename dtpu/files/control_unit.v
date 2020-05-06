@@ -2,7 +2,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-04-22 17:06:46
-//  Last Modified : 2020-04-29 22:04:46
+//  Last Modified : 2020-05-06 11:21:41
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -122,7 +122,7 @@ reg [$clog2(ROWS):0]counter_res;
 
 
 always @(posedge clk) begin
-if(!reset) begin
+if(reset) begin
 state <= Power_up;
 counter_compute<=0;
 counter_res<=0;
@@ -265,7 +265,7 @@ compute: begin
             enable_load_activation_data<=1'b0;
             enable_store_activation_data<=0;
             enable_cnt<=1'b1;
-            enable_cnt_weight<=1'b0;
+            enable_cnt_weight<=1'b0; // it should be active and also read weight memory and wm_ce
             enable_down_cnt<=1'b1;
 
             counter_compute<=counter_compute+1;

@@ -186,7 +186,7 @@ reg [3:0]data_precision_fp_tb;
               cs_start=0;
               cs_continue=0;
               glb_enable=1'b0;
-              reset=1'b0;
+              reset=1'b1;
               $display("global reset");
               if(state_out!=Power_up)begin 
                   $display("cu not in Power_up state");
@@ -194,7 +194,7 @@ reg [3:0]data_precision_fp_tb;
                 $finish();
               end 
               #clk_period;
-              reset=1'b1;
+              reset=1'b0;
               #clk_period;
               if(state_out!=idle) begin 
                 $display("cu after reset not in idle state");

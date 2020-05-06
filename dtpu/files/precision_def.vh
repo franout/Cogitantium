@@ -27,9 +27,12 @@
 //`define VIVADO_MAC 1 // mutually exclusive with below definitions
 // used for different generation of design 
 //`define USE_ALL 0 // it can be all or the int8/16/32/64 
-`define USEO_INT8 1
-//`define USEO_INT16 1
+//`define USEO_INT8 1
+`define USEO_INT16 1
 //`define USEO_INT32 1
+//`define USE0_FP32 1
+
+//`define PIPELINE
 
 
 `endif

@@ -3,7 +3,7 @@ module ls_unit_weight
 (
 input enable,
 input clk,
-input reset_n,
+input reset,
 input load_in_reg,
 input [data_width_mem-1:0] data_from_mem,
 output reg [data_width_mem-1:0]weigth
@@ -14,7 +14,7 @@ output reg [data_width_mem-1:0]weigth
 
 
 always @(posedege(clk)) begin 
-if(!reset_n) begin 
+if(reset) begin 
 weigth<=0;
 end else begin
         if(load_in_reg) begin

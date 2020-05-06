@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-01 21:53:57
+//  Last Modified : 2020-05-06 11:15:48
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -341,8 +341,13 @@ wire [47:0]out_dsp[0:4];
   end else begin 
     // use dsp
       
- end
+ end 
 endgenerate
+
+`ifdef USE0_FP32
+
+
+`endif
 */
 
 

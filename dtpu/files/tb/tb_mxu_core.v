@@ -68,9 +68,9 @@ module tb_mxu_core();
               
               initial begin 
               enable=1'b0;
-              reset=1'b0;
-              #clk_period;
               reset=1'b1;
+              #clk_period;
+              reset=1'b0;
               input_data=24'hFECAFE;
               weight=24'hFFFFFF;
               weight4=32'habcdef12;

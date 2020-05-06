@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-04-29 17:47:09
+//  Last Modified : 2020-05-06 11:29:23
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -49,7 +49,7 @@ module mxu_core
     input [1:0] enable_fp_unit;
     // muxes for allowing different precision 
     wire  reset_mac;
-   assign reset_mac=~reset;
+   assign reset_mac=reset;
    // generate the matrix's cells
    genvar i,j;
    
