@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-06 11:16:07
+//  Last Modified : 2020-05-06 16:43:58
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -332,13 +332,49 @@ endgenerate
  end
 endgenerate
 
-
+*/
 
 `ifdef USE0_FP32
 
+reg[31:0]z_sc;
+reg [31:0]z_mult_add;
+wire [31:0] fp_out;
+wire [31:0] z_add_out;
+reg [31:0]a;
+reg [31:0]b;
+reg [31:0]c;
+
+always @(posedge clk ) begin
+  if(sclr) begin
+    a <= 0;b<=0;z_sc<=0; c<=0;
+  end else begin
+      if(ce && enable_fp_unit[0])begin 
+        a<=data_input[31:0];
+        b<=weight[31:0];
+        c<=res_mac_p[31:0];
+        z_sc<=fp_out;
+        z_mult_add<=z_add_out;
+      end 
+  end
+end
+
+FPmul_sc fp_mul_32(
+  .FP_A(a),
+  .FP_B(b),
+  .FP_Z(fp_out),
+  .clk(clk));
+FPadd_sc fp_add_32(
+  .ADD_SUB(1'b1),
+  .FP_A(z_sc),
+  .FP_B(c),
+  .clk(clk),
+  .FP_Z(z_add_out));
+
+
+
+assign  res_mac_n= {32'd0, z_mult_add} ;
 
 `endif
-*/
 
 
 endmodule

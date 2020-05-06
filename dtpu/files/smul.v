@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-06 11:15:48
+//  Last Modified : 2020-05-06 16:43:37
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -343,12 +343,34 @@ wire [47:0]out_dsp[0:4];
       
  end 
 endgenerate
-
-`ifdef USE0_FP32
-
-
-`endif
 */
+`ifdef USE0_FP32
+reg[31:0]z_sc;
+wire [31:0] fp_out;
+reg [31:0]a;
+reg [31:0]b;
+
+
+always @(posedge clk ) begin
+  if(sclr) begin
+    a <= 0;b<=0;z_sc<=0;
+  end else begin
+      if(ce && enable_fp_unit[0])begin 
+        a<=input_data[31:0];
+        b<=weight[31:0];
+        z_sc<=fp_out;
+      end 
+  end
+end
+
+FPmul_sc fp_mul_32(
+  .FP_A(a),
+  .FP_B(b),
+  .FP_Z(fp_out),
+  .clk(clk));
+
+assign  res_mac_next= {32'd0, z_sc} ;
+`endif
 
 
 endmodule
