@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-06 19:24:30
+//  Last Modified : 2020-05-07 16:15:48
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -61,7 +61,7 @@ generate // not the last two for keeping them at 32 bit
     assign pcout[i]= active_chain ? pcout[i-1] : 0;
   end
 endgenerate
-wire [47:0]out_dsp[0:4];
+wire [63:0]out_dsp[0:4];
 `endif
 
 /////////////////////////////////////////
@@ -88,7 +88,7 @@ wire [47:0]out_dsp[0:4];
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b1),      // input wire [0 : 0] SEL
+                    .SEL(active_chain),      // input wire [0 : 0] SEL
                     .PCIN({ pcout[1][38:0], 9'b0 } ),  // SHIFT BY 9  // input wire [47 : 0] PCIN 
                     .A(input_data[15:8]),          // input wire [7 : 0] A
                     .B(weight[15:8]),          // input wire [7 : 0] B
@@ -99,7 +99,7 @@ wire [47:0]out_dsp[0:4];
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .SEL(active_chain),      // input wire [0 : 0] SEL
                     .PCIN(pcout[3]),    // input wire [47 : 0] PCIN
                     .A(input_data[31:16]),          // input wire [15 : 0] A
                     .B(weight[31:16]),          // input wire [15 : 0] B
@@ -107,31 +107,20 @@ wire [47:0]out_dsp[0:4];
                     .P(out_dsp[2])          // output wire [47 : 0] P
                       );
 
-        // 32 bit dsp logically 
-        dsp_smul_16_fa smul_32_0_fa (
+        // 32 bit dsp
+
+        (*use_dsp="no"*) dsp_smul_32 smul_32s_fa (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[3]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .PCIN(pcout[5]),    // input wire [47 : 0] PCIN
-                    .A(input_data[47:32]),          // input wire [15 : 0] A
-                    .B(weight[47:32]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[6]),  // output wire [47 : 0] PCOUT
-                    .P(out_dsp[3])          // output wire [47 : 0] P
-                      );
-        dsp_smul_16_fa smul_32_1_fa (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[3]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
                     .PCIN(pcout[6]),    // input wire [47 : 0] PCIN
-                    .A(input_data[63:48]),          // input wire [15 : 0] A
-                    .B(weight[63:48]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[7]),  // output wire [47 : 0] PCOUT
-                    .P(out_dsp[4])          // output wire [47 : 0] P
+                    .SEL(active_chain),      // input wire [0 : 0] SEL
+                    .A(input_data[64:32]),          // input wire [15 : 0] A
+                    .B(weight[63:32]),          // input wire [15 : 0] B
+                    .P(out_dsp[3])          // output wire [32 : 0] P
                       );
-            
-            assign res_mac_next= {  out_dsp[4][15:0],out_dsp[3][15:0] ,out_dsp[2][15:0] ,out_dsp[1][7:0] ,out_dsp[0][7:0]};
+
+            assign res_mac_next= {  out_dsp[3][31:0] ,out_dsp[2][15:0] ,out_dsp[1][7:0] ,out_dsp[0][7:0]};
          `elsif  USEO_INT8
                   dsp_smul_8_fa smul_8_0s_fa (
                     .CLK(clk),      // input wire CLK
@@ -159,32 +148,7 @@ wire [47:0]out_dsp[0:4];
                       );
         assign res_mac_next= {48'd0, pcout[1][15:0]};
          `elsif USEO_INT32
-
-        // 32 bit dsp logically 
-        /*dsp_smul_16_fa smul_32_0s_fa (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
-                    .A(input_data[15:0]),          // input wire [15 : 0] A
-                    .B(weight[15:0]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[1])          // output wire [47 : 0] P
-                      );
-        dsp_smul_16_fa smul_32_1s_fa (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .PCIN(pcout[0]),    // input wire [47 : 0] PCIN
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .A(input_data[31:16]),          // input wire [15 : 0] A
-                    .B(weight[31:16]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[2])          // output wire [47 : 0] P
-                      );
-            assign res_mac_next={  32'd0, pcout[2][15:0], pcout[1][15:0]};*/
-           (*use_dsp="no"*) dsp_smul_32 smul_32s_fa (
+      (*use_dsp="no"*) dsp_smul_32 smul_32s_fa (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
@@ -235,35 +199,21 @@ wire [47:0]out_dsp[0:4];
               .P(out_dsp[2])          // output wire [15 : 0] P
                   );
 
-          // 32 bit dsp logically 
+          // 32 bit dsp 
 
-          dsp_smul_16 smul_32_0 (
-              .CLK(clk),      // input wire CLK
-              .CE(enable_i[3]),        // input wire CE
-              .SCLR(sclr),    // input wire SCLR
-              .PCIN(pcout[5]),    // input wire [47 : 0] PCIN
-              .A(input_data[47:32]),          // input wire [15 : 0] A
-              .SEL(1'b0),      // input wire [0 : 0] SEL
-              .B(weight[47:32]),          // input wire [15 : 0] B
-              .PCOUT(pcout[6]), // output wire [47 : 0] PCOUT
-              .P(out_dsp[3])          // output wire [15 : 0] P
-                  );
+        (*use_dsp="no"*) dsp_smul_32 smul_32s_fa (
+                    .CLK(clk),      // input wire CLK
+                    .CE(enable_i[3]),        // input wire CE
+                    .SCLR(sclr),    // input wire SCLR
+                    .PCIN(pcout[6]),    // input wire [47 : 0] PCIN
+                    .SEL(1'b0),      // input wire [0 : 0] SEL
+                    .A(input_data[64:32]),          // input wire [15 : 0] A
+                    .B(weight[63:32]),          // input wire [15 : 0] B
+                    .P(out_dsp[3])          // output wire [32 : 0] P
+                      );
 
+            assign res_mac_next= {  out_dsp[3][31:0] ,out_dsp[2][15:0] ,out_dsp[1][7:0] ,out_dsp[0][7:0]};
 
-
-        dsp_smul_16 smul_32_1 (
-              .CLK(clk),      // input wire CLK
-              .CE(enable_i[3]),        // input wire CE
-              .SCLR(sclr),    // input wire SCLR
-              .SEL(1'b0),      // input wire [0 : 0] SE
-              .PCIN((pcout[6])),    // input wire [47 : 0] PCIN
-              .A(input_data[63:48]),          // input wire [15 : 0] A
-              .B(weight[63:48]),          // input wire [15 : 0]          
-              .PCOUT(pcout[7]),  // output wire [47 : 0] PCOUT
-              .P(out_dsp[4])          // output wire [15 : 0]              
-               );
-
-        assign res_mac_next= {  out_dsp[4][15:0],out_dsp[3][15:0] ,out_dsp[2][15:0] ,out_dsp[1][7:0] ,out_dsp[0][7:0]};
          `elsif USEO_INT8
                   dsp_smul_8 smul_8_0s (
                     .CLK(clk),      // input wire CLK
@@ -291,43 +241,18 @@ wire [47:0]out_dsp[0:4];
                       );
               assign res_mac_next={48'd0,pcout[1][15:0]};
         `elsif USEO_INT32
-        // 32 bit dsp logically 
-        dsp_smul_16 smul_32_0s (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .PCIN(0),    // input wire [47 : 0] PCIN
-                    .A(input_data[15:0]),          // input wire [15 : 0] A
-                    .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .B(weight[15:0]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[1])          // output wire [47 : 0] P
-                      );
-        dsp_smul_16 smul_32_1s (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .PCIN(pcout[0]),    // input wire [47 : 0] PCIN
-                    .A(input_data[31:16]),          // input wire [15 : 0] A
-                    .B(weight[31:16]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[5]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[2])          // output wire [47 : 0] P
-                      );
-              //assign res_mac_next[31:0] = enable_i[2]  && !sclr ? input_data[31:0]*weight[31:0] : 32'd0 ;
-        assign res_mac_next={  32'd0, pcout[2][15:0], pcout[1][15:0]};
-/*
+  
         (*use_dsp="yes"*) dsp_smul_32 smul_32s (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[2]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .PCIN(0),    // input wire [47 : 0] PCIN
+                    .PCIN(47'd0),    // input wire [47 : 0] PCIN
                     .SEL(1'b0),      // input wire [0 : 0] SEL
                     .A(input_data[31:0]),          // input wire [15 : 0] A
                     .B(weight[31:0]),          // input wire [15 : 0] B
                     .P(pcout[2])          // output wire [32 : 0] P
                       );
-*/                    assign res_mac_next={  32'd0, pcout[2][31:0]};
+                  assign res_mac_next={  32'd0, pcout[2][31:0]};
 
         `endif
      end

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-06 19:24:22
+//  Last Modified : 2020-05-07 15:40:21
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -161,34 +161,18 @@ endgenerate
                       );
         assign res_mac_n={48'd0,pcout[1][15:0] };
          `elsif USEO_INT32
-        
-
-        // 32 bit dsp logically 
-        dsp_smac_16_fa smac_32_0s_fa (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .PCIN(0),    // input wire [47 : 0] PCIN
-                    .C(res_mac_p[15:0]),
-                    .A(data_input[15:0]),          // input wire [15 : 0] A
-                    .B(weight[15:0]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[1])          // output wire [47 : 0] P
-                      );
-        dsp_smac_16_fa smac_32_1s_fa (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .PCIN(pcout[0]),    // input wire [47 : 0] PCIN
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .C(res_mac_p[31:16]),
-                    .A(data_input[31:16]),          // input wire [15 : 0] A
-                    .B(weight[31:16]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[2])          // output wire [47 : 0] P
-                      );
-          assign res_mac_n={32'd0,pcout[2][15:0],pcout[1][15:0]};
+    (*use_dsp="yes"*)dsp_smac_32 dsp_smac_32s (
+            .CLK(clk),
+            .CE  (enable_i[2]),
+            .SCLR(sclr),
+            .PCIN(47'd0),
+            .SEL (1'b0),
+            .A   (data_input[31:0]),
+            .B   (weight[31:0]),
+            .C   (res_mac_p[31:0]),
+            .P   (pcout[0])
+            );
+          assign res_mac_n={32'd0,pcout[0][31:0]};
         `endif
      end else begin 
       // generate dsp implementation of multipliers
@@ -290,33 +274,18 @@ endgenerate
                       );
         assign res_mac_n={48'd0,pcout[1][15:0] };
         `elsif USEO_INT32
-        // 32 bit dsp logically 
-        dsp_smac_16 smac_32_0s (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .PCIN(0),    // input wire [47 : 0] PCIN
-                    .C(res_mac_p[15:0]),
-                    .A(data_input[15:0]),          // input wire [15 : 0] A
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .B(weight[15:0]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[1])          // output wire [47 : 0] P
-                      );
-        dsp_smac_16 smac_32_1s (
-                    .CLK(clk),      // input wire CLK
-                    .CE(enable_i[2]),        // input wire CE
-                    .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b1),      // input wire [0 : 0] SEL
-                    .C(res_mac_p[31:16]),
-                    .PCIN(pcout[0]),    // input wire [47 : 0] PCIN
-                    .A(data_input[31:16]),          // input wire [15 : 0] A
-                    .B(weight[31:16]),          // input wire [15 : 0] B
-                    .PCOUT(pcout[2]),  // output wire [47 : 0] PCOUT
-                    .P(pcout[2])          // output wire [47 : 0] P
-                      );
-              assign res_mac_n={32'd0,pcout[2][15:0],pcout[1][15:0]};
-        assign res_mac_n[63:32]=0;
+         (*use_dsp="yes"*)dsp_smac_32 dsp_smac_32s (
+            .CLK(clk),
+            .CE  (enable_i[2]),
+            .SCLR(sclr),
+            .PCIN(47'd0),
+            .SEL (1'b0),
+            .A   (data_input[31:0]),
+            .B   (weight[31:0]),
+            .C   (res_mac_p[31:0]),
+            .P   (pcout[0])
+            );
+          assign res_mac_n={32'd0,pcout[0][31:0]};
         `endif
      end
    endgenerate

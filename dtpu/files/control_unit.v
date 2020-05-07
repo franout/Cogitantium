@@ -2,7 +2,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-04-22 17:06:46
-//  Last Modified : 2020-05-06 19:12:23
+//  Last Modified : 2020-05-07 16:06:21
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -300,6 +300,7 @@ save_to_fifo: begin
             enable_deskew_ff<=1'b1; // output ff 
             outfifo_write<=1'b1;      
             //state<=save_to_fifo;
+            /*TODO add a wait (counter) depending on the K/(data_width_fifo_out/curr_precision)*/
             state<=done;
             end       
 `endif       

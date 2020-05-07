@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-05-06 18:47:16
+//  Last Modified : 2020-05-07 16:10:22
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -112,17 +112,15 @@ module tb_smul ();
 		end
 
 		repeat(3)@(posedge clk);
-        
-
+		$display("activating the chain ",);
+        active_chain='1;
+        repeat(5)@(posedge clk);
+        if(res_mac_next!== res_mac_next_fa)begin 
+        	$display("error in the computation of no chian ",);
+        	$stop();
+        end 
+        repeat(10)@(posedge clk);
 		$finish();
 	end
 
-	// dump wave
-/*	initial begin
-		if ( $test$plusargs("fsdb") ) begin
-			$fsdbDumpfile("tb_smul.fsdb");
-			$fsdbDumpvars(0, "tb_smul", "+mda", "+functions");
-		end
-	end
-*/
 endmodule
