@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_mac.v
 //  Created On    : 2020-04-25 12:25:20
-//  Last Modified : 2020-05-07 16:10:22
+//  Last Modified : 2020-05-08 16:05:51
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -64,7 +64,7 @@ module tb_smul ();
 			.active_chain     (active_chain)
 		);
 
-
+	logic [127:0]real_val;
 	initial begin
 		// do something
 		ce='0;
@@ -105,7 +105,7 @@ module tb_smul ();
 		
 		weight=64'hFFFFFFFFFFFFFFFFF;
 		input_data=64'hcafecafecafecafe;
-		repeat(2)@(posedge clk); // output after two cc
+		repeat(3)@(posedge clk); // output after two cc
 		if(res_mac_next!==res_mac_next_fa)begin 
 			$display("error in the computation");
 			$stop();
@@ -115,12 +115,14 @@ module tb_smul ();
 		$display("activating the chain ",);
         active_chain='1;
         repeat(5)@(posedge clk);
-        if(res_mac_next!== res_mac_next_fa)begin 
+        if(res_mac_next!== res_mac_next_fa && !(res_mac_next===real_val[63:0]) )begin 
         	$display("error in the computation of no chian ",);
         	$stop();
         end 
         repeat(10)@(posedge clk);
 		$finish();
 	end
+
+	assign real_val=(weight*input_data);
 
 endmodule
