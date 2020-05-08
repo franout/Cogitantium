@@ -1,13 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.5
 
-import tflite_runtime.interpreter as tflite
+
+import tensorflow.lite as tflite
 import numpy as np
 from pynq import Overlay
 from pynq import allocate
 from pynq import Xlnk
 import time
 import os
-
 
 #########################################################
 ###### NOTE: this code has to be executed on the    #####
@@ -68,7 +68,7 @@ else :
 	print("overlay is not loaded")
 	exit(-1)
 
-DTPU_lib=tflite.load_delegate("./DTPU_delegate.so")
+#DTPU_lib=tflite.load_delegate("./DTPU_delegate.so")
 
 WMEM_SIZE=2048
 INFIFO_SIZE=2048
@@ -76,7 +76,7 @@ OUTFIFO_SIZE=2048
 DATAWIDTH=64
 
 #DTPU=DTPU_lib.DTPU_delegate(WMEM_SIZE,INFIFO_SIZE,OUTFIFO_SIZE,DATAWIDTH,overlay.dtpu.axis_accelerator_ada)
-tflite.load_delegate("./DTPU_delegate.so")
+#tflite.load_delegate("./DTPU_delegate.so")
 ########################################
 ##### RUN TENSORFLOW LITE MODELS #######
 ########################################
@@ -86,7 +86,7 @@ tflite_model_file="./"+model_name+".tflite"
 
 # Load TFLite model and allocate tensors.
 #experimental_delegate=
-interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
+interpreter = tflite.Interpreter(model_path=tflite_model_file) #,experimental_delegates=[DTPU_lib])
 interpreter.allocate_tensors()
 
 # Get input and output tensors.
@@ -102,7 +102,7 @@ interpreter.set_tensor(input_details[0]['index'], input_data)
 
 start_time=time.time()
 
-#### TODO
+
 try:
 	interpreter.invoke()
 except OverflowError as overror:
@@ -123,6 +123,8 @@ except KeyError as keyerror:
 	print(keyerror)
 except AttributeError as atterror:
 	print(atterror)
+except ValueError as valerror:
+	print(valerror)
 
 
 end_time=time.time()
