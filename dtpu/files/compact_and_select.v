@@ -139,13 +139,11 @@ end
                   generate
                     if(K>=8)begin 
                   for(i=K/(data_width/16);i<K;i=i+1) begin 
-                  assign data_in_16[data_width+i*data_width-1:data_width*i]= data_select==`INT16 ?
-                                                                                   64'd0 : 64'd0;
+                  assign data_in_16[data_width+i*data_width-1:data_width*i]= 64'd0;
                   end 
                 end else begin 
                   for(i=1+K/(data_width/16);i<K;i=i+1) begin 
-                  assign data_in_16[data_width+i*data_width-1:data_width*i]= data_select==`INT16 ?
-                                                                                   64'd0 : 64'd0;
+                  assign data_in_16[data_width+i*data_width-1:data_width*i]= 64'd0;
                   end 
 
                 end 
@@ -187,19 +185,19 @@ end
 
      end else begin 
        for(i=0;i<K/(data_width/8) ;i=i+1) begin 
-              assign data_in_8[data_width+i*data_width-1:data_width*i]=data_select==`INT8 ?
-                                  {  data_in[8+(i*(data_width/8)+7)*data_width-1:data_width*(i*(data_width/8)+7)],
-                                     data_in[8+(i*(data_width/8)+6)*data_width-1:data_width*(i*(data_width/8)+6)],
-                                     data_in[8+(i*(data_width/8)+5)*data_width-1:data_width*(i*(data_width/8)+5)],
-                                     data_in[8+(i*(data_width/8)+4)*data_width-1:data_width*(i*(data_width/8)+4)],
-                                     data_in[8+(i*(data_width/8)+3)*data_width-1:data_width*(i*(data_width/8)+3)],
-                                     data_in[8+(i*(data_width/8)+2)*data_width-1:data_width*(i*(data_width/8)+2)],
-                                     data_in[8+(i*(data_width/8)+1)*data_width-1:data_width*(i*(data_width/8)+1)],
-                                     data_in[8+(i*(data_width/8))*data_width-1:data_width*(i*(data_width/8))]     } :
+              assign data_in_8[data_width+i*data_width-1:data_width*i]= data_select==`INT8 ?
+                                  { (i*(data_width/8)+7>=K ? 8'd0 : data_in[8+(i*(data_width/8)+7)*data_width-1:data_width*(i*(data_width/8)+7)]),
+                                    (i*(data_width/8)+6>=K ? 8'd0 : data_in[8+(i*(data_width/8)+6)*data_width-1:data_width*(i*(data_width/8)+6)]),
+                                    (i*(data_width/8)+5>=K ? 8'd0 : data_in[8+(i*(data_width/8)+5)*data_width-1:data_width*(i*(data_width/8)+5)]),
+                                    (i*(data_width/8)+4>=K ? 8'd0 : data_in[8+(i*(data_width/8)+4)*data_width-1:data_width*(i*(data_width/8)+4)]),
+                                    (i*(data_width/8)+3>=K ? 8'd0 : data_in[8+(i*(data_width/8)+3)*data_width-1:data_width*(i*(data_width/8)+3)]),
+                                    (i*(data_width/8)+2>=K ? 8'd0 : data_in[8+(i*(data_width/8)+2)*data_width-1:data_width*(i*(data_width/8)+2)]),
+                                    (i*(data_width/8)+1>=K ? 8'd0 : data_in[8+(i*(data_width/8)+1)*data_width-1:data_width*(i*(data_width/8)+1)]),
+                                    (i*(data_width/8)  >=K ? 8'd0 : data_in[8+(i*(data_width/8))*data_width-1:data_width*(i*(data_width/8))]     )} :
                                                64'd0;
        end
        // if it is not a power of 2
-       for(i=K/(data_width/8);i<K%(data_width/8)-1;i=i+1) begin
+       for(i=K/(data_width/8);i<=K%(data_width/8);i=i+1) begin
           assign data_in_8[data_width+i*data_width-1:data_width*i]=data_select==`INT8 ?
                                   {  ( i*(data_width/8)+7 >=K ? 8'd0 :data_in[8+(i*(data_width/8)+7)*data_width-1:data_width*(i*(data_width/8)+7)]),
                                      ( i*(data_width/8)+6 >=K ? 8'd0 :data_in[8+(i*(data_width/8)+6)*data_width-1:data_width*(i*(data_width/8)+6)]),
@@ -225,8 +223,8 @@ end
                      assign data_in_8[data_width+i*data_width-1:data_width*i]=64'd0;
                  end 
           end else begin 
-                for(i=  (K%8==0? K/(data_width/8) :K%(data_width/8)-1 ) ;i<K;i=i+1) begin 
-                     
+
+             for(i=  (K%8==0? K/(data_width/8) :K%(data_width/8)+1 ) ;i<K;i=i+1) begin 
                      assign data_in_8[data_width+i*data_width-1:data_width*i]=64'd0;
                  end 
 

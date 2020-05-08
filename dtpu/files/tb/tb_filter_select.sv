@@ -2,7 +2,7 @@
 //==================================================================================================
 //  Filename      : tb_filter_select.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-02 12:45:30
+//  Last Modified : 2020-05-08 17:36:23
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -30,7 +30,9 @@ module tb_filter_select(
        logic[64*4-1:0]data_in4;
        logic[64*6-1:0]data_in6;
        logic[64*16-1:0]data_in16;
+       logic[64*18-1:0]data_in18;
        logic[64*20-1:0]data_in20;
+       logic[64*24-1:0]data_in24;
        logic [3:0] data_select;
        logic[3:0] data_precision;
        logic activate_chain;
@@ -44,10 +46,12 @@ module tb_filter_select(
        logic [6*64-1:0]data_out6_compact;
        logic [8*64-1:0] data_out8_compact;
        logic [16*64-1:0]data_out16_compact;
+       logic [18*64-1:0] data_out18;
+       logic [18*64-1:0]data_out18_compact;;
        logic [20*64-1:0] data_out20;
        logic [20*64-1:0]data_out20_compact;
-       
-                integer k;
+       logic [24*64-1:0] data_out24;
+       logic [24*64-1:0]data_out24_compact;
       
                 filter_and_select 
                 #(.K(3)
@@ -137,23 +141,23 @@ module tb_filter_select(
                                 .data_out(data_out16_compact),
                                 .data_select(data_select)
                             );
-                                /*
+                                
                               filter_and_select 
-                                #(.K(17)
-                                   ) uut17
+                                #(.K(18)
+                                   ) uut18
                                 (
-                                .data_in(data_in17),
-                                .data_out(data_out17),
+                                .data_in(data_in18),
+                                .data_out(data_out18),
                                 .data_select(data_select)
                                 );
                                 
-                            compact_and_select  #(.K(17)
-                                              ) uut17_compacter
+                            compact_and_select  #(.K(18)
+                                              ) uut18_compacter
                                            (
-                               .data_in(data_out17),
-                                .data_out(data_out17_compact),
+                               .data_in(data_out18),
+                                .data_out(data_out18_compact),
                                 .data_select(data_select)
-                            );*/
+                            );
                     filter_and_select 
                                 #(.K(20)
                                    ) uut20
@@ -170,6 +174,23 @@ module tb_filter_select(
                                 .data_out(data_out20_compact),
                                 .data_select(data_select)
                             );
+                  filter_and_select 
+                                #(.K(24)
+                                   ) uut24
+                                (
+                                .data_in(data_in24),
+                                .data_out(data_out24),
+                                .data_select(data_select)
+                                );
+                                
+                            compact_and_select  #(.K(24)
+                                              ) uut24_compacter
+                                           (
+                               .data_in(data_out24),
+                                .data_out(data_out24_compact),
+                                .data_select(data_select)
+                            );
+
 
       always begin
              clk = 1'b1;
@@ -195,7 +216,9 @@ module tb_filter_select(
                        data_in4={4{64'h0123456789ABCDEF}};
                        data_in6={6{64'h0123456789ABCDEF}};
                        data_in16={16{64'hCAFECAFECAFECAFE}};
+                       data_in18={18{64'hCAFECAFECAFECAFE}};
                       data_in20={20{64'hCAFECAFECAFECAFE}};
+                      data_in24={24{64'hCAFECAFECAFECAFE}};
                        data_precision=`INT8;
                        $display("precison set to 8");
                        #clk_period;
@@ -224,20 +247,25 @@ module tb_filter_select(
                         $display("%h",data_out16_compact[10*16-1:0]);
                             $stop();
                        end
-                        /* problem with odd mxu
-                       if({{56*17-1{0}},data_in17[8*17-1:0]}!=data_out17_compact) begin 
-                        $display("compacter 17x17 error");
-                        $display("%h",data_out17_compact[17*16-1:0]);  
+                         
+                       if(data_in18[8*18-1:0]!==data_out18_compact && !$isunknown(data_out18) &&!$isunknown(data_out18)) begin 
+                        $display("compacter 18x18 error");
+                        $display("%h",data_out18_compact[17*16-1:0]);  
                         $stop();
                        end
-                      */
+
                         
                       if({{56*20-1{0}},data_in20[8*20-1:0]}!==data_out20_compact && !$isunknown(data_out20_compact) && !$isunknown(data_out20)) begin 
                       $display("compacter 20x2x error");
                         $display("%h",data_out20_compact[17*16-1:0]);
                         $stop();
                        end
-                       $display("%h",data_out20_compact[17*16-1:0]);
+
+                      if( data_in24[8*24-1:0]!==data_out24_compact && !$isunknown(data_out24_compact) && !$isunknown(data_out24)) begin 
+                      $display("compacter 24x24 error");
+                        $display("%h",data_out24_compact[17*16-1:0]);
+                        $stop();
+                       end
 
 
                        data_precision=`INT16;
@@ -374,7 +402,7 @@ module tb_filter_select(
                        data_in4={{3{64'h0000000000000000}},{64'h0123456789ABCDEF}};
                        data_in6={{5{64'h0000000000000000}},{64'h0123456789ABCDEF}};
                        data_in16={{15{64'h0000000000000000}},{64'hCAFECAFECAFECAFE}};
-                      
+                      data_in18={{17{64'h0000000000000000}},{64'hCAFECAFECAFECAFE}};
                        data_in20={{19{64'h0000000000000000}},{64'hCAFECAFECAFECAFE}};
                        data_precision=`INT8;
                        $display("precison set to 8");

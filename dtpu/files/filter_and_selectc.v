@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : filter_and_selectc.v
 //  Created On    : 2020-04-30 15:37:24
-//  Last Modified : 2020-05-02 13:48:49
+//  Last Modified : 2020-05-08 17:30:57
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -150,6 +150,33 @@ assign data_in_16[data_width+((data_width/16)*i+3)*data_width-1:data_width*((dat
 end
 end
 
+
+for (i=K/(data_width/16);i<=K/(data_width/16)+K%(data_width/16)-1;i=i+1) begin
+if(i*(data_width/16)<K)begin 
+assign data_in_16[data_width+((data_width/16)*i)*data_width-1:data_width*((data_width/16)*i)]=data_select==`INT16?
+                                              { 48'd0 ,data_in[16+(i)*data_width-1:data_width*(i)] } : 
+                                              64'd0;
+end
+if(i*(data_width/16)+1<K) begin
+assign data_in_16[data_width+((data_width/16)*i+1)*data_width-1:data_width*((data_width/16)*i+1)]=data_select==`INT16 ?
+                                              { 48'd0 ,data_in[32+(i)*data_width-1:16+data_width*(i)] } :
+                                               64'd0;
+end
+
+if(i*(data_width/16)+2<K) begin 
+assign data_in_16[data_width+((data_width/16)*i+2)*data_width-1:data_width*((data_width/16)*i+2)]=data_select==`INT16?
+                                              { 48'd0 ,data_in[48+(i)*data_width-1:32+data_width*(i)] } :
+                                               64'd0;
+end                                            
+if(i*(data_width/16)+3<K)begin 
+assign data_in_16[data_width+((data_width/16)*i+3)*data_width-1:data_width*((data_width/16)*i+3)]=data_select==`INT16?
+                                              { 48'd0 ,data_in[data_width+(i)*data_width-1:48+data_width*(i)] } :
+                                               64'd0;
+end
+end
+
+
+
 end 
 endgenerate
 
@@ -253,7 +280,7 @@ end
 end
 
 
-    for(i=K/(data_width/8);i<K%(data_width/8)-1;i=i+1) begin
+    for(i=K/(data_width/8);i<=K%(data_width/8);i=i+1) begin
 if(i*(data_width/8)<K)begin 
 assign data_in_8[data_width+((data_width/8)*i)*data_width-1:data_width*((data_width/8)*i)]=data_select==`INT8 ?
                                               { 56'd0 ,data_in[8+(i)*data_width-1:0+data_width*(i)] } :
