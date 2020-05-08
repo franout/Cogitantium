@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-06 18:47:45
+//  Last Modified : 2020-05-08 23:21:55
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -65,6 +65,12 @@ module tb_smac (); /* this is automatically generated */
 			.enable_fp_unit   (enable_fp_unit),
 			.active_chain     (active_chain)
 		);
+
+
+	logic [127:0]real_val;
+	
+	assign real_val=(weight*data_input)+res_mac_p;
+
 	initial begin
 		// do something
 		ce='0;
@@ -110,28 +116,19 @@ module tb_smac (); /* this is automatically generated */
 		weight=64'hFFFFFFFFFFFFFFFFF;
 		data_input=64'hcafecafecafecafe;
 		repeat(5)@(posedge clk); // output after two cc
-		if(res_mac_n!==res_mac_n_fa)begin 
-			$display("error in the computation");
+		if(res_mac_n!==res_mac_n_fa &&!(res_mac_n==real_val[63:0]))begin 
+			$display("error in the computation no chain");
 			$stop();
 		end
 		res_mac_p=64'd1;
-		repeat(6)@(posedge clk);
-        
+		repeat(3)@(posedge clk);
+        if(res_mac_n!==res_mac_n_fa && !(res_mac_n==real_val[63:0]))begin 
+			$display("error in the computation adding the residue no chain ");
+			$stop();
+		end
 
 		$finish();
 
-
-
-		repeat(10)@(posedge clk);
-		$finish;
 	end
-
-	// dump wave
-/*	initial begin
-		if ( $test$plusargs("fsdb") ) begin
-			$fsdbDumpfile("tb_smac.fsdb");
-			$fsdbDumpvars(0, "tb_smac", "+mda", "+functions");
-		end
-	end*/
 
 endmodule
