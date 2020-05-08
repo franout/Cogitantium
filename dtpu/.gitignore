@@ -1,1 +1,11 @@
-pynq_vivado/
+# ignoring in the vivado project folder
+pynq_vivado/pynqz2.tmp
+pynq_vivado/pynqz2.sim
+pynq_vivado/pynqz2.sdk
+pynq_vivado/pynqz2.runs
+pynq_vivado/pynqz2.cache
+pynq_vivado/pynqz2.srcs
+pynq_vivado/hw
+pynq_vivado/ip_user_files
+ip/
+dtpu/
