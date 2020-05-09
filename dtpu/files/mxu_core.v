@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-05-06 11:29:23
+//  Last Modified : 2020-05-09 23:53:40
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -14,6 +14,7 @@
 //==================================================================================================
 `timescale 1ns / 1ps
 `include "precision_def.vh"
+`include "dsp_usage.vh"
 
 module mxu_core
 // parameters are directly related to the number of inputdat,weight and outputs

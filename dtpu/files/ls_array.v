@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : ls_array.v
+//  Created On    : 2020-05-09 23:46:47
+//  Last Modified : 2020-05-09 23:46:48
+//  Revision      : 
+//  Author        : Angione Francesco
+//  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com angione@student.chalmers.se s262620@studenti.polito.it  
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 
 `timescale 1ns /1ps
 
@@ -18,13 +31,13 @@ input [`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
 
 input infifo_read,
 input outfifo_write,
-input read_weight_memory,
+input [ROWS:0]read_weight_memory,
 
 input [data_in_width-1:0] input_data_from_fifo,
 output wire [data_in_width-1:0]data_to_fifo_out,
 
-input enable_load_activation_data,
-input enable_store_activation_data,
+input [COLUMNS:0]enable_load_activation_data,
+input [COLUMNS:0]enable_store_activation_data,
 
 input [data_in_mem-1:0]data_from_weight_memory,
 input [data_in_width*ROWS-1:0]data_from_mxu,
@@ -206,8 +219,8 @@ end else begin
         if(counter==max_cnt-1) begin 
         counter<=0;        
         end
-    end else begin 
-       counter<=0;           
+    /*end else begin 
+       counter<=0;  */         
     end 
     
     if (ld_max_cnt) begin 
@@ -218,12 +231,12 @@ end else begin
     // downcoutner for data out
        
        if(enable_down_cnt) begin
-               counter_out<=counter_out-1;
+               counter_out<=counter_out+1;
                if(counter_out==max_down_cnt-1) begin 
                counter_out<=0;        
                end
-           end  else begin 
-           counter_out<=0;
+           /*end  else begin 
+           counter_out<=0;*/
            end
            
            if (ld_max_down_cnt) begin 
@@ -600,8 +613,8 @@ assign data_to_fifo_out= outfifo_write ?  data_to_save[counter] : 64'd0;
             .clk(clk),
             .reset(reset),
             .enable(enable_load_array &  internal_enable_ls_unit_activation_data[j]),
-            .load_enable(enable_load_activation_data),
-            .store_enable(enable_store_activation_data),
+            .load_enable(enable_load_activation_data[j]),
+            .store_enable(enable_store_activation_data[j]),
             .data_load_input(activation_data[j]),
             .data_load_output(data_to_select_to_mxu[data_in_width+j*data_in_width-1 : j*data_in_width ]),
             .data_store_input(data_to_save_from_compacter[data_in_width+j*data_in_width-1 : j*data_in_width ]),
@@ -657,7 +670,7 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
             .clk(clk),
             .reset(reset),
             .enable(enable_load_array & internal_enable_ls_unit_weight[j]),
-            .load_enable(read_weight_memory),
+            .load_enable(read_weight_memory[j]),
             .store_enable(),
             .data_load_input(weight_data[j]),
             .data_load_output(data_weigth_to_select_to_mxu[data_in_width+j*data_in_width-1 : j*data_in_width ]),
@@ -675,9 +688,9 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights (
  ///////////////////////////////////////////// 
 
  //always_comb weight_data[counter]= read_weight_memory ? data_from_weight_memory : 0;
- always @(read_weight_memory ,counter, data_from_weight_memory) begin
+ always @(read_weight_memory ,counter_out, data_from_weight_memory) begin
  if(read_weight_memory) begin
-        case (counter)  
+        case (counter_out)  
           0: begin 
               for(i=0;i<ROWS;i=i+1) begin 
                   if(i==0) begin 

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-05-06 19:48:20
+//  Last Modified : 2020-05-09 17:46:43
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -132,9 +132,9 @@ module dtpu_core
       wire [`LOG_ALLOWED_PRECISIONS-1:0] data_precision;
       wire enable_i;     
       wire enable_load_array;
-      wire read_weight_memory;
-      wire enable_load_activation_data;
-      wire enable_store_activation_data;
+      wire [ROWS:0]read_weight_memory;
+      wire [COLUMNS:0]enable_load_activation_data;
+      wire [COLUMNS:0]enable_store_activation_data;
       wire enable_cnt;
       wire ld_max_cnt;
       wire enable_down_cnt;

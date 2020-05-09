@@ -1,17 +1,17 @@
-
 //==================================================================================================
 //  Filename      : control_unit.v
-//  Created On    : 2020-04-22 17:06:46
-//  Last Modified : 2020-05-07 16:06:21
+//  Created On    : 2020-05-09 23:47:05
+//  Last Modified : 2020-05-09 23:57:00
 //  Revision      : 
 //  Author        : Angione Francesco
-//  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
-//  Email         : francescoangione8@gmail.com
+//  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
+//  Email         : francescoangione8@gmail.com angione@student.chalmers.se s262620@studenti.polito.it  
 //
 //  Description   : 
 //
 //
 //==================================================================================================
+
 `timescale 1ns / 1ps
 `include "csr_definition.vh"
 `include "precision_def.vh"
@@ -79,10 +79,10 @@ input wire cs_continue,
 ////////////////////////////////////////////
 /////// CONTROL OF LS ARRAY ////////////////
 ///////////////////////////////////////////
-(* keep="true" *)output reg enable_load_array,
-(* keep="true" *)output reg read_weight_memory,
-(* keep="true" *)output reg enable_load_activation_data,
-(* keep="true" *)output reg enable_store_activation_data,
+(* keep="true" *)output reg enable_load_array, 
+(* keep="true" *)output reg [ROWS:0]read_weight_memory,
+(* keep="true" *)output reg [COLUMNS:0]enable_load_activation_data,
+(* keep="true" *)output reg [COLUMNS:0]enable_store_activation_data,
 (* keep="true" *)output reg enable_cnt,
 (* keep="true" *)output reg ld_max_cnt,
 (* keep="true" *)output reg enable_down_cnt,
@@ -118,14 +118,15 @@ localparam get_data=4'h9;
 localparam [$clog2(1+3*(COLUMNS+1)+ROWS):0]MAX_COUNTER= 3*(COLUMNS+1)+ROWS*2;
 reg [3:0]state;
 reg [$clog2(1+3*(COLUMNS+1)+ROWS):0]counter_compute;
-reg [$clog2(ROWS):0]counter_res;
-
+reg [$clog2(ROWS):0]counter_save;
+reg [$clog2(64):0]curr_data_width_computation; // max_bit width of computation
+integer i;
 
 always @(posedge clk) begin
 if(reset) begin
 state <= Power_up;
 counter_compute<=0;
-counter_res<=0;
+counter_save<=0;
 // for mxu 
 data_precision<=`NO_COMPUTATION;
 enable_chain<=`NO_CHAIN;
@@ -148,7 +149,7 @@ ld_weight_page_cnt<=0;
 start_value_wm<=0;
 
 counter_compute<=0;
-counter_res<=0;
+//counter_save<=0;
 csr_address<=0;    
 csr_ce<=0;
 csr_reset<=0;
@@ -175,13 +176,13 @@ idle: begin
         cs_idle<=1;
         //data_precision<=`INT32;
         if(cs_start && glb_enable)begin  
-        state<=start_p1;        
+        state<=start_p1;
+        cs_idle<=0;        
         end else begin 
         state<=state;
 
         end 
      end
-     // for speeding up the csr can be checked in the below states! TODO
      // transfering the ownership of data
 start_p1: begin 
             csr_ce<=1'b1;
@@ -238,39 +239,59 @@ request_data: begin
             
             wm_ce<=1'b1;
             infifo_read<=1'b1;
-
-            enable_load_array<=1'b1;
-            read_weight_memory<=1'b1;
-            enable_load_activation_data<=1'b1;
-            enable_store_activation_data<=1'b0;
-            enable_cnt<=0;
-            enable_cnt_weight<=1'b1;
-            enable_down_cnt<=0;
-
             // load counter of ls array 
             ld_max_cnt<=1'b1;
-
             ld_max_down_cnt<=1'b1;
-            
             ld_max_cnt_weight<=1'b1;
+
+            enable_load_array<=1'b1;
+            
+            read_weight_memory[counter_save]<=1'b1;
+
+            enable_load_activation_data[counter_save]<=1'b1 ;
+            enable_store_activation_data<=0;
+
+            enable_cnt<=1'b1;
+            enable_cnt_weight<=1'b1;
+            enable_down_cnt<=1'b0;
+
+            //advance  computation 
+            enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff 
+
             
             state<=get_data;
             end 
 get_data: begin 
             enable_load_array<=1'b1;
-            read_weight_memory<=1'b1;
-            enable_load_activation_data<=1'b0;
-            enable_store_activation_data<=1'b0;
             
+            read_weight_memory[counter_save]<=1'b1;
+            
+            enable_load_activation_data<= 0;
+            enable_store_activation_data<=0;
+
+            enable_down_cnt<=1'b1;
+                
+            //advance  computation 
+            enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff             
+
+            counter_save<=counter_save+1;
+            if(counter_save<(ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation))-1)begin 
+            state<=request_data;
+            end else begin 
             state<=compute;
+            // counter clear
+            counter_save<=0;
+            end 
             end 
 compute: begin
-
-            //wm_ce<=1'b1;
-            //infifo_read<=1'b1;
+                /*nneed to stole two cc for 16x16*/
             enable_load_array<=1'b1;
-            read_weight_memory<=1'b0;
-            enable_load_activation_data<=1'b0;
+            read_weight_memory<=0;
+            enable_load_activation_data<=0;
             enable_store_activation_data<=0;
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b0; // it should be active and also read weight memory and wm_ce
@@ -280,9 +301,11 @@ compute: begin
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
             enable_deskew_ff<=1'b1; // output ff 
-            if(counter_compute==(MAX_COUNTER)) begin 
+            if(counter_compute==(MAX_COUNTER  )) begin 
             state<=save_to_fifo;
-            enable_store_activation_data<=1'b1;
+                for(i=0;i<ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation);i=i+1) begin 
+                enable_store_activation_data[i]<=1'b1;   
+                end 
             end else begin 
             state<=state;            
             end 
@@ -290,7 +313,11 @@ compute: begin
 
 save_to_fifo: begin
             enable_load_array<=1'b1;   
-            enable_store_activation_data<=1'b1;           
+            
+            for(i=0;i<ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation);i=i+1) begin 
+            enable_store_activation_data[i]<=1'b1;   
+            end 
+                        
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b0;
             enable_down_cnt<=1'b1;
@@ -298,10 +325,15 @@ save_to_fifo: begin
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
             enable_deskew_ff<=1'b1; // output ff 
-            outfifo_write<=1'b1;      
-            //state<=save_to_fifo;
-            /*TODO add a wait (counter) depending on the K/(data_width_fifo_out/curr_precision)*/
+            outfifo_write<=1'b1;
+            // push the result in output fifo 
+            counter_save<=counter_save+1;
+            /* a wait (counter) depending on the K/(data_width_fifo_out/data_precision)*/
+            if(counter_save<(ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation))-1)begin 
+            state<=state;
+            end else begin 
             state<=done;
+            end 
             end       
 `endif       
 done: begin 
@@ -322,28 +354,39 @@ end
 
 end 
 
+always @(data_precision) begin : proc_data_width_curr
+    case (data_precision)
+     `INT8:  curr_data_width_computation<=8;   
+     `INT16: curr_data_width_computation<=16;
+     `INT32: curr_data_width_computation<=32;
+     `INT64: curr_data_width_computation<=64;
+    default: curr_data_width_computation<=0;
+endcase // data_precision
+end // proc_data_width_curr
+
+
 always @(csr_ce,data_precision) begin 
  // precision dependent
             case(data_precision)
                 `INT8: begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/8);
                     max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/8);
-                    max_cnt_weight_from_cu= ROWS;
+                    max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/8);
                     end 
                 `INT16: begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/16);
                     max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/16);
-                    max_cnt_weight_from_cu= ROWS;
+                    max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/16);
                     end
                 `INT32: begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/32);
                     max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/32);
-                    max_cnt_weight_from_cu= ROWS;
+                    max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/32);
                     end
                 `INT64:begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/64);
                     max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/64);
-                    max_cnt_weight_from_cu= ROWS;
+                    max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/64);
                     end
                 default: begin 
             max_cnt_from_cu=0;
@@ -352,6 +395,10 @@ always @(csr_ce,data_precision) begin
             end
             endcase // data_precision
   end 
+
+// if does not synthesize create processes for which depending on the value of counter_save they set the proper bit in the enable l/s or read wm
+
+
 // debug
 assign state_out=state;
 
