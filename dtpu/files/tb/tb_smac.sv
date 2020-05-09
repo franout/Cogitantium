@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-08 23:21:55
+//  Last Modified : 2020-05-09 13:00:52
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -81,8 +81,8 @@ module tb_smac (); /* this is automatically generated */
 		sclr='0;
 		repeat(1) @ (posedge clk);
 		sclr='0;
-		ce='1;
 		repeat(1) @ (posedge clk);
+		ce='1;
 		active_chain='0;
 
 		`ifdef USE_ALL 
@@ -112,16 +112,22 @@ module tb_smac (); /* this is automatically generated */
 		enable_fp_unit=2'd3; 
 		`endif	
 
-		res_mac_p=64'd0;
+		res_mac_p=64'h00000000100010101;
 		weight=64'hFFFFFFFFFFFFFFFFF;
 		data_input=64'hcafecafecafecafe;
 		repeat(5)@(posedge clk); // output after two cc
 		if(res_mac_n!==res_mac_n_fa &&!(res_mac_n==real_val[63:0]))begin 
-			$display("error in the computation no chain");
+			$display("error in the computation  no chain chain");
 			$stop();
 		end
 		res_mac_p=64'd1;
-		repeat(3)@(posedge clk);
+		sclr='1;
+		ce='0;
+		repeat(1)@(posedge clk);
+		active_chain='1;
+		ce='1;
+		sclr='0;
+		repeat(4)@(posedge clk);
         if(res_mac_n!==res_mac_n_fa && !(res_mac_n==real_val[63:0]))begin 
 			$display("error in the computation adding the residue no chain ");
 			$stop();

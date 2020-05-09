@@ -1,13 +1,14 @@
 //==================================================================================================
 //  Filename      : lib_dsp.v
 //  Created On    : 2020-05-01 19:05:16
-//  Last Modified : 2020-05-08 22:52:50
+//  Last Modified : 2020-05-09 13:02:04
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
 //  Email         : francescoangione8@gmail.com - angione@student.chalmers.se - s262620@studenti.polito.it
 //
-//  Description   : library for 32 bit multiplier and mac 32 --> integer signed
+//  Description   : "in the synthesis we trust"
+//					library for 32 bit multiplier and mac 32 --> integer signed
 //					in trust of the synthesizer for choose the minimal area 
 //					NOTE: for a migration to another hdl software, primitives can be implemented here 
 //
@@ -182,34 +183,48 @@ output reg [63:0]P
 reg  [7:0] a_i_8_0;
 reg  [7:0] b_i_8_0;
 reg  [7:0] c_i_8_0;
-reg  [15:0] mul_i_8_0;
+wire  [15:0] mul_i_8_0;
 reg  [15:0] p_i_8_0;
 // second 8 bits
 reg  [7:0] a_i_8_1;
 reg  [7:0] b_i_8_1;
 reg  [7:0] c_i_8_1;
-reg  [15:0] mul_i_8_1;
+wire  [15:0] mul_i_8_1;
 reg  [15:0] p_i_8_1;
 // third 16 bits
 reg  [15:0] a_i_16;
 reg  [15:0] b_i_16;
 reg  [15:0] c_i_16;
-reg  [31:0] mul_i_16;
+wire  [31:0] mul_i_16;
 reg  [31:0] p_i_16;
 // fourth 32 bits
 reg  [31:0] a_i_32;
 reg  [31:0] b_i_32;
 reg  [31:0] c_i_32;
-reg  [63:0] mul_i_32;
+wire  [63:0] mul_i_32;
 reg  [63:0] p_i_32;
 
+reg [127:0]p_i_64;
+wire  [127:0] mul_i_64;
+
+// multiplication  
+				assign mul_i_8_0=active_chain && ~CE[0] ? 16'd0 
+										:a_i_8_0*b_i_8_0;  // 7:0
+				assign mul_i_8_1=active_chain && ~CE[1]  ? 16'd0 :
+										a_i_8_1*b_i_8_1;  // 15:8
+				assign mul_i_16=active_chain && ~CE[2]  ? 32'd0:
+										a_i_16 * b_i_16; // 31:16
+				assign mul_i_32=active_chain && ~CE[3]  ? 64'd0 : 
+										a_i_32*b_i_32; //63:32
+				assign mul_i_64= active_chain && CE[0]&& CE[1]&& CE[2]&& CE[3]?
+					{a_i_32,a_i_16,a_i_8_1,a_i_8_0}*{b_i_32,b_i_16,b_i_8_1,b_i_8_0}	:
+															128'd0;
 always @(posedge CLK) begin 
 	if(SCLR) begin
 		a_i_8_0<=0;a_i_8_1<=0;a_i_16<=0;a_i_32<=0;
 		b_i_8_0<=0;b_i_8_1<=0;b_i_16<=0;b_i_32<=0;
 		c_i_8_0<=0;c_i_8_1<=0;c_i_16<=0;c_i_32<=0;
 		p_i_8_0<=0;p_i_8_1<=0;p_i_16<=0;p_i_32<=0;
-		mul_i_8_0<=0;mul_i_8_1<=0;mul_i_16<=0;mul_i_32<=0;
 		P<=0;
 	end else begin
 		 
@@ -221,20 +236,12 @@ always @(posedge CLK) begin
 		 		b_i_8_1<=CE[1] ? B[15:8] : 8'd0;
 		 		b_i_16 <=CE[2] ? B[31:16] : 16'd0;
 		 		b_i_32 <=CE[3] ? B[63:32] : 32'd0;
-		 		c_i_8_0<=CE[0] ? B[7:0] : 8'd0;
-		 		c_i_8_1<=CE[1] ? B[15:8] : 8'd0;
-		 		c_i_16 <=CE[2] ? B[31:16] : 16'd0;
-		 		c_i_32 <=CE[3] ? B[63:32] : 32'd0;
+		 		c_i_8_0<=CE[0] ? C[7:0] : 8'd0;
+		 		c_i_8_1<=CE[1] ? C[15:8] : 8'd0;
+		 		c_i_16 <=CE[2] ? C[31:16] : 16'd0;
+		 		c_i_32 <=CE[3] ? C[63:32] : 32'd0;
 				// chain active or not
-				// multiplication  
-				mul_i_8_0<=active_chain && ~CE[0] ? 16'd0 
-										:a_i_8_0*b_i_8_0;  // 7:0
-				mul_i_8_1<=active_chain && ~CE[1]  ? 16'd0 :
-										a_i_8_1*b_i_8_1;  // 15:8
-				mul_i_16<= active_chain && ~CE[2]  ? 32'd0:
-										a_i_16 * b_i_16; // 31:16
-				mul_i_32<= active_chain && ~CE[3]  ? 64'd0 : 
-										a_i_32*b_i_32; //63:32
+				
 
 				// additions
 				p_i_8_0<=active_chain && ~CE[0] ? 16'd0 
@@ -245,8 +252,9 @@ always @(posedge CLK) begin
 										mul_i_16+ c_i_16; // 31:16
 				p_i_32<= active_chain && ~CE[3]  ? 64'd0 : 
 										mul_i_32+ c_i_32; //63:32
-
-				P<= active_chain ?  64'hffff :  {p_i_32[31:0],p_i_16[15:0],p_i_8_1[7:0],p_i_8_0[7:0]};
+				p_i_64<= active_chain && CE[0]&& CE[1]&& CE[2]&& CE[3]?
+						mul_i_64 + {c_i_32,c_i_16,c_i_8_1,c_i_8_0 } : 128'd0;
+				P<= active_chain ? p_i_64[63:0]  :  {p_i_32[31:0],p_i_16[15:0],p_i_8_1[7:0],p_i_8_0[7:0]};
 	end
 	
 end

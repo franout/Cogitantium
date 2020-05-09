@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-08 23:15:43
+//  Last Modified : 2020-05-09 11:57:31
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -75,8 +75,6 @@ module smac
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[0]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .CARRYIN(0),    // input wire [47 : 0] PCIN
                     .A(data_input[7:0]),          // input wire [7 : 0] A
                     .B(weight[7:0]),          // input wire [7 : 0] B
                     .C(res_mac_p[7:0]),
@@ -89,8 +87,6 @@ module smac
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .CARRYIN(1'b0),    // input wire [47 : 0] PCIN
                     .C(res_mac_p[15:0]),
                     .A(data_input[15:0]),          // input wire [7 : 0] A
                     .B(weight[15:0]),          // input wire [7 : 0] B
@@ -125,14 +121,23 @@ module smac
                           .C           (res_mac_p),
                           .P           (res_mac_n)
                             );
-
+      `elsif  USEO_INT8
+                  dsp_smac_8 smac_8(
+                    .CLK(clk),      // input wire CLK
+                    .CE(enable_i[0]),        // input wire CE
+                    .SCLR(sclr),    // input wire SCLR
+                    .A(data_input[7:0]),          // input wire [7 : 0] A
+                    .B(weight[7:0]),          // input wire [7 : 0] B
+                    .C(res_mac_p[7:0]),
+                    .PCOUT(pcout[0]),  // output wire [47 : 0] PCOUT
+                    .P(pcout[1])          // output wire [7 : 0] P
+                      );
+                assign res_mac_n=  {56'd0, pcout[1][7:0]};
     `elsif USEO_INT16
               dsp_smac_16 smac_16s_0 (
                     .CLK(clk),      // input wire CLK
                     .CE(enable_i[1]),        // input wire CE
                     .SCLR(sclr),    // input wire SCLR
-                    .SEL(1'b0),      // input wire [0 : 0] SEL
-                    .CARRYIN(1'b0),    // input wire [47 : 0] PCIN
                     .C(res_mac_p[15:0]),
                     .A(data_input[15:0]),          // input wire [7 : 0] A
                     .B(weight[15:0]),          // input wire [7 : 0] B
