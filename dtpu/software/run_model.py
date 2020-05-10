@@ -32,10 +32,6 @@ import os
 #####  to another executor. 						#####
 #########################################################
 
-
-
-
-
 #### If a delegate was provided for specific operations, 
 #### then TensorFlow Lite will split the graph into multiple 
 #### subgraphs where each subgraph will be handled by a delegate
@@ -68,9 +64,9 @@ else :
 	print("overlay is not loaded")
 	exit(-1)
 
-#DTPU_lib=tflite.load_delegate("./DTPU_delegate.so")
+DTPU_lib=tflite.experimental.load_delegate("./DTPU_delegate.so")
 
-WMEM_SIZE=2048
+WMEM_SIZE=131072
 INFIFO_SIZE=2048
 OUTFIFO_SIZE=2048
 DATAWIDTH=64
@@ -85,9 +81,10 @@ model_name="mnist_model_quant_uint8"
 tflite_model_file="./"+model_name+".tflite"
 
 # Load TFLite model and allocate tensors.
-#experimental_delegate=
-interpreter = tflite.Interpreter(model_path=tflite_model_file) #,experimental_delegates=[DTPU_lib])
+interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
 interpreter.allocate_tensors()
+
+# linking accelerator 
 
 # Get input and output tensors.
 input_details = interpreter.get_input_details() #[0]["index"]
@@ -132,10 +129,10 @@ end_time=time.time()
 # Use `tensor()` in order to get a pointer to the tensor.
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print(output_data)
+print("Execution time on cpu: ", end_time- start_time)
 
 
-
-
+exit();
 
 test_image = np.expand_dims(test_images[0], axis=0).astype(np.float32)
 
