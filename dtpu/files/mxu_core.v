@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-05-09 23:53:40
+//  Last Modified : 2020-05-10 12:34:42
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -95,7 +95,7 @@ module mxu_core
              end else if ( j==K-1) begin 
                 // check if it is the last column
                 if(i==0) begin 
-                        if(i*(M-1)+ (j-1)<MAX_BOARD_DSP) begin: dsp_generation
+                        if(i*(M-1)*`DSP_INC+ (j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation
 
                  mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
@@ -124,7 +124,7 @@ module mxu_core
                 end else begin
 
 
-                  if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_2
+                  if(i*(M-1)*`DSP_INC+(j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation_2
                             mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                                 .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
@@ -151,7 +151,7 @@ module mxu_core
             end else begin 
                  if(i==0) begin 
 
-                         if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_3
+                         if(i*(M-1)*`DSP_INC+(j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation_3
                             mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
                               .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
@@ -174,7 +174,7 @@ module mxu_core
                              .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                           end
                           end else begin
-                     if(i*(M-1)+(j-1)<MAX_BOARD_DSP) begin: dsp_generation_4
+                     if(i*(M-1)*`DSP_INC+(j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation_4
                      mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                       .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
                        .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),

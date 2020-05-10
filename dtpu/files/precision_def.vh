@@ -31,6 +31,8 @@
 `define USEO_INT8 1
 //`define USEO_INT16 1
 //`define USEO_INT32 1
+
+
 //`define USE0_FP32 1
 
 //`define USE0_FP16 1
