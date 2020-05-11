@@ -3,9 +3,6 @@
 
 import tensorflow.lite as tflite
 import numpy as np
-from pynq import Overlay
-from pynq import allocate
-from pynq import Xlnk
 import time
 import os
 
@@ -49,30 +46,9 @@ import os
 # 2)Create an instance of TfLiteDelegate, which is responsible for registering
 #	 the kernel node and claiming the nodes that the delegate can execute
 
-
-###############################
-######## LOAD DESIGN ##########
-###############################
-overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
-
-overlay.download() # Explicitly download bitstream to PL
-
-if overlay.is_loaded():
- # Checks if a bitstream is loaded
- print("overlay is loaded")
-else :
-	print("overlay is not loaded")
-	exit(-1)
-
+# load library , the design is loaded inside the embedded python code of .so 
 DTPU_lib=tflite.experimental.load_delegate("./DTPU_delegate.so")
-
-WMEM_SIZE=131072
-INFIFO_SIZE=2048
-OUTFIFO_SIZE=2048
-DATAWIDTH=64
-
-#DTPU=DTPU_lib.DTPU_delegate(WMEM_SIZE,INFIFO_SIZE,OUTFIFO_SIZE,DATAWIDTH,overlay.dtpu.axis_accelerator_ada)
-#tflite.load_delegate("./DTPU_delegate.so")
+# DTPU_lib._library.functionName()
 ########################################
 ##### RUN TENSORFLOW LITE MODELS #######
 ########################################
@@ -84,7 +60,18 @@ tflite_model_file="./"+model_name+".tflite"
 interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
 interpreter.allocate_tensors()
 
-# linking accelerator 
+# precision of accelerator 
+ACTIVATE_CHAIN=0x1
+INT8=0x1
+INT16=0X03
+INT32=0x07
+INT64=0x0F
+# precision of fp computation is tuned using the 
+# integer precision 
+ACTIVE_FP=1<<0
+ACTIVE_BFP=0x03
+WMEM_STARTING_ADDRESS=0 #32 MSB 
+DTPU_lib._library.SelectDataTypeComputation( (WMEM_STARTING_ADDRESS<<32)|(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
 
 # Get input and output tensors.
 input_details = interpreter.get_input_details() #[0]["index"]

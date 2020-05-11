@@ -12,10 +12,15 @@ void CopyFromBufferHandle_p(void);
 void CopyToBufferHandle_p(void);
 void FreeBufferHandle_p(void);
 bool SelectDataTypeComputation_p(int);
-static bool Prepare_p(void);
+bool Prepare_p(void);
+bool Init_p(void );
+bool Invoke_p(void);
+void  load_overlay(void);
+bool ResetHardware_p(void);
  };
   void * tflite_plugin_create_delegate();
-  void tflite_plugin_destroy_delegate(void  *  );""")
+  void tflite_plugin_destroy_delegate(void  *  );
+  bool  SelectDataTypeComputation(int);""")
 
 
 
@@ -31,6 +36,27 @@ static void CopyToBufferHandle_p(void);
 static void FreeBufferHandle_p(void);
 static bool SelectDataTypeComputation_p(int);
 static bool Prepare_p(void);
+static bool Init_p(void );
+static bool Invoke_p(void);
+static void  load_overlay(void);
+static bool ResetHardware_p(void);
+
+
+/*
+possible operations 
+  kTfLiteBuiltinAdd = 0,
+  kTfLiteBuiltinConcatenation = 2,
+  kTfLiteBuiltinConv2d = 3,
+  kTfLiteBuiltinDepthwiseConv2d = 4,
+  kTfLiteBuiltinDepthToSpace = 5,
+  kTfLiteBuiltinFullyConnected = 9,
+  kTfLiteBuiltinMul = 18,
+  kTfLiteBuiltinSub = 41,
+  kTfLiteBuiltinDelegate = 51,
+  kTfLiteBuiltinAddN = 106,
+*/
+
+
 
 namespace tflite{
   
@@ -44,10 +70,12 @@ class DTPU_delegate {
  public:
   // Returns true if my delegate can handle this type of op.
   static bool SupportedOp(const TfLiteRegistration* registration) {
+  // from builtin_ops.h
   printf("[DEBUG - C]--- Supported Operation of DTPU delegate class --- \n");
     switch (registration->builtin_code) {
       case kTfLiteBuiltinConv2d:
-        printf("[DEBUG - C]--i can make the conv2d---\n");
+      case kTfLiteBuiltinDepthwiseConv2d:
+        printf("[DEBUG - C]--Hello world! I can make 2D convolution and depth wise 2D convolution---\n");
         return true;
       default:
         return false;
@@ -57,29 +85,36 @@ class DTPU_delegate {
   // Any initialization code needed
   bool Init(TfLiteContext* context,const TfLiteDelegateParams* delegate_params) {
     printf("[DEBUG - C]--- Init of DTPU delegate class --- \n");
-
-    return true;
+    // instantiate buffers and soft reset of accelerator 
+    return Init_p();
   }
   // Any preparation work needed (e.g. allocate buffers)
   TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   printf("[DEBUG - C]--- Prepare of DTPU delegate class --- \n");
-    return (TfLiteStatus)Prepare_p();
+      // initialize, link the buffers
+     return Prepare_p() ? kTfLiteOk: !kTfLiteOk ;
 
   }
   // Actual running of the delegate subgraph.
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
-    return kTfLiteOk;
+    // run inference on the delegate  and data transfer to/from memory/accelerator
+    return Invoke_p()? kTfLiteOk: !kTfLiteOk;
   }
-      // use TfLiteType instead of int
-  TfLiteStatus  SelectDataTypeComputation(int data_type ){
-  printf("[DEBUG - C]--- SelectDataTypeComputation of DTPU delegate class --- \n");
-    return (TfLiteStatus) SelectDataTypeComputation_p(data_type);
-  }
+   
 };
 
 
+   // use TfLiteType instead of int
+  TfLiteStatus  SelectDataTypeComputation(int data_type ){
+  printf("[DEBUG - C]--- SelectDataTypeComputation of DTPU delegate class --- \n");
+    return SelectDataTypeComputation_p(data_type)? kTfLiteOk: !kTfLiteOk;
+  }  
 
+  TfLiteStatus  ResetHardware( ){
+  printf("[DEBUG - C]---  Reset undelaying hardware --- \n");
+    return ResetHardware_p()? kTfLiteOk: !kTfLiteStatus;
+  }  
 
 // Create the TfLiteRegistration for the Kernel node which will replace
 // the subgraph in the main TfLite graph.
@@ -160,8 +195,6 @@ void FreeBufferHandle(TfLiteContext* context, TfLiteDelegate* delegate,
                       TfLiteBufferHandle* handle) {
   printf("[DEBUG - C]--- Do any cleanups---\n");
   FreeBufferHandle_p();
-  
-
 }
 
 
@@ -198,6 +231,8 @@ TfLiteDelegate * tflite_plugin_create_delegate()
   delegate->CopyToBufferHandle = &CopyToBufferHandle;
   // This can be null.
   delegate->FreeBufferHandle = &FreeBufferHandle;
+  // load overlay
+  load_overlay();
 
   printf("[DEBUG - C] ---the delegate method of DTPU is born---\n");
   return delegate;
@@ -215,8 +250,12 @@ destroy_p(delegate);
 """,source_extension=".cpp")
 
 
+#if you want to simply access a global variable you just use its name.
+# However to change its value you need to use the global keyword.
+
 ffibuilder.embedding_init_code("""
 from dtpu_lib import ffi
+from pynq import Overlay
 from pynq import allocate
 from pynq import Xlnk
 ######################################### 
@@ -347,6 +386,15 @@ ACTIVE_FP=1<<0
 ACTIVE_BFP=0x03
 ROUNDING=0x00
 NO_FP=0x00
+WMEM_STARTING_ADDRESS=0 #32 MSB 
+##############################################
+#### accelerator adapter command #############
+##############################################
+CMD_UPDATE_IN_ARDG=0x0
+CMD_UPDATE_OUT_ARG=0x1
+CMD_EXECUTE_STEP=0x2
+CMD_EXECUTE_CONTINUOS=0x4
+CMD_STOP_EXECUTE_CONTINOUS=0x5
 ##############################################
 BASE_ADDRESS_INTC=0x40800000
 ADDRESS_RANGE_INTC=0x10000
@@ -354,22 +402,71 @@ BASE_ADDRESS_DMA_INFIFO=0x40400000
 ADDRESS_RANGE_DMA_INFIFO=0x10000
 BASE_ADDRESS_DMA_WM=0x40410000
 ADDRESS_RANGE_DMA_WM=0x10000
-WMEM_SIZE=0
-INFIFO_SIZE=0
-OUTFIFO_SIZE=0
-DATAWIDTH=0
 accelerator=None
 input_fifo_buffer=None
 output_fifo_buffer=None
-csr_buffer=None
 weight_buffer=None
+csr_buffer=None
+overlay=None
+driver_csr=None
+driver_wm=None
+driver_fifo_in=None
+driver_fifo_out=None
+#####################################
+### DESIGN DEPENDENT DEFINITION #####
+#####################################
+WMEM_SIZE=131072
+INFIFO_SIZE=2048
+OUTFIFO_SIZE=2048
+ROWS=8
+COLUMNS=8
+DATAWIDTH=64
+######################################
+############ LOAD DESIGN #############
+######################################
+@ffi.def_extern()
+def load_overlay():
+  global accelerator 
+  global overlay
+  overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
+  overlay.download() # Explicitly download bitstream to PL
+  if overlay.is_loaded():
+   # Checks if a bitstream is loaded
+   print("[DEBUG- PYTHON] ----overlay is loaded ----")
+  else :
+    print("[DEBUG- PYTHON] ---- overlay is not loaded----")
+    exit(-1)
+  accelerator=overlay.dtpu.axis_accelerator_ada
+  ## soft reset
+  accelerator.write(CTRL,0x0000001)
+  accelerator.write(CTRL,0x0000000)
+  accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights and data
+  accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
+  accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
+  accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
+  accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
+  accelerator.write(OARG0_TDEST,0) # only one output 
+  
+
+@ffi.def_extern()
+def Init_p(): 
+  global accelerator
+  print("[DEBUG - PYTHON ] --- Init p function ---")
+  accelerator.write(CTRL,0x0000001)
+  accelerator.write(CTRL,0x0000000)
+  return True
+
 
 @ffi.def_extern()
 def SelectDataTypeComputation_p(data_type):
+  global csr_buffer
   print("[DEBUG - PYTHON ] ---  SelectDataTypeComputation DTPU class ---")
   # modify the csr buffer 
   if csr_buffer is not None:
-    csr_buffer[ARITHMETIC_PRECISION]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
+    if data_type!=0:
+      csr_buffer[ARITHMETIC_PRECISION]= data_type
+    else:
+      csr_buffer[ARITHMETIC_PRECISION]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
   else:
     print("csr buffer does not exist! create before calling this function")
   print("precision default 8 bit")
@@ -383,28 +480,94 @@ def CopyToBufferHandle_p():
   print("[DEBUG - PYTHON ] --- copying  to  the delegate and buffers ---")
 @ffi.def_extern()
 def FreeBufferHandle_p():
+  global input_fifo_buffer
+  global output_fifo_buffer
+  global csr_buffer
+  global weight_buffer
   print("[DEBUG - PYTHON ] --- freeing buffers ---")
+  input_fifo_buffer.freebuffer()
+  output_fifo_buffer.freebuffer()
+  csr_buffer.freebuffer()
+  weight_buffer.freebuffer()
 
 @ffi.def_extern()
 def Prepare_p():
+  global input_fifo_buffers
+  global output_fifo_buffer
+  global weight_buffer
+  global csr_buffer
+  print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
   #allocate buffers for data transfer
-  input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
-  output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
-  weight_buffer=allocate(shape=(16384,),dtype='u8')
+  input_fifo_buffer = allocate(shape=(INFIFO_SIZE,),dtype='u8')
+  output_fifo_buffer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
+  weight_buffer=allocate(shape=(WMEM_SIZE,),dtype='u8')
   csr_buffer=allocate(shape=(64,),dtype='u8')
   return True
 
 @ffi.def_extern()
 def destroy_p(delegate):
+  global input_fifo_buffer
+  global output_fifo_buffer
+  global csr_buffer
+  global weight_buffer
   print("[DEBUG - PYTHON ] --- destroying the delegate and buffers ---")
-  #input_fifo_buffer.close()
-  #output_fifo_buffer.close()
-  #csr_buffer.close()
-  #weight_buffer.close()
+  input_fifo_buffer.freebuffer()
+  output_fifo_buffer.freebuffer()
+  csr_buffer.freebuffer()
+  weight_buffer.freebuffer()
   if delegate is not None:
     del delegate
 
+@ffi.def_extern()
+def Invoke_p():
+  ################################################
+  ###### program the dma for the csr reg #########
+  ################################################
+  if 'driver_csr' in locals():
+    driver_csr.sendchannel.stop()
+    driver_csr.sendchannel.start()
+  else: 
+    driver_csr=overlay.axi_dma_csr_mem
+  driver_csr.sendchannel.transfer(csr_buffer)
+  driver_csr.sendchannel.wait()
+  ################################################
+  ###### program the dma for the weight ##########
+  ################################################
+  if 'driver_wm' in locals():
+    driver_wm.sendchannel.stop()
+    driver_wm.sendchannel.start()
+  else:
+    driver_wm=overlay.axi_dma_weight_mem
+  driver_wm.sendchannel.transfer(weight_buffer)
+  driver_wm.sendchannel.wait()
+  ######################################################
+  ###### program the dma for the in/out fifos ##########
+  ######################################################
+  if not('driver_fifo_in' in locals()):
+      driver_fifo_in=overlay.axi_dma_infifo
+  driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
+  driver_fifo_in.sendchannel.wait()
+  if not('driver_fifo_out' in locals()):
+    driver_fifo_out=overlay.axi_dma_outfifo
+    driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+  csr_buffer.flush()
+  weight_buffer.flush()
+  input_fifo_buffer.flush()
+  #execute the inference and retrieve the data
+  accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+  while driver_fifo_out.recvchannel.running:
+    pass
+  accelerator.write(STATUS,0x00000003)##clear status
+  print("accelerator done")
+  return True
 
+@ffi.def_extern()
+def ResetHardware_p():
+  global accelerator
+  print("[DEBUG - PYTHON ] --- Reset hardware p function ---")
+  accelerator_ptr.write(CTRL,0x0000001)
+  accelerator_ptr.write(CTRL,0x0000000)
+  return True
 
 """)
 
@@ -433,71 +596,4 @@ aa = ffi.dlopen("./DTPU_delegate.so")
 
 exit()
 
-
-
   
-#def Init(): 
-#	WMEM_SIZE=WMEM_SIZE
-#  #(WMEM_SIZE,INFIFO_SIZE,OUTFIFO_SIZE,DATAWIDTH,accelerator_from_overlay):
-#	INFIFO_SIZE=INFIFO_SIZE
-#	OUTFIFO_SIZE=OUTFIFO_SIZE
-#	DATAWIDTH=DATAWIDTH
-#	accelerator=accelerator_from_overlay 
-#	accelerator.write(CTRL,0x0000001)
-#	accelerator.write(CTRL,0x0000000)
-#
-#	
-#
-#
-#def Invoke():
-#	csr_buffer.flush()
-#	weight_buffer.flush()
-#	input_fifo_buffer.flush()
-#	################################################
-#	###### program the dma for the csr reg #########
-#	################################################
-#	if 'driver_csr' in locals():
-#		driver_csr.sendchannel.stop()
-#		driver_csr.sendchannel.start()
-#	else: 
-#		driver_csr=overlay.axi_dma_csr_mem
-#	driver_csr.sendchannel.transfer(csr_buffer)
-#	driver_csr.sendchannel.wait()
-#	################################################
-#	###### program the dma for the weight ##########
-#	################################################
-#	if 'driver_wm' in locals():
-#		driver_wm.sendchannel.stop()
-#		driver_wm.sendchannel.start()
-#	else:
-#		driver_wm=overlay.axi_dma_weight_mem
-#	driver_wm.sendchannel.transfer(weight_buffer)
-#	driver_wm.sendchannel.wait()
-#	######################################################
-#	###### program the dma for the in/out fifos ##########
-#	######################################################
-#	if not('driver_fifo_in' in locals()):
-#			driver_fifo_in=overlay.axi_dma_infifo
-#	driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
-#	driver_fifo_in.sendchannel.wait()
-#	if not('driver_fifo_out' in locals()):
-#		driver_fifo_out=overlay.axi_dma_outfifo
-#		driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-#	#execute the inference and retrieve the data
-#	CMD_UPDATE_IN_ARDG=0x0
-#	CMD_UPDATE_OUT_ARG=0x1
-#	CMD_EXECUTE_STEP=0x2
-#	CMD_EXECUTE_CONTINUOS=0x4
-#	CMD_STOP_EXECUTE_CONTINOUS=0x5
-#	accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights and data
-#	accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
-#	accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
-#	accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
-#	accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
-#	accelerator.write(OARG0_TDEST,0) # only one output 
-#	accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-#	while driver_fifo_out.recvchannel.running:
-#		pass
-#	accelerator.write(STATUS,0x00000003)##clear status
-#	print("accelerator done")
-#
