@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-08 22:46:35
+//  Last Modified : 2020-05-11 22:50:38
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -27,6 +27,7 @@ module smul
   input [63:0]input_data,
 	input [63:0]weight,
 	output [63:0]res_mac_next,
+  output [63:0] data_input_next_row,
   /////////////////////////////////////////
   ///// CONTROL SIGNALS FOR DSP CHAIN /////
   /////////////////////////////////////////
@@ -232,6 +233,29 @@ FPmul_sc fp_mul_b16(
 
 assign  res_mac_next= {32'd0, z_sc[31:16],16'd0} ;
 `endif
+
+
+
+
+wire [64-1:0]q1;
+wire [64-1:0]q;
+    // delay registers 
+    register  #(.N(64)) delay_reg1 (
+         .clk(clk),
+        .reset(sclr),
+        .test_mode(test_mode),
+        .enable(ce),
+        .d(input_data),
+        .q(q1));
+         
+         register  #(.N(64)) delay_reg2 (
+                 .clk(clk),
+                .reset(sclr),
+                .test_mode(test_mode),
+                .enable(ce),
+                .d(q1),
+                .q(q));   
+ assign data_input_next_row=q;
 
 
 endmodule

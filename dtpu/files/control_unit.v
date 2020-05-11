@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-09 23:57:00
+//  Last Modified : 2020-05-11 21:54:12
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -232,7 +232,8 @@ start_p3:  begin
                             -> save
     */
 
-
+/// TODO TIMING IS CHANGED DUE TO DELAY REGISTER ON SMUL COLUMN
+/// also due to load of weights!!!!! big loop on the request get data!
 
 `ifndef PIPELINE    
 request_data: begin

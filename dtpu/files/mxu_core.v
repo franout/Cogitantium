@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_core.v
 //  Created On    : 2020-04-25 15:19:56
-//  Last Modified : 2020-05-10 12:34:42
+//  Last Modified : 2020-05-11 23:44:05
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -36,16 +36,17 @@ module mxu_core
     y
     );
     // they should be the same if the macm is symmetric
-    localparam integer max_width_columns=(max_data_width)*(K)-1;
-    localparam integer max_width_rows=(max_data_width)*(M)-1;
+    localparam integer max_width_columns=(max_data_width)*(K);
+    localparam integer max_width_rows=(max_data_width)*(M);
+    localparam integer max_width_weight=(max_data_width)*(M)*(K)-1;
     input [`LOG_ALLOWED_PRECISIONS-1:0]data_type; // precision_def.vh
     input clk;
   input reset;
   input enable;
     input test_mode;
-    input [max_width_columns:0]input_data;
-    input [max_width_rows:0]weight;
-    output [max_width_rows:0]y;    
+    input [max_width_columns-1:0]input_data;
+    input [max_width_weight:0]weight;
+    output [max_width_rows-1:0]y;    
     input enable_chain;
     input [1:0] enable_fp_unit;
     // muxes for allowing different precision 
@@ -56,8 +57,8 @@ module mxu_core
    
    wire [max_data_width-1:0] res_mac_next[0:M*K];
    wire [max_data_width-1:0]data_in_next_row[0:(M)*(K)];
+   wire [max_data_width-1:0]data_in_next_row_smul[0:M-1];
    
-        
    
    generate
       for(i = 0; i < M; i = i+1)
@@ -79,17 +80,33 @@ module mxu_core
             );
             `else
               // smul cascade of dsp always on fabric
+                  if(i==0)begin 
                         smul #(.USE_FABRIC("YES")) smul_i (
                             .clk             (clk),
                             .ce              (enable),
                             .sclr            (reset_mac),
-                            .input_data      (input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                            .weight          (weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                            .input_data      (input_data[max_width_columns-(j)*max_data_width-1:max_width_columns-(j+1)*max_data_width]),
+                            .weight          (weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
+                            .data_input_next_row(data_in_next_row_smul[i][max_data_width-1:0]),
                             .res_mac_next(res_mac_next[i*K+j]),
                             .select_precision(data_type),
                             .enable_fp_unit  (enable_fp_unit),
                             .active_chain(enable_chain)
                           );
+                    end else begin 
+                      smul #(.USE_FABRIC("YES")) smul_i (
+                            .clk             (clk),
+                            .ce              (enable),
+                            .sclr            (reset_mac),
+                            .input_data      (data_in_next_row_smul[i-1][max_data_width-1:0]),
+                            .weight          (weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
+                            .data_input_next_row(data_in_next_row_smul[i][max_data_width-1:0]),
+                            .res_mac_next(res_mac_next[i*K+j]),
+                            .select_precision(data_type),
+                            .enable_fp_unit  (enable_fp_unit),
+                            .active_chain(enable_chain)
+                          );
+                    end 
               `endif
 
              end else if ( j==K-1) begin 
@@ -98,24 +115,24 @@ module mxu_core
                         if(i*(M-1)*`DSP_INC+ (j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation
 
                  mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                                .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                                    .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                .data_input(input_data[max_width_columns-(j)*max_data_width-1:max_width_columns-(j+1)*max_data_width]),
+                                    .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
                                      .enable_fp_unit(enable_fp_unit),
                                      .data_type(data_type),
                                      .enable_chain(enable_chain),
-                                     .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                     .res_mac_n(y[max_width_rows-(i)*(max_data_width)-1:max_width_rows-(i+1)*max_data_width]),
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                           end else begin 
                                             
                  mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                                .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                                    .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                .data_input(input_data[max_width_columns-(j)*max_data_width-1:max_width_columns-(j+1)*max_data_width]),
+                                    .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                                      .res_mac_p(res_mac_next[i*K+j-1]),
                                      .data_type(data_type),
                                      .enable_chain(enable_chain),
                                      .enable_fp_unit(enable_fp_unit),
-                                     .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                     .res_mac_n(y[max_width_rows-(i)*(max_data_width)-1:max_width_rows-(i+1)*max_data_width]),
                                      .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
               
                            end //dsp_generation;                                     
@@ -127,23 +144,23 @@ module mxu_core
                   if(i*(M-1)*`DSP_INC+(j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation_2
                             mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                 .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                                .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                                 .res_mac_p(res_mac_next[i*K+j-1]),
                                 .data_type(data_type),
                                 .enable_chain(enable_chain),
                                 .enable_fp_unit(enable_fp_unit),
-                                .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                .res_mac_n(y[max_width_rows-(i)*(max_data_width)-1:max_width_rows-(i+1)*max_data_width]),
                                 .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                     end else begin 
 
                             mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                                                             .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                                                            .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                                            .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                                                             .res_mac_p(res_mac_next[i*K+j-1]),
                                                             .data_type(data_type),
                                                             .enable_chain(enable_chain),
                                                             .enable_fp_unit(enable_fp_unit),
-                                                            .res_mac_n(y[(i+1)*(max_data_width)-1:i*max_data_width]),
+                                                            .res_mac_n(y[max_width_rows-(i)*(max_data_width)-1:max_width_rows-(i+1)*max_data_width]),
                                                             .data_input_next_row(data_in_next_row[i*K+j][max_data_width-1:0]));
                     end // dsp_generation_2
                 end 
@@ -153,8 +170,8 @@ module mxu_core
 
                          if(i*(M-1)*`DSP_INC+(j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation_3
                             mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                               .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                              .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                               .data_input(input_data[max_width_columns-(j)*max_data_width-1:max_width_columns-(j+1)*max_data_width]),
+                              .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                               .res_mac_p(res_mac_next[i*K+j-1]),
                               .enable_fp_unit(enable_fp_unit),
                               .data_type(data_type),
@@ -164,8 +181,8 @@ module mxu_core
                   
                            end else begin 
                               mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
-                               .data_input(input_data[(j+1)*max_data_width-1:j*max_data_width]),
-                              .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                               .data_input(input_data[max_width_columns-(j)*max_data_width-1:max_width_columns-(j+1)*max_data_width]),
+                              .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                               .res_mac_p(res_mac_next[i*K+j-1]),
                               .enable_fp_unit(enable_fp_unit),
                               .data_type(data_type),
@@ -177,7 +194,7 @@ module mxu_core
                      if(i*(M-1)*`DSP_INC+(j-1)*`DSP_INC<MAX_BOARD_DSP) begin: dsp_generation_4
                      mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("NO")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                       .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                       .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                       .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                        .enable_fp_unit(enable_fp_unit),
                        .data_type(data_type),
                         .enable_chain(enable_chain),
@@ -187,7 +204,7 @@ module mxu_core
                      end else begin 
                      mxu_mac #(.bit_width(max_data_width),.USE_FABRIC("YES")) mac_i_j(.ce(enable),.clk(clk),.sclr(reset_mac),
                       .data_input(data_in_next_row[(i-1)*K+j][max_data_width-1:0]),
-                       .weight(weight[(i+1)*(max_data_width)-1:i*max_data_width]),
+                       .weight(weight[i*M*max_data_width+(K-j)*max_data_width-1:i*M*max_data_width+(K-j-1)*max_data_width]),
                        .enable_fp_unit(enable_fp_unit),
                        .data_type(data_type),
                         .enable_chain(enable_chain),

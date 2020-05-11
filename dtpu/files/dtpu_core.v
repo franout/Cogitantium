@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-05-09 17:46:43
+//  Last Modified : 2020-05-11 21:58:36
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -125,7 +125,7 @@ module dtpu_core
     ///************************************///
     //////////////////////////////////////////
             
-      wire [ROWS*DATA_WIDTH_FIFO_OUT-1:0]weight_to_mxu;
+      wire [COLUMNS*ROWS*DATA_WIDTH_FIFO_OUT-1:0]weight_to_mxu;
       wire [COLUMNS*DATA_WIDTH_FIFO_IN-1:0] input_data_to_mxu;
       wire [ROWS*DATA_WIDTH_FIFO_OUT-1:0] output_data_from_mxu;
       wire enable_deskew_ff_i,enable_enskew_ff_i;

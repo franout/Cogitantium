@@ -19,30 +19,35 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+`include "precision_def.vh"
 module tb_kernel_mxu();
         parameter clk_period= 10;
-              reg clk,reset;
-              reg [(4)*(3)-1:0]input_data;
-              reg [(4)*(3)-1:0]weight;
-              reg [(4)*(4)-1:0]input_data4;
-              reg [(4)*(4)-1:0]weight4;
-              reg enable;
-              wire test_mode;
-              wire [4*3-1:0]y;
-              wire [4*4-1:0]y4;
-              integer k;
-    
-    /////////////////////////////////////
-    `define SIMULATION 1
-    `define VIVADO_MAC SIMULATION
-     /////////////////////////////////////
+              logic clk,reset;
+              logic [(64)*(3)-1:0]input_data;
+              logic [(64)*3*(3)-1:0]weight;
+              logic [(64)*(4)-1:0]input_data4;
+              logic [(64)*4*(4)-1:0]weight4;
+              logic enable;
+              logic  test_mode;
+              logic  [64*3-1:0]y;
+              logic  [64*4-1:0]y4;
+              logic [`LOG_ALLOWED_PRECISIONS-1:0]data_type;
+              logic enable_in_ff;
+              logic enable_chain;
+              logic enable_out_ff;
+              logic [1:0]enable_fp_unit;
+                    integer k;
+
      
-        mxu_wrapper #(.M(4),.K(4) , .max_data_width(4)) uut4x4 (
+        mxu_wrapper #(.M(4),.K(4) , .max_data_width(64),.MAX_BOARD_DSP(220)) uut4x4 (
            .data_type(data_type),
            .reset(reset),
            .enable(enable),
             .clk(clk),
+            .enable_fp_unit(enable_fp_unit),
+            .enable_out_ff (enable_out_ff),
+            .enable_in_ff  (enable_in_ff),
+            .enable_chain  (enable_chain),
             .test_mode(test_mode),
             .input_data(input_data4),
             .weight(weight4),
@@ -50,9 +55,13 @@ module tb_kernel_mxu();
          );
           
           
-         mxu_wrapper #(.M(3),.K(3) , .max_data_width(4)) uut3x3 (
+         mxu_wrapper #(.M(3),.K(3) , .max_data_width(64),.MAX_BOARD_DSP(220)) uut3x3 (
                     .data_type(data_type),
                      .clk(clk),
+                      .enable_fp_unit(enable_fp_unit),
+                      .enable_out_ff (enable_out_ff),
+                      .enable_in_ff  (enable_in_ff),
+                      .enable_chain  (enable_chain),
                      .reset(reset),
                      .enable(enable),
                      .test_mode(test_mode),
@@ -74,41 +83,26 @@ module tb_kernel_mxu();
               initial begin 
               enable=1'b0;
               reset=1'b1;
+              data_type=`INT8;
+              enable_in_ff='0;
+              enable_out_ff='0;
+              enable_chain='0;
+              enable_fp_unit='0;
               #clk_period;
               reset=1'b0;
-              input_data=12'hafe;
-              weight=12'hfff;
-              input_data4=16'h8253;
-              weight4=16'h7312;              
+              input_data={3{56'd0,8'hfe}};
+              weight={9{56'd0,8'hff}};
+              input_data4={4{56'd0,8'hca}};
+              weight4={16{56'd0,8'hff}};
               #clk_period;
               enable=1'b1;
+              enable_in_ff='1;
+              enable_out_ff='1;
               #clk_period;
-              for(k=0;k<12;k=k+1) begin 
-              #clk_period;
-              end
-              
-              // first input chaanges delay on second input of 1 cc and on third 1 of 2cc 
-              // the delay of input chian depends from the number of columns 
-               input_data=12'h353;
-               input_data4=16'h1253;
-              #clk_period;
-              input_data=12'h463;
-              input_data4=16'h3253;
-              #clk_period;
-              input_data=12'h564;
-              input_data4=16'hA253;
-              for(k=0;k<6;k=k+1) begin 
+              for(k=0;k<2+3*3*3;k=k+1) begin 
               #clk_period;
               end
-              
-              
-                            
-                            weight=12'h111;
-                            weight4=16'h111;
-                            for(k=0;k<10;k=k+1) begin 
-                                            #clk_period;
-                                            end
-                                             
+              $finish();   
                               
               end 
 

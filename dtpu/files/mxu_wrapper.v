@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : mxu_wrapper.v
 //  Created On    : 2020-04-29 11:08:44
-//  Last Modified : 2020-04-29 11:08:46
+//  Last Modified : 2020-05-11 23:40:38
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -36,18 +36,19 @@ module mxu_wrapper
         y
     );
   localparam integer max_width_columns=(max_data_width)*(K)-1;
-  localparam integer max_width_rows=(max_data_width)*(M)-1;
+  localparam integer max_width_rows=(max_data_width)*(M);
+  localparam integer max_width_weight=(max_data_width)*(M)*(K)-1;
   input clk,reset,enable,test_mode;
   input [`LOG_ALLOWED_PRECISIONS-1:0]data_type; // precision_def.vh
   input [max_width_columns:0]input_data;
-  input [max_width_rows:0]weight;
-  output [max_width_rows:0]y;
+  input [max_width_weight:0]weight;
+  output [max_width_rows-1:0]y;
   input enable_in_ff;
   input enable_out_ff;
   input enable_chain;
   input [1:0] enable_fp_unit;
    
-   wire [max_width_rows:0]y_mxu;
+   wire [max_width_rows-1:0]y_mxu;
    wire [max_width_columns:0]data_input_mxu;
    
            // registers for pipelined inputs 
@@ -82,7 +83,7 @@ module mxu_wrapper
     assign data_input_mxu=synch_input_data[K-1];
       
       
-      wire [max_width_rows:0]synch_output_data[M-1:0];
+      wire [max_width_rows-1:0]synch_output_data[M-1:0];
        // last block of data does not need to be delayed
        assign synch_output_data[0]= y_mxu;
      // registers for pipelined outputs

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : ls_array.v
 //  Created On    : 2020-05-09 23:46:47
-//  Last Modified : 2020-05-09 23:46:48
+//  Last Modified : 2020-05-11 21:58:06
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -43,7 +43,7 @@ input [data_in_mem-1:0]data_from_weight_memory,
 input [data_in_width*ROWS-1:0]data_from_mxu,
 
 output wire [data_in_width*COLUMNS-1:0] data_to_mxu,
-output wire [data_in_width*ROWS-1:0] weight_to_mxu,
+output wire [data_in_width*ROWS*COLUMNS-1:0] weight_to_mxu,
 
 
 output wire [address_leng_wm-1:0]wm_address,
