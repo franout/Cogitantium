@@ -170,36 +170,254 @@ print(evaluate_model(interpreter))
 print(evaluate_model(interpreter_quant))
 
 
-### optimize resnet for vision application 
-import tensorflow_hub as hub
 
-resnet_v2_101 = tf.keras.Sequential([
-	keras.layers.InputLayer(input_shape=(224, 224, 3)),
-	hub.KerasLayer("https://tfhub.dev/google/imagenet/resnet_v2_101/classification/4")
-])
 
-converter = tf.lite.TFLiteConverter.from_keras_model(resnet_v2_101)
+################################
+##### build mobile net v2 ######
+################################
+print("other model already quantazied can be found here! includer mobile net  ---> https://www.tensorflow.org/lite/guide/hosted_models")
 
-# Convert to TF Lite without quantization
 
-tflite_models_dir = pathlib.Path("./model_cache/output/resnet_v2_101")
+##################################
+#### build cnn cifar10  model ####
+##################################
+
+import tensorflow as tf
+
+from tensorflow.keras import datasets, layers, models
+import matplotlib.pyplot as plt
+
+(train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
+
+# Normalize pixel values to be between 0 and 1
+train_images, test_images = train_images / 255.0, test_images / 255.0
+
+#verify data
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer',
+               'dog', 'frog', 'horse', 'ship', 'truck']
+
+plt.figure(figsize=(10,10))
+for i in range(25):
+    plt.subplot(5,5,i+1)
+    plt.xticks([])
+    plt.yticks([])
+    plt.grid(False)
+    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    # The CIFAR labels happen to be arrays, 
+    # which is why you need the extra index
+    plt.xlabel(class_names[train_labels[i][0]])
+
+plt.show()
+
+#create convolutional base
+model = models.Sequential()
+model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+
+# add dense layer on top
+model.add(layers.Flatten())
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(10))
+
+model.summary()
+
+# compile and train 
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+
+history = model.fit(train_images, train_labels, epochs=10, 
+                    validation_data=(test_images, test_labels))
+
+
+# evaluate
+plt.plot(history.history['accuracy'], label='accuracy')
+plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.ylim([0.5, 1])
+plt.legend(loc='lower right')
+
+test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+
+print(test_acc)
+
+
+# quantize 
+import pathlib
+
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+
+
+tflite_models_dir = pathlib.Path("./model_cache/output/cnn")
 tflite_models_dir.mkdir(exist_ok=True, parents=True)
 
-resnet_tflite_file = tflite_models_dir/"resnet_v2_101.tflite"
-resnet_tflite_file.write_bytes(converter.convert())
+
+tflite_model_file = tflite_models_dir/"cnn_model.tflite"
+tflite_model_file.write_bytes(tflite_model)
 
 
-# Convert to TF Lite with quantization
+#To quantize the model on export, set the optimizations flag to optimize for size:
 converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
-resnet_quantized_tflite_file = tflite_models_dir/"resnet_v2_101_quantized.tflite"
-resnet_quantized_tflite_file.write_bytes(converter.convert())
 
 
-#The model size reduces from 171 MB to 43 MB. 
-#The accuracy of this model on imagenet can be evaluated using the 
-#scripts provided for TFLite accuracy measurement.
-#https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/accuracy/ilsvrc
+cifar_train, _ = tf.keras.datasets.cifar10.load_data()
+images = tf.cast(cifar_train[0], tf.float32) / 255.0
+cifar_ds = tf.data.Dataset.from_tensor_slices((images)).batch(1)
+def representative_data_gen():
+  for input_value in cifar_ds.take(100):
+    yield [input_value]
 
-### quantization guide
-# https://www.tensorflow.org/lite/performance/model_optimization
+converter.representative_dataset = representative_data_gen
 
+
+tflite_quant_model = converter.convert()
+
+
+tflite_model_quant_file = tflite_models_dir/"cnn_model_quant.tflite"
+tflite_model_quant_file.write_bytes(tflite_quant_model)
+
+
+## quantize input and output fp32 on int 8
+converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+converter.inference_input_type = tf.uint8
+converter.inference_output_type = tf.uint8
+
+tflite_model_quant_uint8 = converter.convert()
+tflite_model_quant_file_uint8 = tflite_models_dir/"cnnt_model_quant_uint8.tflite"
+
+tflite_model_quant_file_uint8.write_bytes(tflite_model_quant_uint8)
+
+
+
+#####################################
+#### build image classification #####
+#####################################
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+
+#load data
+_URL = 'https://storage.googleapis.com/mledu-datasets/cats_and_dogs_filtered.zip'
+
+path_to_zip = tf.keras.utils.get_file('cats_and_dogs.zip', origin=_URL, extract=True)
+
+PATH = os.path.join(os.path.dirname(path_to_zip), 'cats_and_dogs_filtered')
+train_dir = os.path.join(PATH, 'train')
+validation_dir = os.path.join(PATH, 'validation')
+
+train_cats_dir = os.path.join(train_dir, 'cats')  # directory with our training cat pictures
+train_dogs_dir = os.path.join(train_dir, 'dogs')  # directory with our training dog pictures
+validation_cats_dir = os.path.join(validation_dir, 'cats')  # directory with our validation cat pictures
+validation_dogs_dir = os.path.join(validation_dir, 'dogs')  # directory with our validation dog pictures
+
+num_cats_tr = len(os.listdir(train_cats_dir))
+num_dogs_tr = len(os.listdir(train_dogs_dir))
+
+num_cats_val = len(os.listdir(validation_cats_dir))
+num_dogs_val = len(os.listdir(validation_dogs_dir))
+
+total_train = num_cats_tr + num_dogs_tr
+total_val = num_cats_val + num_dogs_val
+
+print('total training cat images:', num_cats_tr)
+print('total training dog images:', num_dogs_tr)
+
+print('total validation cat images:', num_cats_val)
+print('total validation dog images:', num_dogs_val)
+print("--")
+print("Total training images:", total_train)
+print("Total validation images:", total_val)
+
+batch_size = 128
+epochs = 15
+IMG_HEIGHT = 150
+IMG_WIDTH = 150
+#data preparation
+train_image_generator = ImageDataGenerator(rescale=1./255) # Generator for our training data
+validation_image_generator = ImageDataGenerator(rescale=1./255) # Generator for our validation data
+
+train_data_gen = train_image_generator.flow_from_directory(batch_size=batch_size,
+                                                           directory=train_dir,
+                                                           shuffle=True,
+                                                           target_size=(IMG_HEIGHT, IMG_WIDTH),
+                                                           class_mode='binary')
+val_data_gen = validation_image_generator.flow_from_directory(batch_size=batch_size,
+                                                              directory=validation_dir,
+                                                              target_size=(IMG_HEIGHT, IMG_WIDTH),
+                                                              class_mode='binary')
+sample_training_images, _ = next(train_data_gen)
+
+# This function will plot images in the form of a grid with 1 row and 5 columns where images are placed in each column.
+def plotImages(images_arr):
+    fig, axes = plt.subplots(1, 5, figsize=(20,20))
+    axes = axes.flatten()
+    for img, ax in zip( images_arr, axes):
+        ax.imshow(img)
+        ax.axis('off')
+    plt.tight_layout()
+    plt.show()
+plotImages(sample_training_images[:5])
+
+model = Sequential([
+    Conv2D(16, 3, padding='same', activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH ,3)),
+    MaxPooling2D(),
+    Conv2D(32, 3, padding='same', activation='relu'),
+    MaxPooling2D(),
+    Conv2D(64, 3, padding='same', activation='relu'),
+    MaxPooling2D(),
+    Flatten(),
+    Dense(512, activation='relu'),
+    Dense(1)
+])
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+
+model.summary()
+history = model.fit_generator(
+    train_data_gen,
+    steps_per_epoch=total_train // batch_size,
+    epochs=epochs,
+    validation_data=val_data_gen,
+    validation_steps=total_val // batch_size
+)
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+
+loss=history.history['loss']
+val_loss=history.history['val_loss']
+
+epochs_range = range(epochs)
+
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
+
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
+plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.show()
+
+
+
+
+
+#####################################
+#### build mobile net           #####
+#####################################
