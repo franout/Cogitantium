@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-11 21:54:12
+//  Last Modified : 2020-05-12 12:28:12
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -80,9 +80,9 @@ input wire cs_continue,
 /////// CONTROL OF LS ARRAY ////////////////
 ///////////////////////////////////////////
 (* keep="true" *)output reg enable_load_array, 
-(* keep="true" *)output reg [ROWS:0]read_weight_memory,
-(* keep="true" *)output reg [COLUMNS:0]enable_load_activation_data,
-(* keep="true" *)output reg [COLUMNS:0]enable_store_activation_data,
+(* keep="true" *)output reg [ROWS*COLUMNS-1:0]read_weight_memory,
+(* keep="true" *)output reg [COLUMNS-1:0]enable_load_activation_data,
+(* keep="true" *)output reg [COLUMNS-1:0]enable_store_activation_data,
 (* keep="true" *)output reg enable_cnt,
 (* keep="true" *)output reg ld_max_cnt,
 (* keep="true" *)output reg enable_down_cnt,
@@ -92,7 +92,7 @@ input wire cs_continue,
 (* keep="true" *)output reg ld_weight_page_cnt,
 (* keep="true" *)output reg [ADDRESS_SIZE_CSR-1:0]start_value_wm,
 (* keep="true" *)output reg [$clog2(COLUMNS):0] max_cnt_from_cu,
-(* keep="true" *)output reg [$clog2(ROWS):0]max_down_cnt_from_cu,
+(* keep="true" *)output reg [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu,
 (* keep="true" *)output reg [$clog2(ROWS):0]max_cnt_weight_from_cu,
 
 // debug 

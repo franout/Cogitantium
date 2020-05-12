@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : ls_array.v
 //  Created On    : 2020-05-09 23:46:47
-//  Last Modified : 2020-05-11 21:58:06
+//  Last Modified : 2020-05-12 15:03:18
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -31,7 +31,7 @@ input [`LOG_ALLOWED_PRECISIONS-1:0]data_precision,
 
 input infifo_read,
 input outfifo_write,
-input [ROWS:0]read_weight_memory,
+input [ROWS*COLUMNS-1:0]read_weight_memory,
 
 input [data_in_width-1:0] input_data_from_fifo,
 output wire [data_in_width-1:0]data_to_fifo_out,
@@ -56,10 +56,10 @@ input ld_weight_page_cnt,
 input [address_leng_wm-1:0]start_value_wm,
 
 input [$clog2(COLUMNS):0]max_cnt_from_cu, // it depends on the current bitwidth
-input [$clog2(ROWS):0]max_down_cnt_from_cu,
+input [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu,
 input enable_cnt_weight,
 input ld_max_cnt_weight,
-input [$clog2(ROWS):0]max_cnt_weight_from_cu
+input [$clog2(ROWS*COLUMNS):0]max_cnt_weight_from_cu
 
 
 );
@@ -67,41 +67,29 @@ input [$clog2(ROWS):0]max_cnt_weight_from_cu
 reg [$clog2(COLUMNS):0] counter;
 reg [$clog2(COLUMNS):0] max_cnt;
 
-reg [$clog2(ROWS):0]counter_out;
-reg [$clog2(ROWS):0] max_down_cnt;
+reg [$clog2(ROWS*COLUMNS):0]counter_out;
+reg [$clog2(ROWS*COLUMNS):0] max_down_cnt;
 
 
 wire [data_in_width*COLUMNS-1:0]data_to_select_to_mxu;
 wire  [data_in_width*ROWS-1:0]data_to_save_from_compacter;
-wire [data_in_width*ROWS-1:0]data_weigth_to_select_to_mxu;
+wire [data_in_width*COLUMNS-1:0]data_weigth_to_select_to_mxu[0:ROWS-1];
 
 reg [data_in_width-1:0]activation_data[0:COLUMNS-1] ;
-reg [data_in_width-1:0]weight_data[0:ROWS-1] ;
+reg [data_in_width-1:0]weight_data[0:ROWS*COLUMNS-1] ;
 wire [data_in_width-1:0]data_to_save[0:COLUMNS-1];
 
 reg [address_leng_wm-1:0]address_out;
-reg [$clog2(ROWS):0]counter_weight;
-reg [address_leng_wm-$clog2(ROWS)-1:0]counter_weight_page;
-reg [$clog2(ROWS):0]max_cnt_weight;
+reg [$clog2(ROWS*COLUMNS):0]counter_weight;
+reg [address_leng_wm-$clog2(ROWS*COLUMNS)-1:0]counter_weight_page;
+reg [$clog2(ROWS*COLUMNS):0]max_cnt_weight;
 reg tc_counter_weight;
 
 reg internal_enable_ls_unit_activation_data[0:COLUMNS-1];
-reg internal_enable_ls_unit_weight[0:ROWS-1];
+reg [COLUMNS-1:0]internal_enable_ls_unit_weight[0:ROWS-1];
 
-integer i;
+integer i,j;
 
-
-// initialize only at the beginning 
-//synthesis_off
-/*initial begin 
-for(i=0;i<COLUMNS;i=i+1) begin 
-       activation_data[i]=0;
-end 
-for(i=0;i<ROWS;i=i+1) begin 
-    weight_data[i]=0;
-end
-end*/ 
-// synthesis_on
 //////////////////////////////////////////////////
 ///////        precision decoder           ///////
 ////// for avoiding non needed ff switch  ////////
@@ -122,11 +110,13 @@ case (data_precision)
      end
      //enable for weight ls
      for(i=0;i<ROWS;i=i+1) begin 
-          if(i<ROWS/(data_in_width/8)) begin 
-             internal_enable_ls_unit_weight[i]=1'b1;
+        for(j=0;j<COLUMNS;j=j+1)begin 
+          if(j<COLUMNS/(data_in_width/8)) begin 
+             internal_enable_ls_unit_weight[i][j]=1'b1;
              end else begin 
-             internal_enable_ls_unit_weight[i]=1'b0;
+             internal_enable_ls_unit_weight[i][j]=1'b0;
              end
+          end 
        end 
     end
 `INT16:begin 
@@ -140,11 +130,13 @@ case (data_precision)
      end
      //enable for weight ls
      for(i=0;i<ROWS;i=i+1) begin 
-          if(i<ROWS/(data_in_width/16)) begin 
-             internal_enable_ls_unit_weight[i]=1'b1;
+        for(j=0;j<COLUMNS;j=j+1)begin 
+          if(j<COLUMNS/(data_in_width/16)) begin 
+             internal_enable_ls_unit_weight[i][j]=1'b1;
              end else begin 
-             internal_enable_ls_unit_weight[i]=1'b0;
+             internal_enable_ls_unit_weight[i][j]=1'b0;
              end
+          end 
        end 
      end 
 `INT32:begin 
@@ -157,14 +149,15 @@ case (data_precision)
         end
      end
      //enable for weight ls
-     for(i=0;i<ROWS;i=i+1) begin 
-          if(i<ROWS/(data_in_width/32)) begin 
-             internal_enable_ls_unit_weight[i]=1'b1;
+for(i=0;i<ROWS;i=i+1) begin 
+        for(j=0;j<COLUMNS;j=j+1)begin 
+          if(j<COLUMNS/(data_in_width/32)) begin 
+             internal_enable_ls_unit_weight[i][j]=1'b1;
              end else begin 
-             internal_enable_ls_unit_weight[i]=1'b0;
+             internal_enable_ls_unit_weight[i][j]=1'b0;
              end
+          end 
        end 
-
     end
 `INT64:begin 
         // enable for activation data ls
@@ -176,17 +169,21 @@ case (data_precision)
         end
      end
      //enable for weight ls
-     for(i=0;i<ROWS;i=i+1) begin 
-          if(i<ROWS/(data_in_width/64)) begin 
-             internal_enable_ls_unit_weight[i]=1'b1;
+for(i=0;i<ROWS;i=i+1) begin 
+        for(j=0;j<COLUMNS;j=j+1)begin 
+          if(j<COLUMNS/(data_in_width/64)) begin 
+             internal_enable_ls_unit_weight[i][j]=1'b1;
              end else begin 
-             internal_enable_ls_unit_weight[i]=1'b0;
+             internal_enable_ls_unit_weight[i][j]=1'b0;
              end
+          end 
        end 
     end 
 default: begin 
         for(i=0;i<ROWS;i=i+1) begin 
-        internal_enable_ls_unit_weight[i]=1'b0;          
+          for(j=0;j<COLUMNS;j=j+1) begin 
+        internal_enable_ls_unit_weight[i][j]=1'b0;          
+      end
        end
        for(i=0;i<COLUMNS;i=i+1) begin 
         internal_enable_ls_unit_activation_data[i]=1'b0;         
@@ -195,7 +192,9 @@ default: begin
 endcase
 end else begin 
     for(i=0;i<ROWS;i=i+1) begin 
-        internal_enable_ls_unit_weight[i]=1'b0;          
+     for(j=0;j<COLUMNS;j=j+1) begin 
+        internal_enable_ls_unit_weight[i][j]=1'b0;          
+      end
        end
        for(i=0;i<COLUMNS;i=i+1) begin 
         internal_enable_ls_unit_activation_data[i]=1'b0;         
@@ -226,20 +225,27 @@ end else begin
     if (ld_max_cnt) begin 
     max_cnt<=max_cnt_from_cu;
     end
+
+
+
+
     
-    
-    // downcoutner for data out
+    // counter for weight distribution 
        
        if(enable_down_cnt) begin
-               counter_out<=counter_out+1;
-               if(counter_out==max_down_cnt-1) begin 
-               counter_out<=0;        
+          counter_out<=counter_out+1;
+              if (counter_out==max_down_cnt-1)begin 
+                 counter_out<=0; 
+               end else if(counter_out[$clog2(COLUMNS)-1:0]==max_down_cnt[$clog2(COLUMNS)-1:0]-1) begin  
+                   counter_out[$clog2(COLUMNS*ROWS):$clog2(COLUMNS)]<=counter_out[$clog2(COLUMNS*ROWS):$clog2(COLUMNS)]+ROWS;   // go to next row
+                   counter_out[$clog2(COLUMNS)-1:0]<=0;
                end
            /*end  else begin 
            counter_out<=0;*/
            end
            
            if (ld_max_down_cnt) begin 
+            // first part for the columns counter and upper port for rows
            max_down_cnt<=max_down_cnt_from_cu;
            end
            
@@ -605,20 +611,20 @@ assign data_to_fifo_out= outfifo_write ?  data_to_save[counter] : 64'd0;
 //////////////////////////////
 //////// COLUMNS /////////////
 //////////////////////////////
- genvar j;
+ genvar k,l;
  generate
- for (j=0;j<COLUMNS ;j=j+1)
+ for (k=0;k<COLUMNS ;k=k+1)
   begin: ls_unit_activation_data 
   ls_unit #( .data_width(data_in_width)) ls_unit (
             .clk(clk),
             .reset(reset),
-            .enable(enable_load_array &  internal_enable_ls_unit_activation_data[j]),
-            .load_enable(enable_load_activation_data[j]),
-            .store_enable(enable_store_activation_data[j]),
-            .data_load_input(activation_data[j]),
-            .data_load_output(data_to_select_to_mxu[data_in_width+j*data_in_width-1 : j*data_in_width ]),
-            .data_store_input(data_to_save_from_compacter[data_in_width+j*data_in_width-1 : j*data_in_width ]),
-            .data_store_output(data_to_save[j])
+            .enable(enable_load_array &  internal_enable_ls_unit_activation_data[k]),
+            .load_enable(enable_load_activation_data[k]),
+            .store_enable(enable_store_activation_data[k]),
+            .data_load_input(activation_data[k]),
+            .data_load_output(data_to_select_to_mxu[data_in_width+k*data_in_width-1 : k*data_in_width ]),
+            .data_store_input(data_to_save_from_compacter[data_in_width+k*data_in_width-1 : k*data_in_width ]),
+            .data_store_output(data_to_save[k])
             );
  end 
  endgenerate
@@ -637,15 +643,6 @@ assign data_to_fifo_out= outfifo_write ?  data_to_save[counter] : 64'd0;
 );
 
 
-filter_and_select 
-#( .K(ROWS),
-   .data_width(data_in_width)        
-   )filter_and_select_weight 
-(
- .data_in(data_weigth_to_select_to_mxu),
-.data_out(weight_to_mxu),
-.data_select(data_precision)
-);
 
 //////////////////////////////
 /////////  COMPACTOR   ///////
@@ -660,355 +657,59 @@ compact_and_select #( .K(ROWS),
     );
 
 
-//////////////////////////////
-////////// ROWS //////////////
-//////////////////////////////
+///////////////////////////////////////////////////////
+////////// ROWS - COLUMNS weight matrix  //////////////
+///////////////////////////////////////////////////////
  generate
- for (j=0;j<ROWS ;j=j+1)
-  begin: ls_unit_weights
-ls_unit #( .data_width(data_in_width)) ls_unit_weights (
+  for(l=0;l<ROWS;l=l+1) begin: ls_unit_weights_l
+ for (k=0;k<COLUMNS  ;k=k+1)
+  begin: ls_unit_weights_k
+ls_unit #( .data_width(data_in_width)) ls_unit_weights_l_k (
             .clk(clk),
             .reset(reset),
-            .enable(enable_load_array & internal_enable_ls_unit_weight[j]),
-            .load_enable(read_weight_memory[j]),
+            .enable(enable_load_array & internal_enable_ls_unit_weight[l][k]),
+            .load_enable(read_weight_memory[l+k]),
             .store_enable(),
-            .data_load_input(weight_data[j]),
-            .data_load_output(data_weigth_to_select_to_mxu[data_in_width+j*data_in_width-1 : j*data_in_width ]),
+            .data_load_input(weight_data[l+k]),
+            .data_load_output(data_weigth_to_select_to_mxu[l][(k+1)*data_in_width-1:k*data_in_width]),
             .data_store_input(),
             .data_store_output()
             );
  end 
+
+
+filter_and_select 
+#( .K(COLUMNS),
+   .data_width(data_in_width)        
+   )filter_and_select_weight_i 
+(
+ .data_in(data_weigth_to_select_to_mxu[l]),
+.data_out(weight_to_mxu[(l+1)*COLUMNS*data_in_width-1:l*COLUMNS*data_in_width]),
+.data_select(data_precision)
+);
+
+end 
  endgenerate
  
  
  
-  /// MODIFY FOR MORE THAN 32 COLUMNS
  /////////////////////////////////////////////
  ///////// INV - MUX for weight data /////
  ///////////////////////////////////////////// 
-
  //always_comb weight_data[counter]= read_weight_memory ? data_from_weight_memory : 0;
  always @(read_weight_memory ,counter_out, data_from_weight_memory) begin
- if(read_weight_memory) begin
-        case (counter_out)  
-          0: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==0) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
 
-          end 
-          1: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==1) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
+  for(i=0;i<ROWS;i=i+1)begin 
+    for(j=0;j<COLUMNS;j=j+1)begin
+        if(i+j==counter_out && read_weight_memory[i+j])begin
+              weight_data[i+j]<=data_from_weight_memory;
+        end else begin 
+              weight_data[i+j]<=0;
+        end 
+    end 
+  end
 
-          end 
-          2: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==2) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
 
-          end 
-          3: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==3) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end 
-          4: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==4) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end 
-          5: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==5) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end 
-          6: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==6) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end 
-          7: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==7) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end 
-          8: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==8) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end 
-          9: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==9) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end
-          end 
-          10: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==10) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          11: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==11) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          12: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==12) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-
-          end
-          13: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==13) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          14: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==14) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          15: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==15) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          16: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==16) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          17: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==17) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          18: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==18) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          19: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==19) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          20: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==20) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          21: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==21) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end
-          end 
-          22: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==22) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          23: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==23) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          24: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==24) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end
-          25: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==25) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-        24: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==24) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-         26: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==26) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-          27: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==27) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-          28: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==28) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-          29: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==29) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-          30: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==30) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-          31: begin 
-              for(i=0;i<ROWS;i=i+1) begin 
-                  if(i==31) begin 
-                      weight_data[i]=data_from_weight_memory;
-                  end else begin 
-                    weight_data[i]=0;
-                  end
-                end 
-          end 
-        default: 
-        for(i=0;i<ROWS;i=i+1) begin 
-                weight_data[i]=0;
-                end 
-        endcase
-      
- end  else begin 
-for(i=0;i<ROWS;i=i+1) begin 
-                weight_data[i]=0;
-                end 
- end 
  end 
 
 
@@ -1040,7 +741,7 @@ end else begin
                     end 
             end
 
-            if({counter_weight_page ,counter_weight[$clog2(ROWS)-1:0]}==size_wmemory-1) begin 
+            if({counter_weight_page ,counter_weight[$clog2(ROWS*COLUMNS)-1:0]}==size_wmemory-1) begin 
               counter_weight_page<=0;
               counter_weight<=0;
             end 
@@ -1050,7 +751,7 @@ end else begin
     end
 
     if(ld_weight_page_cnt) begin
-      counter_weight_page<=start_value_wm[address_leng_wm-1:$clog2(ROWS)];
+      counter_weight_page<=start_value_wm[address_leng_wm-1:$clog2(ROWS*COLUMNS)];
     end 
 end 
 /* else begin 
@@ -1063,7 +764,7 @@ end
 
 
 //// compose address request to memory 
-assign wm_address = enable_cnt_weight ? {counter_weight_page ,counter_weight[$clog2(ROWS)-1:0]} : 32'b0 ;
+assign wm_address = enable_cnt_weight ? {counter_weight_page ,counter_weight[$clog2(ROWS*COLUMNS)-1:0]} : 32'b0 ;
 
 
 

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-05-11 21:58:36
+//  Last Modified : 2020-05-12 12:27:11
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -132,9 +132,9 @@ module dtpu_core
       wire [`LOG_ALLOWED_PRECISIONS-1:0] data_precision;
       wire enable_i;     
       wire enable_load_array;
-      wire [ROWS:0]read_weight_memory;
-      wire [COLUMNS:0]enable_load_activation_data;
-      wire [COLUMNS:0]enable_store_activation_data;
+      wire [ROWS*COLUMNS-1:0]read_weight_memory;
+      wire [COLUMNS-1:0]enable_load_activation_data;
+      wire [COLUMNS-1:0]enable_store_activation_data;
       wire enable_cnt;
       wire ld_max_cnt;
       wire enable_down_cnt;
@@ -147,7 +147,7 @@ module dtpu_core
 
       wire [ADDRESS_SIZE_WMEMORY-1:0]start_value_wm;
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
-      wire [$clog2(ROWS):0]max_down_cnt_from_cu;
+      wire [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu;
       wire [$clog2(ROWS):0]max_cnt_weight_from_cu;
       wire reset_i;
       

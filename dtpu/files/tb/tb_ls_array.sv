@@ -28,39 +28,38 @@ parameter data_in_mem=64 ;
 parameter data_in_width=64;
 parameter address_leng_wm=32;
 
-reg clk,resetn,enable,enable_load,enable_store;
-reg [63:0] data_load_input;
-reg [63:0] data_store_input;
-reg [3:0] select_precision;
-reg infifo_read;
-reg outfifo_write;
-reg read_weight_memory;
-reg [data_in_width-1:0] input_data_from_fifo;
-reg enable_cnt;
-reg ld_max_cnt;
-reg enable_down_cnt;
-reg ld_max_down_cnt;
-reg [$clog2(COLUMNS):0]max_cnt_from_cu;
-reg [$clog2(ROWS):0]max_down_cnt_from_cu;
-reg enable_cnt_weight;
-reg ld_max_cnt_weight;
-reg [$clog2(ROWS):0]max_cnt_weight_from_cu;
-reg enable_load_activation_data;
-reg enable_store_activation_data;
-reg [data_in_mem-1:0]data_from_weight_memory;
-reg [data_in_width*ROWS-1:0]data_from_mxu;
-
-
-wire [data_in_width*COLUMNS-1:0] data_to_mxu;
-wire [data_in_width*ROWS-1:0] weight_to_mxu;
-wire [data_in_width-1:0]data_to_fifo_out;
-wire  [address_leng_wm-1:0]wm_address;
-wire [63:0]data_load_output; 
-wire [63:0] data_store_output;
+logic clk,reset,enable,enable_load,enable_store;
+logic [63:0] data_load_input;
+logic [63:0] data_store_input;
+logic [3:0] select_precision;
+logic infifo_read;
+logic outfifo_write;
+logic [data_in_width-1:0] input_data_from_fifo;
+logic enable_cnt;
+logic ld_max_cnt;
+logic enable_down_cnt;
+logic ld_max_down_cnt;
+logic [$clog2(COLUMNS):0]max_cnt_from_cu;
+logic [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu;
+logic enable_cnt_weight;
+logic ld_max_cnt_weight;
+logic [$clog2(ROWS):0]max_cnt_weight_from_cu;
+logic [data_in_mem-1:0]data_from_weight_memory;
+logic [data_in_width*ROWS-1:0]data_from_mxu;
+logic [ROWS*COLUMNS-1:0]read_weight_memory;
+logic [COLUMNS:0]enable_load_activation_data;
+logic [COLUMNS:0]enable_store_activation_data;
+logic [address_leng_wm-1:0]start_value_wm;
+logic [data_in_width*COLUMNS-1:0] data_to_mxu;
+logic [data_in_width*ROWS*COLUMNS-1:0] weight_to_mxu;
+logic [data_in_width-1:0]data_to_fifo_out;
+logic  [address_leng_wm-1:0]wm_address;
+logic [63:0]data_load_output; 
+logic [63:0] data_store_output;
 
 ls_unit #(data_in_width) uut_ls_unit (
  .clk(clk),
- .resetn(resetn),
+ .reset(reset),
  .enable(enable),
  .load_enable(enable_load),
  .store_enable(enable_store),
@@ -75,13 +74,13 @@ ls_unit #(data_in_width) uut_ls_unit (
 ls_array 
 #( .ROWS(ROWS),
     .COLUMNS(COLUMNS),
-    .max_data_width(8),
     .data_in_width(data_in_width),
     .data_in_mem(data_in_mem),
-    .address_leng_wm(address_leng_wm)) uut_ls_array
+    .address_leng_wm(address_leng_wm),
+    .size_wmemory(2048)) uut_ls_array
 ( 
 .clk(clk),
-.reset_n(resetn),
+.reset(reset),
 .enable_load_array(enable),
 .data_precision(select_precision),
 .infifo_read(infifo_read),
@@ -107,13 +106,15 @@ ls_array
 .max_cnt_weight_from_cu(max_cnt_weight_from_cu)
 );
 
+
+
       always begin
          clk = 1'b1;
          #(clk_period/2) 
          clk = 1'b0;
          #(clk_period/2);
       end
-       integer i,OK;
+       integer i,OK,j;
 
 // no mxu in the middle 
     
@@ -124,16 +125,17 @@ ls_array
 
         initial begin
         OK=1;
+        start_value_wm=0;
         enable_load=1'b0;
         enable_store=1'b0;
         $display("global reset");
-        resetn=1'b1;
+        reset=1'b1;
         enable=1'b0;
         #clk_period;
         if(!(data_store_output==64'd0 && data_load_output==64'd0))begin 
           OK=0;
         end
-        resetn=1'b0;
+        reset=1'b0;
         data_load_input=64'hAAAAAAAAAAAAAAAA;
         #clk_period;  
         if(!(data_store_output==64'd0 && data_load_output==64'd0))begin 
@@ -209,9 +211,9 @@ ls_array
         $display("Check of load store unit + filter select and compacter for activation data and output data");
         $display("global reset");
         enable=1'b0;
-        resetn=1'b1;
+        reset=1'b1;
         #clk_period;
-        resetn=1'b0;
+        reset=1'b0;
         #clk_period;
         if( data_to_mxu!=64'd0 || weight_to_mxu!=64'd0 || data_to_fifo_out!=64'd0 || wm_address!=64'd0) begin 
             $display("WRONG INIT");
@@ -223,8 +225,9 @@ ls_array
             OK=0;
         end 
         max_cnt_from_cu=1 ;
-        max_down_cnt_from_cu= 1;
-        max_cnt_weight_from_cu= ROWS;
+        max_down_cnt_from_cu[$clog2(ROWS*COLUMNS):$clog2(COLUMNS)]= ROWS;
+        max_down_cnt_from_cu[$clog2(COLUMNS)-1:0]= 1;
+        max_cnt_weight_from_cu= ROWS*COLUMNS;
         select_precision<=4'h1;
         $display("precision 8bit");    
         enable=1'b1;
@@ -239,13 +242,23 @@ ls_array
         ld_max_cnt_weight=1'b0;
         infifo_read=1'b1 ;
         outfifo_write=1'b0 ;
-        read_weight_memory=1'b1 ;        
+        // first ls unit for every row
+        for(i=0;i<ROWS;i=i+1)begin 
+        read_weight_memory|= (1'b1<<COLUMNS*i);
+        end
         enable_cnt=1'b1 ;
         enable_down_cnt=1'b1 ;
         enable_cnt_weight=1'b1;
         enable_load_activation_data= 1'b1;
         enable_store_activation_data=1'b1 ;
-               
+        // load the entire ls units of weight
+        for(i=0;i<ROWS*COLUMNS;i=i+1)begin 
+            repeat(1)@(posedge clk);
+            $display("printing weight to mxu iteration n %d",i);
+            //for(j=0;j<ROWS;j=j+1)begin 
+                $display("--- %h ---- ",weight_to_mxu);
+            //end
+        end 
         $display("read from fifo and store in the internal register of ls units");
 
         $display("wait for some time for the mxu, check the correct generation of weight address (incremental)");
