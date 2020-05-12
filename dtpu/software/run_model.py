@@ -5,6 +5,7 @@ import tensorflow.lite as tflite
 import numpy as np
 import time
 import os
+import cffi
 
 #########################################################
 ###### NOTE: this code has to be executed on the    #####
@@ -68,10 +69,13 @@ INT32=0x07
 INT64=0x0F
 # precision of fp computation is tuned using the 
 # integer precision 
+NO_FP=0
 ACTIVE_FP=1<<0
 ACTIVE_BFP=0x03
 WMEM_STARTING_ADDRESS=0 #32 MSB 
-DTPU_lib._library.SelectDataTypeComputation( (WMEM_STARTING_ADDRESS<<32)|(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
+ffi=cffi.FFI()
+data_type=ffi.cast("int",(WMEM_STARTING_ADDRESS<<32)|(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
+DTPU_lib._library.SelectDataTypeComputation( data_type.__int__())
 
 # Get input and output tensors.
 input_details = interpreter.get_input_details() #[0]["index"]
