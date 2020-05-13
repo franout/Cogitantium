@@ -59,7 +59,9 @@ tflite_model_file="./"+model_name+".tflite"
 
 # Load TFLite model and allocate tensors.
 interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
+interpreter_no_delegate=tflite.Interpreter(model_path=tflite_model_file)
 interpreter.allocate_tensors()
+interpreter_no_delegate.allocate_tensors()
 
 # precision of accelerator 
 ACTIVATE_CHAIN=0x1
@@ -75,53 +77,49 @@ ACTIVE_BFP=0x03
 WMEM_STARTING_ADDRESS=0 #32 MSB 
 ffi=cffi.FFI()
 data_type=ffi.cast("int",(WMEM_STARTING_ADDRESS<<32)|(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
-DTPU_lib._library.SelectDataTypeComputation( data_type.__int__())
+DTPU_lib._library.SelectDataTypeComputation( int(data_type))
 
 # Get input and output tensors.
 input_details = interpreter.get_input_details() #[0]["index"]
 output_details = interpreter.get_output_details()# [0]["index"]
+
+input_details_no_delegate = interpreter_no_delegate.get_input_details() #[0]["index"]
+output_details_no_delegate = interpreter_no_delegate.get_output_details()# [0]["index"]
+
 
 # Test model on random input data.
 input_shape = input_details[0]['shape']
 input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
 interpreter.set_tensor(input_details[0]['index'], input_data)
 
+
+input_shape_no_delegate = input_details_no_delegate[0]['shape']
+input_data_no_delegate = np.array(np.random.random_sample(input_shape_no_delegate), dtype=np.float32)
+interpreter_no_delegate.set_tensor(input_details_no_delegate[0]['index'], input_data_no_delegate)
+
+
 #start a thread which sample temperature and voltages from xadc
 
 start_time=time.time()
-
-
-try:
-	interpreter.invoke()
-except OverflowError as overror:
-	print(overror)
-except ReferenceError as referror:
-	print(referror)
-except RuntimeError as runerror:
-	print(runerror)
-except OSError as oserror:
-	print(oserror)
-except NotImplementedError as notexisterror:
-	print(notexisterror)
-except NameError as namerror:
-	print(namerror)
-except MemoryError as memerror:
-	print(memerror)
-except KeyError as keyerror:
-	print(keyerror)
-except AttributeError as atterror:
-	print(atterror)
-except ValueError as valerror:
-	print(valerror)
-
-
+interpreter.invoke()
 end_time=time.time()
+
+start_time_no_delegate=time.time()
+interpreter_no_delegate.invoke()
+end_time_no_delegate=time.time()
+
 # The function `get_tensor()` returns a copy of the tensor data.
 # Use `tensor()` in order to get a pointer to the tensor.
+print("output data  with delegate")
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print(output_data)
-print("Execution time on cpu: ", end_time- start_time)
+print("output data without the delegate")
+output_data_no_delegate = interpreter_no_delegate.get_tensor(output_details_no_delegate[0]['index'])
+print(output_data_no_delegate)
 
+
+print("Execution time on cpu: ", end_time_no_delegate- start_time_no_delegate)
+print("Execution time on cpu and accelerator: ", end_time- start_time)
 
 exit();
 

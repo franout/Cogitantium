@@ -12,11 +12,12 @@ bool CopyFromBufferHandle_p(void);
 bool CopyToBufferHandle_p(void);
 void FreeBufferHandle_p(void);
 bool SelectDataTypeComputation_p(int);
-bool Prepare_p(void);
-bool Init_p(void );
-bool Invoke_p(void);
+bool Init_p(int ,int,int);
+bool Prepare_p(int,int ,int);
+bool Invoke_p(int *,int,int*,int);
 void  load_overlay(void);
 bool ResetHardware_p(void);
+void push_weight_to_heap(int *,int *,int);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  *  );
@@ -35,12 +36,12 @@ static bool CopyFromBufferHandle_p(void);
 static bool CopyToBufferHandle_p(void); 
 static void FreeBufferHandle_p(void);
 static bool SelectDataTypeComputation_p(int);
-static bool Prepare_p(void);
-static bool Init_p(void );
-static bool Invoke_p(void);
+static bool Init_p(int,int,int );
+static bool Prepare_p(int, int,int );
+static bool Invoke_p(int *,int,int*,int);
 static void  load_overlay(void);
 static bool ResetHardware_p(void);
-
+static void push_weight_to_heap(int *,int *,int);
 
 /*
 possible operations 
@@ -86,13 +87,25 @@ class DTPU_delegate {
   bool Init(TfLiteContext* context,const TfLiteDelegateParams* delegate_params) {
     printf("[DEBUG - C]--- Init of DTPU delegate class --- \n");
     // instantiate buffers and soft reset of accelerator 
-    return Init_p();
+    return Init_p(context->tensors_size,delegate_params->input_tensors->size ,delegate_params->output_tensors->size);
   }
   // Any preparation work needed (e.g. allocate buffers)
   TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   printf("[DEBUG - C]--- Prepare of DTPU delegate class --- \n");
       // initialize, link the buffers accordint to the size of node data
-      if(Prepare_p()){
+// kTfLiteMmapRo  aka weights
+    int i;
+    int num_weight_tensor=0;
+    TfLiteTensor tmp;
+    for(i=0;i<context->tensors_size;i++){
+        tmp=context->tensors[i];
+      if(tmp.allocation_type==kTfLiteMmapRo){
+      printf("[DEBUG -C]---found a tensor weight----\n");
+      push_weight_to_heap(tmp.allocation,tmp.dims->data,tmp.dims->size);
+      num_weight_tensor++;
+      }
+    }
+      if(Prepare_p(node->inputs->size,node->outputs->size,num_weight_tensor)){
       return kTfLiteOk;
       }
      return kTfLiteError ;
@@ -102,7 +115,7 @@ class DTPU_delegate {
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
     // run inference on the delegate  and data transfer to/from memory/accelerator
-    if(Invoke_p()){
+    if(Invoke_p(node->inputs->data,node->inputs->size,node->outputs->data,node->outputs->size)){
       return kTfLiteOk;
       }
      return kTfLiteError ;
@@ -442,6 +455,11 @@ OUTFIFO_SIZE=2048
 ROWS=8
 COLUMNS=8
 DATAWIDTH=64
+curr_data_precision=INT8
+size_tot=0
+input_size=0
+output_size=0
+num_weight=0
 ######################################
 ############ LOAD DESIGN #############
 ######################################
@@ -467,20 +485,31 @@ def load_overlay():
   accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
   accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
   accelerator.write(OARG0_TDEST,0) # only one output 
-  
 
 @ffi.def_extern()
-def Init_p(): 
+def Init_p(tot_tensors,input_tens_size,output_tens_size): 
   global accelerator
-  print("[DEBUG - PYTHON ] --- Init p function ---")
+  global overlay
+  global size_tot
+  global input_size
+  global output_size
+  print("[DEBUG - PYTHON] --- Init p function ---")
+  overlay.reset()
   accelerator.write(CTRL,0x0000001)
   accelerator.write(CTRL,0x0000000)
+  size_tot=tot_tensors
+  print("[DEBUG-PYTHON]--- total tensors",size_tot,"---")
+  input_size=input_tens_size
+  print("[DEBUG-PYTHON]--- int tensors",input_size,"---")
+  output_size=output_tens_size
+  print("[DEBUG-PYTHON]--- out tensors",output_tens_size,"---")
   return True
 
 
 @ffi.def_extern()
 def SelectDataTypeComputation_p(data_type):
   global csr_buffer
+  global curr_data_precision
   print("[DEBUG - PYTHON ] ---  SelectDataTypeComputation DTPU class ---")
   # modify the csr buffer 
   if csr_buffer is not None:
@@ -488,9 +517,18 @@ def SelectDataTypeComputation_p(data_type):
       csr_buffer[ARITHMETIC_PRECISION]= data_type
     else:
       csr_buffer[ARITHMETIC_PRECISION]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
+      curr_data_precision=INT8
+      print("[DEBUG-PYTHON]----precision default 8 bit----")
   else:
-    print("csr buffer does not exist! create before calling this function")
-  print("precision default 8 bit")
+    print("[DEBUG-PYTHON]----csr buffer does not exist! create before calling this function----")
+  csr_buffer.flush()
+  ################################################
+  ###### program the dma for the csr reg #########
+  ################################################
+  print("[DEBUG-PYTHON]--- transfering csr buffer ----")
+  driver_csr.sendchannel.transfer(csr_buffer)
+  driver_csr.sendchannel.wait()
+  
 
 @ffi.def_extern()
 def CopyFromBufferHandle_p():
@@ -520,9 +558,13 @@ def FreeBufferHandle_p():
   del driver_wm
   del driver_fifo_in
   del driver_fifo_out
+@ffi.def_extern()
+def push_weight_to_heap(tensor,size,dim_size):
+  #push the tensor to the heap for handling their transfefr in the Prepare_p
+  
 
 @ffi.def_extern()
-def Prepare_p():
+def Prepare_p(input_size,output_size,weight_num):
   global input_fifo_buffer
   global output_fifo_buffer
   global weight_buffer
@@ -532,8 +574,11 @@ def Prepare_p():
   global driver_csr
   global driver_fifo_in
   global driver_fifo_out
+  global num_weight
   print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
+  print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   #allocate buffers for data transfer
+  num_weight=weight_num
   input_fifo_buffer = allocate(shape=(INFIFO_SIZE,),dtype='u8')
   output_fifo_buffer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   weight_buffer=allocate(shape=(WMEM_SIZE,),dtype='u8')
@@ -542,6 +587,22 @@ def Prepare_p():
   driver_csr=overlay.axi_dma_csr_mem
   driver_fifo_in=overlay.axi_dma_infifo
   driver_fifo_out=overlay.axi_dma_outfifo
+  #######################################################################
+  ########### populate buffers pack depending on the precision  #########
+  #######################################################################
+  #get all tensors from the heap 
+  for i in range(num_weight):
+    weight_buffer=0
+  ################################
+  ###### transferring data #######
+  ################################
+  weight_buffer.flush()
+  ################################################
+  ###### program the dma for the weight ##########
+  ################################################
+  print("[DEBUG-PYTHON]--- transfering weight buffer ----")
+  driver_wm.sendchannel.transfer(weight_buffer)
+  driver_wm.sendchannel.wait()
   return True
 
 @ffi.def_extern()
@@ -559,7 +620,7 @@ def destroy_p(delegate):
     del delegate
 
 @ffi.def_extern()
-def Invoke_p():
+def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   global driver_csr
   global driver_wm
   global driver_fifo_in
@@ -569,21 +630,12 @@ def Invoke_p():
   global input_fifo_buffer
   global output_fifo_buffer
   global accelerator
-  csr_buffer.flush()
-  weight_buffer.flush()
+  #######################################################################
+  ########### populate buffers pack depending on the precision  #########
+  #######################################################################
+  for i in range(in_data_size):
+    input_fifo_buffer=0
   input_fifo_buffer.flush()
-  ################################################
-  ###### program the dma for the csr reg #########
-  ################################################
-  print("[DEBUG-PYTHON]--- transfering csr buffer ----")
-  driver_csr.sendchannel.transfer(csr_buffer)
-  driver_csr.sendchannel.wait()
-  ################################################
-  ###### program the dma for the weight ##########
-  ################################################
-  print("[DEBUG-PYTHON]--- transfering weight buffer ----")
-  driver_wm.sendchannel.transfer(weight_buffer)
-  driver_wm.sendchannel.wait()
   ######################################################
   ###### program the dma for the in/out fifos ##########
   ######################################################   
@@ -591,12 +643,18 @@ def Invoke_p():
   driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+  #TODO handling if a tensors are bigger than mxu  wrapp the below code in a for loop with refresginh (and relative flushing) of input and weight buffer
   #execute the inference and retrieve the data
   accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
   while driver_fifo_out.recvchannel.running:
     pass
   accelerator.write(STATUS,0x00000003)##clear status
   print("[DEBUG -PYTHON] ---- accelerator done ----")
+  ################################################################################################
+  ####### unpack the output buffer depending on the precision and give  it back to C code ########
+  ################################################################################################
+  for i in range(out_data_size):
+    out_data[i]=output_fifo_buffer
   return True
 
 @ffi.def_extern()
@@ -634,6 +692,6 @@ aa = ffi.dlopen("./DTPU_delegate.so")
 
 
 
+
 exit()
 
-  
