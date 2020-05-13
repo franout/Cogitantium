@@ -17,7 +17,7 @@ bool Prepare_p(int,int ,int);
 bool Invoke_p(int *,int,int*,int);
 void  load_overlay(void);
 bool ResetHardware_p(void);
-void push_weight_to_heap(int *,int *,int);
+void push_weight_to_heap( void  *,int *,int);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  *  );
@@ -41,7 +41,7 @@ static bool Prepare_p(int, int,int );
 static bool Invoke_p(int *,int,int*,int);
 static void  load_overlay(void);
 static bool ResetHardware_p(void);
-static void push_weight_to_heap(int *,int *,int);
+static void push_weight_to_heap( void  *,int *,int);
 
 /*
 possible operations 
@@ -101,8 +101,44 @@ class DTPU_delegate {
         tmp=context->tensors[i];
       if(tmp.allocation_type==kTfLiteMmapRo){
       printf("[DEBUG -C]---found a tensor weight----\n");
-      push_weight_to_heap(tmp.allocation,tmp.dims->data,tmp.dims->size);
-      num_weight_tensor++;
+        switch (tmp.type) {
+          case kTfLiteFloat32 :
+                  printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
+                //  push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
+          case kTfLiteInt32 :
+                  printf("[DEBUG-C]---- kTfLiteInt32 ------\n");
+              //  push_weight_to_heap(tmp.data.i32,tmp.dims->data,tmp.dims->size);
+          case kTfLiteUInt8 :
+                            printf("[DEBUG-C]---- kTfLiteUint8 ------\n");
+              push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
+              num_weight_tensor++;
+          case kTfLiteInt64 :
+                printf("[DEBUG-C]---- kTfLiteInt64------\n");
+                //push_weight_to_heap(tmp.data.i64,tmp.dims->data,tmp.dims->size);
+          case kTfLiteString :
+                  printf("[DEBUG-C]---- kTfLiteString ------\n");
+                  //push_weight_to_heap(tmp.data.raw,tmp.dims->data,tmp.dims->size);
+          case kTfLiteBool :
+                            printf("[DEBUG-C]---- kTfLiteBool ------\n");
+                //  push_weight_to_heap(tmp.data.b,tmp.dims->data,tmp.dims->size);
+          case kTfLiteInt16 :
+                    printf("[DEBUG-C]---- kTfLiteInt16 ------\n");
+                  //push_weight_to_heap(tmp.data.i16,tmp.dims->data,tmp.dims->size);
+          case kTfLiteComplex64 :
+                            printf("[DEBUG-C]---- kTfLiteComplex64 ------\n");
+                //  push_weight_to_heap(tmp.data.c64,tmp.dims->data,tmp.dims->size);
+          case kTfLiteInt8 :
+                      printf("[DEBUG-C]---- kTfLiteInt8 ------\n");
+                    push_weight_to_heap(tmp.data.int8,tmp.dims->data,tmp.dims->size);
+                    num_weight_tensor++;
+          case kTfLiteFloat16 :
+            printf("[DEBUG-C]---- kTfLiteF16 ------\n");
+              //push_weight_to_heap(tmp.data.f16,tmp.dims->data,tmp.dims->size);
+          default:  
+            printf("[DEBUG -C]---- error no type for the weight ----\n");
+        }
+      
+      
       }
     }
       if(Prepare_p(node->inputs->size,node->outputs->size,num_weight_tensor)){
@@ -135,7 +171,7 @@ class DTPU_delegate {
   }  
 
   TfLiteStatus  ResetHardware( ){
-  printf("[DEBUG - C]---  Reset undelaying hardware --- \n");
+  printf("[DEBUG - C]---  Reset underlaying hardware --- \n");
   if(ResetHardware_p()){
       return kTfLiteOk;
       }
@@ -292,6 +328,7 @@ from pynq import allocate
 from pynq import MMIO
 from pynq import Xlnk
 from pynq.lib import dma
+import numpy as np
 ######################################### 
 ############ MEMORY MAP #################
 #########################################
@@ -460,6 +497,14 @@ size_tot=0
 input_size=0
 output_size=0
 num_weight=0
+global_iteration=0
+global_iteration_shift_wm=[]
+tensors=[]
+class Tensor:
+  def __init__(self,data, tot_dim,size_l):
+    self.tot_dim=tot_dim
+    self.data=data
+    self.size_l=size_l
 ######################################
 ############ LOAD DESIGN #############
 ######################################
@@ -515,6 +560,8 @@ def SelectDataTypeComputation_p(data_type):
   if csr_buffer is not None:
     if data_type!=0:
       csr_buffer[ARITHMETIC_PRECISION]= data_type
+      if ((data_type)&0x0000ff)==INT8:
+        curr_data_precision=8
     else:
       csr_buffer[ARITHMETIC_PRECISION]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
       curr_data_precision=INT8
@@ -560,8 +607,20 @@ def FreeBufferHandle_p():
   del driver_fifo_out
 @ffi.def_extern()
 def push_weight_to_heap(tensor,size,dim_size):
+  global tensors
   #push the tensor to the heap for handling their transfefr in the Prepare_p
-  
+  tot_size=1
+  tensor_i=ffi.cast("int *",tensor)
+  size_i=size
+  size_l=[]
+  data_p=[]
+  for i in range(dim_size):
+    size_l.append(size[i])
+    tot_size+=size[i]
+  print(tot_size-1)
+  for i in range (tot_size):
+    data_p.append(tensor_i[i])
+  tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
 def Prepare_p(input_size,output_size,weight_num):
@@ -575,6 +634,10 @@ def Prepare_p(input_size,output_size,weight_num):
   global driver_fifo_in
   global driver_fifo_out
   global num_weight
+  global global_iteration
+  global global_iteration_shift_wm
+  global curr_data_precision
+  global tensors
   print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
   print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   #allocate buffers for data transfer
@@ -590,9 +653,25 @@ def Prepare_p(input_size,output_size,weight_num):
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
-  #get all tensors from the heap 
+  #get all tensors from the heap they will always be of 2 dims
+  index=0
+  iter=0
   for i in range(num_weight):
-    weight_buffer=0
+      tmp=tensors[i]
+      shift=0
+      for j in range (tmp.tot_dim):
+        if(shift<int(64/curr_data_precision)):
+          weight_buffer[index]|=np.uint8(tmp.data[j]<<(np.uint8(shift*curr_data_precision)))
+          shift=shift+1
+        else:
+          index=index+1
+          shift=0
+          weight_buffer[index]|=np.uint8(tmp.data[j]<<(np.uint8(shift*curr_data_precision)))
+        if index>=ROWS:
+          iter=iter+1
+          global_iteration_shift_wm.append(index)
+  # calculate number of runs depending on the size of weight tensor
+  global_iteration=iter
   ################################
   ###### transferring data #######
   ################################
@@ -630,11 +709,29 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   global input_fifo_buffer
   global output_fifo_buffer
   global accelerator
+  global global_iteration
+  global global_iteration_shift_wm
+  global curr_data_precision
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
+  tmp=[]
   for i in range(in_data_size):
-    input_fifo_buffer=0
+    tmp.append(int(in_data[i]))
+  index=0
+  shift=0
+  iter=int(in_data_size/(INFIFO_SIZE*(64/curr_data_precision)))
+  iter_index=[]
+  for j in range (in_data_size):
+    if(shift<int(64/curr_data_precision)):
+      input_fifo_buffer[index]|=np.uint8(tmp[j]<<(np.uint8(shift*curr_data_precision)))
+      shift=shift+1
+    else:
+      index=index+1
+      shift=0
+      input_fifo_buffer[index]|=np.uint8(tmp[j]<<(np.uint8(shift*curr_data_precision)))
+    if(index>=INFIFO_SIZE):
+      break
   input_fifo_buffer.flush()
   ######################################################
   ###### program the dma for the in/out fifos ##########
@@ -643,18 +740,42 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-  #TODO handling if a tensors are bigger than mxu  wrapp the below code in a for loop with refresginh (and relative flushing) of input and weight buffer
-  #execute the inference and retrieve the data
-  accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-  while driver_fifo_out.recvchannel.running:
-    pass
+
+  for i in range (global_iteration):
+    # modify inital starting value of weight 
+    #prev=np.uint64(csr_buffer[ARITHMETIC_PRECISION] & 0x00000000FFFFFFFF)
+    csr_buffer[ARITHMETIC_PRECISION]=np.uint64(((np.uint32(global_iteration_shift_wm[i] <<32)) | (np.uint32(csr_buffer[ARITHMETIC_PRECISION] &0xfffffffff)))
+    csr_buffer.flush()
+    for j in range(iter):
+      #execute the inference and retrieve the data
+      accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
+      while driver_fifo_out.recvchannel.running:
+        pass
+      for k in range(INFIFO_SIZE):
+        input_fifo_buffer[i]=output_fifo_buffer[i]
+      ## copy the rest of input 
+      index=0
+      shift=0
+      for k in range (in_data_size-j*INFIFO_SIZE):
+        if(shift<int(64/curr_data_precision)):
+          input_fifo_buffer[index]|=np.uint8(tmp[k+j*INFIFO_SIZE]<<(np.uint8(shift*curr_data_precision)))
+          shift=shift+1
+        else:
+          index=index+1
+          shift=0
+          input_fifo_buffer[index]|=np.uint8(tmp[k+j*INFIFO_SIZE]<<(np.uint8(shift*curr_data_precision)))
+        if(k>=INFIFO_SIZE):
+          break
+      input_fifo_buffer.flush()
+    for k in range(INFIFO_SIZE):
+        input_fifo_buffer[i]=output_fifo_buffer[i]
   accelerator.write(STATUS,0x00000003)##clear status
   print("[DEBUG -PYTHON] ---- accelerator done ----")
   ################################################################################################
   ####### unpack the output buffer depending on the precision and give  it back to C code ########
   ################################################################################################
   for i in range(out_data_size):
-    out_data[i]=output_fifo_buffer
+    out_data[i]=output_fifo_buffer[i]
   return True
 
 @ffi.def_extern()
