@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-05-12 12:27:11
+//  Last Modified : 2020-05-14 19:16:01
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -133,12 +133,10 @@ module dtpu_core
       wire enable_i;     
       wire enable_load_array;
       wire [ROWS*COLUMNS-1:0]read_weight_memory;
-      wire [COLUMNS-1:0]enable_load_activation_data;
-      wire [COLUMNS-1:0]enable_store_activation_data;
+      wire [COLUMNS:0]enable_load_activation_data;
+      wire [COLUMNS:0]enable_store_activation_data;
       wire enable_cnt;
       wire ld_max_cnt;
-      wire enable_down_cnt;
-      wire ld_max_down_cnt;
       wire enable_cnt_weight;
       wire ld_max_cnt_weight;
       wire enable_chain;
@@ -147,8 +145,7 @@ module dtpu_core
 
       wire [ADDRESS_SIZE_WMEMORY-1:0]start_value_wm;
       wire [$clog2(COLUMNS):0]max_cnt_from_cu;
-      wire [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu;
-      wire [$clog2(ROWS):0]max_cnt_weight_from_cu;
+      wire [$clog2(ROWS*COLUMNS):0]max_cnt_weight_from_cu;
       wire reset_i;
       
       assign d_out=data_precision;
@@ -223,14 +220,11 @@ module dtpu_core
         .enable_store_activation_data(enable_store_activation_data),
         .enable_cnt(enable_cnt),
         .ld_max_cnt(ld_max_cnt),
-        .enable_down_cnt(enable_down_cnt),
-        .ld_max_down_cnt(ld_max_down_cnt),
         .enable_cnt_weight(enable_cnt_weight),
         .ld_max_cnt_weight(ld_max_cnt_weight),
         .ld_weight_page_cnt(ld_weight_page_cnt),
         .start_value_wm(start_value_wm),
         .max_cnt_from_cu(max_cnt_from_cu), // it depends on the current bitwidt [$clog2(COLUMNS):0]
-        .max_down_cnt_from_cu(max_down_cnt_from_cu), //[$clog2(ROWS):0]
         .max_cnt_weight_from_cu(max_cnt_weight_from_cu) //[$clog2(ROWS):0]
 
            );
@@ -267,14 +261,11 @@ module dtpu_core
   .enable_store_activation_data(enable_store_activation_data),
   .enable_cnt(enable_cnt),
   .ld_max_cnt(ld_max_cnt),
-  .enable_down_cnt(enable_down_cnt),
-  .ld_max_down_cnt(ld_max_down_cnt),
   .enable_cnt_weight(enable_cnt_weight),
   .ld_max_cnt_weight(ld_max_cnt_weight),
   .ld_weight_page_cnt(ld_weight_page_cnt),
   .start_value_wm(start_value_wm),
   .max_cnt_from_cu(max_cnt_from_cu), // it depends on the current bitwidt [$clog2(COLUMNS):0]
-  .max_down_cnt_from_cu(max_down_cnt_from_cu), //[$clog2(ROWS):0]
   .max_cnt_weight_from_cu(max_cnt_weight_from_cu) //[$clog2(ROWS):0]
   );
 

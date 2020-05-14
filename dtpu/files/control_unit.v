@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-12 12:28:12
+//  Last Modified : 2020-05-14 19:14:07
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -81,19 +81,16 @@ input wire cs_continue,
 ///////////////////////////////////////////
 (* keep="true" *)output reg enable_load_array, 
 (* keep="true" *)output reg [ROWS*COLUMNS-1:0]read_weight_memory,
-(* keep="true" *)output reg [COLUMNS-1:0]enable_load_activation_data,
-(* keep="true" *)output reg [COLUMNS-1:0]enable_store_activation_data,
+(* keep="true" *)output reg [COLUMNS:0]enable_load_activation_data,
+(* keep="true" *)output reg [COLUMNS:0]enable_store_activation_data,
 (* keep="true" *)output reg enable_cnt,
 (* keep="true" *)output reg ld_max_cnt,
-(* keep="true" *)output reg enable_down_cnt,
-(* keep="true" *)output reg ld_max_down_cnt,
 (* keep="true" *)output reg enable_cnt_weight,
 (* keep="true" *)output reg ld_max_cnt_weight,
 (* keep="true" *)output reg ld_weight_page_cnt,
 (* keep="true" *)output reg [ADDRESS_SIZE_CSR-1:0]start_value_wm,
 (* keep="true" *)output reg [$clog2(COLUMNS):0] max_cnt_from_cu,
-(* keep="true" *)output reg [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu,
-(* keep="true" *)output reg [$clog2(ROWS):0]max_cnt_weight_from_cu,
+(* keep="true" *)output reg [$clog2(ROWS*COLUMNS):0]max_cnt_weight_from_cu,
 
 // debug 
 output wire [3:0]state_out
@@ -139,10 +136,8 @@ enable_load_activation_data<=0;
 enable_store_activation_data<=0;
 enable_cnt<=0;
 enable_cnt_weight<=0;
-enable_down_cnt<=0;
 
 ld_max_cnt<=0;
-ld_max_down_cnt<=0;
 ld_max_cnt_weight<=0;
 
 ld_weight_page_cnt<=0;
@@ -242,7 +237,6 @@ request_data: begin
             infifo_read<=1'b1;
             // load counter of ls array 
             ld_max_cnt<=1'b1;
-            ld_max_down_cnt<=1'b1;
             ld_max_cnt_weight<=1'b1;
 
             enable_load_array<=1'b1;
@@ -254,7 +248,6 @@ request_data: begin
 
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b1;
-            enable_down_cnt<=1'b0;
 
             //advance  computation 
             enable_mxu<=1'b1;
@@ -272,8 +265,6 @@ get_data: begin
             enable_load_activation_data<= 0;
             enable_store_activation_data<=0;
 
-            enable_down_cnt<=1'b1;
-                
             //advance  computation 
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
@@ -296,7 +287,6 @@ compute: begin
             enable_store_activation_data<=0;
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b0; // it should be active and also read weight memory and wm_ce
-            enable_down_cnt<=1'b1;
 
             counter_compute<=counter_compute+1;
             enable_mxu<=1'b1;
@@ -321,7 +311,6 @@ save_to_fifo: begin
                         
             enable_cnt<=1'b1;
             enable_cnt_weight<=1'b0;
-            enable_down_cnt<=1'b1;
 
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
@@ -371,27 +360,22 @@ always @(csr_ce,data_precision) begin
             case(data_precision)
                 `INT8: begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/8);
-                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/8);
                     max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/8);
                     end 
                 `INT16: begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/16);
-                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/16);
                     max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/16);
                     end
                 `INT32: begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/32);
-                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/32);
                     max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/32);
                     end
                 `INT64:begin 
                     max_cnt_from_cu=COLUMNS/(DATA_WIDTH_FIFO_IN/64);
-                    max_down_cnt_from_cu= COLUMNS/(DATA_WIDTH_FIFO_IN/64);
                     max_cnt_weight_from_cu= ROWS/(DATA_WIDTH_FIFO_IN/64);
                     end
                 default: begin 
             max_cnt_from_cu=0;
-            max_down_cnt_from_cu=0;
             max_cnt_weight_from_cu=0;
             end
             endcase // data_precision
