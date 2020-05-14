@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : ls_array.v
 //  Created On    : 2020-05-09 23:46:47
-//  Last Modified : 2020-05-14 18:41:59
+//  Last Modified : 2020-05-14 22:52:35
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -232,7 +232,7 @@ end
 generate
 for(l=0;l<COLUMNS;l=l+1) begin
     assign activation_data[l]= infifo_read &&  enable_load_activation_data[l] ? input_data_from_fifo : 0;
-end 
+      end 
 endgenerate
 
 ///////////////////////////////////////
@@ -293,7 +293,8 @@ compact_and_select #( .K(ROWS),
 ////////// ROWS - COLUMNS weight matrix  //////////////
 ///////////////////////////////////////////////////////
  generate
-  for(l=0;l<ROWS;l=l+1) begin: ls_unit_weights_l
+  for(l=0;l<ROWS;l=l+1)
+   begin: ls_unit_weights_l
  for (k=0;k<COLUMNS  ;k=k+1)
   begin: ls_unit_weights_k
 ls_unit #( .data_width(data_in_width)) ls_unit_weights_l_k (
@@ -313,7 +314,7 @@ ls_unit #( .data_width(data_in_width)) ls_unit_weights_l_k (
 filter_and_select 
 #( .K(COLUMNS),
    .data_width(data_in_width)        
-   )filter_and_select_weight_i 
+   )filter_and_select_weight_l
 (
  .data_in(data_weigth_to_select_to_mxu[l]),
 .data_out(weight_to_mxu[(l+1)*COLUMNS*data_in_width-1:l*COLUMNS*data_in_width]),

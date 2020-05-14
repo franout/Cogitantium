@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-09 23:33:02
+//  Last Modified : 2020-05-14 22:46:07
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -285,9 +285,9 @@ if(csr_ce || csr_ce_16x16) begin
   end 
 end
 // fake memory weight
-always @(posedge(wm_clk) or posedge(wm_clk_16x16)) begin 
-  if(wm_ce || wm_ce_16x16) begin
-    case (wm_address || wm_address_16x16)
+always @(posedge(wm_clk) ) begin 
+  if(wm_ce ) begin
+    case (wm_address)
         0: wm_dout= {8{8'h11}};
         1: wm_dout= {8{8'h22}};
         2:wm_dout= {8{8'h33}};
@@ -303,6 +303,24 @@ always @(posedge(wm_clk) or posedge(wm_clk_16x16)) begin
 end
               
 
+// fake memory weight
+always @(posedge(wm_clk_16x16) ) begin 
+  if(wm_ce_16x16 ) begin
+    case (wm_address_16x16)
+        0: wm_dout= {8{8'h11}};
+        1: wm_dout= {8{8'h22}};
+        2:wm_dout= {8{8'h33}};
+        3:wm_dout= {8{8'h44}};
+        4:wm_dout= {8{8'h55}};
+        5:wm_dout= {8{8'h66}};
+        6:wm_dout= {8{8'h77}};
+        7:wm_dout= {8{8'h88}};
+      default : 
+        wm_dout={8{8'hFF}};
+    endcase
+  end 
+end
+   
   // control unit states
 localparam Power_up = 4'h0;
 localparam idle = 4'h1;
