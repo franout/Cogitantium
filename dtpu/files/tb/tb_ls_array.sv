@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+`include "precision_def.vh"
 module tb_ls_array(    );
 
 parameter clk_period= 10;
@@ -37,13 +37,10 @@ logic outfifo_write;
 logic [data_in_width-1:0] input_data_from_fifo;
 logic enable_cnt;
 logic ld_max_cnt;
-logic enable_down_cnt;
-logic ld_max_down_cnt;
 logic [$clog2(COLUMNS):0]max_cnt_from_cu;
-logic [$clog2(ROWS*COLUMNS):0]max_down_cnt_from_cu;
 logic enable_cnt_weight;
 logic ld_max_cnt_weight;
-logic [$clog2(ROWS):0]max_cnt_weight_from_cu;
+logic [$clog2(ROWS*COLUMNS):0]max_cnt_weight_from_cu;
 logic [data_in_mem-1:0]data_from_weight_memory;
 logic [data_in_width*ROWS-1:0]data_from_mxu;
 logic [ROWS*COLUMNS-1:0]read_weight_memory;
@@ -56,6 +53,7 @@ logic [data_in_width-1:0]data_to_fifo_out;
 logic  [address_leng_wm-1:0]wm_address;
 logic [63:0]data_load_output; 
 logic [63:0] data_store_output;
+logic ld_weight_page_cnt;
 
 ls_unit #(data_in_width) uut_ls_unit (
  .clk(clk),
@@ -96,11 +94,10 @@ ls_array
 .weight_to_mxu(weight_to_mxu),
 .wm_address(wm_address),
 .enable_cnt(enable_cnt),
+.start_value_wm(start_value_wm),
+.ld_weight_page_cnt(ld_weight_page_cnt),
 .ld_max_cnt(ld_max_cnt),
-.enable_down_cnt(enable_down_cnt),
-.ld_max_down_cnt(ld_max_down_cnt),
 .max_cnt_from_cu(max_cnt_from_cu),
-.max_down_cnt_from_cu(max_down_cnt_from_cu),
 .enable_cnt_weight(enable_cnt_weight),
 .ld_max_cnt_weight(ld_max_cnt_weight),
 .max_cnt_weight_from_cu(max_cnt_weight_from_cu)
@@ -115,9 +112,9 @@ ls_array
          #(clk_period/2);
       end
        integer i,OK,j;
+       integer address;
 
 // no mxu in the middle 
-    
     always @(data_to_mxu) begin 
      data_from_mxu= data_to_mxu;
     end 
@@ -192,9 +189,7 @@ ls_array
         data_from_weight_memory= 64'hFFFFFFFFFFFFFFFF;
         input_data_from_fifo=64'hCAFECAFECAFECAFE ;
         max_cnt_from_cu=COLUMNS ;
-        max_down_cnt_from_cu= ROWS;
-        max_cnt_weight_from_cu= ROWS;
-        ld_max_down_cnt=1'b0 ;
+        max_cnt_weight_from_cu= ROWS*COLUMNS;
         ld_max_cnt=1'b0 ;
         ld_max_cnt_weight=1'b0 ;
 
@@ -203,7 +198,6 @@ ls_array
         outfifo_write=1'b0 ;
         read_weight_memory=1'b0 ;        
         enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
         enable_cnt_weight=1'b0;
         enable_load_activation_data= 1'b0;
         enable_store_activation_data=1'b0 ;
@@ -225,71 +219,50 @@ ls_array
             OK=0;
         end 
         max_cnt_from_cu=1 ;
-        max_down_cnt_from_cu[$clog2(ROWS*COLUMNS):$clog2(COLUMNS)]= ROWS;
-        max_down_cnt_from_cu[$clog2(COLUMNS)-1:0]= 1;
+        start_value_wm=32'd0;
         max_cnt_weight_from_cu= ROWS*COLUMNS;
-        select_precision<=4'h1;
+        select_precision<=`INT8;
         $display("precision 8bit");    
         enable=1'b1;
         #clk_period;
         $display("enable and load max value for coutners");
-        ld_max_down_cnt=1'b1 ;
         ld_max_cnt=1'b1;
+        ld_weight_page_cnt=1'b1;
         ld_max_cnt_weight=1'b1;        
         #clk_period;
-        ld_max_down_cnt=1'b0 ;
+        ld_weight_page_cnt=1'b0;
         ld_max_cnt=1'b0;
         ld_max_cnt_weight=1'b0;
         infifo_read=1'b1 ;
         outfifo_write=1'b0 ;
         // first ls unit for every row
-        for(i=0;i<ROWS;i=i+1)begin 
-        read_weight_memory|= (1'b1<<COLUMNS*i);
-        end
+        repeat(1)@(posedge clk);
+        $display("loading weight",);
         enable_cnt=1'b1 ;
-        enable_down_cnt=1'b1 ;
         enable_cnt_weight=1'b1;
-        enable_load_activation_data= 1'b1;
-        enable_store_activation_data=1'b1 ;
-        // load the entire ls units of weight
-        for(i=0;i<ROWS*COLUMNS;i=i+1)begin 
-            repeat(1)@(posedge clk);
-            $display("printing weight to mxu iteration n %d",i);
-            //for(j=0;j<ROWS;j=j+1)begin 
-                $display("--- %h ---- ",weight_to_mxu);
-            //end
+        for(i=0;i<COLUMNS/(64/8);i=i+1)begin
+        enable_load_activation_data|= (1'b1<<COLUMNS*i);
+        enable_store_activation_data|=(1'b1<<COLUMNS*i);
         end 
+         address=0;
+        for(i=0;i<ROWS;i=i+1)begin 
+            read_weight_memory=(1'b1<<(8*i));
+            repeat(2)@(posedge clk);
+        end
+        read_weight_memory=0;
+        
         $display("read from fifo and store in the internal register of ls units");
 
         $display("wait for some time for the mxu, check the correct generation of weight address (incremental)");
         #clk_period;
-        if(wm_address!=32'd0)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        #clk_period;
-        if(wm_address!=32'd1)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        $display("check the page increment");
-        for(i=0;i< ROWS+2 ;i=i+1)begin
-                #clk_period;
-        end 
-        
-
         $display("outfifo read");
         infifo_read=1'b0 ;
         outfifo_write=1'b1 ;
         read_weight_memory=1'b0 ;        
         enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
         enable_cnt_weight=1'b0;
         enable_load_activation_data= 1'b0;
         enable_store_activation_data=1'b1 ;
-        #clk_period;
-        #clk_period;
-
         #clk_period;
         if(data_to_fifo_out!=input_data_from_fifo) begin
             $display("input and output data to fifo are different");
@@ -310,9 +283,7 @@ ls_array
         data_from_weight_memory= 64'hFFFFFFFFFFFFFFFF;
         input_data_from_fifo=64'hCAFECAFECAFECAFE ;
         max_cnt_from_cu=COLUMNS ;
-        max_down_cnt_from_cu= ROWS;
-        max_cnt_weight_from_cu= ROWS;
-        ld_max_down_cnt=1'b0 ;
+        max_cnt_weight_from_cu= ROWS*COLUMNS;
         ld_max_cnt=1'b0 ;
         ld_max_cnt_weight=1'b0 ;
 
@@ -320,78 +291,71 @@ ls_array
         outfifo_write=1'b0 ;
         read_weight_memory=1'b0 ;        
         enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
         enable_cnt_weight=1'b0;
-        enable_load_activation_data= 1'b0;
-        enable_store_activation_data=1'b0 ;
+        enable_load_activation_data= 0;
+        enable_store_activation_data=0;
         
         #clk_period;
-        max_cnt_from_cu=2 ;
-        max_down_cnt_from_cu= 2;
-        max_cnt_weight_from_cu= ROWS;
-        select_precision<=4'h3;
+        max_cnt_from_cu=(COLUMNS/(64/16));
+        select_precision<=`INT16;
         $display("precision 16bit");
         #clk_period;
+         enable=1'b1;
         #clk_period;
         $display("enable and load max value for coutners");
-        ld_max_down_cnt=1'b1 ;
         ld_max_cnt=1'b1;
+        ld_weight_page_cnt=1'b1;
         ld_max_cnt_weight=1'b1;        
         #clk_period;
-        ld_max_down_cnt=1'b0 ;
+        ld_weight_page_cnt=1'b0;
         ld_max_cnt=1'b0;
         ld_max_cnt_weight=1'b0;
+        repeat(1)@(posedge clk);
+        enable_load_activation_data= (2'b01);
         infifo_read=1'b1 ;
+        repeat(2)@(posedge clk);
+        enable_load_activation_data= (2'b10);
+        repeat(2)@(posedge clk);
+        enable_store_activation_data=(2'b11);       
         outfifo_write=1'b0 ;
-        read_weight_memory=1'b1 ;        
-        enable_cnt=1'b1 ;
-        enable_down_cnt=1'b1 ;
+        // first ls unit for every row
+        repeat(1)@(posedge clk);
         enable_cnt_weight=1'b1;
-        enable_load_activation_data= 1'b1;
-        enable_store_activation_data=1'b1 ;
-               
+        enable_load_activation_data=0;
+        enable_store_activation_data=0;
+        $display("loading weight",);        
+        for(i=0;i<ROWS;i=i+1)begin 
+            read_weight_memory=(2'b11<<(8*i));
+            repeat(2)@(posedge clk);
+        end
+        read_weight_memory=0;
+        
         $display("read from fifo and store in the internal register of ls units");
 
         $display("wait for some time for the mxu, check the correct generation of weight address (incremental)");
         #clk_period;
-        if(wm_address!=32'd0)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        #clk_period;
-        if(wm_address!=32'd1)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        $display("check the page increment");
-        for(i=0;i< ROWS+2 ;i=i+1)begin
-                #clk_period;
-        end 
-        
-
         $display("outfifo read");
         infifo_read=1'b0 ;
         outfifo_write=1'b1 ;
         read_weight_memory=1'b0 ;        
-        enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
-        enable_cnt_weight=1'b0;
-        enable_load_activation_data= 1'b0;
-        enable_store_activation_data=1'b1 ;
+        
+        enable_cnt_weight=1'b0; 
+        enable_cnt=1'b1 ; // start to count after the first chunk is gone 
         #clk_period;
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
         #clk_period;
-
-        #clk_period;
-        if(data_to_fifo_out!=input_data_from_fifo) begin
-            $display("input and output data to fifo are different ON 16 BIT");
-            OK=0;
-        end
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
+        
         if (OK!=1) begin 
         $display("load store array does not pass the test for 16 bits");
         $finish();
         end  
-
-
 
         ///////////////////////////////////////////////////
         ////////////////  32 BIT //////////////////////////
@@ -399,83 +363,89 @@ ls_array
         data_from_weight_memory= 64'hFFFFFFFFFFFFFFFF;
         input_data_from_fifo=64'hCAFECAFECAFECAFE ;
         max_cnt_from_cu=COLUMNS ;
-        max_down_cnt_from_cu= ROWS;
-        max_cnt_weight_from_cu= ROWS;
-        ld_max_down_cnt=1'b0 ;
+        max_cnt_weight_from_cu= ROWS*COLUMNS;
         ld_max_cnt=1'b0 ;
         ld_max_cnt_weight=1'b0 ;
 
-        select_precision=4'h0;
         infifo_read=1'b0 ;
         outfifo_write=1'b0 ;
         read_weight_memory=1'b0 ;        
         enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
         enable_cnt_weight=1'b0;
-        enable_load_activation_data= 1'b0;
-        enable_store_activation_data=1'b0 ;
+        enable_load_activation_data= 0;
+        enable_store_activation_data=0;
         
         #clk_period;
-        max_cnt_from_cu=4 ;
-        max_down_cnt_from_cu= 4;
-        max_cnt_weight_from_cu= ROWS;
-        select_precision<=4'h7;
+        max_cnt_from_cu=(COLUMNS/(64/32));
+        select_precision<=`INT32;
         $display("precision 32bit");
         #clk_period;
+         enable=1'b1;
         #clk_period;
         $display("enable and load max value for coutners");
-        ld_max_down_cnt=1'b1 ;
         ld_max_cnt=1'b1;
+        ld_weight_page_cnt=1'b1;
         ld_max_cnt_weight=1'b1;        
         #clk_period;
-        ld_max_down_cnt=1'b0 ;
+        ld_weight_page_cnt=1'b0;
         ld_max_cnt=1'b0;
         ld_max_cnt_weight=1'b0;
+        repeat(1)@(posedge clk);
+        enable_load_activation_data= (4'h1);
         infifo_read=1'b1 ;
+        repeat(2)@(posedge clk);
+        enable_load_activation_data= (4'h2);
+        repeat(2)@(posedge clk);
+        enable_load_activation_data= (4'h4);
+        repeat(2)@(posedge clk);
+        enable_load_activation_data= (4'h8);
+        repeat(2)@(posedge clk);
+        enable_store_activation_data=(4'hF);       
         outfifo_write=1'b0 ;
-        read_weight_memory=1'b1 ;        
-        enable_cnt=1'b1 ;
-        enable_down_cnt=1'b1 ;
+        // first ls unit for every row
+        repeat(1)@(posedge clk);
         enable_cnt_weight=1'b1;
-        enable_load_activation_data= 1'b1;
-        enable_store_activation_data=1'b1 ;
-               
+        enable_load_activation_data=0;
+        enable_store_activation_data=0;
+        $display("loading weight",);        
+        for(i=0;i<ROWS;i=i+1)begin 
+            read_weight_memory=(4'hf<<(8*i));
+            repeat(2)@(posedge clk);
+        end
+        read_weight_memory=0;
+        
         $display("read from fifo and store in the internal register of ls units");
 
         $display("wait for some time for the mxu, check the correct generation of weight address (incremental)");
         #clk_period;
-        if(wm_address!=32'd0)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        #clk_period;
-        if(wm_address!=32'd1)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        $display("check the page increment");
-        for(i=0;i< ROWS+2 ;i=i+1)begin
-                #clk_period;
-        end 
-        
-
         $display("outfifo read");
         infifo_read=1'b0 ;
         outfifo_write=1'b1 ;
         read_weight_memory=1'b0 ;        
-        enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
-        enable_cnt_weight=1'b0;
-        enable_load_activation_data= 1'b0;
-        enable_store_activation_data=1'b1 ;
+        
+        enable_cnt_weight=1'b0; 
+        enable_cnt=1'b1 ; // start to count after the first chunk is gone 
         #clk_period;
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
         #clk_period;
-
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
         #clk_period;
-        if(data_to_fifo_out!=input_data_from_fifo) begin
-            $display("input and output data to fifo are different ON 32 BIT");
-            OK=0;
-        end
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
+        #clk_period;
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
+        
         if (OK!=1) begin 
         $display("load store array does not pass the test for 32 bits");
         $finish();
@@ -490,88 +460,82 @@ ls_array
         data_from_weight_memory= 64'hFFFFFFFFFFFFFFFF;
         input_data_from_fifo=64'hCAFECAFECAFECAFE ;
         max_cnt_from_cu=COLUMNS ;
-        max_down_cnt_from_cu= ROWS;
-        max_cnt_weight_from_cu= ROWS;
-        ld_max_down_cnt=1'b0 ;
+        max_cnt_weight_from_cu= ROWS*COLUMNS;
         ld_max_cnt=1'b0 ;
         ld_max_cnt_weight=1'b0 ;
 
-        select_precision=4'h0;
         infifo_read=1'b0 ;
         outfifo_write=1'b0 ;
         read_weight_memory=1'b0 ;        
         enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
         enable_cnt_weight=1'b0;
-        enable_load_activation_data= 1'b0;
-        enable_store_activation_data=1'b0 ;
+        enable_load_activation_data= 0;
+        enable_store_activation_data=0;
         
         #clk_period;
-        max_cnt_from_cu=COLUMNS ;
-        max_down_cnt_from_cu= COLUMNS;
-        max_cnt_weight_from_cu= ROWS;
-        select_precision<=4'hf;
+        max_cnt_from_cu=(COLUMNS/(64/64));
+        select_precision<=`INT64;
         $display("precision 64bit");
         #clk_period;
+         enable=1'b1;
         #clk_period;
         $display("enable and load max value for coutners");
-        ld_max_down_cnt=1'b1 ;
         ld_max_cnt=1'b1;
+        ld_weight_page_cnt=1'b1;
         ld_max_cnt_weight=1'b1;        
         #clk_period;
-        ld_max_down_cnt=1'b0 ;
+        ld_weight_page_cnt=1'b0;
         ld_max_cnt=1'b0;
         ld_max_cnt_weight=1'b0;
+        repeat(1)@(posedge clk);
         infifo_read=1'b1 ;
+        for(i=0;i<(COLUMNS/(64/64));i=i+1)begin
+        enable_load_activation_data= (1'b1 << i);    
+        repeat(2)@(posedge clk);
+        end
+        
+        repeat(2)@(posedge clk);
+        enable_store_activation_data=(8'hff);       
         outfifo_write=1'b0 ;
-        read_weight_memory=1'b1 ;        
-        enable_cnt=1'b1 ;
-        enable_down_cnt=1'b1 ;
+        // first ls unit for every row
+        repeat(1)@(posedge clk);
         enable_cnt_weight=1'b1;
-        enable_load_activation_data= 1'b1;
-        enable_store_activation_data=1'b1 ;
-               
+        enable_load_activation_data=0;
+        enable_store_activation_data=0;
+        $display("loading weight",);        
+        for(i=0;i<ROWS;i=i+1)begin 
+            read_weight_memory=(8'hff<<(8*i));
+            repeat(2)@(posedge clk);
+        end
+        read_weight_memory=0;
+        
         $display("read from fifo and store in the internal register of ls units");
 
         $display("wait for some time for the mxu, check the correct generation of weight address (incremental)");
         #clk_period;
-        if(wm_address!=32'd0)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        #clk_period;
-        if(wm_address!=32'd1)begin
-            $display("PROBLEM WITH ADDRESS GENERATION");
-            OK=0;
-        end
-        $display("check the page increment");
-        for(i=0;i< ROWS+2 ;i=i+1)begin
-                #clk_period;
-        end 
-        
-
         $display("outfifo read");
         infifo_read=1'b0 ;
         outfifo_write=1'b1 ;
         read_weight_memory=1'b0 ;        
-        enable_cnt=1'b0 ;
-        enable_down_cnt=1'b0 ;
-        enable_cnt_weight=1'b0;
-        enable_load_activation_data= 1'b0;
-        enable_store_activation_data=1'b1 ;
-        #clk_period;
-        #clk_period;
+        
+        enable_cnt_weight=1'b0; 
+        enable_cnt=1'b1 ; // start to count after the first chunk is gone 
 
+        for(i=0;i<(COLUMNS/(64/64));i=i+1)begin
         #clk_period;
-        if(data_to_fifo_out!=input_data_from_fifo) begin
-            $display("input and output data to fifo are different ON 64 BIT");
-            OK=0;
-        end
+            if(data_to_fifo_out!=input_data_from_fifo) begin
+                $display("input and output data to fifo are different");
+                OK=0;
+            end
+       
+        end 
+        
         if (OK!=1) begin 
         $display("load store array does not pass the test for 64 bits");
         $finish();
         end  
 
+        $display("IF YOU ARE READING THIS ->>>>>> LS ARRAYS IS WORKING!!!",);
 
 
         
