@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-14 23:32:59
+//  Last Modified : 2020-05-15 23:09:03
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -112,12 +112,13 @@ localparam start_p2=4'h7;
 localparam start_p3=4'h8;
 localparam get_data=4'h9;
 
-localparam [$clog2(1+3*(COLUMNS+1)+ROWS):0]MAX_COUNTER= 3*(COLUMNS+1)+ROWS*2;
+localparam [$clog2(3*(COLUMNS-1)+ROWS+1):0]MAX_COUNTER= 3*(COLUMNS-1)+ROWS+1; 
 reg [3:0]state;
-reg [$clog2(1+3*(COLUMNS+1)+ROWS):0]counter_compute;
+reg [$clog2(3*(COLUMNS-1)+ROWS+1):0]counter_compute;
 reg [$clog2(COLUMNS):0] counter_request;
 reg [$clog2(ROWS):0]counter_save;
 reg [$clog2(64):0]curr_data_width_computation; // max_bit width of computation
+reg load_weight;
 integer i;
 
 always @(posedge clk) begin
@@ -125,6 +126,7 @@ if(reset) begin
 state <= Power_up;
 counter_compute<=0;
 counter_save<=0;
+load_weight<=0;
 counter_request<=0;
 // for mxu 
 data_precision<=`NO_COMPUTATION;
@@ -230,30 +232,28 @@ start_p3:  begin
                             -> save
     */
 
-/// TODO TIMING IS CHANGED DUE TO DELAY REGISTER ON SMUL COLUMN
-/// also due to load of weights!!!!! big loop on the request get data!
-
-     /*   for(i=0;i<COLUMNS/(64/8);i=i+1)begin
-        enable_load_activation_data|= (1'b1<<COLUMNS*i);
-        enable_store_activation_data|=(1'b1<<COLUMNS*i);
-        end 
-       */ 
-
 
 `ifndef PIPELINE    
 request_data: begin
-            
+            // recheck for 16x16
             infifo_read<=1'b1;
             // load counter of ls array 
             ld_max_cnt<=1'b1;
             ld_max_cnt_weight<=1'b1;
             enable_load_array<=1'b1;
-            enable_load_activation_data[counter_request]<=(1'b1<<(counter_request));
+            //[counter_request]
+            enable_load_activation_data<=(1'b1<<(counter_request));
             enable_store_activation_data<=0;
 
             counter_request<=counter_request+1;
             if(counter_request<(COLUMNS/(DATA_WIDTH_FIFO_IN/curr_data_width_computation))-1) begin 
                 state<=state;
+            end else if(load_weight) begin 
+                enable_mxu<=1'b1;
+                enable_load_array<=1'b1;            
+                enable_enskew_ff<=1'b1; // input ff
+                enable_deskew_ff<=1'b1; // output ff 
+                state<=compute;
             end else begin 
                 state<=get_data;
                 // anticipate first get data from memory
@@ -265,7 +265,7 @@ get_data: begin
             enable_load_array<=1'b1;            
             enable_load_activation_data<= 0;
             enable_store_activation_data<=0;
-
+            load_weight<=1'b1;
             wm_ce<=1'b1;
             enable_cnt_weight<=1'b1;
             //enable for ls weight
@@ -295,25 +295,30 @@ compute: begin
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
             enable_deskew_ff<=1'b1; // output ff 
-            if(counter_compute==(MAX_COUNTER  )) begin 
+            if(counter_compute==(MAX_COUNTER )) begin 
             state<=save_to_fifo;
-            enable_store_activation_data[i]<=(1'b1<<counter_save);
+            enable_store_activation_data<=(1'b1<<counter_save);
             end else begin 
             state<=state;            
             end 
              end
 
 save_to_fifo: begin
-            enable_load_array<=1'b1;   
-            enable_store_activation_data[i]<=(1'b1<<counter_save);
-            enable_cnt<=1'b1; // onyl for save
+            enable_load_array<=1'b1;    
+            for(i=0;i<COLUMNS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation);i=i+1)begin
+                enable_store_activation_data[i]<=1'b1;
+            end
+            //enable_store_activation_data<=(1'b1<<counter_save);
             enable_cnt_weight<=1'b0;
             // push the result in output fifo 
             outfifo_write<=1'b1;
             counter_save<=counter_save+1;
-            /* a wait (counter) depending on the K/(data_width_fifo_out/data_precision)*/
+            enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff 
             if(counter_save<(ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation))-1)begin 
             state<=state;
+            enable_cnt<=1'b1; // onyl for sav
             end else begin 
             state<=done;
             end 

@@ -36,7 +36,10 @@ module tb_kernel_mxu();
               logic enable_chain;
               logic enable_out_ff;
               logic [1:0]enable_fp_unit;
-                    integer k;
+              integer k,i;
+              logic [64*16*16-1:0]weight16;
+              logic [64*16-1:0]y16;
+              logic [64*16-1:0]input_data16;
 
      
         mxu_wrapper #(.M(4),.K(4) , .max_data_width(64),.MAX_BOARD_DSP(220)) uut4x4 (
@@ -55,6 +58,25 @@ module tb_kernel_mxu();
          );
           
           
+
+
+        mxu_wrapper #(.M(16),.K(16) , .max_data_width(64),.MAX_BOARD_DSP(220)) uut16x16 (
+           .data_type(data_type),
+           .reset(reset),
+           .enable(enable),
+            .clk(clk),
+            .enable_fp_unit(enable_fp_unit),
+            .enable_out_ff (enable_out_ff),
+            .enable_in_ff  (enable_in_ff),
+            .enable_chain  (enable_chain),
+            .test_mode(test_mode),
+            .input_data(input_data16),
+            .weight(weight16),
+            .y(y16)           
+         );
+          
+
+
          mxu_wrapper #(.M(3),.K(3) , .max_data_width(64),.MAX_BOARD_DSP(220)) uut3x3 (
                     .data_type(data_type),
                      .clk(clk),
@@ -91,6 +113,9 @@ module tb_kernel_mxu();
               #clk_period;
               reset=1'b0;
               input_data={3{56'd0,8'hfe}};
+              input_data16={{8{56'd0,8'h03}},{8{56'd0,8'h01}}};
+              weight16={{56'd0,8'h11},{56'd0,8'h11} ,{56'd0,8'h22} ,
+                    {56'd0,8'h33},{56'd0,8'h44},{56'd0,8'h55},{56'd0,8'h66},{56'd0,8'h77},{56'd0,8'h88},{7{56'd0,8'hff}}};
               weight={9{56'd0,8'hff}};
               input_data4={4{56'd0,8'hca}};
               weight4={16{56'd0,8'hff}};
@@ -102,6 +127,14 @@ module tb_kernel_mxu();
               for(k=0;k<2+3*3*3;k=k+1) begin 
               #clk_period;
               end
+
+              repeat(100)@ (posedge clk);
+
+              for(i=0;i<16;i=i+1)begin
+                $display("data %d --> %h",i, y16[ 64*16*(i+1)-56-1: 64*16*i]);
+
+              end 
+
               $finish();   
                               
               end 

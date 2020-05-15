@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-14 22:46:07
+//  Last Modified : 2020-05-15 23:17:15
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -18,7 +18,7 @@
 
 module tb_dtpu();
         parameter clk_period= 10;
-              logic clk,reset, enable,test_mode;
+              logic clk,reset, enable,enable_16x16,test_mode;
               integer k;
               ////////////////////////////
               ////// CSR INTERFACE ///////
@@ -65,7 +65,7 @@ module tb_dtpu();
               logic [63:0]outfifo_din;
               logic outfifo_write;
               logic [63:0]outfifo_din_16x16;
-              logic outfifo_write;
+              logic outfifo_write_16x16;
               ////////////////////////////////////////////
               /////////// CONTROL FROM/TO PS ////////////////
               ////////////////////////////////////////////
@@ -86,9 +86,7 @@ logic [3:0]data_precision_tb;
 logic [3:0]data_precision_fp_tb;
 logic [63:0]data[0:31];
 integer i;
-/// for 16x16 dtpu 
-logic enable_16x16;
-   
+
 
   parameter DATA_WIDTH_MAC       = 64;
   parameter ROWS                 = 8;
@@ -236,7 +234,8 @@ logic enable_16x16;
         
         
         );
-
+localparam MAX_COUNTER=3*(8-1)+8+1;
+localparam MAX_COUNTER_16x16=3*(16-1)+16+1+1;
 
   initial begin: clk_process
     clk = '0;
@@ -259,7 +258,7 @@ end
 
 
 // fake in fifo
-always @(infifo_read,infifo_read_16x16) begin 
+always @(*) begin 
 if (infifo_read || infifo_read_16x16) begin
    infifo_dout<=data[i%16];
    i=i+1;
@@ -438,24 +437,28 @@ localparam get_data=4'h9;
               end
               cs_start=1'b0;
               #clk_period;
+                // load all the weight 
+              for (k=0;k<8;k=k+1) begin
               if(state!=get_data)begin
                 $display("accelerator not getting data");
                 $stop();
               end
               #clk_period;
+              end
+
+              #clk_period;
+              `ifndef PIPELINE
+              for (k=0;k<MAX_COUNTER;k=k+1) begin
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
               end   
-
-              `ifndef PIPELINE
-              for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
               #clk_period;               
               end 
               `else 
 
               `endif
               
-              
+              #clk_period;
               if(state!=save_to_fifo) begin
                 $display("not saving to fifo ",);
                 $stop();
@@ -468,7 +471,7 @@ localparam get_data=4'h9;
                 $stop();
               end
               `ifdef USEO_INT8
-                if(!(outfifo_din=={8{8'h88}}))begin
+                if(!(outfifo_din=={8'hf8,8'h88,8'h10,8'h98,8'h20,8'ha8,8'h30,8'hb8}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end
@@ -555,22 +558,30 @@ localparam get_data=4'h9;
                 $stop();
                 end
               #clk_period;
+              /*  
+              jumping cause the weights have been loaded at the beginning
+              // load all the weight 
+              for (k=0;k<8;k=k+1) begin
               if(state!=get_data)begin
-                $display("accelerator not in get data");
+                $display("accelerator not getting data");
                 $stop();
               end
               #clk_period;
+              end
+
+              #clk_period;*/
+              `ifndef PIPELINE
+              for (k=0;k<MAX_COUNTER;k=k+1) begin
               if(state!=compute) begin
                 $display("accelerator is not computing anything",);
-                $stop();
               end   
-              `ifndef PIPELINE
-              for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
               #clk_period;               
               end 
               `else 
 
               `endif
+              
+              #clk_period;
               
               if(state!=save_to_fifo) begin
                 $display("not saving to fifo ",);
@@ -583,7 +594,7 @@ localparam get_data=4'h9;
               end
               $display("----- data check ----");
              `ifdef USEO_INT8
-                if(!(outfifo_din==={8{8'h88}}))begin
+                if(!(outfifo_din==={8'hf0,8'h10,8'h20,8'h30,8'h40,8'h50,8'h60,8'h70}))begin
                   $display("computation not correct!!!!");
                   $stop();
               end
@@ -668,23 +679,26 @@ localparam get_data=4'h9;
               $stop();
               end
               #clk_period;
-              if(state!=get_data) begin
+              /*if(state!=get_data) begin
                 $display("accelerator not in get data");
                 $stop();
               end
-              #clk_period;
+              #clk_period;*/
               if(state!=compute) begin
                 $display("accelerator is not computing anything");
               end   
-
               `ifndef PIPELINE
-              for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
+              for (k=0;k<MAX_COUNTER;k=k+1) begin
+              if(state!=compute) begin
+                $display("accelerator is not computing anything",);
+              end   
               #clk_period;               
               end 
               `else 
+
               `endif
               
-
+              #clk_period;
               outfifo_is_full=1'b0;
               infifo_is_empty=1'b0;
               if(state!=save_to_fifo) begin
@@ -784,9 +798,9 @@ localparam get_data=4'h9;
               end
               $display("dtpu with mxu 8x8 test ended");
               #clk_period;  #clk_period;  #clk_period;
-
+              enable='0;
               $display("testing dtpu 16x16 mxu matrix",);
-              enable_16x16='1;
+              enable_16x16='0;
               reset='1;
               #clk_period;
               reset='0;
@@ -810,7 +824,7 @@ localparam get_data=4'h9;
               end 
               #clk_period;
               reset=1'b1;
-              enable=1'b1; // enable the accelerator
+              enable_16x16=1'b1; // enable the accelerator
               #clk_period;
               if(state_16x16!=idle) begin
                 $display("dtpu not in idle state mxu16x16");
@@ -878,33 +892,31 @@ localparam get_data=4'h9;
               `endif
 
               #clk_period;
-              if(state_16x16!=request_data) begin 
-                $display("accelerator is not retrieving the first chunk of data mxu16x16",);
-                $stop();
+              for (i=0;i<16/(DATA_WIDTH_FIFO_IN/8);i=i+1) begin 
+                if(state_16x16!=request_data) begin 
+                  $display("accelerator is not retrieving the first chunk of data mxu16x16",);
+                  $stop();
+                end
+                #clk_period;
               end
               cs_start=1'b0;
               #clk_period;
-              if(state_16x16!=get_data)begin
-                $display("accelerator not getting first chunk data mxu16x16");
-                $stop();
+
+              for (i=0;i<16;i=i+1)begin 
+                if(state_16x16!=get_data)begin
+                  $display("accelerator not getting first chunk data mxu16x16");
+                  $stop();
+                end
+                #clk_period; // it has to fill two ls units for weight and input data
               end
-              #clk_period; // it has to fill two ls units for weight and input data
-              if(state_16x16!=request_data)begin
-                $display("accelerator not requesting chunk chunch data mxu16x16");
-                $stop();
-              end
-              #clk_period;
-              if(state_16x16!=get_data)begin
-                $display("accelerator not getting second chunch data mxu16x16");
-                $stop();
-              end
-              #clk_period;
+              
+                #clk_period;
               if(state_16x16!=compute) begin
                 $display("accelerator is not computing anything mxu16x16",);
               end   
 
               `ifndef PIPELINE
-              for (k=0;k<3*(16+1)+16*2+1 ;k=k+1) begin
+              for (k=0;k<MAX_COUNTER_16x16 +1;k=k+1) begin
               #clk_period;               
               end 
               `else 
@@ -976,13 +988,14 @@ localparam get_data=4'h9;
                 $stop();
               end
               #clk_period; // it has to fill two ls units for weight and input data
+
               if(state_16x16!=request_data)begin
                 $display("accelerator not requesting chunk chunch data mxu16x16");
                 $stop();
               end
               #clk_period;
-              if(state_16x16!=get_data)begin
-                $display("accelerator not getting second chunch data mxu16x16");
+              if(state_16x16!=request_data)begin
+                $display("accelerator not requesting chunk chunch data mxu16x16");
                 $stop();
               end
               #clk_period;
@@ -991,7 +1004,7 @@ localparam get_data=4'h9;
                 $stop();
               end   
               `ifndef PIPELINE
-              for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
+              for (k=0;k<MAX_COUNTER_16x16;k=k+1) begin
               #clk_period;               
               end 
               `else 
@@ -1045,14 +1058,16 @@ localparam get_data=4'h9;
               end 
               `endif
               
+              #clk_period;
               if(state_16x16!=request_data && !(wm_address_16x16==32'd2)) begin 
               $display("generated wrong address and not in retrieve data state");
               $stop();
               end
               #clk_period;
-              if(state_16x16!=get_data) begin
-                $display("accelerator not in get data");
-                $stop();
+              
+              if(state_16x16!=request_data && !(wm_address_16x16==32'd2)) begin 
+              $display("generated wrong address and not in retrieve data state");
+              $stop();
               end
               #clk_period;
               if(state_16x16!=compute) begin
@@ -1060,7 +1075,7 @@ localparam get_data=4'h9;
               end   
 
               `ifndef PIPELINE
-              for (k=0;k<3*(8+1)+8*2+1;k=k+1) begin
+              for (k=0;k<MAX_COUNTER_16x16;k=k+1) begin
               #clk_period;               
               end 
               `else 
@@ -1124,6 +1139,9 @@ localparam get_data=4'h9;
               #clk_period;  #clk_period;  #clk_period;
               $display("dtpu with mxu 16x16 test ended");
 
+              `ifdef USEO_INT64
+              $display("Testing design with variable precision",);
+              `endif
               // floating point test
 
 
