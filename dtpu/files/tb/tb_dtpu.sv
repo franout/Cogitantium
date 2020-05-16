@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-15 23:17:15
+//  Last Modified : 2020-05-16 17:33:45
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -235,7 +235,7 @@ integer i;
         
         );
 localparam MAX_COUNTER=3*(8-1)+8+1;
-localparam MAX_COUNTER_16x16=3*(16-1)+16+1+1;
+localparam MAX_COUNTER_16x16=3*(16-1)+16+16/16+1;
 
   initial begin: clk_process
     clk = '0;
@@ -902,7 +902,7 @@ localparam get_data=4'h9;
               cs_start=1'b0;
               #clk_period;
 
-              for (i=0;i<16;i=i+1)begin 
+              for (i=0;i<16*2;i=i+1)begin 
                 if(state_16x16!=get_data)begin
                   $display("accelerator not getting first chunk data mxu16x16");
                   $stop();
@@ -910,19 +910,19 @@ localparam get_data=4'h9;
                 #clk_period; // it has to fill two ls units for weight and input data
               end
               
-                #clk_period;
+                #clk_period;#clk_period;
               if(state_16x16!=compute) begin
                 $display("accelerator is not computing anything mxu16x16",);
+                $stop();
               end   
 
               `ifndef PIPELINE
-              for (k=0;k<MAX_COUNTER_16x16 +1;k=k+1) begin
+              for (k=0;k<MAX_COUNTER_16x16 ;k=k+1) begin
               #clk_period;               
               end 
               `else 
 
               `endif
-              
               
               if(state_16x16!=save_to_fifo) begin
                 $display("not saving to fifo mxu16x16",);
@@ -934,12 +934,12 @@ localparam get_data=4'h9;
               `ifdef USEO_INT8
               //  number of saved output is rows/(data_width_fifo_out/8) -> 2
               
-                if(!(outfifo_din_16x16=={8{8'hc8}}))begin
+                if(!(outfifo_din_16x16=={8{8'he0}}))begin
                   $display("computation not correct 0 - 8 bit mxu16x16!!!!");
                   $stop();
                 end
               #clk_period;
-              if(!(outfifo_din_16x16=={8{8'h90}}))begin
+              if(!(outfifo_din_16x16=={8'h20,8'hc8,8'h08,8'h48,8'hb8,8'he0,8'he0,8'he0}))begin
                   $display("computation not correct 1 - 8 bit mxu16x16!!!!");
                   $stop();
                 end
@@ -977,25 +977,15 @@ localparam get_data=4'h9;
                 $stop();
               end
 
-              #clk_period;
-                if(state_16x16!=request_data && !(wm_address_16x16==32'd1)) begin 
-                $display("generated wrong address and not in retrieve data state");
-                $stop();
-                end
-              #clk_period;
-              if(state_16x16!=get_data)begin
-                $display("accelerator not getting first chunk data mxu16x16");
-                $stop();
-              end
-              #clk_period; // it has to fill two ls units for weight and input data
+               // it has to fill two ls units for and input data
 
               if(state_16x16!=request_data)begin
-                $display("accelerator not requesting chunk chunch data mxu16x16");
+                $display("accelerator not requesting  chunk input data mxu16x16");
                 $stop();
               end
               #clk_period;
               if(state_16x16!=request_data)begin
-                $display("accelerator not requesting chunk chunch data mxu16x16");
+                $display("accelerator not requesting second  chunk input data mxu16x16");
                 $stop();
               end
               #clk_period;
@@ -1010,21 +1000,17 @@ localparam get_data=4'h9;
               `else 
 
               `endif
-              
+              #clk_period;
               if(state_16x16!=save_to_fifo) begin
                 $display("not saving to fifo ",);
                 $stop();
               end
-              #clk_period;
-              if(state_16x16!=done && cs_done_16x16!=1'b0) begin 
-                $display("accelerator not in continous run ");
-                $stop();
-              end
               $display("----- data check ----");
+
               `ifdef USEO_INT8
               //  number of saved output is rows/(data_width_fifo_out/8) -> 2
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/8);i=i+1) begin
-                if(!(outfifo_din_16x16=={8{8'h88}}))begin
+                if((outfifo_din_16x16=={8{8'h00}}))begin
                   $display("computation not correct %d 8 bit mxu16x16!!!!",i);
                   $stop();
               end
@@ -1058,16 +1044,14 @@ localparam get_data=4'h9;
               end 
               `endif
               
-              #clk_period;
-              if(state_16x16!=request_data && !(wm_address_16x16==32'd2)) begin 
-              $display("generated wrong address and not in retrieve data state");
-              $stop();
+              if(state_16x16!=request_data)begin
+                $display("accelerator not requesting  chunk input data mxu16x16");
+                $stop();
               end
               #clk_period;
-              
-              if(state_16x16!=request_data && !(wm_address_16x16==32'd2)) begin 
-              $display("generated wrong address and not in retrieve data state");
-              $stop();
+              if(state_16x16!=request_data)begin
+                $display("accelerator not requesting second  chunk input data mxu16x16");
+                $stop();
               end
               #clk_period;
               if(state_16x16!=compute) begin
@@ -1081,16 +1065,11 @@ localparam get_data=4'h9;
               `else 
               `endif
               
-
               outfifo_is_full=1'b0;
               infifo_is_empty=1'b0;
+              #clk_period;
               if(state_16x16!=save_to_fifo) begin
                 $display("not saving to fifo ",);
-                $stop();
-              end
-              #clk_period;
-              if(state_16x16!=done && cs_done_16x16!=1'b1) begin 
-                $display("not in done state and done signal is not asserted",);
                 $stop();
               end
               $display("----- data check ------");
@@ -1130,7 +1109,11 @@ localparam get_data=4'h9;
               #clk_period;
               end 
               `endif
-              
+              if(state_16x16!=done && cs_done_16x16!=1'b1) begin 
+                $display("not in done state and done signal is not asserted",);
+                $stop();
+              end
+                          
               #clk_period;
               if(state_16x16!=idle) begin
                 $display("problem fsm does not go back in idle state");

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-15 23:09:03
+//  Last Modified : 2020-05-16 16:31:31
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -112,9 +112,10 @@ localparam start_p2=4'h7;
 localparam start_p3=4'h8;
 localparam get_data=4'h9;
 
-localparam [$clog2(3*(COLUMNS-1)+ROWS+1):0]MAX_COUNTER= 3*(COLUMNS-1)+ROWS+1; 
+localparam [$clog2(3*(COLUMNS-1)+ROWS+(ROWS/COLUMNS)):0]MAX_COUNTER= 3*(COLUMNS-1)+ROWS+ (ROWS/COLUMNS); 
 reg [3:0]state;
-reg [$clog2(3*(COLUMNS-1)+ROWS+1):0]counter_compute;
+reg [$clog2(3*(COLUMNS-1)+ROWS+ (ROWS/COLUMNS) ):0]counter_compute;
+reg [$clog2(ROWS):0]counter_shift;
 reg [$clog2(COLUMNS):0] counter_request;
 reg [$clog2(ROWS):0]counter_save;
 reg [$clog2(64):0]curr_data_width_computation; // max_bit width of computation
@@ -128,6 +129,7 @@ counter_compute<=0;
 counter_save<=0;
 load_weight<=0;
 counter_request<=0;
+counter_shift<=0;
 // for mxu 
 data_precision<=`NO_COMPUTATION;
 enable_chain<=`NO_CHAIN;
@@ -147,6 +149,7 @@ ld_max_cnt_weight<=0;
 ld_weight_page_cnt<=0;
 start_value_wm<=0;
 counter_request<=0;
+
 counter_compute<=0;
 //counter_save<=0;
 csr_address<=0;    
@@ -174,6 +177,7 @@ Power_up: begin
         end
 idle: begin
         cs_idle<=1;
+        counter_shift<=0;
         //data_precision<=`INT32;
         if(cs_start && glb_enable)begin  
         state<=start_p1;
@@ -242,6 +246,7 @@ request_data: begin
             ld_max_cnt_weight<=1'b1;
             enable_load_array<=1'b1;
             //[counter_request]
+
             enable_load_activation_data<=(1'b1<<(counter_request));
             enable_store_activation_data<=0;
 
@@ -269,16 +274,23 @@ get_data: begin
             wm_ce<=1'b1;
             enable_cnt_weight<=1'b1;
             //enable for ls weight
-            read_weight_memory<= (1'b1<<(COLUMNS*counter_save)) ;
-            counter_save<=counter_save+1;
-            if(counter_save<(ROWS))begin 
+            // TODO Check does not load the weight for the upper part ( second array of ls units)
+            read_weight_memory<= (1'b1<<((COLUMNS)*counter_shift+counter_save)) ;
+            //if(counter_save<(ROWS*(COLUMNS/(DATA_WIDTH_WMEMORY/curr_data_width_computation))))begin 
+            if(counter_shift<ROWS)begin
             state<=get_data;
+                if(counter_save<(COLUMNS/(DATA_WIDTH_WMEMORY/curr_data_width_computation) -1))begin 
+                    counter_save<=counter_save+1;
+                end else begin 
+                    counter_shift<=counter_shift+1;
+                    counter_save<=0;
+                end 
             end else begin 
             state<=compute;
-
+            /*
             enable_mxu<=1'b1;
             enable_enskew_ff<=1'b1; // input ff
-            enable_deskew_ff<=1'b1; // output ff 
+            enable_deskew_ff<=1'b1; // output ff */
             // counter clear
             counter_save<=0;
             end 
@@ -313,8 +325,8 @@ save_to_fifo: begin
             // push the result in output fifo 
             outfifo_write<=1'b1;
             counter_save<=counter_save+1;
-            enable_mxu<=1'b1;
-            enable_enskew_ff<=1'b1; // input ff
+            //enable_mxu<=1'b1;
+            //enable_enskew_ff<=1'b1; // input ff
             enable_deskew_ff<=1'b1; // output ff 
             if(counter_save<(ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation))-1)begin 
             state<=state;

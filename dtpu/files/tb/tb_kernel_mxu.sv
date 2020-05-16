@@ -27,7 +27,7 @@ module tb_kernel_mxu();
               logic [(64)*3*(3)-1:0]weight;
               logic [(64)*(4)-1:0]input_data4;
               logic [(64)*4*(4)-1:0]weight4;
-              logic enable;
+              logic enable,enable_16;
               logic  test_mode;
               logic  [64*3-1:0]y;
               logic  [64*4-1:0]y4;
@@ -63,7 +63,7 @@ module tb_kernel_mxu();
         mxu_wrapper #(.M(16),.K(16) , .max_data_width(64),.MAX_BOARD_DSP(220)) uut16x16 (
            .data_type(data_type),
            .reset(reset),
-           .enable(enable),
+           .enable(enable_16),
             .clk(clk),
             .enable_fp_unit(enable_fp_unit),
             .enable_out_ff (enable_out_ff),
@@ -107,6 +107,7 @@ module tb_kernel_mxu();
               reset=1'b1;
               data_type=`INT8;
               enable_in_ff='0;
+              enable_16='0;
               enable_out_ff='0;
               enable_chain='0;
               enable_fp_unit='0;
@@ -114,8 +115,8 @@ module tb_kernel_mxu();
               reset=1'b0;
               input_data={3{56'd0,8'hfe}};
               input_data16={{8{56'd0,8'h03}},{8{56'd0,8'h01}}};
-              weight16={{56'd0,8'h11},{56'd0,8'h11} ,{56'd0,8'h22} ,
-                    {56'd0,8'h33},{56'd0,8'h44},{56'd0,8'h55},{56'd0,8'h66},{56'd0,8'h77},{56'd0,8'h88},{7{56'd0,8'hff}}};
+              weight16={{16{56'd0,8'h11}},{16{56'd0,8'h11}} ,{16{56'd0,8'h22}} ,
+                    {16{56'd0,8'h33}},{16{56'd0,8'h44}},{16{56'd0,8'h55}},{16{56'd0,8'h66}},{16{56'd0,8'h77}},{16{56'd0,8'h88}},{16{7{56'd0,8'hff}}}};
               weight={9{56'd0,8'hff}};
               input_data4={4{56'd0,8'hca}};
               weight4={16{56'd0,8'hff}};
@@ -127,11 +128,12 @@ module tb_kernel_mxu();
               for(k=0;k<2+3*3*3;k=k+1) begin 
               #clk_period;
               end
-
-              repeat(100)@ (posedge clk);
+              enable='0;
+              enable_16='1;
+              repeat(3*15+16+2)@ (posedge clk);
 
               for(i=0;i<16;i=i+1)begin
-                $display("data %d --> %h",i, y16[ 64*16*(i+1)-56-1: 64*16*i]);
+                $display("data %d --> %h",i, y16);
 
               end 
 
