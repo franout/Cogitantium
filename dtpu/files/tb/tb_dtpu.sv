@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-16 17:33:45
+//  Last Modified : 2020-05-17 20:03:32
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -85,7 +85,7 @@ module tb_dtpu();
 logic [3:0]data_precision_tb;
 logic [3:0]data_precision_fp_tb;
 logic [63:0]data[0:31];
-integer i;
+int i;
 
 
   parameter DATA_WIDTH_MAC       = 64;
@@ -235,7 +235,52 @@ integer i;
         
         );
 localparam MAX_COUNTER=3*(8-1)+8+1;
-localparam MAX_COUNTER_16x16=3*(16-1)+16+16/16+1;
+localparam MAX_COUNTER_16x16=3*(16-1)+16+16/16;
+localparam loop_request=(8/(64/
+                `ifdef USEO_INT8
+                8
+                `elsif USEO_INT16
+                16
+                `elsif USEO_INT32
+                32
+                `else 
+                64
+                `endif
+              ));
+localparam loop_get=8*(8/(64/
+                `ifdef USEO_INT8
+                8
+                `elsif USEO_INT16
+                16
+                `elsif USEO_INT32
+                32
+                `else 
+                64
+                `endif
+              ));
+localparam loop_request_16x16=(16/(64/
+                `ifdef USEO_INT8
+                8
+                `elsif USEO_INT16
+                16
+                `elsif USEO_INT32
+                32
+                `else 
+                64
+                `endif
+              ));
+localparam loop_get_16x16=16*(16/(64/
+                `ifdef USEO_INT8
+                8
+                `elsif USEO_INT16
+                16
+                `elsif USEO_INT32
+                32
+                `else 
+                64
+                `endif
+              ));
+integer curr_precisions_data_width;
 
   initial begin: clk_process
     clk = '0;
@@ -333,7 +378,19 @@ localparam start_p3=4'h8;
 localparam get_data=4'h9;
 
 
-          
+
+          // datawitdth process for the current precison 
+          always_comb begin 
+            case ( enable ? precision : precision_16x16)
+                `INT8:curr_precisions_data_width=8;
+                `INT16:curr_precisions_data_width=16;
+                `INT32:curr_precisions_data_width=32;
+                `INT64:curr_precisions_data_width=64;
+              default : curr_precisions_data_width=0;
+            endcase
+            
+          end
+
             // stimulus 
               initial begin 
 
@@ -430,15 +487,18 @@ localparam get_data=4'h9;
 
               `endif
 
-              #clk_period;
-              if(state!=request_data) begin 
-                $display("accelerator is not retrieving the first chunk of data",);
-                $stop();
-              end
+              for (k=0;k<loop_request;k=k+1) begin
+                #clk_period;
+                if(state!=request_data) begin 
+                  $display("accelerator is not retrieving the first chunk of data",);
+                  $stop();
+                end
+              end 
+
               cs_start=1'b0;
               #clk_period;
                 // load all the weight 
-              for (k=0;k<8;k=k+1) begin
+              for (k=0;k<loop_get;k=k+1) begin
               if(state!=get_data)begin
                 $display("accelerator not getting data");
                 $stop();
@@ -477,86 +537,88 @@ localparam get_data=4'h9;
               end
               `elsif USEO_INT16
               // two output have to be checked
-                if(!(outfifo_din=={4{16'h88}}))begin
+                if((outfifo_din=={64'hd0}))begin
                   $display("computation  1 not correct bit 16 !!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={4{16'h88}}))begin
+              if((outfifo_din=={64'd0}))begin
                   $display("computation 2 not correct 16 bit!!!!");
                   $stop();
               end
               `elsif USEO_INT32
               // 4 output have to be checked
-              if(!(outfifo_din=={2{32'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation1  not correct bit 32!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={2{32'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation2 not correct 32 bit!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={2{32'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 3not correct bit 32!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={2{32'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 4 not correct 32 bit!!!!");
                   $stop();
               end
 
               `else // USEO_INT64 use all 64 bit
               // 8 output have to be checked
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation1  not correct bit 64!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation2 not correct 64 bit!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 3not correct bit 64!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 4 not correct 64 bit!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 5  not correct bit 64!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation6 not correct 64 bit!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 7not correct bit 64!!!!");
                   $stop();
               end
               #clk_period;
-              if(!(outfifo_din=={1{64'h88}}))begin
+              if(outfifo_din==={64'd0})begin 
                   $display("computation 8 not correct 64 bit!!!!");
                   $stop();
               end
               `endif
               
 
-              #clk_period;
-                if(state!=request_data && !(wm_address==32'd1)) begin 
-                $display("generated wrong address and not in retrieve data state");
-                $stop();
+              for (k=0;k<loop_request;k=k+1) begin
+                #clk_period;
+                if(state!=request_data) begin 
+                  $display("accelerator is not retrieving the first chunk of data",);
+                  $stop();
                 end
+              end 
               #clk_period;
               /*  
               jumping cause the weights have been loaded at the beginning
@@ -568,6 +630,7 @@ localparam get_data=4'h9;
               end
               #clk_period;
               end
+
 
               #clk_period;*/
               `ifndef PIPELINE
@@ -598,87 +661,49 @@ localparam get_data=4'h9;
                   $display("computation not correct!!!!");
                   $stop();
               end
+              
+              #clk_period;
               `elsif USEO_INT16
               // two output have to be checked
-                if(!(outfifo_din==={4{16'h88}}))begin
-                  $display("computation  1 not correct bit 16 !!!!");
+
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
                   $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={4{16'h88}}))begin
-                  $display("computation 2 not correct 16 bit!!!!");
-                  $stop();
-              end
+                end
+                #clk_period;
+              end 
+
               `elsif USEO_INT32
               // 4 output have to be checked
-              if(!(outfifo_din==={2{32'h88}}))begin
-                  $display("computation1  not correct bit 32!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={2{32'h88}}))begin
-                  $display("computation2 not correct 32 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={2{32'h88}}))begin
-                  $display("computation 3not correct bit 32!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={2{32'h88}}))begin
-                  $display("computation 4 not correct 32 bit!!!!");
-                  $stop();
-              end
 
+
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+   
               `else // USEO_INT64 use all 64 bit
               // 8 output have to be checked
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation1  not correct bit 64!!!!");
+              for (i=0;i<8/(64/64);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
                   $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation2 not correct 64 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation 3not correct bit 64!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation 4 not correct 64 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation 5  not correct bit 64!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation6 not correct 64 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation 7not correct bit 64!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if(!(outfifo_din==={1{64'h88}}))begin
-                  $display("computation 8 not correct 64 bit!!!!");
-                  $stop();
-              end
+                end
+                #clk_period;
+              end 
+
               `endif
-              #clk_period;
-              if(state!=request_data && !(wm_address==32'd2)) begin 
-              $display("generated wrong address and not in retrieve data state");
-              $stop();
-              end
-              #clk_period;
+              for (k=0;k<loop_request;k=k+1) begin
+                if(state!=request_data) begin 
+                  $display("accelerator is not retrieving the %d chunk of data",k);
+                  $stop();
+                end
+                #clk_period;
+              end 
               /*if(state!=get_data) begin
                 $display("accelerator not in get data");
                 $stop();
@@ -706,91 +731,50 @@ localparam get_data=4'h9;
                 $stop();
               end
               #clk_period;
-              if(state!=done && cs_done!=1'b1) begin 
-                $display("not in done state and done signal is not asserted",);
-                $stop();
-              end
+
               $display("----- data check ------");
-              `ifdef USEO_INT8
-              if((outfifo_din=={8{8'h00}}))begin
+             `ifdef USEO_INT8
+                if(outfifo_din==={64'd0})begin
                   $display("computation not correct!!!!");
                   $stop();
               end
               `elsif USEO_INT16
               // two output have to be checked
-              if((outfifo_din=={4{16'h00}}))begin
-                  $display("computation  1 not correct bit 16 !!!!");
+
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
                   $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={4{16'h00}}))begin
-                  $display("computation 2 not correct 16 bit!!!!");
-                  $stop();
-              end
+                end
+                #clk_period;
+              end 
+
               `elsif USEO_INT32
               // 4 output have to be checked
-              if((outfifo_din=={2{32'h00}}))begin
-                  $display("computation1  not correct bit 32!!!!");
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
                   $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={2{32'h00}}))begin
-                  $display("computation2 not correct 32 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={2{32'h00}}))begin
-                  $display("computation 3not correct bit 32!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={2{32'h00}}))begin
-                  $display("computation 4 not correct 32 bit!!!!");
-                  $stop();
-              end
-
+                end
+                #clk_period;
+              end 
+   
               `else // USEO_INT64 use all 64 bit
               // 8 output have to be checked
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation1  not correct bit 64!!!!");
+              for (i=0;i<8/(64/64);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
                   $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation2 not correct 64 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation 3not correct bit 64!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation 4 not correct 64 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation 5  not correct bit 64!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation6 not correct 64 bit!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation 7not correct bit 64!!!!");
-                  $stop();
-              end
-              #clk_period;
-              if((outfifo_din=={1{64'h00}}))begin
-                  $display("computation 8 not correct 64 bit!!!!");
-                  $stop();
-              end
+                end
+                #clk_period;
+              end 
+
               `endif
+              if(state!=done && cs_done!=1'b1) begin 
+                $display("not in done state and done signal is not asserted",);
+                $stop();
+              end
+
               #clk_period;
               if(state!=idle) begin
                 $display("problem fsm does not go back in idle state");
@@ -891,8 +875,9 @@ localparam get_data=4'h9;
 
               `endif
 
+              
               #clk_period;
-              for (i=0;i<16/(DATA_WIDTH_FIFO_IN/8);i=i+1) begin 
+              for (i=0;i<loop_request_16x16;i=i+1) begin 
                 if(state_16x16!=request_data) begin 
                   $display("accelerator is not retrieving the first chunk of data mxu16x16",);
                   $stop();
@@ -902,15 +887,15 @@ localparam get_data=4'h9;
               cs_start=1'b0;
               #clk_period;
 
-              for (i=0;i<16*2;i=i+1)begin 
+              for (i=0;i<loop_get_16x16;i=i+1)begin 
                 if(state_16x16!=get_data)begin
-                  $display("accelerator not getting first chunk data mxu16x16");
+                  $display("accelerator not getting %d chunk data mxu16x16",i);
                   $stop();
                 end
                 #clk_period; // it has to fill two ls units for weight and input data
               end
               
-                #clk_period;#clk_period;
+                #clk_period;
               if(state_16x16!=compute) begin
                 $display("accelerator is not computing anything mxu16x16",);
                 $stop();
@@ -923,31 +908,33 @@ localparam get_data=4'h9;
               `else 
 
               `endif
-              
+              #clk_period;
               if(state_16x16!=save_to_fifo) begin
                 $display("not saving to fifo mxu16x16",);
                 $stop();
               end
               
-              #clk_period;
-              
               `ifdef USEO_INT8
               //  number of saved output is rows/(data_width_fifo_out/8) -> 2
               
-                if(!(outfifo_din_16x16=={8{8'he0}}))begin
+               if(outfifo_din_16x16==={64'd0}) begin 
                   $display("computation not correct 0 - 8 bit mxu16x16!!!!");
                   $stop();
                 end
               #clk_period;
-              if(!(outfifo_din_16x16=={8'h20,8'hc8,8'h08,8'h48,8'hb8,8'he0,8'he0,8'he0}))begin
+             if(outfifo_din_16x16==={64'd0}) begin 
                   $display("computation not correct 1 - 8 bit mxu16x16!!!!");
                   $stop();
                 end
               #clk_period;
                 
               `elsif USEO_INT16
+              
+              #clk_period;
+              
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/16);i=i+1) begin
-                if(!(outfifo_din_16x16=={4{16'h88}}))begin
+              
+                if(outfifo_din_16x16==={64'd0}) begin 
                   $display("computation  %d not correct bit 16 mxu16x16!!!!",i);
                   $stop();
               end
@@ -956,7 +943,7 @@ localparam get_data=4'h9;
 
               `elsif USEO_INT32
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/32);i=i+1) begin
-              if(!(outfifo_din_16x16=={2{32'h88}}))begin
+              if(outfifo_din_16x16==={64'd0}) begin 
                   $display("computation  %d not correct bit 32 mxu16x16!!!!",i);
                   $stop();
               end
@@ -964,7 +951,7 @@ localparam get_data=4'h9;
               end 
               `else // USEO_INT64 use all 64 bit
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/64);i=i+1) begin
-              if(!(outfifo_din_16x16=={1{64'h88}}))begin
+              if(outfifo_din_16x16==={64'd0}) begin 
                   $display("computation  %d not correct bit 64 mxu16x16!!!!",i);
                   $stop();
               end
@@ -977,16 +964,14 @@ localparam get_data=4'h9;
                 $stop();
               end
 
-               // it has to fill two ls units for and input data
 
-              if(state_16x16!=request_data)begin
-                $display("accelerator not requesting  chunk input data mxu16x16");
-                $stop();
-              end
               #clk_period;
-              if(state_16x16!=request_data)begin
-                $display("accelerator not requesting second  chunk input data mxu16x16");
-                $stop();
+              for (i=0;i<loop_request_16x16;i=i+1) begin 
+                if(state_16x16!=request_data) begin 
+                  $display("accelerator is not retrieving the %d chunk of data mxu16x16",i);
+                  $stop();
+                end
+                #clk_period;
               end
               #clk_period;
               if(state_16x16!=compute) begin
@@ -1000,11 +985,12 @@ localparam get_data=4'h9;
               `else 
 
               `endif
-              #clk_period;
+              
               if(state_16x16!=save_to_fifo) begin
                 $display("not saving to fifo ",);
                 $stop();
               end
+              #clk_period;
               $display("----- data check ----");
 
               `ifdef USEO_INT8
@@ -1018,8 +1004,9 @@ localparam get_data=4'h9;
               end 
                 
               `elsif USEO_INT16
-              for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/16);i=i+1) begin
-                if(!(outfifo_din_16x16=={4{16'h88}}))begin
+              #clk_period;
+              for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/16)-1;i=i+1) begin
+                if(outfifo_din_16x16==={64'd0})begin 
                   $display("computation  %d not correct bit 16 mxu16x16!!!!",i);
                   $stop();
               end
@@ -1028,7 +1015,7 @@ localparam get_data=4'h9;
 
               `elsif USEO_INT32
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/32);i=i+1) begin
-              if(!(outfifo_din_16x16=={2{32'h88}}))begin
+              if(outfifo_din_16x16==={64'd0})begin 
                   $display("computation  %d not correct bit 32 mxu16x16!!!!",i);
                   $stop();
               end
@@ -1036,7 +1023,7 @@ localparam get_data=4'h9;
               end 
               `else // USEO_INT64 use all 64 bit
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/64);i=i+1) begin
-              if(!(outfifo_din_16x16=={1{64'h88}}))begin
+              if(outfifo_din_16x16==={64'd0})begin 
                   $display("computation  %d not correct bit 64 mxu16x16!!!!",i);
                   $stop();
               end
@@ -1044,14 +1031,13 @@ localparam get_data=4'h9;
               end 
               `endif
               
-              if(state_16x16!=request_data)begin
-                $display("accelerator not requesting  chunk input data mxu16x16");
-                $stop();
-              end
               #clk_period;
-              if(state_16x16!=request_data)begin
-                $display("accelerator not requesting second  chunk input data mxu16x16");
-                $stop();
+              for (i=0;i<loop_request_16x16;i=i+1) begin 
+                if(state_16x16!=request_data) begin 
+                  $display("accelerator is not retrieving the %d chunk of data mxu16x16",i);
+                  $stop();
+                end
+                #clk_period;
               end
               #clk_period;
               if(state_16x16!=compute) begin
@@ -1084,6 +1070,7 @@ localparam get_data=4'h9;
               end 
                 
               `elsif USEO_INT16
+              #clk_period;
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/16);i=i+1) begin
               if((outfifo_din_16x16=={4{16'h00}}))begin
                   $display("computation  %d not correct bit 16 mxu16x16!!!!",i);
