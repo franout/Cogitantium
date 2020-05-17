@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-17 20:03:32
+//  Last Modified : 2020-05-17 23:26:20
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -82,7 +82,7 @@ module tb_dtpu();
               logic cs_ready_16x16;
               logic [`LOG_ALLOWED_PRECISIONS-1:0]precision_16x16;
               logic [3:0]state_16x16;
-logic [3:0]data_precision_tb;
+logic [63:0]data_precision_tb;
 logic [3:0]data_precision_fp_tb;
 logic [63:0]data[0:31];
 int i;
@@ -243,8 +243,12 @@ localparam loop_request=(8/(64/
                 16
                 `elsif USEO_INT32
                 32
-                `else 
+                `elsif USE_ALL
                 64
+                `elsif USE0_FP32
+                32
+                `elsif USE0_BFP16
+                16
                 `endif
               ));
 localparam loop_get=8*(8/(64/
@@ -254,8 +258,12 @@ localparam loop_get=8*(8/(64/
                 16
                 `elsif USEO_INT32
                 32
-                `else 
+                `elsif USE_ALL
                 64
+                `elsif USE0_FP32
+                32
+                `elsif USE0_BFP16
+                16
                 `endif
               ));
 localparam loop_request_16x16=(16/(64/
@@ -265,8 +273,12 @@ localparam loop_request_16x16=(16/(64/
                 16
                 `elsif USEO_INT32
                 32
-                `else 
+                `elsif USE_ALL
                 64
+                `elsif USE0_FP32
+                32
+                `elsif USE0_BFP16
+                16
                 `endif
               ));
 localparam loop_get_16x16=16*(16/(64/
@@ -276,8 +288,12 @@ localparam loop_get_16x16=16*(16/(64/
                 16
                 `elsif USEO_INT32
                 32
-                `else 
+                `elsif USE_ALL
                 64
+                `elsif USE0_FP32
+                32
+                `elsif USE0_BFP16
+                16
                 `endif
               ));
 integer curr_precisions_data_width;
@@ -318,9 +334,9 @@ always @(posedge(csr_clk) or posedge(csr_clk_16x16) )begin
 if(csr_ce || csr_ce_16x16) begin 
   case(csr_address || csr_address_16x16)
     `A_ARITHMETIC_PRECISION:
-        csr_dout={56'b0,data_precision_tb};
+        csr_dout=data_precision_tb;
     `A_FP_MODE:
-        csr_dout={56'b0,data_precision_fp_tb};
+        csr_dout=data_precision_fp_tb;
     default:
       csr_dout=56'd0;
   endcase
@@ -413,6 +429,13 @@ localparam get_data=4'h9;
                 data_precision_tb=`INT64; // 64 bit integer
                 `endif
               
+              `ifdef USE0_FP32
+              $display("starting test for dtpu core 32 bit fp on 8x8 mxu");
+                data_precision_tb={`FP,1'b0,`INT32}; 
+              `elsif USE0_BFP16
+                $display("starting test for dtpu core 16 bit bfp on 8x8 mxu");
+                data_precision_tb={ `BFPP16,1'b0,`INT16}; 
+              `endif
 
               if(state!=Power_up ) begin 
                 $display("after reset not in power up state");
@@ -474,7 +497,7 @@ localparam get_data=4'h9;
                 $stop();
               end 
 
-              `else // USEO_INT64
+              `elsif USEO_INT64
              if(state!=start_p2  && csr_dout!=`INT64  && csr_address!=`A_FP_MODE) begin
                 $display("not phase 2");
                 $stop();
@@ -486,6 +509,30 @@ localparam get_data=4'h9;
               end 
 
               `endif
+
+
+              `ifdef USE0_FP32
+              if(state!=start_p2  && csr_dout!=`INT32  && csr_address!=`A_FP_MODE) begin
+                $display("not phase 2");
+                $stop();
+              end 
+              #clk_period; 
+              if(state!=start_p3 && cs_ready!=1'b1 && precision!=`INT32) begin
+                $display("not phase 3 , check precisions no int 32");
+                $stop();
+              end 
+              `elsif USE0_BFP16
+             if(state!=start_p2  && csr_dout!=`INT16  && csr_address!=`A_FP_MODE) begin
+                $display("not phase 2");
+                $stop();
+              end 
+              #clk_period; 
+              if(state!=start_p3 && cs_ready!=1'b1 && precision!=`INT16) begin
+                $display("not phase 3 , check precisions no int 16");
+                $stop();
+              end 
+              `endif
+
 
               for (k=0;k<loop_request;k=k+1) begin
                 #clk_period;
@@ -568,7 +615,7 @@ localparam get_data=4'h9;
                   $stop();
               end
 
-              `else // USEO_INT64 use all 64 bit
+              `elsif  USEO_INT64 //use all 64 bit
               // 8 output have to be checked
               if(outfifo_din==={64'd0})begin 
                   $display("computation1  not correct bit 64!!!!");
@@ -611,6 +658,42 @@ localparam get_data=4'h9;
               end
               `endif
               
+
+
+              `ifdef USE0_FP32
+              // 4 output have to be checked
+              if(outfifo_din==={64'd0})begin 
+                  $display("computation1  not correct bit 32!!!!");
+                  $stop();
+              end
+              #clk_period;
+              if(outfifo_din==={64'd0})begin 
+                  $display("computation2 not correct 32 bit!!!!");
+                  $stop();
+              end
+              #clk_period;
+              if(outfifo_din==={64'd0})begin 
+                  $display("computation 3not correct bit 32!!!!");
+                  $stop();
+              end
+              #clk_period;
+              if(outfifo_din==={64'd0})begin 
+                  $display("computation 4 not correct 32 bit!!!!");
+                  $stop();
+              end
+              `elsif USE0_BFP16
+            // two output have to be checked
+                if((outfifo_din=={64'hd0}))begin
+                  $display("computation  1 not correct bit 16 !!!!");
+                  $stop();
+              end
+              #clk_period;
+              if((outfifo_din=={64'd0}))begin
+                  $display("computation 2 not correct 16 bit!!!!");
+                  $stop();
+              end
+              `endif
+
 
               for (k=0;k<loop_request;k=k+1) begin
                 #clk_period;
@@ -686,7 +769,7 @@ localparam get_data=4'h9;
                 #clk_period;
               end 
    
-              `else // USEO_INT64 use all 64 bit
+              `elsif USEO_INT64  // use all 64 bit
               // 8 output have to be checked
               for (i=0;i<8/(64/64);i=i+1)begin
                 if(outfifo_din==={64'd0})begin
@@ -697,6 +780,30 @@ localparam get_data=4'h9;
               end 
 
               `endif
+
+
+
+              `ifdef USEO_FP32
+              // two output have to be checked
+
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+
+              `elsif USE0_BFP16
+              // 4 output have to be checked
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+                `endif
               for (k=0;k<loop_request;k=k+1) begin
                 if(state!=request_data) begin 
                   $display("accelerator is not retrieving the %d chunk of data",k);
@@ -759,7 +866,7 @@ localparam get_data=4'h9;
                 #clk_period;
               end 
    
-              `else // USEO_INT64 use all 64 bit
+              `elsif USEO_INT64 // use all 64 bit
               // 8 output have to be checked
               for (i=0;i<8/(64/64);i=i+1)begin
                 if(outfifo_din==={64'd0})begin
@@ -768,8 +875,31 @@ localparam get_data=4'h9;
                 end
                 #clk_period;
               end 
-
               `endif
+
+                `ifdef USEO_FP32
+              // two output have to be checked
+
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+
+              `elsif USE0_BFP16
+              // 4 output have to be checked
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+                `endif
+
+
               if(state!=done && cs_done!=1'b1) begin 
                 $display("not in done state and done signal is not asserted",);
                 $stop();
@@ -797,10 +927,21 @@ localparam get_data=4'h9;
               `elsif USEO_INT32
               $display("starting test for dtpu core 32 bit integer on 16x16 mxu");
               data_precision_tb=`INT32; // 32 bit integer
-              `else // USEO_INT64 use all 64 bit
+              `elsif USEO_INT64 // use all 64 bit
               $display("starting test for dtpu core 64 bit integer on 16x16 mxu");
               data_precision_tb=`INT64; // 64 bit integer
               `endif
+
+
+              `ifdef USE0_FP32
+              $display("starting test for dtpu core 32 bit fp on 8x8 mxu");
+                data_precision_tb={`FP,1'b0,`INT32}; 
+              `elsif USE0_BFP16
+                $display("starting test for dtpu core 16 bit bfp on 8x8 mxu");
+                data_precision_tb={ `BFPP16,1'b0,`INT16}; 
+              `endif
+
+
               #clk_period
               if(state_16x16!=Power_up ) begin 
                 $display("after reset not in power up state mxu16x16");
@@ -862,7 +1003,7 @@ localparam get_data=4'h9;
                 $stop();
               end 
 
-              `else // USEO_INT64
+              `elsif  USEO_INT64
              if(state_16x16!=start_p2  && csr_dout!=`INT64  && csr_address_16x16!=`A_FP_MODE) begin
                 $display("not phase 2 mxu16x16");
                 $stop();
@@ -875,6 +1016,29 @@ localparam get_data=4'h9;
 
               `endif
 
+
+
+              `ifdef USE0_FP32
+              if(state!=start_p2  && csr_dout!=`INT32  && csr_address!=`A_FP_MODE) begin
+                $display("not phase 2");
+                $stop();
+              end 
+              #clk_period; 
+              if(state!=start_p3 && cs_ready!=1'b1 && precision!=`INT32) begin
+                $display("not phase 3 , check precisions no int 32");
+                $stop();
+              end 
+              `elsif USE0_BFP16
+             if(state!=start_p2  && csr_dout!=`INT16  && csr_address!=`A_FP_MODE) begin
+                $display("not phase 2");
+                $stop();
+              end 
+              #clk_period; 
+              if(state!=start_p3 && cs_ready!=1'b1 && precision!=`INT16) begin
+                $display("not phase 3 , check precisions no int 16");
+                $stop();
+              end 
+              `endif
               
               #clk_period;
               for (i=0;i<loop_request_16x16;i=i+1) begin 
@@ -949,7 +1113,7 @@ localparam get_data=4'h9;
               end
               #clk_period;
               end 
-              `else // USEO_INT64 use all 64 bit
+              `elsif  USEO_INT64 // use all 64 bit
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/64);i=i+1) begin
               if(outfifo_din_16x16==={64'd0}) begin 
                   $display("computation  %d not correct bit 64 mxu16x16!!!!",i);
@@ -958,7 +1122,28 @@ localparam get_data=4'h9;
               #clk_period;
               end 
               `endif
-              
+              `ifdef USEO_FP32
+              // two output have to be checked
+
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+
+              `elsif USE0_BFP16
+              // 4 output have to be checked
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+                `endif
+
               if(state_16x16!=done && cs_done_16x16!=1'b0) begin 
                 $display("accelerator not in continous run mxu16x16");
                 $stop();
@@ -1021,7 +1206,7 @@ localparam get_data=4'h9;
               end
               #clk_period;
               end 
-              `else // USEO_INT64 use all 64 bit
+              `elsif  USEO_INT64 //use all 64 bit
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/64);i=i+1) begin
               if(outfifo_din_16x16==={64'd0})begin 
                   $display("computation  %d not correct bit 64 mxu16x16!!!!",i);
@@ -1031,6 +1216,28 @@ localparam get_data=4'h9;
               end 
               `endif
               
+              `ifdef USEO_FP32
+              // two output have to be checked
+
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+
+              `elsif USE0_BFP16
+              // 4 output have to be checked
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+                `endif
+
               #clk_period;
               for (i=0;i<loop_request_16x16;i=i+1) begin 
                 if(state_16x16!=request_data) begin 
@@ -1087,7 +1294,7 @@ localparam get_data=4'h9;
               end
               #clk_period;
               end 
-              `else // USEO_INT64 use all 64 bit
+              `elsif  USEO_INT64 //use all 64 bit
               for(i=0;i<16/(DATA_WIDTH_FIFO_OUT/64);i=i+1) begin
               if((outfifo_din_16x16=={1{64'h00}}))begin
                   $display("computation  %d not correct bit 64 mxu16x16!!!!",i);
@@ -1096,6 +1303,30 @@ localparam get_data=4'h9;
               #clk_period;
               end 
               `endif
+
+                `ifdef USEO_FP32
+              // two output have to be checked
+
+              for (i=0;i<8/(64/32);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+
+              `elsif USE0_BFP16
+              // 4 output have to be checked
+              for (i=0;i<8/(64/16);i=i+1)begin
+                if(outfifo_din==={64'd0})begin
+                  $display("error computation %d 16 bit not correct",i);
+                  $stop();
+                end
+                #clk_period;
+              end 
+                `endif
+
+
               if(state_16x16!=done && cs_done_16x16!=1'b1) begin 
                 $display("not in done state and done signal is not asserted",);
                 $stop();

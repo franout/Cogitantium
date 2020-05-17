@@ -15,10 +15,12 @@
 `elsif USE_ALL
 	`define DSP_INC 14
 `elsif  USE0_FP32 
+	`define DSP_INC 2
 `elsif  USE0_FP16 
 `elsif USE0_BFP16 
+ 	`define DSP_INC 2
 `else 
  	`define DSP_INC 1
 `endif
 
-`endif 
+`endif  

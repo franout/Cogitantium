@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_fp_units.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-06 19:24:50
+//  Last Modified : 2020-05-18 00:09:16
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -12,8 +12,10 @@
 //
 //==================================================================================================
 
+
 `timescale 1ns / 1ps
 `include "precision_def.vh"
+
 module tb_fp_units();
 parameter clk_period= 10;
 
@@ -106,14 +108,23 @@ real res_mac_p;
 real res_mac_next;
 real res_mac_n_smac;
 
+logic [63:0] input_data_bf;
+logic [63:0]  weight_bf;
+logic [63:0] res_mac_p_bf;
 
  smul #(.USE_FABRIC("YES")) // it does not matter for fp
  uut_smul_fp (
 .clk             (clk),
 .ce(enable),
 .sclr(reset),
+`ifndef  USE0_BFP16
 .input_data(input_data),
 .weight(weight),
+`else 
+.input_data(input_data_bf),
+.weight(weight_bf),
+`endif
+
 .res_mac_next(res_mac_next),
 .select_precision(select_precision),
 .enable_fp_unit( enable_fp_unit),
@@ -125,9 +136,15 @@ real res_mac_n_smac;
 .clk             (clk),
 .ce(enable),
 .sclr(reset),
-.data_input(input_data),
-.weight(weight),
-.res_mac_p(res_mac_p), 
+`ifndef USE0_BFP16
+    .data_input(input_data),
+    .weight(weight),
+    .res_mac_p(res_mac_p),
+`else
+    .data_input(input_data_bf),
+    .weight(weight_bf),
+    .res_mac_p(res_mac_p_bf),
+`endif 
 .res_mac_n(res_mac_n_smac),
 .select_precision(select_precision),
 .enable_fp_unit( enable_fp_unit),
@@ -186,9 +203,15 @@ real res_mac_n_smac;
     reset='0;
     enable='1;
     // upper part is discarded
+    `ifndef USE0_BFP16
     input_data={32'd0,32'hCAFECAFE } ;
     weight={32'd0, 32'HFFFFFFFF} ;
     res_mac_p={32'd0,32'h000000001 } ;
+    `else
+    input_data_bf={32'd0,16'hCAFE } ;
+    weight_bf={32'd0, 16'HFFFF} ;
+    res_mac_p_bf={32'd0,16'h00001 } ;
+    `endif
     repeat(10)@(posedge clk);
 
     $display("check result");
