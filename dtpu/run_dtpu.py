@@ -2,7 +2,7 @@
 from pynq import Overlay
 from pynq import MMIO
 from pynq import allocate
-#from pynq.lib import dma
+from pynq.lib import dma
 from pynq import Xlnk
 import time
 
@@ -134,7 +134,7 @@ else :
 #####################################################
 ##########       CSR DEFINITIONS           ##########
 ##########          MEMORY MAP             ##########
-##########          bitwidth 8             ##########
+##########          bitwidth 64            ##########
 ##########          see csr_definition.vh  ##########
 #####################################################
 ARITHMETIC_PRECISION=0
@@ -156,16 +156,12 @@ ACTIVE_FP=1<<0
 ACTIVE_BFP=0x03
 ROUNDING=0x00
 NO_FP=0x00
-
+WMEM_STARTING_ADDRESS=0 #32 MSB 
 ### allocate buffers for input and outpuf fifo in main memory 
 ## default 32 bit integer
 # Allocate buffers for the input and output signals ( contigous memory allocation )
-#xlnk = Xlnk()
-#input_fifo_buffer = xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
-#output_fifo_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
-#weight_buffer=xlnk.cma_array(shape=(2048,),dtype='u8',cacheable=True)
-#csr_buffer=xlnk.cma_array(shape=(1024,),dtype='u1')#,cacheable=True)
 # shape is the size!
+# by defauls non cacheable
 input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
 output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
 weight_buffer=allocate(shape=(16384,),dtype='u8')
@@ -174,12 +170,13 @@ csr_buffer=allocate(shape=(64,),dtype='u8')
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
     input_fifo_buffer[i]=0xcafecafecafecafe
+    #input_fifo_buffer[i]=0
 
 
 ## populate weights
 for i in range(weight_buffer.size):
-    weight_buffer[i]=  ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) 
-    #weight_buffer[i]=0xFFFFFFFFFFFFFFFF
+    #weight_buffer[i]=  ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) 
+    weight_buffer[i]=0xFFFFFFFFFFFFFFFF
     #weight_buffer[i]=0
 
 ## populate csr 
@@ -188,9 +185,8 @@ for i in range(weight_buffer.size):
     
 
 
-csr_buffer[ARITHMETIC_PRECISION]=   (NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
-for i in range(csr_buffer.size-1):
-    csr_buffer[i+1]=0
+csr_buffer[ARITHMETIC_PRECISION]=  (WMEM_STARTING_ADDRESS<<32) |(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8
+
 #csr_buffer[FP_MODE]=NO_FP
 #csr_buffer[BATCH_SIZE]=8 # equal to number of rows -> max throughput
 #csr_buffer[TRANSPARENT_DELAY_REGISTER]=0
@@ -220,19 +216,23 @@ else:
 
 driver_csr.sendchannel.transfer(csr_buffer)
 driver_csr.sendchannel.wait()
+#clear run bit
+
 
 
 ################################################
 ###### program the dma for the weight ##########
 ################################################
 if 'driver_wm' in locals():
-    driver_wm.sendchannel.stop()
-    driver_wm.sendchannel.start()
+    #driver_wm.sendchannel.stop()
+    #driver_wm.sendchannel.start()
+    drivers
 else:
     driver_wm=overlay.axi_dma_weight_mem
 
 driver_wm.sendchannel.transfer(weight_buffer)
 driver_wm.sendchannel.wait()
+
 
 
 
@@ -244,11 +244,13 @@ if not('driver_fifo_in' in locals()):
     driver_fifo_in=overlay.axi_dma_infifo
 
 driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
-driver_fifo_in.sendchannel.wait()
+
 
 if not('driver_fifo_out' in locals()):
     driver_fifo_out=overlay.axi_dma_outfifo
-    driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+
+driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+driver_fifo_in.sendchannel.wait()
 
 ###########################################################
 ###         program accelerator&start computation     #####
@@ -259,7 +261,7 @@ if not('driver_fifo_out' in locals()):
 
 ### COMMAND OPCODE [19:16]CMD hex
 
-CMD_UPDATE_IN_ARDG=0x0
+CMD_UPDATE_IN_ARG=0x0
 CMD_UPDATE_OUT_ARG=0x1
 CMD_EXECUTE_STEP=0x2
 CMD_EXECUTE_CONTINUOS=0x4
@@ -278,7 +280,8 @@ accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights an
 accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
 accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
 #accelerator.write(OARG_LENGTH_MODE,0x00000001) # software mode
-#accelerator.write(OARG0_LENGTH,2048) # size outfifo / data_width output fifo
+#accelerator.write(OARG0_LENGTH,2048*64/8) # size outfifo / data_width output fifo
+#accelerator.write(CMD,0x00010001 ) NO MULTIBUFFER
 # optional configure input scalar request enable  and update them 
 accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
 accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
@@ -294,14 +297,17 @@ start_time = time.time()
 
 #################################################################
 #### this has to be copied into the delegate of tensorflow ######
-
 #################################################################
+
+#if second iteration accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(3))) # update inputs to next buffers
+
 
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
 while driver_fifo_out.recvchannel.running:
     pass
 
-#driver_fifo.recvchannel.wait()
+accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1)))
+driver_fifo_out.recvchannel.wait()
 stop_time = time.time()
 #After completing the Accelerator operation, done status is updated in the Status
 #Register (0x0004). Output scalar data can be read now from OSCALAR_DATA and
@@ -328,9 +334,10 @@ while True:
 #(0x0028). By writing 1 to the argument, mask moves the input buffer pointer to the next
 
 #position in multi-buffer. Writing 0 reuses the same buffer.
-#accelerator.write(CMD,0x00000001)
+driver_fifo_out.recvchannel.wait_async()
+#accelerator.write(CMD,0x00000003)
 accelerator.write(STATUS,0x00000003)##clear status
-#driver_fifo_out.recvchannel.wait()
+
 
 
 ## retrieve the results and print 

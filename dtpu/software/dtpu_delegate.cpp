@@ -254,6 +254,8 @@ typedef struct {
             struct TfLiteDelegate* delegate;
           } TfLiteNode;
       
+
+      
       typedef struct {
           TfLiteDelegate* delegate;
           TfLiteIntArray* nodes_to_replace;
@@ -355,3 +357,36 @@ typedef struct {
   int data[];
 #endif
 } TfLiteIntArray; // TfLiteIntArray - stores tensor shapes (dims),
+
+
+// A union of pointers that points to memory for a given tensor.
+typedef union {
+  int32_t* i32;
+  int64_t* i64;
+  float* f;
+  // Placeholder for 16b float type. Use uint16* in the pointer union for now.
+  TfLiteFloat16* f16;
+  char* raw;
+  const char* raw_const;
+  uint8_t* uint8;
+  bool* b;
+  int16_t* i16;
+  TfLiteComplex64* c64;
+  int8_t* int8;
+} TfLitePtrUnion;
+
+
+// Types supported by tensor
+typedef enum {
+  kTfLiteNoType = 0,
+  kTfLiteFloat32 = 1,
+  kTfLiteInt32 = 2,
+  kTfLiteUInt8 = 3,
+  kTfLiteInt64 = 4,
+  kTfLiteString = 5,
+  kTfLiteBool = 6,
+  kTfLiteInt16 = 7,
+  kTfLiteComplex64 = 8,
+  kTfLiteInt8 = 9,
+  kTfLiteFloat16 = 10,
+} TfLiteType;

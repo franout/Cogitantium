@@ -94,7 +94,7 @@ class DTPU_delegate {
   printf("[DEBUG - C]--- Prepare of DTPU delegate class --- \n");
       // initialize, link the buffers accordint to the size of node data
 // kTfLiteMmapRo  aka weights
-    int i;
+    unsigned int i;
     int num_weight_tensor=0;
     TfLiteTensor tmp;
     for(i=0;i<context->tensors_size;i++){
@@ -575,6 +575,7 @@ def SelectDataTypeComputation_p(data_type):
   print("[DEBUG-PYTHON]--- transfering csr buffer ----")
   driver_csr.sendchannel.transfer(csr_buffer)
   driver_csr.sendchannel.wait()
+  return True
   
 
 @ffi.def_extern()
@@ -743,9 +744,11 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
 
   for i in range (global_iteration):
     # modify inital starting value of weight 
-    #prev=np.uint64(csr_buffer[ARITHMETIC_PRECISION] & 0x00000000FFFFFFFF)
-    csr_buffer[ARITHMETIC_PRECISION]=np.uint64(((np.uint32(global_iteration_shift_wm[i] <<32)) | (np.uint32(csr_buffer[ARITHMETIC_PRECISION] &0xfffffffff)))
+    prev=np.uint32(csr_buffer[ARITHMETIC_PRECISION]) & 0xffffffff
+    csr_buffer[ARITHMETIC_PRECISION]=np.uint64(global_iteration_shift_wm[i]<<32) | np.uint64(prev)
     csr_buffer.flush()
+    driver_csr.sendchannel.transfer(csr_buffer)
+    #driver_csr.sendchannel.wait()
     for j in range(iter):
       #execute the inference and retrieve the data
       accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
@@ -774,8 +777,14 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   ################################################################################################
   ####### unpack the output buffer depending on the precision and give  it back to C code ########
   ################################################################################################
+  print("[DEBUG-PYTHON]----- getting output data -----")
+  shift=0
   for i in range(out_data_size):
-    out_data[i]=output_fifo_buffer[i]
+    out_data[i]= (output_fifo_buffer[i>>np.uint8(shift*curr_data_precision))) 0xff
+    if(shift<int(64/curr_data_precision)):
+      shift=shift+1
+    else:
+      shift=0
   return True
 
 @ffi.def_extern()
