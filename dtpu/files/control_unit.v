@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-17 23:27:41
+//  Last Modified : 2020-05-19 12:43:30
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -61,10 +61,10 @@ input wire outfifo_is_full,
 /////////// CONTROL FROM/TO PS /////////////
 ////////////////////////////////////////////             
 input wire cs_start,
-(* keep="true" *)output reg cs_ready,
-(* keep="true" *)output reg cs_done,
 input wire cs_continue,
-(* keep="true" *)output reg cs_idle,
+output reg cs_ready,
+output reg cs_done,
+output reg cs_idle,
 
 ////////////////////////////////////////////
 ////// CONTROL FLOW OF MXU /////////////////

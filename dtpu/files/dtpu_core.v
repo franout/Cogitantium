@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : dtpu_core.v
 //  Created On    : 2020-04-22 17:05:56
-//  Last Modified : 2020-05-17 12:12:44
+//  Last Modified : 2020-05-20 15:03:03
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -33,7 +33,7 @@ module dtpu_core
     )
 (
     input wire clk,
-    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 areset RST" *)
+    (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn RST" *)
     (* X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
     input wire aresetn,
     input wire test_mode,

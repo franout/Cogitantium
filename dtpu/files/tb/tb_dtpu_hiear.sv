@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu_hiear.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-18 00:13:59
+//  Last Modified : 2020-05-18 11:54:39
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -17,8 +17,8 @@
 
 
 module tb_dtpu_hiear ();
-
-	module dtpu_imp_WM72SM
+/*
+	 dtpu_imp_WM72SM uut 
    (M_AXIS_outfifo_tdata,
     M_AXIS_outfifo_tkeep,
     M_AXIS_outfifo_tlast,
@@ -111,8 +111,8 @@ module tb_dtpu_hiear ();
   input s_axi_aresetn;
   output [3:0]state_0;
   input test_mode;
-
-
+*/
+/*
 axi4stream_vip your_instance_name (
   .aclk(aclk),                    // input wire aclk
   .aresetn(aresetn),              // input wire aresetn
@@ -122,19 +122,19 @@ axi4stream_vip your_instance_name (
   .s_axis_tkeep(s_axis_tkeep),    // input wire [63 : 0] s_axis_tkeep
   .s_axis_tlast(s_axis_tlast)    // input wire [0 : 0] s_axis_tlast
 );
-
+**/
 
 
 ///////////////////////////////////////////////////////////////////////////
 // How to start the verification component
 ///////////////////////////////////////////////////////////////////////////
-//      axi4stream_vip_slv_t  axi4stream_vip_slv;
-//      initial begin : START_axi4stream_vip_SLAVE
-//        axi4stream_vip_slv = new("axi4stream_vip_slv", `axi4stream_vip_PATH_TO_INTERFACE);
-//        axi4stream_vip_slv.start_slave();
-//      end
+  /*    axi4stream_vip_slv_t  axi4stream_vip_slv;
+      initial begin : START_axi4stream_vip_SLAVE
+        axi4stream_vip_slv = new("axi4stream_vip_slv", `axi4stream_vip_PATH_TO_INTERFACE);
+        axi4stream_vip_slv.start_slave();
+      end
 
-
+*/
 
 
 
