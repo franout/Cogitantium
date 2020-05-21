@@ -165,18 +165,20 @@ WMEM_STARTING_ADDRESS=0 #32 MSB
 input_fifo_buffer = allocate(shape=(2048,),dtype='u8')
 output_fifo_buffer=allocate(shape=(2048,),dtype='u8')
 weight_buffer=allocate(shape=(16384,),dtype='u8')
+#weight_buffer=allocate(shape=(4096,),dtype='u8')
 csr_buffer=allocate(shape=(64,),dtype='u8')
 
 ## populate input fifo
 for i in range(input_fifo_buffer.size):
-    input_fifo_buffer[i]=0xcafecafecafecafe
-    #input_fifo_buffer[i]=0
+    #input_fifo_buffer[i]=0xcafecafecafecafe
+    input_fifo_buffer[i]=0
 
 
 ## populate weights
 for i in range(weight_buffer.size):
     #weight_buffer[i]=  ((i%16)<<56)|((i%16)<<48)| ((i%16)<<40)|((i%16)<<32)|((i%16)<<24)| ((i%16)<<16)|((i%16)<<8)| (i%16) 
     weight_buffer[i]=0xFFFFFFFFFFFFFFFF
+    #weight_buffer[i]=0x1111111111111111
     #weight_buffer[i]=0
 
 ## populate csr 
@@ -200,57 +202,7 @@ accelerator=overlay.dtpu.axis_accelerator_ada
 accelerator.write(CTRL,0x0000001)
 accelerator.write(CTRL,0x0000000)
 
-csr_buffer.flush()
-weight_buffer.flush()
-input_fifo_buffer.flush()
 
-
-################################################
-###### program the dma for the csr reg #########
-################################################
-if 'driver_csr' in locals():
-    driver_csr.sendchannel.stop()
-    driver_csr.sendchannel.start()
-else: 
-    driver_csr=overlay.axi_dma_csr_mem
-
-driver_csr.sendchannel.transfer(csr_buffer)
-driver_csr.sendchannel.wait()
-#clear run bit
-
-
-
-################################################
-###### program the dma for the weight ##########
-################################################
-if 'driver_wm' in locals():
-    #driver_wm.sendchannel.stop()
-    #driver_wm.sendchannel.start()
-    drivers
-else:
-    driver_wm=overlay.axi_dma_weight_mem
-
-driver_wm.sendchannel.transfer(weight_buffer)
-driver_wm.sendchannel.wait()
-
-
-
-
-
-######################################################
-###### program the dma for the in/out fifos ##########
-######################################################
-if not('driver_fifo_in' in locals()):
-    driver_fifo_in=overlay.axi_dma_infifo
-
-driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
-
-
-if not('driver_fifo_out' in locals()):
-    driver_fifo_out=overlay.axi_dma_outfifo
-
-driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-driver_fifo_in.sendchannel.wait()
 
 ###########################################################
 ###         program accelerator&start computation     #####
@@ -277,10 +229,10 @@ accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights an
 #selection for ap_start generation. start is generated only if the selected output
 #argument buffer has space available. By default, all input argument buffer are
 #considered for start generation.
-accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
-accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
-#accelerator.write(OARG_LENGTH_MODE,0x00000001) # software mode
-#accelerator.write(OARG0_LENGTH,2048*64/8) # size outfifo / data_width output fifo
+#accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
+#accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
+accelerator.write(OARG_LENGTH_MODE,0x00000001) # software mode
+accelerator.write(OARG0_LENGTH,2048) # size outfifo 
 #accelerator.write(CMD,0x00010001 ) NO MULTIBUFFER
 # optional configure input scalar request enable  and update them 
 accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
@@ -288,6 +240,52 @@ accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
 
 #Write TDEST value in Output Argument TDEST Register (0x0240 to 0x025C).
 accelerator.write(OARG0_TDEST,0) # only one output 
+
+
+
+csr_buffer.flush()
+weight_buffer.flush()
+input_fifo_buffer.flush()
+
+
+################################################
+###### program the dma for the csr reg #########
+################################################
+
+driver_csr=overlay.axi_dma_csr_mem
+
+driver_csr.sendchannel.transfer(csr_buffer)
+driver_csr.sendchannel.wait()
+#clear run bit
+
+
+
+################################################
+###### program the dma for the weight ##########
+################################################
+
+driver_wm=overlay.axi_dma_weight_mem
+driver_wm.sendchannel.transfer(weight_buffer)
+driver_wm.sendchannel.wait()
+
+
+
+
+
+######################################################
+###### program the dma for the in/out fifos ##########
+######################################################
+
+driver_fifo_in=overlay.axi_dma_infifo
+
+driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
+
+
+
+driver_fifo_out=overlay.axi_dma_outfifo
+driver_fifo_in.sendchannel.wait()
+accelerator.write(OARG0_LENGTH,2048) # size outfifo 
+
 
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
@@ -299,14 +297,17 @@ start_time = time.time()
 #### this has to be copied into the delegate of tensorflow ######
 #################################################################
 
-#if second iteration accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(3))) # update inputs to next buffers
 
-
+#accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINUOS<<16))) # execute one step 
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-while driver_fifo_out.recvchannel.running:
-    pass
+#while driver_fifo_out.recvchannel.running:
+#    pass
 
-accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1)))
+
+accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(3))) # update inputs to next buffers
+
+accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
+driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
 driver_fifo_out.recvchannel.wait()
 stop_time = time.time()
 #After completing the Accelerator operation, done status is updated in the Status
@@ -334,7 +335,7 @@ while True:
 #(0x0028). By writing 1 to the argument, mask moves the input buffer pointer to the next
 
 #position in multi-buffer. Writing 0 reuses the same buffer.
-driver_fifo_out.recvchannel.wait_async()
+#driver_fifo_out.recvchannel.wait_async()
 #accelerator.write(CMD,0x00000003)
 accelerator.write(STATUS,0x00000003)##clear status
 

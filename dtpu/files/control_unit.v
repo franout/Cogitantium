@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-19 12:43:30
+//  Last Modified : 2020-05-21 19:11:20
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -223,9 +223,6 @@ start_p3:  begin
             end
             end
 `ifdef PIPELINE
-
-
-`endif
     //TODO pipeline it
     /*
             pipeline
@@ -235,7 +232,108 @@ start_p3:  begin
                         -> compute
                             -> save
     */
+request_data: begin
+            // recheck for 16x16
+            infifo_read<=1'b1;
+            // load counter of ls array 
+            ld_max_cnt<=1'b1;
+            ld_max_cnt_weight<=1'b1;
+            enable_load_array<=1'b1;
+            //[counter_request]
 
+            enable_load_activation_data<=(1'b1<<(counter_request));
+            enable_store_activation_data<=0;
+
+            counter_request<=counter_request+1;
+            if(counter_request<(COLUMNS/(DATA_WIDTH_FIFO_IN/curr_data_width_computation))-1) begin 
+                state<=state;
+            end else if(load_weight) begin 
+                enable_mxu<=1'b1;
+                enable_load_array<=1'b1;            
+                enable_enskew_ff<=1'b1; // input ff
+                enable_deskew_ff<=1'b1; // output ff 
+                state<=compute;
+            end else begin 
+                state<=get_data;
+                // anticipate first get data from memory
+                wm_ce<=1'b1;
+                enable_cnt_weight<=1'b1;
+            end 
+            end 
+get_data: begin 
+            enable_load_array<=1'b1;            
+            enable_load_activation_data<= 0;
+            enable_store_activation_data<=0;
+            load_weight<=1'b1;
+            wm_ce<=1'b1;
+            enable_cnt_weight<=1'b1;
+            //enable for ls weight
+            // TODO Check does not load the weight for the upper part ( second array of ls units)
+            read_weight_memory<= (1'b1<<((COLUMNS)*counter_shift+counter_save)) ;
+            //if(counter_save<(ROWS*(COLUMNS/(DATA_WIDTH_WMEMORY/curr_data_width_computation))))begin 
+            if(counter_shift<ROWS)begin
+            state<=get_data;
+                if(counter_save<(COLUMNS/(DATA_WIDTH_WMEMORY/curr_data_width_computation) -1))begin 
+                    counter_save<=counter_save+1;
+                end else begin 
+                    counter_shift<=counter_shift+1;
+                    counter_save<=0;
+                end 
+            end else begin 
+            state<=compute;
+            /*
+            enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff */
+            // counter clear
+            counter_save<=0;
+            end 
+            end 
+compute: begin
+            enable_load_array<=1'b1;
+            read_weight_memory<=0;
+            enable_load_activation_data<=0;
+            enable_store_activation_data<=0;
+            //enable_cnt<=1'b1;
+            enable_cnt_weight<=1'b0; // it should be active and also read weight memory and wm_ce
+
+            counter_compute<=counter_compute+1;
+            enable_mxu<=1'b1;
+            enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff 
+            if(counter_compute==(MAX_COUNTER )) begin 
+            state<=save_to_fifo;
+            enable_store_activation_data<=(1'b1<<counter_save);
+            end else begin 
+            state<=state;            
+            end 
+             end
+
+save_to_fifo: begin
+            enable_load_array<=1'b1;    
+            for(i=0;i<COLUMNS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation);i=i+1)begin
+                enable_store_activation_data[i]<=1'b1;
+            end
+            //enable_store_activation_data<=(1'b1<<counter_save);
+            enable_cnt_weight<=1'b0;
+            // push the result in output fifo 
+            outfifo_write<=1'b1;
+            counter_save<=counter_save+1;
+            //enable_mxu<=1'b1;
+            //enable_enskew_ff<=1'b1; // input ff
+            enable_deskew_ff<=1'b1; // output ff 
+            if(counter_save<(ROWS/(DATA_WIDTH_FIFO_OUT/curr_data_width_computation))-1)begin 
+            state<=state;
+            enable_cnt<=1'b1; // onyl for sav
+            end else begin 
+            state<=done;
+            end 
+            end      
+
+
+
+`endif
+    
 
 `ifndef PIPELINE    
 request_data: begin
@@ -337,7 +435,7 @@ save_to_fifo: begin
             end       
 `endif       
 done: begin 
-        if(!outfifo_is_full && !infifo_is_empty) begin
+        /*if(!outfifo_is_full &&*/ if(!infifo_is_empty) begin
         state<=idle;
         cs_done<=1;
         end else begin
