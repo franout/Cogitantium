@@ -1,7 +1,0 @@
-Running: xsim.dir/tb_dtpu_func_impl/xsimk -simmode gui -wdb tb_dtpu_func_impl.wdb -simrunnum 0 -socket 56691
-Design successfully loaded
-Design Loading Memory Usage: 55924 KB (Peak: 55924 KB)
-Design Loading CPU Usage: 90 ms
-Simulation completed
-Simulation Memory Usage: 142352 KB (Peak: 195192 KB)
-Simulation CPU Usage: 310 ms

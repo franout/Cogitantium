@@ -1,18 +1,18 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Wed Apr  8 17:32:46 2020
+| Date         : Wed May 20 16:58:38 2020
 | Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
 ------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_dtpu_core_0_0'
+Upgrade Log for IP 'pynqz2_axi_dma_1_2'
 
 1. Summary
 ----------
 
-SUCCESS in the conversion of pynqz2_dtpu_core_0_0 (xilinx.com:module_ref:dtpu_core:1.0 (Rev. 1)) to Vivado generation flows.
+SUCCESS in the upgrade of pynqz2_axi_dma_1_2 (xilinx.com:ip:axi_dma:7.1) from (Rev. 20) to (Rev. 21)
 
 
 
@@ -20,20 +20,20 @@ SUCCESS in the conversion of pynqz2_dtpu_core_0_0 (xilinx.com:module_ref:dtpu_co
 
 
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Wed Mar 11 15:15:31 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:58:38 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_dtpu_0_1'
+Upgrade Log for IP 'pynqz2_axi_dma_1_1'
 
 1. Summary
 ----------
 
-SUCCESS in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 3)) to Vivado generation flows.
+SUCCESS in the upgrade of pynqz2_axi_dma_1_1 (xilinx.com:ip:axi_dma:7.1) from (Rev. 20) to (Rev. 21)
 
 
 
@@ -41,20 +41,20 @@ SUCCESS in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 3))
 
 
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Wed Mar 11 15:13:11 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:58:38 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_dtpu_0_1'
+Upgrade Log for IP 'pynqz2_axi_dma_1_0'
 
 1. Summary
 ----------
 
-SUCCESS in the upgrade of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0) from (Rev. 2) to (Rev. 3)
+SUCCESS in the upgrade of pynqz2_axi_dma_1_0 (xilinx.com:ip:axi_dma:7.1) from (Rev. 20) to (Rev. 21)
 
 
 
@@ -62,30 +62,98 @@ SUCCESS in the upgrade of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0) from (Rev. 
 
 
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Wed Mar 11 14:53:31 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:54:48 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_dtpu_0_1'
+Upgrade Log for IP 'pynqz2_xlconstant_0_0'
 
 1. Summary
 ----------
 
-CAUTION (success, with warnings) in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 2)) to Vivado generation flows.
+SUCCESS in the conversion of pynqz2_xlconstant_0_0 (xilinx.com:ip:xlconstant:1.1 (Rev. 6)) to Vivado generation flows.
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:54:48 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'pynqz2_ps7_0_axi_periph_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of pynqz2_ps7_0_axi_periph_0 (xilinx.com:ip:axi_interconnect:2.1) from (Rev. 20) to (Rev. 21)
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:54:48 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'pynqz2_axis_accelerator_ada_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of pynqz2_axis_accelerator_ada_0_0 (xilinx.com:ip:axis_accelerator_adapter:2.1) from (Rev. 15) to (Rev. 16)
+
+
+
+
+
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:54:47 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'pynqz2_axi_smc_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of pynqz2_axi_smc_0 (xilinx.com:ip:smartconnect:1.0) from (Rev. 11) to (Rev. 12)
 
 After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
 
-2. Connection Warnings
+2. Interface Information
+------------------------
+
+Detected external interface differences while upgrading 'pynqz2_axi_smc_0'.
+
+
+
+3. Connection Warnings
 ----------------------
 
-Detected external port differences while upgrading 'pynqz2_dtpu_0_1'. These changes may impact your design.
+Detected external port differences while upgrading 'pynqz2_axi_smc_0'. These changes may impact your design.
 
-
--Upgrade has added port 'axi_aclk'
 
 
 
@@ -94,20 +162,26 @@ Detected external port differences while upgrading 'pynqz2_dtpu_0_1'. These chan
 
 
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Wed Mar 11 14:29:28 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:54:47 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_dtpu_0_1'
+Upgrade Log for IP 'pynqz2_axi_intc_0_0'
 
 1. Summary
 ----------
 
-SUCCESS in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 2)) to Vivado generation flows.
+SUCCESS in the upgrade of pynqz2_axi_intc_0_0 (xilinx.com:ip:axi_intc:4.1) from (Rev. 13) to (Rev. 14)
+
+2. Upgrade messages
+-------------------
+
+WARNING: upgrade cannot add parameter C_IRQ_CONNECTION with default value 0 : a parameter called C_IRQ_CONNECTION already exists in axi_intc_v4_1
+Set parameter C_IVAR_RESET_VALUE to value 0x0000000000000010 (source 'default')
 
 
 
@@ -115,60 +189,18 @@ SUCCESS in the conversion of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0 (Rev. 2))
 
 
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Tue Mar 10 19:25:14 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed May 20 16:54:47 2020
+| Host         : fra running 64-bit Ubuntu 18.04.4 LTS
 | Command      : upgrade_ip
 | Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
-Upgrade Log for IP 'pynqz2_dtpu_0_1'
+Upgrade Log for IP 'pynqz2_axi_dma_0_0'
 
 1. Summary
 ----------
 
-SUCCESS in the upgrade of pynqz2_dtpu_0_1 (xilinx.com:user:dtpu:1.0) from (Rev. 1) to (Rev. 2)
-
-
-
-
-
-
-Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Tue Mar 10 18:41:10 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
-| Command      : upgrade_ip
-| Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
-
-Upgrade Log for IP 'pynqz2_dtpu_0_0'
-
-1. Summary
-----------
-
-SUCCESS in the upgrade of pynqz2_dtpu_0_0 (xilinx.com:user:dtpu:1.2) from (Rev. 2) to (Rev. 3)
-
-
-
-
-
-
-Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2.1 (win64) Build 2729669 Thu Dec  5 04:49:17 MST 2019
-| Date         : Tue Mar 10 18:15:54 2020
-| Host         : DESKTOP-9DNP7KK running 64-bit major release  (build 9200)
-| Command      : upgrade_ip
-| Device       : xc7z020clg400-1
---------------------------------------------------------------------------------------
-
-Upgrade Log for IP 'pynqz2_dtpu_0_0'
-
-1. Summary
-----------
-
-SUCCESS in the upgrade of pynqz2_dtpu_0_0 from xilinx.com:user:dtpu:1.0 (Rev. 2) to xilinx.com:user:dtpu:1.2 (Rev. 2)
+SUCCESS in the upgrade of pynqz2_axi_dma_0_0 (xilinx.com:ip:axi_dma:7.1) from (Rev. 20) to (Rev. 21)
 

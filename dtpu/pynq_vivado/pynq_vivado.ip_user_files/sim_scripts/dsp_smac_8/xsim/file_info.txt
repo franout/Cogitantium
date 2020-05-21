@@ -1,0 +1,2 @@
+dsp_smac_8.vhd,vhdl,xil_defaultlib,../../../../pynq_vivado.srcs/sources_1/ip/dsp_smac_8/sim/dsp_smac_8.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

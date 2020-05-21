@@ -1,1 +1,0 @@
--wto "7dcef6e93976439f944b9c25831eb96b" --incr --debug "all" --rangecheck --relax --mt "2" -L "xil_defaultlib" -L "xilinx_vip" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "tb_ls_array_behav" "xil_defaultlib.tb_ls_array" "xil_defaultlib.glbl" -log "elaborate.log" 

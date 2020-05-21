@@ -298,7 +298,7 @@ start_time = time.time()
 #################################################################
 
 
-#accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINUOS<<16))) # execute one step 
+#accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINUOS<<16))) # may be used for offload of processor 
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
 #while driver_fifo_out.recvchannel.running:
 #    pass

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="debug" LaunchPart="xc7z020clg400-1" LaunchTime="1590071603">
+  <File Type="VDS-TIMINGSUMMARY" Name="pynqz2_wrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="pynqz2_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="pynqz2_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="pynqz2_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="pynqz2_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="pynqz2_wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="pynqz2_wrapper_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="pynqz2_wrapper_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="pynqz2_wrapper.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_8/dsp_smac_8.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smac_8_fa/dsp_smac_8_fa.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smul_8/dsp_smul_8.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/dsp_smul_8_fa/dsp_smul_8_fa.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/precision_def.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/compact_and_select.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/csr_definition.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/control_unit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/filter_and_selectc.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_array.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dsp_usage.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_mac.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/mxu_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/register.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smac.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/smul.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dtpu_core.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/pynqz2/pynqz2.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/pynqz2/hdl/pynqz2_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/dsp_lib.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fplzc_fplzc.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_normalize_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/common/unpackfp_unpackfp.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpalign_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpswap_fpswap.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpinvert_fpinvert.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpselcomplement_fpselcomplement.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/common/fpnormalize_fpnormalize.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/common/fpround_fpround.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/common/packfp_packfp.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_single_cycle.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/counter.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/ls_unit_weight.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_stage1_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_stage2_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_stage3_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_stage4_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_stage5_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_stage6_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/adder/fpadd_pipeline.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/multiplier/fpmul_stage1_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/multiplier/fpmul_stage2_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/multiplier/fpmul_stage3_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/multiplier/fpmul_stage4_struct.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/multiplier/fpmul_pipeline.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/fp_units/fpu_vhdl/multiplier/fpmul_single_cycle.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="pynqz2_wrapper"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PPRDIR/../../../media/fra/DATA/uni/2019-2020/thesis/cogitantium/board_documentation/pynq-z2_v1.0.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/impl_1/pynqz2_wrapper_routed.dcp">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PRUNDIR/impl_1/pynqz2_wrapper_routed.dcp"/>
+        <Attr Name="ImportTime" Val="1590069898"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="impl_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
+    <Step Id="synth_design">
+      <Option Id="FlattenHierarchy">1</Option>
+    </Step>
+  </Strategy>
+</GenRun>

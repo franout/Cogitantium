@@ -1,5 +1,0 @@
-Vivado Simulator 2019.2
-Time resolution is 1 ps
-check the control signal
-starting operations
-$finish called at time : 600 ns : File "/media/fra/DATA/uni/2019-2020/thesis/cogitantium/dtpu/files/tb/tb_dtpu.v" Line 187
