@@ -1,6 +1,6 @@
 import cffi
 ##########################################################################
-####	create .so library from PYNQ python code for DTPU accelerator ######
+####  create .so library from PYNQ python code for DTPU accelerator ######
 ##########################################################################
 
 ffibuilder = cffi.FFI()
@@ -30,6 +30,8 @@ ffibuilder.set_source("dtpu_lib", r"""
 #include <tensorflow/lite/c/c_api_experimental.h>
 #include <tensorflow/lite/context_util.h>
 #include <vector>
+
+#define DEBUG 1
 
 static void destroy_p(void * delegate);
 static bool CopyFromBufferHandle_p(void);
@@ -72,11 +74,15 @@ class DTPU_delegate {
   // Returns true if my delegate can handle this type of op.
   static bool SupportedOp(const TfLiteRegistration* registration) {
   // from builtin_ops.h
+  #ifdef DEBUG
   printf("[DEBUG - C]--- Supported Operation of DTPU delegate class --- \n");
+  #endif
     switch (registration->builtin_code) {
       case kTfLiteBuiltinConv2d:
       case kTfLiteBuiltinDepthwiseConv2d:
+      #ifdef DEBUG
         printf("[DEBUG - C]--Hello world! I can make 2D convolution and depth wise 2D convolution---\n");
+        #endif
         return true;
       default:
         return false;
@@ -85,13 +91,17 @@ class DTPU_delegate {
 
   // Any initialization code needed
   bool Init(TfLiteContext* context,const TfLiteDelegateParams* delegate_params) {
+  #ifdef DEBUG
     printf("[DEBUG - C]--- Init of DTPU delegate class --- \n");
+    #endif
     // instantiate buffers and soft reset of accelerator 
     return Init_p(context->tensors_size,delegate_params->input_tensors->size ,delegate_params->output_tensors->size);
   }
   // Any preparation work needed (e.g. allocate buffers)
   TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  #ifdef DEBUG
   printf("[DEBUG - C]--- Prepare of DTPU delegate class --- \n");
+  #endif
       // initialize, link the buffers accordint to the size of node data
 // kTfLiteMmapRo  aka weights
     unsigned int i;
@@ -100,42 +110,66 @@ class DTPU_delegate {
     for(i=0;i<context->tensors_size;i++){
         tmp=context->tensors[i];
       if(tmp.allocation_type==kTfLiteMmapRo){
+      #ifdef DEBUG
       printf("[DEBUG -C]---found a tensor weight----\n");
+      #endif
         switch (tmp.type) {
           case kTfLiteFloat32 :
+          #ifdef DEBUG
                   printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
+          #endif
                 //  push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
           case kTfLiteInt32 :
+          #ifdef DEBUG
                   printf("[DEBUG-C]---- kTfLiteInt32 ------\n");
+          #endif
               //  push_weight_to_heap(tmp.data.i32,tmp.dims->data,tmp.dims->size);
           case kTfLiteUInt8 :
+          #ifdef DEBUG
                             printf("[DEBUG-C]---- kTfLiteUint8 ------\n");
+            #endif
               push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
               num_weight_tensor++;
           case kTfLiteInt64 :
+          #ifdef DEBUG
                 printf("[DEBUG-C]---- kTfLiteInt64------\n");
+          #endif
                 //push_weight_to_heap(tmp.data.i64,tmp.dims->data,tmp.dims->size);
           case kTfLiteString :
+          #ifdef DEBUG
                   printf("[DEBUG-C]---- kTfLiteString ------\n");
+          #endif
                   //push_weight_to_heap(tmp.data.raw,tmp.dims->data,tmp.dims->size);
           case kTfLiteBool :
-                            printf("[DEBUG-C]---- kTfLiteBool ------\n");
+          #ifdef DEBUG
+               printf("[DEBUG-C]---- kTfLiteBool ------\n");
+          #endif
                 //  push_weight_to_heap(tmp.data.b,tmp.dims->data,tmp.dims->size);
           case kTfLiteInt16 :
+          #ifdef DEBUG
                     printf("[DEBUG-C]---- kTfLiteInt16 ------\n");
+          #endif
                   //push_weight_to_heap(tmp.data.i16,tmp.dims->data,tmp.dims->size);
           case kTfLiteComplex64 :
+          #ifdef DEBUG
                             printf("[DEBUG-C]---- kTfLiteComplex64 ------\n");
+            #endif
                 //  push_weight_to_heap(tmp.data.c64,tmp.dims->data,tmp.dims->size);
           case kTfLiteInt8 :
+          #ifdef DEBUG
                       printf("[DEBUG-C]---- kTfLiteInt8 ------\n");
+          #endif
                     push_weight_to_heap(tmp.data.int8,tmp.dims->data,tmp.dims->size);
                     num_weight_tensor++;
           case kTfLiteFloat16 :
+          #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLiteF16 ------\n");
+          #endif
               //push_weight_to_heap(tmp.data.f16,tmp.dims->data,tmp.dims->size);
           default:  
+          #ifdef DEBUG
             printf("[DEBUG -C]---- error no type for the weight ----\n");
+          #endif
         }
       
       
@@ -149,7 +183,9 @@ class DTPU_delegate {
   }
   // Actual running of the delegate subgraph.
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
+  #ifdef DEBUG
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
+    #endif
     // run inference on the delegate  and data transfer to/from memory/accelerator
     if(Invoke_p(node->inputs->data,node->inputs->size,node->outputs->data,node->outputs->size)){
       return kTfLiteOk;
@@ -163,7 +199,9 @@ class DTPU_delegate {
 
    // use TfLiteType instead of int
   TfLiteStatus  SelectDataTypeComputation(int data_type ){
+  #ifdef DEBUG
   printf("[DEBUG - C]--- SelectDataTypeComputation of DTPU delegate class --- \n");
+  #endif
   if(SelectDataTypeComputation_p(data_type)){
       return kTfLiteOk;
       }
@@ -171,7 +209,9 @@ class DTPU_delegate {
   }  
 
   TfLiteStatus  ResetHardware( ){
+  #ifdef DEBUG
   printf("[DEBUG - C]---  Reset underlaying hardware --- \n");
+  #endif
   if(ResetHardware_p()){
       return kTfLiteOk;
       }
@@ -189,8 +229,9 @@ TfLiteRegistration GetMyDelegateNodeRegistration() {
   // Invoke will run the delegate graph.
   // Prepare for preparing the delegate.
   // Free for any cleaning needed by the delegate.
-
+  #ifdef DEBUG
   printf("[DEBUG - C] --- get delegate node registration function ---\n");
+  #endif
   TfLiteRegistration kernel_registration;
   kernel_registration.builtin_code = kTfLiteBuiltinDelegate;
   kernel_registration.custom_name = "DTPU_delegate";
@@ -256,7 +297,9 @@ TfLiteStatus DelegatePrepare(TfLiteContext* context, TfLiteDelegate* delegate) {
 
 void FreeBufferHandle(TfLiteContext* context, TfLiteDelegate* delegate,
                       TfLiteBufferHandle* handle) {
+  #ifdef DEBUG                      
   printf("[DEBUG - C]--- Do any cleanups---\n");
+  #endif
   FreeBufferHandle_p();
 }
 
@@ -265,7 +308,9 @@ TfLiteStatus CopyToBufferHandle(TfLiteContext* context,
                                 TfLiteDelegate* delegate,
                                 TfLiteBufferHandle buffer_handle,
                                 TfLiteTensor* tensor) {
+  #ifdef DEBUG
   printf("[DEBUG - C]--- Copies data from tensor to delegate buffer if needed.----\n");
+  #endif
   if(CopyToBufferHandle_p()){
   return kTfLiteOk;
   }
@@ -276,7 +321,9 @@ TfLiteStatus CopyFromBufferHandle(TfLiteContext* context,
                                   TfLiteDelegate* delegate,
                                   TfLiteBufferHandle buffer_handle,
                                   TfLiteTensor* tensor) {
+  #ifdef DEBUG
   printf("[DEBUG - C]---Copies the data from delegate buffer into the tensor raw memory----\n");
+  #endif
   if(CopyFromBufferHandle_p()){
   return kTfLiteOk;
   }
@@ -300,8 +347,9 @@ TfLiteDelegate * tflite_plugin_create_delegate()
   delegate->FreeBufferHandle = &FreeBufferHandle;
   // load overlay
   load_overlay();
-
+  #ifdef DEBUG
   printf("[DEBUG - C] ---the delegate method of DTPU is born---\n");
+  #endif
   return delegate;
 }
 
@@ -309,13 +357,16 @@ TfLiteDelegate * tflite_plugin_create_delegate()
 void tflite_plugin_destroy_delegate(void  * delegate_op ) {
 // destroy the delegate   
 TfLiteDelegate * delegate= (TfLiteDelegate *) delegate_op;
+#ifdef DEBUG
 printf("[DEBUG - C]-----cleaning memory  -> callback of python function---\n");
+#endif
 //destroy_p(delegate);
 free(delegate);
 }
 
 }
 """,source_extension=".cpp")
+
 
 
 #if you want to simply access a global variable you just use its name.
@@ -329,6 +380,7 @@ from pynq import MMIO
 from pynq import Xlnk
 from pynq.lib import dma
 import numpy as np
+_DEBUG_PRINT=True
 ######################################### 
 ############ MEMORY MAP #################
 #########################################
@@ -516,9 +568,9 @@ def load_overlay():
   overlay.download() # Explicitly download bitstream to PL
   if overlay.is_loaded():
    # Checks if a bitstream is loaded
-   print("[DEBUG- PYTHON] ----overlay is loaded ----")
+   if _DEBUG_PRINT: print("[DEBUG- PYTHON] ----overlay is loaded ----")
   else :
-    print("[DEBUG- PYTHON] ---- overlay is not loaded----")
+    if _DEBUG_PRINT: print("[DEBUG- PYTHON] ---- overlay is not loaded----")
     exit(-1)
   accelerator=overlay.dtpu.axis_accelerator_ada
   ## soft reset
@@ -543,11 +595,11 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   accelerator.write(CTRL,0x0000001)
   accelerator.write(CTRL,0x0000000)
   size_tot=tot_tensors
-  print("[DEBUG-PYTHON]--- total tensors",size_tot,"---")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- total tensors",size_tot,"---")
   input_size=input_tens_size
-  print("[DEBUG-PYTHON]--- int tensors",input_size,"---")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- int tensors",input_size,"---")
   output_size=output_tens_size
-  print("[DEBUG-PYTHON]--- out tensors",output_tens_size,"---")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- out tensors",output_tens_size,"---")
   return True
 
 
@@ -555,7 +607,7 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
 def SelectDataTypeComputation_p(data_type):
   global csr_buffer
   global curr_data_precision
-  print("[DEBUG - PYTHON ] ---  SelectDataTypeComputation DTPU class ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] ---  SelectDataTypeComputation DTPU class ---")
   # modify the csr buffer 
   if csr_buffer is not None:
     if data_type!=0:
@@ -567,12 +619,12 @@ def SelectDataTypeComputation_p(data_type):
       curr_data_precision=INT8
       print("[DEBUG-PYTHON]----precision default 8 bit----")
   else:
-    print("[DEBUG-PYTHON]----csr buffer does not exist! create before calling this function----")
+    if _DEBUG_PRINT: print("[DEBUG-PYTHON]----csr buffer does not exist! create before calling this function----")
   csr_buffer.flush()
   ################################################
   ###### program the dma for the csr reg #########
   ################################################
-  print("[DEBUG-PYTHON]--- transfering csr buffer ----")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer ----")
   driver_csr.sendchannel.transfer(csr_buffer)
   driver_csr.sendchannel.wait()
   return True
@@ -580,12 +632,12 @@ def SelectDataTypeComputation_p(data_type):
 
 @ffi.def_extern()
 def CopyFromBufferHandle_p():
-  print("[DEBUG - PYTHON ] ---  the  from  delegate and buffers ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] ---  the  from  delegate and buffers ---")
   return True
 
 @ffi.def_extern()
 def CopyToBufferHandle_p():
-  print("[DEBUG - PYTHON ] --- copying  to  the delegate and buffers ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- copying  to  the delegate and buffers ---")
   return True
 @ffi.def_extern()
 def FreeBufferHandle_p():
@@ -597,7 +649,7 @@ def FreeBufferHandle_p():
   global driver_wm
   global driver_fifo_in
   global driver_fifo_out
-  print("[DEBUG - PYTHON ] --- freeing buffers ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- freeing buffers ---")
   input_fifo_buffer.freebuffer()
   output_fifo_buffer.freebuffer()
   csr_buffer.freebuffer()
@@ -639,8 +691,8 @@ def Prepare_p(input_size,output_size,weight_num):
   global global_iteration_shift_wm
   global curr_data_precision
   global tensors
-  print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
-  print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   #allocate buffers for data transfer
   num_weight=weight_num
   input_fifo_buffer = allocate(shape=(INFIFO_SIZE,),dtype='u8')
@@ -691,7 +743,7 @@ def destroy_p(delegate):
   global output_fifo_buffer
   global csr_buffer
   global weight_buffer
-  print("[DEBUG - PYTHON ] --- destroying the delegate and buffers ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- destroying the delegate and buffers ---")
   input_fifo_buffer.freebuffer()
   output_fifo_buffer.freebuffer()
   csr_buffer.freebuffer()
@@ -737,7 +789,7 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   ######################################################
   ###### program the dma for the in/out fifos ##########
   ######################################################   
-  print("[DEBUG-PYTHON]--- transfering input buffer ----")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer ----")
   driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
@@ -773,14 +825,14 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
     for k in range(INFIFO_SIZE):
         input_fifo_buffer[i]=output_fifo_buffer[i]
   accelerator.write(STATUS,0x00000003)##clear status
-  print("[DEBUG -PYTHON] ---- accelerator done ----")
+  if _DEBUG_PRINT: print("[DEBUG -PYTHON] ---- accelerator done ----")
   ################################################################################################
   ####### unpack the output buffer depending on the precision and give  it back to C code ########
   ################################################################################################
-  print("[DEBUG-PYTHON]----- getting output data -----")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
   shift=0
   for i in range(out_data_size):
-    out_data[i]= (output_fifo_buffer[i>>np.uint8(shift*curr_data_precision))) 0xff
+    out_data[i]= (output_fifo_buffer[i]>>np.uint8(shift*curr_data_precision)) & 0xff
     if(shift<int(64/curr_data_precision)):
       shift=shift+1
     else:
@@ -791,7 +843,7 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
 def ResetHardware_p():
   global accelerator
   global overlay
-  print("[DEBUG - PYTHON ] --- Reset hardware p function ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- Reset hardware p function ---")
   overlay.reset()
   accelerator.write(CTRL,0x0000001)
   accelerator.write(CTRL,0x0000000)
