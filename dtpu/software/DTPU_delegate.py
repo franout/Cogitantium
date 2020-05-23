@@ -1,7 +1,11 @@
 import cffi
 ##########################################################################
 ####  create .so library from PYNQ python code for DTPU accelerator ######
+####        on board compiling, it requires                         ######
+####   to have tensorflow/tensorflow/lite in /usr/include/pythonX.X ######
+####                 from r2.1 branch                               ######
 ##########################################################################
+
 
 ffibuilder = cffi.FFI()
 
@@ -26,8 +30,10 @@ void push_weight_to_heap( void  *,int *,int);
 
 
 ffibuilder.set_source("dtpu_lib", r"""
-#include <tensorflow/lite/c/c_api.h>
-#include <tensorflow/lite/c/c_api_experimental.h>
+  /// release dependent libraries
+#include <tensorflow/lite/c/builtin_op_data.h>
+#include <tensorflow/lite/c/c_api_internal.h>
+#include <tensorflow/lite/builtin_ops.h>
 #include <tensorflow/lite/context_util.h>
 #include <vector>
 
@@ -109,10 +115,11 @@ class DTPU_delegate {
     TfLiteTensor tmp;
     for(i=0;i<context->tensors_size;i++){
         tmp=context->tensors[i];
-      if(tmp.allocation_type==kTfLiteMmapRo){
+      if(tmp.allocation_type==kTfLiteMmapRo){ // it is a weight
       #ifdef DEBUG
       printf("[DEBUG -C]---found a tensor weight----\n");
       #endif
+      // TODO get only the data type needed by the current precision of the acceleratro
         switch (tmp.type) {
           case kTfLiteFloat32 :
           #ifdef DEBUG
@@ -128,8 +135,8 @@ class DTPU_delegate {
           #ifdef DEBUG
                             printf("[DEBUG-C]---- kTfLiteUint8 ------\n");
             #endif
-              push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
-              num_weight_tensor++;
+              //push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
+              //num_weight_tensor++;
           case kTfLiteInt64 :
           #ifdef DEBUG
                 printf("[DEBUG-C]---- kTfLiteInt64------\n");
@@ -175,6 +182,9 @@ class DTPU_delegate {
       
       }
     }
+    #ifdef DEBUG
+    printf("[DEBUG-C]--- number of weights found= %d \n",num_weight_tensor);
+    #endif 
       if(Prepare_p(node->inputs->size,node->outputs->size,num_weight_tensor)){
       return kTfLiteOk;
       }
@@ -202,6 +212,7 @@ class DTPU_delegate {
   #ifdef DEBUG
   printf("[DEBUG - C]--- SelectDataTypeComputation of DTPU delegate class --- \n");
   #endif
+  //TODO add also here a global variable for the precision 
   if(SelectDataTypeComputation_p(data_type)){
       return kTfLiteOk;
       }
@@ -544,6 +555,7 @@ OUTFIFO_SIZE=2048
 ROWS=8
 COLUMNS=8
 DATAWIDTH=64
+BUFFER_DEPTH=2
 curr_data_precision=INT8
 size_tot=0
 input_size=0
@@ -578,7 +590,8 @@ def load_overlay():
   accelerator.write(CTRL,0x0000000)
   accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights and data
   accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
-  accelerator.write(OARG_LENGTH_MODE,0) # hardware mode
+  accelerator.write(OARG_LENGTH_MODE,1) # hardware mode
+  accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo 
   accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
   accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
   accelerator.write(OARG0_TDEST,0) # only one output 
@@ -706,9 +719,17 @@ def Prepare_p(input_size,output_size,weight_num):
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
+  if _DEBUG_PRINT:
+    print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ",num_weight,"weight to transfer  ---")
+    for i in range(num_weight):
+      tmp=tensors[i]
+      print("weight ",i)
+      for j in range(tmp.tot_dim):
+        print(tmp.data[i])
+
   #get all tensors from the heap they will always be of 2 dims
   index=0
-  iter=0
+  iter=1
   for i in range(num_weight):
       tmp=tensors[i]
       shift=0
@@ -793,7 +814,6 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-
   for i in range (global_iteration):
     # modify inital starting value of weight 
     prev=np.uint32(csr_buffer[ARITHMETIC_PRECISION]) & 0xffffffff
@@ -804,8 +824,6 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
     for j in range(iter):
       #execute the inference and retrieve the data
       accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-      while driver_fifo_out.recvchannel.running:
-        pass
       for k in range(INFIFO_SIZE):
         input_fifo_buffer[i]=output_fifo_buffer[i]
       ## copy the rest of input 
@@ -822,8 +840,8 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
         if(k>=INFIFO_SIZE):
           break
       input_fifo_buffer.flush()
-    for k in range(INFIFO_SIZE):
-        input_fifo_buffer[i]=output_fifo_buffer[i]
+    for l in range(INFIFO_SIZE):
+        input_fifo_buffer[l]=output_fifo_buffer[l]
   accelerator.write(STATUS,0x00000003)##clear status
   if _DEBUG_PRINT: print("[DEBUG -PYTHON] ---- accelerator done ----")
   ################################################################################################

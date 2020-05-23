@@ -126,12 +126,9 @@ print("Execution time on cpu: ", end_time_no_delegate- start_time_no_delegate)
 print("Execution time on cpu and accelerator: ", end_time- start_time)
 
 exit();
+#### get tensor weight from tensorflow python 
 
-test_image = np.expand_dims(test_images[0], axis=0).astype(np.float32)
+data=interpreter_no_delegate.get_tensors_details()
 
-input_index = interpreter.get_input_details()[0]["index"]
-output_index = interpreter.get_output_details()[0]["index"]
-
-interpreter.set_tensor(input_index, test_image)
-interpreter.invoke()
-predictions = interpreter.get_tensor(output_index)
+for layer in data:
+	interpreter_no_delegate.get_tensor(layer['index'])
