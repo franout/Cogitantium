@@ -49,19 +49,6 @@ import cffi
 
 # load library , the design is loaded inside the embedded python code of .so 
 DTPU_lib=tflite.experimental.load_delegate("./DTPU_delegate.so")
-# DTPU_lib._library.functionName()
-########################################
-##### RUN TENSORFLOW LITE MODELS #######
-########################################
-
-model_name="mnist_model_quant_uint8"
-tflite_model_file="./"+model_name+".tflite"
-
-# Load TFLite model and allocate tensors.
-interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
-interpreter_no_delegate=tflite.Interpreter(model_path=tflite_model_file)
-interpreter.allocate_tensors()
-interpreter_no_delegate.allocate_tensors()
 
 # precision of accelerator 
 ACTIVATE_CHAIN=0x1
@@ -76,8 +63,22 @@ ACTIVE_FP=1<<0
 ACTIVE_BFP=0x03
 WMEM_STARTING_ADDRESS=0 #32 MSB 
 ffi=cffi.FFI()
-data_type=ffi.cast("int",(WMEM_STARTING_ADDRESS<<32)|(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
+data_type=ffi.cast("int",(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
 DTPU_lib._library.SelectDataTypeComputation( int(data_type))
+
+# DTPU_lib._library.functionName()
+########################################
+##### RUN TENSORFLOW LITE MODELS #######
+########################################
+
+model_name="mnist_model_quant_uint8"
+tflite_model_file="./"+model_name+".tflite"
+
+# Load TFLite model and allocate tensors.
+interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
+interpreter_no_delegate=tflite.Interpreter(model_path=tflite_model_file)
+interpreter.allocate_tensors()
+interpreter_no_delegate.allocate_tensors()
 
 # Get input and output tensors.
 input_details = interpreter.get_input_details() #[0]["index"]
