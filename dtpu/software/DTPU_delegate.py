@@ -412,6 +412,7 @@ from pynq import MMIO
 from pynq import Xlnk
 from pynq.lib import dma
 import numpy as np
+import struct # see https://docs.python.org/3/library/struct.html#struct-examples
 _DEBUG_PRINT=True 
 ######################################### 
 ############ MEMORY MAP #################
@@ -579,6 +580,7 @@ BUFFER_DEPTH=2
 tot_size_weight=0
 curr_data_precision=INT8
 curr_bitwidth_data_computation=8
+PACK_TYPE="b" # default is 1 byte #TODO CHECK SIGNED OR UNSIGNED OR ASK TO USER
 FP=False
 BFP=False
 size_tot=0
@@ -652,24 +654,30 @@ def SelectDataTypeComputation_p(data_type):
     if ((data_type)&0x00000f)==INT8:
       curr_data_precision=INT8
       curr_bitwidth_data_computation=8
+      PACK_TYPE="b"
     elif ((data_type)&0x00000f)==INT16:
       curr_data_precision=INT16
       curr_bitwidth_data_computation=16
+      PACK_TYPE="h"
     elif ((data_type)&0x00000f)==INT32:
       curr_data_precision=INT32
       curr_bitwidth_data_computation=32
+      PACK_TYPE="i"
     elif ((data_type)&0x00000f)==INT64:
       curr_data_precision=INT64
       curr_bitwidth_data_computation=64
+      PACK_TYPE="q"
     else:
       print("ERROR PYTHON! Setting the Data type of computation")
     # floating point check 
     if ((data_type & 0x000060)>> 5)== ACTIVE_FP:
       FP=True
       BFP=False
+      PACK_TYPE="f"
     elif ((data_type & 0x000060)>> 5)== ACTIVE_BFP:
       FP=True
       BFP=True
+      PACK_TYPE="3"
     else:
       FP=False
       BFP=False
@@ -689,7 +697,7 @@ def push_weight_to_heap(tensor,size,dim_size):
   #push the tensor to the heap for handling their transfefr in the Prepare_p
   tot_size=1
   if not(FP) or not(BPF):
-    tensor_i=ffi.cast("int *",tensor)
+    tensor_i=ffi.cast("uint8_t *",tensor) #TODO CAST PROPERLY DEPENDING ON THE PRECISION
   else:
     tensor_i=ffi.cast("float *",tensor)
   size_i=size
@@ -744,25 +752,29 @@ def Prepare_p(input_size,output_size,weight_num):
       tmp=tensors[i]
       print("weight ",i)
       for j in range(tmp.tot_dim):
-        print(tmp.data[i],end=" ")
-  index=0
+        print(tmp.data[j],end=" ")
+  index=0# it eats the first data ?
   #get all tensors from the heap they will always be of 2 dims
-  iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_data_precision)))
+  iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation)))
   for i in range(num_weight):
       tmp=tensors[i]
-      shift=0
-      for j in range (tmp.tot_dim):
-        weight_buffer[index]|=np.uint8(tmp.data[j]<<(np.uint8(shift*curr_data_precision)))
-        if(shift<int(64/curr_data_precision)):
-          shift=shift+1
+      final_shift=0
+      for j in range (int(tmp.tot_dim/(64/curr_bitwidth_data_computation))+1):
+        #check on the range
+        if (j+1)*int(64/curr_bitwidth_data_computation)>tmp.tot_dim:
+          final_shift=tmp.tot_dim
         else:
-          index=index+1
-          shift=0
-        if index>=ROWS:
+          final_shift=(j+1)*int(64/curr_bitwidth_data_computation) 
+        weight_buffer[index]=int.from_bytes(struct.pack(">"+(PACK_TYPE*int(final_shift-64/curr_bitwidth_data_computation)),*tmp.data[int(64/curr_bitwidth_data_computation)*j:final_shift] ) , "little")
+        index=index+1
+        if index>=int(ROWS*COLUMNS):
           iter=iter+1
           global_iteration_shift_wm.append(index)
   # calculate number of runs depending on the size of weight tensor
   global_iteration=global_iteration+iter
+  if _DEBUG_PRINT:
+    for i in range(10):
+      print(hex(weight_buffer[i]))
   ################################
   ###### transferring data #######
   ################################
@@ -794,25 +806,29 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   #######################################################################
   tmp=[]
   if not(FP) or not(BPF):
-    in_data_i=ffi.cast("int *",in_data_i)
+    in_data_i=ffi.cast("int *",in_data_i) #TODO
   else:
     in_data_i=ffi.cast("float *",in_data_i)
   for i in range(in_data_size):
     tmp.append(in_data_i[i])
+    if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- in data ",in_data_i[i]," ----")
   index=0
   shift=0
   iter=int(in_data_size/(INFIFO_SIZE*(64/curr_data_precision)))
   iter_index=[]
-  for j in range (in_data_size):
-    input_fifo_buffer[index]|=np.uint8(tmp[j]<<(np.uint8(shift*curr_data_precision)))
-    if(shift<int(64/curr_data_precision)):
-      shift=shift+1
+  for j in range (int(in_data_size/(64/curr_bitwidth_data_computation))+1):
+    if(j+1)*int(64/curr_bitwidth_data_computation)>in_data_size:
+      final_shift=in_data_size
     else:
-      index=index+1
-      shift=0
+      final_shift=(j+1)*int(64/curr_bitwidth_data_computation) # TODO add left and right indexs and also control on their difference
+    input_fifo_buffer[index]=int.from_bytes(struct.pack(">"+(PACK_TYPE*int(final_shift-64/curr_bitwidth_data_computation)),*tmp[int(64/curr_bitwidth_data_computation)*j:final_shift] ) , "little")
+    index=index+1
     if(index>=INFIFO_SIZE):
       break # need another iteration TODO
   input_fifo_buffer.flush()
+  if _DEBUG_PRINT:
+    for i in range(10):
+      print(hex(input_fifo_buffer[i]))
   ################################################
   ###### program the dma for the csr reg #########
   ################################################
@@ -828,7 +844,7 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-  accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINUOS<<16))) # offload of processor it will continue as data will be provided
+  accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) # offload of processor it will continue as data will be provided
   # TODO multiple iteration 
   #for i in range (global_iteration):
   #  # modify inital starting value of weight 
@@ -864,9 +880,12 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   ################################################################################################
   ####### unpack the output buffer depending on the precision and give  it back to C code ########
   ################################################################################################
+  ##TODO recheck
   driver_fifo_out.recvchannel.wait()
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
-  shift=0
+  if _DEBUG_PRINT:
+    for i in range(10):
+      print(hex(output_fifo_buffer[i]))
   out_data_i=[0]*out_data_size
   for i in range(out_data_size):
     out_data_i[i]= (output_fifo_buffer[i]>>np.uint8(shift*curr_data_precision)) & np.uint64(0x00ff)
@@ -957,3 +976,16 @@ aa = ffi.dlopen("./DTPU_delegate.so")
 
 exit()
 
+
+a=struct.pack("bigendia or little endia"+("B"*size),*vector) # pack 
+int.from_bytes( bytes, byteorder, *, signed=False ) # from bytes to int
+struct.unpack()#unpack
+
+## unpack and packing values more efficientely
+# import struct
+#>>> bytestr = struct.pack('>Q', 2592701575664680400)
+#>>> bytestr
+#'#\xfb X\xaa\x16\xbd\xd0'
+#>>> [ord(b) for b in bytestr]
+#[35, 251, 32, 88, 170, 22, 189, 208]
+#
