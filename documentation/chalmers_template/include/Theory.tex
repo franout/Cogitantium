@@ -1,6 +1,5 @@
 % CREATED BY DAVID FRISK, 2016
 \chapter{Background}
-\textit{In this chapter a general glance on Artificial Intelligence, and its sub-categories, is given.}\\\\
 
 \epigraph{ \textit{Can a machine think?}}{--- \textup{Alan Turing}, Computing Machinery and Intelligence}
 
@@ -67,8 +66,8 @@ In the Figure \ref{fig:nn} an implementation of a Neural Network can be apprecia
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.4]{./figure/neural_network.PNG}
-\caption{Example of a Neural Network\cite{WEBSITE:10}}
+\includegraphics[scale=0.55]{./figure/neural_network.PNG}
+\caption{Example of a Neural Network}
 \label{fig:nn}
 \end{figure}
 As it can be seen in Figure \ref{fig:nn}, it is always divided in layers in which only the output and input layers are visible from the external world, as consequence the internal layers are called hidden layers. When an input vector is applied, it will propagate from the left side of the network to its right side through the layers and the neurons which compose each layer. It is worth to mention that layers may perform different kind of computation on their inputs. Moreover, the deep neural networks are named after the huge amount of hidden layers.\\\\
@@ -89,12 +88,12 @@ Spiking neural networks (SNNs) are artificial neural networks that more closely 
 The current activation level is modeled as a differential equation and it is normally considered as neuron's state.
 
 In principle, SNNs can be applied to the same application of Artificial Neural Networks. Moreover, SNNs can model brain of biological organisms without prior knowledge of the environment. Thus, SNNs have been useful in neuroscience for evaluating the reliability of the hypothesis on biological neural circuits but not in engineering.\\\\
-SSNs are still lagging ANNs in terms of accuracy, but the gap is decreasing and has vanished on some task\cite{article:2}.
+SSNs are still lagging ANNs in terms of accuracy, but the gap is decreasing and has vanished on some task\cite{article:2}. However, computer architectures based on SNN have a huge energy footprint compare to other types of architecture \cite{paper:44}.
 \newpage
 \section{Machine Learning Quantization}
-The reduction of computation demand and the increase of power efficiency of machine learning algorithms can be achievied through the quantization.\\\\
+The reduction of computation demand, the increase of power efficiency and the memory footprint of machine learning algorithms can be achievied through the quantization.\\\\
 
-Quantization is basically a set of techniques which convert, and map, input values from a large set to output values in a smaller set.\\The idea of Quantization is not recent, it has been introduced since the birth of digital electronics. Imagine to take a picture with the phone's camera, the real world is analog and the camera is capturing the analog world and converting it into a digital format.  Nevertheless the high quality of nowadas pictures, quantization is not lossless.\\\\
+Quantization is basically a set of techniques which convert, and map, input values from a large set to output values in a smaller set.\\The idea of Quantization is not recent, it has been introduced since the birth of digital electronics. Imagine to take a picture with the phone's camera, the real world is analog and the camera is capturing the analog world and converting it into a digital format.  Nevertheless the high quality of nowadays pictures, quantization is not lossless.\\\\
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
@@ -102,12 +101,22 @@ Quantization is basically a set of techniques which convert, and map, input valu
 \caption{Approximation of analog signal to digital signal\cite{WEBSITE:12}}
 \label{fig:quant}
 \end{figure}
-Going back to machine learning, it has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}. On the other hand, this quantization has lead to a relief of hardware computation, as it is very well-known floating point operation are much more expensive than integer operation from a lot of perspectives, and as consequence a reduction into the power consumptiom of the algorithm. It is also important to mention that the data traffic between the memory and the hardware is reduced due to the compaction of data.\\\\
+Going back to machine learning, it has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}.\\
+Several quantization techniques can be applied to already trained ML models(post-training quantization):
+\begin{itemize}
+\item Linear quantization: data are scaled by taking their maximum value and normalizing them to falling in the desired range range. 
+\item Outlier channel splitting\cite{paper:46} : linear quantization is sensitive by large inputs. The idea of OCS is
+to reduce the value of outliers (for both weights and activations) duplicating the node with halving the output or the weight. This transformation leaves the node functionality equivalent.
+\item Analytical Clipping for Integer Quantization\cite{paper:47}: it represents the state-of-the-art for the post-training quantization techniques. It bascally consists into apply a clipping function in a given range in order to reduce the quantization noise.
+\end{itemize}
+
+On the other hand, a quantization-aware training can also be done\cite{paper:45}.\\
+Quantization has lead to a relief of hardware computation, as it is very well-known floating point operation are much more expensive than integer operation from a lot of perspectives, and as consequence a reduction into the power consumptiom of the algorithm. It is also important to mention that the data traffic between the memory and the hardware is reduced due to the compaction of data.\\\\
 
 Nowadays, edge devices take advantage of lower precision and quantized operations, including GPUs. Thus, Quantization of machine learning algorithms is a defacto standard for edge inference.
 
 \section{Applications}
-In principle the AI can be applied to any intellectual tasks. Focusing on machine learning applications, they can spread through a variety of different domains:
+In principle the AI can be applied to any intellectual tasks\cite{book:1}. Focusing on machine learning applications, they can spread through a variety of different domains:
 \begin{itemize}
 \item Healthcare, mainly used for classification purposes.
 \item Automotive, used in self-driving cars.
@@ -115,7 +124,7 @@ In principle the AI can be applied to any intellectual tasks. Focusing on machin
 \item Cybersecurity, automatically sort the data in networks into high risk and low-risk information.
 \item Government, for paired with facial recognition systems may be used for mass surveillance.
 \item Video games, it is routinely used to generate dynamic purposeful behavior in non-player characters.
-\item Military, enhancing C2, Communications, Sensors, Integration and Interoperability.
+\item Military, enhancing Communications, Sensors, Integration and Interoperability.
 \item Hospitality, to reduce staff load and increase efficiency.
 \item Advertising, it is used to predict the behavior of customers from their digital footprint in order to target them with personalized promotions.
 \item Art, it has inspired numerous creative applications including its usage to produce visual art.

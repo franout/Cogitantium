@@ -1,6 +1,4 @@
-\chapter{State of the Art}
-\textit{In this chapter various solutions available on the market are presented for running the inference process of Machine Learning models.}
-
+\chapter{State-of-the-Art}
 \section{Overview}
 The role of Machine Learning has continuously growth in the past few years and a lot of efforts has been done for developing good software APIs in order to address different needs and domains. \newline In principle, all the machine learning algorithms can be run on the CPU, which already runs the OS and other Application Softwares, this leads to a lot of overheads, especially in terms memory accesses which are expensive in terms of energy and latency. \\\\
 Analyzing machine learning algorithms it comes evident that they massively do the same operations and access to data with some kind of patterns. Thus, with the outcome of the new paradigm for the GPU, the General Purpose GPU programming it comes in handy that implementing those algorithms on a GPU, which matches the Machine Learning algorithms requirements regarding the massive operations and the reuse of data, has given a lot of advantages in terms of latency and energy efficiency. However, the capability of GPU of running machine learning algorithms has been pushed almost at the maximum with the increase of computation demands in modern neural networks, therefore other solutions have been explored, such as the development of specific hardware platform.
@@ -10,31 +8,34 @@ The Moore's law is reaching the end from the point of view of CPUs. However, it 
 For this reason, a lot of improvements especially from the companies have been made for developing more and more GPUs with a lower performance per watts.\\
 As already mentioned, with the income of general purpose GPU programming paradigm, more and more machine learning algorithms have been designed for being run on the GPU, gathering the best fruits given by that type of architecture.\\\\
 As consequences, companies such as Nvidia have started to develop GPU for boosting machine learning applications performance.
-\subsection{Nvidia Tesla V100}
-The Nvidia Tesla V100 is one of the most performant GPU at the moment on the market. The newly added Tensor Core Unit allows massive increases in throughput and efficiency.\\It is able to deliver up to 125 TFPLOPS\footnote{floating point operations per second} for training and inference machine learning applications. \\\\
+\subsection{Nvidia Ampere A100 Tensor Core GPU}
+The Nvidia Ampere A100 Tensor Core GPU has been announcer recently and it is one of the most performant GPU. The newly added Tensor Core Unit allows massive increases in throughput and efficiency.\\It is able to deliver up to 624 TFPLOPS\footnote{floating point operations per second} for training and inference machine learning applications.\\\\
 
-The core of the GPU is the Streaming Multiprocessor from the Nvidia Volta GPU.
+The GPU is composed of multiple GPU processing clusters (GPCs), texture processing clusters (TPCs) and streaming multiprocessors (SMs).
+
+The core of the GPU is the Streaming Multiprocessor, which is built up from the SM of Volta GPU and Turing GPU.
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.9]{./figure/volta_sm_arch.PNG}
+\includegraphics[scale=0.8]{./figure/volta_sm_arch.PNG}
 \caption{Streaming Multiprocessor Architecture \cite{paper:41}}
 \label{fig:voltasmarch}
 \end{figure}
 
-Composed of integer, FP32, FP64 units and the Tensor Core Units designed specifically for deep learning. The Volta SM can achieve such efficient workload on mixed computation and addressing calculations thanks to an independent parallel integer and floating-point data paths. \\\\
 
-Matrix-Matrix multiplication operations are at the core of neural network training and inference, and are used to multiply large matrices of input data and weights in the connected layers of the network. The idea is represented into the Figure \ref{fig:tensorcorevolta}.
+Composed of integer, FP32, FP64 units and the Tensor Core Units designed specifically for deep learning.It introduces also new data types in the tensor core for the computation,binary , integer 8 and 4 bits, floating point 64, 32,16 and bfp16 (the throughput of the tensor core computation for fp16 and bfp16 is the same). The Ampere SM can achieve such efficient workload on mixed computation and addressing calculations thanks to an independent parallel integer and floating-point data paths, sparsity execution feature in Tensor Core. \\\\
+
+Matrix-Matrix multiplication operations are at the core of neural network training and inference, and are used to multiply large matrices of input data and weights in the connected layers of the network. The idea is represented into the Figure \ref{fig:tensorcorevolta} and compered to previous architectures.
 
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.7]{./figure/tensor_core.PNG}
+\includegraphics[scale=0.6]{./figure/tensor_core.PNG}
 \caption{Matrix Multiplication in Tensor Core\cite{paper:41}}
 \label{fig:tensorcorevolta}
 \end{figure}
 
-The Tesla V100 GPU contains 640 Tensor Cores: eight per Streaming Multiprocessor. Each one of the cores is able to perform 64 floating point Fused Multiply and Accumulate operations per clock.
+The Ampere A100 GPU contains 108 Streaming multipressor, and 432 third generation Tensor Core.
 According to Figure \ref{fig:mixprec} the Tensor Core Units are able to compute multiplications on FP16 and accumulate on FP32, leading to a further reduction of latency and energy consumption.
 \begin{figure}[!htbp]
 \centering

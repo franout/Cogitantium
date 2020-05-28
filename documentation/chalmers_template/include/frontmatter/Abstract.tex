@@ -8,14 +8,15 @@
 \thispagestyle{plain_cover}			% Supress header 
 \setlength{\parskip}{0pt plus 1.0pt}
 \section*{Abstract}
-
-\todo[inline]{Abstract text about your project in  Computer Science and Engineering.}
+The aim of the work is to demostrate that the execution of a Neural Network mainly consists in the same operations applied to different input data but at the same time data reuse of the weight values can be exploited reducing the access to memory. Thus, a dataflow architecture, which accelerates part of the computations in a Neural Network, is able to reduce the load of the main processor leading to benefits, especially in terms of latency.
+Another important aspect is the type of arithmetic operation, as it is well known integer computation are much more appreciated than the floating point operation from an area point of view to a latency point of views. Nevertheless, the precision reduction due to the migration from floating point to integer computation does not critically affect the final accuracy of the Neural Network model.\\
+Starting from the hardware system development, through the software development of a library able to use the underlying hardware, it ends with integration into a popular Machine Learning framework, Tensorflow.
 
 
 
 % KEYWORDS (MAXIMUM 10 WORDS)
-%\vfill
-%Keywords: Computer, science, computer science, engineering, project, thesis.
+\vfill
+Keywords: Computer, science, computer science, engineering, hardware, accelerator, machine learning.
 
 \newpage				% Create empty back of side
 \thispagestyle{empty}

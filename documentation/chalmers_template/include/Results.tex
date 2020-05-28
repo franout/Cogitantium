@@ -1,6 +1,5 @@
 % CREATED BY DAVID FRISK, 2016
 \chapter{Results}
-\textit{In this chapter, area results on the FPGA of different designs are presented. Following that, on different hardware designs Neural Network TensorFlow Lite models are executed and perfomances measured. }\\\\
 
 \epigraph{ \textit{If you can not measure something, you can not improve it.}}{--- \textup{William Thomson Kelvin}}
 
@@ -19,50 +18,87 @@ In this work the assumptions are that the accelerator will be deployed into an e
 An important aspect of an embedded system is the on-die utilization area. Those kinds of system are usually deployed on tightly area constrained chips for hiding their presence to the user.
 Therefore, it is important to measure and understand the behavior on the Utilization of the FPGA (used as area measurement in this case) of the design as the size of Matrix Multiplication Unit increases and in parallel the throughput.\\
 The Utilization Factor, composed of Look-up-Table, Flip Flops and Digital Signal Processor usage, is expected to increase as the size of Multiplication Matrix increase and the bit width of Computation Unit.
-\begin{center}
-\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}| }
-\hline
-\multicolumn{4}{|c|}{Post Synthesis FPGA Utilization Computation on 4 bit integer } \\
-\hline
-Size of Matrix Multiplication Unit& LUT &FF&DSP\\
-\hline
-3x3& & & \\
-4x4& & & \\
-5x5& & & \\
-6x6& & & \\
-7x7& & & \\
-8x8& & & \\
-10x10& & & \\
-12x12& & & \\
-15x15& & & \\
-16x16& & & \\
-20x20& & & \\
-\hline
-\end{tabular}
-\label{table:int4ut}
-\end{center}
+
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.5,angle=0]{./figure/graphs/graph_utilization.pdf}
+\label{fig:ut8bit}
+\end{figure}
+
+
+\newpage
+\section{Energy and Power Consumption}
+\todo[inline]{report power from vivavo}
+
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.5,angle=0]{./figure/graphs/graph_power.pdf}
+\label{fig:pow8bit}
+\end{figure}
+
+\newpage
+\section{Throughput}
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.5,angle=0]{./figure/graphs/throughput.pdf}
+\label{fig:tp8bit}
+\end{figure}
+
+\todo{chart which grows linear with the increase of the mxu size, assumption is that data are provided for each processing element}
+
+\newpage
+\section{Latency}
+
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.5,angle=0]{./figure/graphs/graph_timing.pdf}
+\label{fig:tim8bit}
+\end{figure}
+
+
+\todo[inline]{also chart for the various timing for every size of mxu and different clocks}
+\todo[inline]{comparison also with the same NN running on the a gpu+cpu machine, also total time of the execution of entire NN and accelerated part } 
 
 \begin{center}
-\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}| }
-\hline
-\multicolumn{4}{|c|}{Post Synthesis FPGA Utilization Computation on 8 bit integer } \\
-\hline
-Size of Matrix Multiplication Unit& LUT &FF&DSP\\
-\hline
-3x3& & & \\
-4x4& & & \\
-5x5& & & \\
-6x6& & & \\
-7x7& & & \\
-8x8& & & \\
-10x10& & & \\
-12x12& & & \\
-15x15& & & \\
-16x16& & & \\
-20x20& & & \\
-\hline
-\end{tabular}
-\label{table:int8ut}
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{ |p{3cm}||p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm} }
+ \hline
+Model & CPU (host) & GPU(host) & CPU(Pynq Z2 board) & CPU(Pynq Z2 board) + accelerator \\
+ \hline
+ MNIST & & &\\
+ Mobile Net V2& & &\\
+ Cifar 10& & &\\
+ Image Classification& & &\\
+ \hline
+ \end{tabular}
+ \caption{Table to test captions and labels}
+\label{table:1}
+\end{table}
 \end{center}
 
-%\section{Neural Networks Models}
+\newpage
+\section{Accuracy}
+\todo[inline]{list of NNs with the accuracy of the reference model(the one running on the board's cpu) with the cpu+accelerator run }
+
+\begin{center}
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ \hline
+Model & Reference Output  & Actual Output & Relative Error\\
+ \hline
+ MNIST & & &\\
+ Mobile Net V2& & &\\
+ Cifar 10& & &\\
+ Image Classification& & &\\
+ \hline
+ \end{tabular}
+ \caption{Table to test captions and labels}
+\label{table:2}
+\end{table}
+\end{center}
