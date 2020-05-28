@@ -270,7 +270,7 @@ def SelectDataTypeComputation_p(data_type):
     elif ((data_type & 0x000060)>> 5)== ACTIVE_BFP:
       FP=True
       BFP=True
-      PACK_TYPE="3"
+      PACK_TYPE="e"
     else:
       FP=False
       BFP=False
@@ -347,7 +347,7 @@ def Prepare_p(input_size,output_size,weight_num):
       for j in range(tmp.tot_dim):
         print(tmp.data[j],end=" ")
   index=0# it eats the first data ?
-  #get all tensors from the heap they will always be of 2 dims
+  #get all tensors from the heap they will always be of 2 dims TODO
   iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation)))
   for i in range(num_weight):
       tmp=tensors[i]
@@ -467,26 +467,25 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   #    input_fifo_buffer.flush()
   #  for l in range(INFIFO_SIZE):
   #      input_fifo_buffer[l]=output_fifo_buffer[l]
-  #accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
+  accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
   accelerator.write(STATUS,0x00000003)##clear status
   if _DEBUG_PRINT: print("[DEBUG -PYTHON] ---- accelerator done ----")
   ################################################################################################
   ####### unpack the output buffer depending on the precision and give  it back to C code ########
   ################################################################################################
-  ##TODO recheck
   driver_fifo_out.recvchannel.wait()
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(output_fifo_buffer[i]))
-  out_data_i=[0]*out_data_size
-  for i in range(out_data_size):
-    out_data_i[i]= (output_fifo_buffer[i]>>np.uint8(shift*curr_data_precision)) & np.uint64(0x00ff)
-    if(shift<int(64/curr_data_precision)):
-      shift=shift+1
-    else:
-      shift=0
-  out_data=ffi.cast("int *",out_data_i[0]) #TODO proper cast
+  out_data_i=[]
+  index=0
+  for i in range(int(out_data_size/(64/curr_bitwidth_data_computation))+1):
+    tmp=struct.unpack( "<"+(PACK_TYPE*int(64/curr_bitwidth_data_computation)),output_fifo_buffer[index].to_bytes(curr_bitwidth_data_computation,"little"))
+    for value in tmp:
+      out_data_i.append(value)
+    index=index+1
+  out_data=ffi.cast("int *",out_data_i[0:out_data_size]) #TODO proper cast depending on the precision
   return True
 
 @ffi.def_extern()
