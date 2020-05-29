@@ -7,15 +7,15 @@
 In the past decade many companies have started to advertise the use of AI, even if they are using a subfield of the AI, in their products and software applications. Nevertheless, the exponential growth of the last decade,
 the AI is not youth.\\ It takes one of its roots from a theoretical paper of \textit{Alan Turing} published by journal \textit{Mind} in the 1950 \cite{paper:36}.\\
 
-The general definition of Artificial Intelligence (AI) is intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\
-According to the definition, AI is too vast to be studied and simulated. Therefore, it has been divided into subfields, characterized by different traits, such as knowledge representation, planning, learning, natural language processing, perception, motion and manipulation, social intelligence, general intelligence.\\\\
+The general definitionof Artificial Intelligence (AI): \textit{intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals}\cite{book:1} .\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\
+According to the definition, AI is too vast to be studied and simulated\cite{book:1}. Therefore, it has been divided into subfields, characterized by different traits, such as knowledge representation, planning, learning, natural language processing, perception, motion and manipulation, social intelligence, general intelligence.\\\\
 
 Artificial Intelligence can be seen as a general purpose technology. It does not exist a general task on which it excels neither how to characterize them.
 
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.5]{./figure/ai_division.PNG}
+\includegraphics[scale=0.5]{./figure/ai_division.png}
 \caption{Classification of AI with emphasis on Machine Learning and its subclassification}
 \label{fig:aidiv}
 \end{figure}
@@ -47,15 +47,15 @@ It is based on algorithms which take its basic functionalities from our understa
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.15]{./figure/human_neuron.PNG}\\
+\includegraphics[scale=0.15]{./figure/human_neuron.png}\\
 
-\includegraphics[scale=0.15]{./figure/nn_neuron.PNG}
+\includegraphics[scale=0.15]{./figure/nn_neuron.png}
 
-\caption{A parallelism between a human-brain neuron and a neuron in a Brain Inspired Network\cite{WEBSITE:11}\cite{WEBSITE:13}}
+\caption[Caption for LOF]{A parallelism between a human-brain neuron and a neuron in a Brain Inspired Network\protect\footnotemark}
 \label{fig:neuron}
 \end{figure}
 In the human brain, the basic computational unit is the neuron.\\ Neurons receive input signal from dendrites and produce output signal along the axon which interacts with other neurons via synaptic weights.\\ The synaptic weights are obtained after a learning process, which can strengthen them or not.
-
+\footnotetext{Figures under CC license}
 \subsubsection{Neural Networks}
 
 Neural Networks (or Artificial Neural Networks) are graphs in which every node is interconnected to others using edges, which have a weight properly tuned during the training process.\\
@@ -66,7 +66,7 @@ In the Figure \ref{fig:nn} an implementation of a Neural Network can be apprecia
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.55]{./figure/neural_network.PNG}
+\includegraphics[scale=0.55]{./figure/neural_network.png}
 \caption{Example of a Neural Network}
 \label{fig:nn}
 \end{figure}
@@ -94,15 +94,16 @@ SSNs are still lagging ANNs in terms of accuracy, but the gap is decreasing and 
 The reduction of computation demand, the increase of power efficiency and the memory footprint of machine learning algorithms can be achievied through the quantization.\\\\
 
 Quantization is basically a set of techniques which convert, and map, input values from a large set to output values in a smaller set.\\The idea of Quantization is not recent, it has been introduced since the birth of digital electronics. Imagine to take a picture with the phone's camera, the real world is analog and the camera is capturing the analog world and converting it into a digital format.  Nevertheless the high quality of nowadays pictures, quantization is not lossless.\\\\
+An example of quantization for Neural Network model is given in the below figure, where a set of potentially infinite value(floating point) are mapped to finite values (integer).
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.4]{./figure/quant.PNG}
-\caption{Approximation of analog signal to digital signal\cite{WEBSITE:12}}
+\includegraphics[scale=0.4]{./figure/quant.png}
+\caption{Approximation of floating point values to integer values}
 \label{fig:quant}
 \end{figure}
-Going back to machine learning, it has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}.\\
-Several quantization techniques can be applied to already trained ML models(post-training quantization):
+It has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}.\\
+Several quantization techniques can be applied to already trained ML models (post-training quantization):
 \begin{itemize}
 \item Linear quantization: data are scaled by taking their maximum value and normalizing them to falling in the desired range range. 
 \item Outlier channel splitting\cite{paper:46} : linear quantization is sensitive by large inputs. The idea of OCS is

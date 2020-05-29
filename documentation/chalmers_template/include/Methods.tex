@@ -6,10 +6,11 @@ As already mentioned, the use of custom hardware for a specific application can 
 The inference process of Neural Network is mainly characterized by massive multiply and addition operations. Fetch of data from main memory follows patterns and it has been proved those data, in particular weight data, are reused for several exection of the Neural Network model.
 As consequence, executing a Neural Network model on a Von-Neumann based architecture machine leads to perfomance degradation, even in a cache-based system, since the CPU has to request the data from the main memory, execute the operation on those data and then save back to main memory before moving to the next data. The introduction of vectored instrucion in the modern processors can have a slight impact in the performance benefits. However, the drastically increase of layers in the Neural Network has made them suitable for several applications, this it can be translated into a massive increase of operations for executing them. Following the fast demands of operations into a Neural Networks, it becomes evident that executing them on a CPU could not meet anymore real-time application requirements.\\
 Instead, the approach of the accelerator is a Dataflow architecture, with emphasis on weight data reuse. The basic idea is a computation matrix composed in every entry of processing elements which are able to perform operation between the incoming data and the weights, which have been already loaded for exploiting a data reuse approach.\\\\
-After a preliminary research on which ML-FrameWork would allow to integrate a custom hardware accelerator minimizing the efforts to change the model code and its definitions, it has been evident that the TensorFlow FrameWork suits the needs.\\
+After a preliminary research on which ML-Framework would allow to integrate a custom hardware accelerator minimizing the efforts to change the model code and its definitions, it has been evident that the TensorFlow Framework suits the needs.\\
 \newpage
 The workflow of the Hardware-Software development is illustrated in the following:
-
+\todo{t seems complete but looks complicated... Can all the inputs be on the same side? On the left? And then can we have a result output on the right? BTW no output so far?
+Can you also use colors to make it easier to read so that different functionalities for example are grouped in different c}
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
@@ -19,17 +20,7 @@ The workflow of the Hardware-Software development is illustrated in the followin
 \end{figure}
 
 \newpage
-The entire work is implemented on a PYNQ Z2 board from TUL, based on a Zynq-7000 SoC \cite{paper:31}.
-
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.35]{./figure/zynq.PNG}
-\caption{Zynq 7000 SoC\cite{paper:42}}
-\label{fig:zynq}
-\end{figure}
-
-The latter is composed of a programmable logic and a processing system, the Programmable logic hosts the accelerator and the relative AXI interconnections while the processing system is in charge of running the software for programming and scheduling correctly the operation on the accelerator.\newline In order to speed-up the development process and use built-in library for the AXI protocol and the DMA transfers, the software is carried out through the PYNQ enviroment of the board \cite{WEBSITE:2} based on Python which has become a de facto standard \cite{paper:37}. \\
+The entire work is implemented on a PYNQ Z2 board from TUL, based on a Zynq-7000 SoC \cite{paper:31}. In order to speed-up the development process and use built-in library for the AXI protocol and the DMA transfers, the software is carried out through the PYNQ enviroment of the board \cite{WEBSITE:2} based on Python which has become a de facto standard \cite{paper:37}. \\
 The usage of Python as basic software allows to easily integrate it with high level Machine Learning FrameWork, such as TensorFlow in this case, an end-to-end open source Machine Learning platform \cite{WEBSITE:4}. 
 \newpage
 \section{Software}
@@ -62,8 +53,17 @@ The programmable logic (PL) hosts the entire design, from the accelerator itself
 
 \end{itemize}
 
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.35]{./figure/zynq.PNG}
+\caption{Zynq 7000 SoC\cite{paper:42}}
+\label{fig:zynq}
+\end{figure}
+
+
 \newpage
-In the following figure, the schematic of the overall design is presented.
+In the following figure, the schematic of the overall design in the PL is presented.
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
@@ -138,7 +138,7 @@ A visual distribution of the data can be seen in Fig. \ref{fig:fscs}, the same c
 \includegraphics[scale=0.35,angle=0]{./figure/filter_and_select.png}
 \caption{Data Distribution of Filter\&Select unit for a MXU size of 8x8
 }
-  \small Additional Input zero input to Muxes not shown
+  \small Additional zero input value to Muxes not shown
 \label{fig:fscs}
 \end{figure} 
 
