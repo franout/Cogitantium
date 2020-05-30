@@ -9,8 +9,6 @@ Instead, the approach of the accelerator is a Dataflow architecture, with emphas
 After a preliminary research on which ML-Framework would allow to integrate a custom hardware accelerator minimizing the efforts to change the model code and its definitions, it has been evident that the TensorFlow Framework suits the needs.\\
 \newpage
 The workflow of the Hardware-Software development is illustrated in the following:
-\todo{t seems complete but looks complicated... Can all the inputs be on the same side? On the left? And then can we have a result output on the right? BTW no output so far?
-Can you also use colors to make it easier to read so that different functionalities for example are grouped in different c}
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
@@ -79,7 +77,7 @@ In Figure \ref{fig:logaccel} is presented the Logical block diagram of the accel
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.40]{./figure/logical_view.png}
+\includegraphics[scale=0.30]{./figure/logical_view.png}
 \caption{Logical view of the accelerator}
 \label{fig:logaccel}
 \end{figure}
@@ -88,7 +86,7 @@ The work is not focused on developing embedded memories and AXI interfaces, ther
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=1.1,angle=90]{./figure/accelerator_schematic.pdf}
+\includegraphics[scale=0.8,angle=0]{./figure/accelerator_schematic.png}
 \caption{Real RTL view of the accelerator}
 \label{fig:rtlaccel}
 \end{figure} 

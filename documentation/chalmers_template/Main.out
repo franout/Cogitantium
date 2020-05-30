@@ -1,0 +1,42 @@
+\BOOKMARK [0][-]{chapter*.4}{List of Figures}{}% 1
+\BOOKMARK [0][-]{chapter*.5}{List of Tables}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Overview}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Machine Learning}{chapter.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.1}{Brain Inspired}{section.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.1.1}{Neural Networks}{subsection.2.2.1}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.1.2}{Spiking Neural Networks}{subsection.2.2.1}% 9
+\BOOKMARK [1][-]{section.2.3}{Machine Learning Quantization}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.4}{Applications}{chapter.2}% 11
+\BOOKMARK [0][-]{chapter.3}{State-of-the-Art}{}% 12
+\BOOKMARK [1][-]{section.3.1}{Overview}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.2}{GPU}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.2.1}{Nvidia Ampere A100 Tensor Core GPU}{section.3.2}% 15
+\BOOKMARK [1][-]{section.3.3}{Domain Specific Hardware Platform}{chapter.3}% 16
+\BOOKMARK [2][-]{subsection.3.3.1}{NVDLA}{section.3.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.3.1.1}{ NVDLA Software }{subsection.3.3.1}% 18
+\BOOKMARK [2][-]{subsection.3.3.2}{Google TPU}{section.3.3}% 19
+\BOOKMARK [2][-]{subsection.3.3.3}{Habana Goya HL-1000}{section.3.3}% 20
+\BOOKMARK [0][-]{chapter.4}{System Development}{}% 21
+\BOOKMARK [1][-]{section.4.1}{Overview}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.2}{Software}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.3}{System Level}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.4}{DTPU, the hardware accelerator}{chapter.4}% 25
+\BOOKMARK [2][-]{subsection.4.4.1}{Real Implementation}{section.4.4}% 26
+\BOOKMARK [2][-]{subsection.4.4.2}{DTPU core}{section.4.4}% 27
+\BOOKMARK [3][-]{subsubsection.4.4.2.1}{High Level State Machine of Control Unit}{subsection.4.4.2}% 28
+\BOOKMARK [3][-]{subsubsection.4.4.2.2}{Filter\046Select and Compact\046Select}{subsection.4.4.2}% 29
+\BOOKMARK [3][-]{subsubsection.4.4.2.3}{Matrix Multiplication Unit}{subsection.4.4.2}% 30
+\BOOKMARK [0][-]{chapter.5}{Results}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Evaluation metrics}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Utilization Factor}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.3}{Energy and Power Consumption}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.4}{Throughput}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.5}{Latency}{chapter.5}% 36
+\BOOKMARK [1][-]{section.5.6}{Accuracy}{chapter.5}% 37
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 38
+\BOOKMARK [1][-]{section.6.1}{Conclusion}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.2}{Future Works}{chapter.6}% 40
+\BOOKMARK [0][-]{section.6.2}{Bibliography}{}% 41
+\BOOKMARK [0][-]{appendix.A}{Appendix 1}{}% 42

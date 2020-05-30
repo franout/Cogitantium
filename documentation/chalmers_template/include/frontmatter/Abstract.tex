@@ -8,21 +8,12 @@
 \thispagestyle{plain_cover}			% Supress header 
 \setlength{\parskip}{0pt plus 1.0pt}
 \section*{Abstract}
-The execution of a Neural Network mainly consists in mutiplications and additions, basic operation of tensors convolutions. Across several executions, data are also reused, especially weight tensors.
-
-Clearly, 
-
-
-the same operations applied to different input data but at the same time data reuse of the weight values can be exploited reducing the access to memory. Thus, a dataflow architecture, which accelerates part of the computations in a Neural Network, is able to reduce the load of the main processor leading to benefits, especially in terms of latency.
-Another important aspect is the type of arithmetic operation, as it is well known integer computation are much more appreciated than the floating point operation from an area point of view to a latency point of views. Nevertheless, the precision reduction due to the migration from floating point to integer computation does not critically affect the final accuracy of the Neural Network model.\\
-
-
-Starting from the hardware system development, through the software development of a library able to use the underlying hardware, it ends with integration into a popular Machine Learning framework, Tensorflow.
-
-
-
-fpga-based tensor accelerator for ML
-
+Part of a Neural Nerwork inference execution mainly consists in mutiplications and additions, basic operation of tensor convolutions, and across several execution data, especially weight tensors, are reused.
+Clearly,  those operations are exectuted on a CPU but, as it is well known,  they are independent from each other and therefore they can be executed in parallel by the means of parallel architectures, such as GPU or domain specific hardware platform.
+In the following pages, the state-of-the-art for accelerating Neural Netork inference is explored starting from the newest proposed GPGPU architecture by NVIDIA to the domain specific accelerator from Google, NVIDIA, and Habana.\\
+With the state-of-the-art awareness, a hardware accelerator capable of executiong tensor convolution, a compute and memory intensive operation of a Neural Network, is designed from scratch. It is also designed for accomodating different data type computation request fron Neural Network models, ranging from integer8/16/32/64 to floating point 32 and brain floating point 16.
+Starting from the hardware system development, through the software development of a library capable to use the underlying hardware, it ends with integration into a popular Machine Learning framework, Tensorflow.\\
+The work is carried out on a configurable hardware, FPGA, which allows to explore different design design points, in terms of latency and number of processing elements,  for different Neural Network models and data type. Moreover, the impact of integrating the accelerator into the Neural Network model is measured and compared with different platforms. Energy consumption is also estimated in the case of deployment on mobile devices.
 
 
 % KEYWORDS (MAXIMUM 10 WORDS)
