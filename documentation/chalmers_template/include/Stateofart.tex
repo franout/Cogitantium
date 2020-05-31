@@ -1,6 +1,6 @@
 \chapter{State-of-the-Art}
 \section{Overview}
-The role of Machine Learning has continuously growth in the past few years and a lot of efforts has been done for developing good software APIs in order to address different needs and domains. \newline In principle, all the machine learning algorithms can be run on the CPU, which already runs the OS and other Application Softwares, this leads to a lot of overheads, especially in terms memory accesses which are expensive in terms of energy and latency. \\\\
+The role of Machine Learning has continuously growth in the past few years and a lot of efforts has been done for developing good software APIs in order to address different needs and domains. \newline In principle, all the machine learning algorithms can be run on the CPU, which already runs the OS and other Application Software, this leads to a lot of overheads, especially in terms memory accesses which are expensive in terms of energy and latency. \\\\
 Analyzing machine learning algorithms it comes evident that they massively do the same operations and access to data with some kind of patterns. Thus, with the outcome of the new paradigm for the GPU, the General Purpose GPU programming it comes in handy that implementing those algorithms on a GPU, which matches the Machine Learning algorithms requirements regarding the massive operations and the reuse of data, has given a lot of advantages in terms of latency and energy efficiency. However, the capability of GPU of running machine learning algorithms has been pushed almost at the maximum with the increase of computation demands in modern neural networks, therefore other solutions have been explored, such as the development of specific hardware platform.
 
 \section{GPU}
@@ -9,7 +9,7 @@ For this reason, a lot of improvements especially from the companies have been m
 As already mentioned, with the income of general purpose GPU programming paradigm, more and more machine learning algorithms have been designed for being run on the GPU, gathering the best fruits given by that type of architecture.\\\\
 As consequences, companies such as Nvidia have started to develop GPU for boosting machine learning applications performance.
 \subsection{Nvidia Ampere A100 Tensor Core GPU}
-The Nvidia Ampere A100 Tensor Core GPU has been announcer recently and it is one of the most performant GPU. The newly added Tensor Core Unit allows massive increases in throughput and efficiency.\\It is able to deliver up to 624 TFPLOPS\footnote{floating point operations per second} for training and inference machine learning applications.\\\\
+The Nvidia Ampere A100 Tensor Core GPU has been announcer recently and it is one of the most performant GPU. The newly added Tensor Core Unit allows massive increases in throughput and efficiency.\\It is able to deliver up to 624 TFPLOPS\footnote{floating-point operations per second} for training and inference machine learning applications.\\\\
 
 The GPU is composed of multiple GPU processing clusters (GPCs), texture processing clusters (TPCs) and streaming multiprocessors (SMs).
 The core of the GPU is the Streaming Multiprocessor, which is built up from the SM of Volta GPU and Turing one.
@@ -21,10 +21,9 @@ The core of the GPU is the Streaming Multiprocessor, which is built up from the 
 \label{fig:voltasmarch}
 \end{figure}
 
+Composed of integer, FP32, FP64 units and the Tensor Core Units designed specifically for deep learning. It introduces also new data types in the tensor core for the computation, binary, integer 8 and 4 bits, floating-point 64, 32, 16 and bfp16 (the throughput of the tensor core computation for fp16 and bfp16 is the same). The Ampere SM can achieve such efficient workload on mixed computation and addressing calculations thanks to an independent parallel integer and floating-point data paths. \\\\
 
-Composed of integer, FP32, FP64 units and the Tensor Core Units designed specifically for deep learning.It introduces also new data types in the tensor core for the computation, binary , integer 8 and 4 bits, floating point 64, 32,16 and bfp16 (the throughput of the tensor core computation for fp16 and bfp16 is the same). The Ampere SM can achieve such efficient workload on mixed computation and addressing calculations thanks to an independent parallel integer and floating-point data paths. \\\\
-
-Matrix-Matrix multiplication operations are at the core of neural network training and inference, and are used to multiply large matrices of input data and weights in the connected layers of the network. The idea is represented into the Figure \ref{fig:tensorcorevolta} and compered to previous architectures.
+Matrix-Matrix multiplication operations are at the core of neural network training and inference, and are used to multiply large matrices of input data and weights in the connected layers of the network. The idea is represented into the Figure \ref{fig:tensorcorevolta} and compared to previous architectures.
 
 \begin{figure}[!htbp]
 \centering
@@ -34,7 +33,7 @@ Matrix-Matrix multiplication operations are at the core of neural network traini
 \label{fig:tensorcorevolta}
 \end{figure}
 
-The Ampere A100 GPU contains 108 Streaming multipressor, and 432 third generation Tensor Core.
+The Ampere A100 GPU contains 108 Streaming multiprocessor, and 432 third generation Tensor Core.
 According to Figure \ref{fig:mixprec} the Tensor Core Units are able to compute multiplications on FP16 and accumulate on FP32, leading to a further reduction of latency and energy consumption.
 \begin{figure}[!htbp]
 \centering
@@ -44,8 +43,8 @@ According to Figure \ref{fig:mixprec} the Tensor Core Units are able to compute 
 \label{fig:mixprec}
 \end{figure}
 
-A novel aproach for doubling the throughput of deep neural networks has been introduced in this architecture. At the end of training process, only a subset of the total weights are necessarely to execute a neural network correctly. As consequence not all the weights are needed and they can be removed.\\
-Based on training feedback,  weights can be adapted at runtime during the training and this does not have any  impact on the final accuracy. Thus, thanks to the sparsity of weight tensors., inference process can be accelerated. In addition, also the training process can be accelerated exploiting the sparsity idea but it has to be introduced at the beginning of the process for achieving some benefits.
+A novel approach for doubling the throughput of deep neural networks has been introduced in this architecture. At the end of training process, only a subset of the total weights are necessary to execute a neural network correctly. As consequence not all the weights are needed, and they can be removed.\\
+Based on training feedback, weights can be adapted at runtime during the training and this does not have any impact on the final accuracy. Thus, thanks to the sparsity of weight tensors., inference process can be accelerated. In addition, also the training process can be accelerated exploiting the sparsity idea but it has to be introduced at the beginning of the process for achieving some benefits.
 
 \begin{figure}[!htbp]
 \centering
@@ -56,7 +55,7 @@ Based on training feedback,  weights can be adapted at runtime during the traini
 \end{figure}
 The apporach in Fig. \ref{fig:spa} doubles the throughput by skipping the zeros, it also leads to a reduction of memory footprint and an increase into the memory bandwidth.\\
 
-Following the idea, NVIDIA has introduced a new set of instruction for inference: sparse Matrix Multiply-Accumulate (MMA). Those instructions are able to skip the matrix entries which contain zero values leading to an increase of the Tensor core throughput. An example can be seen in Fig. \ref{fig:mma}, where the light blue matrix has a sparsity of 50\%. It is also important to mention that the non zero entries of the light blue matrix will be matched with the correct entries of the red one.
+Following the idea, NVIDIA has introduced a new set of instruction for inference: sparse Matrix Multiply-Accumulate (MMA). Those instructions are able to skip the matrix entries which contain zero values leading to an increase of the Tensor core throughput. An example can be seen in Fig. \ref{fig:mma}, where the light blue matrix has a sparsity of 50\%. It is also important to mention that the non-zero entries of the light blue matrix will be matched with the correct entries of the red one.
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
@@ -108,17 +107,16 @@ The data movement to/from memory are handled by the Internal memory controller t
 The internal architecture of NVDLA is composed by various engines, each one of them is able to perform specific Machine Learning models:
 \begin{itemize}
 \item Convolution Core: it comes in pair with the Convolution Buffer, its private memory for the data (inputs and weights). It is used to accelerate the convolution algorithms.
-\item Activation engine (Single Data point Operations): it performs post processing operations at the single data element level such as bias addition, Non linear function, PReLU (Parametric Rectified Linear Unit) and format conversion when the software requires different precision for different hardware layers.
+\item Activation engine (Single Data point Operations): it performs post processing operations at the single data element level such as bias addition, Non-linear function, PReLU (Parametric Rectified Linear Unit) and format conversion when the software requires different precision for different hardware layers.
 \item Pooling engine (Planar Data Operations): it is designed to accomplish pooling layers, i.e. it executes operation along the width and height plane.
 \item Local response normalization engine(Cross Channel Data operations): it is designed to address local response normalization layers.
 \item Reshape(Data memory and reshape operations): it transforms data mapping format without any data calculation.
 \item Bridge DMA: it is in charge of copying data from the Main Memory to the SRAM of the accelerator, only available into the large configuration of the system.
 \end{itemize}
 
-
 Another possible configuration which is worth to mention is the possibility to let the engines work separately on independent task or in a fused fashion where all of them are pipelined, working as a single entity.\\
 
-According to developers the configurability of the cores ranges from arithmetic precision to the theoretical throughput that a single unit can achieve (increasing the number of internal Processing Elements). Moreover, since the engine units are independent from each other, according to the application and the model used they can be safely removed from the design.
+According to developers the configurability of the cores ranges from arithmetic precision to the theoretical throughput that a single unit can achieve (increasing the number of internal Processing Elements). Moreover, since the engine units are independent of each other, according to the application and the model used they can be safely removed from the design.
 \newpage
 \subsubsection{ NVDLA Software }
 It is also worth to mention that the accelerator comes already with a basic software stack:
@@ -139,7 +137,7 @@ Google developed its own application-specific integragrated circuit for neural n
 It includes:
 \begin{itemize}
 \item Matrix Multiplier Unit (MXU): 65,536 8-bit multiply-and-add units for matrix operations
-\item Unified Buffer (UB): 24MB of SRAM that work as registers
+\item Unified Buffer (UB): 24 MB of SRAM that work as registers
 \item Activation Unit (AU): Hardwired activation functions
 \end{itemize}
 
