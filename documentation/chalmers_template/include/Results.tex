@@ -62,17 +62,42 @@ In the following tables, the execution type for different data type and model is
 \hline
 Model & CPU (host)\protect\footnotemark[1] & GPU(host)\protect\footnotemark[1] & CPU(Pynq Z2 board)\protect\footnotemark[3] & CPU(Pynq Z2 board) + accelerator \\
 \hline
-MNIST & 0.3 ms & 5.7 ms &\\
+MNIST & 0.3 ms & 5.7 ms & 3.8 ms  & \\
 \hline
-Mobile Net V1& & &\\
+Mobile Net V2& & 62 ms & &\\
 \hline
-Cifar 10& 20 ms & 22 ms&\\
+Cifar 10& 20 ms & 22 ms& 343 ms &\\
 \hline
 \end{tabular}
 \caption{Execution Time for different platform and model, integer 8}
 \label{table:moplatint8}
 \end{table}
 \end{center}
+
+\begin{comment}
+\begin{center}
+\begin{table}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\begin{tabular}{ |p{2.5cm}||p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+Model & CPU(Pynq Z2 board)\protect\footnotemark[3] & CPU(Pynq Z2 board) + accelerator & Speed-up \\
+\hline
+MNIST & 3.8 ms & ms &     \\
+\hline
+Mobile Net V2& & &\\
+\hline
+Cifar 10&  343 ms & ms &\\
+\hline
+\end{tabular}
+\caption{Speed-up on target with accelerator for different models, integer 8}
+\label{table:moplatint8}
+\end{table}
+\end{center}
+\end{comment}
+
+
+
 
 \todo{graph of how the execution time on the target changes with the frequency for every model}
 \footnotetext[1]{Intel i7-6700HQ, 2.60 Ghz}
@@ -116,4 +141,5 @@ $\epsilon _r=\Big|{\frac{OuputReference-ActualOutput}{OutputReference} }\Big|* 1
 }
 
 \section{Memory footprint}
-\todo[inline]{ normal model size vs the quantized model size, or maybe is it better into the appendix?}
+\todo[inline]{ So having a chart or table with weight sizes (assuming this sis what is interesting to you since is what determines the local store of the FPGA engine) is enough. You should present the values for different bit length but no more.
+As for the latency with frequency… it is always interesting to see if the applications is compute or memory bound (frequency changes the execution time r not?). So I would say include some results and also follow those for the energy evaluation (or efficiency).}
