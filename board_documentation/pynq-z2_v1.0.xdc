@@ -15,10 +15,10 @@ set_property -dict {PACKAGE_PIN M19 IOSTANDARD LVCMOS33} [get_ports enable]
 
 ##RGB LEDs
 
-set_property -dict { PACKAGE_PIN L15   IOSTANDARD LVCMOS33 } [get_ports { precision[0] }]; #IO_L22N_T3_AD7N_35 Sch=led4_b
-set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { precision[1]}]; #IO_L16P_T2_35 Sch=led4_g
-set_property -dict { PACKAGE_PIN N15   IOSTANDARD LVCMOS33 } [get_ports { precision[2] }]; #IO_L21P_T3_DQS_AD14P_35 Sch=led4_r
-set_property -dict { PACKAGE_PIN G14   IOSTANDARD LVCMOS33 } [get_ports { precision[3] }]; #IO_0_35 Sch=led5_b
+set_property -dict {PACKAGE_PIN L15 IOSTANDARD LVCMOS33} [get_ports {precision[0]}]
+set_property -dict {PACKAGE_PIN G17 IOSTANDARD LVCMOS33} [get_ports {precision[1]}]
+set_property -dict {PACKAGE_PIN N15 IOSTANDARD LVCMOS33} [get_ports {precision[2]}]
+set_property -dict {PACKAGE_PIN G14 IOSTANDARD LVCMOS33} [get_ports {precision[3]}]
 #set_property -dict { PACKAGE_PIN L14   IOSTANDARD LVCMOS33 } [get_ports { led5_g }]; #IO_L22P_T3_AD7P_35 Sch=led5_g
 #set_property -dict { PACKAGE_PIN M15   IOSTANDARD LVCMOS33 } [get_ports { csr_0_0 }]; #IO_L23N_T3_35 Sch=led5_r
 
@@ -196,3 +196,6 @@ set_property -dict {PACKAGE_PIN M14 IOSTANDARD LVCMOS33} [get_ports {state_0[3]}
 
 
 set_operating_conditions -heatsink medium
+
+set_property MARK_DEBUG false [get_nets pynqz2_i/dtpu/M_AXIS_0_tlast]
+set_property MARK_DEBUG false [get_nets pynqz2_i/dtpu/M_AXIS_0_tvalid]
