@@ -125,15 +125,17 @@ DEBUG=4
 TEST_OPTIONS=5  
 ACTIVATE_CHAIN=0x1
 INT8=0x1
-INT16=0X03
-INT32=0x07
-INT64=0x0F
+INT16=0X3
+INT32=0x7
+INT64=0xF
 # precision of fp computation is tuned using the 
 # integer precision 
 ACTIVE_FP=1
 ACTIVE_BFP=0x03
 ROUNDING=0x00
 NO_FP=0x00
+SIGNED=0x1
+NO_SIGNED=0x0
 WMEM_STARTING_ADDRESS=0 #32 MSB 
 ##############################################
 #### accelerator adapter command #############
@@ -173,7 +175,7 @@ BUFFER_DEPTH=2
 tot_size_weight=0
 curr_data_precision=INT8
 curr_bitwidth_data_computation=8
-PACK_TYPE="b" # default is 1 byte #TODO CHECK SIGNED OR UNSIGNED OR ASK TO USER
+PACK_TYPE="b" # default is 1 byte signed for integer lower case -> signed upper case-> unsigned
 FP=False
 BFP=False
 size_tot=0
@@ -239,6 +241,7 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
 def SelectDataTypeComputation_p(data_type):
   global curr_data_precision
   global curr_bitwidth_data_computation
+  global PACK_TYPE
   global FP
   global BFP
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] ---  SelectDataTypeComputation DTPU class ---")
@@ -247,19 +250,31 @@ def SelectDataTypeComputation_p(data_type):
     if ((data_type)&0x00000f)==INT8:
       curr_data_precision=INT8
       curr_bitwidth_data_computation=8
-      PACK_TYPE="b"
+      if (data_type&0x00080)==SIGNED:
+        PACK_TYPE="b" 
+      else:
+        PACK_TYPE="B"
     elif ((data_type)&0x00000f)==INT16:
       curr_data_precision=INT16
       curr_bitwidth_data_computation=16
-      PACK_TYPE="h"
+      if (data_type&0x00080)==SIGNED:
+        PACK_TYPE="h"
+      else:
+        PACK_TYPE="H"
     elif ((data_type)&0x00000f)==INT32:
       curr_data_precision=INT32
       curr_bitwidth_data_computation=32
-      PACK_TYPE="i"
+      if (data_type&0x00080)==SIGNED:
+        PACK_TYPE="i"
+      else:
+        PACK_TYPE="I"
     elif ((data_type)&0x00000f)==INT64:
       curr_data_precision=INT64
       curr_bitwidth_data_computation=64
-      PACK_TYPE="q"
+      if (data_type&0x00080)==SIGNED:
+        PACK_TYPE="q"
+      else:
+        PACK_TYPE="Q"
     else:
       print("ERROR PYTHON! Setting the Data type of computation")
     # floating point check 
@@ -279,7 +294,9 @@ def SelectDataTypeComputation_p(data_type):
     curr_bitwidth_data_computation=8
     FP=False
     BFP=False
-    print("[DEBUG-PYTHON]----precision default 8 bit----")
+  if _DEBUG_PRINT: 
+    print("[DEBUG-PYTHON]----precision default 8 bit signed----")
+    print("[DEBUG-PYTHON]---- Signed :",PACK_TYPE.islower(),"type: ",curr_data_precision, "  ->", curr_bitwidth_data_computatio,"------")
   return True
   
 
@@ -290,7 +307,24 @@ def push_weight_to_heap(tensor,size,dim_size):
   #push the tensor to the heap for handling their transfefr in the Prepare_p
   tot_size=1
   if not(FP) or not(BPF):
-    tensor_i=ffi.cast("uint8_t *",tensor) #TODO CAST PROPERLY DEPENDING ON THE PRECISION
+    if PACK_TYPE.islower(): # signed
+      if curr_data_precision==INT8:
+        tensor_i=ffi.cast("int8_t *",tensor)
+      elif curr_data_precision==INT16:
+        tensor_i=ffi.cast("int16_t *",tensor)
+      elif curr_data_precision==INT32:
+        tensor_i=ffi.cast("int32_t *",tensor)
+      else: # int64
+        tensor_i=ffi.cast("int64_t *",tensor)
+    else: #unsigned
+      if curr_data_precision==INT8:
+        tensor_i=ffi.cast("uint8_t *",tensor)
+      elif curr_data_precision==INT16:
+        tensor_i=ffi.cast("uint16_t *",tensor)
+      elif curr_data_precision==INT32:
+        tensor_i=ffi.cast("uint32_t *",tensor)
+      else: # int64
+        tensor_i=ffi.cast("uint64_t *",tensor)
   else:
     tensor_i=ffi.cast("float *",tensor)
   size_i=size
@@ -343,7 +377,8 @@ def Prepare_p(input_size,output_size,weight_num):
     print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ",num_weight,"weight to transfer  ---")
     for i in range(num_weight):
       tmp=tensors[i]
-      print("weight ",i)
+      print("[DEBUG-PYTHON] ---- weight ",i,"-----")
+      print("[DEBUG-PYTHON] ---- size ",*tmp.size_l,"-----")
       for j in range(tmp.tot_dim):
         print(tmp.data[j],end=" ")
   index=0# it eats the first data ?
@@ -399,7 +434,24 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   #######################################################################
   tmp=[]
   if not(FP) or not(BPF):
-    in_data_i=ffi.cast("int *",in_data_i) #TODO
+    if PACK_TYPE.islower(): # signed
+      if curr_data_precision==INT8:
+        in_data_i=ffi.cast("int8_t *",in_data)
+      elif curr_data_precision==INT16:
+        in_data_i=ffi.cast("int16_t *",in_data)
+      elif curr_data_precision==INT32:
+        in_data_i=ffi.cast("int32_t *",in_data)
+      else: # int64
+        in_data_i=ffi.cast("int64_t *",in_data)
+    else: #unsigned
+      if curr_data_precision==INT8:
+        in_data_i=ffi.cast("uint8_t *",in_data)
+      elif curr_data_precision==INT16:
+        in_data_i=ffi.cast("uint16_t *",in_data)
+      elif curr_data_precision==INT32:
+        in_data_i=ffi.cast("uint32_t *",in_data)
+      else: # int64
+        in_data_i=ffi.cast("uint64_t *",in_data)
   else:
     in_data_i=ffi.cast("float *",in_data_i)
   for i in range(in_data_size):
@@ -424,7 +476,7 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
       print(hex(input_fifo_buffer[i]))
   ################################################
   ###### program the dma for the csr reg #########
-  ################################################
+  ################################################ TODO CHECK SHAPE OF INPUTS and weight
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer ----")
   csr_buffer[ARITHMETIC_PRECISION]=np.uint64(global_iteration_shift_wm[0]<<32) | np.uint64(curr_data_precision) #TODO add chain and fp
   csr_buffer.flush()
@@ -438,7 +490,7 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
   accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) # offload of processor it will continue as data will be provided
-  # TODO multiple iteration 
+  # TODO multiple iteration  and buffer depth enhancing 
   #for i in range (global_iteration):
   #  # modify inital starting value of weight 
   #  prev=np.uint32(csr_buffer[ARITHMETIC_PRECISION]) & 0xffffffff
@@ -485,7 +537,25 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
     for value in tmp:
       out_data_i.append(value)
     index=index+1
-  out_data=ffi.cast("int *",out_data_i[0:out_data_size]) #TODO proper cast depending on the precision
+  # cast back
+  if PACK_TYPE.islower(): # signed
+    if curr_data_precision==INT8:
+      out_data=ffi.cast("int8_t *",out_data_i)
+    elif curr_data_precision==INT16:
+      out_data=ffi.cast("int16_t *",out_data_i)
+    elif curr_data_precision==INT32:
+      out_data=ffi.cast("int32_t *",out_data_i)
+    else: # int64
+      out_data=ffi.cast("int64_t *",out_data_i)
+  else: #unsigned
+    if curr_data_precision==INT8:
+      out_data=ffi.cast("uint8_t *",out_data_i)
+    elif curr_data_precision==INT16:
+      out_data=ffi.cast("uint16_t *",out_data_i)
+    elif curr_data_precision==INT32:
+      out_data=ffi.cast("uint32_t *",out_data_i)
+    else: # int64
+      out_data=ffi.cast("uint64_t *",out_data_i)
   return True
 
 @ffi.def_extern()

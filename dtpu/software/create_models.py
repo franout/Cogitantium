@@ -172,9 +172,9 @@ print(evaluate_model(interpreter_quant))
 
 
 
-################################
-##### build mobile net v2 ######
-################################
+#######################################################################
+##### build mobile net v2  and other image classification models ######
+#######################################################################
 print("other model already quantazied can be found here! includer mobile net  ---> https://www.tensorflow.org/lite/guide/hosted_models")
 
 
@@ -289,7 +289,7 @@ converter.inference_input_type = tf.uint8
 converter.inference_output_type = tf.uint8
 
 tflite_model_quant_uint8 = converter.convert()
-tflite_model_quant_file_uint8 = tflite_models_dir/"cnnt_model_quant_uint8.tflite"
+tflite_model_quant_file_uint8 = tflite_models_dir/"cnn_model_quant_uint8.tflite"
 
 tflite_model_quant_file_uint8.write_bytes(tflite_model_quant_uint8)
 
@@ -367,6 +367,7 @@ def plotImages(images_arr):
         ax.axis('off')
     plt.tight_layout()
     plt.show()
+
 plotImages(sample_training_images[:5])
 
 model = Sequential([
@@ -414,7 +415,46 @@ plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
 
+# quantize 
+import pathlib
 
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+
+
+tflite_models_dir = pathlib.Path("./model_cache/output/image_classification")
+tflite_models_dir.mkdir(exist_ok=True, parents=True)
+
+
+tflite_model_file = tflite_models_dir/"image_classification_model.tflite"
+tflite_model_file.write_bytes(tflite_model)
+
+
+#To quantize the model on export, set the optimizations flag to optimize for size:
+converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
+
+
+image_classification_train, _ = train_data_gen
+images = tf.cast(image_classification_train[0], tf.float32) / 255.0
+image_classification_ds = tf.data.Dataset.from_tensor_slices((images)).batch(1)
+def representative_data_gen():
+  for input_value in image_classification_ds.take(100):
+    yield [input_value]
+
+converter.representative_dataset = train_data_gen
+
+
+
+## quantize input and output fp32 on int 8
+converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+converter.inference_input_type = tf.uint8
+converter.inference_output_type = tf.uint8
+
+tflite_model_quant_uint8 = converter.convert()
+tflite_model_quant_file_uint8 = tflite_models_dir/"image_classification_model_quant_uint8.tflite"
+
+tflite_model_quant_file_uint8.write_bytes(tflite_model_quant_uint8)
 
 
 

@@ -1,5 +1,9 @@
 #!/usr/bin/python3.5
 
+### for disabling gpu
+#import os
+#
+#os.environ['CUDA_VISIBLE_DEVICES'] = '' 
 
 import tensorflow.lite as tflite
 import numpy as np
@@ -43,6 +47,8 @@ import cffi
 #### to share memory.
 
 
+
+
 # 1)Define a kernel node that is responsible for evaluating the delegate subgraph
 # 2)Create an instance of TfLiteDelegate, which is responsible for registering
 #	 the kernel node and claiming the nodes that the delegate can execute
@@ -53,9 +59,11 @@ DTPU_lib=tflite.experimental.load_delegate("./DTPU_delegate.so")
 # precision of accelerator 
 ACTIVATE_CHAIN=0x1
 INT8=0x1
-INT16=0X03
-INT32=0x07
-INT64=0x0F
+INT16=0X3
+INT32=0x7
+INT64=0xF
+SIGNED=0x1
+NO_SIGNED=0x0
 # precision of fp computation is tuned using the 
 # integer precision 
 NO_FP=0
@@ -63,7 +71,7 @@ ACTIVE_FP=1<<0
 ACTIVE_BFP=0x03
 WMEM_STARTING_ADDRESS=0 #32 MSB 
 ffi=cffi.FFI()
-data_type=ffi.cast("int",(NO_FP<<8)|(ACTIVATE_CHAIN<<4)| INT8)
+data_type=ffi.cast("int",((NO_SIGNED <<8 )| (NO_FP<<5)|(ACTIVATE_CHAIN<<4)| INT8))
 DTPU_lib._library.SelectDataTypeComputation( int(data_type))
 
 # DTPU_lib._library.functionName()
@@ -92,7 +100,7 @@ input_details_no_delegate = interpreter_no_delegate.get_input_details() #[0]["in
 output_details_no_delegate = interpreter_no_delegate.get_output_details()# [0]["index"]
 
 
-# Test model on random input data.
+# Test model on random input data. 
 input_shape = input_details[0]['shape']
 input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
 interpreter.set_tensor(input_details[0]['index'], input_data)
@@ -104,14 +112,23 @@ interpreter_no_delegate.set_tensor(input_details[0]['index'], input_data)
 
 
 #start a thread which sample temperature and voltages from xadc
+avg_time=0.00
+for i in range(10):
+	start_time=time.time()
+	interpreter.invoke()
+	end_time=time.time()
+	avg_time+=end_time-start_time
 
-start_time=time.time()
-interpreter.invoke()
-end_time=time.time()
+avg_time=avg_time/10
 
-start_time_no_delegate=time.time()
-interpreter_no_delegate.invoke()
-end_time_no_delegate=time.time()
+avg_time_no_delegate=0.00
+for i in range(10):
+	start_time_no_delegate=time.time()
+	interpreter_no_delegate.invoke()
+	end_time_no_delegate=time.time()
+	avg_time_no_delegate+=end_time_no_delegate-start_time_no_delegate
+
+avg_time_no_delegate=avg_time_no_delegate/10
 
 # The function `get_tensor()` returns a copy of the tensor data.
 # Use `tensor()` in order to get a pointer to the tensor.
@@ -123,13 +140,13 @@ output_data_no_delegate = interpreter_no_delegate.get_tensor(output_details_no_d
 print(output_data_no_delegate)
 
 
-print("Execution time on cpu: ", end_time_no_delegate- start_time_no_delegate)
-print("Execution time on cpu and accelerator: ", end_time- start_time)
+print("Average execution time on cpu: ",avg_time)
+print("Average Execution time on cpu and accelerator: ", avg_time_no_delegate)
 
 exit();
 #### get tensor weight from tensorflow python 
 
-data=interpreter_no_delegate.get_tensors_details()
-
-for layer in data:
-	interpreter_no_delegate.get_tensor(layer['index'])
+#data=interpreter_no_delegate.get_tensors_details()
+#
+#for layer in data:
+#	interpreter_no_delegate.get_tensor(layer['index'])

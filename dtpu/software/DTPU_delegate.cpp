@@ -35,6 +35,7 @@ possible operations
 
 int bit_width_computation;
 int NO_FP=-1;
+bool signed_computation=False;
 
 namespace tflite{
   
@@ -87,7 +88,7 @@ class DTPU_delegate {
           printf("ERROR! Need to execute SelectDataTypeComputation function before calling the Tensorflow Interpreter\n");
            return kTfLiteError ;
       }
-
+      
 
     for(i=0;i<context->tensors_size;i++){
         tmp=context->tensors[i];
@@ -103,9 +104,18 @@ class DTPU_delegate {
       default:
       case 8:
           #ifdef DEBUG
+                    if(signed_computation){
                       printf("[DEBUG-C]---- kTfLiteInt8 ------\n");
+                    }else{
+                      printf("[DEBUG-C]---- kTfLiteUInt8 ------\n");
+                    }
           #endif
+                    if(signed_computation){
                     push_weight_to_heap(tmp.data.int8,tmp.dims->data,tmp.dims->size);
+                    }else {
+                    push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
+                    }
+                    
                     break;
       case 16:
             #ifdef DEBUG
@@ -182,6 +192,8 @@ class DTPU_delegate {
   printf("[DEBUG - C]--- SelectDataTypeComputation of DTPU delegate class --- \n");
   #endif
   int precision= data_type & 0x000f;
+  signed_computation= (data_type & 0x00080)==1 ? True : False; 
+
   NO_FP= (data_type & 0x060)>>5;
   switch(precision){
     default:
@@ -198,6 +210,12 @@ class DTPU_delegate {
       bit_width_computation=64;
       break;
   }
+  // check compatibilyt of signed and unsigned 
+  if(signed_computation && bit_width_computation!=8){
+    printf("ERROR-> signed/unsigned distinction is only compatible with 8 bit computation");
+    return kTfLiteError;
+  }
+
 
   if(SelectDataTypeComputation_p(data_type) ){
       return kTfLiteOk;
