@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smul.v
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-11 22:50:38
+//  Last Modified : 2020-06-15 15:39:19
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -189,7 +189,7 @@ always @(posedge clk ) begin
   if(sclr) begin
     a <= 0;b<=0;z_sc<=0;
   end else begin
-      if(ce && enable_fp_unit[0])begin 
+     if(ce && enable_fp_unit[0] && enable_i[2]) begin 
         a<=input_data[31:0];
         b<=weight[31:0];
         z_sc<=fp_out;
@@ -217,7 +217,7 @@ always @(posedge clk ) begin
   if(sclr) begin
     a <= 0;b<=0;z_sc<=0;
   end else begin
-      if(ce && enable_fp_unit[0])begin 
+       if(ce && enable_fp_unit[0] && enable_fp_unit[1] && enable_i[1])begin 
         a<={input_data[15:0],16'd0};
         b<={weight[15:0],16'd0};
         z_sc<=fp_out;
@@ -231,7 +231,7 @@ FPmul_sc fp_mul_b16(
   .FP_Z(fp_out),
   .clk(clk));
 
-assign  res_mac_next= {32'd0, z_sc[31:16],16'd0} ;
+assign  res_mac_next= {48'd0, z_sc[31:16]} ;
 `endif
 
 

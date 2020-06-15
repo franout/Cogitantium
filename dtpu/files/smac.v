@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : smac.v
 //  Created On    : 2020-04-22 17:05:43
-//  Last Modified : 2020-05-09 11:57:31
+//  Last Modified : 2020-06-15 15:36:16
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -185,7 +185,7 @@ always @(posedge clk ) begin
   if(sclr) begin
     a <= 0;b<=0;z_sc<=0; c<=0;
   end else begin
-      if(ce && enable_fp_unit[0])begin 
+      if(ce && enable_fp_unit[0] && enable_i[2]) begin 
         a<=data_input[31:0];
         b<=weight[31:0];
         c<=res_mac_p[31:0];
@@ -213,8 +213,6 @@ assign  res_mac_n= {32'd0, z_mult_add} ;
 `elsif  USE0_FP16 
 `elsif  USE0_BFP16 
 
-
-
 reg[31:0]z_sc;
 reg [31:0]z_mult_add;
 wire [31:0] fp_out;
@@ -227,7 +225,7 @@ always @(posedge clk ) begin
   if(sclr) begin
     a <= 0;b<=0;z_sc<=0; c<=0;
   end else begin
-      if(ce && enable_fp_unit[0] && enable_fp_unit[1])begin 
+      if(ce && enable_fp_unit[0] && enable_fp_unit[1] && enable_i[1])begin 
         a<={data_input[15:0],16'd0};
         b<={weight[15:0],16'd0};
         c<={res_mac_p[15:0],16'd0};
@@ -251,7 +249,7 @@ FPadd_sc fp_add_b16(
 
 
 
-assign  res_mac_n= {32'd0, z_mult_add[31:16],16'd0} ;
+assign  res_mac_n= {48'd0, z_mult_add[31:16]} ;
 
 
 `endif

@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : control_unit.v
 //  Created On    : 2020-05-09 23:47:05
-//  Last Modified : 2020-05-21 19:11:20
+//  Last Modified : 2020-05-23 15:13:05
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology, Sweden - Politecnico di Torino, Italy
@@ -223,7 +223,6 @@ start_p3:  begin
             end
             end
 `ifdef PIPELINE
-    //TODO pipeline it
     /*
             pipeline
 
@@ -233,7 +232,7 @@ start_p3:  begin
                             -> save
     */
 request_data: begin
-            // recheck for 16x16
+            // first set of activation data has to be loaded separetely
             infifo_read<=1'b1;
             // load counter of ls array 
             ld_max_cnt<=1'b1;
@@ -261,6 +260,7 @@ request_data: begin
             end 
             end 
 get_data: begin 
+            // weight are static 
             enable_load_array<=1'b1;            
             enable_load_activation_data<= 0;
             enable_store_activation_data<=0;
@@ -268,7 +268,6 @@ get_data: begin
             wm_ce<=1'b1;
             enable_cnt_weight<=1'b1;
             //enable for ls weight
-            // TODO Check does not load the weight for the upper part ( second array of ls units)
             read_weight_memory<= (1'b1<<((COLUMNS)*counter_shift+counter_save)) ;
             //if(counter_save<(ROWS*(COLUMNS/(DATA_WIDTH_WMEMORY/curr_data_width_computation))))begin 
             if(counter_shift<ROWS)begin
@@ -290,9 +289,16 @@ get_data: begin
             end 
             end 
 compute: begin
+            //infifo request
+
             enable_load_array<=1'b1;
             read_weight_memory<=0;
-            enable_load_activation_data<=0;
+            //enable_load_activation_data<=0;
+            infifo_read<=1'b1;
+            enable_load_activation_data<=(1'b1<<(counter_request));
+                if(counter_request<(COLUMNS/(DATA_WIDTH_FIFO_IN/curr_data_width_computation))-1) begin 
+                    counter_request<=0;
+                end
             enable_store_activation_data<=0;
             //enable_cnt<=1'b1;
             enable_cnt_weight<=1'b0; // it should be active and also read weight memory and wm_ce
@@ -337,7 +343,6 @@ save_to_fifo: begin
 
 `ifndef PIPELINE    
 request_data: begin
-            // recheck for 16x16
             infifo_read<=1'b1;
             // load counter of ls array 
             ld_max_cnt<=1'b1;
@@ -372,7 +377,6 @@ get_data: begin
             wm_ce<=1'b1;
             enable_cnt_weight<=1'b1;
             //enable for ls weight
-            // TODO Check does not load the weight for the upper part ( second array of ls units)
             read_weight_memory<= (1'b1<<((COLUMNS)*counter_shift+counter_save)) ;
             //if(counter_save<(ROWS*(COLUMNS/(DATA_WIDTH_WMEMORY/curr_data_width_computation))))begin 
             if(counter_shift<ROWS)begin
@@ -435,7 +439,7 @@ save_to_fifo: begin
             end       
 `endif       
 done: begin 
-        /*if(!outfifo_is_full &&*/ if(!infifo_is_empty) begin
+        /*they are symmetric if(!outfifo_is_full &&*/ if(!infifo_is_empty) begin
         state<=idle;
         cs_done<=1;
         end else begin

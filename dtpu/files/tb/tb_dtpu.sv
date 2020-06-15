@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : tb_dtpu.sv
 //  Created On    : 2020-04-22 17:05:25
-//  Last Modified : 2020-05-17 23:26:20
+//  Last Modified : 2020-05-22 12:48:07
 //  Revision      : 
 //  Author        : Angione Francesco
 //  Company       : Chalmers University of Technology,Sweden - Politecnico di Torino, Italy
@@ -316,17 +316,31 @@ end
 i=0;
 end 
 
-
+integer index=0;
 
 // fake in fifo
-always @(*) begin 
+`ifndef PIPELINE
+always_comb begin 
 if (infifo_read || infifo_read_16x16) begin
-   infifo_dout<=data[i%16];
-   i=i+1;
+   infifo_dout<=data[index%16];
+   index=index+1;
 end else begin
 infifo_dout<=0;
 end
 end
+`else
+//  1 cc of delay 
+always @(posedge clk) begin : proc_infifo
+
+if (infifo_read || infifo_read_16x16) begin
+   infifo_dout<=data[index%16];
+   index=index+1;
+end else begin
+infifo_dout<=0;
+end
+end
+
+`endif
 
 
 // fake csr memory process
@@ -562,7 +576,9 @@ localparam get_data=4'h9;
               #clk_period;               
               end 
               `else 
-
+              for(k=0;k<MAX_COUNTER;k=k+1) begin 
+                #clk_period;
+              end
               `endif
               
               #clk_period;
