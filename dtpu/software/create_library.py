@@ -6,8 +6,6 @@ import cffi
 ####   to have tensorflow/tensorflow/lite in /usr/include/pythonX.X ######
 ####                 from r2.1 branch                               ######
 ##########################################################################
-
-
 ffibuilder = cffi.FFI()
 
 ffibuilder.cdef("""
@@ -18,11 +16,13 @@ bool CopyToBufferHandle_p(void);
 void FreeBufferHandle_p(void);
 bool SelectDataTypeComputation_p(int);
 bool Init_p(int ,int,int);
-bool Prepare_p(int,int ,int);
-bool Invoke_p(void *,int,void*,int);
+bool Prepare_p(int);
+bool Invoke_p(bool);
 void  load_overlay(void);
 bool ResetHardware_p(void);
 void push_weight_to_heap( void  *,int *,int);
+void push_input_tensor_to_heap( void  *,int *,int);
+void push_output_tensor_to_heap( void  *,int *,int);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  *  );
@@ -31,12 +31,9 @@ void push_weight_to_heap( void  *,int *,int);
 
 cpp_file=open("./DTPU_delegate.cpp","r")
 ffibuilder.set_source("dtpu_lib", cpp_file.read(),source_extension=".cpp")
-
-#r"""
-  
-#"""
-
-
+#, 
+#  extra_link_args=['-fPIC -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro -Wl,-Bsymbolic-functions -specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro -g -fdebug-prefix-map=/build/python3.6-3.6.5=. -specs=/usr/share/dpkg/no-pie-compile.specs -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 ']
+#  extra_compile_args=[''])
 #if you want to simply access a global variable you just use its name.
 # However to change its value you need to use the global keyword.
 python_file=open("./DTPU_delegate.py","r")

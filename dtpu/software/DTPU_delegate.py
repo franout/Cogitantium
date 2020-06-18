@@ -143,7 +143,7 @@ WMEM_STARTING_ADDRESS=0 #32 MSB
 CMD_UPDATE_IN_ARDG=0x0
 CMD_UPDATE_OUT_ARG=0x1
 CMD_EXECUTE_STEP=0x2
-CMD_EXECUTE_CONTINUOS=0x4
+CMD_EXECUTE_CONTINOUS=0x4
 CMD_STOP_EXECUTE_CONTINOUS=0x5
 ##############################################
 BASE_ADDRESS_INTC=0x40800000
@@ -173,18 +173,19 @@ COLUMNS=8
 DATAWIDTH=64
 BUFFER_DEPTH=2
 tot_size_weight=0
+tot_size_input=0
 curr_data_precision=INT8
 curr_bitwidth_data_computation=8
 PACK_TYPE="b" # default is 1 byte signed for integer lower case -> signed upper case-> unsigned
 FP=False
 BFP=False
 size_tot=0
-input_size=0
-output_size=0
 num_weight=0
 global_iteration=1 ## at least one execution of the tensor accelerator
 global_iteration_shift_wm=[0]
-tensors=[]
+weight_tensors=[]
+input_tensors=[]
+output_tensors=[]
 class Tensor:
   def __init__(self,data, tot_dim,size_l):
     self.tot_dim=tot_dim
@@ -250,28 +251,28 @@ def SelectDataTypeComputation_p(data_type):
     if ((data_type)&0x00000f)==INT8:
       curr_data_precision=INT8
       curr_bitwidth_data_computation=8
-      if (data_type&0x00080)==SIGNED:
+      if (data_type&0x00100)==SIGNED:
         PACK_TYPE="b" 
       else:
         PACK_TYPE="B"
     elif ((data_type)&0x00000f)==INT16:
       curr_data_precision=INT16
       curr_bitwidth_data_computation=16
-      if (data_type&0x00080)==SIGNED:
+      if (data_type&0x00100)==SIGNED:
         PACK_TYPE="h"
       else:
         PACK_TYPE="H"
     elif ((data_type)&0x00000f)==INT32:
       curr_data_precision=INT32
       curr_bitwidth_data_computation=32
-      if (data_type&0x00080)==SIGNED:
+      if (data_type&0x00100)==SIGNED:
         PACK_TYPE="i"
       else:
         PACK_TYPE="I"
     elif ((data_type)&0x00000f)==INT64:
       curr_data_precision=INT64
       curr_bitwidth_data_computation=64
-      if (data_type&0x00080)==SIGNED:
+      if (data_type&0x00100)==SIGNED:
         PACK_TYPE="q"
       else:
         PACK_TYPE="Q"
@@ -296,13 +297,90 @@ def SelectDataTypeComputation_p(data_type):
     BFP=False
   if _DEBUG_PRINT: 
     print("[DEBUG-PYTHON]----precision default 8 bit signed----")
-    print("[DEBUG-PYTHON]---- Signed :",PACK_TYPE.islower(),"type: ",curr_data_precision, "  ->", curr_bitwidth_data_computatio,"------")
+    print("[DEBUG-PYTHON]---- Signed :",PACK_TYPE.islower(),"type: ",curr_data_precision, "  ->", curr_bitwidth_data_computation,"------")
   return True
-  
+
+@ffi.def_extern()
+def push_input_tensor_to_heap( tensor,size,dim_size):
+  global input_tensors
+  global tot_size_input
+  #push the tensor to the heap for handling their transfefr in the Prepare_p
+  tot_size=1
+  if not(FP) or not(BPF):
+    if PACK_TYPE.islower(): # signed
+      if curr_data_precision==INT8:
+        tensor_i=ffi.cast("int8_t *",tensor)
+      elif curr_data_precision==INT16:
+        tensor_i=ffi.cast("int16_t *",tensor)
+      elif curr_data_precision==INT32:
+        tensor_i=ffi.cast("int32_t *",tensor)
+      else: # int64
+        tensor_i=ffi.cast("int64_t *",tensor)
+    else: #unsigned
+      if curr_data_precision==INT8:
+        tensor_i=ffi.cast("uint8_t *",tensor)
+      elif curr_data_precision==INT16:
+        tensor_i=ffi.cast("uint16_t *",tensor)
+      elif curr_data_precision==INT32:
+        tensor_i=ffi.cast("uint32_t *",tensor)
+      else: # int64
+        tensor_i=ffi.cast("uint64_t *",tensor)
+  else:
+    tensor_i=ffi.cast("float *",tensor)
+  size_i=ffi.cast("int *",size)
+  tot_size=1
+  size_l=[]
+  data_p=[]
+  for i in range(dim_size):
+    size_l.append(size[i])
+    tot_size*=size[i]
+  tot_size_input+=tot_size
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor input ",tot_size_input,"-----")
+  for i in range (tot_size):
+    data_p.append(tensor_i[i])
+  input_tensors.append(Tensor(data_p,tot_size,size_l))
+
+@ffi.def_extern()
+def push_output_tensor_to_heap(tensor, size,dim_size):
+  global output_tensors
+  #push the tensor to the heap for handling their transfefr in the Prepare_p
+  tot_size=1
+  if not(FP) or not(BPF):
+    if PACK_TYPE.islower(): # signed
+      if curr_data_precision==INT8:
+        tensor_i=ffi.cast("int8_t *",tensor)
+      elif curr_data_precision==INT16:
+        tensor_i=ffi.cast("int16_t *",tensor)
+      elif curr_data_precision==INT32:
+        tensor_i=ffi.cast("int32_t *",tensor)
+      else: # int64
+        tensor_i=ffi.cast("int64_t *",tensor)
+    else: #unsigned
+      if curr_data_precision==INT8:
+        tensor_i=ffi.cast("uint8_t *",tensor)
+      elif curr_data_precision==INT16:
+        tensor_i=ffi.cast("uint16_t *",tensor)
+      elif curr_data_precision==INT32:
+        tensor_i=ffi.cast("uint32_t *",tensor)
+      else: # int64
+        tensor_i=ffi.cast("uint64_t *",tensor)
+  else:
+    tensor_i=ffi.cast("float *",tensor)
+  size_i=ffi.cast("int *",size)
+  tot_size=1
+  size_l=[]
+  data_p=[]
+  for i in range(dim_size):
+    size_l.append(size[i])
+    tot_size*=size[i]
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor output ",tot_size,"-----")
+  for i in range (tot_size):
+    data_p.append(0) ## appending zeros
+  output_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
 def push_weight_to_heap(tensor,size,dim_size):
-  global tensors
+  global weight_tensors
   global tot_size_weight
   #push the tensor to the heap for handling their transfefr in the Prepare_p
   tot_size=1
@@ -327,7 +405,7 @@ def push_weight_to_heap(tensor,size,dim_size):
         tensor_i=ffi.cast("uint64_t *",tensor)
   else:
     tensor_i=ffi.cast("float *",tensor)
-  size_i=size
+  size_i=ffi.cast("int *",size)
   tot_size=1
   size_l=[]
   data_p=[]
@@ -338,10 +416,10 @@ def push_weight_to_heap(tensor,size,dim_size):
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor weight ",tot_size_weight,"-----")
   for i in range (tot_size):
     data_p.append(tensor_i[i])
-  tensors.append(Tensor(data_p,tot_size,size_l))
+  weight_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
-def Prepare_p(input_size,output_size,weight_num):
+def Prepare_p(weight_num):
   global input_fifo_buffer
   global output_fifo_buffer
   global weight_buffer
@@ -416,7 +494,7 @@ def Prepare_p(input_size,output_size,weight_num):
   return True
 
 @ffi.def_extern()
-def Invoke_p(in_data,in_data_size,out_data,out_data_size):
+def Invoke_p(only_conv2d):
   global driver_csr
   global driver_wm
   global driver_fifo_in
@@ -533,29 +611,17 @@ def Invoke_p(in_data,in_data_size,out_data,out_data_size):
   out_data_i=[]
   index=0
   for i in range(int(out_data_size/(64/curr_bitwidth_data_computation))+1):
-    tmp=struct.unpack( "<"+(PACK_TYPE*int(64/curr_bitwidth_data_computation)),output_fifo_buffer[index].to_bytes(curr_bitwidth_data_computation,"little"))
+    tmp=struct.unpack( "<"+(PACK_TYPE*int(64/curr_bitwidth_data_computation)),output_fifo_buffer[index].tobytes(curr_bitwidth_data_computation,"little"))
     for value in tmp:
       out_data_i.append(value)
     index=index+1
+  #reorganize outputs
+  if only_conv2d:
+    pass
+  else: #deepwise convolution
+    pass
   # cast back
-  if PACK_TYPE.islower(): # signed
-    if curr_data_precision==INT8:
-      out_data=ffi.cast("int8_t *",out_data_i)
-    elif curr_data_precision==INT16:
-      out_data=ffi.cast("int16_t *",out_data_i)
-    elif curr_data_precision==INT32:
-      out_data=ffi.cast("int32_t *",out_data_i)
-    else: # int64
-      out_data=ffi.cast("int64_t *",out_data_i)
-  else: #unsigned
-    if curr_data_precision==INT8:
-      out_data=ffi.cast("uint8_t *",out_data_i)
-    elif curr_data_precision==INT16:
-      out_data=ffi.cast("uint16_t *",out_data_i)
-    elif curr_data_precision==INT32:
-      out_data=ffi.cast("uint32_t *",out_data_i)
-    else: # int64
-      out_data=ffi.cast("uint64_t *",out_data_i)
+  out_data=ffi.cast("void *",out_data_i)
   return True
 
 @ffi.def_extern()

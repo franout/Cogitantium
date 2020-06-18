@@ -183,7 +183,7 @@ print("other model already quantazied can be found here! includer mobile net  --
 ##################################
 
 import tensorflow as tf
-
+from datetime import datetime
 from tensorflow.keras import datasets, layers, models
 import matplotlib.pyplot as plt
 
@@ -228,9 +228,17 @@ model.summary()
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
+#for profiling
+logs = "logs/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+
+tboard_callback = tf.keras.callbacks.TensorBoard(log_dir = logs,
+                                                 histogram_freq = 1,
+                                                 profile_batch = '500,520')
+
 
 history = model.fit(train_images, train_labels, epochs=10, 
-                    validation_data=(test_images, test_labels))
+                    validation_data=(test_images, test_labels),
+                    callbacks = [tboard_callback])
 
 
 # evaluate

@@ -1,10 +1,9 @@
-/// release dependent libraries
+/// release dependent libraries tensorflow r2.1
 #include <tensorflow/lite/c/builtin_op_data.h>
 #include <tensorflow/lite/c/c_api_internal.h>
 #include <tensorflow/lite/builtin_ops.h>
 #include <tensorflow/lite/context_util.h>
 #include <vector>
-
 #define DEBUG 1
 
 static bool destroy_p(void );
@@ -13,11 +12,15 @@ static bool CopyToBufferHandle_p(void);
 static void FreeBufferHandle_p(void);
 static bool SelectDataTypeComputation_p(int);
 static bool Init_p(int,int,int );
-static bool Prepare_p(int, int,int );
-static bool Invoke_p(void *,int,void*,int);
+static bool Prepare_p(int );
+static bool Invoke_p(bool);
 static void load_overlay(void);
 static bool ResetHardware_p(void);
 static void push_weight_to_heap( void  *,int *,int);
+static void push_input_tensor_to_heap( void  *,int *,int);
+static void push_output_tensor_to_heap( void  *,int *,int);
+
+
 /*
 possible operations 
   kTfLiteBuiltinAdd = 0,
@@ -35,13 +38,14 @@ possible operations
 
 int bit_width_computation;
 int NO_FP=-1;
-bool signed_computation=False;
+bool signed_computation=false;
+bool only_con2d=false;
 
-namespace tflite{
+using namespace tflite;
   
- class TfLiteIntArrayView; 
-}
+#ifdef __cplusplus
 extern "C" {
+#endif
 // This is where the execution of the operations or whole graph happens.
 // The class below has an empty implementation just as a guideline
 // on the structure.
@@ -55,6 +59,7 @@ class DTPU_delegate {
   #endif
     switch (registration->builtin_code) {
       case kTfLiteBuiltinConv2d:
+        only_con2d=true;
       case kTfLiteBuiltinDepthwiseConv2d:
       #ifdef DEBUG
         printf("[DEBUG - C]--Hello world! I can make 2D convolution and depth wise 2D convolution---\n");
@@ -70,8 +75,18 @@ class DTPU_delegate {
   #ifdef DEBUG
     printf("[DEBUG - C]--- Init of DTPU delegate class --- \n");
     #endif
+    
+     #ifdef DEBUG
+      printf("[DEBUG - C]--- Init of DTPU delegate class check if tensors indexes are equal to the ones in the Invoke %--- \n");
+    for (int input_index: TfLiteIntArrayView(delegate_params->input_tensors)){
+    
+      printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors %d--- \n",input_index);
+    
+    }
+      #endif
     // instantiate buffers and soft reset of accelerator 
     return Init_p(context->tensors_size,delegate_params->input_tensors->size ,delegate_params->output_tensors->size);
+   
   }
   // Any preparation work needed (e.g. allocate buffers)
   TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
@@ -80,26 +95,25 @@ class DTPU_delegate {
   #endif
       // initialize, link the buffers accordint to the size of node data
     // kTfLiteMmapRo  aka weights
-    unsigned int i;
     int num_weight_tensor=0;
-    TfLiteTensor tmp;
     // set precison check 
     if(NO_FP==-1){
           printf("ERROR! Need to execute SelectDataTypeComputation function before calling the Tensorflow Interpreter\n");
            return kTfLiteError ;
       }
-      
 
-    for(i=0;i<context->tensors_size;i++){
-        tmp=context->tensors[i];
-      if(tmp.allocation_type==kTfLiteMmapRo){ // it is a weight
 
-      num_weight_tensor++;
-      #ifdef DEBUG
-      printf("[DEBUG -C]---found a tensor weight----\n");
-      #endif
-      
-      if(!NO_FP){
+    for (int input_index : TfLiteIntArrayView(node->inputs)){
+      // one of this should be the weight tensor
+      auto&  in_t= context->tensors[input_index];
+      if(in_t.allocation_type==kTfLiteMmapRo){
+              num_weight_tensor++;
+              #ifdef DEBUG
+              printf("[DEBUG -C]---found a tensor weight----\n");
+              #endif
+      // get dimesion of tensors
+      // push to python sublayer
+       if(!NO_FP){
       switch(bit_width_computation){
       default:
       case 8:
@@ -110,13 +124,13 @@ class DTPU_delegate {
                       printf("[DEBUG-C]---- kTfLiteUInt8 ------\n");
                     }
           #endif
-                    if(signed_computation){
-                    push_weight_to_heap(tmp.data.int8,tmp.dims->data,tmp.dims->size);
-                    }else {
-                    push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
-                    }
+          if(signed_computation){
+          push_weight_to_heap(tmp.data.int8,tmp.dims->data,tmp.dims->size);
+          }else {
+          push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
+          }
                     
-                    break;
+        break;
       case 16:
             #ifdef DEBUG
                     printf("[DEBUG-C]---- kTfLiteInt16 ------\n");
@@ -138,33 +152,33 @@ class DTPU_delegate {
       }
       }
       else { // use fp units 
-      switch (bit_width_computation){
-      case 16:  
-            if(context->allow_fp32_relax_to_fp16 && NO_FP==3 ){ // NO_FP==3 -> fp active and bfp active
-               #ifdef DEBUG
-          printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
-          #endif
-            push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
-            }
+        switch (bit_width_computation){
+        case 16:  
+              if(context->allow_fp32_relax_to_fp16 && NO_FP==3 ){ // NO_FP==3 -> fp active and bfp active
+                 #ifdef DEBUG
+            printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
+            #endif
+              push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
+              }
+              break;
+        case 32:
+            #ifdef DEBUG
+            printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
+            #endif
+              push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
+              break;
+        default:
+            printf("[DEBUG-C]---- ERROR! no fp precision defined ------\n");
             break;
-      case 32:
-          #ifdef DEBUG
-          printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
-          #endif
-            push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
-            break;
-      default:
-          printf("[DEBUG-C]---- ERROR! no fp precision defined ------\n");
-          break;
       }
 
       }
       }
-    }
+    }        
     #ifdef DEBUG
     printf("[DEBUG-C]--- number of weights found= %d \n",num_weight_tensor);
     #endif 
-      if(Prepare_p(node->inputs->size,node->outputs->size,num_weight_tensor)){
+      if(Prepare_p(num_weight_tensor)){
       return kTfLiteOk;
       }
      return kTfLiteError ;
@@ -172,27 +186,177 @@ class DTPU_delegate {
   }
   // Actual running of the delegate subgraph.
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
-  #ifdef DEBUG
+    #ifdef DEBUG
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
+    printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors --- \n")
     #endif
     // run inference on the delegate  and data transfer to/from memory/accelerator
-    if(Invoke_p(node->inputs->data,node->inputs->size,node->outputs->data,node->outputs->size)){
+    for (int input_index : TfLiteIntArrayView(node->inputs)){
+      // one of this should be the weight tensor
+      #ifdef DEBUG
+      printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors %d--- \n",input_index);
+      #endif
+
+      auto&  in_t= context->tensors[input_index];
+      if(!(in_t.allocation_type==kTfLiteMmapRo)){ //cause the weights have been transferred into the Prepare method
+      // get dimesion of tensors
+      // push to python sublayer
+       
+
+       if(!NO_FP){
+      switch(bit_width_computation){
+      default:
+      case 8:
+          #ifdef DEBUG
+                    if(signed_computation){
+                      printf("[DEBUG-C]---- kTfLiteInt8 ------\n");
+                    }else{
+                      printf("[DEBUG-C]---- kTfLiteUInt8 ------\n");
+                    }
+          #endif
+          if(signed_computation){
+          push_input_tensor_to_heap(in_t.data.int8,in_t.dims->data,in_t.dims->size);
+          }else {
+          push_input_tensor_to_heap(in_t.data.uint8,in_t.dims->data,in_t.dims->size);
+          }
+                    
+        break;
+      case 16:
+            #ifdef DEBUG
+                    printf("[DEBUG-C]---- kTfLiteInt16 ------\n");
+            #endif
+              push_input_tensor_to_heap(in_t.data.i16,in_t.dims->data,in_t.dims->size);
+                  break;
+      case 32:
+      #ifdef DEBUG
+                  printf("[DEBUG-C]---- kTfLiteInt32 ------\n");
+          #endif
+            push_input_tensor_to_heap(in_t.data.i32,in_t.dims->data,in_t.dims->size);
+            break;
+      case 64:
+          #ifdef DEBUG
+                printf("[DEBUG-C]---- kTfLiteInt64------\n");
+          #endif
+            push_input_tensor_to_heap(in_t.data.i64,in_t.dims->data,in_t.dims->size);
+                break;
+      }
+      }
+      else { // use fp units 
+        switch (bit_width_computation){
+        case 16:  
+              if(context->allow_fp32_relax_to_fp16 && NO_FP==3 ){ // NO_FP==3 -> fp active and bfp active
+                 #ifdef DEBUG
+            printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
+            #endif
+              push_input_tensor_to_heap(in_t.data.f,in_t.dims->data,in_t.dims->size);
+              }
+              break;
+        case 32:
+            #ifdef DEBUG
+            printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
+            #endif
+              push_input_tensor_to_heap(in_t.data.f,in_t.dims->data,in_t.dims->size);
+              break;
+        default:
+            printf("[DEBUG-C]---- ERROR! no fp precision defined ------\n");
+            break;
+      }
+
+      }
+
+      }
+    }
+
+
+    for (int output_index : TfLiteIntArrayView(node->outputs)){
+      auto&  out_t= context->tensors[output_index];
+      // get dimesion of tensors
+      // push to python sublayer
+
+      #ifdef DEBUG
+      printf("[DEBUG - C]--- Invoke of DTPU delegate class getting output tensors %d--- \n",output_index);
+      #endif
+      
+       if(!NO_FP){
+      switch(bit_width_computation){
+      default:
+      case 8:
+          #ifdef DEBUG
+                    if(signed_computation){
+                      printf("[DEBUG-C]---- kTfLiteInt8 ------\n");
+                    }else{
+                      printf("[DEBUG-C]---- kTfLiteUInt8 ------\n");
+                    }
+          #endif
+          if(signed_computation){
+          push_output_tensor_to_heap(out_t.data.int8,out_t.dims->data,out_t.dims->size);
+          }else {
+          push_output_tensor_to_heap(out_t.data.uint8,out_t.dims->data,out_t.dims->size);
+          }
+                    
+        break;
+      case 16:
+            #ifdef DEBUG
+                    printf("[DEBUG-C]---- kTfLiteInt16 ------\n");
+            #endif
+              push_output_tensor_to_heap(out_t.data.i16,out_t.dims->data,out_t.dims->size);
+                  break;
+      case 32:
+      #ifdef DEBUG
+                  printf("[DEBUG-C]---- kTfLiteInt32 ------\n");
+          #endif
+            push_output_tensor_to_heap(out_t.data.i32,out_t.dims->data,out_t.dims->size);
+            break;
+      case 64:
+          #ifdef DEBUG
+                printf("[DEBUG-C]---- kTfLiteInt64------\n");
+          #endif
+            push_output_tensor_to_heap(out_t.data.i64,out_t.dims->data,out_t.dims->size);
+                break;
+      }
+      }
+      else { // use fp units 
+        switch (bit_width_computation){
+        case 16:  
+              if(context->allow_fp32_relax_to_fp16 && NO_FP==3 ){ // NO_FP==3 -> fp active and bfp active
+                 #ifdef DEBUG
+            printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
+            #endif
+              ppush_output_tensor_to_heap(out_t.data.f,out_t.dims->data,out_t.dims->size);
+              }
+              break;
+        case 32:
+            #ifdef DEBUG
+            printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
+            #endif
+              push_output_tensor_to_heap(out_t.data.f,out_t.dims->data,out_t.dims->size);
+              break;
+        default:
+            printf("[DEBUG-C]---- ERROR! no fp precision defined ------\n");
+            break;
+      }
+
+      }
+
+      }
+    }
+
+    if(Invoke_p(only_con2d)){
+      
       return kTfLiteOk;
       }
      return kTfLiteError ;
-    
-  }
+    }
    
 };
 
 
-   // use TfLiteType instead of int
   TfLiteStatus  SelectDataTypeComputation(int data_type ){
   #ifdef DEBUG
   printf("[DEBUG - C]--- SelectDataTypeComputation of DTPU delegate class --- \n");
   #endif
   int precision= data_type & 0x000f;
-  signed_computation= (data_type & 0x00080)==1 ? True : False; 
+  signed_computation= ((data_type & 0x00100)>>8)==1 ? true : false; 
 
   NO_FP= (data_type & 0x060)>>5;
   switch(precision){
@@ -215,8 +379,6 @@ class DTPU_delegate {
     printf("ERROR-> signed/unsigned distinction is only compatible with 8 bit computation");
     return kTfLiteError;
   }
-
-
   if(SelectDataTypeComputation_p(data_type) ){
       return kTfLiteOk;
       }
@@ -380,5 +542,6 @@ printf("[DEBUG - C]-----cleaning memory  -> callback of python function---\n");
 }*/
 free(delegate);
 }
-
-}
+#ifdef __cplusplus
+} // extern "C"
+#endif

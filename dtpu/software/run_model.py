@@ -110,6 +110,14 @@ interpreter_no_delegate.set_tensor(input_details[0]['index'], input_data)
 #input_data_no_delegate = np.array(np.random.random_sample(input_shape_no_delegate), dtype=np.float32)#
 #interpreter_no_delegate.set_tensor(input_details_no_delegate[0]['index'], input_data_no_delegate)
 
+#tf.profiler.experimental.server.start('8080')
+
+
+#tf.profiler.experimental.start('logdir')
+## Train the model here
+#tf.profiler.experimental.stop()
+
+
 
 #start a thread which sample temperature and voltages from xadc
 avg_time=0.00
