@@ -1,11 +1,15 @@
 #!/usr/bin/python3.5
 
+# for host
 ### for disabling gpu
 #import os
 #
 #os.environ['CUDA_VISIBLE_DEVICES'] = '' 
+#import tensorflow.lite as tflite
 
-import tensorflow.lite as tflite
+# for target
+import tflite_runtime.interpreter as tflite
+
 import numpy as np
 import time
 import os
@@ -54,7 +58,7 @@ import cffi
 #	 the kernel node and claiming the nodes that the delegate can execute
 
 # load library , the design is loaded inside the embedded python code of .so 
-DTPU_lib=tflite.experimental.load_delegate("./DTPU_delegate.so")
+DTPU_lib=tflite.load_delegate("./DTPU_delegate.so")
 
 # precision of accelerator 
 ACTIVATE_CHAIN=0x1

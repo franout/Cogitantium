@@ -3,6 +3,7 @@
 #include <tensorflow/lite/c/c_api_internal.h>
 #include <tensorflow/lite/builtin_ops.h>
 #include <tensorflow/lite/context_util.h>
+#include <tensorflow/c/c_api.h>
 #include <vector>
 #define DEBUG 1
 
@@ -77,14 +78,14 @@ class DTPU_delegate {
     #endif
     
      #ifdef DEBUG
-      printf("[DEBUG - C]--- Init of DTPU delegate class check if tensors indexes are equal to the ones in the Invoke %--- \n");
+      printf("[DEBUG - C]--- Init of DTPU delegate class check if tensors indexes are equal to the ones in the Invoke --- \n");
     for (int input_index: TfLiteIntArrayView(delegate_params->input_tensors)){
     
       printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors %d--- \n",input_index);
     
     }
       #endif
-    // instantiate buffers and soft reset of accelerator 
+    // instantiate buffcfers and soft reset of accelerator 
     return Init_p(context->tensors_size,delegate_params->input_tensors->size ,delegate_params->output_tensors->size);
    
   }
@@ -125,9 +126,9 @@ class DTPU_delegate {
                     }
           #endif
           if(signed_computation){
-          push_weight_to_heap(tmp.data.int8,tmp.dims->data,tmp.dims->size);
+          push_weight_to_heap(in_t.data.int8, in_t.dims->data, in_t.dims->size);
           }else {
-          push_weight_to_heap(tmp.data.uint8,tmp.dims->data,tmp.dims->size);
+          push_weight_to_heap( in_t.data.uint8, in_t.dims->data, in_t.dims->size);
           }
                     
         break;
@@ -135,19 +136,19 @@ class DTPU_delegate {
             #ifdef DEBUG
                     printf("[DEBUG-C]---- kTfLiteInt16 ------\n");
             #endif
-                  push_weight_to_heap(tmp.data.i16,tmp.dims->data,tmp.dims->size);
+                  push_weight_to_heap( in_t.data.i16, in_t.dims->data, in_t.dims->size);
                   break;
       case 32:
       #ifdef DEBUG
                   printf("[DEBUG-C]---- kTfLiteInt32 ------\n");
           #endif
-            push_weight_to_heap(tmp.data.i32,tmp.dims->data,tmp.dims->size);
+            push_weight_to_heap( in_t.data.i32, in_t.dims->data, in_t.dims->size);
             break;
       case 64:
           #ifdef DEBUG
                 printf("[DEBUG-C]---- kTfLiteInt64------\n");
           #endif
-                push_weight_to_heap(tmp.data.i64,tmp.dims->data,tmp.dims->size);
+                push_weight_to_heap( in_t.data.i64, in_t.dims->data, in_t.dims->size);
                 break;
       }
       }
@@ -158,14 +159,14 @@ class DTPU_delegate {
                  #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
             #endif
-              push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
+              push_weight_to_heap( in_t.data.f, in_t.dims->data, in_t.dims->size);
               }
               break;
         case 32:
             #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLitefloat32 ------\n");
             #endif
-              push_weight_to_heap(tmp.data.f,tmp.dims->data,tmp.dims->size);
+              push_weight_to_heap( in_t.data.f, in_t.dims->data, in_t.dims->size);
               break;
         default:
             printf("[DEBUG-C]---- ERROR! no fp precision defined ------\n");
@@ -187,8 +188,10 @@ class DTPU_delegate {
   // Actual running of the delegate subgraph.
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
     #ifdef DEBUG
+
+    //TODO print out context
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
-    printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors --- \n")
+    printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors --- \n");
     #endif
     // run inference on the delegate  and data transfer to/from memory/accelerator
     for (int input_index : TfLiteIntArrayView(node->inputs)){
@@ -196,13 +199,11 @@ class DTPU_delegate {
       #ifdef DEBUG
       printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors %d--- \n",input_index);
       #endif
-
-      auto&  in_t= context->tensors[input_index];
+      // todo CHANGE AUTo
+      TfLiteTensor  in_t= context->tensors[input_index];
       if(!(in_t.allocation_type==kTfLiteMmapRo)){ //cause the weights have been transferred into the Prepare method
       // get dimesion of tensors
       // push to python sublayer
-       
-
        if(!NO_FP){
       switch(bit_width_computation){
       default:
@@ -214,8 +215,10 @@ class DTPU_delegate {
                       printf("[DEBUG-C]---- kTfLiteUInt8 ------\n");
                     }
           #endif
+                    // 
+           exit();
           if(signed_computation){
-          push_input_tensor_to_heap(in_t.data.int8,in_t.dims->data,in_t.dims->size);
+        push_input_tensor_to_heap(in_t.data.int8,in_t.dims->data,in_t.dims->size);
           }else {
           push_input_tensor_to_heap(in_t.data.uint8,in_t.dims->data,in_t.dims->size);
           }
@@ -322,7 +325,7 @@ class DTPU_delegate {
                  #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
             #endif
-              ppush_output_tensor_to_heap(out_t.data.f,out_t.dims->data,out_t.dims->size);
+              push_output_tensor_to_heap(out_t.data.f,out_t.dims->data,out_t.dims->size);
               }
               break;
         case 32:
@@ -339,7 +342,6 @@ class DTPU_delegate {
       }
 
       }
-    }
 
     if(Invoke_p(only_con2d)){
       
@@ -525,7 +527,7 @@ TfLiteDelegate * tflite_plugin_create_delegate()
   // load overlay
   load_overlay();
   #ifdef DEBUG
-  printf("[DEBUG - C] ---the delegate method of DTPU is born---\n");
+  printf("[DEBUG - C] ---the delegate method of DTPU is born for TensorFlow %s---\n",TF_Version());
   #endif
   return delegate;
 }

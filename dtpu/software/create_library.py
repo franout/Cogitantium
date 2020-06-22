@@ -1,4 +1,7 @@
 import cffi
+import sys
+sys.path.append('/usr/local/lib')
+
 ##########################################################################
 ####          The Frankenstein, a mix of C and Python               ######
 ####  create .so library from PYNQ python code for DTPU accelerator ######
@@ -30,10 +33,13 @@ void push_output_tensor_to_heap( void  *,int *,int);
 
 
 cpp_file=open("./DTPU_delegate.cpp","r")
-ffibuilder.set_source("dtpu_lib", cpp_file.read(),source_extension=".cpp")
-#, 
-#  extra_link_args=['-fPIC -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro -Wl,-Bsymbolic-functions -specs=/usr/share/dpkg/no-pie-link.specs -Wl,-z,relro -g -fdebug-prefix-map=/build/python3.6-3.6.5=. -specs=/usr/share/dpkg/no-pie-compile.specs -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 ']
-#  extra_compile_args=[''])
+ffibuilder.set_source("dtpu_lib", cpp_file.read(),source_extension=".cpp",
+	extra_compile_args=['-Wno-unused-result', '-Wsign-compare', '-DNDEBUG', '-g', '-fwrapvv', '-O2', '-Wall', '-Wstrict-prototypes', 
+	'-g', '-fdebug-prefix-map=/build/python3.5.2=.', '-specs=/usr/share/dpkg/no-pie-compile.specs', '-fstack-protector-strong', 
+	'-Wformat', '-Werror=format-security','-I/usr/local/include','-L/usr/local/lib'],
+	extra_link_args=['-Wl,-Bsymbolic-functions','-specs=/usr/share/dpkg/no-pie-link.specs', 
+	'-Wl,-z,relro','-specs=/usr/share/dpkg/no-pie-compile.specs','-D_FORTIFY_SOURCE=2','-fPIC'] ,
+	libraries=['pthread','expat','z','dl','util','m','tensorflow'])
 #if you want to simply access a global variable you just use its name.
 # However to change its value you need to use the global keyword.
 python_file=open("./DTPU_delegate.py","r")
