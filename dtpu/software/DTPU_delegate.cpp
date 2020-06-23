@@ -61,6 +61,10 @@ class DTPU_delegate {
     switch (registration->builtin_code) {
       case kTfLiteBuiltinConv2d:
         only_con2d=true;
+        #ifdef DEBUG
+        printf("[DEBUG-C]-- Supported operations only 2d convolution----\n");
+        #endif
+
       case kTfLiteBuiltinDepthwiseConv2d:
       #ifdef DEBUG
         printf("[DEBUG - C]--Hello world! I can make 2D convolution and depth wise 2D convolution---\n");
@@ -81,7 +85,7 @@ class DTPU_delegate {
       printf("[DEBUG - C]--- Init of DTPU delegate class check if tensors indexes are equal to the ones in the Invoke --- \n");
     for (int input_index: TfLiteIntArrayView(delegate_params->input_tensors)){
     
-      printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors %d--- \n",input_index);
+      printf("[DEBUG - C]--- Init of DTPU delegate class getting tensors %d--- \n",input_index);
     
     }
       #endif
@@ -110,7 +114,7 @@ class DTPU_delegate {
       if(in_t.allocation_type==kTfLiteMmapRo){
               num_weight_tensor++;
               #ifdef DEBUG
-              printf("[DEBUG -C]---found a tensor weight----\n");
+              printf("[DEBUG -C]---found a tensor weight %d----\n", input_index);
               #endif
       // get dimesion of tensors
       // push to python sublayer
@@ -215,8 +219,6 @@ class DTPU_delegate {
                       printf("[DEBUG-C]---- kTfLiteUInt8 ------\n");
                     }
           #endif
-                    // 
-           exit();
           if(signed_computation){
         push_input_tensor_to_heap(in_t.data.int8,in_t.dims->data,in_t.dims->size);
           }else {

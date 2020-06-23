@@ -172,6 +172,8 @@ ROWS=8
 COLUMNS=8
 DATAWIDTH=64
 BUFFER_DEPTH=2
+output_size=0
+input_size=0
 tot_size_weight=0
 tot_size_input=0
 curr_data_precision=INT8
@@ -433,7 +435,7 @@ def Prepare_p(weight_num):
   global global_iteration
   global global_iteration_shift_wm
   global curr_data_precision
-  global tensors
+  global weight_tensors
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- weigth size",weight_num," ---")
@@ -454,7 +456,7 @@ def Prepare_p(weight_num):
   if _DEBUG_PRINT:
     print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ",num_weight,"weight to transfer  ---")
     for i in range(num_weight):
-      tmp=tensors[i]
+      tmp=weight_tensors[i]
       print("[DEBUG-PYTHON] ---- weight ",i,"-----")
       print("[DEBUG-PYTHON] ---- size ",*tmp.size_l,"-----")
       for j in range(tmp.tot_dim):
@@ -463,7 +465,7 @@ def Prepare_p(weight_num):
   #get all tensors from the heap they will always be of 2 dims TODO
   iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation)))
   for i in range(num_weight):
-      tmp=tensors[i]
+      tmp=weight_tensors[i]
       final_shift=0
       for j in range (int(tmp.tot_dim/(64/curr_bitwidth_data_computation))+1):
         #check on the range
@@ -507,34 +509,19 @@ def Invoke_p(only_conv2d):
   global global_iteration
   global global_iteration_shift_wm
   global curr_data_precision
+  global input_tensors
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
   tmp=[]
-  if not(FP) or not(BPF):
-    if PACK_TYPE.islower(): # signed
-      if curr_data_precision==INT8:
-        in_data_i=ffi.cast("int8_t *",in_data)
-      elif curr_data_precision==INT16:
-        in_data_i=ffi.cast("int16_t *",in_data)
-      elif curr_data_precision==INT32:
-        in_data_i=ffi.cast("int32_t *",in_data)
-      else: # int64
-        in_data_i=ffi.cast("int64_t *",in_data)
-    else: #unsigned
-      if curr_data_precision==INT8:
-        in_data_i=ffi.cast("uint8_t *",in_data)
-      elif curr_data_precision==INT16:
-        in_data_i=ffi.cast("uint16_t *",in_data)
-      elif curr_data_precision==INT32:
-        in_data_i=ffi.cast("uint32_t *",in_data)
-      else: # int64
-        in_data_i=ffi.cast("uint64_t *",in_data)
-  else:
-    in_data_i=ffi.cast("float *",in_data_i)
-  for i in range(in_data_size):
-    tmp.append(in_data_i[i])
-    if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- in data ",in_data_i[i]," ----")
+  if _DEBUG_PRINT:
+    print("[DEBUG - PYTHON ] --- Invoke p of DTPU class",input_size-num_weight,"input tensors to transfer ---")
+    for i in range( input_size-num_weight):
+      tmp=input_tensors[i]
+      print("[DEBUG-PYTHON] ---- input tensor ",i,"-----")
+      print("[DEBUG-PYTHON] ---- size ",*tmp.size_l,"-----")
+      for j in range(tmp.tot_dim):
+        print(tmp.data[j],end=" ")
   index=0
   shift=0
   iter=int(in_data_size/(INFIFO_SIZE*(64/curr_data_precision)))
