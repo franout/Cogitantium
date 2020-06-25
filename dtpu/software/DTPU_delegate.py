@@ -5,6 +5,7 @@ from pynq import MMIO
 from pynq import Xlnk
 from pynq.lib import dma
 import numpy as np
+import math
 import struct # see https://docs.python.org/3/library/struct.html#struct-examples
 _DEBUG_PRINT=True 
 ######################################### 
@@ -179,6 +180,7 @@ tot_size_input=0
 curr_data_precision=INT8
 curr_bitwidth_data_computation=8
 PACK_TYPE="b" # default is 1 byte signed for integer lower case -> signed upper case-> unsigned
+DTYPE_NP=np.uint8
 FP=False
 BFP=False
 size_tot=0
@@ -254,30 +256,38 @@ def SelectDataTypeComputation_p(data_type):
       curr_data_precision=INT8
       curr_bitwidth_data_computation=8
       if (data_type&0x00100)==SIGNED:
-        PACK_TYPE="b" 
+        PACK_TYPE="b"
+        DTYPE_NP=np.int8
       else:
         PACK_TYPE="B"
+        DTYPE_NP=np.uint8
     elif ((data_type)&0x00000f)==INT16:
       curr_data_precision=INT16
       curr_bitwidth_data_computation=16
       if (data_type&0x00100)==SIGNED:
         PACK_TYPE="h"
+        DTYPE_NP=np.int16
       else:
         PACK_TYPE="H"
+        DTYPE_NP=np.uint16
     elif ((data_type)&0x00000f)==INT32:
       curr_data_precision=INT32
       curr_bitwidth_data_computation=32
       if (data_type&0x00100)==SIGNED:
         PACK_TYPE="i"
+        DTYPE_NP=np.int32
       else:
         PACK_TYPE="I"
+        DTYPE_NP=np.uint32
     elif ((data_type)&0x00000f)==INT64:
       curr_data_precision=INT64
       curr_bitwidth_data_computation=64
       if (data_type&0x00100)==SIGNED:
         PACK_TYPE="q"
+        DTYPE_NP=np.int64
       else:
         PACK_TYPE="Q"
+        DTYPE_NP=np.uint64
     else:
       print("ERROR PYTHON! Setting the Data type of computation")
     # floating point check 
@@ -285,10 +295,12 @@ def SelectDataTypeComputation_p(data_type):
       FP=True
       BFP=False
       PACK_TYPE="f"
+      DTYPE_NP=np.float32
     elif ((data_type & 0x000060)>> 5)== ACTIVE_BFP:
       FP=True
       BFP=True
       PACK_TYPE="e"
+      DTYPE_NP=np.uint16 ## accroding to tensorflow bfp16 representation
     else:
       FP=False
       BFP=False
@@ -328,13 +340,16 @@ def push_input_tensor_to_heap( tensor,size,dim_size):
       else: # int64
         tensor_i=ffi.cast("uint64_t *",tensor)
   else:
-    tensor_i=ffi.cast("float *",tensor)
+    if BFP:
+      tensor_i=ffi.cast("uint16_t *",tensor)
+    else:
+      tensor_i=ffi.cast("float *",tensor)
   size_i=ffi.cast("int *",size)
   tot_size=1
-  size_l=[]
+  size_l=4*[1]
   data_p=[]
   for i in range(dim_size):
-    size_l.append(size[i])
+    size_l[i]=size[i]
     tot_size*=size[i]
   tot_size_input+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor input ",tot_size_input,"-----")
@@ -367,13 +382,16 @@ def push_output_tensor_to_heap(tensor, size,dim_size):
       else: # int64
         tensor_i=ffi.cast("uint64_t *",tensor)
   else:
-    tensor_i=ffi.cast("float *",tensor)
+    if BFP:
+      tensor_i=ffi.cast("uint16_t *",tensor)
+    else:
+      tensor_i=ffi.cast("float *",tensor)
   size_i=ffi.cast("int *",size)
   tot_size=1
-  size_l=[]
+  size_l=4*[1]
   data_p=[]
   for i in range(dim_size):
-    size_l.append(size[i])
+    size_l[i]=size[i]
     tot_size*=size[i]
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor output ",tot_size,"-----")
   for i in range (tot_size):
@@ -406,13 +424,16 @@ def push_weight_to_heap(tensor,size,dim_size):
       else: # int64
         tensor_i=ffi.cast("uint64_t *",tensor)
   else:
-    tensor_i=ffi.cast("float *",tensor)
+    if BFP:
+      tensor_i=ffi.cast("uint16_t *",tensor)
+    else:
+      tensor_i=ffi.cast("float *",tensor)
   size_i=ffi.cast("int *",size)
   tot_size=1
-  size_l=[]
+  size_l=4*[1]
   data_p=[]
   for i in range(dim_size):
-    size_l.append(size[i])
+    size_l[i]=size[i]
     tot_size*=size[i]
   tot_size_weight+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor weight ",tot_size_weight,"-----")
@@ -461,25 +482,31 @@ def Prepare_p(weight_num):
       print("[DEBUG-PYTHON] ---- size ",*tmp.size_l,"-----")
       for j in range(tmp.tot_dim):
         print(tmp.data[j],end=" ")
+    print("",end="\n")
   index=0# it eats the first data ?
-  #get all tensors from the heap they will always be of 2 dims TODO
-  iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation)))
-  for i in range(num_weight):
-      tmp=weight_tensors[i]
-      final_shift=0
-      for j in range (int(tmp.tot_dim/(64/curr_bitwidth_data_computation))+1):
-        #check on the range
-        if (j+1)*int(64/curr_bitwidth_data_computation)>tmp.tot_dim:
-          final_shift=tmp.tot_dim
-        else:
-          final_shift=(j+1)*int(64/curr_bitwidth_data_computation) 
-        weight_buffer[index]=int.from_bytes(struct.pack(">"+(PACK_TYPE*int(final_shift-64/curr_bitwidth_data_computation)),*tmp.data[int(64/curr_bitwidth_data_computation)*j:final_shift] ) , "little")
-        index=index+1
-        if index>=int(ROWS*COLUMNS):
-          iter=iter+1
+  shift=0
+  iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation))) # if it fits in th eaccelerator memory
+  # always 4D tensors
+  # assumptio is that the filter sizes always fit the accelerator
+  if iter<=1:
+    for w_ind in range(num_weight):
+      tmp=np.array(weight_tensors[w_ind].data, dtype=DTYPE_NP)
+      tmp=tmp.reshape(*weight_tensors[w_ind].size_l)
+      for i in range(len(tmp)):
+        for l in range(weight_tensors[w_ind].size_l[3]):
           global_iteration_shift_wm.append(index)
-  # calculate number of runs depending on the size of weight tensor
-  global_iteration=global_iteration+iter
+          for j in range(len(tmp[i])):
+              shift=int(64/curr_bitwidth_data_computation)
+              # boundary check
+              if shift > len(tmp[i]):
+                shift=len(tmp[i])
+              weight_buffer[index]=np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False))
+              index+=1
+          for j in range(ROWS-len(tmp[i])):
+            weight_buffer[index]=0
+            index+=1 # padding with zeros
+  else:
+    pass # multiple iteration on total weight 1MB should be enough
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(weight_buffer[i]))
@@ -524,21 +551,32 @@ def Invoke_p(only_conv2d):
         print(tmp.data[j],end=" ")
   index=0
   shift=0
-  iter=int(in_data_size/(INFIFO_SIZE*(64/curr_data_precision)))
-  iter_index=[]
-  for j in range (int(in_data_size/(64/curr_bitwidth_data_computation))+1):
-    if(j+1)*int(64/curr_bitwidth_data_computation)>in_data_size:
-      final_shift=in_data_size
-    else:
-      final_shift=(j+1)*int(64/curr_bitwidth_data_computation) # TODO add left and right indexs and also control on their difference
-    input_fifo_buffer[index]=int.from_bytes(struct.pack(">"+(PACK_TYPE*int(final_shift-64/curr_bitwidth_data_computation)),*tmp[int(64/curr_bitwidth_data_computation)*j:final_shift] ) , "little")
-    index=index+1
-    if(index>=INFIFO_SIZE):
-      break # need another iteration TODO
+  iter=int(tot_size_input/(INFIFO_SIZE*(64/curr_data_precision)))
+  # check if it fits the inputs
+  # always 4D tensors
+  # assumptio is that the filter sizes always fit the accelerator
+  if iter<=1:
+    for w_ind in range(len(input_tensors)):
+      tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
+      tmp=tmp.reshape(*input_tensors[w_ind].size_l)
+      for i in range(len(tmp)):
+        for l in range(input_tensors[w_ind].size_l[3]):
+          for j in range(len(tmp[i])):
+              shift=int(64/curr_bitwidth_data_computation)
+              # boundary check
+              if shift > len(tmp[i]):
+                shift=len(tmp[i])
+              input_fifo_buffer[index]=np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False))
+              index+=1
+          for j in range(ROWS-len(tmp[i])):
+            input_fifo_buffer[index]=0
+            index+=1 # padding with zeros
+  else:
+    pass # multiple iteration on total weight 1MB should be enough
   input_fifo_buffer.flush()
   if _DEBUG_PRINT:
     for i in range(10):
-      print(hex(input_fifo_buffer[i]))
+      print(hex(input_fifo_buffer[i]))  
   ################################################
   ###### program the dma for the csr reg #########
   ################################################ TODO CHECK SHAPE OF INPUTS and weight
@@ -555,6 +593,13 @@ def Invoke_p(only_conv2d):
   driver_fifo_in.sendchannel.wait()
   driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
   accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) # offload of processor it will continue as data will be provided
+
+  math.ceil() ## uppermost integer
+  #iterate on the output matrix with also multiple weight iteration and inputs
+  for w_ind in range(len(output_tensors)):
+    pass
+  
+
   # TODO multiple iteration  and buffer depth enhancing 
   #for i in range (global_iteration):
   #  # modify inital starting value of weight 

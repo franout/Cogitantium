@@ -163,7 +163,13 @@ class DTPU_delegate {
                  #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
             #endif
-              push_weight_to_heap( in_t.data.f, in_t.dims->data, in_t.dims->size);
+              // remembedr f16 is TfLiteFloat16*    
+
+            /*typedef struct {
+                  uint16_t data;
+                } TfLiteFloat16;
+                */
+            push_weight_to_heap( in_t.data.f16, in_t.dims->data, in_t.dims->size);
               }
               break;
         case 32:
@@ -253,7 +259,7 @@ class DTPU_delegate {
                  #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
             #endif
-              push_input_tensor_to_heap(in_t.data.f,in_t.dims->data,in_t.dims->size);
+              push_input_tensor_to_heap(in_t.data.f16,in_t.dims->data,in_t.dims->size);
               }
               break;
         case 32:
@@ -327,7 +333,7 @@ class DTPU_delegate {
                  #ifdef DEBUG
             printf("[DEBUG-C]---- kTfLitefloat32 relaxed aka bfp16 ------\n");
             #endif
-              push_output_tensor_to_heap(out_t.data.f,out_t.dims->data,out_t.dims->size);
+              push_output_tensor_to_heap(out_t.data.f16,out_t.dims->data,out_t.dims->size); // a uint16 pointer
               }
               break;
         case 32:
