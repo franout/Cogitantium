@@ -58,7 +58,7 @@ import cffi
 #	 the kernel node and claiming the nodes that the delegate can execute
 
 # load library , the design is loaded inside the embedded python code of .so 
-DTPU_lib=tflite.load_delegate("./DTPU_delegate.so")
+DTPU_lib=tflite.load_delegate("./DTPU_delegate.so",options=[])
 
 # precision of accelerator 
 ACTIVATE_CHAIN=0x1

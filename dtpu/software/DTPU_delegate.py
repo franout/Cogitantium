@@ -186,7 +186,7 @@ BFP=False
 size_tot=0
 num_weight=0
 global_iteration=1 ## at least one execution of the tensor accelerator
-global_iteration_shift_wm=[0]
+global_iteration_shift_wm=[]
 weight_tensors=[]
 input_tensors=[]
 output_tensors=[]
@@ -195,6 +195,8 @@ class Tensor:
     self.tot_dim=tot_dim
     self.data=data
     self.size_l=size_l
+filter_height=0
+filter_width=0
 ######################################
 ############ LOAD DESIGN #############
 ######################################
@@ -457,13 +459,17 @@ def Prepare_p(weight_num):
   global global_iteration_shift_wm
   global curr_data_precision
   global weight_tensors
+  global filter_height
+  global filter_width
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- weigth size",weight_num," ---")
   #allocate buffers for data transfer
   num_weight=weight_num
+  filter_height=num_weight*[0]
+  filter_width=num_weight*[0]
   ## symmetric input/output fifo
-  input_fifo_buffer = allocate(shape=(INFIFO_SIZE,),dtype='u8')
+  input_fifo_buffer = allocate(shape=(INFIFO_SIZE,),dtype='u8') #TODO for multiple iteration allocate exactly the needed buffer and then transfer the chunk
   output_fifo_buffer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   weight_buffer=allocate(shape=(WMEM_SIZE,),dtype='u8')
   csr_buffer=allocate(shape=(64,),dtype='u8')
@@ -484,7 +490,7 @@ def Prepare_p(weight_num):
         print(tmp.data[j],end=" ")
     print("",end="\n")
   index=0# it eats the first data ?
-  shift=0
+  shift=int(64/curr_bitwidth_data_computation)
   iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation))) # if it fits in th eaccelerator memory
   # always 4D tensors
   # assumptio is that the filter sizes always fit the accelerator
@@ -492,12 +498,13 @@ def Prepare_p(weight_num):
     for w_ind in range(num_weight):
       tmp=np.array(weight_tensors[w_ind].data, dtype=DTYPE_NP)
       tmp=tmp.reshape(*weight_tensors[w_ind].size_l)
+      filter_height[w_ind],filter_width[w_ind]=tmp.shape[1:3]
       for i in range(len(tmp)):
         for l in range(weight_tensors[w_ind].size_l[3]):
           global_iteration_shift_wm.append(index)
           for j in range(len(tmp[i])):
-              shift=int(64/curr_bitwidth_data_computation)
               # boundary check
+              shift=int(64/curr_bitwidth_data_computation)
               if shift > len(tmp[i]):
                 shift=len(tmp[i])
               weight_buffer[index]=np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False))
@@ -506,7 +513,7 @@ def Prepare_p(weight_num):
             weight_buffer[index]=0
             index+=1 # padding with zeros
   else:
-    pass # multiple iteration on total weight 1MB should be enough
+    print("it requires multiple iterations for the weight matrix") # multiple iteration on total weight 1MB should be enou-gh
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(weight_buffer[i]))
@@ -537,6 +544,8 @@ def Invoke_p(only_conv2d):
   global global_iteration_shift_wm
   global curr_data_precision
   global input_tensors
+  global filter_width
+  global filter_height
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
@@ -550,110 +559,84 @@ def Invoke_p(only_conv2d):
       for j in range(tmp.tot_dim):
         print(tmp.data[j],end=" ")
   index=0
-  shift=0
-  iter=int(tot_size_input/(INFIFO_SIZE*(64/curr_data_precision)))
+  shift=int(64/curr_bitwidth_data_computation)
+  iter_input=int(tot_size_input/(INFIFO_SIZE*(64/curr_data_precision)))
   # check if it fits the inputs
   # always 4D tensors
   # assumptio is that the filter sizes always fit the accelerator
-  if iter<=1:
-    for w_ind in range(len(input_tensors)):
-      tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
-      tmp=tmp.reshape(*input_tensors[w_ind].size_l)
-      for i in range(len(tmp)):
-        for l in range(input_tensors[w_ind].size_l[3]):
-          for j in range(len(tmp[i])):
-              shift=int(64/curr_bitwidth_data_computation)
-              # boundary check
-              if shift > len(tmp[i]):
-                shift=len(tmp[i])
-              input_fifo_buffer[index]=np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False))
-              index+=1
-          for j in range(ROWS-len(tmp[i])):
-            input_fifo_buffer[index]=0
-            index+=1 # padding with zeros
+  #then compact
+  ## split the input shape into submatrices equalt to filter sizes
+  if iter_input<=1:
+    for applyed_weight in range(num_weight):
+      for w_ind in range(len(input_tensors)):
+        tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
+        tmp=tmp.reshape(*input_tensors[w_ind].size_l)
+        for batch in range(len(tmp)):
+          for channel in range(tmp.shape[-1]):
+            tmp_s=tmp[batch,:,:,channel]
+            #iteration for the whole matrix 
+            for i in range(len(tmp_s)-filter_height[applyed_weight]):
+              for j in range(len(tmp_s[i])-filter_width[applyed_weight]):
+                tmp_ss=tmp_s[i:i+filter_height[applyed_weight],j:j+filter_width[applyed_weight]]
+                for row in range(len(tmp_ss)):
+                  shift=int(64/curr_bitwidth_data_computation)
+                  if shift> len(tmp_ss):
+                    shift=len(tmp_ss)
+                  input_fifo_buffer[index]=np.uint64(int.from_bytes(tmp_ss[row,0:shift],byteorder="little",signed=False))
+                  index+=1
   else:
-    pass # multiple iteration on total weight 1MB should be enough
+    print("it requires multiple iterations for the input matrix") # multiple iteration on total weight 1MB should be enough       
   input_fifo_buffer.flush()
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
-  ################################################
-  ###### program the dma for the csr reg #########
-  ################################################ TODO CHECK SHAPE OF INPUTS and weight
-  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer ----")
-  csr_buffer[ARITHMETIC_PRECISION]=np.uint64(global_iteration_shift_wm[0]<<32) | np.uint64(curr_data_precision) #TODO add chain and fp
-  csr_buffer.flush()
-  driver_csr.sendchannel.transfer(csr_buffer)
-  driver_csr.sendchannel.wait()
-  ######################################################
-  ###### program the dma for the in/out fifos ##########
-  ######################################################   
-  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer ----")
-  driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
-  driver_fifo_in.sendchannel.wait()
-  driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
   accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) # offload of processor it will continue as data will be provided
-
-  math.ceil() ## uppermost integer
   #iterate on the output matrix with also multiple weight iteration and inputs
-  for w_ind in range(len(output_tensors)):
-    pass
-  
+  ## assumption is that the output tensor is always one!
+  ## getting the output matrix structure
+  output_matrix=np.array(output_tensors[0].data, dtype=DTYPE_NP)
+  output_matrix=output_matrix.reshape(*output_tensors[0].size_l)    
+  for batch_i in range(len(output_matrix)):
+    for channel_i in range(output_matrix.shape[-1]):
+      for i in range(output_matrix.shape[1]):
+        for j in range(output_matrix.shape[2]):
+          ################################################
+          ###### program the dma for the csr reg #########
+          ################################################
+          if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight",w_ind,"----")
+          csr_buffer[ARITHMETIC_PRECISION]=np.uint64(global_iteration_shift_wm[channel_i]<<32) | np.uint64(curr_data_precision)| (np.uint64(NO_FP<<5))
+          csr_buffer.flush()
+          driver_csr.sendchannel.transfer(csr_buffer)
+          driver_csr.sendchannel.wait()
+          ######################################################
+          ###### program the dma for the in/out fifos ##########
+          ######################################################   
+          if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer ----")
+          driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
+          driver_fifo_in.sendchannel.wait()
+          driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+          if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
+          driver_fifo_out.recvchannel.wait()
+          ## get values from output fifo buffer and put them into an array in order to sum all the data
+          output_matrix[batch_i,i,j,channel_i]=
+          #deepwise convolutio
+          #pointwise convolution
+          ################################################################################################
+          ####### unpack the output buffer depending on the precision and give  it back to C code ########
+          ################################################################################################
 
-  # TODO multiple iteration  and buffer depth enhancing 
-  #for i in range (global_iteration):
-  #  # modify inital starting value of weight 
-  #  prev=np.uint32(csr_buffer[ARITHMETIC_PRECISION]) & 0xffffffff
-  #  csr_buffer[ARITHMETIC_PRECISION]=np.uint64(global_iteration_shift_wm[i]<<32) | np.uint64(prev)
-  #  csr_buffer.flush()
-  #  driver_csr.sendchannel.transfer(csr_buffer)
-  #  #driver_csr.sendchannel.wait()
-  #  for j in range(iter):
-  #    #execute the inference and retrieve the data
-  #    accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
-  #    for k in range(INFIFO_SIZE):
-  #      input_fifo_buffer[i]=output_fifo_buffer[i]
-  #    ## copy the rest of input 
-  #    index=0
-  #    shift=0
-  #    for k in range (in_data_size-j*INFIFO_SIZE):
-  #      if(shift<int(64/curr_data_precision)):
-  #        input_fifo_buffer[index]|=np.uint8(tmp[k+j*INFIFO_SIZE]<<(np.uint8(shift*curr_data_precision)))
-  #        shift=shift+1
-  #      else:
-  #        index=index+1
-  #        shift=0
-  #        input_fifo_buffer[index]|=np.uint8(tmp[k+j*INFIFO_SIZE]<<(np.uint8(shift*curr_data_precision)))
-  #      if(k>=INFIFO_SIZE):
-  #        break
-  #    input_fifo_buffer.flush()
-  #  for l in range(INFIFO_SIZE):
-  #      input_fifo_buffer[l]=output_fifo_buffer[l]
-  accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
+    # get the intermediate outptu
+    accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
+  
   accelerator.write(STATUS,0x00000003)##clear status
   if _DEBUG_PRINT: print("[DEBUG -PYTHON] ---- accelerator done ----")
-  ################################################################################################
-  ####### unpack the output buffer depending on the precision and give  it back to C code ########
-  ################################################################################################
   driver_fifo_out.recvchannel.wait()
-  if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
   if _DEBUG_PRINT:
+    print("[DEBUG-PYTHON] ------ final output data from accelerator-----")
     for i in range(10):
       print(hex(output_fifo_buffer[i]))
-  out_data_i=[]
-  index=0
-  for i in range(int(out_data_size/(64/curr_bitwidth_data_computation))+1):
-    tmp=struct.unpack( "<"+(PACK_TYPE*int(64/curr_bitwidth_data_computation)),output_fifo_buffer[index].tobytes(curr_bitwidth_data_computation,"little"))
-    for value in tmp:
-      out_data_i.append(value)
-    index=index+1
-  #reorganize outputs
-  if only_conv2d:
-    pass
-  else: #deepwise convolution
-    pass
-  # cast back
-  out_data=ffi.cast("void *",out_data_i)
+    print("[DEBUG-PYTHON] ------ final output data to tensorflow -----")
+    print(output_matrix)
   return True
 
 @ffi.def_extern()

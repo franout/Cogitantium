@@ -28,7 +28,7 @@ void push_input_tensor_to_heap( void  *,int *,int);
 void push_output_tensor_to_heap( void  *,int *,int);
  };
   void * tflite_plugin_create_delegate();
-  void tflite_plugin_destroy_delegate(void  *  );
+  void tflite_plugin_destroy_delegate(void  * ,void * );
   bool  SelectDataTypeComputation(int);""")
 
 

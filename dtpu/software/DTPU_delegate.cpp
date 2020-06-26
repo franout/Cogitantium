@@ -199,7 +199,6 @@ class DTPU_delegate {
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
     #ifdef DEBUG
 
-    //TODO print out context
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
     printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors --- \n");
     #endif
@@ -209,7 +208,6 @@ class DTPU_delegate {
       #ifdef DEBUG
       printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors %d--- \n",input_index);
       #endif
-      // todo CHANGE AUTo
       TfLiteTensor  in_t= context->tensors[input_index];
       if(!(in_t.allocation_type==kTfLiteMmapRo)){ //cause the weights have been transferred into the Prepare method
       // get dimesion of tensors
@@ -541,7 +539,7 @@ TfLiteDelegate * tflite_plugin_create_delegate()
 }
 
 
-void tflite_plugin_destroy_delegate(void  * delegate_op ) {
+void tflite_plugin_destroy_delegate(void  * delegate_op , void * argtypes) {
 // destroy the delegate   
 TfLiteDelegate * delegate= (TfLiteDelegate *) delegate_op;
 #ifdef DEBUG
