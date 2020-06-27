@@ -152,8 +152,8 @@ output_data_no_delegate = interpreter_no_delegate.get_tensor(output_details_no_d
 print(output_data_no_delegate)
 
 
-print("Average execution time on cpu: ",avg_time)
-print("Average Execution time on cpu and accelerator: ", avg_time_no_delegate)
+print("Average execution time on cpu: ",avg_time_no_delegate)
+print("Average Execution time on cpu and accelerator: ", avg_time)
 
 exit();
 #### get tensor weight from tensorflow python 

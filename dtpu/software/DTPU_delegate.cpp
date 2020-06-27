@@ -545,9 +545,10 @@ TfLiteDelegate * delegate= (TfLiteDelegate *) delegate_op;
 #ifdef DEBUG
 printf("[DEBUG - C]-----cleaning memory  -> callback of python function---\n");
 #endif
-/*if(!destroy_p()) {
+if(!destroy_p()) {
   printf("ERROR IN FREEING BUFFERS!");
-}*/
+}
+//free(argtypes);
 free(delegate);
 }
 #ifdef __cplusplus
