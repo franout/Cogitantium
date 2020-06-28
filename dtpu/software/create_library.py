@@ -26,6 +26,7 @@ bool ResetHardware_p(void);
 void push_weight_to_heap( void  *,int *,int);
 void push_input_tensor_to_heap( void  *,int *,int);
 void push_output_tensor_to_heap( void  *,int *,int);
+void print_power_consumption_p(void);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  * ,void * );

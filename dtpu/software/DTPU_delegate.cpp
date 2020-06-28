@@ -20,6 +20,7 @@ static bool ResetHardware_p(void);
 static void push_weight_to_heap( void  *,int *,int);
 static void push_input_tensor_to_heap( void  *,int *,int);
 static void push_output_tensor_to_heap( void  *,int *,int);
+static bool print_power_consumption_p(void);
 
 
 /*
@@ -513,6 +514,16 @@ TfLiteStatus CopyFromBufferHandle(TfLiteContext* context,
   return kTfLiteOk;
   }
   return kTfLiteError;  
+}
+
+TfLiteStatus print_power_consumption(){
+  #ifdef DEBUG
+  printf("[DEBUG - C]---Printing power consumption of the accelerator during invoke ----\n");
+  #endif
+  if(print_power_consumption_p()){
+    return kTfLiteOk;
+  }
+  return kTfLiteError;
 }
 
 // instantiate the delegate, it returns null if there is an error 
