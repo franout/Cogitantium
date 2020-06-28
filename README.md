@@ -22,10 +22,8 @@ Erasmus Master Thesis  @Chalmers University of Technology and Polythecnic of Tur
 - [Features](#features)
 - [Architecture](#architecture)
 - [Software](#software)
-- [Usage] (#usage)
-- [Tests] (#tests)
-- [Documentation] (#documentation)
-- [Support](#support)
+- [Tests](#tests)
+- [Documentation](#documentation)
 - [License](#license)
 
 
@@ -60,6 +58,7 @@ interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_deleg
 
 ## Tests 
 For testing the solo accelerator you can use the run_dtpu.py script in dtpu/software
+
 ## Useful Link 
 
 Reach out to me at one of the following places!
