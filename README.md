@@ -28,14 +28,14 @@ Erasmus Master Thesis  @Chalmers University of Technology and Polythecnic of Tur
 
 
 ### Clone
-
-- Clone this repo to your local machine using and feel free to contribute!
+ Clone this repo to your local machine using and feel free to contribute!
   ```shell
   $ git clone https://github.com/franout/Cogitantium.git
   ```
   
 ## Installation
-- For using the accelerator you only need to install tensorflow wheel and python according to   <a href="https://github.com/franout/tensorflow_for_pynqz2" target="_blank">`Tensorflow for Pynq-Z2 `</a> :
+For using the accelerator you only need to install tensorflow wheel and python according to   <a href="https://github.com/franout/tensorflow_for_pynqz2" target="_blank">`Tensorflow for Pynq-Z2 `</a>.
+
 The following command are used for loading and using the accelerator into the Tensorflow Lite environment:
 ```python
 DTPU_lib=tflite.load_delegate("./DTPU_delegate.so",options=[])
@@ -43,15 +43,18 @@ interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_deleg
 ```
 
 ### Setup
-
-- For editing, simulating and synthesizing the verilog code you can use whatever IDE and tools you prefer.
+ For editing, simulating and synthesizing the verilog code you can use whatever IDE and tools you prefer.
   In this project Xilinx Vivado Tools have been used
 
 ## Features
-- The hardware accelerator is capable of tensor convolution, generally speaking matrix multiplication and accumulation.
+The hardware accelerator is capable of tensor convolution, generally speaking matrix multiplication and accumulation.
 ## Architecture
--General architecture
--Customizable hardware parameters 
+- General architecture
+
+
+- Customizable hardware parameters 
+
+
 ## Software
 ## Documentation 
 - IN PROGRESS
