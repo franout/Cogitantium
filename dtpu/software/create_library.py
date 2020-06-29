@@ -32,8 +32,8 @@ bool start_power_consumption(void);
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  * ,void * );
   bool  SelectDataTypeComputation(int);
-  bool print_power_consumption(void);
-  bool measure_power_consumption(void);""")
+  bool print_power_consumption();
+  bool measure_power_consumption();""")
 
 
 cpp_file=open("./DTPU_delegate.cpp","r")

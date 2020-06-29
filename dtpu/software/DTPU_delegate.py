@@ -748,14 +748,6 @@ def Invoke_p(only_conv2d):
   #iterate on the output matrix with also multiple weight iteration and inputs
   ## assumption is that the output tensor is always one!
   ## getting the output matrix structure
-  ################################################
-  ###### program the dma for the csr reg #########
-  ################################################
-  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight----")
-  csr_buffer[ARITHMETIC_PRECISION]=(global_iteration_shift_wm[0]<<32) | ((NO_FP<<8)) | (ACTIVATE_CHAIN<<4)| (curr_data_precision)
-  csr_buffer.flush() # TODO move inside loop for handlig starting w memory point
-  driver_csr.sendchannel.transfer(csr_buffer)
-  driver_csr.sendchannel.wait()
   #accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) 
   output_matrix=np.array(output_tensors[0].data, dtype=DTYPE_NP)
   output_matrix=output_matrix.reshape(*output_tensors[0].size_l)
@@ -766,17 +758,26 @@ def Invoke_p(only_conv2d):
     print("[DEBUG-PYTHON] ---------- deepwise convolution -------")
   for batch_i in range(len(output_matrix)):
     for channel_i in range(output_matrix.shape[-1]):
-      ######################################################
-      ###### program the dma for the in/out fifos ##########
-      ######################################################   
+      ################################################
+      ###### program the dma for the csr reg #########
+      ################################################
+      if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight----")
+      csr_buffer[ARITHMETIC_PRECISION]=(global_iteration_shift_wm[channel_i]<<32) | ((NO_FP<<8)) | (ACTIVATE_CHAIN<<4)| (curr_data_precision)
+      csr_buffer.flush() 
+      driver_csr.sendchannel.transfer(csr_buffer)
+      driver_csr.sendchannel.wait()
       for infifo_shift in range(math.ceil(input_fifo_buffer.size/INFIFO_SIZE)):
+        ######################################################
+        ###### program the dma for the in/out fifos ##########
+        ######################################################          
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer",infifo_shift," ----")
         infifo_buffer_transfer[0:input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)].size]=input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)]
         driver_fifo_in.sendchannel.transfer(infifo_buffer_transfer)
         driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
         driver_fifo_in.sendchannel.wait()
+        accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo
         accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) 
-        accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
+        accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
         driver_fifo_out.recvchannel.wait()
         if _DEBUG_PRINT: print(output_fifo_buffer)
@@ -793,10 +794,11 @@ def Invoke_p(only_conv2d):
               tmp_sum[row]=convert(int(tmp[row]))
             output_matrix[batch_i,i,j,channel_i]=tmp_sum.sum()
         accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
+      accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # update csr    
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON]------- point wise convolution ---------")
   accelerator.write(STATUS,0x00000003)##clear status
-  accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
+  #accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
   #accelerator.write(CMD, (0x0000000 |(CMD_STOP_EXECUTE_CONTINOUS<<16)))  # stop accelerator
   ###########################################
   ######## point wise convolution ###########
@@ -810,7 +812,10 @@ def Invoke_p(only_conv2d):
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON] ------ final output data to tensorflow -----")
     print(output_matrix)
-  #TODO correctly copy the output matrix to tensorflow environment
+  #TODO correctly copy the output matrix to tensorflow environment ?? maybe not
+  #clean up input/output 
+  tot_size_input=0
+  tot_size_output=0
   infifo_buffer_transfer.freebuffer()
   return True
 

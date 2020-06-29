@@ -121,9 +121,9 @@ interpreter_no_delegate.set_tensor(input_details[0]['index'], input_data)
 ## Train the model here
 #tf.profiler.experimental.stop()
 
+#start a thread which sample temperature and voltages from xadC
+DTPU_lib._library.measure_power_consumption()
 
-
-#start a thread which sample temperature and voltages from xadc
 avg_time=0.00
 for i in range(10):
 	start_time=time.time()
@@ -154,7 +154,7 @@ print(output_data_no_delegate)
 
 print("Average execution time on cpu: ",avg_time_no_delegate)
 print("Average Execution time on cpu and accelerator: ", avg_time)
-
+DTPU_lib._library.print_power_consumption()
 exit();
 #### get tensor weight from tensorflow python 
 
