@@ -26,16 +26,19 @@ bool ResetHardware_p(void);
 void push_weight_to_heap( void  *,int *,int);
 void push_input_tensor_to_heap( void  *,int *,int);
 void push_output_tensor_to_heap( void  *,int *,int);
-void print_power_consumption_p(void);
+bool print_power_consumption_p(void);
+bool start_power_consumption(void);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  * ,void * );
-  bool  SelectDataTypeComputation(int);""")
+  bool  SelectDataTypeComputation(int);
+  bool print_power_consumption(void);
+  bool measure_power_consumption(void);""")
 
 
 cpp_file=open("./DTPU_delegate.cpp","r")
 ffibuilder.set_source("dtpu_lib", cpp_file.read(),source_extension=".cpp",
-	extra_compile_args=['-Wno-unused-result', '-Wsign-compare', '-DNDEBUG', '-g', '-fwrapvv', '-O2', '-Wall', '-Wstrict-prototypes', 
+	extra_compile_args=['-Wno-unused-result', '-Wsign-compare', '-DNDEBUG', '-g', '-fwrapv', '-O2', '-Wall', '-Wstrict-prototypes', 
 	'-g', '-fdebug-prefix-map=/build/python3.5.2=.', '-specs=/usr/share/dpkg/no-pie-compile.specs', '-fstack-protector-strong', 
 	'-Wformat', '-Werror=format-security','-I/usr/local/include','-L/usr/local/lib'],
 	extra_link_args=['-Wl,-Bsymbolic-functions','-specs=/usr/share/dpkg/no-pie-link.specs', 

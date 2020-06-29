@@ -21,6 +21,7 @@ static void push_weight_to_heap( void  *,int *,int);
 static void push_input_tensor_to_heap( void  *,int *,int);
 static void push_output_tensor_to_heap( void  *,int *,int);
 static bool print_power_consumption_p(void);
+static bool start_power_consumption(void);
 
 
 /*
@@ -514,6 +515,17 @@ TfLiteStatus CopyFromBufferHandle(TfLiteContext* context,
   return kTfLiteOk;
   }
   return kTfLiteError;  
+}
+
+TfLiteStatus measure_power_consumption(){
+#ifdef DEBUG
+  printf("[DEBUG - C]---Measuring power consumption of the accelerator during invoke ----\n");
+  #endif
+  if(start_power_consumption()){
+    return kTfLiteOk;
+  }
+  return kTfLiteError;
+
 }
 
 TfLiteStatus print_power_consumption(){

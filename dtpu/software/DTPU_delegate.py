@@ -6,11 +6,10 @@ from pynq import Xlnk
 from pynq.lib import dma
 import numpy as np
 import math
-import thread
+import _thread
 import struct # see https://docs.python.org/3/library/struct.html#struct-examples
-_DEBUG_PRINT=True 
-
-##############################
+_DEBUG_PRINT=True
+#############################
 ##### memory map of xadc #####
 ##############################
 C_BASEADDRESS=0x43C10000 # 
@@ -25,10 +24,10 @@ IPIER=0x68 # rw ip interrupt enable register
 TEMPERATURE=0x200 # The 12-bit Most Significant Bit (MSB)  justified result of on-device temperature measurement is stored in this register
 VCC_INT=0x204 # The 12-bit MSB justified result of on-device V CCINT supply monitor measurement is storedin this register.
 VCC_AUX=0x208 # The 12-bit MSB justified result of on-device V CCAUX Data supply monitor measurement is stored in this register
-VP_VN=0x20C # rw When read: The 12-bit MSB justified result of A/D conversion on the dedicated analog input channel (Vp/Vn) is stored in this register.When written: Write to this regiter resets theXADC hard macro. No specific data isrequired.overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
+VP_VN=0x20C # rw When read: The 12-bit MSB justified result of A/D conversion on the dedicated analog input channel (Vp/Vn) is stored in this register.When written: Write to this regiter resets theXADC hard macro
 VREF_P=0x210 # r The 12-bit MSB justified result of A/D conversion on the reference input V REFP is stored in this register. 
 VREF_N= 0x214 #r The 12-bit MSB justified result of A/D conversion on the reference input V REFN is stored in this register. 
-VCC_BRAM= 0x218 # r The 12-bit MSB justified result of A/D conversion on the reference input V BRAM is stored in this register overlay.download() # Explicitly download bitstream to PL 
+VCC_BRAM= 0x218 # r The 12-bit MSB justified result of A/D conversion on the reference input V BRAM is stored in this register 
 SUPPLY_A_OFFSET=0x220 # r The calibration coefficient for the supply  sensor offset of ADC A is stored in this register
 ADC_A_OFFSET=  0x224 # r The calibration coefficient for the ADC A offset calibration is stored in this register. 
 ADC_A_GAIN_ERR=0x228 # r The calibration coefficient for the gain error of ADC A is stored in this register.
@@ -82,22 +81,22 @@ SEQ_REG_4= 0x330 # r/w adc channel analog input mode
 SEQ_REG_5= 0x334 # r/w adc channel analog input mode 
 SEQ_REG_6= 0x338 # r/w adc channel acquistion
 SEQ_REG_7= 0x33C # r/w adc channel acquistion
-ALLARM_THRESHOLD_0= 0x340 #rw The 12-bit MSB justified alarm threshold register 0 (Temperature Upper).
-ALLARM_THRESHOLD_1= 0x344 #rw he 12-bit MSB justified alarm threshold register 1 (V CCINT Upper).
-ALLARM_THRESHOLD_2= 0x348 #rw The 12-bit MSB justified alarm threshold register 2 (V CCAUX Upper).
-ALLARM_THRESHOLD_3= 0x34C #rw the 12-bit MSB justified alarm threshold register 3 (OT Upper).
-ALLARM_THRESHOLD_4= 0x350 #rw the 12-bit MSB justified alarm threshold register 4 (Temperature Lower).
-ALLARM_THRESHOLD_5= 0x354 #rw  the 12-bit MSB justified alarm threshold register 5 (V CCINT Lower).
-ALLARM_THRESHOLD_6= 0x358 #rw The 12-bit MSB justified alarm threshold register 6 (V CCAUX Lower).
-ALLARM_THRESHOLD_7= 0x35C # rw The 12-bit MSB justified alarm threshold register 7 (OT Lower
-ALLARM_THRESHOLD_8= 0x360 # rw The 12-bit MSB justified alarm threshold register 8 (VBRAM Upper
-ALLARM_THRESHOLD_9= 0x364 # rw The 12-bit MSB justified alarm threshold  register 9 (V CCPint Upper). This register is only on Zynq-7000 devices.
-ALLARM_THRESHOLD_10= 0x368 # rw The 12-bit MSB justified alarm threshold  register 10 (V CCPaux Upper). This register is only on Zynq-7000 devices
-ALLARM_THRESHOLD_11= 0x36C # rw The 12-bit MSB justified alarm threshold register 11 (V CCDDRO Upper). This register is  only on Zynq-7000 devic 
-ALLARM_THRESHOLD_12= 0x370 # rw he 12-bit MSB justified alarm threshold register 12 (VBRAM Lower) 
-ALLARM_THRESHOLD_13= 0x374 # rw The 12-bit MSB justified alarm threshold register 13 (V CCPint Lower). This register is only on Zynq-7000 devices
-ALLARM_THRESHOLD_14= 0x378 # rw The 12-bit MSB justified alarm threshold register 14 (V CCPaux Lower). This register is only on Zynq-7000 devices.
-ALLARM_THRESHOLD_15= 0x37C # rw he 12-bit MSB justified alarm threshold register 15 (V CCDDRO Lower). This register is only on Zynq-7000 devices.
+ALLARM_THRESHOLD_0= 0x340 #rw The 12bit MSB justified alarm threshold register 0 Temperature Upper
+ALLARM_THRESHOLD_1= 0x344 #rw he 12bit MSB justified alarm threshold register 1 V CCINT Upper
+ALLARM_THRESHOLD_2= 0x348 #rw The 12bit MSB justified alarm threshold register 2 V CCAUX Upper
+ALLARM_THRESHOLD_3= 0x34C #rw the 12bit MSB justified alarm threshold register 3 T Upper
+ALLARM_THRESHOLD_4= 0x350 #rw the 12bit MSB justified alarm threshold register 4 Temperature Lower
+ALLARM_THRESHOLD_5= 0x354 #rw  the 12bit MSB justified alarm threshold register 5 V CCINT Lower
+ALLARM_THRESHOLD_6= 0x358 #rw The 12bit MSB justified alarm threshold register 6 V CCAUX Lower
+ALLARM_THRESHOLD_7= 0x35C # rw The 12bit MSB justified alarm threshold register 7 OT Lower
+ALLARM_THRESHOLD_8= 0x360 # rw The 12bit MSB justified alarm threshold register 8 VBRAM Upper
+ALLARM_THRESHOLD_9= 0x364 # rw The 12bit MSB justified alarm threshold  register 9 V CCPint Upper This register is only on Zynq-7000 devices.
+ALLARM_THRESHOLD_10= 0x368 # rw The 12bit MSB justified alarm threshold  register 10 V CCPaux Upper This register is only on Zynq-7000 devices
+ALLARM_THRESHOLD_11= 0x36C # rw The 12bit MSB justified alarm threshold register 11  CCDDRO Upper This register is  only on Zynq-7000 devic 
+ALLARM_THRESHOLD_12= 0x370 # rw he 12bit MSB justified alarm threshold register 12 VBRAM Lower
+ALLARM_THRESHOLD_13= 0x374 # rw The 12Bit MSB justified alarm threshold register 13 V CCPint Lower This register is only on Zynq-7000 devices
+ALLARM_THRESHOLD_14= 0x378 # rw The 12bit MSB justified alarm threshold register 14 V CCPaux Lower This register is only on Zynq-7000 devices
+ALLARM_THRESHOLD_15= 0x37C # rw he 12bit MSB justified alarm threshold register 15 v CCDDRO Lower This register is only on Zynq-7000 devices
 ######################################################## 
 ############ MEMORY MAP of acceleratro #################
 ########################################################
@@ -256,7 +255,7 @@ driver_fifo_out=None
 #####################################
 ### DESIGN DEPENDENT DEFINITION #####
 #####################################
-WMEM_SIZE=131072 # 1Mbytes
+WMEM_SIZE=16384 # 1Mbytes 
 INFIFO_SIZE=2048  #1Kbytes
 OUTFIFO_SIZE=2048 #1Kbytes
 ROWS=8
@@ -320,23 +319,30 @@ pl_power=0
 mem_power=0
 
 def sample_power( threadName, delay):
-   while True:
-      time.sleep(delay)
-      vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
-      vcc_pl_int= (vcc_pl_int* vcc_ps_aux_nom) / 4096
-      vcc_pl_aux=( xadc_mon.read(VCC_AUX) & 0x0000FFF0) >> 4
-      vcc_pl_aux= (vcc_pl_aux* vcc_ps_aux_nom) / 4096
-      vcc_pl_bram= ( xadc_mon.read(VCC_BRAM) & 0x0000FFF0) >> 4
-      vcc_pl_bram= (vcc_pl_bram* vcc_ps_aux_nom) / 4096
-      vcc_ps_int= ( xadc_mon.read(DEV_CORE_SUPPLY) & 0x0000FFF0) >> 4
-      vcc_ps_int= (vcc_ps_int* vcc_ps_aux_nom) / 4096
-      vcc_ps_aux=( xadc_mon.read(DEV_AUX_CORE_SUPPLY) & 0x0000FFF0) >> 4
-      vcc_ps_aux= (vcc_ps_aux* vcc_ps_aux_nom) / 4096
-      vcc_ddr= ( xadc_mon.read(DEV_CORE_MEM_SUPPLY) & 0x0000FFF0) >> 4
-      vcc_ddr= (vcc_ddr* 3) / 4096
-      ps_power+=((vcc_ps_int_nom-vcc_ps_int)/r_ps_int)*vcc_ps_int_nom + ((vcc_ps_aux_nom-vcc_ps_aux)/r_ps_aux)*vcc_ps_aux_nom 
-      pl_power+= ((vcc_pl_int_nom-vcc_pl_int)/r_pl_int)*vcc_pl_int_nom + ((vcc_pl_aux_nom-vcc_pl_aux)/r_pl_aux)*vcc_pl_aux_nom + ((vcc_pl_bram_nom-vcc_pl_bram)/r_pl_bram)*vcc_pl_bram_nom 
-      mem_power+=((vcc_ddr-vcc_ddr_nom)/r_ddr)*vcc_ddr
+  global ps_power
+  global pl_power
+  global mem_power
+  global n_sample
+  global xadc_mon
+  global vcc_ps_aux_nom
+  while True:
+    time.sleep(delay)
+    vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
+    vcc_pl_int= (vcc_pl_int* vcc_ps_aux_nom) / 4096
+    vcc_pl_aux=( xadc_mon.read(VCC_AUX) & 0x0000FFF0) >> 4
+    vcc_pl_aux= (vcc_pl_aux* vcc_ps_aux_nom) / 4096
+    vcc_pl_bram= ( xadc_mon.read(VCC_BRAM) & 0x0000FFF0) >> 4
+    vcc_pl_bram= (vcc_pl_bram* vcc_ps_aux_nom) / 4096
+    vcc_ps_int= ( xadc_mon.read(DEV_CORE_SUPPLY) & 0x0000FFF0) >> 4
+    vcc_ps_int= (vcc_ps_int* vcc_ps_aux_nom) / 4096
+    vcc_ps_aux=( xadc_mon.read(DEV_AUX_CORE_SUPPLY) & 0x0000FFF0) >> 4
+    vcc_ps_aux= (vcc_ps_aux* vcc_ps_aux_nom) / 4096
+    vcc_ddr= ( xadc_mon.read(DEV_CORE_MEM_SUPPLY) & 0x0000FFF0) >> 4
+    vcc_ddr= (vcc_ddr* 3) / 4096
+    n_sample+=1
+    ps_power+=((vcc_ps_int_nom-vcc_ps_int)/r_ps_int)*vcc_ps_int_nom + ((vcc_ps_aux_nom-vcc_ps_aux)/r_ps_aux)*vcc_ps_aux_nom 
+    pl_power+= ((vcc_pl_int_nom-vcc_pl_int)/r_pl_int)*vcc_pl_int_nom + ((vcc_pl_aux_nom-vcc_pl_aux)/r_pl_aux)*vcc_pl_aux_nom + ((vcc_pl_bram_nom-vcc_pl_bram)/r_pl_bram)*vcc_pl_bram_nom 
+    mem_power+=((vcc_ddr-vcc_ddr_nom)/r_ddr)*vcc_ddr
       
 ######################################
 ############ LOAD DESIGN #############
@@ -355,6 +361,7 @@ def load_overlay():
     exit(-1)
   if overlay.monitor is not None:
     xadc_mon=overlay.monitor.xadc_wiz_0_0
+    xadc_mon.write(SRR,0x0000000A) # reset
   else:
     print("ERROR NO XADC")
   if overlay.dtpu is not None:
@@ -362,19 +369,8 @@ def load_overlay():
   else:
     print("ERROR NO ACCELERATOR")
     exit(-1)
-  ## soft reset and accelerator configuration 
-  accelerator.write(CTRL,0x0000001)
-  accelerator.write(CTRL,0x0000000)
-  accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights and data
-  accelerator.write(OARG_RQT_EN,1) # out fifo must be empty 
-  accelerator.write(OARG_LENGTH_MODE,1) # hardware mode
-  accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo 
-  accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
-  accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
-  accelerator.write(OARG0_TDEST,0) # only one output 
-  accelerator.write(CMD,0)
-  xadc_mon.write(SRR,0x0000000A) # reset
-
+  overlay.reset()
+  
 @ffi.def_extern()
 def Init_p(tot_tensors,input_tens_size,output_tens_size): 
   global accelerator
@@ -383,9 +379,15 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   global input_size
   global output_size
   print("[DEBUG - PYTHON] --- Init p function ---")
-  overlay.reset()
+  ## soft reset and accelerator configuration 
   accelerator.write(CTRL,0x0000001)
   accelerator.write(CTRL,0x0000000)
+  accelerator.write(IARG_RQT_EN,0x000000007) ## all data avialable csr, weights and data
+  accelerator.write(OARG_LENGTH_MODE,0x00000001) # software mode
+  accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo 
+  accelerator.write(ISCALAR_RQT_EN,0) # NO input SCALAR
+  accelerator.write(OSCALAR_RQT_EN,0) # no output scalar
+  accelerator.write(OARG0_TDEST,0) # only one output 
   size_tot=tot_tensors
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- total tensors",size_tot,"---")
   input_size=input_tens_size
@@ -720,7 +722,8 @@ def Invoke_p(only_conv2d):
   ## split the input shape into submatrices equalt to filter sizes
   applyed_weight=0
   #over allocate input_fifo_buffer
-  input_fifo_buffer = allocate(shape=(int((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
+  input_fifo_buffer = np.ndarray(shape=(int((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
+  infifo_buffer_transfer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   for w_ind in range(len(input_tensors)):
     tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
     tmp=tmp.reshape(*input_tensors[w_ind].size_l)
@@ -737,12 +740,11 @@ def Invoke_p(only_conv2d):
                 shift=len(tmp_ss)
               input_fifo_buffer[index]=np.uint64(int.from_bytes(tmp_ss[row,0:shift],byteorder="little",signed=False))
               index+=1
-
-  input_fifo_buffer.flush()
+  input_fifo_buffer=np.resize(input_fifo_buffer,new_shape=(index,))
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
-  convert = lambda n : [int(i) for i in n.to_bytes(int(64/curr_bitwidth_data_computation), byteorder='little', signed=True)] # lamda function for casting from int64 to desired value
+  convert = lambda n : [int(i) for i in n.to_bytes(int(64/curr_bitwidth_data_computation), byteorder='little', signed=False)] # lamda function for casting from int64 to desired value
   #iterate on the output matrix with also multiple weight iteration and inputs
   ## assumption is that the output tensor is always one!
   ## getting the output matrix structure
@@ -751,9 +753,10 @@ def Invoke_p(only_conv2d):
   ################################################
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight----")
   csr_buffer[ARITHMETIC_PRECISION]=(global_iteration_shift_wm[0]<<32) | ((NO_FP<<8)) | (ACTIVATE_CHAIN<<4)| (curr_data_precision)
-  csr_buffer.flush()
+  csr_buffer.flush() # TODO move inside loop for handlig starting w memory point
   driver_csr.sendchannel.transfer(csr_buffer)
   driver_csr.sendchannel.wait()
+  #accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) 
   output_matrix=np.array(output_tensors[0].data, dtype=DTYPE_NP)
   output_matrix=output_matrix.reshape(*output_tensors[0].size_l)
   ######################################
@@ -763,21 +766,20 @@ def Invoke_p(only_conv2d):
     print("[DEBUG-PYTHON] ---------- deepwise convolution -------")
   for batch_i in range(len(output_matrix)):
     for channel_i in range(output_matrix.shape[-1]):
-      ## buffer depth  check
-      #if ((batch_i+channel_i)%BUFFER_DEPTH)==1:
-      #  accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(3))) # update inputs to next buffers
-      #  accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
       ######################################################
       ###### program the dma for the in/out fifos ##########
       ######################################################   
-      for infifo_shift in range(int(input_fifo_buffer.size/INFIFO_SIZE)):
+      for infifo_shift in range(math.ceil(input_fifo_buffer.size/INFIFO_SIZE)):
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer",infifo_shift," ----")
-        driver_fifo_in.sendchannel.transfer(input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)-1])
+        infifo_buffer_transfer[0:input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)].size]=input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)]
+        driver_fifo_in.sendchannel.transfer(infifo_buffer_transfer)
         driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
         driver_fifo_in.sendchannel.wait()
         accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) 
+        accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time 
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
         driver_fifo_out.recvchannel.wait()
+        if _DEBUG_PRINT: print(output_fifo_buffer)
         ####################################################################
         ####### unpack the output buffer depending on the precision ########
         ####################################################################
@@ -790,10 +792,12 @@ def Invoke_p(only_conv2d):
             for row in range(len(tmp_sum)):
               tmp_sum[row]=convert(int(tmp[row]))
             output_matrix[batch_i,i,j,channel_i]=tmp_sum.sum()
-        accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update inputs to next buffers
+        accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON]------- point wise convolution ---------")
   accelerator.write(STATUS,0x00000003)##clear status
+  accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
+  #accelerator.write(CMD, (0x0000000 |(CMD_STOP_EXECUTE_CONTINOUS<<16)))  # stop accelerator
   ###########################################
   ######## point wise convolution ###########
   ###########################################
@@ -806,6 +810,8 @@ def Invoke_p(only_conv2d):
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON] ------ final output data to tensorflow -----")
     print(output_matrix)
+  #TODO correctly copy the output matrix to tensorflow environment
+  infifo_buffer_transfer.freebuffer()
   return True
 
 @ffi.def_extern()
@@ -854,7 +860,6 @@ def CopyToBufferHandle_p():
   return True
 @ffi.def_extern()
 def FreeBufferHandle_p():
-  global input_fifo_buffer
   global output_fifo_buffer
   global csr_buffer
   global weight_buffer
@@ -864,7 +869,6 @@ def FreeBufferHandle_p():
   global driver_fifo_out
   global accelerator
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- freeing buffers ---")
-  input_fifo_buffer.freebuffer()
   output_fifo_buffer.freebuffer()
   csr_buffer.freebuffer()
   weight_buffer.freebuffer()
@@ -873,24 +877,35 @@ def FreeBufferHandle_p():
   del driver_wm
   del driver_fifo_in
   del driver_fifo_out
-@ffi.def_exetern()
+
+@ffi.def_extern()
+def start_power_consumption():
+  global xadc_mon
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON] ---- start measurement of  power consumption ----")
+  if xadc_mon is not None:
+    try:
+      _thread.start_new_thread( sample_power, ("Sampling power", 50 ) ) # every 50 ms
+    except:
+      print("Error: unable to start thread")
+  return True
+
+@ffi.def_extern()
 def print_power_consumption_p():
   global xadc_mon
   global ps_power
   global pl_power
   global mem_power
-  if _DEBUG_PRINT: print("[ÐEBUG-PYTHON] ---- printing power consumption from xadc readings ----")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON] ---- printing power consumption from xadc readings ----")
   ################################################
   ### Retrieve and display current temperature ###
   ################################################
   tmp=( xadc_mon.read(TEMPERATURE) & 0x0000FFF0) >> 4
   tmp=(tmp* 503.975)/4096 - 273.15
-  print("Current temperature:",round(tmp,3),"°C")
+  print("Current temperature:",round(tmp,3)," C")
   # printing power consumption
   tot_power=ps_power+pl_power+mem_power
   print("Average power consumption=", tot_power*1000/n_sample," mWatt")
   print("---> Processing System:",ps_power*1000/n_sample," mWatt")
   print("---> Programmable Logic:",pl_power*1000/n_sample," mWatt")
   print("---> Memory:",mem_power*1000/n_sample," mWatt")
-  # TODO add init and declaration for xadc in init function s
   return True
