@@ -132,6 +132,8 @@ for i in range(10):
 	avg_time+=end_time-start_time
 
 avg_time=avg_time/10
+DTPU_lib._library.print_power_consumption()
+
 
 avg_time_no_delegate=0.00
 for i in range(10):
@@ -154,7 +156,6 @@ print(output_data_no_delegate)
 
 print("Average execution time on cpu: ",avg_time_no_delegate)
 print("Average Execution time on cpu and accelerator: ", avg_time)
-DTPU_lib._library.print_power_consumption()
 exit();
 #### get tensor weight from tensorflow python 
 

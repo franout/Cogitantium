@@ -7,6 +7,7 @@ from pynq.lib import dma
 import numpy as np
 import math
 import _thread
+import time
 import struct # see https://docs.python.org/3/library/struct.html#struct-examples
 _DEBUG_PRINT=True
 #############################
@@ -256,6 +257,7 @@ driver_fifo_out=None
 ### DESIGN DEPENDENT DEFINITION #####
 #####################################
 WMEM_SIZE=16384 # 1Mbytes 
+CSRMEM_SIZE=1024
 INFIFO_SIZE=2048  #1Kbytes
 OUTFIFO_SIZE=2048 #1Kbytes
 ROWS=8
@@ -280,6 +282,7 @@ global_iteration_shift_wm=[]
 weight_tensors=[]
 input_tensors=[]
 output_tensors=[]
+output_tensors_p=[]
 class Tensor:
   def __init__(self,data, tot_dim,size_l):
     self.tot_dim=tot_dim
@@ -351,6 +354,7 @@ def sample_power( threadName, delay):
 def load_overlay():
   global accelerator 
   global overlay
+  global xadc_mon
   overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
   overlay.download() # Explicitly download bitstream to PL
   if overlay.is_loaded():
@@ -509,15 +513,17 @@ def push_input_tensor_to_heap( tensor,size,dim_size):
   tot_size_input+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor input ",tot_size_input,"-----")
   for i in range (tot_size):
-    data_p.append(tensor_i[i])
+    data_p.append(tensor_i[i]) # TODO use memcopy
   input_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
 def push_output_tensor_to_heap(tensor, size,dim_size):
   global output_tensors
   global tot_size_output
+  global output_tensors_p
   #push the tensor to the heap for handling their transfefr in the Prepare_p
   tot_size=1
+  output_tensors_p.append(tensor)
   if not(FP) or not(BPF):
     if PACK_TYPE.islower(): # signed
       if curr_data_precision==INT8:
@@ -595,7 +601,7 @@ def push_weight_to_heap(tensor,size,dim_size):
   tot_size_weight+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor weight ",tot_size_weight,"-----")
   for i in range (tot_size):
-    data_p.append(tensor_i[i])
+    data_p.append(tensor_i[i]) #TODO use mem copy
   weight_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
@@ -625,7 +631,7 @@ def Prepare_p(weight_num):
   ## symmetric input/output fifo
   output_fifo_buffer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   weight_buffer=allocate(shape=(WMEM_SIZE,),dtype='u8')
-  csr_buffer=allocate(shape=(64,),dtype='u8')
+  csr_buffer=allocate(shape=(CSRMEM_SIZE,),dtype='u8')
   driver_wm=overlay.axi_dma_weight_mem
   driver_csr=overlay.axi_dma_csr_mem
   driver_fifo_in=overlay.axi_dma_infifo
@@ -700,6 +706,9 @@ def Invoke_p(only_conv2d):
   global output_tensors
   global filter_width
   global filter_height
+  global tot_size_output
+  global tot_size_input
+  global output_tensors_p
   ### start the thread for sampling the power consumption 
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
@@ -722,7 +731,7 @@ def Invoke_p(only_conv2d):
   ## split the input shape into submatrices equalt to filter sizes
   applyed_weight=0
   #over allocate input_fifo_buffer
-  input_fifo_buffer = np.ndarray(shape=(int((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
+  input_fifo_buffer = np.ndarray(shape=(math.ceil((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
   infifo_buffer_transfer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   for w_ind in range(len(input_tensors)):
     tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
@@ -756,16 +765,16 @@ def Invoke_p(only_conv2d):
   ######################################
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON] ---------- deepwise convolution -------")
-  for batch_i in range(len(output_matrix)):
-    for channel_i in range(output_matrix.shape[-1]):
+  for batch_i in range(input_tensors[0].size_l[0]):
+    for channel_i in range(input_tensors[0].size_l[-1]):
       ################################################
       ###### program the dma for the csr reg #########
       ################################################
       if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight----")
       csr_buffer[ARITHMETIC_PRECISION]=(global_iteration_shift_wm[channel_i]<<32) | ((NO_FP<<8)) | (ACTIVATE_CHAIN<<4)| (curr_data_precision)
-      csr_buffer.flush() 
+      #csr_buffer.flush() 
       driver_csr.sendchannel.transfer(csr_buffer)
-      driver_csr.sendchannel.wait()
+      #driver_csr.sendchannel.wait()
       for infifo_shift in range(math.ceil(input_fifo_buffer.size/INFIFO_SIZE)):
         ######################################################
         ###### program the dma for the in/out fifos ##########
@@ -773,28 +782,29 @@ def Invoke_p(only_conv2d):
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer",infifo_shift," ----")
         infifo_buffer_transfer[0:input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)].size]=input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)]
         driver_fifo_in.sendchannel.transfer(infifo_buffer_transfer)
-        driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-        driver_fifo_in.sendchannel.wait()
+        #driver_fifo_in.sendchannel.wait()
         accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo
         accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) 
         accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
+        driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
         driver_fifo_out.recvchannel.wait()
         if _DEBUG_PRINT: print(output_fifo_buffer)
+        accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
         ####################################################################
         ####### unpack the output buffer depending on the precision ########
         ####################################################################
         ## get values from output fifo buffer and put them into an array in order to sum all the data
         for i in range(output_matrix.shape[1]):
           for j in range(output_matrix.shape[2]):
-            tmp_sum=np.zeros(shape=(ROWS,COLUMNS),dtype=DTYPE_NP)
+            tmp_sum=np.zeros(shape=(ROWS,COLUMNS),dtype=DTYPE_NP) # adjust maybe 
             tmp=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS].copy()
             #reshuffle
             for row in range(len(tmp_sum)):
               tmp_sum[row]=convert(int(tmp[row]))
             output_matrix[batch_i,i,j,channel_i]=tmp_sum.sum()
-        accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
-      accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # update csr    
+      accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
+    accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON]------- point wise convolution ---------")
   accelerator.write(STATUS,0x00000003)##clear status
@@ -812,10 +822,15 @@ def Invoke_p(only_conv2d):
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON] ------ final output data to tensorflow -----")
     print(output_matrix)
-  #TODO correctly copy the output matrix to tensorflow environment ?? maybe not
+  # copy the output matrix to tensorflow environment ffi.memmove(dest,src,nbytets)
+  ffi.memmove(ffi.buffer(output_tensors_p[0],output_matrix.nbytes),output_matrix.flatten().copy(),output_matrix.nbytes)
+  # save the pointer to the output and then substitute the values into the point wise convolution 
   #clean up input/output 
+  input_tensors=[]
+  output_tensors=[]
   tot_size_input=0
   tot_size_output=0
+  del input_fifo_buffer
   infifo_buffer_transfer.freebuffer()
   return True
 
@@ -842,7 +857,7 @@ def destroy_p():
   global input_tensors
   global output_tensors
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- destroying the buffers ---")
-  input_fifo_buffer.freebuffer()
+  #input_fifo_buffer.freebuffer()
   output_fifo_buffer.freebuffer()
   csr_buffer.freebuffer()
   weight_buffer.freebuffer()
@@ -889,7 +904,7 @@ def start_power_consumption():
   if _DEBUG_PRINT: print("[DEBUG-PYTHON] ---- start measurement of  power consumption ----")
   if xadc_mon is not None:
     try:
-      _thread.start_new_thread( sample_power, ("Sampling power", 50 ) ) # every 50 ms
+      _thread.start_new_thread( sample_power, ("Sampling power", 5 ) ) # every 50 ms
     except:
       print("Error: unable to start thread")
   return True
@@ -909,8 +924,8 @@ def print_power_consumption_p():
   print("Current temperature:",round(tmp,3)," C")
   # printing power consumption
   tot_power=ps_power+pl_power+mem_power
-  print("Average power consumption=", tot_power*1000/n_sample," mWatt")
-  print("---> Processing System:",ps_power*1000/n_sample," mWatt")
-  print("---> Programmable Logic:",pl_power*1000/n_sample," mWatt")
-  print("---> Memory:",mem_power*1000/n_sample," mWatt")
+  print("Average power consumption=", round(tot_power*1000/n_sample)," mWatt")
+  print("---> Processing System:",round(ps_power*1000/n_sample)," mWatt")
+  print("---> Programmable Logic:",round(pl_power*1000/n_sample)," mWatt")
+  print("---> Memory:",round(mem_power*1000/n_sample)," mWatt")
   return True
