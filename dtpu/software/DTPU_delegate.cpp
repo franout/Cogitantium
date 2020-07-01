@@ -456,7 +456,9 @@ TfLiteStatus DelegatePrepare(TfLiteContext* context, TfLiteDelegate* delegate) {
   // Claim all nodes that can be evaluated by the delegate and ask the
   // framework to update the graph with delegate kernel instead.
   // Reserve 1 element, since we need first element to be size.
+  #ifdef DEBUG
   printf("[DEBUG - C] ---- preparing the delegate ----\n");
+  #endif
   std::vector<int> supported_nodes(1);
   TfLiteIntArray* plan;
   TF_LITE_ENSURE_STATUS(context->GetExecutionPlan(context, &plan));

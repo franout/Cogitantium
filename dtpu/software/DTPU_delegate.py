@@ -244,7 +244,7 @@ ADDRESS_RANGE_DMA_INFIFO=0x10000
 BASE_ADDRESS_DMA_WM=0x40410000
 ADDRESS_RANGE_DMA_WM=0x10000
 accelerator=None
-input_fifo_buffer=None
+input_fifo_buffer_transfer=None
 output_fifo_buffer=None
 weight_buffer=None
 csr_buffer=None
@@ -382,7 +382,7 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   global size_tot
   global input_size
   global output_size
-  print("[DEBUG - PYTHON] --- Init p function ---")
+  if _DEBUG_PRINT: print("[DEBUG - PYTHON] --- Init p function ---")
   ## soft reset and accelerator configuration 
   accelerator.write(CTRL,0x0000001)
   accelerator.write(CTRL,0x0000000)
@@ -558,7 +558,7 @@ def push_output_tensor_to_heap(tensor, size,dim_size):
   tot_size_output+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor output ",tot_size,"-----")
   for i in range (tot_size):
-    data_p.append(0) ## appending zeros
+    data_p.append(0) 
   output_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
@@ -601,12 +601,13 @@ def push_weight_to_heap(tensor,size,dim_size):
   tot_size_weight+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor weight ",tot_size_weight,"-----")
   for i in range (tot_size):
-    data_p.append(tensor_i[i]) #TODO use mem copy
+    data_p.append(tensor_i[i]) 
   weight_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
 def Prepare_p(weight_num):
   global output_fifo_buffer
+  global input_fifo_buffer_transfer
   global weight_buffer
   global csr_buffer
   global overlay
@@ -632,6 +633,7 @@ def Prepare_p(weight_num):
   output_fifo_buffer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   weight_buffer=allocate(shape=(WMEM_SIZE,),dtype='u8')
   csr_buffer=allocate(shape=(CSRMEM_SIZE,),dtype='u8')
+  infifo_buffer_transfer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
   driver_wm=overlay.axi_dma_weight_mem
   driver_csr=overlay.axi_dma_csr_mem
   driver_fifo_in=overlay.axi_dma_infifo
@@ -683,14 +685,14 @@ def Prepare_p(weight_num):
   ################################################
   ###### program the dma for the weight ##########
   ################################################
-  print("[DEBUG-PYTHON]--- transfering weight buffer ----")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering weight buffer ----")
   driver_wm.sendchannel.transfer(weight_buffer)
   driver_wm.sendchannel.wait()
   return True
 
 @ffi.def_extern()
 def Invoke_p(only_conv2d):
-  global input_fifo_buffer
+  global input_fifo_buffer_transfer
   global driver_csr
   global driver_wm
   global driver_fifo_in
@@ -731,8 +733,7 @@ def Invoke_p(only_conv2d):
   ## split the input shape into submatrices equalt to filter sizes
   applyed_weight=0
   #over allocate input_fifo_buffer
-  input_fifo_buffer = np.ndarray(shape=(math.ceil((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
-  infifo_buffer_transfer=allocate(shape=(INFIFO_SIZE,),dtype='u8')
+  input_fifo_buffer = np.zeros(shape=(math.ceil((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
   for w_ind in range(len(input_tensors)):
     tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
     tmp=tmp.reshape(*input_tensors[w_ind].size_l)
@@ -802,28 +803,28 @@ def Invoke_p(only_conv2d):
             #reshuffle
             for row in range(len(tmp_sum)):
               tmp_sum[row]=convert(int(tmp[row]))
-            output_matrix[batch_i,i,j,channel_i]=tmp_sum.sum()
+            output_matrix[batch_i,i,j,channel_i]=tmp_sum.sum()*weight_tensors[1].data[channel_i]
       accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
     accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
-  if _DEBUG_PRINT:
-    print("[DEBUG-PYTHON]------- point wise convolution ---------")
+  #if _DEBUG_PRINT:
+  # print("[DEBUG-PYTHON]------- point wise convolution ---------")
   accelerator.write(STATUS,0x00000003)##clear status
   #accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
   #accelerator.write(CMD, (0x0000000 |(CMD_STOP_EXECUTE_CONTINOUS<<16)))  # stop accelerator
   ###########################################
-  ######## point wise convolution ###########
+  ######## point wise convolution ########### moved inside previous loop
   ###########################################
-  for batch_i in range(len(output_matrix)):
-    for i in range(len(output_matrix[batch_i])):
-      for j in range(len(output_matrix[batch_i,i])):
-        for channel_i in range(len(output_matrix[batch_i,i,j])):
-          output_matrix[batch_i,i,j,channel_i]=output_matrix[batch_i,i,j,channel_i]*weight_tensors[1].data[channel_i]
+  #for batch_i in range(len(output_matrix)):
+  #  for i in range(len(output_matrix[batch_i])):
+  #    for j in range(len(output_matrix[batch_i,i])):
+  #      for channel_i in range(len(output_matrix[batch_i,i,j])):
+  #        output_matrix[batch_i,i,j,channel_i]=output_matrix[batch_i,i,j,channel_i]*weight_tensors[1].data[channel_i]
   if _DEBUG_PRINT: print("[DEBUG -PYTHON] ---- accelerator done ----")
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON] ------ final output data to tensorflow -----")
     print(output_matrix)
   # copy the output matrix to tensorflow environment ffi.memmove(dest,src,nbytets)
-  ffi.memmove(ffi.buffer(output_tensors_p[0],output_matrix.nbytes),output_matrix.flatten().copy(),output_matrix.nbytes)
+  ffi.memmove(ffi.buffer(output_tensors_p[0],output_matrix.nbytes),output_matrix,output_matrix.nbytes)
   # save the pointer to the output and then substitute the values into the point wise convolution 
   #clean up input/output 
   input_tensors=[]
@@ -831,7 +832,6 @@ def Invoke_p(only_conv2d):
   tot_size_input=0
   tot_size_output=0
   del input_fifo_buffer
-  infifo_buffer_transfer.freebuffer()
   return True
 
 @ffi.def_extern()
@@ -846,7 +846,7 @@ def ResetHardware_p():
 
 @ffi.def_extern()
 def destroy_p():
-  global input_fifo_buffer
+  global input_fifo_buffer_transfer
   global output_fifo_buffer
   global csr_buffer
   global weight_buffer
@@ -857,7 +857,7 @@ def destroy_p():
   global input_tensors
   global output_tensors
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- destroying the buffers ---")
-  #input_fifo_buffer.freebuffer()
+  input_fifo_buffer_transfer.freebuffer()
   output_fifo_buffer.freebuffer()
   csr_buffer.freebuffer()
   weight_buffer.freebuffer()
