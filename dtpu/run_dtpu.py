@@ -6,6 +6,7 @@ from pynq.lib import dma
 from pynq import Xlnk
 import time
 _use_test_vector=True
+TIME_TEST=True
 ######################################### 
 ############ MEMORY MAP #################
 #########################################
@@ -472,14 +473,33 @@ accelerator.write(OARG0_LENGTH,2048) # size outfifo
 
 #Write Execute command 0x00020000 in Command Register (0x0028) to start the
 #operation.
-start_time = time.time()
+
 #accelerator.write(CMD, 0x00010001)
 
 
 #################################################################
 #### this has to be copied into the delegate of tensorflow ######
 #################################################################
-
+if TIME_TEST:
+	avg_time=0.0
+	print(input_fifo_buffer)
+	print(weight_buffer)
+	for i in range(10):
+	    start_time = time.time()
+	    print("execution",i)
+	    accelerator.write(OARG0_LENGTH,2048) # size outfifo
+	    accelerator.write(CMD,(0x0000000 |(CMD_EXECUTE_STEP<<16)))
+	    accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) # not the second time
+	    driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+	    driver_fifo_out.recvchannel.wait()
+	    accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
+		driver_fifo_in.sendchannel.transfer(input_fifo_buffer)
+	    driver_fifo_in.sendchannel.wait()
+	    stop_time=time.time()
+	    print(output_fifo_buffer)
+	    avg_time+=stop_time-start_time
+	print("execution time :", avg_time/10)
+	exit()
 
 #accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINUOS<<16))) # may be used for offload of processor 
 accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) # execute one step 
