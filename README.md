@@ -89,8 +89,8 @@ For creating models:
   $ python3.5 ./dtpu/software/create_models.py
   ```
 
-Other models can be found at  <a href=" https://www.tensorflow.org/lite/guide/hosted_models" target="_blank">`Hosted Models `</a>
-
+Other models can be found at  <a href="https://www.tensorflow.org/lite/guide/hosted_models" target="_blank">`Hosted Models `</a>
+  
 For executing a models is necessary to run:
   ```shell
   $ sudo python3.5 ./dtpu/software/run_model.py
