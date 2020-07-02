@@ -244,7 +244,7 @@ ADDRESS_RANGE_DMA_INFIFO=0x10000
 BASE_ADDRESS_DMA_WM=0x40410000
 ADDRESS_RANGE_DMA_WM=0x10000
 accelerator=None
-input_fifo_buffer_transfer=None
+infifo_buffer_transfer=None
 output_fifo_buffer=None
 weight_buffer=None
 csr_buffer=None
@@ -607,7 +607,7 @@ def push_weight_to_heap(tensor,size,dim_size):
 @ffi.def_extern()
 def Prepare_p(weight_num):
   global output_fifo_buffer
-  global input_fifo_buffer_transfer
+  global infifo_buffer_transfer
   global weight_buffer
   global csr_buffer
   global overlay
@@ -692,7 +692,7 @@ def Prepare_p(weight_num):
 
 @ffi.def_extern()
 def Invoke_p(only_conv2d):
-  global input_fifo_buffer_transfer
+  global infifo_buffer_transfer
   global driver_csr
   global driver_wm
   global driver_fifo_in
@@ -799,7 +799,7 @@ def Invoke_p(only_conv2d):
         for i in range(output_matrix.shape[1]):
           for j in range(output_matrix.shape[2]):
             tmp_sum=np.zeros(shape=(ROWS,COLUMNS),dtype=DTYPE_NP) # adjust maybe 
-            tmp=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS].copy()
+            tmp=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
             #reshuffle
             for row in range(len(tmp_sum)):
               tmp_sum[row]=convert(int(tmp[row]))
@@ -846,7 +846,7 @@ def ResetHardware_p():
 
 @ffi.def_extern()
 def destroy_p():
-  global input_fifo_buffer_transfer
+  global infifo_buffer_transfer
   global output_fifo_buffer
   global csr_buffer
   global weight_buffer
@@ -857,7 +857,7 @@ def destroy_p():
   global input_tensors
   global output_tensors
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- destroying the buffers ---")
-  input_fifo_buffer_transfer.freebuffer()
+  infifo_buffer_transfer.freebuffer()
   output_fifo_buffer.freebuffer()
   csr_buffer.freebuffer()
   weight_buffer.freebuffer()
@@ -924,8 +924,8 @@ def print_power_consumption_p():
   print("Current temperature:",round(tmp,3)," C")
   # printing power consumption
   tot_power=ps_power+pl_power+mem_power
-  print("Average power consumption=", round(tot_power*1000/n_sample)," mWatt")
-  print("---> Processing System:",round(ps_power*1000/n_sample)," mWatt")
-  print("---> Programmable Logic:",round(pl_power*1000/n_sample)," mWatt")
-  print("---> Memory:",round(mem_power*1000/n_sample)," mWatt")
+  print("Average power consumption=", round(tot_power*1000/n_sample,3)," mWatt")
+  print("---> Processing System:",round(ps_power*1000/n_sample,3)," mWatt")
+  print("---> Programmable Logic:",round(pl_power*1000/n_sample,3)," mWatt")
+  print("---> Memory:",round(mem_power*1000/n_sample,3)," mWatt")
   return True
