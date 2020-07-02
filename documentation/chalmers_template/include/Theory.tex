@@ -4,11 +4,11 @@
 \epigraph{ \textit{Can a machine think?}}{--- \textup{Alan Turing}, Computing Machinery and Intelligence}
 
 \section{Overview}
-In the past decade many companies have started to advertise the use of AI, even if they are using a subfield of the AI, in their products and software applications. Nevertheless, the exponential growth of the last decade,
+In the past decade many companies have started to advertise the use of AI, even if they are using a subfield of the AI, in their products and software applications. Nevertheless, the recent growth,
 the AI is not youth.\\ It takes one of its roots from a theoretical paper of \textit{Alan Turing} published by journal \textit{Mind} in the 1950 \cite{paper:36}.\\
 
-The general definition of Artificial Intelligence (AI): \textit{intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals}\cite{book:1}.\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\
-According to the definition, AI is too vast to be studied and simulated\cite{book:1}. Therefore, it has been divided into subfields, characterized by different traits, such as knowledge representation, planning, learning, natural language processing, perception, motion and manipulation, social intelligence, general intelligence.\\\\
+The general definition of Artificial Intelligence (AI): \textit{intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals}    \cite{book:1}.\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\
+According to the definition, AI is too vast to be studied and simulated \cite{book:1}. Therefore, it has been divided into subfields, characterized by different traits, such as knowledge representation, planning, learning, natural language processing, perception, motion and manipulation, social intelligence and general intelligence.\\\\
 
 Artificial Intelligence can be seen as a general purpose technology. It does not exist a general task on which it excels neither how to characterize them.
 
@@ -25,17 +25,17 @@ A particular interesting subcategory of AI in Computer Science is the machine le
 
 A peculiarity of machine learning model is that it is composed of two processes, training and inference.\\
 The inference process is the process in which a conclusion is given at the end of the evaluation process, i.e. the input stimulus are applied to the model and the output is observed.\\
-The training process has to be done before the model is put on the field, before the inference process, otherwise the latter can give wrong results. As the name suggest, in this process the model learns how to behave, adjusting the weight accordingly to the applied inputs and expected outputs. Besides this type of training and according to \cite{book:1}, other exists, characterized by approach, type of data and tasks:
+The training process has to be done before the model is put on the field, before the inference process, otherwise the latter can give wrong results. As the name suggests, in this process the model learns how to behave, adjusting the weight accordingly to the applied inputs and expected outputs. Besides this type of training and according to \cite{book:1}, other exists, characterized by approach, type of data and tasks:
 \begin{itemize}
 \item Supervised Learning, it builds a mathematical model of a set of data that contains both the inputs and the desired outputs.
 \item Unsupervised Learning, it takes a set of data that contains only inputs and find structure in the data.
 \item Semi-supervised Learning, it falls between unsupervised learning and supervised learning.
 \item Reinforcement Learning, it concerns how software agents should take actions in order to maximize some notion.
 \item Self Learning, It is a learning with no external rewards and no external teacher advices.
-\item Feature Learning, also called representation learning algorithms, often attempt to transform data and preserve at the same time, it is used as a preprocessing step before any classification or predictions.
+\item Feature Learning, also called representation learning algorithms, often attempts to transform data and preserve at the same time. It is used as a preprocessing step before any classification or predictions.
 \item Sparse Dictionary Learning, it is a feature learning method where a training example is represented as a linear combination of basis functions, and is assumed to be a sparse matrix.
 \item Anomaly Detection, also known as outlier detection,
-the aim is to identify rare items, events or observations which are significantly different from the majority of data.
+identifies rare items, events or observations which are significantly different from the majority of data.
 \item Association Rules, it is a rule-based method for discovering relationships between variables in large databases.
 \end{itemize}
 
@@ -43,7 +43,6 @@ Machine learning space is also divided into other type of models such as decisio
 As it can be seen in Figure \ref{fig:aidiv} Brain Inspired machine learning is also divided in subcategories.
 \subsection{Brain Inspired}
 It is based on algorithms which take its basic functionalities from our understanding of how the brain operates, trying to mimic the functionalities.
-
 \begin{figure}[H]
 \centering
 \captionsetup{justification=centering}
@@ -54,12 +53,13 @@ It is based on algorithms which take its basic functionalities from our understa
 \caption[Caption for LOF]{A parallelism between a human-brain neuron and a neuron in a Brain Inspired Network\protect\footnotemark}
 \label{fig:neuron}
 \end{figure}
+
 In the human brain, the basic computational unit is the neuron.\\ Neurons receive input signal from dendrites and produce output signal along the axon which interacts with other neurons via synaptic weights.\\ The synaptic weights are obtained after a learning process, which can strengthen them or not.
 \footnotetext{Figures under CC license}
 \subsubsection{Neural Networks}
 
 Neural Networks (or Artificial Neural Networks) are graphs in which every node is interconnected to others using edges, which have a weight properly tuned during the training process.\\
-As mentioned before, each and every node of the neural networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} b the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\
+As mentioned before, each and every node of the neural networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\
 The information exchanged between a neuron and another is a real number, a result of a non-linear function of the sum of all its input.
 
 In the Figure \ref{fig:nn} an implementation of a Neural Network can be appreciated.
@@ -84,7 +84,7 @@ Depending on how the edges are connected and the topology, a Neural Network can 
 \end{itemize}
 
 \subsubsection{Spiking Neural Networks}
-Spiking neural networks (SNNs) are artificial neural networks that more closely mimic natural neural networks\cite{article:1}. \\In addition to neuronal and synaptic state, in their operational model, SNNs adds the concept of time. The idea is that neurons in the SNN do not activate at each propagation cycle but rather activate only when specific value is reached.\\
+Spiking neural networks (SNNs) are artificial neural networks that more closely mimic natural neural networks \cite{article:1}. \\In addition to neuronal and synaptic state, in their operational model, SNNs adds the concept of time. The idea is that neurons in the SNN do not activate at each propagation cycle but rather activate only when specific value is reached.\\
 The current activation level is modeled as a differential equation and it is normally considered as neuron's state.
 
 In principle, SNNs can be applied to the same application of Artificial Neural Networks. Moreover, SNNs can model brain of biological organisms without prior knowledge of the environment. Thus, SNNs have been useful in neuroscience for evaluating the reliability of the hypothesis on biological neural circuits but not in engineering.\\\\
@@ -102,21 +102,21 @@ An trivial quantization example for Neural Network model is given in the below f
 \caption{Approximation of floating-point values to integer values}
 \label{fig:quant}
 \end{figure}
-It has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible\cite{paper:8}.\\
+It has been proved that even if the model has been quantized, for example from fp32 to integer32, its accuracy is still good and the accuracy drop between the two data representation is negligible \cite{paper:8}.\\
 Several quantization techniques can be applied, together or separated, to already trained ML models (post-training quantization):
 \begin{itemize}
 \item Linear quantization: data are directly scaled by taking their maximum value and normalizing them to falling in the desired range.
-\item Outlier channel splitting\cite{paper:46} : linear quantization is sensitive by large inputs. The idea of OCS is to reduce the value of outliers (for both weights and activations) duplicating the node with halving the output or the weight. This transformation leaves the node functionality equivalent while at the same time it narrows the weight/activation distribution allowing a better linear quantization.
-\item Analytical Clipping for Integer Quantization\cite{paper:47}: it represents the state-of-the-art for the post-training quantization techniques. It basically consists into apply a clipping function in a given range in order to reduce the quantization noise.
+\item Outlier channel splitting \cite{paper:46} : linear quantization is sensitive by large inputs. The idea of OCS is to reduce the value of outliers (for both weights and activations) duplicating the node with halving the output or the weight. This transformation leaves the node functionality equivalent while at the same time it narrows the weight/activation distribution allowing a better linear quantization.
+\item Analytical Clipping for Integer Quantization \cite{paper:47}: it represents the state-of-the-art for the post-training quantization techniques. It basically consists into apply a clipping function in a given range in order to reduce the quantization noise.
 \end{itemize}
 
-On the other hand, a quantization-aware training can also be done\cite{paper:45}.\\
+On the other hand, a quantization-aware training can also be done \cite{paper:45}.\\
 Quantization has lead to a relief of hardware computation, as it is very well-known floating-point operation are much more expensive than integer operation from a lot of perspectives, and as consequence a reduction into the power consumption of the algorithm. It is also important to mention that the data traffic between the memory and the hardware is reduced due to the compaction of data.\\\\
 
-Nowadays, edge devices take advantage of lower precision and quantized operations, including GPUs. Thus, Quantization of machine learning algorithms is a defacto standard for edge inference.
+Nowadays, edge devices take advantage of lower precision and quantized operations, including GPUs. Thus, quantization of machine learning algorithms is a defacto standard for edge inference.
 
 \section{Applications}
-In principle the AI can be applied to any intellectual tasks\cite{book:1}. Focusing on machine learning applications, they can spread through a variety of different domains:
+In principle the AI can be applied to any intellectual tasks \cite{book:1}. Focusing on machine learning applications, they can spread through a variety of different domains:
 \begin{itemize}
 \item Healthcare, mainly used for classification purposes.
 \item Automotive, used in self-driving cars.

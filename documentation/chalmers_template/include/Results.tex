@@ -15,11 +15,11 @@ In this work the assumptions are that the accelerator will be deployed into an e
 \end{itemize}
 \newpage
 \section{Utilization Factor}
-An important aspect of an embedded system is the on-die utilization area. Those kinds of system are usually deployed on tightly area constrained chips for hiding their presence to the user.
+An important aspect of an embedded system is the on-die utilization area. Those kinds of system are usually deployed on tight area-constrained chips for hiding their presence to the user.
 Therefore, it is important to measure and understand the behavior on the Utilization of the FPGA (used as area measurement in this case) of the design as the size of Matrix Multiplication Unit increases and in parallel the throughput.\\
 The Utilization Factor, composed of Look-up-Table, Flip Flops and Digital Signal Processor usage, is expected to increase as the size of Multiplication Matrix increase and the bit width of Computation Unit.
 
-In the following, utilization results are presented for each data type:
+In the following Figure, utilization results are presented for each data type:
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
@@ -31,7 +31,7 @@ In the following, utilization results are presented for each data type:
 \section{Energy and Power Consumption}
 Energy and Power consumption are important factor, for a mobile device in which there is a limited battery capacity meanwhile for data centers stringent power ceilings due to cooling costs.
 
-In the following, estimation of power consumption from Vivado are presented for each data type:
+In the following Figure, estimation of power consumption from Vivado are presented for each data type:
 
 \begin{figure}[!htbp]
 \centering
@@ -42,7 +42,7 @@ In the following, estimation of power consumption from Vivado are presented for 
 
 \newpage
 \section{Throughput}
-According to the definition, Throughput is the amount of units of information a system can process in a given time. As said that, for the designed accelerator it results to be equal to the number of rows into the Matrix Multiplication Unit. Normalizing this value with the clock frequency, it results to be constant for all the data type and frequencies:
+According to the definition, Throughput is the amount of units of information a system can process in a given time. As said that, for the designed accelerator, it results to be equal to the number of rows into the Matrix Multiplication Unit. Normalizing this value with the clock frequency, it results to be constant for all the data type and frequencies:
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
@@ -105,7 +105,7 @@ Cifar 10&  343 ms & ms &\\
 \footnotetext[3]{Arm dual-core Cortex-A9, 650 MHz }
 
 On the other hand, the clock frequency of the accelerator can be tuned. Therefore, in the following, the behavior of the latency for every model with changing in the clock frequency is presented.
-
+\todo{a possible estimation of the speedup}
 \newpage
 \section{Accuracy}
 
@@ -141,5 +141,4 @@ $\epsilon _r=\Big|{\frac{OuputReference-ActualOutput}{OutputReference} }\Big|* 1
 }
 
 \section{Memory footprint}
-\todo[inline]{ So having a chart or table with weight sizes (assuming this sis what is interesting to you since is what determines the local store of the FPGA engine) is enough. You should present the values for different bit length but no more.
-As for the latency with frequency… it is always interesting to see if the applications is compute or memory bound (frequency changes the execution time r not?). So I would say include some results and also follow those for the energy evaluation (or efficiency).}
+\todo[inline]{ So having a chart or table with weight sizes (assuming this sis what is interesting to you since is what determines the local store of the FPGA engine) is enough. You should present the values for different bit length but no more.}
