@@ -20,6 +20,7 @@ try:
 	import tensorflow.compat.v2 as tf
 except Exception:
 	pass
+
 tf.enable_v2_behavior()
 
 from tensorflow import keras
@@ -74,6 +75,9 @@ converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
 
 
 mnist_train, _ = tf.keras.datasets.mnist.load_data()
+### int16 -> 655535.00
+### int32 -> 4294967295.00
+### int64 -->  2**64-1
 images = tf.cast(mnist_train[0], tf.float32) / 255.0
 mnist_ds = tf.data.Dataset.from_tensor_slices((images)).batch(1)
 def representative_data_gen():

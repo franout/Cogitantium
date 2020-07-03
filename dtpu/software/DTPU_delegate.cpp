@@ -5,6 +5,7 @@
 #include <tensorflow/lite/context_util.h>
 #include <tensorflow/c/c_api.h>
 #include <vector>
+#include <time.h>
 #define DEBUG 1
 
 static bool destroy_p(void );
@@ -22,6 +23,8 @@ static void push_input_tensor_to_heap( void  *,int *,int);
 static void push_output_tensor_to_heap( void  *,int *,int);
 static bool print_power_consumption_p(void);
 static bool start_power_consumption(void);
+static void activate_time_probe_p (bool);
+static void print_python_time_probes(void);
 
 
 /*
@@ -35,7 +38,7 @@ possible operations
   kTfLiteBuiltinMul = 18,
   kTfLiteBuiltinSub = 41,
   kTfLiteBuiltinDelegate = 51,
-  kTfLiteBuiltinAddN = 106,
+  kTfLiteBuiltinAddN = 106,struct timespec ts_start,ts_end;
 */
 
 
@@ -43,6 +46,13 @@ int bit_width_computation;
 int NO_FP=-1;
 bool signed_computation=false;
 bool only_con2d=false;
+
+// time probes
+bool time_probe=false
+int n_execution=0;
+double avg_time_delegate;
+double avg_time_data_exchange;
+
 
 using namespace tflite;
   
@@ -91,6 +101,13 @@ class DTPU_delegate {
     
     }
       #endif
+
+    if(time_probe){
+      avg_time_delegate=0.00;
+      avg_time_data_exchange=0.00;
+      n_execution=0;
+    }
+
     // instantiate buffcfers and soft reset of accelerator 
     return Init_p(context->tensors_size,delegate_params->input_tensors->size ,delegate_params->output_tensors->size);
    
@@ -199,11 +216,20 @@ class DTPU_delegate {
   }
   // Actual running of the delegate subgraph.
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
-    #ifdef DEBUG
+    struct timespec ts_start,ts_end;
 
+    #ifdef DEBUG
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
     printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors --- \n");
     #endif
+
+
+
+      if(!timespec_get(&ts_start,TIME_UTC)){
+          fprintf(stderr,"error during the acquisition of start time!\n");
+          exit(-1);
+              }
+
     // run inference on the delegate  and data transfer to/from memory/accelerator
     for (int input_index : TfLiteIntArrayView(node->inputs)){
       // one of this should be the weight tensor
@@ -350,9 +376,25 @@ class DTPU_delegate {
       }
 
       }
+      if(!timespec_get(&ts_end, TIME_UTC)){
+        fprintf(stderr,"erorr during the acquisition of end time!\n");
+        exit(-1);
+      }
+      // update average and execution time
+      avg_time_data_exchange+=ts_end.tv_sec*1000 + ((double)ts_end.tv_nsec)/1000000 - ts_start.tv_sec*1000 - ((double)ts_start.tv_nsec)/1000000;
 
+      n_execution++;
+
+      if(!timespec_get(&ts_start, TIME_UTC)){
+        fprintf(stderr,"erorr during the acquisition of end time!\n");
+        exit(-1);
+      }
     if(Invoke_p(only_con2d)){
-      
+      if(!timespec_get(&ts_end, TIME_UTC)){
+        fprintf(stderr,"erorr during the acquisition of end time!\n");
+        exit(-1);
+      }      
+      avg_time_delegate+=ts_end.tv_sec*1000 + ((double)ts_end.tv_nsec)/1000000 - ts_start.tv_sec*1000 - ((double)ts_start.tv_nsec)/1000000;;
       return kTfLiteOk;
       }
      return kTfLiteError ;
@@ -517,6 +559,43 @@ TfLiteStatus CopyFromBufferHandle(TfLiteContext* context,
   return kTfLiteOk;
   }
   return kTfLiteError;  
+}
+
+TfLiteStatus activate_time_probe(bool activate){
+  #ifdef DEBUG
+  printf("[DEBUG-C]---- activating time probes ----\n");
+  #endif
+  if (!time_probe && activate){
+    time_probe=true;
+      #ifdef DEBUG
+          printf("[DEBUG-C]---- activated time probes ----\n");
+        #endif
+    activate_time_probe_p(activate);
+  } else{
+    printf("ATTENTION! Time probes are not active\n");
+
+  }
+   return kTfLiteOk;
+ 
+}
+
+
+TfLiteStatus print_execution_stats(){
+  #ifdef DEBUG
+  printf("[DEBUG - C]----- printing time probes of the library -----\n");
+  #endif
+    printf("If you are seeing too many zeros you probably did not set the time probes variable to true!\n");
+
+  // print c time probes
+    printf("Overall time of delegate invoke: %3f\n",avg_time_delegate/n_execution);
+    printf("Data exchange between interfaces (C->Python->C): %3f\n",avg_time_data_exchange/n_execution);
+
+  // print python time probes
+  if(print_python_time_probes()){
+    return kTfLiteOk;
+  }
+  return kTfLiteError;
+
 }
 
 TfLiteStatus measure_power_consumption(){

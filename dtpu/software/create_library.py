@@ -28,12 +28,16 @@ void push_input_tensor_to_heap( void  *,int *,int);
 void push_output_tensor_to_heap( void  *,int *,int);
 bool print_power_consumption_p(void);
 bool start_power_consumption(void);
+void activate_time_probe_p ( bool);
+void print_python_time_probes(void);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  * ,void * );
   bool  SelectDataTypeComputation(int);
   bool print_power_consumption();
-  bool measure_power_consumption();""")
+  bool measure_power_consumption();
+  bool print_execution_stats();
+  bool activate_time_probe(bool );""")
 
 
 cpp_file=open("./DTPU_delegate.cpp","r")
@@ -62,8 +66,6 @@ ffi.cdef("""
 void * tflite_plugin_create_delegate();
 void tflite_plugin_destroy_delegate(void  * );
   """)
-
-
 #@ffi.def_extern()
 #def destroy_p(delegate):
 #  print("destroying the delegate")
@@ -71,22 +73,4 @@ void tflite_plugin_destroy_delegate(void  * );
 #
 aa = ffi.dlopen("./DTPU_delegate.so")      
 
-
-
-
-
 exit()
-
-
-a=struct.pack("bigendia or little endia"+("B"*size),*vector) # pack 
-int.from_bytes( bytes, byteorder, *, signed=False ) # from bytes to int
-struct.unpack()#unpack
-
-## unpack and packing values more efficientely
-# import struct
-#>>> bytestr = struct.pack('>Q', 2592701575664680400)
-#>>> bytestr
-#'#\xfb X\xaa\x16\xbd\xd0'
-#>>> [ord(b) for b in bytestr]
-#[35, 251, 32, 88, 170, 22, 189, 208]
-#

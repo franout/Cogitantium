@@ -10,6 +10,7 @@ import _thread
 import time
 import struct # see https://docs.python.org/3/library/struct.html#struct-examples
 _DEBUG_PRINT=True
+_TIME_PROBES=True
 #############################
 ##### memory map of xadc #####
 ##############################
@@ -513,7 +514,7 @@ def push_input_tensor_to_heap( tensor,size,dim_size):
   tot_size_input+=tot_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- size of tensor input ",tot_size_input,"-----")
   for i in range (tot_size):
-    data_p.append(tensor_i[i]) # TODO use memcopy
+    data_p.append(tensor_i[i]) 
   input_tensors.append(Tensor(data_p,tot_size,size_l))
 
 @ffi.def_extern()
@@ -798,7 +799,7 @@ def Invoke_p(only_conv2d):
         ## get values from output fifo buffer and put them into an array in order to sum all the data
         for i in range(output_matrix.shape[1]):
           for j in range(output_matrix.shape[2]):
-            tmp_sum=np.zeros(shape=(ROWS,COLUMNS),dtype=DTYPE_NP) # adjust maybe 
+            tmp_sum=np.zeros(shape=(ROWS,COLUMNS),dtype=DTYPE_NP) 
             tmp=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
             #reshuffle
             for row in range(len(tmp_sum)):
@@ -928,4 +929,13 @@ def print_power_consumption_p():
   print("---> Processing System:",round(ps_power*1000/n_sample,3)," mWatt")
   print("---> Programmable Logic:",round(pl_power*1000/n_sample,3)," mWatt")
   print("---> Memory:",round(mem_power*1000/n_sample,3)," mWatt")
+  return True
+
+@ffi.def_extern() #TODO
+def activate_time_probe_p(activate):
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- activating time probe in python -----")
+
+@ffi.def_extern()
+def print_python_time_probes(): #TODO
+  print("[DEBUG-PYTHON]----- printing python time probes -----")
   return True
