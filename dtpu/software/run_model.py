@@ -114,13 +114,8 @@ interpreter_no_delegate.set_tensor(input_details[0]['index'], input_data)
 #input_data_no_delegate = np.array(np.random.random_sample(input_shape_no_delegate), dtype=np.float32)#
 #interpreter_no_delegate.set_tensor(input_details_no_delegate[0]['index'], input_data_no_delegate)
 
-#tf.profiler.experimental.server.start('8080')
 
-
-#tf.profiler.experimental.start('logdir')
-## Train the model here
-#tf.profiler.experimental.stop()
-
+DTPU_lib._library.activate_time_probe(True)
 #start a thread which sample temperature and voltages from xadC
 DTPU_lib._library.measure_power_consumption()
 
@@ -156,6 +151,7 @@ print(output_data_no_delegate)
 
 print("Average execution time on cpu: ",avg_time_no_delegate)
 print("Average Execution time on cpu and accelerator: ", avg_time)
+DTPU_lib._library.print_execution_stats()
 exit();
 #### get tensor weight from tensorflow python 
 

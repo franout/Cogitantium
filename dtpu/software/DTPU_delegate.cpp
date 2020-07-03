@@ -24,7 +24,7 @@ static void push_output_tensor_to_heap( void  *,int *,int);
 static bool print_power_consumption_p(void);
 static bool start_power_consumption(void);
 static void activate_time_probe_p (bool);
-static void print_python_time_probes(void);
+static bool print_python_time_probes(void);
 
 
 /*
@@ -48,7 +48,7 @@ bool signed_computation=false;
 bool only_con2d=false;
 
 // time probes
-bool time_probe=false
+bool time_probe=false;
 int n_execution=0;
 double avg_time_delegate;
 double avg_time_data_exchange;
@@ -224,11 +224,12 @@ class DTPU_delegate {
     #endif
 
 
-
-      if(!timespec_get(&ts_start,TIME_UTC)){
+    if(time_probe){
+          if(!timespec_get(&ts_start,TIME_UTC)){
           fprintf(stderr,"error during the acquisition of start time!\n");
           exit(-1);
               }
+    }
 
     // run inference on the delegate  and data transfer to/from memory/accelerator
     for (int input_index : TfLiteIntArrayView(node->inputs)){
@@ -376,6 +377,7 @@ class DTPU_delegate {
       }
 
       }
+      if(time_probe){
       if(!timespec_get(&ts_end, TIME_UTC)){
         fprintf(stderr,"erorr during the acquisition of end time!\n");
         exit(-1);
@@ -384,17 +386,22 @@ class DTPU_delegate {
       avg_time_data_exchange+=ts_end.tv_sec*1000 + ((double)ts_end.tv_nsec)/1000000 - ts_start.tv_sec*1000 - ((double)ts_start.tv_nsec)/1000000;
 
       n_execution++;
+      }
 
+      if(time_probe){
       if(!timespec_get(&ts_start, TIME_UTC)){
         fprintf(stderr,"erorr during the acquisition of end time!\n");
         exit(-1);
       }
+      }
     if(Invoke_p(only_con2d)){
+      if(time_probe){
       if(!timespec_get(&ts_end, TIME_UTC)){
         fprintf(stderr,"erorr during the acquisition of end time!\n");
         exit(-1);
       }      
-      avg_time_delegate+=ts_end.tv_sec*1000 + ((double)ts_end.tv_nsec)/1000000 - ts_start.tv_sec*1000 - ((double)ts_start.tv_nsec)/1000000;;
+      avg_time_delegate+=ts_end.tv_sec*1000 + ((double)ts_end.tv_nsec)/1000000 - ts_start.tv_sec*1000 - ((double)ts_start.tv_nsec)/1000000;
+      }
       return kTfLiteOk;
       }
      return kTfLiteError ;
@@ -587,8 +594,8 @@ TfLiteStatus print_execution_stats(){
     printf("If you are seeing too many zeros you probably did not set the time probes variable to true!\n");
 
   // print c time probes
-    printf("Overall time of delegate invoke: %3f\n",avg_time_delegate/n_execution);
-    printf("Data exchange between interfaces (C->Python->C): %3f\n",avg_time_data_exchange/n_execution);
+    printf("Overall time of delegate invoke: %3f\n [ms]",avg_time_delegate/n_execution);
+    printf("Data exchange between interfaces (C->Python->C): %3f\n [ms]",avg_time_data_exchange/n_execution);
 
   // print python time probes
   if(print_python_time_probes()){

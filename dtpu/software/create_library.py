@@ -29,7 +29,7 @@ void push_output_tensor_to_heap( void  *,int *,int);
 bool print_power_consumption_p(void);
 bool start_power_consumption(void);
 void activate_time_probe_p ( bool);
-void print_python_time_probes(void);
+bool print_python_time_probes(void);
  };
   void * tflite_plugin_create_delegate();
   void tflite_plugin_destroy_delegate(void  * ,void * );

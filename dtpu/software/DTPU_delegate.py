@@ -7,10 +7,11 @@ from pynq.lib import dma
 import numpy as np
 import math
 import _thread
+import sys
 import time
 import struct # see https://docs.python.org/3/library/struct.html#struct-examples
 _DEBUG_PRINT=True
-_TIME_PROBES=True
+_TIME_PROBES=False
 #############################
 ##### memory map of xadc #####
 ##############################
@@ -291,6 +292,13 @@ class Tensor:
     self.size_l=size_l
 filter_height=0
 filter_width=0
+########################
+##### time probes #####
+#######################
+avg_hw_execution=0.0
+n_execution=0
+avg_hw_execution_internal=0.00
+n_execution_internal=0
 #####################
 ###### XADC #########
 #####################
@@ -321,7 +329,12 @@ n_sample=1
 ps_power=0
 pl_power=0
 mem_power=0
-
+ps_power_max=sys.float_info.min
+pl_power_max=sys.float_info.min
+mem_power_max=sys.float_info.min
+ps_power_min=sys.float_info.max
+pl_power_min=sys.float_info.max
+mem_power_min=sys.float_info.max
 def sample_power( threadName, delay):
   global ps_power
   global pl_power
@@ -329,6 +342,12 @@ def sample_power( threadName, delay):
   global n_sample
   global xadc_mon
   global vcc_ps_aux_nom
+  global ps_power_max
+  global pl_power_max
+  global mem_power_max
+  global ps_power_min
+  global pl_power_min
+  global mem_power_min
   while True:
     time.sleep(delay)
     vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
@@ -344,9 +363,27 @@ def sample_power( threadName, delay):
     vcc_ddr= ( xadc_mon.read(DEV_CORE_MEM_SUPPLY) & 0x0000FFF0) >> 4
     vcc_ddr= (vcc_ddr* 3) / 4096
     n_sample+=1
-    ps_power+=((vcc_ps_int_nom-vcc_ps_int)/r_ps_int)*vcc_ps_int_nom + ((vcc_ps_aux_nom-vcc_ps_aux)/r_ps_aux)*vcc_ps_aux_nom 
-    pl_power+= ((vcc_pl_int_nom-vcc_pl_int)/r_pl_int)*vcc_pl_int_nom + ((vcc_pl_aux_nom-vcc_pl_aux)/r_pl_aux)*vcc_pl_aux_nom + ((vcc_pl_bram_nom-vcc_pl_bram)/r_pl_bram)*vcc_pl_bram_nom 
-    mem_power+=((vcc_ddr-vcc_ddr_nom)/r_ddr)*vcc_ddr
+    ps_power_i=((vcc_ps_int_nom-vcc_ps_int)/r_ps_int)*vcc_ps_int_nom + ((vcc_ps_aux_nom-vcc_ps_aux)/r_ps_aux)*vcc_ps_aux_nom 
+    pl_power_i= ((vcc_pl_int_nom-vcc_pl_int)/r_pl_int)*vcc_pl_int_nom + ((vcc_pl_aux_nom-vcc_pl_aux)/r_pl_aux)*vcc_pl_aux_nom + ((vcc_pl_bram_nom-vcc_pl_bram)/r_pl_bram)*vcc_pl_bram_nom 
+    mem_power_i=((vcc_ddr-vcc_ddr_nom)/r_ddr)*vcc_ddr
+    ## update max 
+    if pl_power_i > pl_power_max:
+      pl_power_max=pl_power_i
+    if ps_power_i > ps_power_max:
+      ps_power_max=ps_power_i
+    if mem_power_i > mem_power_max:
+      mem_power_max=mem_power_i
+    #update min
+    if pl_power_i < pl_power_min:
+      pl_power_min=pl_power_i
+    if ps_power_i < ps_power_min:
+      ps_power_min=ps_power_i
+    if mem_power_i < mem_power_min:
+      mem_power_min=mem_power_i
+    ## update values for the averages
+    ps_power+=ps_power_i
+    pl_power+=pl_power_i
+    mem_power+=mem_power_i
       
 ######################################
 ############ LOAD DESIGN #############
@@ -383,6 +420,10 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   global size_tot
   global input_size
   global output_size
+  global avg_hw_execution
+  global n_execution
+  global avg_hw_execution_internal
+  global n_execution_internal
   if _DEBUG_PRINT: print("[DEBUG - PYTHON] --- Init p function ---")
   ## soft reset and accelerator configuration 
   accelerator.write(CTRL,0x0000001)
@@ -398,7 +439,11 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   input_size=input_tens_size
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- int tensors",input_size,"---")
   output_size=output_tens_size
-  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- out tensors",output_tens_size,"---")
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- out tensors",output_tens_size,"---") 
+  n_execution=0
+  avg_hw_execution=0.00
+  avg_hw_execution_internal=0.00
+  n_execution_internal=0
   return True
 
 
@@ -712,7 +757,8 @@ def Invoke_p(only_conv2d):
   global tot_size_output
   global tot_size_input
   global output_tensors_p
-  ### start the thread for sampling the power consumption 
+  global avg_hw_execution
+  global n_execution
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
@@ -767,6 +813,8 @@ def Invoke_p(only_conv2d):
   ######################################
   if _DEBUG_PRINT:
     print("[DEBUG-PYTHON] ---------- deepwise convolution -------")
+  if _TIME_PROBES:
+    start_time=time.time()
   for batch_i in range(input_tensors[0].size_l[0]):
     for channel_i in range(input_tensors[0].size_l[-1]):
       ################################################
@@ -780,7 +828,9 @@ def Invoke_p(only_conv2d):
       for infifo_shift in range(math.ceil(input_fifo_buffer.size/INFIFO_SIZE)):
         ######################################################
         ###### program the dma for the in/out fifos ##########
-        ######################################################          
+        ######################################################
+        if _TIME_PROBES:
+          start_time_i=time.time()          
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer",infifo_shift," ----")
         infifo_buffer_transfer[0:input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)].size]=input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)]
         driver_fifo_in.sendchannel.transfer(infifo_buffer_transfer)
@@ -791,6 +841,10 @@ def Invoke_p(only_conv2d):
         driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
         driver_fifo_out.recvchannel.wait()
+        if _TIME_PROBES:
+          end_time=time.time()
+          avg_hw_execution_internal+=end_time_i-start_time_i
+          n_execution_internal+=1
         if _DEBUG_PRINT: print(output_fifo_buffer)
         accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
         ####################################################################
@@ -809,6 +863,10 @@ def Invoke_p(only_conv2d):
     accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
   #if _DEBUG_PRINT:
   # print("[DEBUG-PYTHON]------- point wise convolution ---------")
+  if _TIME_PROBES:
+    end_time=time.time()
+    avg_hw_execution+=end_time-start_time
+    n_execution+=1
   accelerator.write(STATUS,0x00000003)##clear status
   #accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
   #accelerator.write(CMD, (0x0000000 |(CMD_STOP_EXECUTE_CONTINOUS<<16)))  # stop accelerator
@@ -905,7 +963,7 @@ def start_power_consumption():
   if _DEBUG_PRINT: print("[DEBUG-PYTHON] ---- start measurement of  power consumption ----")
   if xadc_mon is not None:
     try:
-      _thread.start_new_thread( sample_power, ("Sampling power", 5 ) ) # every 50 ms
+      _thread.start_new_thread( sample_power, ("Sampling power", 5 ) ) # every 5 ms
     except:
       print("Error: unable to start thread")
   return True
@@ -929,13 +987,27 @@ def print_power_consumption_p():
   print("---> Processing System:",round(ps_power*1000/n_sample,3)," mWatt")
   print("---> Programmable Logic:",round(pl_power*1000/n_sample,3)," mWatt")
   print("---> Memory:",round(mem_power*1000/n_sample,3)," mWatt")
+  print("Maximum power consumption")
+  print("---> Processing System:",round(ps_power_max*1000,3)," mWatt")
+  print("---> Programmable Logic:",round(pl_power_max*1000,3)," mWatt")
+  print("---> Memory:",round(mem_power_max*1000,3)," mWatt")
+  print("Minimum power consumption")
+  print("---> Processing System:",round(ps_power_min*1000,3)," mWatt")
+  print("---> Programmable Logic:",round(pl_power_min*1000,3)," mWatt")
+  print("---> Memory:",round(mem_power_min*1000,3)," mWatt")
   return True
 
-@ffi.def_extern() #TODO
+@ffi.def_extern() 
 def activate_time_probe_p(activate):
+  global _TIME_PROBES
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- activating time probe in python -----")
+  if not(_TIME_PROBES) and activate:
+    print("Time probes activated")
+    _TIME_PROBES=True
 
 @ffi.def_extern()
-def print_python_time_probes(): #TODO
-  print("[DEBUG-PYTHON]----- printing python time probes -----")
+def print_python_time_probes():
+  if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- printing python time probes -----")
+  print("Hardware execution time and rebuilding output matrix:", avg_hw_execution/n_execution," [s]")
+  print("Hardware execution time:", avg_hw_execution_internal/n_execution_internal," [s]")
   return True
