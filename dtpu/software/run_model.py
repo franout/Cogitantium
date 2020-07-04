@@ -85,7 +85,7 @@ DTPU_lib._library.SelectDataTypeComputation( int(data_type))
 
 model_name="mnist_model_quant_uint8" #changing model and bitwidth
 tflite_model_file="./"+model_name+".tflite"
-
+print("Executing model:" , model_name)
 # Load TFLite model and allocate tensors.
 interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_delegates=[DTPU_lib])
 interpreter_no_delegate=tflite.Interpreter(model_path=tflite_model_file)

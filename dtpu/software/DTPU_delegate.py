@@ -262,8 +262,8 @@ WMEM_SIZE=16384 # 1Mbytes
 CSRMEM_SIZE=1024
 INFIFO_SIZE=2048  #1Kbytes
 OUTFIFO_SIZE=2048 #1Kbytes
-ROWS=8
-COLUMNS=8
+ROWS=0
+COLUMNS=0
 DATAWIDTH=64
 BUFFER_DEPTH=2
 output_size=0
@@ -409,10 +409,14 @@ def load_overlay():
   global accelerator 
   global overlay
   global xadc_mon
+  global ROWS
+  global COLUMNS
   ## modify this part for choosing a different overlay and recompile the library
   f_clk="30mhz"
   datawidth="only_integer8"
   mxu_size="mxu_8x8"
+  ROWS=8
+  COLUMNS=8
   print("Hardware design space points",f_clk," ", " ", mxu_size, " ", datawidth)
   overlay = Overlay("/home/xilinx/dtpu_configurations/"+datawidth+"/"+f_clk+"/" + mxu_size+"/pynqz2.bit") # tcl is also parsed
   overlay.download() # Explicitly download bitstream to PL
@@ -878,7 +882,7 @@ def Invoke_p(only_conv2d):
         ## get values from output fifo buffer and put them into an array in order to sum all the data
         for i in range(output_matrix.shape[1]):
           for j in range(output_matrix.shape[2]):
-            tmp_sum=np.zeros(shape=(ROWS,COLUMNS),dtype=DTYPE_NP) 
+            tmp_sum=np.zeros(shape=(ROWS,int(64/curr_bitwidth_data_computation)),dtype=DTYPE_NP) 
             tmp=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
             #reshuffle
             for row in range(len(tmp_sum)):
