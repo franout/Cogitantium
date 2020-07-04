@@ -83,7 +83,7 @@ DTPU_lib._library.SelectDataTypeComputation( int(data_type))
 ##### RUN TENSORFLOW LITE MODELS #######
 ########################################
 
-model_name="mnist_model_quant_uint8"
+model_name="mnist_model_quant_uint8" #changing model and bitwidth
 tflite_model_file="./"+model_name+".tflite"
 
 # Load TFLite model and allocate tensors.

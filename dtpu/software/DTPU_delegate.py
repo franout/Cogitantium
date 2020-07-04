@@ -335,6 +335,9 @@ mem_power_max=sys.float_info.min
 ps_power_min=sys.float_info.max
 pl_power_min=sys.float_info.max
 mem_power_min=sys.float_info.max
+tmp_max=sys.float_info.min
+tmp_min=sys.float_info.max
+tmp_avg=0.00
 def sample_power( threadName, delay):
   global ps_power
   global pl_power
@@ -348,6 +351,9 @@ def sample_power( threadName, delay):
   global ps_power_min
   global pl_power_min
   global mem_power_min
+  global tmp_max
+  global tmp_min
+  global tmp_avg
   while True:
     time.sleep(delay)
     vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
@@ -384,6 +390,16 @@ def sample_power( threadName, delay):
     ps_power+=ps_power_i
     pl_power+=pl_power_i
     mem_power+=mem_power_i
+    # temperature
+    tmp=( xadc_mon.read(TEMPERATURE) & 0x0000FFF0) >> 4
+    tmp=(tmp* 503.975)/4096 - 273.15
+    ## update max
+    if tmp > tmp_max:
+      tmp_max=tmp
+    ## update min
+    if tmp < tmp_min:
+      tmp_min=tmp
+    tmp_avg+=tmp 
       
 ######################################
 ############ LOAD DESIGN #############
@@ -393,7 +409,12 @@ def load_overlay():
   global accelerator 
   global overlay
   global xadc_mon
-  overlay = Overlay("/home/xilinx/pynqz2.bit") # tcl is also parsed
+  ## modify this part for choosing a different overlay and recompile the library
+  f_clk="30mhz"
+  datawidth="only_integer8"
+  mxu_size="mxu_8x8"
+  print("Hardware design space points",f_clk," ", " ", mxu_size, " ", datawidth)
+  overlay = Overlay("/home/xilinx/dtpu_configurations/"+datawidth+"/"+f_clk+"/" + mxu_size+"/pynqz2.bit") # tcl is also parsed
   overlay.download() # Explicitly download bitstream to PL
   if overlay.is_loaded():
    # Checks if a bitstream is loaded
@@ -424,6 +445,7 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   global n_execution
   global avg_hw_execution_internal
   global n_execution_internal
+  global tmp_avg
   if _DEBUG_PRINT: print("[DEBUG - PYTHON] --- Init p function ---")
   ## soft reset and accelerator configuration 
   accelerator.write(CTRL,0x0000001)
@@ -444,6 +466,7 @@ def Init_p(tot_tensors,input_tens_size,output_tens_size):
   avg_hw_execution=0.00
   avg_hw_execution_internal=0.00
   n_execution_internal=0
+  tmp_avg=0.00
   return True
 
 
@@ -759,6 +782,8 @@ def Invoke_p(only_conv2d):
   global output_tensors_p
   global avg_hw_execution
   global n_execution
+  global avg_hw_execution_internal
+  global n_execution_internal
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
@@ -842,7 +867,7 @@ def Invoke_p(only_conv2d):
         if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
         driver_fifo_out.recvchannel.wait()
         if _TIME_PROBES:
-          end_time=time.time()
+          end_time_i=time.time()
           avg_hw_execution_internal+=end_time_i-start_time_i
           n_execution_internal+=1
         if _DEBUG_PRINT: print(output_fifo_buffer)
@@ -981,6 +1006,9 @@ def print_power_consumption_p():
   tmp=( xadc_mon.read(TEMPERATURE) & 0x0000FFF0) >> 4
   tmp=(tmp* 503.975)/4096 - 273.15
   print("Current temperature:",round(tmp,3)," C")
+  print("Average execution temperature:", round(tmp_avg/n_sample,3)," C")
+  print("Max temperature:", round(tmp_max,3) ," C")
+  print("Min temperature:", round(tmp_min,3) ," C")
   # printing power consumption
   tot_power=ps_power+pl_power+mem_power
   print("Average power consumption=", round(tot_power*1000/n_sample,3)," mWatt")

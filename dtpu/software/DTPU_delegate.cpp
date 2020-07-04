@@ -594,8 +594,8 @@ TfLiteStatus print_execution_stats(){
     printf("If you are seeing too many zeros you probably did not set the time probes variable to true!\n");
 
   // print c time probes
-    printf("Overall time of delegate invoke: %3f\n [ms]",avg_time_delegate/n_execution);
-    printf("Data exchange between interfaces (C->Python->C): %3f\n [ms]",avg_time_data_exchange/n_execution);
+    printf("Overall time of delegate invoke: %3f [ms]\n",avg_time_delegate/n_execution);
+    printf("Data exchange between interfaces (C->Python->C): %3f [ms]\n",avg_time_data_exchange/n_execution);
 
   // print python time probes
   if(print_python_time_probes()){
