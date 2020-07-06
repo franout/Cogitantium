@@ -15,7 +15,7 @@ static void FreeBufferHandle_p(void);
 static bool SelectDataTypeComputation_p(int);
 static bool Init_p(int,int,int );
 static bool Prepare_p(int );
-static bool Invoke_p(bool);
+static bool Invoke_p(bool,int);
 static void load_overlay(void);
 static bool ResetHardware_p(void);
 static void push_weight_to_heap( void  *,int *,int);
@@ -217,7 +217,7 @@ class DTPU_delegate {
   // Actual running of the delegate subgraph.
   TfLiteStatus Invoke(TfLiteContext* context, TfLiteNode* node) {
     struct timespec ts_start,ts_end;
-
+    int curr_input=0;
     #ifdef DEBUG
     printf("[DEBUG - C]--- Invoke of DTPU delegate class --- \n");
     printf("[DEBUG - C]--- Invoke of DTPU delegate class getting tensors --- \n");
@@ -239,6 +239,9 @@ class DTPU_delegate {
       #endif
       TfLiteTensor  in_t= context->tensors[input_index];
       if(!(in_t.allocation_type==kTfLiteMmapRo)){ //cause the weights have been transferred into the Prepare method
+          if(curr_input!=0){
+            curr_input=input_index;
+          }
       // get dimesion of tensors
       // push to python sublayer
        if(!NO_FP){
@@ -394,7 +397,7 @@ class DTPU_delegate {
         exit(-1);
       }
       }
-    if(Invoke_p(only_con2d)){
+    if(Invoke_p(only_con2d,curr_input)){
       if(time_probe){
       if(!timespec_get(&ts_end, TIME_UTC)){
         fprintf(stderr,"erorr during the acquisition of end time!\n");

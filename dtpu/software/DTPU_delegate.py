@@ -285,6 +285,7 @@ weight_tensors=[]
 input_tensors=[]
 output_tensors=[]
 output_tensors_p=[]
+weight_buffer_multiple=[]
 class Tensor:
   def __init__(self,data, tot_dim,size_l):
     self.tot_dim=tot_dim
@@ -696,6 +697,7 @@ def Prepare_p(weight_num):
   global weight_tensors
   global filter_height
   global filter_width
+  global weight_buffer_multiple
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- weigth size",weight_num," ---")
@@ -729,7 +731,8 @@ def Prepare_p(weight_num):
   iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation))) # if it fits in th eaccelerator memory
   # always 4D tensors
   # assumptio is that the filter sizes always fit the accelerator
-  if iter<=1:
+  if False:
+    weight_buffer_multiple=1
     for w_ind in range(1): # pack only the weight for deep wise convolution 
       tmp=np.array(weight_tensors[w_ind].data, dtype=DTYPE_NP)
       tmp=tmp.reshape(*weight_tensors[w_ind].size_l)
@@ -748,7 +751,25 @@ def Prepare_p(weight_num):
             weight_buffer[index]=0
             index+=1 # padding with zeros
   else:
-    print("it requires multiple iterations for the weight matrix") # multiple iteration on total weight 1MB should be enou-gh
+    #print("it requires multiple iterations for the weight matrix") # multiple iteration on total weight 1MB should be enou-gh
+    weight_buffer_multiple=[]*np.uint64(0)
+    for w_ind in range(1): # pack only the weight for deep wise convolution 
+      tmp=np.array(weight_tensors[w_ind].data, dtype=DTYPE_NP)
+      tmp=tmp.reshape(*weight_tensors[w_ind].size_l)
+      filter_height[w_ind],filter_width[w_ind]=tmp.shape[1:3]
+      for i in range(len(tmp)):
+        for l in range(weight_tensors[w_ind].size_l[3]):
+          global_iteration_shift_wm.append(index)
+          for j in range(len(tmp[i])):
+              # boundary check
+              shift=int(64/curr_bitwidth_data_computation)
+              if shift > len(tmp[i]):
+                shift=len(tmp[i])
+              weight_buffer_multiple.append(np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False)))
+              index+=1
+          for j in range(ROWS-len(tmp[i])):
+            weight_buffer[index]=0
+            index+=1 # padding with zeros
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(weight_buffer[i]))
@@ -756,16 +777,10 @@ def Prepare_p(weight_num):
   ###### transferring data #######
   ################################
   weight_buffer.flush()
-  ################################################
-  ###### program the dma for the weight ##########
-  ################################################
-  if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering weight buffer ----")
-  driver_wm.sendchannel.transfer(weight_buffer)
-  driver_wm.sendchannel.wait()
   return True
 
 @ffi.def_extern()
-def Invoke_p(only_conv2d):
+def Invoke_p(only_conv2d,input_shift):
   global infifo_buffer_transfer
   global driver_csr
   global driver_wm
@@ -789,6 +804,7 @@ def Invoke_p(only_conv2d):
   global n_execution
   global avg_hw_execution_internal
   global n_execution_internal
+  global weight_buffer_multiple
   #######################################################################
   ########### populate buffers pack depending on the precision  #########
   #######################################################################
@@ -810,7 +826,7 @@ def Invoke_p(only_conv2d):
   ## split the input shape into submatrices equalt to filter sizes
   applyed_weight=0
   #over allocate input_fifo_buffer
-  input_fifo_buffer = np.zeros(shape=(math.ceil((tot_size_output*filter_height[applyed_weight]*filter_width[applyed_weight])/(64/curr_bitwidth_data_computation)),),dtype='u8') 
+  input_fifo_buffer = []*np.uint64(0)
   for w_ind in range(len(input_tensors)):
     tmp=np.array(input_tensors[w_ind].data, dtype=DTYPE_NP)
     tmp=tmp.reshape(*input_tensors[w_ind].size_l)
@@ -825,21 +841,12 @@ def Invoke_p(only_conv2d):
               shift=int(64/curr_bitwidth_data_computation)
               if shift> len(tmp_ss):
                 shift=len(tmp_ss)
-              input_fifo_buffer[index]=np.uint64(int.from_bytes(tmp_ss[row,0:shift],byteorder="little",signed=False))
+              input_fifo_buffer.append(np.uint64(int.from_bytes(tmp_ss[row,0:shift],byteorder="little",signed=False)))
               index+=1
-  input_fifo_buffer=np.resize(input_fifo_buffer,new_shape=(index,))
+  input_fifo_buffer=np.array(input_fifo_buffer,dtype='u8')
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
-  #convert = lambda n : [int(i) for i in n.to_bytes(int(64/curr_bitwidth_data_computation), byteorder='little', signed=False)] # lamda function for casting from int64 to desired value
-  #convert = lambda n : [ for i in bytearray(n.tobytes())]
-  #convert = lambda n : [int.from_bytes(i.to_bytes(int(64/curr_bitwidth_data_computation),"little"),"little") for i in n.tobytes()] # lamda function for casting from int64 to desired value
-  #def convert(num):
-  #  data=[]
-  #  a=bytearray(num.tobytes())
-  #  for i in range(int(64/curr_bitwidth_data_computation)):
-  #    data.append(int.from_bytes(a[i*int(64/curr_bitwidth_data_computation):(i+1)*int(64/curr_bitwidth_data_computation)],"little"))
-  #  return data
   #iterate on the output matrix with also multiple weight iteration and inputs
   ## assumption is that the output tensor is always one!
   ## getting the output matrix structure
@@ -854,52 +861,63 @@ def Invoke_p(only_conv2d):
     print("[DEBUG-PYTHON] ---------- deepwise convolution -------")
   if _TIME_PROBES:
     start_time=time.time()
-  for batch_i in range(input_tensors[0].size_l[0]):
-    for channel_i in range(input_tensors[0].size_l[-1]):
-      ################################################
-      ###### program the dma for the csr reg #########
-      ################################################
-      if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight----")
-      csr_buffer[ARITHMETIC_PRECISION]=(global_iteration_shift_wm[channel_i]<<32) | ((NO_FP<<8)) | (ACTIVATE_CHAIN<<4)| (curr_data_precision)
-      #csr_buffer.flush() 
-      driver_csr.sendchannel.transfer(csr_buffer)
-      #driver_csr.sendchannel.wait()
-      for infifo_shift in range(math.ceil(input_fifo_buffer.size/INFIFO_SIZE)):
-        ######################################################
-        ###### program the dma for the in/out fifos ##########
-        ######################################################
-        if _TIME_PROBES:
-          start_time_i=time.time()          
-        if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer",infifo_shift," ----")
-        infifo_buffer_transfer[0:input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)].size]=input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)]
-        driver_fifo_in.sendchannel.transfer(infifo_buffer_transfer)
-        #driver_fifo_in.sendchannel.wait()
-        accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo
-        accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) 
-        accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
-        driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
-        if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
-        driver_fifo_out.recvchannel.wait()
-        if _TIME_PROBES:
-          end_time_i=time.time()
-          avg_hw_execution_internal+=end_time_i-start_time_i
-          n_execution_internal+=1
-        if _DEBUG_PRINT: print(output_fifo_buffer)
-        accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
-        ####################################################################
-        ####### unpack the output buffer depending on the precision ########
-        ####################################################################
-        ## get values from output fifo buffer and put them into an array in order to sum all the data
-        for i in range(output_matrix.shape[1]):
-          for j in range(output_matrix.shape[2]):
-            tmp_sum=np.zeros(shape=(ROWS,int(64/curr_bitwidth_data_computation)),dtype=DTYPE_NP) 
-            tmp_data=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
-            #reshuffle
-            for row in range(len(tmp_sum)):
-              tmp_sum[row]=np.frombuffer(tmp_data[row].tobytes(),dtype=DTYPE_NP)#convert(tmp_data[row])
-            output_matrix[batch_i,i,j,channel_i]=np.multiply(tmp_sum.sum(dtype=DTYPE_NP)*point_wise[channel_i])
-      accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
-    accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
+
+  for shift_w in range(math.ceil(len(weight_buffer_multiple)/WMEM_SIZE)):
+    ################################################
+    ###### program the dma for the weight ##########
+    ################################################
+    if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering weight buffer ----")
+    weight_buffer[0:len(weight_buffer_multiple[WMEM_SIZE*(shift_w):WMEM_SIZE*(shift_w+1)])]=weight_buffer_multiple[WMEM_SIZE*(shift_w):WMEM_SIZE*(shift_w+1)]
+    driver_wm.sendchannel.transfer(weight_buffer)
+    driver_wm.sendchannel.wait()
+    for batch_i in range(input_tensors[0].size_l[0]):
+      for channel_i in range(input_tensors[0].size_l[-1]):
+        ################################################
+        ###### program the dma for the csr reg #########
+        ################################################
+        if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering csr buffer for weight----")
+        csr_buffer[ARITHMETIC_PRECISION]=(global_iteration_shift_wm[channel_i]<<32) | ((NO_FP<<8)) | (ACTIVATE_CHAIN<<4)| (curr_data_precision)
+        #csr_buffer.flush() 
+        driver_csr.sendchannel.transfer(csr_buffer)
+        #driver_csr.sendchannel.wait()
+        for infifo_shift in range(math.ceil(input_fifo_buffer.size/INFIFO_SIZE)):
+          ######################################################
+          ###### program the dma for the in/out fifos ##########
+          ######################################################
+          if _TIME_PROBES:
+            start_time_i=time.time()          
+          if _DEBUG_PRINT: print("[DEBUG-PYTHON]--- transfering input buffer",infifo_shift," ----")
+          infifo_buffer_transfer[0:input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)].size]=input_fifo_buffer[INFIFO_SIZE*(infifo_shift):INFIFO_SIZE*(infifo_shift+1)]
+          driver_fifo_in.sendchannel.transfer(infifo_buffer_transfer)
+          #driver_fifo_in.sendchannel.wait()
+          accelerator.write(OARG0_LENGTH,OUTFIFO_SIZE) # size outfifo
+          accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_STEP<<16))) 
+          accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
+          driver_fifo_out.recvchannel.transfer(output_fifo_buffer)
+          if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- getting output data -----")
+          driver_fifo_out.recvchannel.wait()
+          if _TIME_PROBES:
+            end_time_i=time.time()
+            avg_hw_execution_internal+=end_time_i-start_time_i
+            n_execution_internal+=1
+          if _DEBUG_PRINT: print(output_fifo_buffer)
+          accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(4))) # update input fifo
+          ####################################################################
+          ####### unpack the output buffer depending on the precision ########
+          ####################################################################
+          ## get values from output fifo buffer and put them into an array in order to sum all the data
+          for i in range(output_matrix.shape[1]):
+            for j in range(output_matrix.shape[2]):
+              tmp_sum=np.zeros(shape=(ROWS,int(64/curr_bitwidth_data_computation)),dtype=DTYPE_NP) 
+              tmp_data=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
+              #reshuffle and check if it is worth it 
+              if tmp_data.size >0 
+                for row in range(len(tmp_data)):
+                  tmp_sum[row]=np.frombuffer(tmp_data[row].tobytes(),dtype=DTYPE_NP)#convert(tmp_data[row])
+              output_matrix[batch_i,i,j,channel_i]=np.multiply(tmp_sum.sum(dtype=DTYPE_NP),point_wise[channel_i],dtype=DTYPE_NP)
+        accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
+      accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1)))
+    accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(2))) # update w memory
   #if _DEBUG_PRINT:
   # print("[DEBUG-PYTHON]------- point wise convolution ---------")
   if _TIME_PROBES:

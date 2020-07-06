@@ -1,1 +1,0 @@
-# measurements for cifar10

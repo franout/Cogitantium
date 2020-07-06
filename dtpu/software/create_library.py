@@ -20,7 +20,7 @@ void FreeBufferHandle_p(void);
 bool SelectDataTypeComputation_p(int);
 bool Init_p(int ,int,int);
 bool Prepare_p(int);
-bool Invoke_p(bool);
+bool Invoke_p(bool,int);
 void  load_overlay(void);
 bool ResetHardware_p(void);
 void push_weight_to_heap( void  *,int *,int);

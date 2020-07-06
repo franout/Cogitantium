@@ -105,6 +105,9 @@ tflite_model_quant_file_uint8 = tflite_models_dir/"mnist_model_quant_uint8.tflit
 tflite_model_quant_file_uint8.write_bytes(tflite_model_quant_uint8)
 
 
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+converter.target_spec.supported_types = [tf.lite.constants.EXPERIMENTAL_TFLITE_BUILTINS_ACTIVATIONS_INT16_WEIGHTS_INT8]
+tflite_quant_model = converter.convert()
 
 #### run the tflite model
 
