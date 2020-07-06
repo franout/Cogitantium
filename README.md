@@ -44,7 +44,7 @@ interpreter = tflite.Interpreter(model_path=tflite_model_file,experimental_deleg
 ```
 The shared library is created with the following command :
   ```shell
-  $ python3.5 ./dtpu/software/create_model.py
+  $ python3.5 ./dtpu/software/create_library.py
   ```
 Note: in the same folder there must be present the DTPU_delegate.cpp and DTPU_delegate.py used for building the library.
 
@@ -96,6 +96,8 @@ For executing a models is necessary to run:
   $ sudo python3.5 ./dtpu/software/run_model.py
   ```
 The already quantized model must be present in the same folder of the previous script. Moreover, sudo is necessary for being able to program the FPGA witht the pynq python package.
+
+The shared library for using the accelerator has been created according to <a href="https://www.tensorflow.org/lite/performance/delegates" target="_blank">`Tensorflow Delegate `</a> . The API can be checked into the /dtpu/software/create_library.py (a more detailed explanation will be done).
 ## Documentation 
 - IN PROGRESS
 
