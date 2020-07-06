@@ -355,7 +355,7 @@ def sample_power( threadName, delay):
   global tmp_min
   global tmp_avg
   while True:
-    time.sleep(delay)
+    time.sleep(delay/1000)
     vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
     vcc_pl_int= (vcc_pl_int* vcc_ps_aux_nom) / 4096
     vcc_pl_aux=( xadc_mon.read(VCC_AUX) & 0x0000FFF0) >> 4
@@ -481,6 +481,7 @@ def SelectDataTypeComputation_p(data_type):
   global PACK_TYPE
   global FP
   global BFP
+  global DTYPE_NP
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] ---  SelectDataTypeComputation DTPU class ---")
   if data_type!=0:
     #case switch 
@@ -830,13 +831,22 @@ def Invoke_p(only_conv2d):
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
-  convert = lambda n : [int(i) for i in n.to_bytes(int(64/curr_bitwidth_data_computation), byteorder='little', signed=False)] # lamda function for casting from int64 to desired value
+  #convert = lambda n : [int(i) for i in n.to_bytes(int(64/curr_bitwidth_data_computation), byteorder='little', signed=False)] # lamda function for casting from int64 to desired value
+  #convert = lambda n : [ for i in bytearray(n.tobytes())]
+  #convert = lambda n : [int.from_bytes(i.to_bytes(int(64/curr_bitwidth_data_computation),"little"),"little") for i in n.tobytes()] # lamda function for casting from int64 to desired value
+  #def convert(num):
+  #  data=[]
+  #  a=bytearray(num.tobytes())
+  #  for i in range(int(64/curr_bitwidth_data_computation)):
+  #    data.append(int.from_bytes(a[i*int(64/curr_bitwidth_data_computation):(i+1)*int(64/curr_bitwidth_data_computation)],"little"))
+  #  return data
   #iterate on the output matrix with also multiple weight iteration and inputs
   ## assumption is that the output tensor is always one!
   ## getting the output matrix structure
   #accelerator.write(CMD, (0x0000000 |(CMD_EXECUTE_CONTINOUS<<16))) 
   output_matrix=np.array(output_tensors[0].data, dtype=DTYPE_NP)
   output_matrix=output_matrix.reshape(*output_tensors[0].size_l)
+  point_wise=np.array(weight_tensors[1].data,dtype=DTYPE_NP)
   ######################################
   ####### deepwise convolution #########
   ######################################
@@ -883,11 +893,11 @@ def Invoke_p(only_conv2d):
         for i in range(output_matrix.shape[1]):
           for j in range(output_matrix.shape[2]):
             tmp_sum=np.zeros(shape=(ROWS,int(64/curr_bitwidth_data_computation)),dtype=DTYPE_NP) 
-            tmp=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
+            tmp_data=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
             #reshuffle
             for row in range(len(tmp_sum)):
-              tmp_sum[row]=convert(int(tmp[row]))
-            output_matrix[batch_i,i,j,channel_i]=tmp_sum.sum()*weight_tensors[1].data[channel_i]
+              tmp_sum[row]=np.frombuffer(tmp_data[row].tobytes(),dtype=DTYPE_NP)#convert(tmp_data[row])
+            output_matrix[batch_i,i,j,channel_i]=np.multiply(tmp_sum.sum(dtype=DTYPE_NP)*point_wise[channel_i])
       accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
     accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1))) 
   #if _DEBUG_PRINT:
@@ -992,7 +1002,7 @@ def start_power_consumption():
   if _DEBUG_PRINT: print("[DEBUG-PYTHON] ---- start measurement of  power consumption ----")
   if xadc_mon is not None:
     try:
-      _thread.start_new_thread( sample_power, ("Sampling power", 5 ) ) # every 5 ms
+      _thread.start_new_thread( sample_power, ("Sampling power", 1 ) ) # every 1ms
     except:
       print("Error: unable to start thread")
   return True

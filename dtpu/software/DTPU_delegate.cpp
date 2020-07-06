@@ -71,12 +71,12 @@ class DTPU_delegate {
   printf("[DEBUG - C]--- Supported Operation of DTPU delegate class --- \n");
   #endif
     switch (registration->builtin_code) {
-      case kTfLiteBuiltinConv2d:
+      /*case kTfLiteBuiltinConv2d:
         only_con2d=true;
         #ifdef DEBUG
         printf("[DEBUG-C]-- Supported operations only 2d convolution----\n");
         #endif
-
+        */
       case kTfLiteBuiltinDepthwiseConv2d:
       #ifdef DEBUG
         printf("[DEBUG - C]--Hello world! I can make 2D convolution and depth wise 2D convolution---\n");
