@@ -286,6 +286,7 @@ input_tensors=[]
 output_tensors=[]
 output_tensors_p=[]
 weight_buffer_multiple=[]
+index_wm=0
 class Tensor:
   def __init__(self,data, tot_dim,size_l):
     self.tot_dim=tot_dim
@@ -698,6 +699,7 @@ def Prepare_p(weight_num):
   global filter_height
   global filter_width
   global weight_buffer_multiple
+  global index_wm
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- Prepare p of DTPU class ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- in size",input_size,"output size",output_size," ---")
   if _DEBUG_PRINT: print("[DEBUG - PYTHON ] --- weigth size",weight_num," ---")
@@ -726,7 +728,7 @@ def Prepare_p(weight_num):
       for j in range(tmp.tot_dim):
         print(tmp.data[j],end=" ")
     print("",end="\n")
-  index=0# it eats the first data ?
+  index_wm=0# it eats the first data ?
   shift=int(64/curr_bitwidth_data_computation)
   iter=int(tot_size_weight/(WMEM_SIZE*(64/curr_bitwidth_data_computation))) # if it fits in th eaccelerator memory
   # always 4D tensors
@@ -739,17 +741,17 @@ def Prepare_p(weight_num):
       filter_height[w_ind],filter_width[w_ind]=tmp.shape[1:3]
       for i in range(len(tmp)):
         for l in range(weight_tensors[w_ind].size_l[3]):
-          global_iteration_shift_wm.append(index)
+          global_iteration_shift_wm.append(index_wm)
           for j in range(len(tmp[i])):
               # boundary check
               shift=int(64/curr_bitwidth_data_computation)
               if shift > len(tmp[i]):
                 shift=len(tmp[i])
-              weight_buffer[index]=np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False))
-              index+=1
+              weight_buffer[index_wm]=np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False))
+              index_wm+=1
           for j in range(ROWS-len(tmp[i])):
-            weight_buffer[index]=0
-            index+=1 # padding with zeros
+            weight_buffer[index_wm]=0
+            index_wm+=1 # padding with zeros
   else:
     #print("it requires multiple iterations for the weight matrix") # multiple iteration on total weight 1MB should be enou-gh
     weight_buffer_multiple=[]*np.uint64(0)
@@ -759,17 +761,17 @@ def Prepare_p(weight_num):
       filter_height[w_ind],filter_width[w_ind]=tmp.shape[1:3]
       for i in range(len(tmp)):
         for l in range(weight_tensors[w_ind].size_l[3]):
-          global_iteration_shift_wm.append(index)
+          global_iteration_shift_wm.append(index_wm)
           for j in range(len(tmp[i])):
               # boundary check
               shift=int(64/curr_bitwidth_data_computation)
               if shift > len(tmp[i]):
                 shift=len(tmp[i])
               weight_buffer_multiple.append(np.uint64(int.from_bytes( tmp[i,j,0:shift,l],byteorder="little",signed=False)))
-              index+=1
+              index_wm+=1
           for j in range(ROWS-len(tmp[i])):
-            weight_buffer[index]=0
-            index+=1 # padding with zeros
+            weight_buffer[index_wm]=0
+            index_wm+=1 # padding with zeros
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(weight_buffer[i]))
@@ -844,6 +846,7 @@ def Invoke_p(only_conv2d,input_shift):
               input_fifo_buffer.append(np.uint64(int.from_bytes(tmp_ss[row,0:shift],byteorder="little",signed=False)))
               index+=1
   input_fifo_buffer=np.array(input_fifo_buffer,dtype='u8')
+  input_fifo_buffer=np.reshape(input_fifo_buffer,newshape=(index,))
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
@@ -906,14 +909,16 @@ def Invoke_p(only_conv2d,input_shift):
           ####### unpack the output buffer depending on the precision ########
           ####################################################################
           ## get values from output fifo buffer and put them into an array in order to sum all the data
-          for i in range(output_matrix.shape[1]):
-            for j in range(output_matrix.shape[2]):
+          for i in range(output_matrix.shape[1]-1):
+            for j in range(output_matrix.shape[2]-1):
               tmp_sum=np.zeros(shape=(ROWS,int(64/curr_bitwidth_data_computation)),dtype=DTYPE_NP) 
               tmp_data=output_fifo_buffer[channel_i*(ROWS*COLUMNS)+i*ROWS+j*COLUMNS:channel_i*(ROWS*COLUMNS)+(i+1)*ROWS+(j+1)*COLUMNS]
+              tmp_sum=np.frombuffer(tmp_data.tobytes(),dtype=DTYPE_NP)
               #reshuffle and check if it is worth it 
-              if tmp_data.size >0 
-                for row in range(len(tmp_data)):
-                  tmp_sum[row]=np.frombuffer(tmp_data[row].tobytes(),dtype=DTYPE_NP)#convert(tmp_data[row])
+              #if tmp_data.size >0:
+              #  for row in range(len(tmp_data)):
+              #    if row in tmp_data:
+              #      tmp_sum[row]=np.frombuffer(tmp_data[row].tobytes(),dtype=DTYPE_NP)#convert(tmp_data[row])
               output_matrix[batch_i,i,j,channel_i]=np.multiply(tmp_sum.sum(dtype=DTYPE_NP),point_wise[channel_i],dtype=DTYPE_NP)
         accelerator.write(CMD,((CMD_UPDATE_IN_ARG<<16)|(1))) # update csr
       accelerator.write(CMD,((CMD_UPDATE_OUT_ARG<<16)|(1)))
@@ -1020,7 +1025,7 @@ def start_power_consumption():
   if _DEBUG_PRINT: print("[DEBUG-PYTHON] ---- start measurement of  power consumption ----")
   if xadc_mon is not None:
     try:
-      _thread.start_new_thread( sample_power, ("Sampling power", 1 ) ) # every 1ms
+      _thread.start_new_thread( sample_power, ("Sampling power", 0.5 ) ) # every 1ms
     except:
       print("Error: unable to start thread")
   return True
