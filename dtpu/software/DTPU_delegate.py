@@ -357,7 +357,7 @@ def sample_power( threadName, delay):
   global tmp_min
   global tmp_avg
   while True:
-    time.sleep(delay/1000)
+    time.sleep(0.5/1000)
     vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
     vcc_pl_int= (vcc_pl_int* vcc_ps_aux_nom) / 4096
     vcc_pl_aux=( xadc_mon.read(VCC_AUX) & 0x0000FFF0) >> 4
@@ -1048,18 +1048,18 @@ def print_power_consumption_p():
   print("Min temperature:", round(tmp_min,3) ," C")
   # printing power consumption
   tot_power=ps_power+pl_power+mem_power
-  print("Average power consumption=", round(tot_power*1000/n_sample,3)," mWatt")
-  print("---> Processing System:",round(ps_power*1000/n_sample,3)," mWatt")
-  print("---> Programmable Logic:",round(pl_power*1000/n_sample,3)," mWatt")
+  print("Average power consumption=", round(tot_power*1000/n_sample,5)," mWatt")
+  print("---> Processing System:",round(ps_power*1000/n_sample,5)," mWatt")
+  print("---> Programmable Logic:",round(pl_power*1000/n_sample,5)," mWatt")
   print("---> Memory:",round(mem_power*1000/n_sample,3)," mWatt")
   print("Maximum power consumption")
-  print("---> Processing System:",round(ps_power_max*1000,3)," mWatt")
-  print("---> Programmable Logic:",round(pl_power_max*1000,3)," mWatt")
+  print("---> Processing System:",round(ps_power_max*1000,5)," mWatt")
+  print("---> Programmable Logic:",round(pl_power_max*1000,5)," mWatt")
   print("---> Memory:",round(mem_power_max*1000,3)," mWatt")
   print("Minimum power consumption")
-  print("---> Processing System:",round(ps_power_min*1000,3)," mWatt")
-  print("---> Programmable Logic:",round(pl_power_min*1000,3)," mWatt")
-  print("---> Memory:",round(mem_power_min*1000,3)," mWatt")
+  print("---> Processing System:",round(ps_power_min*1000,5)," mWatt")
+  print("---> Programmable Logic:",round(pl_power_min*1000,5)," mWatt")
+  print("---> Memory:",round(mem_power_min*1000,5)," mWatt")
   return True
 
 @ffi.def_extern() 
