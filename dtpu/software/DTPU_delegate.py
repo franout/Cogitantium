@@ -1075,4 +1075,5 @@ def print_python_time_probes():
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- printing python time probes -----")
   print("Hardware execution time and rebuilding output matrix:", avg_hw_execution/n_execution," [s]")
   print("Hardware execution time:", avg_hw_execution_internal/n_execution_internal," [s]")
+  print("Hardware calls:",n_execution_internal)
   return True
