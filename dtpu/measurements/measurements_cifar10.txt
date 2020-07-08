@@ -618,3 +618,344 @@ Data exchange between interfaces (C->Python->C): 35.346994 [ms]
 Hardware execution time and rebuilding output matrix: 3.9309430599212645  [s]
 Hardware execution time: 0.001997817525959978  [s]
 
+
+
+
+Hardware design space points 50mhz     mxu_8x8   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 47.617  C
+Average execution temperature: 47.881  C
+Max temperature: 48.356  C
+Min temperature: 47.371  C
+Average power consumption= 1202.89779  mWatt
+---> Processing System: 12.70822  mWatt
+---> Programmable Logic: 7.71559  mWatt
+---> Memory: 1182.47398  mWatt
+Maximum power consumption
+---> Processing System: 12.72854  mWatt
+---> Programmable Logic: 7.73303  mWatt
+---> Memory: 1986.22942  mWatt
+Minimum power consumption
+---> Processing System: 12.69954  mWatt
+---> Programmable Logic: 7.70813  mWatt
+---> Memory: -658.21409  mWatt
+output data  with delegate
+[[  4.819691   -8.675445   17.35089     7.229537   -4.177066   -8.675445
+    1.4459074 -21.849268    0.        -13.334479 ]]
+output data without the delegate
+[[-3.0524712  -2.088533    0.96393824  1.6065638   3.0524712  -1.9278765
+   3.855753   -5.141004   -1.7672201  -5.7836294 ]]
+Average execution time on cpu:  0.1621232032775879
+Average Execution time on cpu and accelerator:  13.178579092025757
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4356.400913 [ms]
+Data exchange between interfaces (C->Python->C): 34.761027 [ms]
+Hardware execution time and rebuilding output matrix: 3.9402832984924316  [s]
+Hardware execution time: 0.0017174783379140526  [s]
+
+Hardware design space points 50mhz     mxu_10x10   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 47.986  C
+Average execution temperature: 47.836  C
+Max temperature: 48.356  C
+Min temperature: 47.371  C
+Average power consumption= 1210.05552  mWatt
+---> Processing System: 12.70838  mWatt
+---> Programmable Logic: 7.7158  mWatt
+---> Memory: 1189.63133  mWatt
+Maximum power consumption
+---> Processing System: 12.73206  mWatt
+---> Programmable Logic: 7.73498  mWatt
+---> Memory: 1764.67896  mWatt
+Minimum power consumption
+---> Processing System: 12.70305  mWatt
+---> Programmable Logic: 7.70617  mWatt
+---> Memory: -658.21409  mWatt
+output data  with delegate
+[[  8.9967575   -5.141004    14.137761     3.0524712   -0.16065638
+  -11.888572    -0.48196912 -15.904982    -3.3737838  -10.603321  ]]
+output data without the delegate
+[[-1.285251  -2.570502   0.8032819 -0.6426255  1.7672201 -2.4098456
+   2.570502  -1.1245947 -1.285251  -1.9278765]]
+Average execution time on cpu:  0.1621091365814209
+Average Execution time on cpu and accelerator:  13.264939785003662
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4385.313595 [ms]
+Data exchange between interfaces (C->Python->C): 34.620503 [ms]
+Hardware execution time and rebuilding output matrix: 3.9654832681020102  [s]
+Hardware execution time: 0.001885288893574416  [s]
+
+
+Hardware design space points 50mhz     mxu_12x12   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 47.986  C
+Average execution temperature: 48.098  C
+Max temperature: 48.602  C
+Min temperature: 47.617  C
+Average power consumption= 1179.88926  mWatt
+---> Processing System: 12.70768  mWatt
+---> Programmable Logic: 7.71751  mWatt
+---> Memory: 1159.46408  mWatt
+Maximum power consumption
+---> Processing System: 12.72656  mWatt
+---> Programmable Logic: 7.73303  mWatt
+---> Memory: 1764.67896  mWatt
+Minimum power consumption
+---> Processing System: 12.70107  mWatt
+---> Programmable Logic: 7.70813  mWatt
+---> Memory: 0.0  mWatt
+output data  with delegate
+[[ 10.924634  -13.013166    9.318069    6.5869117 -13.173823   -9.1574135
+    7.711506  -22.009924   -0.8032819 -16.547607 ]]
+output data without the delegate
+[[ 0.         -2.7311585  -0.48196912 -2.8918147   3.5344403  -3.6950967
+   3.2131276  -4.9803476  -1.1245947  -3.5344403 ]]
+Average execution time on cpu:  0.16044092178344727
+Average Execution time on cpu and accelerator:  13.120927572250366
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4337.715176 [ms]
+Data exchange between interfaces (C->Python->C): 34.207202 [ms]
+Hardware execution time and rebuilding output matrix: 3.92633056640625  [s]
+Hardware execution time: 0.0017101018115727588  [s]
+
+
+Hardware design space points 50mhz     mxu_16x16   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 48.725  C
+Average execution temperature: 48.463  C
+Max temperature: 48.971  C
+Min temperature: 47.986  C
+Average power consumption= 1239.24429  mWatt
+---> Processing System: 12.70791  mWatt
+---> Programmable Logic: 7.71535  mWatt
+---> Memory: 1218.97682  mWatt
+Maximum power consumption
+---> Processing System: 12.72854  mWatt
+---> Programmable Logic: 7.73303  mWatt
+---> Memory: 1764.67896  mWatt
+Minimum power consumption
+---> Processing System: 12.70305  mWatt
+---> Programmable Logic: 7.71008  mWatt
+---> Memory: -658.21409  mWatt
+output data  with delegate
+[[  9.1574135  -5.7836294  12.691854    3.3737838  -1.7672201 -14.137761
+    3.6950967 -18.154171   -5.141004   -9.800039 ]]
+output data without the delegate
+[[-1.4459074  -2.4098456   0.96393824  0.48196912  2.570502   -1.4459074
+   2.4098456  -2.7311585  -0.8032819  -4.0164094 ]]
+Average execution time on cpu:  0.16038179397583008
+Average Execution time on cpu and accelerator:  13.064479112625122
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4318.497194 [ms]
+Data exchange between interfaces (C->Python->C): 34.604275 [ms]
+Hardware execution time and rebuilding output matrix: 3.911767323811849  [s]
+Hardware execution time: 0.0017234773346872041  [s]
+
+
+Hardware design space points 50mhz     mxu_18x18   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 48.971  C
+Average execution temperature: 48.844  C
+Max temperature: 49.34  C
+Min temperature: 48.356  C
+Average power consumption= 1227.66203  mWatt
+---> Processing System: 12.70698  mWatt
+---> Programmable Logic: 7.71723  mWatt
+---> Memory: 1207.23782  mWatt
+Maximum power consumption
+---> Processing System: 12.72854  mWatt
+---> Programmable Logic: 7.73303  mWatt
+---> Memory: 1764.67896  mWatt
+Minimum power consumption
+---> Processing System: 12.70107  mWatt
+---> Programmable Logic: 7.70881  mWatt
+---> Memory: -439.02397  mWatt
+output data  with delegate
+[[ 11.245947  -10.282008   12.370541    6.908224   -8.193476  -11.406603
+    4.9803476 -21.206642   -2.7311585 -13.816448 ]]
+output data without the delegate
+[[-0.96393824 -1.6065638  -0.8032819  -0.8032819   1.285251   -3.2131276
+   1.4459074  -0.16065638 -1.7672201  -3.0524712 ]]
+Average execution time on cpu:  0.1627826690673828
+Average Execution time on cpu and accelerator:  13.150481224060059
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4346.468951 [ms]
+Data exchange between interfaces (C->Python->C): 34.910438 [ms]
+Hardware execution time and rebuilding output matrix: 3.930187225341797  [s]
+Hardware execution time: 0.0018119824053061128  [s]
+
+
+Hardware design space points 100mhz     mxu_8x8   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 48.848  C
+Average execution temperature: 48.773  C
+Max temperature: 49.34  C
+Min temperature: 48.356  C
+Average power consumption= 976.04819  mWatt
+---> Processing System: 12.7148  mWatt
+---> Programmable Logic: 7.7249  mWatt
+---> Memory: 955.46631  mWatt
+Maximum power consumption
+---> Processing System: 12.73403  mWatt
+---> Programmable Logic: 7.73957  mWatt
+---> Memory: 1986.22942  mWatt
+Minimum power consumption
+---> Processing System: 12.70459  mWatt
+---> Programmable Logic: 7.71272  mWatt
+---> Memory: -877.18964  mWatt
+output data  with delegate
+[[ 10.121352  -12.691854   13.173823    8.193476  -10.121352   -9.800039
+    5.6229734 -23.616488   -0.6426255 -14.941043 ]]
+output data without the delegate
+[[ 1.9278765   0.48196912 -0.16065638 -2.2491894   2.570502   -6.426255
+  -1.4459074  -4.9803476   1.1245947  -2.4098456 ]]
+Average execution time on cpu:  0.16082096099853516
+Average Execution time on cpu and accelerator:  13.117846965789795
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4336.267705 [ms]
+Data exchange between interfaces (C->Python->C): 34.659986 [ms]
+Hardware execution time and rebuilding output matrix: 3.9022072156270347  [s]
+Hardware execution time: 0.0013388515722872031  [s]
+
+
+Hardware design space points 100mhz     mxu_10x10   only_integer16
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 48.848  C
+Average execution temperature: 49.032  C
+Max temperature: 49.586  C
+Min temperature: 48.479  C
+Average power consumption= 1070.4078  mWatt
+---> Processing System: 12.71311  mWatt
+---> Programmable Logic: 7.72288  mWatt
+---> Memory: 1049.99638  mWatt
+Maximum power consumption
+---> Processing System: 12.73403  mWatt
+---> Programmable Logic: 7.74153  mWatt
+---> Memory: 1986.22942  mWatt
+Minimum power consumption
+---> Processing System: 12.70503  mWatt
+---> Programmable Logic: 7.71662  mWatt
+---> Memory: -219.61927  mWatt
+output data  with delegate
+[[  4.0164094 -13.977105   12.691854    9.960695   -8.193476   -4.0164094
+    2.4098456 -20.242704    3.3737838 -21.367298 ]]
+output data without the delegate
+[[ 3.0524712  -3.0524712   4.3377223  -1.285251    1.7672201  -4.3377223
+   0.16065638 -1.285251   -2.088533   -4.9803476 ]]
+Average execution time on cpu:  0.1603081226348877
+Average Execution time on cpu and accelerator:  13.189913272857666
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4359.887349 [ms]
+Data exchange between interfaces (C->Python->C): 35.051492 [ms]
+Hardware execution time and rebuilding output matrix: 3.938681681950887  [s]
+Hardware execution time: 0.0014301743170227667  [s]
+
+
+
+Hardware design space points 50mhz     mxu_8x8   only_integer32
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 47.494  C
+Average execution temperature: 47.351  C
+Max temperature: 47.863  C
+Min temperature: 46.879  C
+Average power consumption= 1226.62899  mWatt
+---> Processing System: 12.70675  mWatt
+---> Programmable Logic: 7.71573  mWatt
+---> Memory: 1206.20652  mWatt
+Maximum power consumption
+---> Processing System: 12.72854  mWatt
+---> Programmable Logic: 7.73567  mWatt
+---> Memory: 1986.22942  mWatt
+Minimum power consumption
+---> Processing System: 12.69756  mWatt
+---> Programmable Logic: 7.70617  mWatt
+---> Memory: -219.61927  mWatt
+output data  with delegate
+[[  8.193476   -5.7836294  10.763977    7.55085    -9.800039  -12.049229
+    5.7836294 -18.314827   -5.3016605 -13.655792 ]]
+output data without the delegate
+[[-0.48196912 -0.16065638  0.          0.16065638  0.96393824  0.
+  -0.32131276  0.          0.8032819   0.        ]]
+Average execution time on cpu:  0.1601581573486328
+Average Execution time on cpu and accelerator:  13.218304872512817
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4369.470835 [ms]
+Data exchange between interfaces (C->Python->C): 34.926412 [ms]
+Hardware execution time and rebuilding output matrix: 3.9483203887939453  [s]
+Hardware execution time: 0.0013905534840593435  [s]
+
+
+Hardware design space points 50mhz     mxu_10x10   only_integer32
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 48.356  C
+Average execution temperature: 48.189  C
+Max temperature: 48.602  C
+Min temperature: 47.617  C
+Average power consumption= 1213.67039  mWatt
+---> Processing System: 12.70673  mWatt
+---> Programmable Logic: 7.71738  mWatt
+---> Memory: 1193.24628  mWatt
+Maximum power consumption
+---> Processing System: 12.72854  mWatt
+---> Programmable Logic: 7.73694  mWatt
+---> Memory: 1764.67896  mWatt
+Minimum power consumption
+---> Processing System: 12.6991  mWatt
+---> Programmable Logic: 7.70813  mWatt
+---> Memory: -439.02397  mWatt
+output data  with delegate
+[[  9.478726    -6.908224     9.478726     7.711506    -1.4459074
+  -16.065638     0.32131276 -15.904982    -3.855753    -6.908224  ]]
+output data without the delegate
+[[-0.16065638 -2.088533   -0.16065638 -1.9278765   0.16065638  0.6426255
+   0.16065638 -1.7672201   0.         -1.7672201 ]]
+Average execution time on cpu:  0.1602334976196289
+Average Execution time on cpu and accelerator:  13.239060878753662
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4375.861533 [ms]
+Data exchange between interfaces (C->Python->C): 35.448034 [ms]
+Hardware execution time and rebuilding output matrix: 3.958873192469279  [s]
+Hardware execution time: 0.0014094150427616005  [s]
+
+
+Hardware design space points 100mhz     mxu_8x8   only_integer32
+Executing model: cnn_model_quant
+Time probes activated
+Current temperature: 49.217  C
+Average execution temperature: 48.82  C
+Max temperature: 49.34  C
+Min temperature: 48.232  C
+Average power consumption= 1054.78678  mWatt
+---> Processing System: 12.71336  mWatt
+---> Programmable Logic: 7.72369  mWatt
+---> Memory: 1034.34972  mWatt
+Maximum power consumption
+---> Processing System: 12.73755  mWatt
+---> Programmable Logic: 7.74416  mWatt
+---> Memory: 1764.67896  mWatt
+Minimum power consumption
+---> Processing System: 12.70459  mWatt
+---> Programmable Logic: 7.71731  mWatt
+---> Memory: -877.18964  mWatt
+output data  with delegate
+[[  7.229537  -11.567259   14.137761    9.800039  -10.763977   -8.836101
+    4.6590347 -22.009924   -1.9278765 -17.35089  ]]
+output data without the delegate
+[[-0.16065638  1.9278765  -0.16065638  2.4098456   0.16065638 -2.2491894
+   0.16065638  1.1245947   0.         -0.8032819 ]]
+Average execution time on cpu:  0.16045832633972168
+Average Execution time on cpu and accelerator:  13.238276481628418
+If you are seeing too many zeros you probably did not set the time probes variable to true!
+Overall time of delegate invoke: 4373.129630 [ms]
+Data exchange between interfaces (C->Python->C): 37.932005 [ms]
+Hardware execution time and rebuilding output matrix: 3.922541379928589  [s]
+Hardware execution time: 0.0012537421602191348  [s]
