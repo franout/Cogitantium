@@ -875,11 +875,6 @@ def Invoke_p(only_conv2d,input_shift):
               index+=1
   input_fifo_buffer=np.array(input_fifo_buffer,dtype='u8')
   input_fifo_buffer=np.reshape(input_fifo_buffer,newshape=(index,))
-
-  for w_ind in range(len(input_tensors)):
-    input_fifo_buffer=
-
-  input_fifo_buffer=np.frombuffer(bytearray(),dtype='u8')
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
@@ -897,7 +892,6 @@ def Invoke_p(only_conv2d,input_shift):
     print("[DEBUG-PYTHON] ---------- deepwise convolution -------")
   if _TIME_PROBES:
     start_time=time.time()
-
   for shift_w in range(math.ceil(len(weight_buffer_multiple)/WMEM_SIZE)):
     ################################################
     ###### program the dma for the weight ##########
