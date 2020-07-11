@@ -322,7 +322,7 @@ vcc_ddr_nom=1.50
 # equivalent series resitstances of capacitor -> worst case
 # [omh]
 r_pl_int=225
-r_pl_aux=400
+r_pl_aux=300
 r_pl_bram=225
 r_ps_int=225
 r_ps_aux=400
@@ -340,6 +340,7 @@ mem_power_min=sys.float_info.max
 tmp_max=sys.float_info.min
 tmp_min=sys.float_info.max
 tmp_avg=0.00
+
 def sample_power( threadName, delay):
   global ps_power
   global pl_power
@@ -357,7 +358,7 @@ def sample_power( threadName, delay):
   global tmp_min
   global tmp_avg
   while True:
-    time.sleep(0.5/1000)
+    time.sleep(0.8/1000)
     vcc_pl_int=( xadc_mon.read(VCC_INT) & 0x0000FFF0) >> 4
     vcc_pl_int= (vcc_pl_int* vcc_ps_aux_nom) / 4096
     vcc_pl_aux=( xadc_mon.read(VCC_AUX) & 0x0000FFF0) >> 4
@@ -413,6 +414,18 @@ def load_overlay():
   global xadc_mon
   global ROWS
   global COLUMNS
+  global   ps_power
+  global pl_power
+  global mem_power
+  global ps_power_max
+  global pl_power_max
+  global mem_power_max
+  global ps_power_min
+  global pl_power_min
+  global mem_power_min
+  global tmp_max
+  global tmp_min
+  global tmp_avg
   ## modify this part for choosing a different overlay and recompile the library
   f_clk="30mhz"
   datawidth="only_integer8"
@@ -439,6 +452,21 @@ def load_overlay():
     print("ERROR NO ACCELERATOR")
     exit(-1)
   overlay.reset()
+  # clean power variable
+  n_sample=1
+  ps_power=0
+  pl_power=0
+  mem_power=0
+  ps_power_max=sys.float_info.min
+  pl_power_max=sys.float_info.min
+  mem_power_max=sys.float_info.min
+  ps_power_min=sys.float_info.max
+  pl_power_min=sys.float_info.max
+  mem_power_min=sys.float_info.max
+  tmp_max=sys.float_info.min
+  tmp_min=sys.float_info.max
+  tmp_avg=0.00
+
   
 @ffi.def_extern()
 def Init_p(tot_tensors,input_tens_size,output_tens_size): 
@@ -847,6 +875,11 @@ def Invoke_p(only_conv2d,input_shift):
               index+=1
   input_fifo_buffer=np.array(input_fifo_buffer,dtype='u8')
   input_fifo_buffer=np.reshape(input_fifo_buffer,newshape=(index,))
+
+  for w_ind in range(len(input_tensors)):
+    input_fifo_buffer=
+
+  input_fifo_buffer=np.frombuffer(bytearray(),dtype='u8')
   if _DEBUG_PRINT:
     for i in range(10):
       print(hex(input_fifo_buffer[i]))  
@@ -1075,5 +1108,5 @@ def print_python_time_probes():
   if _DEBUG_PRINT: print("[DEBUG-PYTHON]----- printing python time probes -----")
   print("Hardware execution time and rebuilding output matrix:", avg_hw_execution/n_execution," [s]")
   print("Hardware execution time:", avg_hw_execution_internal/n_execution_internal," [s]")
-  print("Hardware calls:",n_execution_internal)
+  #print("Hardware calls:",n_execution_internal)
   return True
