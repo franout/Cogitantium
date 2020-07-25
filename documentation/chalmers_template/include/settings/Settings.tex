@@ -117,7 +117,9 @@
  
  \usepackage{float}
  
+ %for figure
  \usepackage{caption}
+
 
  
  \usepackage{epigraph}
@@ -125,6 +127,61 @@
 \usepackage{tikz}
 \usetikzlibrary{automata,positioning}
 
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+
+\lstdefinestyle{verilog-style}
+{
+    language=Verilog,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{black},
+    commentstyle=\color{green},
+    numbers=left,
+    numberstyle=\tiny\color{black},
+    numbersep=10pt,
+    tabsize=8,
+    moredelim=*[s][\colorIndex]{[}{]},
+    literate=*{:}{:}1
+}
+
+\makeatletter
+\newcommand*\@lbracket{[}
+\newcommand*\@rbracket{]}
+\newcommand*\@colon{:}
+\newcommand*\colorIndex{%
+    \edef\@temp{\the\lst@token}%
+    \ifx\@temp\@lbracket \color{black}%
+    \else\ifx\@temp\@rbracket \color{black}%
+    \else\ifx\@temp\@colon \color{black}%
+    \else \color{vorange}%
+    \fi\fi\fi
+}
+\makeatother
+
+
+
+
+\definecolor{veryLightGrey}{rgb}{0.9629411,0.9629411,0.9629411}
+	
+\lstset{language=C++,
+        alsolanguage=[ANSI]C,
+	keywordstyle=\color{vblue},
+	keywordstyle=[2]\color{red},
+	alsoletter={[2]\#},
+	morekeywords={[2]\#include},
+	basicstyle=\small\sffamily,
+	commentstyle=\color{green}\small\sffamily,
+	stringstyle=\sffamily,
+	showstringspaces=false,
+	breaklines=true,
+	frame=none,
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{commentsColor}
+  }
 
 
 \setlength\epigraphwidth{10cm}
