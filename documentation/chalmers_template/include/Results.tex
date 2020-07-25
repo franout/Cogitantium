@@ -296,7 +296,7 @@ It is worth to mention the power consumed by the DSP entities, comparing to inte
 \label{fig:dynpowint64ent60}
 \end{figure}
 
-As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 DSP entities (for having the possibility to compute vectorized operations on data). Therefore, it should be expected an increase in the power consumed by the DSPs but as it can be seen in Figures from \ref{fig:dynpowint64ent30} to \ref{fig:dynpowint64ent60}.
+As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 DSP entities (for having the possibility to compute vectorized operations on data). Therefore, this heavy utilization per PEs is impacting also the power consumed by the DSPs but as it can be seen in Figures fromi \ref{fig:dynpowint64ent30} to \ref{fig:dynpowint64ent60}.
 \newpage
 \item Brain floating point 16:
 \begin{figure}[!htbp]
@@ -328,9 +328,20 @@ As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 
 \includegraphics[scale=0.47,angle=0]{./figure/graphs/power_pldyn_div_fp32_freq_30mhz.pdf}
 \caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and fp32 PEs}
 \label{fig:dynpowintfp32ent30}
-\end{figure}
+\end{figure}\\
 For the bfp16 and fp32 it can be seen that the majority of the power is consumed by the interconnections and the logic. Mainly, because the PEs are implemented in logic.
 \end{itemize}
+\newpage
+Until now, the focus has been on how much the single entities and the different type of power were impacting the total power consumption. It is also worth to compare the absolute values for different data precision, as in the Figure \ref{fig:dynpowcomparisonent3033}.\\
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.5,angle=0]{./figure/graphs/power_dyn_comparison_pes_30mhz_3x3.pdf}
+\caption{Comparison of Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and a MXU 3x3}
+\label{fig:dynpowcomparisonent3033}
+\end{figure}\\
+As it is very well known from literature and it has also been evident from the other figures and observations, the power consumption per entities grows with the increase of the bitwidth (in the case of integer) and complexity (in the case of floating point).\\
+The power consumed by the DSPs (entities in which the integer PEs are implemented in) is negligible for the integer 8 and 16 while it starts to grow slowly using the integer 32 but it explodes with the 64 bit PEs. The high utilization of those PEs leads also to a huge impact in their power consumption.
 
 \todo{should we add the runtime measurement?}
 
@@ -431,22 +442,21 @@ On the other hand, the clock frequency of the accelerator can be tuned. Therefor
 
 \section{Accuracy}
 The accuracy of inference process in Machine Learning model is how much the prediction is close to the actual value. For example, using the MNIST model, how much is accurate the predicion of a number giving the number as input to the Neural Network. \\ 
-In the following case, the accuracy for different data width and model will be presented with reference to the actual value, in this case the inference without the hardware accelerator.
-
+In the following case, the accuracy for different data width and model will be presented with reference to the actual value, in this case the inference without the hardware accelerator. Moreover, the data provided to the accelerator are bounded by the filter size of the weight, which is always fixed to 3x3 for the used models. Therefore, the MXU for the following comparison has been the standard one, the 8x8.
 \begin{center}
 \begin{table}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\begin{tabular}{ |p{2.2cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+\begin{tabular}{ |P{2cm}||P{1.8cm}|P{2.2cm}|P{2.2cm}|P{2.2cm}|P{1.8cm}| }
 \hline
-Model &  $\leq\pm5\%$ &  $\pm5\%\div25\%$ & $\pm25\%\div50\%$ & $\geq\pm75\%$ \\ 
+Model &  $\leq\pm5\%$ &  $\pm5\%\div25\%$ & $\pm25\%\div50\%$ & $\pm50\%\div75\%$ &  $\geq\pm75\%$ \\ 
 \hline
-MNIST &   & & &\\ 
+MNIST &   & & x & &\\ 
 \hline
-Cifar 10& & & & \\
+Cifar 10& & & & &x \\
 \hline
 \end{tabular}
-\caption{Accuracy Output\protect\footnotemark[2]  with Convolution on integer 8 }
+\caption{Accuracy Output\protect\footnotemark[1]  with Convolution on integer 8 }
 \label{table:accuracyint8}
 \end{table}
 \end{center}
@@ -454,16 +464,16 @@ Cifar 10& & & & \\
 \begin{table}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\begin{tabular}{ |p{2.2cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+\begin{tabular}{ |P{2cm}||P{1.8cm}|P{2.2cm}|P{2.2cm}|P{2.2cm}|P{1.8cm}| }
 \hline
-Model &  <5\% &  5\%-25\% & 25\%-50\% & >75\% \\ 
+Model &  $\leq\pm5\%$ &  $\pm5\%\div25\%$ & $\pm25\%\div50\%$ & $\pm50\%\div75\%$ &  $\geq\pm75\%$ \\ 
 \hline
-MNIST &   & & &\\ 
+MNIST &   & & & x &\\ 
 \hline
-Cifar 10& & & & \\
+Cifar 10& & & &x &   \\
 \hline
 \end{tabular}
-\caption{Accuracy Output\protect\footnotemark[2]  with Convolution on integer 16 }
+\caption{Accuracy Output\protect\footnotemark[1]  with Convolution on integer 16 }
 \label{table:accuracyint16}
 \end{table}
 \end{center}
@@ -472,19 +482,22 @@ Cifar 10& & & & \\
 \begin{table}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\begin{tabular}{ |p{2.2cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+\begin{tabular}{ |P{2cm}||P{1.8cm}|P{2.2cm}|P{2.2cm}|P{2.2cm}|P{1.8cm}| }
 \hline
-Model &  <5\% &  5\%-25\% & 25\%-50\% & >75\% \\ 
+Model &  $\leq\pm5\%$ &  $\pm5\%\div25\%$ & $\pm25\%\div50\%$ & $\pm50\%\div75\%$ &  $\geq\pm75\%$ \\ 
 \hline
-MNIST &   & & &\\ 
+MNIST &   & & &x & \\ 
 \hline
-Cifar 10& & & & \\
+Cifar 10& & & &&x \\
 \hline
 \end{tabular}
-\caption{Accuracy Output\protect\footnotemark[2]  with Convolution on integer 32 }
+\caption{Accuracy Output\protect\footnotemark[1]  with Convolution on integer 32 }
 \label{table:accuracyint32}
 \end{table}
 \end{center}
 
+It comes suddenly evident that the output prediction with the accelerator integrated varies of a huge amount from the expected one. \\
+One of the reason of the wrong prediction may reside in the input data feed to the model, they are totally random. Being feed with random, and probably unreasonable, data the prediction accuracy has been degradeted.
+Another improvement from the hardware point of view, which could improve the output accuracy, should be to accumulate on the different bitwidth precision, for example compute multiplication on 8 bits integer and accumulate values on 16 bit integer. Moreover, as in every software product, bugs have not been detected but this does not means that the written software is bug-free.
 
-\footnotetext[1]{The accuracy is measured as difference between the reference accuracy (the model's output on the CPU only execution) and the output accuracy of the CPU+ hardware accelerator }
+\footnotetext[1]{The accuracy is measured percentage(wrt the reference accuracy) of the difference between the reference accuracy (the model's output on the CPU only execution) and the output accuracy of the CPU+ hardware accelerator of the main predicion, the higher one. }
