@@ -374,7 +374,7 @@ The throughput can be further increased in the 64-bitwidth configuration of the 
 \section{Latency}
 In a real time application, the most important factor is the latency, the execution time of a task.
 In this case the latency is measured as average of the execution time of a Neural Network model for different platforms. In addition, the execution of the models, on the target, in the configuration \textit{CPU+accelerator} is done with different clock frequencies and data type in the Programmable Logic, and as consequence a different overall latency (and power consumption).\\
-In the following tables, the execution type for different data type and model is presented (with a fixed clock frequency of the accelerator at 80 MHz).
+In the following tables, the execution type for different data type and model is presented (with a fixed clock frequency of the accelerator at 50 MHz).
 \begin{center}
 \begin{table}[!htbp]
 \centering
@@ -383,9 +383,10 @@ In the following tables, the execution type for different data type and model is
 \hline
 Model & CPU (host)\protect\footnotemark[1] & GPU(host)\protect\footnotemark[2] & CPU(Pynq Z2 board)\protect\footnotemark[3] & CPU(Pynq Z2 board) + accelerator \\
 \hline
-MNIST & 0.3 ms & 5.7 ms & 2.9 ms  & \\
+MNIST & 0.3 ms & 5.7 ms & 2.9 ms  &  509 ms 
+\\
 \hline
-Cifar 10& 20 ms & 22 ms& 160 ms &\\
+Cifar 10& 20 ms & 22 ms& 160 ms & 13356 ms\\
 \hline
 \end{tabular}
 \caption{Execution Time for different platform and model, integer 8}
@@ -401,9 +402,11 @@ Cifar 10& 20 ms & 22 ms& 160 ms &\\
 \hline
 Model & CPU (host)\protect\footnotemark[1] & GPU(host)\protect\footnotemark[2] & CPU(Pynq Z2 board)\protect\footnotemark[3] & CPU(Pynq Z2 board) + accelerator \\
 \hline
-MNIST & 0.3 ms & 5.7 ms & 2.9 ms  & \\
+MNIST & 0.3 ms & 5.7 ms & 2.9 ms  &  503 ms
+\\
 \hline
-Cifar 10& 20 ms & 22 ms& 160 ms &\\
+Cifar 10& 20 ms & 22 ms& 160 ms & 13178 ms 
+\\
 \hline
 \end{tabular}
 \caption{Execution Time for different platform and model, integer 16}
@@ -418,25 +421,48 @@ Cifar 10& 20 ms & 22 ms& 160 ms &\\
 \hline
 Model & CPU (host)\protect\footnotemark[1] & GPU(host)\protect\footnotemark[2] & CPU(Pynq Z2 board)\protect\footnotemark[3] & CPU(Pynq Z2 board) + accelerator \\
 \hline
-MNIST & 0.3 ms & 5.7 ms & 2.9 ms  & \\
+MNIST & 0.3 ms & 5.7 ms & 2.9 ms  & 496.9 ms
+\\
 \hline
-Cifar 10& 20 ms & 22 ms& 160 ms &\\
+Cifar 10& 20 ms & 22 ms& 160 ms & 13218 ms
+\\
 \hline
 \end{tabular}
 \caption{Execution Time for different platform and model, integer 32}
 \label{table:moplatint32}
 \end{table}
 \end{center}
-\todo{divide the execution time in percentage and check how the time is divided} 
 
-
-\todo{graph of how the execution time on the target changes with the frequency for every model}
 \footnotetext[1]{Intel i7-6700HQ, 2.60 Ghz}
 \footnotetext[2]{NVIDIA, GeForce GTX960M, 1.176 Ghz }
 \footnotetext[3]{Arm dual-core Cortex-A9, 650 MHz }
+Looking at the previous tables, the latency for different data precision it is not changing. This is due to the hardware structure, the Matrix Multiplication Unit is build in such a way that the latency between the one operation and the next one is always of 3 clock cycles (for integer operations).\\\\
+It is worth to analyze and reason about the increase in the latency in the configuration with the accelerator, since one of the main goal was to reduce the latency time. \\
+Focusing on the following Figure:
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.55,angle=0]{./figure/graphs/latency_subdivision_mnist.pdf}
+\caption{Total Execution time of Invoke method (left) in the configuration with accelerator and MNIST model}
+\label{fig:totexecmnist}
+\end{figure}
 
-On the other hand, the clock frequency of the accelerator can be tuned. Therefore, in the following, the behavior of the latency for every model with changing in the clock frequency is presented.
-\todo{a possible estimation of the speedup}
+\begin{figure}[!htbp]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[scale=0.55,angle=0]{./figure/graphs/latency_subdivision_cifar10.pdf}
+\caption{Total Execution time of Invoke method (left) in the configuration with accelerator and Cifar10 model}
+\label{fig:totexeccifar10}
+\end{figure}
+\newpage
+As it has been mentioned before, the most compute intensive part is always the Convolution operations. Introducing the hardware accelerator and its library comes with several overheads as it can be seen in Figures \ref{fig:totexecmnist} and \ref{fig:totexeccifar10}:\\
+\begin{itemize}
+\item Data exchange between C and python: the accelerator library has been developed in Python code with the C interface to Tensorflow Lite. This means that every matrices (input,output and weight) is copied to the python sublayer for further processing. Migrating all the accelerator library into C code will remove this overhead.
+\item Hardware execution time and rebuilding of output matrix: After every execution of the computation by the accelerator it is parsing the accelerator's output and rebuilding the output matrix accordingly to the current execution indexes. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator.
+\item Hardware execution time and data transfer to the accelerator: This is the actual execution time of the hardware and the data transfer from/to the accelerator. It is also bounded by the fixed internal memory access. It can be reduced by increasing the frequency of Programmable Logic.
+\item Other internal operations: it includes the time for reshaping the input matrix in a format suitable for the accelerator and the save back from python to C of the output matrix. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator. Moreover, the migration towards a complete C implementation is going to remove the overhead due to the saving back of the output matrix.\\
+\end{itemize}
+Taking into account all the previous details and suggestions, the latency of the model can be pushed down to the latency in the solo-CPU execution with the benefits of  less power consumption and CPU overload.
 
 \newpage
 
@@ -477,7 +503,6 @@ Cifar 10& & & &x &   \\
 \label{table:accuracyint16}
 \end{table}
 \end{center}
-
 \begin{center}
 \begin{table}[!htbp]
 \centering
@@ -495,9 +520,7 @@ Cifar 10& & & &&x \\
 \label{table:accuracyint32}
 \end{table}
 \end{center}
-
-It comes suddenly evident that the output prediction with the accelerator integrated varies of a huge amount from the expected one. \\
+It comes suddenly evident that the output prediction with the accelerator integrated varies of a huge amount from the expected one.
 One of the reason of the wrong prediction may reside in the input data feed to the model, they are totally random. Being feed with random, and probably unreasonable, data the prediction accuracy has been degradeted.
 Another improvement from the hardware point of view, which could improve the output accuracy, should be to accumulate on the different bitwidth precision, for example compute multiplication on 8 bits integer and accumulate values on 16 bit integer. Moreover, as in every software product, bugs have not been detected but this does not means that the written software is bug-free.
-
 \footnotetext[1]{The accuracy is measured percentage(wrt the reference accuracy) of the difference between the reference accuracy (the model's output on the CPU only execution) and the output accuracy of the CPU+ hardware accelerator of the main predicion, the higher one. }
