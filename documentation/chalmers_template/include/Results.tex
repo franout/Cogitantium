@@ -105,7 +105,7 @@ In the following Figures, estimations of power consumption from Vivado are prese
 \caption{Post Implementation Dynamic Power Consumption per Programmable logic with integer 8 PEs}
 \label{fig:dynpowint8}
 \end{figure}\\\\
-The previous Figures represent the behaviour of the power consumption with different Matrix Multiplicatio Unit and for different clock frequency. It is expressed as percentage with reference to the total power consumption of the SoC ( processing system and programmable logic). In fact it can be seen that the power consumption of the processing system and the static power consumption have a less impact on the total power consumption with an increase of the Matrix Multiplication Unit and the frequency. On the other hand, the dynamic power consumption \ref{fig:dynpowint8}, as expected, grows with a growing Matrix Multiplication Unit and the design frequency.\\
+The previous Figures represent the behaviour of the power consumption with different Matrix Multiplicatio Unit and for different clock frequency. It is expressed as percentage with reference to the total power consumption of the SoC ( processing system and programmable logic). In fact it can be seen that the power consumption of the processing system and the static power consumption have a less impact on the total power consumption with an increase of the Matrix Multiplication Unit and the frequency. On the other hand, the dynamic power consumption in Figure \ref{fig:dynpowint8}, as expected, grows with a growing Matrix Multiplication Unit and the design frequency.\\
 In the following Figures, the dynamic power consumption for each entities (in percentage, wrt the dynamic power in Figure \ref{fig:dynpowint8}) in the FPGA is analyzed for different clock frequencies.\\
 \begin{figure}[!htbp]
 \centering
@@ -296,7 +296,7 @@ It is worth to mention the power consumed by the DSP entities, comparing to inte
 \label{fig:dynpowint64ent60}
 \end{figure}
 
-As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 DSP entities (for having the possibility to compute vectorized operations on data). Therefore, this heavy utilization per PEs is impacting also the power consumed by the DSPs but as it can be seen in Figures fromi \ref{fig:dynpowint64ent30} to \ref{fig:dynpowint64ent60}.
+As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 DSP entities (for having the possibility to compute vectorized operations on data). Therefore, this heavy utilization per PEs is impacting also the power consumed by the DSPs but as it can be seen in Figures from \ref{fig:dynpowint64ent30} to \ref{fig:dynpowint64ent60}.
 \newpage
 \item Brain floating point 16:
 \begin{figure}[!htbp]
@@ -357,10 +357,10 @@ According to the definition, the Throughput is the amount of units of informatio
 \label{fig:roofline}
 \end{figure}
 
-The theoretical throughput given by the roofline model (Figure \label{fig:roofline}) and it is equal to the number of rows in the matrix multiplication unit. The assumption is that enough data are provided to the accelerator in order to have all the Processing Elements working with useful data, if the latter is not meet the throughput goes down.
-In Figure \label{fig:roofline} the different slopes for different data width are representing the different number of internal memory accessess in order to retrieve data for all the Processing Elements.\\
+The theoretical throughput given by the roofline model (Figure \ref{fig:roofline}) and it is equal to the number of rows in the matrix multiplication unit. The assumption is that enough data are provided to the accelerator in order to have all the Processing Elements working with useful data, if the latter is not meet the throughput goes down.
+In Figure \ref{fig:roofline} the different slopes for different data width are representing the different number of internal memory accessess in order to retrieve data for all the Processing Elements.\\
 
-The throughput can be further increased in the 64-bitwidth configuration of the Processing Elements. As already mentioned, those 64-bit units are able to compute vectorized instructions and therefore increase the number of computation per cycle. However, this comes with the overhead of more memory accesses as it can be apprecieted in the \label{fig:rooflinevect}.
+The throughput can be further increased in the 64-bitwidth configuration of the Processing Elements. As already mentioned, those 64-bit units are able to compute vectorized instructions and therefore increase the number of computation per cycle. However, this comes with the overhead of more memory accesses as it can be apprecieted in Figure \ref{fig:rooflinevect}.
 
 \begin{figure}[!htbp]
 \centering
@@ -458,7 +458,7 @@ Focusing on the following Figure:
 As it has been mentioned before, the most compute intensive part is always the Convolution operations. Introducing the hardware accelerator and its library comes with several overheads as it can be seen in Figures \ref{fig:totexecmnist} and \ref{fig:totexeccifar10}:\\
 \begin{itemize}
 \item Data exchange between C and python: the accelerator library has been developed in Python code with the C interface to Tensorflow Lite. This means that every matrix (input, output and weight) is copied to the python sublayer for further processing. Migrating all the accelerator library into C code will remove this overhead.
-\item Hardware execution time and rebuilding of output matrix: After every execution of the computation by the accelerator it is parsing the accelerator's output and rebuilding the output matrix accordingly to the current execution indexes. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator.
+\item Hardware execution time and rebuilding of output matrix: After every execution of the computation by the accelerator it is parsing the accelerator's output and rebuilding the output matrix accordingly to the current execution indexes. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator as most of on the market accelerators do.
 \item Hardware execution time and data transfer to the accelerator: This is the actual execution time of the hardware and the data transfer from/to the accelerator. It is also bounded by the fixed internal memory access. It can be reduced by increasing the frequency of Programmable Logic.
 \item Other internal operations: it includes the time for reshaping the input matrix in a format suitable for the accelerator and the save back from python to C of the output matrix. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator. Moreover, the migration towards a complete C implementation is going to remove the overhead due to the saving back of the output matrix.\\
 \end{itemize}
