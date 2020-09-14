@@ -1,0 +1,39 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+
+\documentclass[%
+    12pt, % font size
+    oneside, % if it should be done for printing on two-sides or not
+    a4paper, % format of paper
+    notitlepage, % to remove the title page
+]{article}
+
+\input{common/packages}
+
+\input{common/summary/packages.tex}
+
+\input{common/package_config}
+
+\input{common/summary/package_config.tex}
+
+\input{common/new_commands}
+
+\input{common/thesis_info.tex}
+
+\addbibresource{bibliography.bib}
+
+% to load the glossaries, not needed if using bib2gls
+\input{glossaries.tex}
+\makeglossaries
+
+\begin{document}
+
+\input{common/config}
+
+\input{common/summary/config.tex}
+
+\maketitle
+
+\input{content/summary.tex}
+
+\end{document}

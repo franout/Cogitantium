@@ -1,0 +1,145 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+
+% toptesti document class
+\documentclass[%
+    a4paper, % not needed, by default it is a4paper, or also b5paper can be used
+    corpo=12pt, % dimension of basic font
+    % oneside is generally the way to go
+    oneside, % two side optimizes for two-face printing, having chapters open on the right (aka odd numbers), if you don't want blank pages put oneside here
+    stile=standard,
+    %evenboxes, % not needed, to put supervisors and candidate at the same level
+    tipotesi=magistrale,
+    numerazioneromana, % roman numbering for appendixes and preambles, up to Table of Contents
+    openright, % to force opening on the right for double-sided printing
+    cucitura=7mm, % for printing, 7mm should be enough
+    %dvipsnames, % for compatibility with xcolor, it does not work
+]{toptesi}
+
+\input{common/packages}
+
+\input{common/package_config}
+
+\input{common/new_commands}
+
+\input{common/thesis_info.tex}
+
+\input{common/font_config.tex}
+
+%\bibliography{references.bib}
+
+% to load the glossaries, not needed if using bib2gls
+%\input{glossaries.tex}
+%\makeglossaries
+
+\begin{document}
+
+\input{common/config}
+
+\input{common/toptesi_config}
+
+% front page
+% frontespizio can be used for the first page print
+% while the custom-made frontpage can be used as hard-cover
+% use pdfjoin or pdfseparate to extract or put together the pages if needed
+%\frontespizio* % without star the logo is on top
+\input{common/frontpage.tex} % custom frontpage
+%\retrofrontespizio
+% insert text for the back of the front page
+% if you insert any remove the following \paginavuota
+% either a blank page or a back is needed to have double-sided printing
+% pay attention to leave the space for the page
+
+%\paginavuota % clears a page
+
+\frontmatter
+
+% abstract if needed
+ \begin{abstract}
+     \input{include/frontmatter/abstract.tex}
+ \end{abstract}
+
+% to create blank pages for openright in frontmatter
+% use one of the following two methods
+% 1) use the following three lines
+%\phantom{0} % needed otherwise cleardoublepage does not clean the page because it sees it empty
+%\cleardoublepage
+%\thispagestyle{empty} % to have empty page, without numbers
+% 2) or
+\paginavuota % to manually create a blank page
+
+%\sommario
+%\input{content/summary}
+asas
+\phantom{0}
+\cleardoublepage
+\thispagestyle{empty}
+
+\ringraziamenti % acknowledgements
+\input{include/frontmatter/Acknowledgements}
+\paginavuota
+\tableofcontents
+
+\listoftables % ToC for tables
+
+\listoffigures % ToC for figures
+
+% actually abbreviation is the name used for acronym in glossaries-extra
+% title sets the name
+% type tells the type of glossary to print
+% style overrides the global style
+% here we are printing only abbreviations
+% printunsrtglossary if using record, otherwise printglossary is ok
+\paginavuota
+%\printunsrtglossary[style=altlist,title=Acronyms,type=\glsxtrabbrvtype]
+
+% also list of symbols here if needed
+
+\input{common/post_summary_config.tex}
+
+\mainmatter
+
+%\part{Prima Parte} % parts division, not needed
+% Chapters always open on a right-side page, i.e. odd numbers, so a blank page is inserted if needed
+%\cleardoublepage[empty] % to have a fully blank page
+% a blank page appears before the first chapter in some configurations, on the last version it doesn't
+
+
+% INTRODUCTION
+\input{include/Introduction}
+
+
+% THEORY
+\input{include/Theory}
+
+% State of art
+\input{include/Stateofart}
+
+% METHODS
+
+\input{include/Methods}
+
+% RESULTS
+%\input{include/Results}
+
+% CONCLUSION
+\input{include/Conclusion}
+% REFERENCES / BIBLIOGRAPHY
+%\cleardoublepage
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\input{include/backmatter/References}
+
+% APPENDICES
+\cleardoublepage
+\appendix
+\setcounter{page}{1}
+\pagenumbering{Roman}			% Capitalized roman numbering starting from I (one)
+
+\input{include/backmatter/Appendix_1}
+
+
+\phantom{0}
+\cleardoublepage
+\printbibliography[heading=bibintoc] % heading required to show it in ToC
+
+\end{document}

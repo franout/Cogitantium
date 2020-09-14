@@ -1,0 +1,54 @@
+\newgeometry{top=4cm,left=3cm,right=3cm,bottom=4cm,heightrounded}
+\begin{titlepage}
+\centering
+%
+{\fontsize {22}{30}\scshape \textbf{\MakeUppercase{\thesisuniversity}} \par}
+%
+\vspace{\stretch{2}} % changing this number and the others changes the proportion
+%
+{\fontsize {16}{20}\rmfamily \textbf{\thesislevel's Degree in \thesiscourse} \par}
+%
+\vspace{\stretch{3}}
+%
+\includegraphics[width=50mm]{\thesisuniversitylogo}\\
+%
+\vspace{\stretch{4}}
+%
+{\fontsize {16}{20}\rmfamily \textbf{\thesislevel's Degree Thesis} \par}
+%
+\vspace{\stretch{3}}
+%
+{\fontsize {21}{28}\scshape \textbf{\thesistitle} \par}
+%
+\vspace{\stretch{10}}
+%
+\makebox[\textwidth]{\null\hfill\def\arraystretch{2}% % to change the spacing change this number
+\begin{minipage}[t]{.375\textwidth}\raggedright
+    \begin{adjustbox}{width={\textwidth},totalheight={\textheight},keepaspectratio} % with adjustbox it adapts to the lengths of the names, remove it if you want the same font dimension
+    \begin{tabular}[t]{@{}l@{}}
+        \fontsize {14}{20}\mdseries \textbf{\thesissupervisortext} \\
+        \fontsize {14}{20}\bfseries \xmakefirstuc{\thesissupervisoronetitle}~\thesissupervisoronename~\MakeUppercase{\thesissupervisoronesurname}\\
+       \fontsize {14}{20}\bfseries \xmakefirstuc{\thesissupervisortwotitle}~\thesissupervisortwoname~\MakeUppercase{\thesissupervisortwosurname}\\
+       % \namesfont \xmakefirstuc{\thesissupervisorthreetitle}~\thesissupervisorthreename~\MakeUppercase{\thesissupervisorthreesurname}
+    \end{tabular}
+    \end{adjustbox}
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{.375\textwidth}\raggedleft
+\begin{adjustbox}{width={\textwidth},totalheight={\textheight},keepaspectratio} % with adjustbox it adapts to the lengths of the names, remove it if you want the same font dimension
+\begin{tabular}[t]{@{}l@{}}
+    \fontsize {14}{20}\mdseries \textbf{\thesiscandidatetext} \\
+    \fontsize {14}{20}\bfseries \thesiscandidatename~\MakeUppercase{\thesiscandidatesurname}
+\end{tabular}
+\end{adjustbox}
+\end{minipage}\hfill\null}\\
+%
+\vspace{\stretch{5}}
+%
+{\fontsize {15}{18}\rmfamily \textbf{\thesisdate} \par}
+%
+\end{titlepage}
+
+\restoregeometry

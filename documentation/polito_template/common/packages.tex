@@ -1,0 +1,175 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{hyperref} % must be loaded before glossaries-extra
+
+% bibliography
+\usepackage[hyperref=true,backref=true,backend=biber,maxbibnames=9,maxcitenames=2,style=numeric,citestyle=numeric,sorting=none]{biblatex} % hyperref uses links, backref goes back to citations, uses biber as backend, with 9 names at most in bibliography and 2 in citations, citing using numbers, and sorting in citation order
+% sorting can be also ydnt for year descending, name, title or ynt for ascending year
+
+\usepackage{adjustbox} % to resize boxes by keeping the same aspect ratio
+\usepackage{algorithm} % algorithm environment
+\usepackage{algpseudocode} % improved pseudo-code
+\usepackage{amsfonts}               %  AMS mathematical fonts
+\usepackage{amsmath}
+\usepackage{amssymb}                %  AMS mathematical symbols
+\usepackage{bm}                     %  black/bold mathematical symbols
+\usepackage{booktabs}               %  better tables
+\usepackage[labelfont=bf]{caption} % font=footnotesize % to have reduced caption font size
+\usepackage{csquotes}
+\usepackage{enumitem} %left align the bulleted points
+\usepackage{geometry}
+%\usepackage{glossaries} % to use acronyms and glossary, it has also glossaries-extra as extension, but commands are different
+\usepackage[%
+    toc, % puts the link in the ToC
+    %record, % to use bib2gls
+    abbreviations, % to load abbreviations / acronyms
+    nonumberlist, % to avoid printing the numbers of the references in the acronyms page
+]{glossaries-extra}
+\usepackage{graphicx}               %  post-script images
+%\usepackage{iwona} % extra fonts, substitute standard ones
+\usepackage{listings} % to insert formatted code
+\usepackage{lipsum} % for lorem ipsum text, not needed in the real work
+\usepackage{makecell} % to change dimensions of cells, for math cases
+\usepackage{mathtools} % for additional commands
+\usepackage{mfirstuc} % to have capitalization capabilities
+\usepackage[final]{microtype}      % microtypography, final lets latex use it also in bibliography
+\usepackage{multirow} % to allow for cells covering more than 1 row in tables
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+%\usepackage[lofdepth,lotdepth]{subfig}
+\usepackage{ragged2e} % for justifying text
+\usepackage{siunitx} % support for SI units of measurement and number typesetting
+\usepackage{subfig}
+\usepackage{svg} % for svg support, works only if inkscape is installed, default for Overleaf v2
+%\usepackage{subfigure}              %  subfigure compatibility, can be removed if subfig
+\usepackage{tabularx} % equal-width columns in tables
+\usepackage{textcomp} % extra fonts and symbols
+\usepackage{url}            % simple URL typesetting
+\usepackage{verbatim} % for extended verbatim support
+\usepackage{xcolor} % to define colors and use standard CSS names add dvipsnames as option, but it clashes with xcolor loaded in toptesi, pay attention that if it goes in conflict with tikz/beamer, simply use \documentclass[usenames,dvipsnames]{beamer}, along with other custom options when defining the document class
+
+% \usepackage[backend=bibtex,  citestyle=numeric-comp,sorting=none,style=chem-angew ,articletitle=true]{biblatex}
+ 
+ \usepackage{float}
+ 
+ %for figure
+ \usepackage{caption}
+
+
+ 
+ \usepackage{epigraph}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+
+\lstdefinestyle{verilog-style}
+{
+    language=Verilog,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{black},
+    commentstyle=\color{green},
+    numbers=left,
+    numberstyle=\tiny\color{black},
+    numbersep=10pt,
+    tabsize=8,
+    moredelim=*[s][\colorIndex]{[}{]},
+    literate=*{:}{:}1
+}
+
+\makeatletter
+\newcommand*\@lbracket{[}
+\newcommand*\@rbracket{]}
+\newcommand*\@colon{:}
+\newcommand*\colorIndex{%
+    \edef\@temp{\the\lst@token}%
+    \ifx\@temp\@lbracket \color{black}%
+    \else\ifx\@temp\@rbracket \color{black}%
+    \else\ifx\@temp\@colon \color{black}%
+    \else \color{vorange}%
+    \fi\fi\fi
+}
+\makeatother
+
+
+
+
+\definecolor{veryLightGrey}{rgb}{0.9629411,0.9629411,0.9629411}
+	
+\lstset{language=C++,
+        alsolanguage=[ANSI]C,
+	keywordstyle=\color{vblue},
+	keywordstyle=[2]\color{red},
+	alsoletter={[2]\#},
+	morekeywords={[2]\#include},
+	basicstyle=\small\sffamily,
+	commentstyle=\color{green}\small\sffamily,
+	stringstyle=\sffamily,
+	showstringspaces=false,
+	breaklines=true,
+	frame=none,
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{commentsColor}
+  }
+
+
+\setlength\epigraphwidth{10cm}
+\setlength\epigraphrule{0pt}
+
+
+%% for centering in the tables
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+
+% Header and footer settings (Select TWOSIDE or ONESIDE layout below)
+\usepackage{fancyhdr}								
+\pagestyle{fancy}  
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\space#1}{}} 
+
+
+% Select one-sided (1) or two-sided (2) page numbering
+\def\layout{2}	% Choose 1 for one-sided or 2 for two-sided layout
+% Conditional expression based on the layout choice
+\ifnum\layout=2	% Two-sided
+    \fancyhf{}			 						
+	\fancyhead[LE,RO]{\nouppercase{ \leftmark}}
+	\fancyfoot[LE,RO]{\thepage}
+		\renewcommand{\footrulewidth}{0.4pt}
+	\fancyfoot[C]{Politecnico di Torino}
+	\fancyfoot[RE,LO]{\textit{Francesco Angione}}	
+	\fancypagestyle{plain}{			% Redefine the plain page style
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0.4pt}
+	\fancyfoot[LE,RO]{\thepage}
+	\fancyfoot[C]{Politecnico di Torino}
+	\fancyfoot[RE,LO]{\textit{Francesco Angione}}
+	}	
+	\fancypagestyle{plain_cover}{
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+		\renewcommand{\footrulewidth}{0pt}
+	\fancyfoot[LE,RO]{\thepage}
+	}
+\else			% One-sided  	
+  	\fancyhf{}					
+	\fancyhead[C]{\nouppercase{ \leftmark}}
+	\fancyfoot[C]{\thepage}
+		\fancyfoot[C]{Chalmers University Of Technology}
+	\fancyfoot[RE,LO]{\textit{Francesco Angione}}}	
+\fi
+
+
+
+

@@ -1,0 +1,168 @@
+% CREATED BY DAVID FRISK, 2016
+% MODIFIED BY JAKOB JARMAR, 2016
+% A few changes by Birgit Grohe, 2017 and 2018
+% Adjustments with the help of Gustav Örtenberg 2019
+
+% IMPORT SETTINGS
+\documentclass[12pt,a4paper,twoside,openright]{toptesi}
+\input{include/settings/Settings}
+\usepackage{adjustbox} % to resize boxes by keeping the same aspect ratio
+%\usepackage{algorithm} % algorithm environment
+%\usepackage{geometry}
+\usepackage{mfirstuc} % to have capitalization capabilities
+\usepackage[final]{microtype}      % microtypography, final lets latex use it also in bibliography
+%\usepackage{siunitx} % support for SI units of measurement and number typesetting
+
+
+% change this configuration with your info
+% if you need fewer or more supervisors you have to change \relatore command by adding or removing lines in the table in toptesi_config
+\newcommand{\thesistitle}{A FPGA-based tensor accelerator for Machine Learning}
+\newcommand{\thesisuniversitylogo}{logoPoliTo_symbol_only} % choose your logo
+\newcommand{\thesiscandidatename}{Francesco }
+\newcommand{\thesiscandidatesurname}{Angione }
+\newcommand{\thesissupervisoronetitle}{prof.}
+\newcommand{\thesissupervisoronename}{Paolo}
+\newcommand{\thesissupervisoronesurname}{Bernardi}
+\newcommand{\thesissupervisortwotitle}{prof.}
+\newcommand{\thesissupervisortwoname}{Pedro P.M.}
+\newcommand{\thesissupervisortwosurname}{Trancoso}
+\newcommand{\thesisdate}{A.Y. 2019/2020}
+\newcommand{\thesiscourse}{Computer Engineering}
+\newcommand{\thesisuniversity}{Politecnico di Torino}
+\newcommand{\thesislevel}{Master} % master or bachelor
+\newcommand{\thesiscandidatetext}{Candidate}
+\newcommand{\thesissupervisortext}{Supervisors}
+
+
+\bibliography{./include/backmatter/references.bib}
+
+
+\begin{document} 
+% COVER PAGE, TITLE PAGE AND IMPRINT PAGE
+
+%\input{include/frontmatter/Titlepage}
+% fontsize is {size}{spacing}\family
+\ateneo{\thesisuniversity} % university name
+\logosede[5cm]{\thesisuniversitylogo} % logo, square brackets contain the height
+
+\titolo{\thesistitle} % title
+%\sottotitolo{Metodo dei satelliti medicei} % subtitle
+
+% place/remove a slash \\ to put the name on the following line or after Master Degree Course
+\corsodilaurea{\thesiscourse} % course name
+
+
+%~251197 % id number is not needed
+
+\candidato{\thesiscandidatename~\textsc{\thesiscandidatesurname}} % candidate
+
+% using tabular we can have more than 1 supervisor under the same column
+\relatore{\tabular{@{}l}%
+    \xmakefirstuc{\thesissupervisoronetitle}~\thesissupervisoronename~\textsc{\thesissupervisoronesurname}\\[0.4ex]
+    \xmakefirstuc{\thesissupervisortwotitle}~\thesissupervisortwoname~\textsc{\thesissupervisortwosurname}\\[0.4ex]
+   % \xmakefirstuc{\thesissupervisorthreetitle}~\thesissupervisorthreename~\textsc{\thesissupervisorthreesurname}
+    \endtabular}
+
+
+% in this way we have Academic Year without stile=classica, so without lines
+%\sedutadilaurea{\textsc{Academic~Year} 2019-2020}% per la laurea magistrale
+% for PoliTo there is only month year
+\sedutadilaurea{\thesisdate}% per la laurea magistrale
+% PhD
+%\esamedidottorato{Novembre 1610}
+%\ciclodidottorato{XV}
+
+% offset for binding, the smaller the better
+%\setbindingcorrection{3mm}
+
+
+\english% or \italian (default)
+
+\iflanguage{english}{%
+	%\retrofrontespizio{This work is subject to the Creative Commons Licence}
+
+	\CorsoDiLaureaIn{\thesislevel's Degree Course in\space}
+
+	\TesiDiLaurea{\thesislevel's Degree Thesis}
+
+	\InName{in}
+	\CandidateName{\xmakefirstuc{\thesiscandidatetext}}% or Candidates
+	\AdvisorName{\xmakefirstuc{\thesissupervisortext}}% or Supervisor
+	%\TutorName{Tutor}
+	%\NomeTutoreAziendale{Internship Tutor}
+
+	%\NomePrimoTomo{First volume}
+	%\NomeSecondoTomo{Second Volume}
+	%\NomeTerzoTomo{Third Volume}
+	%\NomeQuartoTomo{Fourth Volume}
+}{}
+\pagenumbering{roman}			% Roman numbering (starting with i (one)) until first main chapter
+%polito front page
+\input{./frontpage_polito.tex} % custom frontpage
+\paginavuota
+
+
+% ABSTRACT
+\newpage
+\input{include/frontmatter/Abstract}
+
+% ACKNOWLEDGEMENTS
+\newpage
+\input{include/frontmatter/Acknowledgements}
+
+
+% TABLE OF CONTENTS
+\newpage
+\tableofcontents
+
+% OTHER FRONTMATTER
+% List of figures (add to table of contents)
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename} 
+\listoffigures
+% List of tables (add to table of contents)
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listtablename}  
+\listoftables
+
+
+% START OF MAIN DOCUMENT
+\cleardoublepage
+\setcounter{page}{1}
+\pagenumbering{arabic}			% Arabic numbering starting from 1 (one)
+\setlength{\parskip}{0pt plus 1pt}
+
+% INTRODUCTION
+\input{include/Introduction}
+
+
+% THEORY
+\input{include/Theory}
+
+% State of art
+\input{include/Stateofart}
+
+% METHODS
+
+\input{include/Methods}
+
+% RESULTS
+\input{include/Results}
+
+% CONCLUSION
+\input{include/Conclusion}
+% REFERENCES / BIBLIOGRAPHY
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliography}
+\input{include/backmatter/References}
+
+% APPENDICES
+\cleardoublepage
+\appendix
+\setcounter{page}{1}
+\pagenumbering{Roman}			% Capitalized roman numbering starting from I (one)
+
+\input{include/backmatter/Appendix_1}
+
+
+\end{document}

@@ -105,7 +105,7 @@ In the following Figures, estimations of power consumption from Vivado are prese
 \caption{Post Implementation Dynamic Power Consumption per Programmable logic with integer 8 PEs}
 \label{fig:dynpowint8}
 \end{figure}\\\\
-The previous Figures represent the behaviour of the power consumption with different Matrix Multiplicatio Unit and for different clock frequency. It is expressed as percentage with reference to the total power consumption of the SoC ( processing system and programmable logic). In fact it can be seen that the power consumption of the processing system and the static power consumption have a less impact on the total power consumption with an increase of the Matrix Multiplication Unit and the frequency. On the other hand, the dynamic power consumption in Figure \ref{fig:dynpowint8}, as expected, grows with a growing Matrix Multiplication Unit and the design frequency.\\
+The previous Figures represent the behaviour of the power consumption with different Matrix Multiplicatio Unit and for different clock frequency (see Appendix C). It is expressed as percentage with reference to the total power consumption of the SoC ( processing system and programmable logic). In fact it can be seen that the power consumption of the processing system and the static power consumption have a less impact on the total power consumption with an increase of the Matrix Multiplication Unit and the frequency. On the other hand, the dynamic power consumption in Figure \ref{fig:dynpowint8}, as expected, grows with a growing Matrix Multiplication Unit and the design frequency.\\
 In the following Figures, the dynamic power consumption for each entities (in percentage, wrt the dynamic power in Figure \ref{fig:dynpowint8}) in the FPGA is analyzed for different clock frequencies.\\
 \begin{figure}[!htbp]
 \centering
@@ -114,34 +114,7 @@ In the following Figures, the dynamic power consumption for each entities (in pe
 \caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and integer 8 PEs}
 \label{fig:dynpowint8ent30}
 \end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.7,angle=0]{./figure/graphs/power_pldyn_div_int8_freq_50mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 50 MHz and integer 8 PEs}
-\label{fig:dynpowint8ent50}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.7,angle=0]{./figure/graphs/power_pldyn_div_int8_freq_80mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 80 MHz and integer 8 PEs}
-\label{fig:dynpowint8ent80}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.7,angle=0]{./figure/graphs/power_pldyn_div_int8_freq_100mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 100 MHz and integer 8 PEs}
-\label{fig:dynpowint8ent100}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.7,angle=0]{./figure/graphs/power_pldyn_div_int8_freq_120mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 120 MHz and integer 8 PEs}
-\label{fig:dynpowint8ent120}
-\end{figure}\\\\
+\\\\
 As it is very well known, the clock distribution is one of the main source of power consumption, and it is confirmed from all the previos Figures. Also the interconnections, called \textit{signals} in the figures, are power hungry (a bigger MXU leads to many, and longer, interconnections between PEs). In fact the clock distribution networks and the interconnections are the predominant entities of the dynamic power consumption of the programmable logic.
 The logic entity is containing all the power consumed by the FFs and LUTs, it looks like their power consumption is decreasing but it is only the percentage of the total dynamic power which is decreasing.
 It is worth to mention that the PEs (at least the majority of them) are implemented using the DSP entities. However, the power consumed by those entities is almost negligible,  the DSPs are low power entities in the FGPA according to its datasheet \cite{paper:42}.\\
@@ -176,27 +149,6 @@ In the follwing Figures, the same considerations for the Integer 8 are still val
 \caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and integer 16 PEs}
 \label{fig:dynpowint16ent30}
 \end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int16_freq_50mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 50 MHz and integer 16 PEs}
-\label{fig:dynpowint16ent50}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int16_freq_80mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 80 MHz and integer 16 PEs}
-\label{fig:dynpowint16ent80}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int16_freq_100mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 100 MHz and integer 16 PEs}
-\label{fig:dynpowint16ent100}
-\end{figure}
 \newpage
 \item Integer 32:\\
 From now on, the MXU sizes and the frequencies will show a reduction in their values, this is manly because big designs (with almost full FPGA's utilization) are not able to meet anymore the timing requirements.
@@ -227,27 +179,6 @@ From now on, the MXU sizes and the frequencies will show a reduction in their va
 \includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int32_freq_30mhz.pdf}
 \caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and integer 32 PEs}
 \label{fig:dynpowint32ent30}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int32_freq_50mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 50 MHz and integer 32 PEs}
-\label{fig:dynpowint32ent50}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int32_freq_80mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 80 MHz and integer 32 PEs}
-\label{fig:dynpowint32ent80}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int32_freq_100mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 100 MHz and integer 32 PEs}
-\label{fig:dynpowint32ent100}
 \end{figure}
 
 It is worth to mention the power consumed by the DSP entities, comparing to integer 8 and 16 PEs, is bigger. The main reason is that there is no more one to one mapping between PEs and DSP entities.
@@ -281,22 +212,8 @@ It is worth to mention the power consumed by the DSP entities, comparing to inte
 \caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and integer 64 PEs}
 \label{fig:dynpowint64ent30}
 \end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int64_freq_50mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 50 MHz and integer 64 PEs}
-\label{fig:dynpowint64ent50}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\captionsetup{justification=centering}
-\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int64_freq_60mhz.pdf}
-\caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 60 MHz and integer 64 PEs}
-\label{fig:dynpowint64ent60}
-\end{figure}
 
-As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 DSP entities (for having the possibility to compute vectorized operations on data). Therefore, this heavy utilization per PEs is impacting also the power consumed by the DSPs but as it can be seen in Figures from \ref{fig:dynpowint64ent30} to \ref{fig:dynpowint64ent60}.
+As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 DSP entities (for having the possibility to compute vectorized operations on data). Therefore, this heavy utilization per PEs is impacting also the power consumed by the DSPs but as it can be seen in Figures.
 \newpage
 \item Brain floating point 16:
 \begin{figure}[!htbp]
@@ -332,18 +249,17 @@ As mentioned in the Utilization chapter, the PEs on 64 bit integer are using 14 
 For the bfp16 and fp32 it can be seen that the majority of the power is consumed by the interconnections and the logic. Mainly, because the PEs are implemented in logic.
 \end{itemize}
 \newpage
-Until now, the focus has been on how much the single entities and the different type of power were impacting the total power consumption. It is also worth to compare the absolute values for different data precision, as in the Figure \ref{fig:dynpowcomparisonent3033}.\\
+Until now, the focus has been on how much the single entities and the different type of power were impacting the total power consumption. It is also worth to compare the absolute values for different data precision, as in the Figure \ref{fig:dynpowcomparisonent3033}.
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.5,angle=0]{./figure/graphs/power_dyn_comparison_pes_30mhz_3x3.pdf}
+\includegraphics[scale=0.47,angle=0]{./figure/graphs/power_dyn_comparison_pes_30mhz_3x3.pdf}
 \caption{Comparison of Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and a MXU 3x3}
 \label{fig:dynpowcomparisonent3033}
-\end{figure}\\
+\end{figure}
 As it is very well known from literature and it has also been evident from the other figures and observations, the power consumption per entities grows with the increase of the bitwidth (in the case of integer) and complexity (in the case of floating point).\\
 The power consumed by the DSPs (entities in which the integer PEs are implemented in) is negligible for the integer 8 and 16 while it starts to grow slowly using the integer 32 but it explodes with the 64 bit PEs. The high utilization of those PEs leads also to a huge impact in their power consumption.
 
-\todo{should we add the runtime measurement?}
 
 \newpage
 
@@ -437,7 +353,7 @@ Cifar 10& 20 ms & 22 ms& 160 ms & 13218 ms
 \footnotetext[2]{NVIDIA, GeForce GTX960M, 1.176 Ghz }
 \footnotetext[3]{Arm dual-core Cortex-A9, 650 MHz }
 Looking at the previous tables, the latency for different data precision it is not changing. This is due to the hardware structure, the Matrix Multiplication Unit is build in such a way that the latency between the one operation and the next one is always of 3 clock cycles (for integer operations).\\\\
-It is worth to analyze and reason about the increase in the latency in the configuration with the accelerator, since one of the main goal was to reduce the latency time. \\
+It is worth to analyze and reason about the increase in the latency in the configuration with the accelerator, since one of the main goal was to reduce the latency.\\
 Focusing on the following Figure:
 \begin{figure}[!htbp]
 \centering
@@ -458,11 +374,13 @@ Focusing on the following Figure:
 As it has been mentioned before, the most compute intensive part is always the Convolution operations. Introducing the hardware accelerator and its library comes with several overheads as it can be seen in Figures \ref{fig:totexecmnist} and \ref{fig:totexeccifar10}:\\
 \begin{itemize}
 \item Data exchange between C and python: the accelerator library has been developed in Python code with the C interface to Tensorflow Lite. This means that every matrix (input, output and weight) is copied to the python sublayer for further processing. Migrating all the accelerator library into C code will remove this overhead.
-\item Hardware execution time and rebuilding of output matrix: After every execution of the computation by the accelerator it is parsing the accelerator's output and rebuilding the output matrix accordingly to the current execution indexes. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator as most of on the market accelerators do.
-\item Hardware execution time and data transfer to the accelerator: This is the actual execution time of the hardware and the data transfer from/to the accelerator. It is also bounded by the fixed internal memory access. It can be reduced by increasing the frequency of Programmable Logic.
+\item Rebuilding of output matrix: After every execution of the computation by the accelerator it is parsing the accelerator's output and rebuilding the output matrix accordingly to the current execution indexes. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator as most of on the market accelerators do.
+\item Hardware execution time (and data transfer to the accelerator): This is the actual execution time of the hardware and the data transfer from/to the accelerator. It is also bounded by the fixed internal memory access. It can be reduced by increasing the frequency of Programmable Logic.
 \item Other internal operations: it includes the time for reshaping the input matrix in a format suitable for the accelerator and the save back from python to C of the output matrix. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator. Moreover, the migration towards a complete C implementation is going to remove the overhead due to the saving back of the output matrix.\\
 \end{itemize}
-Taking into account all the previous details and suggestions, the latency of the model can be pushed down to the latency in the solo-CPU execution with the benefits of less power consumption and CPU overload.
+Taking into account all the previous details and suggestions, the latency of the model can be pushed down to the latency in the solo-CPU execution with the benefits of less power consumption and CPU overload.\\
+
+Moreover, it is also important to mention another reason for the latency overheads. This work is based on accelerating ML execution, by solo-accelerating predefined operations of TensorFlow (the most compute intensive ones). All the previous overheads has been the results of this approach, because inside the TensorFlow accelerated functions another software, hardware and data transfer layers have been added. This is slight in contrast with the approaches analyzed during the State-of-the-art chapter, where the entire (preprocessed) model is loaded on the accelerator one and then only the prediction is sent to the CPU.
 
 \newpage
 
