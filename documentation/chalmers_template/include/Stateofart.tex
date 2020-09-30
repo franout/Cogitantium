@@ -5,7 +5,7 @@ Analyzing machine learning algorithms comes evident that they massively do the s
 
 \section{GPU}
 The Moore's law is reaching the end from the point of view of CPUs. However, it seems that the GPUs can still carry on the Moore's law \cite{5496638}.\newline
-For this reason, improving efforts especially from the companies have been made for developing more and more GPUs with a higher performance per watts.\\
+For this reason, improving efforts especially from the companies have been made for developing more and more GPUs with a higher performance per watts.\\\\
 As already mentioned, with the income of general purpose GPU programming paradigm, more and more machine learning algorithms have been designed for being run on the GPU, gathering the best fruits given by that type of architecture.\\\\
 As consequences, companies such as Nvidia have started to develop GPU for boosting machine learning applications performance.
 \subsection{Nvidia Ampere A100 Tensor Core GPU}
@@ -43,7 +43,7 @@ According to Figure \ref{fig:mixprec} the Tensor Core Units are able to compute 
 \label{fig:mixprec}
 \end{figure}
 
-A novel approach for doubling the throughput of deep neural networks has been introduced in this architecture. At the end of training process, only a subset of the total weights are necessary to execute a neural network correctly. As consequence not all the weights are needed, and they can be removed.\\
+A novel approach for doubling the throughput of deep neural networks has been introduced in this architecture. At the end of training process, only a subset of the total weights are necessary to execute a neural network correctly. As consequence not all the weights are needed, and they can be removed.\\\\
 Based on training feedback, weights can be adapted at runtime during the training and this does not have any impact on the final accuracy. Thus, thanks to the sparsity of weight tensors., inference process can be accelerated. In addition, also the training process can be accelerated exploiting the sparsity idea but it has to be introduced at the beginning of the process for achieving some benefits.
 
 \begin{figure}[!htbp]
@@ -53,13 +53,13 @@ Based on training feedback, weights can be adapted at runtime during the trainin
 \caption{Sparsity Optmization of a weight tensor \cite{paper:41}}
 \label{fig:spa}
 \end{figure}
-The apporach in Figure \ref{fig:spa} doubles the throughput by skipping the zeros. It also leads to a reduction of memory footprint and an increase into the memory bandwidth.\\
+The apporach in Figure \ref{fig:spa} doubles the throughput by skipping the zeros. It also leads to a reduction of memory footprint and an increase into the memory bandwidth.\\\\
 
 Following the idea, NVIDIA has introduced a new set of instruction for inference: sparse Matrix Multiply-Accumulate (MMA). Those instructions are able to skip the matrix entries which contain zero values, leading to an increase of the Tensor core throughput. An example can be seen in Figure \ref{fig:mma}, where the light blue matrix has a sparsity of 50\%. It is also important to mention that the non-zero entries of the light blue matrix will be matched with the correct entries of the red one.
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.35]{./figure/mma.png}
+\includegraphics[scale=0.3]{./figure/mma.png}
 \caption{Matrix Multiply Accumulate \cite{paper:41}}
 \label{fig:mma}
 \end{figure}
@@ -87,22 +87,22 @@ The architecture comes in two configurations:
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.4]{./figure/nvdla_system.PNG}
+\includegraphics[scale=0.35]{./figure/nvdla_system.PNG}
 \caption{Comparsion of two possible NVDLA system \cite{WEBSITE:8}}
 \label{fig:nvdlasystem}
 \end{figure}
-As already mentioned, the aim of the work is to develop a hardware accelerator for machine learning suitable for mobile devices. Therefore from now on the NVDLA small system will be considered and analyzed.\\
+As already mentioned, the aim of the work is to develop a hardware accelerator for machine learning suitable for mobile devices. Therefore from now on the NVDLA small system will be considered and analyzed.\\\\
 The internal architecture of the NVDLA small system is:
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.5]{./figure/nvdla_internal.PNG}
+\includegraphics[scale=0.4]{./figure/nvdla_internal.PNG}
 \centering\caption{Internal architecture of NVDLA small system, Secondary DBB not considered \cite{WEBSITE:8}}
 \label{fig:nvdlaarch}
 \end{figure}
 
 According to Figure \ref{fig:nvdlasystem}, for the Small configuration of the accelerator, the processor will be in charge of programming and scheduling the operations on the NVDLA and as consequences handles the start/end of operations and possible interrupts, all of them through the CSB (Configuration Space Bus) interface which is AXI Lite compliant\cite{paper:30}. \newline
-The data movement to/from memory are handled by the Internal memory controller through the DBB (Data BackBone) interface, which is AXI \cite{paper:30} compliant.\\
+The data movement to/from memory are handled by the Internal memory controller through the DBB (Data BackBone) interface, which is AXI \cite{paper:30} compliant.\\\\
 
 The internal architecture of NVDLA is composed by various engines. Each one of them is able to perform specific Machine Learning operations:
 \begin{itemize}
@@ -114,7 +114,7 @@ The internal architecture of NVDLA is composed by various engines. Each one of t
 \item Bridge DMA: it is in charge of copying data from the Main Memory to the SRAM of the accelerator, only available into the large configuration of the system.
 \end{itemize}
 
-Another possible configuration which is worth to mention is the possibility to let the engines work separately on independent task or in a fused fashion where all of them are pipelined, working as a single entity.\\
+Another possible configuration which is worth to mention is the possibility to let the engines work separately on independent task or in a fused fashion where all of them are pipelined, working as a single entity.\\\\
 
 According to developers the configurability of the cores ranges from arithmetic precision to the theoretical throughput that a single unit can achieve (increasing the number of internal Processing Elements). Moreover, since the engine units are independent of each other, according to the application and the model used they can be safely removed from the design.
 \newpage
@@ -128,8 +128,8 @@ It is also worth to mention that the accelerator comes already with a basic soft
 \label{fig:nvdlasw}
 \end{figure}
 
-The Compilation tools are in charge of converting existing pretrained model into a set of hardware layers (for the desired precision) and programming sequences suitable for the NVDLA. The output of this process is a Nvidia Loadable file suitable for the runtime environment.\\
-Regarding the runtime environment, it has been designed for a system in which is present an OS. It is composed in two parts: the User Mode Driver (UMD) and the Kernel Mode Driver (KMD).\newline The User Mode Driver loads the loadable file in memory and submits the operation to the KMD. It is also in charge of data movement from/to the accelerator. \newline The KMD is in charge of submitting operations to the accelerator through low level functions, scheduling the operations and handling the interrupts.\\
+The Compilation tools are in charge of converting existing pretrained model into a set of hardware layers (for the desired precision) and programming sequences suitable for the NVDLA. The output of this process is a Nvidia Loadable file suitable for the runtime environment.\\\\
+Regarding the runtime environment, it has been designed for a system in which is present an OS. It is composed in two parts: the User Mode Driver (UMD) and the Kernel Mode Driver (KMD).\newline The User Mode Driver loads the loadable file in memory and submits the operation to the KMD. It is also in charge of data movement from/to the accelerator. \newline The KMD is in charge of submitting operations to the accelerator through low level functions, scheduling the operations and handling the interrupts.\\\\
 Both the KMD and the UMD are wrapped into portability layers which are, respectively, hardware dependent and OS dependent. In principle, for migrating the software to another OS or hardware plaftorm it is enough to modify only the portability layers.
 \newpage
 \subsection{Google TPU}
@@ -164,8 +164,8 @@ As far as concerned the software stack, the TPU can be programmed for a wide var
 
 \subsection{Habana Goya HL-1000}
 
-Habana’s Goya is a processor dedicated to inference workloads. It is designed to deliver superior performance, power efficiency and cost savings for data centers and other emerging applications.\\
-It allows the adoption of different deep learning models and is not limited to specific domains. Moreover, the performance requirements and accuracy can be user-defined.\\
+Habana’s Goya is a processor dedicated to inference workloads. It is designed to deliver superior performance, power efficiency and cost savings for data centers and other emerging applications.\\\\
+It allows the adoption of different deep learning models and is not limited to specific domains. Moreover, the performance requirements and accuracy can be user-defined.\\\\
 
 In Figure \ref{fig:goyaarch} a high level view of the Goya architecture can be appreciated.
 \begin{figure}[H]
@@ -176,7 +176,7 @@ In Figure \ref{fig:goyaarch} a high level view of the Goya architecture can be a
 \label{fig:goyaarch}
 \end{figure}
 
-It is based on scalable, fully programmable Tensor Processing Cores, specifically designed for deep learning workloads. \\
+It is based on scalable, fully programmable Tensor Processing Cores, specifically designed for deep learning workloads. \\\\
 It also provides other flexible features such as GEMM operation acceleration, special functions dedicated hardware, tensor addressing, latency hiding capabilities and different data types support in TPC (FP32, INT32, INT16, INT8, UINT32, UINT16, UINT8).\\
 
 Regarding the software stack, it can be interfaced with all deep learning frameworks. However, a model has to be first converted into an internal representation, as it can be seen in Figure \ref{fig:goyaswstack}.

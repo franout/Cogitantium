@@ -4,7 +4,7 @@
 \epigraph{ \textit{If you can not measure something, you can not improve it.}}{--- \textup{William Thomson Kelvin}}
 
 \section{Evaluation metrics}
-Generally speaking in Computer Science, every domain and application could have different evaluation metrics, for example the energy efficient of a CPU is a heavy metrics in embedded systems while in a high performant CPU latency and throughput are dominant metrics. As said that, evaluation metrics strongly depend on the end-users, therefore the designers have to make assumption on the end-user intentions and applications.\\
+Generally speaking in Computer Science, every domain and application could have different evaluation metrics, for example the energy efficient of a CPU is a heavy metrics in embedded systems while in a high performant CPU latency and throughput are dominant metrics. As said that, evaluation metrics strongly depend on the end-users, therefore the designers have to make assumption on the end-user intentions and applications.\\\\
 In this work the assumptions are that the accelerator will be deployed into an embedded system and at the same time it should give to the user a certain degree of flexibility for running Neural Network models. Thus, as it is suggested \cite{paper:1} the following metrics are used:
 \begin{itemize}
 \item Accuracy, quality of the final result of inference process.
@@ -16,8 +16,8 @@ In this work the assumptions are that the accelerator will be deployed into an e
 \newpage
 \section{Utilization Factor}
 An important aspect of an embedded system is the on-die utilization area. Those kinds of system are usually deployed on tight area-constrained chips for hiding their presence to the user.
-Therefore, it is important to measure and understand the behavior on the Utilization of the FPGA (used as area measurement in this case) of the design as the size of Matrix Multiplication Unit increases and in parallel the throughput.\\
-The Utilization Factor, composed of Look-up-Table, Flip Flops and Digital Signal Processor usage, is expected to increase as the size of Multiplication Matrix increase and the bit width of Computation Unit.\\
+Therefore, it is important to measure and understand the behavior on the Utilization of the FPGA (used as area measurement in this case) of the design as the size of Matrix Multiplication Unit increases and in parallel the throughput.\\\\
+The Utilization Factor, composed of Look-up-Table, Flip Flops and Digital Signal Processor usage, is expected to increase as the size of Multiplication Matrix increase and the bit width of Computation Unit.\\\\
 In the following Figures, utilization results are presented for each data type, where the Matrix Multiplication Unit sizes are pushed as much as the timing requirements are meet:
 \begin{itemize}
 \item Integer 8 bit:
@@ -71,15 +71,15 @@ In the following Figures, utilization results are presented for each data type, 
 \label{fig:utfp32bit}
 \end{figure}
 \end{itemize}
-It can be seen that the trend for integer 8 and 16 is similar (Figure \ref{fig:ut8bit} and \ref{fig:ut16bit}). It is a 1 to 1 mapping between the PE and the DSP entity on the board. Actually, the DSP entities are on 16 bit and using the 8 bit units the high 8 bits are gated to zeros.\\ 
+It can be seen that the trend for integer 8 and 16 is similar (Figure \ref{fig:ut8bit} and \ref{fig:ut16bit}). It is a 1 to 1 mapping between the PE and the DSP entity on the board. Actually, the DSP entities are on 16 bit and using the 8 bit units the high 8 bits are gated to zeros.\\\\
 As soon as the DSP are used the utilization of LUT and FF is linear in the sizes of Matrix Multiplication unit, while the DSP utilization is quadratic. At a full utilization of DSP entities the PEs start to be implemented in logic and it can be seen, in all the previous graphs, a sudden rise in the LUT utilization.\\It is also worth to mention that the PEs on 64 bit integer are a special case of FPGA's utilization, they reach sooner than the other designs the full utilization. Every PEs in this configuration is using a 14 DSP entities for taking into account also the possibility of computing vectorized operations as previously mentioned.\\\\
-Regarding the floating point units, it has been used the same hardware unit for both the fp32 and bfp16, since they have the same exponent bit length but different mantissa length (this also allows to have the same numerical stability). Relying on the synthesis process to properly optimize the different units and discard, where necessary, the unused hardware. In fact, comparing Figure \ref{fig:utbpf16bit} with Figure \ref{fig:utfp32bit}, there is a slight different in the utilization of the LUT and a more remarkable difference in FF utilization.\\
+Regarding the floating point units, it has been used the same hardware unit for both the fp32 and bfp16, since they have the same exponent bit length but different mantissa length (this also allows to have the same numerical stability). Relying on the synthesis process to properly optimize the different units and discard, where necessary, the unused hardware. In fact, comparing Figure \ref{fig:utbpf16bit} with Figure \ref{fig:utfp32bit}, there is a slight different in the utilization of the LUT and a more remarkable difference in FF utilization.\\\\
 
 Increasing the clock frequency, the FPGA's utilization is reduced since with an increase of the Matrix Multiplication Unit sizes the design is not able anymore to meet the timing requirements, especially for the floating point units. 
 \newpage
 
 \section{Energy and Power Consumption}
-Energy and Power consumption are important factor, for a mobile device in which there is a limited battery capacity meanwhile for data centers stringent power ceilings due to cooling costs.\\ 
+Energy and Power consumption are important factor, for a mobile device in which there is a limited battery capacity meanwhile for data centers stringent power ceilings due to cooling costs.\\\\
 According to the Vivado Power estimation manual\cite{paper:49}, the static power is calculated over all the FPGA resources. This is due to the hard estimation of the static power per single design.
 In the following Figures, estimations of power consumption from Vivado are presented for each data type and different clock frequencies:
 \begin{itemize}
@@ -104,20 +104,19 @@ In the following Figures, estimations of power consumption from Vivado are prese
 \includegraphics[scale=0.45,angle=0]{./figure/graphs/power_pldyn_int8_freq.pdf}
 \caption{Post Implementation Dynamic Power Consumption per Programmable logic with integer 8 PEs}
 \label{fig:dynpowint8}
-\end{figure}\\\\
-The previous Figures represent the behaviour of the power consumption with different Matrix Multiplicatio Unit and for different clock frequency (see Appendix C). It is expressed as percentage with reference to the total power consumption of the SoC ( processing system and programmable logic). In fact it can be seen that the power consumption of the processing system and the static power consumption have a less impact on the total power consumption with an increase of the Matrix Multiplication Unit and the frequency. On the other hand, the dynamic power consumption in Figure \ref{fig:dynpowint8}, as expected, grows with a growing Matrix Multiplication Unit and the design frequency.\\
+\end{figure}
+The previous Figures represent the behaviour of the power consumption with different Matrix Multiplicatio Unit and for different clock frequency (see Appendix C). It is expressed as percentage with reference to the total power consumption of the SoC ( processing system and programmable logic). In fact it can be seen that the power consumption of the processing system and the static power consumption have a less impact on the total power consumption with an increase of the Matrix Multiplication Unit and the frequency. On the other hand, the dynamic power consumption in Figure \ref{fig:dynpowint8}, as expected, grows with a growing Matrix Multiplication Unit and the design frequency.\\\\
 In the following Figures, the dynamic power consumption for each entities (in percentage, wrt the dynamic power in Figure \ref{fig:dynpowint8}) in the FPGA is analyzed for different clock frequencies.\\
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.7,angle=0]{./figure/graphs/power_pldyn_div_int8_freq_30mhz.pdf}
+\includegraphics[scale=0.6,angle=0]{./figure/graphs/power_pldyn_div_int8_freq_30mhz.pdf}
 \caption{Post Implementation Dynamic Power Consumption per entities in Programmable Logic with a clock frequency of 30 MHz and integer 8 PEs}
 \label{fig:dynpowint8ent30}
 \end{figure}
-\\\\
 As it is very well known, the clock distribution is one of the main source of power consumption, and it is confirmed from all the previos Figures. Also the interconnections, called \textit{signals} in the figures, are power hungry (a bigger MXU leads to many, and longer, interconnections between PEs). In fact the clock distribution networks and the interconnections are the predominant entities of the dynamic power consumption of the programmable logic.
 The logic entity is containing all the power consumed by the FFs and LUTs, it looks like their power consumption is decreasing but it is only the percentage of the total dynamic power which is decreasing.
-It is worth to mention that the PEs (at least the majority of them) are implemented using the DSP entities. However, the power consumed by those entities is almost negligible,  the DSPs are low power entities in the FGPA according to its datasheet \cite{paper:42}.\\
+It is worth to mention that the PEs (at least the majority of them) are implemented using the DSP entities. However, the power consumed by those entities is almost negligible,  the DSPs are low power entities in the FGPA according to its datasheet \cite{paper:42}.\\\\
 Regarding the BRAM, I/O and XADC, with an increase or a decrease of the other entities impact they have a slightly modification of their impact on the power consumption.\\
 \item Integer 16:\\
 In the follwing Figures, the same considerations for the Integer 8 are still valid since the PEs are always implemented on the same DSP entity but without the higher 8 bits of the input values gated to zeros.
@@ -268,20 +267,20 @@ According to the definition, the Throughput is the amount of units of informatio
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.45,angle=0]{./figure/graphs/roofline.pdf}
+\includegraphics[scale=0.4,angle=0]{./figure/graphs/roofline.pdf}
 \caption{Roofline model of the accelerator with a MXU size of 8x8}
 \label{fig:roofline}
 \end{figure}
 
 The theoretical throughput given by the roofline model (Figure \ref{fig:roofline}) and it is equal to the number of rows in the matrix multiplication unit. The assumption is that enough data are provided to the accelerator in order to have all the Processing Elements working with useful data, if the latter is not meet the throughput goes down.
-In Figure \ref{fig:roofline} the different slopes for different data width are representing the different number of internal memory accessess in order to retrieve data for all the Processing Elements.\\
+In Figure \ref{fig:roofline} the different slopes for different data width are representing the different number of internal memory accessess in order to retrieve data for all the Processing Elements.\\\\
 
 The throughput can be further increased in the 64-bitwidth configuration of the Processing Elements. As already mentioned, those 64-bit units are able to compute vectorized instructions and therefore increase the number of computation per cycle. However, this comes with the overhead of more memory accesses as it can be apprecieted in Figure \ref{fig:rooflinevect}.
 
 \begin{figure}[!htbp]
 \centering
 \captionsetup{justification=centering}
-\includegraphics[scale=0.45,angle=0]{./figure/graphs/roofline_vectorized.pdf}
+\includegraphics[scale=0.4,angle=0]{./figure/graphs/roofline_vectorized.pdf}
 \caption{Roofline model of the accelerator with a MXU size of 8x8 and vectorized PEs}
 \label{fig:rooflinevect}
 \end{figure}
@@ -289,7 +288,7 @@ The throughput can be further increased in the 64-bitwidth configuration of the 
  
 \section{Latency}
 In a real time application, the most important factor is the latency, the execution time of a task.
-In this case the latency is measured as average of the execution time of a Neural Network model for different platforms. In addition, the execution of the models, on the target, in the configuration \textit{CPU+accelerator} is done with different clock frequencies and data type in the Programmable Logic, and as consequence a different overall latency (and power consumption).\\
+In this case the latency is measured as average of the execution time of a Neural Network model for different platforms. In addition, the execution of the models, on the target, in the configuration \textit{CPU+accelerator} is done with different clock frequencies and data type in the Programmable Logic, and as consequence a different overall latency (and power consumption).\\\\
 In the following tables, the execution type for different data type and model is presented (with a fixed clock frequency of the accelerator at 50 MHz).
 \begin{center}
 \begin{table}[!htbp]
@@ -378,14 +377,14 @@ As it has been mentioned before, the most compute intensive part is always the C
 \item Hardware execution time (and data transfer to the accelerator): This is the actual execution time of the hardware and the data transfer from/to the accelerator. It is also bounded by the fixed internal memory access. It can be reduced by increasing the frequency of Programmable Logic.
 \item Other internal operations: it includes the time for reshaping the input matrix in a format suitable for the accelerator and the save back from python to C of the output matrix. It can be removed preprocessing the model before the deployment, transforming the matrices in a suitable format for the accelerator. Moreover, the migration towards a complete C implementation is going to remove the overhead due to the saving back of the output matrix.\\
 \end{itemize}
-Taking into account all the previous details and suggestions, the latency of the model can be pushed down to the latency in the solo-CPU execution with the benefits of less power consumption and CPU overload.\\
+Taking into account all the previous details and suggestions, the latency of the model can be pushed down to the latency in the solo-CPU execution with the benefits of less power consumption and CPU overload.\\\\
 
 Moreover, it is also important to mention another reason for the latency overheads. This work is based on accelerating ML execution, by solo-accelerating predefined operations of TensorFlow (the most compute intensive ones). All the previous overheads has been the results of this approach, because inside the TensorFlow accelerated functions another software, hardware and data transfer layers have been added. This is slight in contrast with the approaches analyzed during the State-of-the-art chapter, where the entire (preprocessed) model is loaded on the accelerator one and then only the prediction is sent to the CPU.
 
 \newpage
 
 \section{Accuracy}
-The accuracy of inference process in Machine Learning model is how much the prediction is close to the actual value. For example, using the MNIST model, how much is accurate the predicion of a number giving the number as input to the Neural Network. \\ 
+The accuracy of inference process in Machine Learning model is how much the prediction is close to the actual value. For example, using the MNIST model, how much is accurate the predicion of a number giving the number as input to the Neural Network. \\\\
 In the following case, the accuracy for different data width and model will be presented with reference to the actual value, in this case the inference without the hardware accelerator. Moreover, the data provided to the accelerator are bounded by the filter size of the weight, which is always fixed to 3x3 for the used models. Therefore, the MXU for the following comparison has been the standard one, the 8x8.
 \begin{center}
 \begin{table}[!htbp]
@@ -438,7 +437,8 @@ Cifar 10& & & &&x \\
 \label{table:accuracyint32}
 \end{table}
 \end{center}
-It comes suddenly evident that the output prediction with the accelerator integrated varies of a huge amount from the expected one.
-One of the reason of the wrong prediction may reside in the input data feed to the model, they are totally random. Being feed with random, and probably unreasonable, data the prediction accuracy has been degradeted.
-Another improvement from the hardware point of view, which could improve the output accuracy, should be to accumulate on the different bitwidth precision, for example compute multiplication on 8 bits integer and accumulate values on 16 bit integer. Moreover, as in every software product, bugs have not been detected but this does not means that the written software is bug-free.
 \footnotetext[1]{The accuracy is measured percentage(wrt the reference accuracy) of the difference between the reference accuracy (the model's output on the CPU only execution) and the output accuracy of the CPU+ hardware accelerator of the main predicion, the higher one. }
+It comes suddenly evident that the output prediction with the accelerator integrated varies of a huge amount from the expected one.\\\\
+One of the reason of the wrong prediction may reside in the input data feed to the model, they are totally random. Being feed with random, and probably unreasonable, data the prediction accuracy has been degradeted.\\\\
+Another improvement from the hardware point of view, which could improve the output accuracy, should be to accumulate on the different bitwidth precision, for example compute multiplication on 8 bits integer and accumulate values on 16 bit integer. Moreover, as in every software product, bugs have not been detected but this does not means that the written software is bug-free.
+

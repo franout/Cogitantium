@@ -7,7 +7,7 @@
 In the past decade many companies have started to advertise the use of AI, even if they are using a subfield of the AI, in their products and software applications. Nevertheless, the recent growth,
 the AI is not youth.\\ It takes one of its roots from a theoretical paper of \textit{Alan Turing} published by journal \textit{Mind} in the 1950 \cite{paper:36}.\\
 
-The general definition of Artificial Intelligence (AI): \textit{intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals}    \cite{book:1}.\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\
+The general definition of Artificial Intelligence (AI): \textit{intelligence demonstrated by machines, any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals}    \cite{book:1}.\\ In general, ''artificial intelligence'' is used when machines mimics the cognitive functions of the human mind, i.e. learning and problem solving.\\\\
 According to the definition, AI is too vast to be studied and simulated \cite{book:1}. Therefore, it has been divided into subfields, characterized by different traits, such as knowledge representation, planning, learning, natural language processing, perception, motion and manipulation, social intelligence and general intelligence.\\\\
 
 Artificial Intelligence can be seen as a general purpose technology. It does not exist a general task on which it excels neither how to characterize them.
@@ -21,11 +21,11 @@ Artificial Intelligence can be seen as a general purpose technology. It does not
 \end{figure}
 
 \section{Machine Learning}
-A particular interesting subcategory of AI in Computer Science is the machine learning. It is the study of algorithms used to perform a specific task without explicit programming the machine, relying on patterns and inference, in order to make decisions. This approach is used where it is tricky, or unfeasible, to develop a conventional algorithm for solving the task.\\
+A particular interesting subcategory of AI in Computer Science is the machine learning. It is the study of algorithms used to perform a specific task without explicit programming the machine, relying on patterns and inference, in order to make decisions.\\ This approach is used where it is tricky, or unfeasible, to develop a conventional algorithm for solving the task.\\
 
 A peculiarity of machine learning model is that it is composed of two processes, training and inference.\\
 The inference process is the process in which a conclusion is given at the end of the evaluation process, i.e. the input stimulus are applied to the model and the output is observed.\\
-The training process has to be done before the model is put on the field, before the inference process, otherwise the latter can give wrong results. As the name suggests, in this process the model learns how to behave, adjusting the weight accordingly to the applied inputs and expected outputs. Besides this type of training and according to \cite{book:1}, other exists, characterized by approach, type of data and tasks:
+The training process has to be done before the model is put on the field, before the inference process, otherwise the latter can give wrong results. As the name suggests, in this process the model learns how to behave, adjusting the weight accordingly to the applied inputs and expected outputs. \\\\Besides this type of training and according to \cite{book:1}, other exists, characterized by approach, type of data and tasks:
 \begin{itemize}
 \item Supervised Learning, it builds a mathematical model of a set of data that contains both the inputs and the desired outputs.
 \item Unsupervised Learning, it takes a set of data that contains only inputs and find structure in the data.
@@ -58,8 +58,8 @@ In the human brain, the basic computational unit is the neuron.\\ Neurons receiv
 \footnotetext{Figures under CC license}
 \subsubsection{Neural Networks}
 
-Neural Networks (or Artificial Neural Networks) are graphs in which every node is interconnected to others using edges, which have a weight properly tuned during the training process.\\
-As mentioned before, each and every node of the neural networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\
+Neural Networks (or Artificial Neural Networks) are graphs in which every node is interconnected to others using edges, which have a weight properly tuned during the training process.\\\\
+As mentioned before, each and every node of the neural networks is called artificial neurons (a loosely model of its biological counterpart) and the connections (synapses in biological brain) can transmit information from a neuron to another. In Figure \ref{fig:neuron} the neurons receive signals, which is processed internally, and then they propagate it to the other connected neurons.\\\\
 The information exchanged between a neuron and another is a real number, a result of a non-linear function of the sum of all its input.
 
 In the Figure \ref{fig:nn} an implementation of a Neural Network can be appreciated.
@@ -72,8 +72,7 @@ In the Figure \ref{fig:nn} an implementation of a Neural Network can be apprecia
 \end{figure}
 As it can be seen in Figure \ref{fig:nn}, it is always divided in layers in which only the output and input layers are visible from the external world, as consequence the internal layers are called hidden layers. When an input vector is applied, it will propagate from the left side of the network to its right side through the layers and the neurons which compose each layer. It is worth to mention that layers may perform different kind of computation on their inputs. Moreover, the deep neural networks are named after the huge amount of hidden layers.\\\\
 
-In the early stages of ANNs the goal was to solve problems as the human brain would do. However, over time, the aim moved to perform specific tasks, leading to a different architecture of the biological brain and brain-inspired networks (Spiking Neural Networks).
-\newpage
+In the early stages of ANNs the goal was to solve problems as the human brain would do. However, over time, the aim moved to perform specific tasks, leading to a different architecture of the biological brain and brain-inspired networks (Spiking Neural Networks).\\\\
 Depending on how the edges are connected and the topology, a Neural Network can be classified in several sub-types:
 \begin{itemize}
 \item Feed forward, the data move only from input layer to output layer without cycles in the graph.
@@ -84,7 +83,7 @@ Depending on how the edges are connected and the topology, a Neural Network can 
 \end{itemize}
 
 \subsubsection{Spiking Neural Networks}
-Spiking neural networks (SNNs) are artificial neural networks that more closely mimic natural neural networks \cite{article:1}. \\In addition to neuronal and synaptic state, in their operational model, SNNs adds the concept of time. The idea is that neurons in the SNN do not activate at each propagation cycle but rather activate only when specific value is reached.\\
+Spiking neural networks (SNNs) are artificial neural networks that more closely mimic natural neural networks \cite{article:1}. \\\\In addition to neuronal and synaptic state, in their operational model, SNNs adds the concept of time. The idea is that neurons in the SNN do not activate at each propagation cycle but rather activate only when specific value is reached.\\\\
 The current activation level is modeled as a differential equation and it is normally considered as neuron's state.
 
 In principle, SNNs can be applied to the same application of Artificial Neural Networks. Moreover, SNNs can model brain of biological organisms without prior knowledge of the environment. Thus, SNNs have been useful in neuroscience for evaluating the reliability of the hypothesis on biological neural circuits but not in engineering.\\\\
@@ -93,7 +92,7 @@ SSNs are still lagging ANNs in terms of accuracy, but the gap is decreasing and 
 \section{Machine Learning Quantization}
 The reduction of computation demand, the increase of power efficiency and the memory footprint of machine learning algorithms can be achieved through the quantization.\\\\
 
-Quantization is basically a set of techniques which convert, and map, input values from a large set to output values in a smaller set.\\The idea of Quantization is not recent, it has been introduced since the birth of digital electronics. Imagine taking a picture with the phone's camera, the real world is analog and the camera is capturing the analog world and converting it into a digital format. Nevertheless, the high quality of nowadays pictures, quantization is not lossless.\\\\
+Quantization is basically a set of techniques which convert, and map, input values from a large set to output values in a smaller set.\\\\The idea of Quantization is not recent, it has been introduced since the birth of digital electronics. Imagine taking a picture with the phone's camera, the real world is analog and the camera is capturing the analog world and converting it into a digital format. Nevertheless, the high quality of nowadays pictures, quantization is not lossless.\\\\
 A trivial quantization example for Neural Network model is given in the below figure, where a set of potentially infinite value(floating-point) are mapped to finite values (integer).
 \begin{figure}[H]
 \centering

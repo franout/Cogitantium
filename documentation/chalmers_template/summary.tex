@@ -1,0 +1,48 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\input{include/settings/Settings}
+
+\newcommand {\institutionfont}{\fontsize {22}{30}\scshape}
+\newcommand {\divisionfont}{\fontsize {16}{20}\rmfamily}
+\newcommand {\pretitlefont}{\fontsize {16}{16}\rmfamily}
+\newcommand {\customtitlefont}{\fontsize {21}{28}\scshape}% {iwona}{bx}{n}}
+\newcommand {\fixednamesfont}{\fontsize {14}{20}\mdseries}
+\newcommand {\namesfont}{\fontsize {14}{20}\bfseries}
+\newcommand {\footfont}{\fontsize {15}{18}\rmfamily}
+
+
+\newcommand{\thesistitle}{A FPGA-based tensor accelerator for Machine Learning}
+\newcommand{\thesisuniversitylogo}{images/logo/logoPoliTo_symbol_only} % choose your logo
+\newcommand{\thesiscandidatename}{Francesco}
+\newcommand{\thesiscandidatesurname}{Angione}
+\newcommand{\thesissupervisoronetitle}{prof.}
+\newcommand{\thesissupervisoronename}{Paolo}
+\newcommand{\thesissupervisoronesurname}{Bernardi}
+\newcommand{\thesissupervisortwotitle}{prof.}
+\newcommand{\thesissupervisortwoname}{Pedro Petersen}
+\newcommand{\thesissupervisortwosurname}{Moura Trancoso}
+\newcommand{\thesisdate}{A.Y. 2019/2020}
+\newcommand{\thesiscourse}{COURSE}
+\newcommand{\thesisuniversity}{UNIVERSITY}
+\newcommand{\thesislevel}{LEVEL} % master or bachelor
+\newcommand{\thesiscandidatetext}{Candidate}
+\newcommand{\thesissupervisortext}{Supervisors}
+
+
+
+\begin{document}
+\title{\vspace*{-5mm}\textbf{\thesistitle}\\Summary} % vspace is needed to shift upwards the title
+\date{\thesisdate}
+\author{\textbf{Candidate}:\\\thesiscandidatename~\thesiscandidatesurname\\
+\textbf{Supervisors}:\\\thesissupervisoronetitle~\thesissupervisoronename~\thesissupervisoronesurname\\
+\thesissupervisortwotitle~\thesissupervisortwoname~\thesissupervisortwosurname\\
+}%\thesissupervisorthreetitle~\thesissupervisorthreename~\thesissupervisorthreesurname}
+
+\maketitle
+
+
+\input{./summary_file/Introduction_summary.tex}
+%\input{./summary_file/Theory_summary.tex}
+\input{./summary_file/Methods_summary.tex}
+\input{./summary_file/Results_summary.tex}
+\input{./summary_file/Conclusion_summary.tex}
+\end{document}
