@@ -7,6 +7,8 @@
 # Cogitantium
 This is a **discontinued** project (master thesis).
 
+Feel free to contact me if you wanna know more.
+
 Hardware accelerator for Machine Learning on TUL PYNQ™-Z2 board, based on Xilinx Zynq SoC 
 
 Erasmus Master Thesis  @Chalmers University of Technology and Polythecnic of Turin 
