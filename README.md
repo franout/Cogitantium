@@ -5,13 +5,11 @@
 
 
 # Cogitantium
-
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) 
+This is a **discontinued** project (master thesis).
 
 Hardware accelerator for Machine Learning on TUL PYNQ™-Z2 board, based on Xilinx Zynq SoC 
 
-Erasmus Master Thesis  @Chalmers University of Technology and Polythecnic of Turin
+Erasmus Master Thesis  @Chalmers University of Technology and Polythecnic of Turin 
 
 
 ## Table of Contents 
